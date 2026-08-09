@@ -1,0 +1,108 @@
+<!doctype html>
+<!--
+  PROJECTE:     Geometria — preguntes del llibre (llibre complet, p. 1-193)
+  FITXER:       index.html
+  ROL:          Única pàgina real de l'app (§3 de PROPOSTA-ARQUITECTURA.md).
+                Capçalera fixa (títol + selector d'idioma) fora de #app
+                perquè no depèn de la vista activa; #app és el punt de
+                muntatge que js/ui/main.js neteja i reomple a cada canvi
+                de ruta o d'idioma.
+  ARQUITECTURA: Ha de funcionar obrint aquest fitxer amb doble clic
+                (file://), sense cap servidor — lliçó de
+                cangurcat/README.md, ja aplicada des del pas 2
+                (preguntes-dades.js és un <script> que assigna a
+                window.PREGUNTES, mai un fetch() d'un .json). Per això
+                cap <script> d'aquí baix porta type="module": els mòduls
+                ES tenen les seves pròpies restriccions CORS sota
+                file://, que reobririen exactament el problema que
+                cangurcat documenta.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Geometry — questions from the book</title>
+
+<!--
+  Source Serif 4 (cos) + JetBrains Mono (metadades), triades al pas 1
+  precisament per no calcar Libre Baskerville de sol/tasca.html — v.
+  css/tokens.css per al raonament complet. Si aquest <link> no carrega
+  (per exemple sense xarxa, com en un entorn de desenvolupament aïllat),
+  el mateix tokens.css ja declara una pila de fallback amb serif del
+  sistema, així que la pàgina es manté llegible igualment.
+-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="css/tokens.css">
+<link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+</head>
+<body>
+
+<!--
+  Capçalera fixa: NO viu dins de #app perquè és la mateixa a totes les
+  vistes (no depèn de si es mostra la llista o una pregunta). El títol
+  i l'etiqueta del selector es tradueixen des de UI_LANGS via
+  data-i18n-key + un petit pas de sincronització a main.js (v. bloc de
+  script inline més avall), perquè no calgui que main.js conegui la
+  forma exacta d'aquest header per actualitzar-lo — el propi HTML declara
+  quines claus li corresponen.
+-->
+<header class="site-header">
+  <p class="eyebrow" data-i18n-key="nav.source_note"></p>
+  <div class="site-header__row">
+    <h1 class="site-header__title" data-i18n-key="nav.title"></h1>
+    <label class="site-header__lang">
+      <span class="meta" data-i18n-key="lang.switch_label"></span>
+      <select id="lang-select"></select>
+    </label>
+  </div>
+</header>
+
+<main id="app"></main>
+
+<!--
+  Ordre de càrrega: exactament el que confirma la capçalera de
+  js/ui/main.js (que és qui en depèn, tot plegat). Cap altre ordre és
+  vàlid — alterar-lo trenca dependències documentades a cada fitxer.
+-->
+<script src="js/data/preguntes-dades.js"></script>
+<script src="js/i18n/ui-strings.js"></script>
+<script src="js/i18n/i18n-core.js"></script>
+<script src="js/nucli/contingut.js"></script>
+<script src="js/nucli/progres.js"></script>
+<script src="js/nucli/router.js"></script>
+<script src="js/ui/llista.js"></script>
+<script src="js/ui/detall.js"></script>
+<script src="js/ui/main.js"></script>
+
+<script>
+  // Sincronització mínima del header estàtic (títol, nota de font,
+  // etiqueta del selector) amb l'idioma actiu. Es manté aquí en lloc de
+  // dins de main.js perquè és purament DOM-directe sobre elements que
+  // ja existeixen a aquest HTML (data-i18n-key), no lògica de vista —
+  // main.js no hauria de conèixer l'estructura interna d'aquest header.
+  // S'executa un cop en carregar i cada cop que canvia l'idioma
+  // (reaprofitant el mateix esdeveniment 'change' del selector).
+  (function () {
+    "use strict";
+
+    function sincronitzaHeader() {
+      document.documentElement.lang = window.geoI18n.getLang();
+      document.querySelectorAll("[data-i18n-key]").forEach((el) => {
+        el.textContent = window.t(el.dataset.i18nKey);
+      });
+    }
+
+    document.addEventListener("DOMContentLoaded", () => {
+      sincronitzaHeader();
+      const sel = document.getElementById("lang-select");
+      if (sel) sel.addEventListener("change", sincronitzaHeader);
+    });
+  })();
+</script>
+
+</body>
+</html>

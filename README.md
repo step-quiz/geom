@@ -1,2 +1,109 @@
-# geom
-Geometria sintètica
+# Geometria — preguntes del llibre
+
+Un lloc web per explorar 130 preguntes obertes de geometria sintètica extretes d'un
+llibre real ("*On Problems...*"), p. 1–193. No és un banc d'exercicis per corregir-se:
+cada pregunta és una porta d'entrada a una demostració o un descobriment, tal com
+apareix al llibre — sense puntuació, sense respostes correctes marcades, sense
+gamificació.
+
+## Com obrir-ho
+
+Fes doble clic a `index.html`. No cal cap servidor, cap `npm install`, cap build.
+Funciona directament des del sistema de fitxers (`file://`) perquè les dades de les
+preguntes viuen en un fitxer JavaScript (`js/data/preguntes-dades.js`, que assigna a
+`window.PREGUNTES`), no en un `.json` carregat amb `fetch()` — el navegador bloqueja
+aquestes peticions sota `file://`, i aquesta lliçó ve directament del projecte germà
+`cangurcat`.
+
+Si prefereixes servir-ho amb un servidor local (per exemple per provar-ho des d'un
+mòbil a la mateixa xarxa), qualsevol servidor estàtic funciona igual de bé:
+`python3 -m http.server` des de l'arrel del projecte, per exemple.
+
+## Què hi ha, i què no
+
+**Hi ha:** 130 preguntes amb el seu enunciat original en anglès (el text del llibre),
+67 amb la seva figura corresponent (dibuix a mà extret del PDF font), navegació entre
+preguntes, un marcador personal "explorat" que es desa al navegador, i una interfície
+completa en anglès i català (el contingut de les preguntes, no).
+
+**No hi ha, i per què:**
+
+| Element | Per què no hi és |
+|---|---|
+| Correcció o puntuació | El llibre no en té — cada pregunta és un punt de partida per pensar-hi, no un test |
+| Traduccions al català del contingut | `enunciat.ca` és `null` a totes les 130 preguntes; la interfície fa fallback a l'anglès automàticament. Traduir-les és feina de contingut, no de codi — pendent |
+| Pistes | `pista.en`/`pista.ca` són `null` a totes; el botó de pista simplement no apareix quan no n'hi ha (regla explícita de disseny, no un oblit) |
+| Assignació per curs (`#curs=2ESO` i similars) | El camp `curs` existeix a l'esquema de dades però és `null` arreu — decisió de contingut ajornada conscientment, no una limitació tècnica. El filtre ja funciona (prova-ho a la barra d'adreces); simplement no hi ha encara cap valor assignat |
+| Mode d'interacció (resposta oberta, dibuix, etc.) | Ídem: `interaccio` és `null` a tot arreu, estructura preparada, contingut pendent |
+
+## Estructura
+
+```
+index.html                    — única pàgina real de l'app
+css/
+  tokens.css                  — variables de disseny (color, tipografia, espai)
+  base.css                    — ritme de lectura, layout "llibre obert"
+  components.css              — elements interactius (botons, selector d'idioma, navegació)
+js/
+  data/preguntes-dades.js     — les 130 preguntes (generat, no editar a mà — v. més avall)
+  i18n/
+    ui-strings.js             — textos d'interfície en/ca
+    i18n-core.js              — resolució d'idioma i lookup de textos
+  nucli/
+    contingut.js              — fallback de contingut (enunciat.ca → en quan falta)
+    progres.js                — marcador "explorat", desat a localStorage
+    router.js                 — hash-routing (#q01, #curs=2ESO...)
+  ui/
+    llista.js                 — vista "totes les preguntes"
+    detall.js                 — vista d'una pregunta
+    main.js                   — connecta el router a les vistes
+assets/img/                   — les 68 imatges (67 preguntes + q40_implicit amb dues)
+```
+
+Per a detalls tècnics de cada decisió de disseny (per què cada fitxer és com és, quins
+patrons dels projectes germans es reutilitzen i quins es descarten, i per què), consulta
+`PROJECTES-TECHNICAL-REFERENCE.md`.
+
+## Regenerar les dades
+
+`js/data/preguntes-dades.js` **no s'edita a mà** — es genera amb
+`build_preguntes_dades.py` a partir del JSON d'extracció original
+(`geometry_questions_full_book/questions_full_book.json`). Si el text d'una pregunta
+canvia a la font, o s'hi afegeixen preguntes noves d'un lot futur, torna a executar
+l'script en lloc d'editar el `.js` directament.
+
+**Nota important:** `build_preguntes_dades.py` porta paths absoluts (`SRC`, `IMG_DIR`,
+`OUT`) apuntant a l'entorn on es va desenvolupar aquest projecte
+(`/home/claude/geo-full/...`). No funcionarà tal qual clonat a una altra màquina —
+ajusta aquestes tres constants al principi del fitxer perquè apuntin: `SRC` al JSON
+font, `IMG_DIR` a la carpeta d'imatges font (no `assets/img/`, que és la còpia ja
+processada), i `OUT` a `js/data/preguntes-dades.js` d'aquest repositori. S'ha deixat
+així (en lloc de fer-los relatius) perquè el fitxer és, sobretot, documentació viva de
+com es van transformar les dades — la seva funció principal en aquest repositori és
+explicar el mapeig, no ser un botó d'un sol clic.
+
+**El JSON font (`questions_full_book.json`) i les imatges font originals no s'inclouen
+en aquest repositori** — només `assets/img/` (les 68 imatges ja processades i llestes
+per a l'app) i el `preguntes-dades.js` ja generat, que és tot el que el lloc necessita
+per funcionar. `build_preguntes_dades.py` s'inclou com a documentació de la
+transformació i per si algú té accés al JSON font i vol regenerar-lo, però executar-lo
+sense aquell JSON al costat fallarà amb un error de fitxer no trobat — esperat, no un
+bug d'aquest lliurament.
+
+**Excepció:** un cop generat, `enunciat.ca`, `pista.*` i `notaEditorial.*` (les
+traduccions i notes que no venen del JSON font) sí que s'editen a mà directament al
+`.js`. Si regeneres el fitxer després d'haver-hi escrit contingut d'aquest tipus,
+guarda'l abans — la versió actual de l'script sobreescriu net i no fusiona traduccions
+existents (documentat també al capçalera del propi script).
+
+## Estat i propers passos
+
+Els sis passos de l'arquitectura original estan complets i provats de cap a cap
+(inclosa una càrrega real via `file://` sense servidor, amb clics reals a cada element
+interactiu). Pendents coneguts, cap dels quals bloqueja l'ús actual del lloc:
+
+- Traduccions de contingut al català (enunciats, pistes, notes editorials)
+- Assignació de `curs` i mode d'`interaccio` per pregunta
+- Esquemes generats per IA que imitin l'estil de dibuix a mà del llibre (en
+  desenvolupament per un agent separat — v. `docs/hand-drawn-technique/` per la
+  tècnica, encara no integrada en aquest lloc)
