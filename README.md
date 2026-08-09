@@ -1,0 +1,2 @@
+# geom
+Geometria sintètica
