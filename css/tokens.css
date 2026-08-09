@@ -1,0 +1,130 @@
+/*
+  PROJECTE:     Geometria — preguntes del llibre (p. 1-55)
+  FITXER:       css/tokens.css
+  ROL:          Sistema de disseny — variables globals (color, tipografia, espai)
+  ARQUITECTURA: Carregat abans que base.css i qualsevol altre full d'estil.
+                Cap regla de disseny viu aquí, només :root amb custom properties.
+  DEPENDÈNCIES: Cap. Aquest fitxer és l'arrel de tot l'aspecte visual del lloc.
+
+  ORIGEN DELS VALORS
+  El llibre font ("On Problems...", myBookGeometry.pdf) és blanc pur (255,255,255)
+  un cop exportat a PDF: és un artefacte digital, no una fotografia del paper. Però
+  l'experiència de llegir-lo —serif clàssica, marges amplis, dibuixos fets a mà amb
+  un traç gruixut i imperfecte, preguntes en negreta que interrompen el text en
+  primera persona— és inequívocament la d'un llibre físic, no la d'una aplicació.
+  El PDF és la referència, no la font literal de veritat: on el fitxer diu "blanc
+  d'UI" però el contingut demana "paper", triem paper.
+
+  --ink es va mostrejar directament d'un tram de text a pdf-preview/page-001.png
+  (RGB real ≈ 35,31,32) i s'ha arrodonit a un hex net sense alterar-ne el caràcter
+  (negre càlid, no negre fred d'interfície).
+*/
+
+:root {
+  /* ---- Color: paper i tinta, no paleta d'aplicació ---- */
+  --paper:      #FBF9F4;  /* fons — crema molt suau, paper de llibre sota llum de lectura */
+  --paper-raised: #F5F1E8; /* un to per sota del paper, per a superfícies lleugerament elevades (mai targetes amb ombra) */
+  --ink:        #211E1B;  /* text principal — mostrejat del PDF real, negre càlid */
+  --ink-soft:   #56534C;  /* text secundari — metadades, pistes, número de pàgina */
+  --ink-faint:  #8C887E;  /* terciari — marques d'estat inactiu, texts fantasma */
+  --pencil:     #8B5E3C;  /* únic accent de color — marró-llapis apagat, per a l'estat "explorant ara"; s'evita expressament qualsevol to proper al terracota */
+  --pencil-soft: #C9AD93; /* pencil diluït, per a subratllats o focus discret */
+  --rule:       #DEDACE;  /* línies divisòries — un pas més fosc que el paper */
+  --rule-strong: #C7C1B2; /* línies amb més pes, p. ex. el "llom" de la llista */
+
+  /* ---- Tipografia: dos rols, com la veu i les notes al marge d'un llibre ---- */
+  --font-serif: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+  --font-mono:  "JetBrains Mono", "IBM Plex Mono", ui-monospace, monospace;
+
+  --fs-metadata: 0.72rem;   /* pàg. XX, id de pregunta */
+  --fs-body:     1.0625rem; /* enunciat i text corrent */
+  --fs-body-lg:  1.1875rem; /* enunciat en pantalles amples */
+  --fs-question: 1.375rem;  /* la pregunta en negreta — l'element signatura */
+  --fs-question-lg: 1.625rem;
+  --fs-eyebrow:  0.8rem;    /* etiquetes curtes de context */
+
+  --lh-body:     1.6;
+  --lh-question: 1.35;
+
+  --tracking-mono: 0.04em; /* el monospace de metadades es llegeix millor amb una mica d'aire */
+
+  /* ---- Espai: escala basada en el ritme d'un paràgraf de llibre, no en un grid de 8px d'UI ---- */
+  --space-1:  0.25rem;
+  --space-2:  0.5rem;
+  --space-3:  0.875rem;
+  --space-4:  1.25rem;
+  --space-5:  2rem;
+  --space-6:  3.25rem;
+  --space-7:  5rem;
+
+  --measure: 40rem;       /* amplada de línia de lectura còmoda per al cos */
+  --measure-wide: 52rem;  /* amplada per a la llista completa / capçalera */
+
+  /* ---- Traç i forma: gairebé sense radi — els dibuixos són a mà, la UI no necessita imitar software ---- */
+  --radius-sm: 3px;
+  --radius-md: 5px;
+
+  --stroke-hairline: 1px;
+  --stroke-rule: 1.5px;
+
+  /* ---- Moviment: discret, respectant qui prefereix menys ---- */
+  --ease-settle: cubic-bezier(0.22, 0.61, 0.36, 1);
+  --dur-fast: 120ms;
+  --dur-base: 220ms;
+  --dur-slow: 420ms;
+
+  /* ---- Focus visible: sempre present, mai suprimit ---- */
+  --focus-ring: 0 0 0 3px rgba(139, 94, 60, 0.35);
+}
+
+@media (prefers-color-scheme: dark) {
+  /*
+    Mode fosc discret: no és "aplicació fosca d'UI" sinó una lectura nocturna —
+    paper que s'enfosqueix cap a un gris-marró molt profund, mai negre pur, per
+    mantenir la mateixa qualitat "de paper" en comptes de saltar a l'estètica de
+    pantalla-de-codi.
+  */
+  :root {
+    --paper:        #1E1C19;
+    --paper-raised: #262320;
+    --ink:          #EDE9E0;
+    --ink-soft:     #B6B0A2;
+    --ink-faint:    #7C776A;
+    --pencil:       #D2A377;
+    --pencil-soft:  #5B4A3A;
+    --rule:         #38352F;
+    --rule-strong:  #4A4640;
+    --focus-ring: 0 0 0 3px rgba(210, 163, 119, 0.4);
+  }
+}
+
+/*
+  Mode fosc explícit via atribut (per si el lloc ofereix un commutador manual
+  més endavant, en lloc de dependre només de la preferència del sistema).
+  S'aplica amb la mateixa taula de valors que el bloc de mitjans anterior.
+*/
+:root[data-theme="dark"] {
+  --paper:        #1E1C19;
+  --paper-raised: #262320;
+  --ink:          #EDE9E0;
+  --ink-soft:     #B6B0A2;
+  --ink-faint:    #7C776A;
+  --pencil:       #D2A377;
+  --pencil-soft:  #5B4A3A;
+  --rule:         #38352F;
+  --rule-strong:  #4A4640;
+  --focus-ring: 0 0 0 3px rgba(210, 163, 119, 0.4);
+}
+
+:root[data-theme="light"] {
+  --paper:      #FBF9F4;
+  --paper-raised: #F5F1E8;
+  --ink:        #211E1B;
+  --ink-soft:   #56534C;
+  --ink-faint:  #8C887E;
+  --pencil:     #8B5E3C;
+  --pencil-soft: #C9AD93;
+  --rule:       #DEDACE;
+  --rule-strong: #C7C1B2;
+  --focus-ring: 0 0 0 3px rgba(139, 94, 60, 0.35);
+}

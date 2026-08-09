@@ -1,1 +1,318 @@
+/*
+  PROJECTE:     Geometria — preguntes del llibre (p. 1-55)
+  FITXER:       css/base.css
+  ROL:          Reset + ritme tipogràfic + estructura de lectura de base.
+  ARQUITECTURA: Es carrega just després de tokens.css. No conté cap valor
+                de color, mida o espai en dur: tot ve de custom properties.
+                Els fulls d'estil de components (llista de preguntes, targeta
+                de detall, cercador...) es carreguen després d'aquest i poden
+                assumir que aquest reset i aquest ritme ja estan aplicats.
+  DEPENDÈNCIES: css/tokens.css
 
+  DECISIÓ DE LAYOUT
+  S'evita conscientment la graella de targetes (patró "banc d'exercicis") que
+  fan servir operacions/repas/karelcat per a bateries de problemes intercanvia-
+  bles. Aquí cada pregunta és un fragment d'un llibre continu: la classe
+  .question-list fa de columna de lectura amb un "llom" vertical (--rule-strong)
+  a l'esquerra, no una nadella de contenidors amb ombra.
+*/
+
+/* ---------- Reset mínim ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body,
+h1, h2, h3, h4,
+p, figure, blockquote, dl, dd {
+  margin: 0;
+}
+
+ul, ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+img, picture, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button, input, textarea, select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+/* Moviment: es desactiva quan la persona ho ha demanat al sistema */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ---------- Base tipogràfica ---------- */
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Focus visible: mai suprimit, sempre coherent amb --pencil */
+:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+  border-radius: var(--radius-sm);
+}
+
+/* Selecció de text amb el mateix accent que la resta del sistema */
+::selection {
+  background-color: var(--pencil-soft);
+  color: var(--ink);
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-serif);
+  font-weight: 600;
+  line-height: 1.2;
+  text-wrap: balance;
+}
+
+p {
+  max-width: var(--measure);
+}
+
+/* ---------- Eyebrow / metadades: la "veu del sistema", en monospace petit ---------- */
+
+.eyebrow,
+.meta {
+  font-family: var(--font-mono);
+  font-size: var(--fs-metadata);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.meta {
+  text-transform: none;
+  letter-spacing: 0.01em;
+}
+
+/* ---------- Contenidor de lectura ---------- */
+
+.page {
+  max-width: var(--measure-wide);
+  margin-inline: auto;
+  padding-inline: var(--space-5);
+  padding-block: var(--space-6);
+}
+
+@media (max-width: 640px) {
+  .page {
+    padding-inline: var(--space-4);
+    padding-block: var(--space-5);
+  }
+}
+
+/*
+  ---------- La llista de lectura ----------
+  El "llom": una línia vertical contínua a l'esquerra que travessa totes les
+  preguntes, com el marge cosit d'un llibre obert. Substitueix qualsevol
+  contenidor de targeta: no hi ha fons diferenciat, no hi ha ombra, no hi ha
+  border-radius de "caixa d'UI". L'única cosa que separa una pregunta de la
+  següent és una regla horitzontal fina i l'espai en blanc.
+*/
+
+.question-list {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  padding-left: var(--space-5);
+  border-left: var(--stroke-rule) solid var(--rule-strong);
+}
+
+@media (max-width: 640px) {
+  .question-list {
+    padding-left: var(--space-4);
+  }
+}
+
+.question-entry {
+  padding-block: var(--space-6);
+  position: relative;
+}
+
+/*
+  Separador entre preguntes: una regla curta i retirada del llom, no una línia
+  de cantó a cantó. Cantó-a-cantó llegeix com una fila de taula/UI; retirada i
+  curta llegeix més com el petit ornament de final de secció d'un llibre.
+*/
+.question-entry + .question-entry::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 2.5rem;
+  height: var(--stroke-hairline);
+  background-color: var(--rule-strong);
+}
+
+.question-entry__meta {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin-bottom: var(--space-3);
+  color: var(--ink-faint);
+}
+
+.question-entry__meta .meta {
+  color: var(--ink-faint);
+}
+
+/* Punt central entre id i pàgina — nota al marge, no etiqueta separada d'UI.
+   S'aplica amb una classe explícita (.meta--separated) en lloc d'un
+   selector "eyebrow + meta" perquè funcioni igual amb qualsevol nombre
+   d'elements de metadada consecutius (id, pàgina, insígnia "sense
+   figura"...), no només amb el primer parell. */
+.meta--separated::before {
+  content: "·";
+  margin-right: var(--space-2);
+}
+
+/*
+  ---------- La pregunta: element signatura ----------
+  Reprodueix el que el propi llibre fa tipogràficament (p. 10 del PDF font):
+  la pregunta interromp el pes visual del cos, amb més mida i més gruix, com
+  si el text es parés a mig respirar. No és una "targeta destacada" d'UI —
+  és una decisió purament tipogràfica, sense fons, sense vora, sense icona.
+*/
+
+.question-entry__prompt {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: var(--fs-question);
+  line-height: var(--lh-question);
+  max-width: var(--measure);
+  text-wrap: balance;
+}
+
+@media (min-width: 720px) {
+  .question-entry__prompt {
+    font-size: var(--fs-question-lg);
+  }
+}
+
+.question-entry__body {
+  margin-top: var(--space-3);
+  font-size: var(--fs-body);
+  color: var(--ink-soft);
+  max-width: var(--measure);
+}
+
+@media (min-width: 720px) {
+  .question-entry__body {
+    font-size: var(--fs-body-lg);
+  }
+}
+
+/*
+  Figura a mà: flota sobre el paper, sense marc de contenidor.
+  Els PNG font són escala de grisos amb fons blanc pur (no transparent) —
+  mix-blend-mode: multiply fa desaparèixer aquest blanc contra --paper i deixa
+  només el traç fosc, de manera que la il·lustració es fon amb la pàgina en
+  lloc de llegir-se com una caixa retallada. Funciona per a les 22 imatges
+  sense haver de post-processar-les una per una.
+*/
+.question-entry__figure {
+  margin-top: var(--space-4);
+  max-width: 26rem;
+}
+
+.question-entry__figure img {
+  width: 100%;
+  height: auto;
+  mix-blend-mode: multiply;
+}
+
+/* El crop de pàgina (q31 i similars) ja porta el seu propi fons --paper-raised:
+   el multiply hi funcionaria igual, però es desactiva per mantenir-hi
+   fidelitat de contrast amb la tipografia original del PDF. */
+.question-entry__figure--scan img {
+  mix-blend-mode: normal;
+}
+
+/*
+  Imatge amb traç clar sobre fons FOSC (invers del patró habitual del
+  dataset) — únic cas conegut: q42 (v. imatge.esInvertida a
+  build_preguntes_dades.py, canvi E). filter: invert(1) capgira els
+  valors de color ABANS del multiply, de manera que la imatge es
+  comporta com totes les altres (fons clar que desapareix contra
+  --paper, traç fosc que hi queda per damunt) sense necessitar cap regla
+  de blend diferent. S'aplica per JS (detall.js llegeix esInvertida i hi
+  afegeix aquesta classe), no es pot saber mai només mirant el CSS quina
+  imatge la necessita.
+*/
+.question-entry__figure--inverted img {
+  filter: invert(1);
+}
+
+.question-entry__figure figcaption {
+  margin-top: var(--space-2);
+  font-family: var(--font-mono);
+  font-size: var(--fs-metadata);
+  color: var(--ink-faint);
+}
+
+/*
+  Excepció visual per a la imatge crop-de-pàgina (q31): traç fi i tipografia
+  pròpia de PDF en lloc de dibuix a mà gruixut. Es marca amb un fons molt
+  subtil perquè no sembli un error de contrast, sense imitar una targeta.
+*/
+.question-entry__figure--scan img {
+  background-color: var(--paper-raised);
+  padding: var(--space-3);
+  border-radius: var(--radius-sm);
+}
+
+/* Marca de "explorant ara" / estat actiu: únic ús decoratiu de --pencil */
+.question-entry[data-state="active"] .question-entry__meta::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: var(--pencil);
+  align-self: center;
+}

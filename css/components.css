@@ -1,0 +1,212 @@
+/*
+  PROJECTE:     Geometria — preguntes del llibre (llibre complet, p. 1-193)
+  FITXER:       css/components.css
+  ROL:          Components interactius de UI (enllaç que cobreix una
+                entrada, botó de pista, navegació anterior/següent). Es
+                manté separat de base.css a propòsit (§3 de
+                PROPOSTA-ARQUITECTURA.md ja preveu aquest fitxer): base.css
+                defineix el ritme de lectura i la signatura visual del
+                "llibre obert"; aquest fitxer defineix com es toca i es
+                navega per damunt d'aquell ritme, sense barrejar les dues
+                responsabilitats en un sol full.
+  ARQUITECTURA: Es carrega després de base.css. Cap regla d'aquí redefineix
+                tokens (tot surt de custom properties de tokens.css, com a
+                la resta del sistema).
+  DEPENDÈNCIES: css/tokens.css, css/base.css (dona per fet .question-entry
+                i similars ja definits allà).
+*/
+
+/* ---------- Capçalera fixa del lloc (index.html) ---------- */
+
+.site-header {
+  max-width: var(--measure-wide);
+  margin-inline: auto;
+  padding-inline: var(--space-5);
+  padding-top: var(--space-5);
+}
+
+@media (max-width: 640px) {
+  .site-header {
+    padding-inline: var(--space-4);
+  }
+}
+
+.site-header__row {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-top: var(--space-2);
+  flex-wrap: wrap;
+}
+
+.site-header__title {
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.site-header__lang {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  white-space: nowrap;
+}
+
+.site-header__lang select {
+  font-family: var(--font-mono);
+  font-size: var(--fs-metadata);
+  color: var(--ink);
+  background-color: var(--paper-raised);
+  border: var(--stroke-hairline) solid var(--rule-strong);
+  border-radius: var(--radius-sm);
+  padding: var(--space-1) var(--space-2);
+}
+
+.site-header__lang select:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* ---------- Enllaç que cobreix tota l'entrada de la llista ---------- */
+/*
+  Patró "targeta clicable sencera" fet amb un <a> real (no un onclick a
+  un <li>) per accessibilitat: focus/tab natural, "obrir en pestanya
+  nova" del navegador segueix funcionant. position:absolute cobrint tot
+  .question-entry, que ja té position:relative (base.css).
+*/
+.question-entry {
+  position: relative;
+}
+
+.question-entry__link-cover {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  /* El focus-ring va a l'entrada sencera, no només a l'enllaç envoltat */
+  border-radius: var(--radius-sm);
+}
+
+.question-entry__link-cover:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* ---------- Botó de pista (detall) ---------- */
+
+.hint-button {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  padding: var(--space-2) var(--space-3);
+  border: var(--stroke-hairline) solid var(--rule-strong);
+  border-radius: var(--radius-md);
+  background-color: transparent;
+  color: var(--ink-soft);
+  font-family: var(--font-serif);
+  font-size: var(--fs-body);
+  transition: border-color var(--dur-fast) var(--ease-settle),
+    color var(--dur-fast) var(--ease-settle);
+}
+
+.hint-button:hover {
+  border-color: var(--pencil-soft);
+  color: var(--ink);
+}
+
+.hint-button[aria-expanded="true"] {
+  border-color: var(--pencil);
+  color: var(--ink);
+}
+
+.hint-text {
+  margin-top: var(--space-3);
+  padding-left: var(--space-4);
+  border-left: var(--stroke-rule) solid var(--pencil-soft);
+  color: var(--ink-soft);
+  max-width: var(--measure);
+}
+
+/*
+  Avís de contingut sense traduir (meta.untranslated_notice a
+  ui-strings.js): discret, no un banner d'alerta — és informatiu, no un
+  error.
+*/
+.untranslated-notice {
+  margin-top: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-metadata);
+  color: var(--ink-faint);
+  font-style: italic;
+}
+
+/* ---------- Navegació anterior/següent i tornada a la llista (detall) ---------- */
+
+.detail-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-4);
+  margin-top: var(--space-7);
+  padding-top: var(--space-4);
+  border-top: var(--stroke-hairline) solid var(--rule);
+}
+
+.detail-nav__back {
+  font-family: var(--font-mono);
+  font-size: var(--fs-metadata);
+  color: var(--ink-soft);
+}
+
+.detail-nav__adjacent {
+  display: flex;
+  gap: var(--space-5);
+  font-family: var(--font-mono);
+  font-size: var(--fs-metadata);
+}
+
+.detail-nav__adjacent a,
+.detail-nav__back {
+  text-decoration: none;
+  border-bottom: 1px solid transparent;
+  transition: border-color var(--dur-fast) var(--ease-settle);
+}
+
+.detail-nav__adjacent a:hover,
+.detail-nav__back:hover {
+  border-bottom-color: currentColor;
+}
+
+/* Marcador "explorat" a la vista de detall (equivalent al punt de la
+   llista, però amb text explícit perquè aquí l'alumne hi passa més
+   temps i val la pena que sigui llegible, no només un punt de color). */
+.done-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: var(--fs-metadata);
+  letter-spacing: var(--tracking-mono);
+}
+
+.done-toggle input[type="checkbox"] {
+  width: 14px;
+  height: 14px;
+  accent-color: var(--pencil);
+}
+
+/* ---------- Graella de dues imatges (cas imatge.fitxers, p. ex. q40_implicit) ---------- */
+
+.question-entry__figure-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+  margin-top: var(--space-4);
+}
+
+.question-entry__figure-group .question-entry__figure {
+  flex: 1 1 12rem;
+  margin-top: 0;
+}
