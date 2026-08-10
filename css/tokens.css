@@ -60,6 +60,19 @@
   --measure: 40rem;       /* amplada de línia de lectura còmoda per al cos */
   --measure-wide: 52rem;  /* amplada per a la llista completa / capçalera */
 
+  /*
+    Alçada fixa reservada per a la zona de figura a la vista de detall
+    (tant si la pregunta té imatge com si no — v. base.css
+    .question-entry__figure / __figure-empty). Escollida perquè cobreixi
+    folgadament la mediana real de les imatges del dataset (~311px a
+    l'ample actual de 416px) sense retallar mai cap figura: només les
+    poques excepcionalment altes es veuen una mica més petites que si
+    l'alçada flogués lliure. Valor únic centralitzat aquí perquè
+    __figure i __figure-empty el comparteixin exactament — no es pot
+    desincronitzar entre els dos.
+  */
+  --figure-slot-h: 480px;
+
   /* ---- Traç i forma: gairebé sense radi — els dibuixos són a mà, la UI no necessita imitar software ---- */
   --radius-sm: 3px;
   --radius-md: 5px;

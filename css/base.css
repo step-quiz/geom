@@ -255,16 +255,73 @@ p {
   només el traç fosc, de manera que la il·lustració es fon amb la pàgina en
   lloc de llegir-se com una caixa retallada. Funciona per a les 22 imatges
   sense haver de post-processar-les una per una.
+
+  ALÇADA RESERVADA FIXA (--figure-slot-h, tokens.css): la ràtio h/w real de
+  les 68 imatges del dataset va de 0.25 (q117, panoràmica) a 1.80 (q123,
+  gairebé vertical) — un ventall de gairebé 7x. Deixar que l'alçada flueixi
+  lliure (com abans, amb width:100%/height:auto) feia que "Anterior/Següent"
+  saltés fins a ~500px de posició entre preguntes consecutives, depenent
+  només de la forma de la imatge. En comptes de forçar totes les imatges a
+  la MATEIXA mida (que amb aquest ventall de ràtios exigiria distorsionar
+  la geometria o deixar bandes buides enormes), es reserva sempre la
+  MATEIXA ALÇADA DE CONTENIDOR i la imatge s'hi ajusta sencera i sense
+  distorsionar amb object-fit: contain — mai retallada, mai estirada.
+  480px cobreix folgadament la mediana real (≈311px als 416px d'ample
+  actuals) i deixa que només un grapat d'imatges excepcionalment altes
+  (q123, q109, q10, q66, q02, q68) es vegin una mica més petites que abans;
+  cap imatge es veu mai retallada.
+
+  IMPORTANT: --figure-slot-h s'aplica al <figure> SENCER (imatge +
+  figcaption), no només a la imatge. Un primer intent el va aplicar només
+  al "frame" intern de la imatge, deixant que el figcaption se sumés a
+  sobre — es va detectar mesurant en viu que una pregunta AMB imatge
+  acabava fent ~26px més d'alçada total que una SENSE imatge (el
+  figcaption no hi és), desplaçant "Anterior/Següent" igualment, encara
+  que molt menys que abans del canvi. Ara el <figure> és flex-column:
+  el frame de la imatge creix (flex:1) per omplir tot l'espai que el
+  figcaption no ocupa, així la suma total és sempre exactament
+  --figure-slot-h, amb o sense caption.
+
+  El mateix --figure-slot-h s'aplica a .question-entry__figure-empty (la
+  pregunta NO té imatge) perquè "Anterior/Següent" caigui a la mateixa
+  alçada absoluta a les 130 preguntes, no només entre les que sí en tenen.
 */
 .question-entry__figure {
   margin-top: var(--space-4);
   max-width: 26rem;
+  height: var(--figure-slot-h);
+  display: flex;
+  flex-direction: column;
+}
+
+.question-entry__figure-frame {
+  flex: 1 1 auto;
+  min-height: 0; /* imprescindible perquè un flex item amb imatge no es negui a encongir-se per sota del contingut */
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .question-entry__figure img {
-  width: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
   height: auto;
+  object-fit: contain;
   mix-blend-mode: multiply;
+}
+
+/*
+  Espai reservat quan la pregunta NO té imatge (63 de les 130) — buit a
+  propòsit, sense contingut ni vora ni text "sense figura" (l'eyebrow de
+  metadades ja ho indica). La seva única funció és ocupar exactament la
+  mateixa alçada total que .question-entry__figure (imatge + figcaption
+  inclosos) perquè els botons de navegació caiguin sempre al mateix lloc,
+  tinguis o no imatge la pregunta.
+*/
+.question-entry__figure-empty {
+  margin-top: var(--space-4);
+  height: var(--figure-slot-h);
 }
 
 /* El crop de pàgina (q31 i similars) ja porta el seu propi fons --paper-raised:
@@ -300,11 +357,27 @@ p {
   Excepció visual per a la imatge crop-de-pàgina (q31): traç fi i tipografia
   pròpia de PDF en lloc de dibuix a mà gruixut. Es marca amb un fons molt
   subtil perquè no sembli un error de contrast, sense imitar una targeta.
+  El padding es descompta de --figure-slot-h via box-sizing (tokens.css
+  ja aplica border-box globalment), així que l'alçada total del contenidor
+  --scan continua sent exactament --figure-slot-h, no --figure-slot-h + padding.
 */
-.question-entry__figure--scan img {
+/*
+  Excepció visual per a la imatge crop-de-pàgina (q31): traç fi i tipografia
+  pròpia de PDF en lloc de dibuix a mà gruixut. Es marca amb un fons molt
+  subtil perquè no sembli un error de contrast, sense imitar una targeta.
+  S'aplica al frame sencer (no només a la imatge) perquè el fons cremós
+  ompli tot l'espai reservat --figure-slot-h, no només el rectangle exacte
+  de la imatge — llegeix més net que un fons ajustat a mida variable.
+*/
+.question-entry__figure--scan .question-entry__figure-frame {
   background-color: var(--paper-raised);
-  padding: var(--space-3);
   border-radius: var(--radius-sm);
+}
+
+.question-entry__figure--scan img {
+  max-height: calc(100% - 2 * var(--space-3));
+  padding: var(--space-3);
+  box-sizing: border-box;
 }
 
 /* Marca de "explorant ara" / estat actiu: únic ús decoratiu de --pencil */
