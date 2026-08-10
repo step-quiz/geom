@@ -72,13 +72,21 @@
     if (esInvertida) classe += " question-entry__figure--inverted";
     figure.className = classe;
 
+    // Embolcall d'alçada fixa (--figure-slot-h) i centrat flex — separat
+    // del <figure> perquè el figcaption (més avall) no hi quedi atrapat
+    // i es reparteixi en fila al costat de la imatge (v. comentari a
+    // css/base.css .question-entry__figure-frame).
+    const frame = document.createElement("div");
+    frame.className = "question-entry__figure-frame";
+
     const img = document.createElement("img");
     img.src = "assets/img/" + fitxer;
     img.alt = ""; // decoratiu per defecte: l'enunciat ja porta el contingut;
     // v. nota d'accessibilitat més avall sobre per què no es genera
     // un alt automàtic a partir de l'enunciat.
     img.loading = "lazy";
-    figure.appendChild(img);
+    frame.appendChild(img);
+    figure.appendChild(frame);
 
     const caption = document.createElement("figcaption");
     caption.textContent = window.tf("detail.figure_source_label", {
@@ -98,10 +106,23 @@
    * imatge.fitxers — v. contingut.js nomsFitxer/esCropFitxer/
    * esInvertidaFitxer, que ja normalitzen singular/plural a arrays
    * paral·lels).
+   *
+   * Quan la pregunta NO té imatge, s'afegeix igualment un
+   * .question-entry__figure-empty (buit, sense contingut) en lloc de no
+   * afegir res: reserva la mateixa --figure-slot-h que una pregunta amb
+   * imatge perquè "Anterior/Següent" caigui sempre a la mateixa alçada
+   * absoluta a les 130 preguntes — decisió explícita de l'usuari
+   * (consistència total per damunt de compacitat) davant l'alternativa
+   * de deixar les preguntes de text sense aquest espai reservat.
    */
   function pintaImatges(pregunta, contenidor) {
     const fitxers = window.geoContingut.nomsFitxer(pregunta);
-    if (fitxers.length === 0) return;
+    if (fitxers.length === 0) {
+      const buit = document.createElement("div");
+      buit.className = "question-entry__figure-empty";
+      contenidor.appendChild(buit);
+      return;
+    }
 
     const esCrops = window.geoContingut.esCropFitxer(pregunta);
     const esInvertides = window.geoContingut.esInvertidaFitxer(pregunta);
