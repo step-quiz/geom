@@ -27,6 +27,14 @@
     pagina         — pàgina del llibre on viu l'enunciat
     curs           — PENDENT (§6). null fins que es decideixi l'assignació
     interaccio     — PENDENT (§7). null fins que es decideixi el mode de resposta
+    dimensio       — "2D" | "3D" — v. canvi F. NO ve del JSON font: es
+                     calcula en temps de build des d'una taula fixa
+                     escrita a l'script (com esCrop/esInvertida), no del
+                     PDF d'extracció. Primera classificació pendent de
+                     revisió (v. _notaClassificacio i canvi F).
+    dificultat     — 1 | 2 | 3 — v. canvi F. Mateix origen i mateixa
+                     reserva que dimensio: primera passada, pendent que
+                     algú amb el llibre sencer la revisi.
     imatge         — objecte amb paginaFont, esCrop, esInvertida, i UNA de
                      les dues formes:
                        { fitxer: "nom.png", esCrop: bool, esInvertida: bool,
@@ -61,6 +69,9 @@
                      dins el PDF font. Mai es renderitza a la UI. Pot ser
                      null (moltes entrades no en tenen). Prefix "_" ho marca
                      com a fora de l'esquema públic (§4).
+    _notaClassificacio — ÚS INTERN, com _notaExtraccio. Justificació breu
+                     (uns quants mots) del criteri aplicat a dimensio/
+                     dificultat per a aquesta pregunta concreta — v. canvi F.
 
   CASOS ESPECIALS (transparència a l'estil de repas/README.md):
     - q27_implicit (pàg. 46) i q40_implicit (pàg. 58): no tenen enunciat de
@@ -93,6 +104,19 @@
       propòsit (contextos i imatges diferents al llibre).
     - q11/q12 i q14/q15: cada entrada apunta al seu propi fitxer
       d'imatge, però el contingut binari és idèntic (mateix hash MD5).
+    - dimensio/dificultat (v. canvi F): classificació de les 130 preguntes
+      feta pregunta a pregunta sense el text complet del llibre (només
+      enunciat + pàgina + imatge, quan n'hi ha). "2D" vol dir que tot el
+      plantejament geomètric viu al pla; "3D" que el raonament necessari
+      passa per l'espai encara que el resultat final sigui una figura
+      plana (p.ex. una el·lipse com a secció d'un con és "3D"). Dos casos
+      on el criteri no és evident només amb l'enunciat i s'ha decidit per
+      la posició al llibre: q94 (focus d'un cercle com a el·lipse
+      degenerada, classificat 2D tot i venir just després del lema de
+      tangents a l'esfera) i q65/q67 (definir el centroide "perquè Pappus
+      funcioni", classificat 3D pel motiu — el volum de revolució — encara
+      que "centroide" en si sigui un concepte 2D). Pendent de revisió per
+      algú amb el llibre sencer — v. `_notaClassificacio` per pregunta.
 
   REGENERACIÓ: si aquest fitxer es torna a generar després d'haver-hi
   escrit traduccions a mà, cal migrar-les abans (llegir el .js existent,
@@ -101,7 +125,6 @@
   NO ho fa — sobreescriu net — perquè encara no hi ha cap traducció escrita
   a la versió que reemplaça.
 */
-
 window.PREGUNTES = [
   {
     "id": "q01",
@@ -109,6 +132,8 @@ window.PREGUNTES = [
     "pagina": 10,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 1,
     "imatge": {
       "fitxer": "q01_page10_equilateral_triangle_center.png",
       "esCrop": false,
@@ -127,7 +152,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Equilateral triangle with a dot at its center and a curved rotation arrow, on the page BEFORE the question. A second, less direct image (an isosceles triangle with dashed medians) appears on the same page as the question itself but supports a later step in the argument, not the question directly."
+    "_notaExtraccio": "Equilateral triangle with a dot at its center and a curved rotation arrow, on the page BEFORE the question. A second, less direct image (an isosceles triangle with dashed medians) appears on the same page as the question itself but supports a later step in the argument, not the question directly.",
+    "_notaClassificacio": "deducció immediata per simetria"
   },
   {
     "id": "q02",
@@ -135,6 +161,8 @@ window.PREGUNTES = [
     "pagina": 13,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 1,
     "imatge": {
       "fitxer": "q02_page13_four_triangles_pair.png",
       "esCrop": false,
@@ -153,7 +181,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Two figures from the previous page, composited into one image: an equilateral triangle and a general (scalene) triangle, each divided into 4 smaller triangles by connecting side midpoints. The question page itself has no diagram; both source figures are on page 12."
+    "_notaExtraccio": "Two figures from the previous page, composited into one image: an equilateral triangle and a general (scalene) triangle, each divided into 4 smaller triangles by connecting side midpoints. The question page itself has no diagram; both source figures are on page 12.",
+    "_notaClassificacio": "comparació visual directa de congruència"
   },
   {
     "id": "q03",
@@ -161,6 +190,8 @@ window.PREGUNTES = [
     "pagina": 25,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 3,
     "imatge": null,
     "enunciat": {
       "en": "What are all the different ways to make symmetrical mosaic designs using regular polygons?",
@@ -174,7 +205,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "A worked example (hexagon/square/triangle mosaic corner) on the previous page motivates this question but isn't required to understand it."
+    "_notaExtraccio": "A worked example (hexagon/square/triangle mosaic corner) on the previous page motivates this question but isn't required to understand it.",
+    "_notaClassificacio": "classificació combinatòria de totes les teselacions possibles"
   },
   {
     "id": "q04",
@@ -182,6 +214,8 @@ window.PREGUNTES = [
     "pagina": 25,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 1,
     "imatge": null,
     "enunciat": {
       "en": "What are the angles of a regular n-sided polygon?",
@@ -195,7 +229,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Purely conceptual; no accompanying figure."
+    "_notaExtraccio": "Purely conceptual; no accompanying figure.",
+    "_notaClassificacio": "fórmula directa de suma d'angles"
   },
   {
     "id": "q05",
@@ -203,6 +238,8 @@ window.PREGUNTES = [
     "pagina": 25,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q05_page25_stars.png",
       "esCrop": false,
@@ -221,7 +258,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "A 5-pointed and a 7-pointed star, directly below the question, same page."
+    "_notaExtraccio": "A 5-pointed and a 7-pointed star, directly below the question, same page.",
+    "_notaClassificacio": "cal comptar voltes/autointerseccions de l'estrella"
   },
   {
     "id": "q06",
@@ -229,6 +267,8 @@ window.PREGUNTES = [
     "pagina": 26,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q06_page26_heptagon_diagonals.png",
       "esCrop": false,
@@ -247,7 +287,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "A heptagon with all diagonals drawn from one vertex, directly above the question, same page."
+    "_notaExtraccio": "A heptagon with all diagonals drawn from one vertex, directly above the question, same page.",
+    "_notaClassificacio": "requereix un argument, no és immediat"
   },
   {
     "id": "q07",
@@ -255,6 +296,8 @@ window.PREGUNTES = [
     "pagina": 27,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "What happens if the angle sum is more than a full turn?",
@@ -268,7 +311,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Relates conceptually to the two-squares-two-triangles polyhedron unfolding on page 26, but no new image is required."
+    "_notaExtraccio": "Relates conceptually to the two-squares-two-triangles polyhedron unfolding on page 26, but no new image is required.",
+    "_notaClassificacio": "cas límit/extensió del anterior"
   },
   {
     "id": "q08a",
@@ -276,6 +320,8 @@ window.PREGUNTES = [
     "pagina": 27,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "What are all the symmetrical polyhedra?",
@@ -289,7 +335,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Purely conceptual, no figure anywhere nearby."
+    "_notaExtraccio": "Purely conceptual, no figure anywhere nearby.",
+    "_notaClassificacio": "exploració oberta de poliedres simètrics"
   },
   {
     "id": "q08b",
@@ -297,6 +344,8 @@ window.PREGUNTES = [
     "pagina": 27,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 3,
     "imatge": null,
     "enunciat": {
       "en": "What are the five regular polyhedra?",
@@ -310,7 +359,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Purely conceptual, no figure anywhere nearby."
+    "_notaExtraccio": "Purely conceptual, no figure anywhere nearby.",
+    "_notaClassificacio": "classificació completa (arg. tipus Euler, diversos casos)"
   },
   {
     "id": "q08c",
@@ -318,6 +368,8 @@ window.PREGUNTES = [
     "pagina": 30,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "If two triangles have the same angles, are they necessarily similar? How about four-sided shapes?",
@@ -331,7 +383,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Conceptual; no figure precedes it on this page."
+    "_notaExtraccio": "Conceptual; no figure precedes it on this page.",
+    "_notaClassificacio": "cas triangle immediat; cas quadrilàter exigeix contraexemple"
   },
   {
     "id": "q09",
@@ -339,6 +392,8 @@ window.PREGUNTES = [
     "pagina": 30,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q09_page30_triangle_cevian.png",
       "esCrop": false,
@@ -357,7 +412,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "A right triangle with a dashed cevian from the right-angle corner to the hypotenuse, directly below the question, same page."
+    "_notaExtraccio": "A right triangle with a dashed cevian from the right-angle corner to the hypotenuse, directly below the question, same page.",
+    "_notaClassificacio": "semblança via alçada sobre hipotenusa, argument clàssic"
   },
   {
     "id": "q10",
@@ -365,6 +421,8 @@ window.PREGUNTES = [
     "pagina": 32,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 1,
     "imatge": {
       "fitxer": "q10_page31_rhombus.png",
       "esCrop": false,
@@ -383,7 +441,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "The rhombus (diamond-oriented) figure is on the PREVIOUS page (31), introducing the shape this question asks about, not on page 32 itself."
+    "_notaExtraccio": "The rhombus (diamond-oriented) figure is on the PREVIOUS page (31), introducing the shape this question asks about, not on page 32 itself.",
+    "_notaClassificacio": "directe per congruència de triangles"
   },
   {
     "id": "q11",
@@ -391,6 +450,8 @@ window.PREGUNTES = [
     "pagina": 33,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 1,
     "imatge": {
       "fitxer": "q11_page33_parallelogram.png",
       "esCrop": false,
@@ -409,7 +470,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "A parallelogram figure directly above the question, same page."
+    "_notaExtraccio": "A parallelogram figure directly above the question, same page.",
+    "_notaClassificacio": "directe des de la definició"
   },
   {
     "id": "q12",
@@ -417,6 +479,8 @@ window.PREGUNTES = [
     "pagina": 33,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q12_page33_parallelogram.png",
       "esCrop": false,
@@ -435,7 +499,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Shares the same parallelogram image as q11. Note: no diagonals are actually drawn in the source figure — a minor gap in the book itself, not an extraction error."
+    "_notaExtraccio": "Shares the same parallelogram image as q11. Note: no diagonals are actually drawn in the source figure — a minor gap in the book itself, not an extraction error.",
+    "_notaClassificacio": "cal el recíproc via triangles congruents"
   },
   {
     "id": "q13",
@@ -443,6 +508,8 @@ window.PREGUNTES = [
     "pagina": 34,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 1,
     "imatge": {
       "fitxer": "q13_page34_triangle_cevian.png",
       "esCrop": false,
@@ -461,7 +528,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "A triangle with a dashed cevian from the apex to the midpoint of the base, directly below the question, same page."
+    "_notaExtraccio": "A triangle with a dashed cevian from the apex to the midpoint of the base, directly below the question, same page.",
+    "_notaClassificacio": "igual base i alçada"
   },
   {
     "id": "q14",
@@ -469,6 +537,8 @@ window.PREGUNTES = [
     "pagina": 36,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 1,
     "imatge": {
       "fitxer": "q14_page36_triangle_in_box.png",
       "esCrop": false,
@@ -487,7 +557,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "A triangle inscribed in a rectangle, apex connected to both top corners, directly above the question, same page."
+    "_notaExtraccio": "A triangle inscribed in a rectangle, apex connected to both top corners, directly above the question, same page.",
+    "_notaClassificacio": "meitat de la caixa, directe"
   },
   {
     "id": "q15",
@@ -495,6 +566,8 @@ window.PREGUNTES = [
     "pagina": 36,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q15_page36_triangle_in_box.png",
       "esCrop": false,
@@ -513,7 +586,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Follow-up question about the same triangle-in-box figure used for q14 (identical image)."
+    "_notaExtraccio": "Follow-up question about the same triangle-in-box figure used for q14 (identical image).",
+    "_notaClassificacio": "cal tractar el cas en què el vèrtex surt de la caixa"
   },
   {
     "id": "q16",
@@ -521,6 +595,8 @@ window.PREGUNTES = [
     "pagina": 36,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q16_page36_quad_midpoints.png",
       "esCrop": false,
@@ -539,7 +615,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "A four-sided shape with dashed lines connecting the midpoints of its sides, directly below the question, same page."
+    "_notaExtraccio": "A four-sided shape with dashed lines connecting the midpoints of its sides, directly below the question, same page.",
+    "_notaClassificacio": "teorema de Varignon: base mitjana + càlcul d'àrea"
   },
   {
     "id": "q17",
@@ -547,6 +624,8 @@ window.PREGUNTES = [
     "pagina": 37,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 3,
     "imatge": null,
     "enunciat": {
       "en": "Can a polygon always be chopped into pieces and reassembled to form a square?",
@@ -560,7 +639,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Opens the page; no image anywhere nearby."
+    "_notaExtraccio": "Opens the page; no image anywhere nearby.",
+    "_notaClassificacio": "dissecció general tipus Bolyai–Gerwien, construcció no trivial"
   },
   {
     "id": "q18a",
@@ -568,6 +648,8 @@ window.PREGUNTES = [
     "pagina": 37,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 1,
     "imatge": null,
     "enunciat": {
       "en": "How does the volume of a box depend on the lengths of its sides?",
@@ -581,7 +663,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Conceptual, no figure. (A square/moon-shape scaling illustration sits above it on the same page but supports a different, earlier question about area scaling.)"
+    "_notaExtraccio": "Conceptual, no figure. (A square/moon-shape scaling illustration sits above it on the same page but supports a different, earlier question about area scaling.)",
+    "_notaClassificacio": "fórmula directa V=abc"
   },
   {
     "id": "q18b",
@@ -589,6 +672,8 @@ window.PREGUNTES = [
     "pagina": 37,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "What is the effect of scaling on volume?",
@@ -602,7 +687,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Same page as q18a; same caveat about the nearby area-scaling image not applying to this volume question."
+    "_notaExtraccio": "Same page as q18a; same caveat about the nearby area-scaling image not applying to this volume question.",
+    "_notaClassificacio": "escalat cúbic, generalització moderada"
   },
   {
     "id": "q19",
@@ -610,6 +696,8 @@ window.PREGUNTES = [
     "pagina": 39,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 1,
     "imatge": null,
     "enunciat": {
       "en": "Why is the product of two odd numbers always odd?",
@@ -623,7 +711,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Pure number theory, no image."
+    "_notaExtraccio": "Pure number theory, no image.",
+    "_notaClassificacio": "aritmètica elemental"
   },
   {
     "id": "q20",
@@ -631,6 +720,8 @@ window.PREGUNTES = [
     "pagina": 40,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 1,
     "imatge": null,
     "enunciat": {
       "en": "Why is the product of two even numbers always divisible by 4?",
@@ -644,7 +735,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Pure number theory, no image."
+    "_notaExtraccio": "Pure number theory, no image.",
+    "_notaClassificacio": "aritmètica elemental"
   },
   {
     "id": "q21",
@@ -652,6 +744,8 @@ window.PREGUNTES = [
     "pagina": 41,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "Is √3 irrational? What about √2 + √3?",
@@ -665,7 +759,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Pure algebra, no image."
+    "_notaExtraccio": "Pure algebra, no image.",
+    "_notaClassificacio": "prova d'irracionalitat + variant per la suma"
   },
   {
     "id": "q22",
@@ -673,6 +768,8 @@ window.PREGUNTES = [
     "pagina": 41,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q22_page41_circles_in_square.png",
       "esCrop": false,
@@ -691,7 +788,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Four large circles plus one small circle inscribed in a square, directly above the question, same page."
+    "_notaExtraccio": "Four large circles plus one small circle inscribed in a square, directly above the question, same page.",
+    "_notaClassificacio": "relació pitagòrica amb incògnita"
   },
   {
     "id": "q23",
@@ -699,6 +797,8 @@ window.PREGUNTES = [
     "pagina": 42,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q23_page42_three_circle_puzzles.png",
       "esCrop": false,
@@ -717,7 +817,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Three separate circle-in-shape puzzles, directly above the question, same page. Composited left-to-right matching the page layout."
+    "_notaExtraccio": "Three separate circle-in-shape puzzles, directly above the question, same page. Composited left-to-right matching the page layout.",
+    "_notaClassificacio": "varies configuracions, àlgebra moderada"
   },
   {
     "id": "q24",
@@ -725,6 +826,8 @@ window.PREGUNTES = [
     "pagina": 44,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "Which rectangles have whole number sides and diagonals?",
@@ -738,7 +841,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Numerical (Pythagorean triples); no dedicated image."
+    "_notaExtraccio": "Numerical (Pythagorean triples); no dedicated image.",
+    "_notaClassificacio": "ternes pitagòriques"
   },
   {
     "id": "q25",
@@ -746,6 +850,8 @@ window.PREGUNTES = [
     "pagina": 44,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 1,
     "imatge": {
       "fitxer": "q25_page44_box_diagonals.png",
       "esCrop": false,
@@ -764,7 +870,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "A 3D box with face and space diagonals drawn, directly below the question, same page."
+    "_notaExtraccio": "A 3D box with face and space diagonals drawn, directly below the question, same page.",
+    "_notaClassificacio": "doble Pitàgores, gairebé immediat un cop es coneix el cas 2D"
   },
   {
     "id": "q26",
@@ -772,6 +879,8 @@ window.PREGUNTES = [
     "pagina": 45,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 1,
     "imatge": null,
     "enunciat": {
       "en": "Show that the height of an equilateral triangle is (1/2)√3 times as long as its side.",
@@ -785,7 +894,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "No image; algebraic derivation."
+    "_notaExtraccio": "No image; algebraic derivation.",
+    "_notaClassificacio": "Pitàgores directe"
   },
   {
     "id": "q27_implicit",
@@ -793,6 +903,8 @@ window.PREGUNTES = [
     "pagina": 46,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q27_page46_implicit_circles.png",
       "esCrop": false,
@@ -811,7 +923,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Special case: three diagrams (triangle, square, circle, each with inscribed circles) with only a one-line caption and no question sentence. The image IS the question."
+    "_notaExtraccio": "Special case: three diagrams (triangle, square, circle, each with inscribed circles) with only a one-line caption and no question sentence. The image IS the question.",
+    "_notaClassificacio": "tres configuracions de cercles inscrits, àlgebra moderada"
   },
   {
     "id": "q28",
@@ -819,6 +932,8 @@ window.PREGUNTES = [
     "pagina": 48,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 1,
     "imatge": null,
     "enunciat": {
       "en": "What is the area of an equilateral triangle?",
@@ -832,7 +947,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Opens the page; no image."
+    "_notaExtraccio": "Opens the page; no image.",
+    "_notaClassificacio": "conseqüència immediata de q26"
   },
   {
     "id": "q29",
@@ -840,6 +956,8 @@ window.PREGUNTES = [
     "pagina": 48,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q29_page48_hexagon_octagon.png",
       "esCrop": false,
@@ -858,7 +976,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Hexagon and octagon, each with diagonals drawn from one vertex, directly above the question, same page (single combined figure)."
+    "_notaExtraccio": "Hexagon and octagon, each with diagonals drawn from one vertex, directly above the question, same page (single combined figure).",
+    "_notaClassificacio": "diverses diagonals i àrees, moderat"
   },
   {
     "id": "q30",
@@ -866,6 +985,8 @@ window.PREGUNTES = [
     "pagina": 48,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q30_page48_dodecagon.png",
       "esCrop": false,
@@ -884,7 +1005,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Dodecagon with diagonals from one vertex, directly above the question, same page."
+    "_notaExtraccio": "Dodecagon with diagonals from one vertex, directly above the question, same page.",
+    "_notaClassificacio": "extensió de q29 a un cas més"
   },
   {
     "id": "q31",
@@ -892,6 +1014,8 @@ window.PREGUNTES = [
     "pagina": 49,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q31_page49_pentagon_ABC.png",
       "esCrop": true,
@@ -910,7 +1034,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Pentagon divided into triangles labeled A, B, C, directly above the question, same page. Cropped from the page render rather than extracted as a raster figure, specifically to preserve the A/B/C text labels, which are separate PDF text and not part of the line art."
+    "_notaExtraccio": "Pentagon divided into triangles labeled A, B, C, directly above the question, same page. Cropped from the page render rather than extracted as a raster figure, specifically to preserve the A/B/C text labels, which are separate PDF text and not part of the line art.",
+    "_notaClassificacio": "argument d'angles amb una idea principal"
   },
   {
     "id": "q32",
@@ -918,6 +1043,8 @@ window.PREGUNTES = [
     "pagina": 51,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 3,
     "imatge": {
       "fitxer": "q32_page51_pentagram.png",
       "esCrop": false,
@@ -936,7 +1063,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Pentagon with all diagonals drawn, forming a pentagram with a small inner pentagon, directly above the question, same page."
+    "_notaExtraccio": "Pentagon with all diagonals drawn, forming a pentagram with a small inner pentagon, directly above the question, same page.",
+    "_notaClassificacio": "proporció àuria, autosemblança, equació quadràtica"
   },
   {
     "id": "q33",
@@ -944,6 +1072,8 @@ window.PREGUNTES = [
     "pagina": 52,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q33_page52_two_pentagons.png",
       "esCrop": false,
@@ -962,7 +1092,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Two overlapping pentagons with dashed diagonals, directly above the question (which explicitly says 'this configuration'), same page."
+    "_notaExtraccio": "Two overlapping pentagons with dashed diagonals, directly above the question (which explicitly says 'this configuration'), same page.",
+    "_notaClassificacio": "segona demostració guiada per la figura donada"
   },
   {
     "id": "q34",
@@ -970,6 +1101,8 @@ window.PREGUNTES = [
     "pagina": 53,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 1,
     "imatge": null,
     "enunciat": {
       "en": "Construct a mosaic design that demonstrates the algebraic relation (x + y)² = x² + 2xy + y².",
@@ -983,7 +1116,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Special case: this question asks the READER to produce a diagram; there is no pre-existing figure to show, by design."
+    "_notaExtraccio": "Special case: this question asks the READER to produce a diagram; there is no pre-existing figure to show, by design.",
+    "_notaClassificacio": "identitat algebraica clàssica il·lustrada"
   },
   {
     "id": "q35",
@@ -991,6 +1125,8 @@ window.PREGUNTES = [
     "pagina": 54,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "Suppose you are given both the sum and difference of two numbers. How can you determine the numbers themselves? What if it's the sum and product that are given?",
@@ -1004,7 +1140,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Pure algebra, no image."
+    "_notaExtraccio": "Pure algebra, no image.",
+    "_notaClassificacio": "àlgebra; el cas producte exigeix una quadràtica"
   },
   {
     "id": "q36",
@@ -1012,6 +1149,8 @@ window.PREGUNTES = [
     "pagina": 55,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "Show that among all rectangles of a fixed perimeter, the square has the largest area.",
@@ -1025,7 +1164,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Conceptual, no image."
+    "_notaExtraccio": "Conceptual, no image.",
+    "_notaClassificacio": "optimització estàndard (AM-GM)"
   },
   {
     "id": "q37",
@@ -1033,6 +1173,8 @@ window.PREGUNTES = [
     "pagina": 55,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "Find a rectangle with the same area and perimeter as a given equilateral triangle.",
@@ -1046,7 +1188,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "A rectangle-with-dashed-vertical-line image sits on this page. On closer inspection the dashed line simply bisects the rectangle in half — it doesn't clearly illustrate this question OR the golden-rectangle question that follows (q38). Treat that image as loosely associated with this part of the page rather than confidently belonging to either specific question."
+    "_notaExtraccio": "A rectangle-with-dashed-vertical-line image sits on this page. On closer inspection the dashed line simply bisects the rectangle in half — it doesn't clearly illustrate this question OR the golden-rectangle question that follows (q38). Treat that image as loosely associated with this part of the page rather than confidently belonging to either specific question.",
+    "_notaClassificacio": "sistema de dues equacions"
   },
   {
     "id": "q38",
@@ -1054,6 +1197,8 @@ window.PREGUNTES = [
     "pagina": 55,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q38_page55_golden_rectangle.png",
       "esCrop": false,
@@ -1072,7 +1217,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "Rectangle with a dashed vertical line, directly above the question, same page. See q37's note — the dashed line's exact geometric meaning (bisection vs. square-removal) doesn't perfectly match this question's construction either; flagged as the best available candidate, not a confirmed exact match."
+    "_notaExtraccio": "Rectangle with a dashed vertical line, directly above the question, same page. See q37's note — the dashed line's exact geometric meaning (bisection vs. square-removal) doesn't perfectly match this question's construction either; flagged as the best available candidate, not a confirmed exact match.",
+    "_notaClassificacio": "equació d'autosemblança, quadràtica"
   },
   {
     "id": "q39",
@@ -1080,6 +1226,8 @@ window.PREGUNTES = [
     "pagina": 58,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "What is the area of a regular pentagon?",
@@ -1093,7 +1241,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "combina diagonal/costat amb descomposició en triangles"
   },
   {
     "id": "q40_implicit",
@@ -1101,6 +1250,8 @@ window.PREGUNTES = [
     "pagina": 58,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": {
       "fitxers": [
         "q40_page58_favorite_circle_square.png",
@@ -1128,7 +1279,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "cercle+quadrat-notxa, cercle+2cercles+quadrat"
+    "_notaExtraccio": "cercle+quadrat-notxa, cercle+2cercles+quadrat",
+    "_notaClassificacio": "dues configuracions cercle-quadrat, moderat"
   },
   {
     "id": "q41",
@@ -1136,6 +1288,8 @@ window.PREGUNTES = [
     "pagina": 62,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q41_page62_diameter_right_angle.png",
       "esCrop": false,
@@ -1154,7 +1308,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "semicercle, punt, angle marcat"
+    "_notaExtraccio": "semicercle, punt, angle marcat",
+    "_notaClassificacio": "teorema de Tales, prova clàssica d'un pas"
   },
   {
     "id": "q42",
@@ -1162,6 +1317,8 @@ window.PREGUNTES = [
     "pagina": 62,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q42_page62_same_arc_angles.png",
       "esCrop": false,
@@ -1180,7 +1337,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "cercle, dos punts, angles marcats"
+    "_notaExtraccio": "cercle, dos punts, angles marcats",
+    "_notaClassificacio": "teorema de l'angle inscrit, argument clàssic"
   },
   {
     "id": "q43",
@@ -1188,6 +1346,8 @@ window.PREGUNTES = [
     "pagina": 65,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 3,
     "imatge": {
       "fitxer": "q43_page65_overlapping_circles.png",
       "esCrop": false,
@@ -1206,7 +1366,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "dos cercles superposats"
+    "_notaExtraccio": "dos cercles superposats",
+    "_notaClassificacio": "generalitza de 2 a 3 cercles, segments circulars"
   },
   {
     "id": "q44",
@@ -1214,6 +1375,8 @@ window.PREGUNTES = [
     "pagina": 66,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 3,
     "imatge": {
       "fitxer": "q44_page66_tangent_circles_small.png",
       "esCrop": false,
@@ -1232,7 +1395,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "dos cercles tangents + cercle petit"
+    "_notaExtraccio": "dos cercles tangents + cercle petit",
+    "_notaClassificacio": "àlgebra amb diverses incògnites, tipus Descartes"
   },
   {
     "id": "q45",
@@ -1240,6 +1404,8 @@ window.PREGUNTES = [
     "pagina": 69,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "How can we measure the surface area of a (generalized) cylinder?",
@@ -1253,7 +1419,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "desenvolupament pla del cilindre, una idea neta"
   },
   {
     "id": "q46",
@@ -1261,6 +1428,8 @@ window.PREGUNTES = [
     "pagina": 71,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "What is the area of an ellipse?",
@@ -1274,7 +1443,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "argument de dilatació des del cercle"
   },
   {
     "id": "q47",
@@ -1282,6 +1452,8 @@ window.PREGUNTES = [
     "pagina": 73,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q47_page73_octahedron_cube.png",
       "esCrop": false,
@@ -1300,7 +1472,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "octàedre dins del cub"
+    "_notaExtraccio": "octàedre dins del cub",
+    "_notaClassificacio": "descomposició volumètrica moderada"
   },
   {
     "id": "q48",
@@ -1308,6 +1481,8 @@ window.PREGUNTES = [
     "pagina": 74,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 3,
     "imatge": {
       "fitxer": "q48_page74_frustum.png",
       "esCrop": false,
@@ -1326,7 +1501,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "piràmide truncada, a/b/h marcats) [CORRECCIÓ: variables a,b,h mal col·locades a l'extracció automàtica, corregit aquí]"
+    "_notaExtraccio": "piràmide truncada, a/b/h marcats) [CORRECCIÓ: variables a,b,h mal col·locades a l'extracció automàtica, corregit aquí]",
+    "_notaClassificacio": "fórmula multivariable (a,b,h), diversos passos"
   },
   {
     "id": "q49",
@@ -1334,6 +1510,8 @@ window.PREGUNTES = [
     "pagina": 74,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q49_page74_tetrahedron_center.png",
       "esCrop": false,
@@ -1352,7 +1530,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "tetràedre, centre marcat"
+    "_notaExtraccio": "tetràedre, centre marcat",
+    "_notaClassificacio": "anàleg 3D del centre del triangle"
   },
   {
     "id": "q50",
@@ -1360,6 +1539,8 @@ window.PREGUNTES = [
     "pagina": 75,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q50_page75_cone_disks.png",
       "esCrop": false,
@@ -1378,7 +1559,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "con dividit en discos apilats"
+    "_notaExtraccio": "con dividit en discos apilats",
+    "_notaClassificacio": "reconeixement de patró en una seqüència d'aproximacions"
   },
   {
     "id": "q51",
@@ -1386,6 +1568,8 @@ window.PREGUNTES = [
     "pagina": 78,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q51_page78_cone_in_cylinder.png",
       "esCrop": false,
@@ -1404,7 +1588,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "imatge propera no essencial (con dins cilindre, il·lustra volum no superfície)"
+    "_notaExtraccio": "imatge propera no essencial (con dins cilindre, il·lustra volum no superfície)",
+    "_notaClassificacio": "desenvolupament pla del con, un sol argument net"
   },
   {
     "id": "q52",
@@ -1412,6 +1597,8 @@ window.PREGUNTES = [
     "pagina": 78,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "Can you find a cross-section of a cube that is a regular hexagon?",
@@ -1425,7 +1612,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "visualització espacial, una construcció"
   },
   {
     "id": "q53",
@@ -1433,6 +1621,8 @@ window.PREGUNTES = [
     "pagina": 79,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 3,
     "imatge": null,
     "enunciat": {
       "en": "Can you find two objects with equal cross-sections and different surface areas?",
@@ -1446,7 +1636,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "imatge propera no essencial (formes de patata, il·lustra concepte Cavalieri, no exemple concret)"
+    "_notaExtraccio": "imatge propera no essencial (formes de patata, il·lustra concepte Cavalieri, no exemple concret)",
+    "_notaClassificacio": "cal construir un contraexemple genuí"
   },
   {
     "id": "q54",
@@ -1454,6 +1645,8 @@ window.PREGUNTES = [
     "pagina": 80,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 3,
     "imatge": {
       "fitxer": "q54_page80_cavalieri_plane.png",
       "esCrop": false,
@@ -1472,7 +1665,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "quadrat amb graons diagonals"
+    "_notaExtraccio": "quadrat amb graons diagonals",
+    "_notaClassificacio": "cal inventar un principi nou (anàleg pla de Cavalieri)"
   },
   {
     "id": "q55",
@@ -1480,6 +1674,8 @@ window.PREGUNTES = [
     "pagina": 80,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 3,
     "imatge": {
       "fitxer": "q55_page80_cavalieri_plane.png",
       "esCrop": false,
@@ -1498,7 +1694,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "mateix quadrat amb graons, compartit amb q54"
+    "_notaExtraccio": "mateix quadrat amb graons, compartit amb q54",
+    "_notaClassificacio": "argument de límit subtil (paradoxa de l'escaleta)"
   },
   {
     "id": "q56",
@@ -1506,6 +1703,8 @@ window.PREGUNTES = [
     "pagina": 81,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q56_page81_cube_diagonals.png",
       "esCrop": false,
@@ -1524,7 +1723,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "cub amb diagonals"
+    "_notaExtraccio": "cub amb diagonals",
+    "_notaClassificacio": "càlcul de volum moderat"
   },
   {
     "id": "q57",
@@ -1532,6 +1732,8 @@ window.PREGUNTES = [
     "pagina": 82,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 3,
     "imatge": null,
     "enunciat": {
       "en": "What are the volumes of the Platonic solids? How about the other symmetrical polyhedra?",
@@ -1545,7 +1747,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "multi-cas, obert, diversos sòlids"
   },
   {
     "id": "q58",
@@ -1553,6 +1756,8 @@ window.PREGUNTES = [
     "pagina": 82,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 3,
     "imatge": {
       "fitxer": "q58_page82_perpendicular_cylinders.png",
       "esCrop": false,
@@ -1571,7 +1776,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "dos cilindres perpendiculars"
+    "_notaExtraccio": "dos cilindres perpendiculars",
+    "_notaClassificacio": "sòlid de Steinmetz, generalització a 3 cilindres"
   },
   {
     "id": "q59",
@@ -1579,6 +1785,8 @@ window.PREGUNTES = [
     "pagina": 86,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q59_page86_sphere_in_cube.png",
       "esCrop": false,
@@ -1597,7 +1805,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "esfera dins del cub"
+    "_notaExtraccio": "esfera dins del cub",
+    "_notaClassificacio": "cal la fórmula del volum de l'esfera abans de comparar"
   },
   {
     "id": "q60",
@@ -1605,6 +1814,8 @@ window.PREGUNTES = [
     "pagina": 87,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q60_page87_cone_in_hemisphere.png",
       "esCrop": false,
@@ -1623,7 +1834,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "hemisferi amb con inscrit"
+    "_notaExtraccio": "hemisferi amb con inscrit",
+    "_notaClassificacio": "argument net d'un sol pas"
   },
   {
     "id": "q61",
@@ -1631,6 +1843,8 @@ window.PREGUNTES = [
     "pagina": 88,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "Show that the surface area of a sphere is exactly two-thirds that of its (closed) cylinder.",
@@ -1644,7 +1858,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "resultat clàssic d'Arquimedes, un argument"
   },
   {
     "id": "q62",
@@ -1652,6 +1867,8 @@ window.PREGUNTES = [
     "pagina": 89,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 3,
     "imatge": {
       "fitxer": "q62_page89_spherical_cap.png",
       "esCrop": false,
@@ -1670,7 +1887,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "esfera amb casquet marcat"
+    "_notaExtraccio": "esfera amb casquet marcat",
+    "_notaClassificacio": "dues fórmules, combina resultats anteriors"
   },
   {
     "id": "q63",
@@ -1678,6 +1896,8 @@ window.PREGUNTES = [
     "pagina": 91,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 1,
     "imatge": null,
     "enunciat": {
       "en": "Can you think of two different ways that a cylinder can be regarded as the result of a motion?",
@@ -1691,7 +1911,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "imatge propera no essencial (rectangle amb fletxa, il·lustra \"moviment\" en general)"
+    "_notaExtraccio": "imatge propera no essencial (rectangle amb fletxa, il·lustra \"moviment\" en general)",
+    "_notaClassificacio": "conceptual i directe"
   },
   {
     "id": "q64",
@@ -1699,6 +1920,8 @@ window.PREGUNTES = [
     "pagina": 97,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "What is the perimeter of a region formed by a moving stick?",
@@ -1712,7 +1935,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "raonament d'envolupant, moderat"
   },
   {
     "id": "q65",
@@ -1720,6 +1944,8 @@ window.PREGUNTES = [
     "pagina": 101,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 3,
     "imatge": null,
     "enunciat": {
       "en": "How should we define the centroid of a shape? Can we do it in such a way that Pappus's theorem holds?",
@@ -1733,7 +1959,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "cal una definició nova i genuïna perquè Pappus funcioni"
   },
   {
     "id": "q66",
@@ -1741,6 +1968,8 @@ window.PREGUNTES = [
     "pagina": 101,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q66_page101_pappus_cylinder.png",
       "esCrop": false,
@@ -1759,7 +1988,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "cilindre amb fletxa de rotació"
+    "_notaExtraccio": "cilindre amb fletxa de rotació",
+    "_notaClassificacio": "aplicació/verificació directa de Pappus"
   },
   {
     "id": "q67",
@@ -1767,6 +1997,8 @@ window.PREGUNTES = [
     "pagina": 102,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "How should we define the centroid of perimeter?",
@@ -1780,7 +2012,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "anàleg conceptual de q65 per al perímetre"
   },
   {
     "id": "q68",
@@ -1788,6 +2021,8 @@ window.PREGUNTES = [
     "pagina": 103,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q68_page103_cone_centroid.png",
       "esCrop": false,
@@ -1806,7 +2041,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "con amb centroide marcat"
+    "_notaExtraccio": "con amb centroide marcat",
+    "_notaClassificacio": "aplicació d'un sol pas de Pappus"
   },
   {
     "id": "q69",
@@ -1814,6 +2050,8 @@ window.PREGUNTES = [
     "pagina": 103,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "Can you find the centroid of a semicircle? How about its centroid of perimeter?",
@@ -1827,7 +2065,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "dos càlculs relacionats (àrea i perímetre)"
   },
   {
     "id": "q70",
@@ -1835,6 +2074,8 @@ window.PREGUNTES = [
     "pagina": 105,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 1,
     "imatge": null,
     "enunciat": {
       "en": "What do the inside angles of a polygon add up to?",
@@ -1848,7 +2089,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "resultat estàndard directe"
   },
   {
     "id": "q71",
@@ -1856,6 +2098,8 @@ window.PREGUNTES = [
     "pagina": 106,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "If all the angles of a simple closed four-sided polygon are right angles, what condition must the side lengths satisfy?",
@@ -1869,7 +2113,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "condició de tancament sobre les longituds"
   },
   {
     "id": "q72",
@@ -1877,6 +2122,8 @@ window.PREGUNTES = [
     "pagina": 106,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "Make a short list of lengths and turns. What triangle problems do you need to solve in order to determine if your polygon is closed?",
@@ -1890,7 +2137,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "pregunta de síntesi moderada"
   },
   {
     "id": "q73",
@@ -1898,6 +2146,8 @@ window.PREGUNTES = [
     "pagina": 107,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "Are the midpoints of the sides of a triangle enough information to reconstruct the triangle? How about for four-sided polygons?",
@@ -1911,7 +2161,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "cas triangle directe; cas quadrilàter exigeix contraexemple"
   },
   {
     "id": "q74",
@@ -1919,6 +2170,8 @@ window.PREGUNTES = [
     "pagina": 107,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 1,
     "imatge": null,
     "enunciat": {
       "en": "Do any three lengths form a triangle?",
@@ -1932,7 +2185,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "desigualtat triangular, directe"
   },
   {
     "id": "q75",
@@ -1940,6 +2194,8 @@ window.PREGUNTES = [
     "pagina": 114,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "Can you find two different triangles with the same area and perimeter?",
@@ -1953,7 +2209,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "cal construir un exemple"
   },
   {
     "id": "q76",
@@ -1961,6 +2218,8 @@ window.PREGUNTES = [
     "pagina": 114,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q76_page114_triangle_incircle_abc.png",
       "esCrop": true,
@@ -1979,7 +2238,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "triangle amb cercle inscrit, a/b/c marcats"
+    "_notaExtraccio": "triangle amb cercle inscrit, a/b/c marcats",
+    "_notaClassificacio": "relació A=rs, derivació moderada"
   },
   {
     "id": "q77",
@@ -1987,6 +2247,8 @@ window.PREGUNTES = [
     "pagina": 116,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "There is actually another technique for measuring lengths, which we used for the diagonal of a regular pentagon. What is it?",
@@ -2000,7 +2262,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "imatge propera no essencial (triangles amb angle C, il·lustren l'argument previ de la llei del cosinus)"
+    "_notaExtraccio": "imatge propera no essencial (triangles amb angle C, il·lustren l'argument previ de la llei del cosinus)",
+    "_notaClassificacio": "reaplicar una tècnica ja vista en un context nou"
   },
   {
     "id": "q78",
@@ -2008,6 +2271,8 @@ window.PREGUNTES = [
     "pagina": 120,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 1,
     "imatge": {
       "fitxer": "q78_page120_sine_cosine_triangle.png",
       "esCrop": true,
@@ -2026,7 +2291,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "triangle rectangle amb hipotenusa/oposat/adjacent etiquetats"
+    "_notaExtraccio": "triangle rectangle amb hipotenusa/oposat/adjacent etiquetats",
+    "_notaClassificacio": "angles complementaris, directe"
   },
   {
     "id": "q79",
@@ -2034,6 +2300,8 @@ window.PREGUNTES = [
     "pagina": 121,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 3,
     "imatge": {
       "fitxer": "q79_page121_generalized_pythagorean.png",
       "esCrop": true,
@@ -2052,7 +2320,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "triangle amb angle extern C' marcat) [CORRECCIÓ: fórmula garbled a l'extracció automàtica, corregida aquí llegint la imatge]"
+    "_notaExtraccio": "triangle amb angle extern C' marcat) [CORRECCIÓ: fórmula garbled a l'extracció automàtica, corregida aquí llegint la imatge]",
+    "_notaClassificacio": "teorema del cosinus generalitzat, més àlgebra/trig"
   },
   {
     "id": "q80",
@@ -2060,6 +2329,8 @@ window.PREGUNTES = [
     "pagina": 124,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "Show that if a triangle has sides a and b meeting at an angle C, then its area is (1/2)ab sin C.",
@@ -2073,7 +2344,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "fórmula trigonomètrica de l'àrea, derivació estàndard"
   },
   {
     "id": "q81",
@@ -2081,6 +2353,8 @@ window.PREGUNTES = [
     "pagina": 124,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 3,
     "imatge": null,
     "enunciat": {
       "en": "What is the angle between the faces of a regular tetrahedron? How about for the other regular polyhedra?",
@@ -2094,7 +2368,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "angle diedre, trig 3D, multi-cas per altres sòlids"
   },
   {
     "id": "q82",
@@ -2102,6 +2377,8 @@ window.PREGUNTES = [
     "pagina": 124,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 3,
     "imatge": null,
     "enunciat": {
       "en": "Show that you can fill space completely using regular octahedrons and tetrahedrons. Can you find any other ways to tile three-dimensional space with symmetrical polyhedra?",
@@ -2115,7 +2392,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "exploració oberta de tesel·lacions de l'espai"
   },
   {
     "id": "q83",
@@ -2123,6 +2401,8 @@ window.PREGUNTES = [
     "pagina": 125,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 1,
     "imatge": null,
     "enunciat": {
       "en": "What are the sine and cosine of one-sixth of a turn?",
@@ -2136,7 +2416,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "directe des del triangle equilàter"
   },
   {
     "id": "q84",
@@ -2144,6 +2425,8 @@ window.PREGUNTES = [
     "pagina": 125,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 1,
     "imatge": null,
     "enunciat": {
       "en": "What is the relationship between the sine and cosine of an angle?",
@@ -2157,7 +2440,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "identitat pitagòrica directa"
   },
   {
     "id": "q85",
@@ -2165,6 +2449,8 @@ window.PREGUNTES = [
     "pagina": 128,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 3,
     "imatge": null,
     "enunciat": {
       "en": "Can you use a regular pentagon to find the sine and cosine of one-fifth of a turn?",
@@ -2178,7 +2464,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "combina proporció àuria amb trigonometria"
   },
   {
     "id": "q86",
@@ -2186,6 +2473,8 @@ window.PREGUNTES = [
     "pagina": 129,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "Why are two sides and an angle insufficient in general to specify a triangle?",
@@ -2199,7 +2488,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "cal construir un contraexemple/segona solució"
   },
   {
     "id": "q87",
@@ -2207,6 +2497,8 @@ window.PREGUNTES = [
     "pagina": 131,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "How should we define the sine of an obtuse angle? Can we do it so the law of sines still holds?",
@@ -2220,7 +2512,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "imatge propera no essencial (triangle a/b/h/A/B, il·lustra l'argument previ de la llei dels sinus per a angles aguts)"
+    "_notaExtraccio": "imatge propera no essencial (triangle a/b/h/A/B, il·lustra l'argument previ de la llei dels sinus per a angles aguts)",
+    "_notaClassificacio": "extensió de definició + verificació"
   },
   {
     "id": "q88",
@@ -2228,6 +2521,8 @@ window.PREGUNTES = [
     "pagina": 132,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "How are the sine and cosine of an angle related to the sine and cosine of an angle twice as large?",
@@ -2241,7 +2536,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "derivació trigonomètrica estàndard"
   },
   {
     "id": "q89",
@@ -2249,6 +2545,8 @@ window.PREGUNTES = [
     "pagina": 132,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 3,
     "imatge": null,
     "enunciat": {
       "en": "Prove that if two angle bisectors of a triangle are equal, then the triangle must be isosceles.",
@@ -2262,7 +2560,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "teorema de Steiner–Lehmus, demostració indirecta cèlebre"
   },
   {
     "id": "q90",
@@ -2270,6 +2569,8 @@ window.PREGUNTES = [
     "pagina": 132,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 3,
     "imatge": null,
     "enunciat": {
       "en": "Show that if a four-sided shape with sides a, b, c, and d is inscribed in a circle, then its area is given by Brahmagupta's formula: A = sqrt[(s-a)(s-b)(s-c)(s-d)], where s = (1/2)(a+b+c+d).",
@@ -2283,7 +2584,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "sense imatge [fórmula corregida llegint la imatge, l'extracció automàtica l'havia garbled]"
+    "_notaExtraccio": "sense imatge [fórmula corregida llegint la imatge, l'extracció automàtica l'havia garbled]",
+    "_notaClassificacio": "derivació algebraica avançada (fórmula de Brahmagupta)"
   },
   {
     "id": "q91",
@@ -2291,6 +2593,8 @@ window.PREGUNTES = [
     "pagina": 138,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q91_page138_dilation_planes.png",
       "esCrop": false,
@@ -2309,7 +2613,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "dos plans amb bastons projectats"
+    "_notaExtraccio": "dos plans amb bastons projectats",
+    "_notaClassificacio": "relació trigonomètrica moderada entre plans"
   },
   {
     "id": "q92",
@@ -2317,6 +2622,8 @@ window.PREGUNTES = [
     "pagina": 139,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q92_page139_projection_direction.png",
       "esCrop": false,
@@ -2335,7 +2642,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "dos plans inclinats amb punt projectat"
+    "_notaExtraccio": "dos plans inclinats amb punt projectat",
+    "_notaClassificacio": "cal considerar la dependència de la direcció"
   },
   {
     "id": "q93",
@@ -2343,6 +2651,8 @@ window.PREGUNTES = [
     "pagina": 143,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q93_page143_sphere_tangents.png",
       "esCrop": false,
@@ -2361,7 +2671,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "esfera amb tangents des d'un punt"
+    "_notaExtraccio": "esfera amb tangents des d'un punt",
+    "_notaClassificacio": "argument pitagòric net via triangles al centre"
   },
   {
     "id": "q94",
@@ -2369,6 +2680,8 @@ window.PREGUNTES = [
     "pagina": 144,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 1,
     "imatge": null,
     "enunciat": {
       "en": "A circle is a special type of ellipse. Where are its focal points?",
@@ -2382,7 +2695,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "cas trivial/degenerat: els focus coincideixen al centre"
   },
   {
     "id": "q95",
@@ -2390,6 +2704,8 @@ window.PREGUNTES = [
     "pagina": 146,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 1,
     "imatge": {
       "fitxer": "q95_page146_circle_tangent_radius.png",
       "esCrop": false,
@@ -2408,7 +2724,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "cercle amb radi i tangent"
+    "_notaExtraccio": "cercle amb radi i tangent",
+    "_notaClassificacio": "prova clàssica senzilla"
   },
   {
     "id": "q96",
@@ -2416,6 +2733,8 @@ window.PREGUNTES = [
     "pagina": 150,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q96_page150_shortest_path_ellipse.png",
       "esCrop": false,
@@ -2434,7 +2753,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "el·lipse amb tangent i angles"
+    "_notaExtraccio": "el·lipse amb tangent i angles",
+    "_notaClassificacio": "principi de reflexió, moderat"
   },
   {
     "id": "q97",
@@ -2442,6 +2762,8 @@ window.PREGUNTES = [
     "pagina": 151,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q97_page151_parallel_lines_path.png",
       "esCrop": false,
@@ -2460,7 +2782,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "línies paral·leles, camí en zigzag"
+    "_notaExtraccio": "línies paral·leles, camí en zigzag",
+    "_notaClassificacio": "dues reflexions, moderat"
   },
   {
     "id": "q98",
@@ -2468,6 +2791,8 @@ window.PREGUNTES = [
     "pagina": 154,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 1,
     "imatge": null,
     "enunciat": {
       "en": "Can you see how to make a rough model of an ellipse using a pencil, two thumbtacks, and a piece of string?",
@@ -2481,7 +2806,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "idea conceptual directa, sense demostració"
   },
   {
     "id": "q99",
@@ -2489,6 +2815,8 @@ window.PREGUNTES = [
     "pagina": 156,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 3,
     "imatge": null,
     "enunciat": {
       "en": "Can you work out the details of this proof?",
@@ -2502,7 +2830,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "sense imatge [pregunta gen\\u00e8rica recurrent, torna a aparèixer p173]"
+    "_notaExtraccio": "sense imatge [pregunta gen\\u00e8rica recurrent, torna a aparèixer p173]",
+    "_notaClassificacio": "'work out the details' -- bona part de la prova es deixa al lector"
   },
   {
     "id": "q100",
@@ -2510,6 +2839,8 @@ window.PREGUNTES = [
     "pagina": 159,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "What is the effect of central projection when the planes are parallel? What if the projection point lies between the planes?",
@@ -2523,7 +2854,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "imatge propera no essencial (tres figures il·lustren secciones còniques com a projeccions, no específicament aquest cas)"
+    "_notaExtraccio": "imatge propera no essencial (tres figures il·lustren secciones còniques com a projeccions, no específicament aquest cas)",
+    "_notaClassificacio": "dos subcasos (plans paral·lels / punt entremig)"
   },
   {
     "id": "q101",
@@ -2531,6 +2863,8 @@ window.PREGUNTES = [
     "pagina": 160,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 3,
     "imatge": null,
     "enunciat": {
       "en": "Can any three points on a line be projected to any other three collinear points? How about four points?",
@@ -2544,7 +2878,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "invariància de la raó doble, idea projectiva profunda"
   },
   {
     "id": "q102",
@@ -2552,6 +2887,8 @@ window.PREGUNTES = [
     "pagina": 160,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "Are all triangles the same projectively? How about all four-sided polygons?",
@@ -2565,7 +2902,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "extensió moderada de les idees projectives prèvies"
   },
   {
     "id": "q103",
@@ -2573,6 +2911,8 @@ window.PREGUNTES = [
     "pagina": 161,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q103_page161_polygon_projection.png",
       "esCrop": false,
@@ -2591,7 +2931,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "dos plans amb punts col·lineals projectats"
+    "_notaExtraccio": "dos plans amb punts col·lineals projectats",
+    "_notaClassificacio": "cal considerar el cas del punt a l'infinit"
   },
   {
     "id": "q104",
@@ -2599,6 +2940,8 @@ window.PREGUNTES = [
     "pagina": 163,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "What does a projection of three parallel lines look like?",
@@ -2612,7 +2955,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "imatge rellevant a la pàgina SEGÜENT (p164, vies de tren convergint a un punt de fuga), connectada explícitament pel text (\"by the way, it is precisely this feature...\")"
+    "_notaExtraccio": "imatge rellevant a la pàgina SEGÜENT (p164, vies de tren convergint a un punt de fuga), connectada explícitament pel text (\"by the way, it is precisely this feature...\")",
+    "_notaClassificacio": "idea del punt de fuga, un sol pas"
   },
   {
     "id": "q105",
@@ -2620,6 +2964,8 @@ window.PREGUNTES = [
     "pagina": 167,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 1,
     "imatge": {
       "fitxer": "q105_page167_projective_lines_infinity.png",
       "esCrop": true,
@@ -2638,7 +2984,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "plans amb línies convergint a un punt marcat ∞"
+    "_notaExtraccio": "plans amb línies convergint a un punt marcat ∞",
+    "_notaClassificacio": "conseqüència gairebé immediata d'afegir punts a l'infinit"
   },
   {
     "id": "q106",
@@ -2646,6 +2993,8 @@ window.PREGUNTES = [
     "pagina": 168,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 3,
     "imatge": null,
     "enunciat": {
       "en": "Can you discover a projective invariant?",
@@ -2659,7 +3008,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "descobriment obert (raó doble)"
   },
   {
     "id": "q107",
@@ -2667,6 +3017,8 @@ window.PREGUNTES = [
     "pagina": 170,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 3,
     "imatge": {
       "fitxer": "q107_page170_hyperbola_infinity.png",
       "esCrop": true,
@@ -2685,7 +3037,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "hipèrbola=cercle amb ∞, corbes amb fletxes"
+    "_notaExtraccio": "hipèrbola=cercle amb ∞, corbes amb fletxes",
+    "_notaClassificacio": "combina geometria del con amb idea projectiva"
   },
   {
     "id": "q108",
@@ -2693,6 +3046,8 @@ window.PREGUNTES = [
     "pagina": 171,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 1,
     "imatge": null,
     "enunciat": {
       "en": "Shine a flashlight on the wall at various angles. Can you see all three types of conic section?",
@@ -2706,7 +3061,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "exploració observacional directa"
   },
   {
     "id": "q109",
@@ -2714,6 +3070,8 @@ window.PREGUNTES = [
     "pagina": 173,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 3,
     "imatge": {
       "fitxer": "q109_page173_double_cone_spheres.png",
       "esCrop": false,
@@ -2732,7 +3090,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "doble con amb esferes i tangents) [2a aparició d'aquesta pregunta genèrica; 1a era a p156 sense imatge]"
+    "_notaExtraccio": "doble con amb esferes i tangents) [2a aparició d'aquesta pregunta genèrica; 1a era a p156 sense imatge]",
+    "_notaClassificacio": "prova de Dandelin, diversos lemes"
   },
   {
     "id": "q110",
@@ -2740,6 +3099,8 @@ window.PREGUNTES = [
     "pagina": 173,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q110_page173_hyperbola_symmetry.png",
       "esCrop": false,
@@ -2758,7 +3119,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "dues branques d'hipèrbola amb eixos de simetria"
+    "_notaExtraccio": "dues branques d'hipèrbola amb eixos de simetria",
+    "_notaClassificacio": "argument analític de simetria sobre l'equació"
   },
   {
     "id": "q111",
@@ -2766,6 +3128,8 @@ window.PREGUNTES = [
     "pagina": 175,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q111_page175_hyperbola_diamond.png",
       "esCrop": false,
@@ -2784,7 +3148,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "diamant format per la hipèrbola i tangents"
+    "_notaExtraccio": "diamant format per la hipèrbola i tangents",
+    "_notaClassificacio": "derivació moderada des del rectangle d'asímptotes"
   },
   {
     "id": "q112",
@@ -2792,6 +3157,8 @@ window.PREGUNTES = [
     "pagina": 177,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q112_page177_right_hyperbola.png",
       "esCrop": false,
@@ -2810,7 +3177,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "hipèrbola recta amb diagonals"
+    "_notaExtraccio": "hipèrbola recta amb diagonals",
+    "_notaClassificacio": "àlgebra moderada, forma xy=c"
   },
   {
     "id": "q113",
@@ -2818,6 +3186,8 @@ window.PREGUNTES = [
     "pagina": 178,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "If an ellipse has long radius a and short radius b, where are its focal points?",
@@ -2831,7 +3201,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "derivació directa de c²=a²-b²"
   },
   {
     "id": "q114",
@@ -2839,6 +3210,8 @@ window.PREGUNTES = [
     "pagina": 178,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q114_page178_unit_hyperbola.png",
       "esCrop": true,
@@ -2857,7 +3230,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "hipèrbola unitat marcada amb \"1\""
+    "_notaExtraccio": "hipèrbola unitat marcada amb \"1\"",
+    "_notaClassificacio": "extensió moderada del raonament de q113"
   },
   {
     "id": "q115",
@@ -2865,6 +3239,8 @@ window.PREGUNTES = [
     "pagina": 179,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "Show that the focal constant of an ellipse or hyperbola is equal to its diameter.",
@@ -2878,7 +3254,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "derivació algebraica moderada"
   },
   {
     "id": "q116",
@@ -2886,6 +3263,8 @@ window.PREGUNTES = [
     "pagina": 179,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 3,
     "imatge": null,
     "enunciat": {
       "en": "Can you discover the tangent property of a hyperbola?",
@@ -2899,7 +3278,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "descobriment obert d'una propietat nova"
   },
   {
     "id": "q117",
@@ -2907,6 +3287,8 @@ window.PREGUNTES = [
     "pagina": 182,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 1,
     "imatge": {
       "fitxer": "q117_page182_parabola_dilations.png",
       "esCrop": false,
@@ -2925,7 +3307,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "dues paràboles de diferent obertura amb focus marcat"
+    "_notaExtraccio": "dues paràboles de diferent obertura amb focus marcat",
+    "_notaClassificacio": "totes les paràboles són semblants, directe"
   },
   {
     "id": "q118",
@@ -2933,6 +3316,8 @@ window.PREGUNTES = [
     "pagina": 183,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 3,
     "imatge": {
       "fitxer": "q118_page183_parabola_tangent_proof.png",
       "esCrop": false,
@@ -2951,7 +3336,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "paràbola amb focus i rebot cap a l'infinit"
+    "_notaExtraccio": "paràbola amb focus i rebot cap a l'infinit",
+    "_notaClassificacio": "exigeix una prova alternativa rigorosa, més difícil"
   },
   {
     "id": "q119",
@@ -2959,6 +3345,8 @@ window.PREGUNTES = [
     "pagina": 184,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 3,
     "imatge": {
       "fitxer": "q119_page184_parabola_envelope.png",
       "esCrop": false,
@@ -2977,7 +3365,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "patró de línies formant l'envolupant parabòlica"
+    "_notaExtraccio": "patró de línies formant l'envolupant parabòlica",
+    "_notaClassificacio": "connectar una construcció discreta amb la corba contínua"
   },
   {
     "id": "q120",
@@ -2985,6 +3374,8 @@ window.PREGUNTES = [
     "pagina": 186,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q120_page186_parabolic_sector.png",
       "esCrop": false,
@@ -3003,7 +3394,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "paràbola amb sector triangular"
+    "_notaExtraccio": "paràbola amb sector triangular",
+    "_notaClassificacio": "resultat clàssic net, un argument principal"
   },
   {
     "id": "q121",
@@ -3011,6 +3403,8 @@ window.PREGUNTES = [
     "pagina": 186,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 3,
     "imatge": {
       "fitxer": "q121_page186_parabolic_section_box.png",
       "esCrop": false,
@@ -3029,7 +3423,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "paràbola inscrita en un quadrat"
+    "_notaExtraccio": "paràbola inscrita en un quadrat",
+    "_notaClassificacio": "resultat d'Arquimedes, exhaustió/límits"
   },
   {
     "id": "q122",
@@ -3037,6 +3432,8 @@ window.PREGUNTES = [
     "pagina": 190,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 1,
     "imatge": {
       "fitxer": "q122_page190_spiral_motion.png",
       "esCrop": false,
@@ -3055,7 +3452,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "espiral amb fletxa"
+    "_notaExtraccio": "espiral amb fletxa",
+    "_notaClassificacio": "conceptual i directe"
   },
   {
     "id": "q123",
@@ -3063,6 +3461,8 @@ window.PREGUNTES = [
     "pagina": 191,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 3,
     "imatge": {
       "fitxer": "q123_page191_helix_length.png",
       "esCrop": false,
@@ -3081,7 +3481,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "hèlix sobre cilindre, tipus pal de barber"
+    "_notaExtraccio": "hèlix sobre cilindre, tipus pal de barber",
+    "_notaClassificacio": "cal 'desenrotllar' l'hèlix, idea genuïnament nova"
   },
   {
     "id": "q124",
@@ -3089,6 +3490,8 @@ window.PREGUNTES = [
     "pagina": 192,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 3,
     "imatge": {
       "fitxer": "q124_page192_hypocycloid_epicycloid.png",
       "esCrop": false,
@@ -3107,7 +3510,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "hipocicloide i epicicloide"
+    "_notaExtraccio": "hipocicloide i epicicloide",
+    "_notaClassificacio": "condició sobre la raó de radis, idea nova"
   },
   {
     "id": "q125",
@@ -3115,6 +3519,8 @@ window.PREGUNTES = [
     "pagina": 192,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 1,
     "imatge": {
       "fitxer": "q125_page192_spirograph.png",
       "esCrop": false,
@@ -3133,7 +3539,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "figura d'espirògraf"
+    "_notaExtraccio": "figura d'espirògraf",
+    "_notaClassificacio": "cas degenerat directe (es converteix en cercle)"
   },
   {
     "id": "q126",
@@ -3141,6 +3548,8 @@ window.PREGUNTES = [
     "pagina": 193,
     "curs": null,
     "interaccio": null,
+    "dimensio": "3D",
+    "dificultat": 2,
     "imatge": null,
     "enunciat": {
       "en": "Can you think of a way to describe a helix on a torus?",
@@ -3154,7 +3563,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "generalització conceptual oberta"
   },
   {
     "id": "q127",
@@ -3162,6 +3572,8 @@ window.PREGUNTES = [
     "pagina": 193,
     "curs": null,
     "interaccio": null,
+    "dimensio": "2D",
+    "dificultat": 3,
     "imatge": null,
     "enunciat": {
       "en": "A ladder slips down the wall until it hits the floor. What curve does its midpoint describe?",
@@ -3175,6 +3587,7 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": null
+    "_notaExtraccio": null,
+    "_notaClassificacio": "traçar l'astroide, calen parametrització i idea nova"
   }
 ];
