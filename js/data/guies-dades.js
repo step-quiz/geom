@@ -1,0 +1,3334 @@
+/*
+  PROJECTE:     Geometria — preguntes del llibre (llibre complet, p. 1-193)
+  FITXER:       js/data/guies-dades.js
+  ROL:          Guies de demostració ("escala de pistes") per a les preguntes
+                que en tenen. Estructura paral·lela a preguntes-dades.js:
+                variable GLOBAL window.GUIES, no un JSON amb fetch(), perquè
+                el lloc s'ha d'obrir amb doble clic sobre file:// i qualsevol
+                fetch() hi seria bloquejat per CORS (mateixa raó documentada
+                a PROJECTES-TECHNICAL-REFERENCE.md per a preguntes-dades.js).
+
+  PER QUÈ UN FITXER A PART I NO UN CAMP DINS DE preguntes-dades.js
+  Les guies s'escriuen en lots successius i es revisen a fora (fitxers
+  GUIES-LOT-N.md), mentre que preguntes-dades.js es REGENERA sencer des del
+  JSON d'extracció del llibre. Tenir-les separades vol dir que regenerar les
+  preguntes no pot destruir les guies, i que afegir un lot de guies no obliga
+  a tornar a generar les 130 preguntes. La unió es fa en temps d'execució per
+  id (v. js/nucli/guies.js).
+
+  ESQUEMA (per id de pregunta)
+    moviment       — slug del moviment que ensenya la guia; vocabulari tancat,
+                     filtrable igual que dimensio/dificultat. Font de veritat:
+                     la columna `moviment` de manifest.tsv.
+    movimentTitol  — {ca,en} el mateix, en prosa, per mostrar a la interfície.
+    lot            — número de lliurament (1-4). Traçabilitat de revisió.
+    pistes[]       — SEMPRE 4, nivells 0..3, en ordre. Els quatre nivells
+                     difereixen en ESPÈCIE, no en quantitat:
+                       0 encàrrec  — reformula què cal produir
+                       1 concreta  — particularitza, prova amb números
+                       2 figura    — la construcció, com a imatge
+                       3 tanca     — què cal mirar, sense dir la conclusió
+                     `figura` només és no-null al nivell 2 (excepció: q15, que
+                     en té una a l'1 i una altra al 3).
+    comprovacio    — {ca,en} predicció verificable. MAI la solució.
+    iDespres       — {ca,en} on retorna aquest moviment més endavant.
+
+  IDIOMA: el contingut és en CATALÀ. Els camps `en` són null a propòsit i
+  cauen a `ca` via geoContingut.resolCamp() — l'invers de preguntes-dades.js,
+  on l'original és l'anglès. contingut.js ho tracta amb resolCampGuia(), que
+  fa el fallback en la direcció correcta per a aquest fitxer.
+
+  GENERAT per parse_guies.py a partir de GUIES-LOT-1..4.md. No editar a mà:
+  edita el .md corresponent i torna a generar.
+*/
+
+window.GUIES = {
+  "q08c": {
+    "moviment": "contraexemple",
+    "movimentTitol": {
+      "ca": "per demostrar calen tots els casos; per refutar, en basta un",
+      "en": null
+    },
+    "lot": 1,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "són dues preguntes",
+          "en": null
+        },
+        "text": {
+          "ca": "I poden tenir respostes diferents. No donis per fet que la segona segueix la primera; de fet el llibre les posa juntes precisament perquè no la segueix.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "quina feina et toca fer",
+          "en": null
+        },
+        "text": {
+          "ca": "Abans de contestar, decideix quina mena de feina et caldrà en cada cas: - Si creus que la resposta és sí, has de convèncer per a tots els triangles del món. Un dibuix no serveix de res. - Si creus que és no, quantes figures et calen? Pensa-ho bé: la resposta és un número molt petit.\n\nAquesta asimetria no és un truc: és com funciona tota la matemàtica.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la fila de baix",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-007.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Els dos quadrilàters de baix tenen exactament els mateixos angles: quatre de rectes cadascun. Són de la mateixa forma? Si la resposta és que no, ja has acabat la segona pregunta — i has acabat amb un sol dibuix.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "No numèrica. Escriu la frase \"dues figures amb els mateixos angles són semblants\" i afegeix-hi la paraula que la fa certa. Després mira quantes de les dotze preguntes d'aquest quadern demanaven demostrar i quantes demanaven refutar.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "q86 fa la mateixa jugada amb un contraexemple molt més subtil: per què dos costats i un angle no determinen un triangle. I la pregunta de debò que queda oberta: quina informació extra caldria afegir als angles perquè sí que funcionés per a quadrilàters?",
+      "en": null
+    }
+  },
+  "q09": {
+    "moviment": "separa-i-reorienta",
+    "movimentTitol": {
+      "ca": "separa les peces i posa-les totes igual orientades",
+      "en": null
+    },
+    "lot": 1,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "què vol dir \"semblants\"",
+          "en": null
+        },
+        "text": {
+          "ca": "Mateixa forma, mida diferent. Per demostrar-ho no cal mesurar cap costat: n'hi ha prou de comprovar que tenen els mateixos angles.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "el fet petit que ho mou tot",
+          "en": null
+        },
+        "text": {
+          "ca": "En un triangle rectangle, si en coneixes un angle agut, ja coneixes l'altre. Per què? (Els tres sumen 180 i un ja val 90.) Conseqüència: per veure que dos triangles rectangles són semblants només cal trobar-los un angle agut en comú.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "separa-les",
+          "en": null
+        },
+        "text": {
+          "ca": "(Als tres triangles hi ha un angle marcat amb un arc i un altre amb dos arcs. Vol dir: els tres angles d'un arc valen igual entre ells, i els tres de dos arcs valen igual entre ells — però un arc i dos arcs són coses diferents. Rellegeix la taula del principi si cal.)",
+          "en": null
+        },
+        "figura": "fig-006.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Cada peça té el seu angle recte. I cadascuna comparteix un angle agut amb el triangle gran: la de sota comparteix el de la dreta, la de dalt el de dalt. Amb l'angle recte més un agut comú, ja hi ets.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Triangle 3-4-5. L'altura sobre la hipotenusa fa 2,4 i talla la hipotenusa en 1,8 i 3,2. Comprova que els tres triangles tenen els catets en proporció 3:4 — és a dir 1,8/2,4 i 2,4/3,2 han de donar el mateix que 3/4.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquesta és, de fet, la demostració del teorema de Pitàgores. De la semblança surt a² = c·p i b² = c·q, on p i q són els dos trossos de la hipotenusa. Suma-les: a² + b² = c(p+q) = c². Val la pena que ho escriguis tu.",
+      "en": null
+    }
+  },
+  "q14": {
+    "moviment": "redueix-al-conegut",
+    "movimentTitol": {
+      "ca": "redueix el desconegut al conegut",
+      "en": null
+    },
+    "lot": 1,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "què has de produir",
+          "en": null
+        },
+        "text": {
+          "ca": "No has de trobar cap número. Has d'acabar podent dir: \"per a qualsevol triangle i la seva caixa passa això, i aquesta n'és la raó\". El resultat final és una raó, no una xifra. (Si penses \"però si ja sé que l'àrea és base × altura / 2\": aquesta fórmula és exactament el que estàs demostrant. La pregunta és per què és certa.)",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "resol primer el cas fàcil",
+          "en": null
+        },
+        "text": {
+          "ca": "Hi ha alguna posició de la punta per a la qual la resposta sigui evident? Prova de posar-la just damunt d'un dels dos vèrtexs de baix.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-002.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Ara tens dues peces. Cadascuna per separat és exactament el cas fàcil que ja has resolt a la pista 1. Si cada meitat de la caixa està partida per la meitat, què passa amb la caixa sencera?",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Caixa de 10 × 6. Punta a distància 3 del cantó esquerre: quina àrea et dona el teu raonament? I si la punta és a distància 7? (Les dues respostes han de coincidir.)",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquesta demostració té un forat que encara no has vist. El trobaràs a q15.",
+      "en": null
+    }
+  },
+  "q15": {
+    "moviment": "audita-la-demostracio",
+    "movimentTitol": {
+      "ca": "posa a prova la teva pròpia demostració",
+      "en": null
+    },
+    "lot": 1,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "aposta primer",
+          "en": null
+        },
+        "text": {
+          "ca": "Abans de calcular res, escriu la teva predicció: l'àrea creix, decreix o es queda igual? Val la pena equivocar-se per escrit.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "mira-t'ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Les marquetes hi són a posta: la base és la mateixa i l'altura és la mateixa, en els tres casos.",
+          "en": null
+        },
+        "figura": "fig-003.png"
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "l'auditoria",
+          "en": null
+        },
+        "text": {
+          "ca": "Torna a la teva demostració de q14 i aplica-la al dibuix de la dreta, pas per pas. Hi ha exactament un pas que ja no pots dir. Troba'l abans de continuar. (El pas és: \"la vertical parteix la caixa en dos trossos, un a cada banda del triangle\". Quan la punta surt, el peu de la vertical cau fora de la base i no hi ha dos trossos per sumar.)",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "la mateixa idea, amb el signe canviat",
+          "en": null
+        },
+        "text": {
+          "ca": "El ratllat vol dir \"aquesta peça es treu\". Un triangle rectangle gran menys un de petit, en comptes de dos de petits sumats.",
+          "en": null
+        },
+        "figura": "fig-004.png"
+      }
+    ],
+    "comprovacio": {
+      "ca": "Base 8, altura 5. Punta a 3, a 8 i a 14 del cantó esquerre. Les tres àrees han de sortir 20.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Dues coses. Primera: aquest és el motiu real pel qual els matemàtics desconfien dels dibuixos — i tot i així en fan. El dibuix et diu què és probablement cert; la demostració ha de cobrir també els dibuixos que no has fet. Segona: \"moc una figura i l'àrea no canvia\" és la llavor del principi de Cavalieri, que retrobaràs a q54 i q55.",
+      "en": null
+    }
+  },
+  "q16": {
+    "moviment": "linia-no-enunciada",
+    "movimentTitol": {
+      "ca": "inventa't una línia que l'enunciat no menciona",
+      "en": null
+    },
+    "lot": 1,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "redueix l'encàrrec",
+          "en": null
+        },
+        "text": {
+          "ca": "No cal comprovar els quatre costats. Per demostrar que una figura de quatre costats és un paral·lelogram n'hi ha prou amb dos costats oposats que siguin alhora paral·lels i iguals de llargs. Convèncer-te d'això abans de començar et estalviarà la meitat de la feina.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "per què costa",
+          "en": null
+        },
+        "text": {
+          "ca": "El quadrilàter de fora et fa nosa perquè no en saps absolutament res: no és cap forma coneguda, no té angles rectes ni costats iguals. Hi ha alguna línia que hi podries afegir per convertir-lo en dues formes de les quals sí que en saps coses?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-008.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Mira només el triangle de dalt. Dos dels quatre punts marcats són els punts mitjans de dos dels seus costats. Com és el segment que els uneix, comparat amb el tercer costat? Ara fes exactament el mateix amb el triangle de sota — i adona't que el \"tercer costat\" és el mateix segment en els dos casos. (Si no coneixes el resultat sobre punts mitjans, dedueix-lo: el triangle petit té dos costats que fan just la meitat i el mateix angle entremig, o sigui que és semblant al gran amb raó ½.)",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Amb coordenades: A(0,0), B(8,2), C(9,7), D(1,6). Els punts mitjans surten (4,1), (8'5,4'5), (5,6'5) i (0'5,3). Comprova que el vector del primer al segon és idèntic al del quart al tercer. Nota honesta: aquesta comprovació amb coordenades és una demostració vàlida, i amb la teva àlgebra la pots fer sencera per a un quadrilàter qualsevol. Val la pena que la facis. Però fixa't en la diferència: et convenç que és cert, i no t'explica per què. La de la diagonal sí.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Ara la segona meitat de la pregunta del llibre: quina àrea té? I una cosa que sorprèn: la demostració de la diagonal no fa servir enlloc que els quatre punts estiguin sobre un mateix pla. Funciona amb un quadrilàter tort a l'espai.",
+      "en": null
+    }
+  },
+  "q22": {
+    "moviment": "dues-maneres",
+    "movimentTitol": {
+      "ca": "digues la mateixa longitud de dues maneres",
+      "en": null
+    },
+    "lot": 1,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "on és la resposta",
+          "en": null
+        },
+        "text": {
+          "ca": "Aquí sí que has de trobar una fórmula. Però no la trobaràs mirant el cercle petit: la trobaràs mirant els centres.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "la palanca amagada",
+          "en": null
+        },
+        "text": {
+          "ca": "Dibuixa a part dos cercles que es toquin, de radis diferents. Què saps de la distància entre els seus centres? És el fet que et falta, i no és a l'enunciat.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-009.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Aquell segment marcat amb \"?\" el pots dir de dues maneres: per Pitàgores, amb els dos catets R; i per la tangència, amb R i r. Iguala les dues expressions i aïlla r.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Amb R = 1 t'ha de sortir un valor entre 0'4 i 0'42. Comprova també que R + r és exactament √2, que és la distància del centre del quadrat al centre d'un cercle gran.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "La mateixa palanca (distància entre centres = suma de radis) resol q23 i q44, que són el mateix joc en configuracions més enrevessades. I \"digues la mateixa quantitat de dues maneres\" és una de les tècniques de demostració més productives que hi ha; la retrobaràs tota la vida.",
+      "en": null
+    }
+  },
+  "q25": {
+    "moviment": "un-altre-pla",
+    "movimentTitol": {
+      "ca": "repeteix el mateix argument en un altre pla",
+      "en": null
+    },
+    "lot": 1,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "aprèn a llegir un dibuix de l'espai",
+          "en": null
+        },
+        "text": {
+          "ca": "Abans de res, una advertència que et servirà per a tot el que ve: en un dibuix en perspectiva els angles rectes no semblen rectes. A la figura, la vora del davant i la de la profunditat formen un angle que sembla obert, i tanmateix a la caixa de veritat fan 90°. Fia't de l'objecte, no del dibuix. Aquesta és la primera cosa que cal desaprendre en passar del pla a l'espai.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "ja en saps la meitat",
+          "en": null
+        },
+        "text": {
+          "ca": "La diagonal d'un rectangle ja la saps calcular. Hi ha algun rectangle amagat dins d'aquesta caixa que et deixi a mig camí de la diagonal llarga?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-012.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Tens dos triangles rectangles i no són al mateix pla: el primer està estirat a terra, el segon està dret. La hipotenusa del primer és un catet del segon. Aplica Pitàgores dues vegades i substitueix.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Caixa de 3 × 4 × 12: la diagonal de la base ha de fer 5 i la de la caixa, 13. I un cub de costat 1 ha de donar √3 ≈ 1,732.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Fixa't en la forma del resultat: a² + b² + c². Un quart costat en donaria un quart quadrat, i així indefinidament — encara que ja no ho puguis dibuixar. I el moviment \"treballa dins d'un pla ben triat\" és el que resol gairebé totes les preguntes de l'espai del llibre, de q45 a q52.",
+      "en": null
+    }
+  },
+  "q34": {
+    "moviment": "identitat-com-a-figura",
+    "movimentTitol": {
+      "ca": "una identitat algebraica és una figura",
+      "en": null
+    },
+    "lot": 1,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "què has de produir",
+          "en": null
+        },
+        "text": {
+          "ca": "La identitat ja la saps desenvolupar amb àlgebra en dues línies. No és això el que et demanen. Et demanen un dibuix on la igualtat es vegi, sense fer cap compte.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "llegeix els termes com a àrees",
+          "en": null
+        },
+        "text": {
+          "ca": "(x + y)² és l'àrea d'alguna cosa. De què, exactament? I x²? I xy — quina figura té àrea xy? Un cop hagis contestat aquestes tres preguntes gairebé ja has acabat.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-001.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Tens quatre regions. Digues l'àrea de cadascuna. Ara suma-les. I digues també l'àrea del quadrat sencer d'una sola tirada. Has dit dues vegades la mateixa cosa — el mateix moviment que faràs servir a q22.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "x = 5, y = 3. El quadrat sencer fa 64. Les quatre regions han de fer 25, 15, 15 i 9. Sumen 64.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Tres continuacions, de fàcil a difícil: (1) dibuixa a²−b² = (a+b)(a−b); (2) intenta (x−y)², que costa més perquè hi ha peces que se solapen i s'han de restar; (3) i si en lloc d'un quadrat agafessis un cub? Quina identitat en surt?",
+      "en": null
+    }
+  },
+  "q36": {
+    "moviment": "simetria-i-demostra",
+    "movimentTitol": {
+      "ca": "endevina per simetria, després demostra",
+      "en": null
+    },
+    "lot": 1,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "fixa't què t'han donat",
+          "en": null
+        },
+        "text": {
+          "ca": "L'enunciat ja et diu la resposta. Això canvia la feina: no has de descobrir res, has de demostrar. Són dues activitats diferents i val la pena que notis quan et demanen l'una o l'altra.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "quantes llibertats tens?",
+          "en": null
+        },
+        "text": {
+          "ca": "Perímetre fix vol dir que quan tries l'amplada, l'alçada ja està decidida. Escriu-ho: si el perímetre és P i l'amplada és x, quant fa l'alçada? Ara tot el problema depèn d'una sola lletra.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "mira't la restricció",
+          "en": null
+        },
+        "text": {
+          "ca": "Tots aquests rectangles tenen el mateix perímetre. Fixa't on van a parar els seus vèrtexs oposats: sobre una recta. Aquesta recta és la condició \"perímetre fix\", dibuixada.",
+          "en": null
+        },
+        "figura": "fig-010.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Escriu l'àrea en funció de x sola i mira què és aquesta expressió. Ara, si no vols derivar res, hi ha un truc purament algebraic: amb s = P/2,\n\nx(s − x) = s²/4 − (x − s/2)²\n\nEl segon terme no pot ser mai negatiu, i val zero només quan x = s/2. Ja està.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "P = 24, o sigui s = 12. Àrees: 1×11 = 11, 3×9 = 27, 5×7 = 35, 6×6 = 36. I comprova que la teva fórmula dona 36 − (x−6)².",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Gira la pregunta: de tots els rectangles de la mateixa àrea, quin té el perímetre més petit? La resposta és la mateixa i l'àlgebra s'hi assembla molt. I un cop tinguis això: i si en lloc de rectangles hi poguessis posar qualsevol forma? Aquesta és una de les preguntes grans de la geometria, i la resposta no és un quadrat.",
+      "en": null
+    }
+  },
+  "q41": {
+    "moviment": "informacio-no-usada",
+    "movimentTitol": {
+      "ca": "fes servir la informació que has deixat sense tocar",
+      "en": null
+    },
+    "lot": 1,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "què vol dir \"sempre\"",
+          "en": null
+        },
+        "text": {
+          "ca": "Sempre = allà on posis el punt sobre l'arc. Si la teva raó fa servir on és exactament el punt, no és una raó vàlida.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "fes inventari",
+          "en": null
+        },
+        "text": {
+          "ca": "Quines longituds d'aquest dibuix saps segur que són iguals, sense haver-les mesurat? I una pregunta relacionada: per què el dibuix del llibre porta un punt marcat al mig de la base, si l'enunciat no el menciona? En una figura ben feta res no és decoratiu.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": {
+          "ca": "(Compte amb les marques: els dos angles d'un arc són iguals entre ells i els dos de dos arcs són iguals entre ells; els quatre no són iguals. Les ratlletes dels tres segments sí que diuen que els tres fan el mateix, perquè tots tres són radis.)",
+          "en": null
+        },
+        "figura": "fig-005.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Ara tens dos triangles isòsceles (fixa't en les marquetes: tres segments iguals). En un triangle isòsceles els angles de la base són iguals; per això n'hi ha dos marcats amb un arc i dos amb dos arcs. Suma els tres angles del triangle gran, escrivint-los amb aquestes marques. (Et sortirà una cosa de la forma α + (α+β) + β = 180.)",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Posa el punt al capdamunt, just sobre el centre: hauries d'obtenir 45 + 45. Ara posa'l gairebé enganxat a un extrem: l'angle continua sent recte encara que el triangle sigui finíssim? Si la teva raó ho suporta, és bona.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "q42 treu el diàmetre i posa un arc qualsevol. La teva demostració encara s'hi assembla? Ara caldrà distingir casos — el segon cop que et passa això, després de q15.",
+      "en": null
+    }
+  },
+  "q95": {
+    "moviment": "definicio-i-absurd",
+    "movimentTitol": {
+      "ca": "desempaqueta la definició, i dibuixa el que no pot ser",
+      "en": null
+    },
+    "lot": 1,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "la demostració és dins la definició",
+          "en": null
+        },
+        "text": {
+          "ca": "Escriu amb les teves paraules què vol dir exactament que una recta sigui tangent a un cercle. No continuïs fins que ho tinguis escrit. Tota la demostració viu en aquesta frase, i és per això que costa: la hipòtesi no sembla una hipòtesi.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "dibuixa una cosa falsa a posta",
+          "en": null
+        },
+        "text": {
+          "ca": "Suposa que t'equivoques i que el radi no és perpendicular. Dibuixa-ho ben exagerat, ben tort. Dibuixar deliberadament el cas impossible és una tècnica, no una pèrdua de temps.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": {
+          "ca": "Baixa la perpendicular des del centre fins a la recta i mira on cau.",
+          "en": null
+        },
+        "figura": "fig-013.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Quant fa OP′? (Les marquetes t'ho diuen.) Per tant, P′ és al cercle? És a la recta? I què deia exactament la teva definició de tangent?",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Aquí no hi ha números. La comprovació és una altra: repassa la teva demostració i assenyala on fa servir que la recta toca el cercle només una vegada. Si no ho fa servir enlloc, tens un forat, perquè sense aquesta condició l'enunciat és fals.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "A q96 retrobaràs la mateixa idea (la perpendicular és el camí més curt) fent una feina completament diferent: camins mínims i reflexió. I ja pots mirar enrere: de les set preguntes d'aquest lot, quantes has resolt afegint una línia? Aquesta és, de moment, la teva eina principal.",
+      "en": null
+    }
+  },
+  "q96": {
+    "moviment": "reflexio",
+    "movimentTitol": {
+      "ca": "reflecteix, i el camí trencat es torna recte",
+      "en": null
+    },
+    "lot": 1,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "on és la dificultat",
+          "en": null
+        },
+        "text": {
+          "ca": "Ja saps que el camí més curt entre dos punts és el segment recte. Aquí el camí no pot ser recte, perquè està obligat a tocar la recta pel mig. Tota la gràcia consisteix a trobar la manera de convertir-lo en un de recte sense canviar-ne la longitud.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "quina operació desdoblega?",
+          "en": null
+        },
+        "text": {
+          "ca": "Busques una transformació que conservi les longituds (si no, el camí \"més curt\" canviaria de sentit) i que et permeti posar les dues meitats del camí en línia. Només n'hi ha una de raonable.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-011.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Les marquetes diuen que AP i A′P fan el mateix. Per tant el camí A→P→B fa exactament el mateix que A′→P→B, per a qualsevol P de la recta. I entre tots els camins A′→P→B, quin és el més curt? Un cop ho sàpigues, mira els angles.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Amb A = (0,3), B = (8,1) i la recta y = 0: el teu P ha de sortir (6,0), amb longitud total √80 ≈ 8,944. Prova ara P = (5,0) i comprova que surt més llarg (≈ 8,993).",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "q97 posa dues rectes paral·leles: el mateix truc, aplicat dues vegades. I ara torna a la figura del llibre, que és una el·lipse amb els seus dos focus: la suma de distàncies als focus és constant, i el punt de tangència és el que la fa mínima sobre la tangent. Per això els angles hi són iguals — i per això una bola que surt d'un focus d'una taula de billar el·líptica sempre passa per l'altre.",
+      "en": null
+    }
+  },
+  "q10": {
+    "moviment": "simetria-i-demostra",
+    "movimentTitol": {
+      "ca": "endevina per simetria, després demostra",
+      "en": null
+    },
+    "lot": 2,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "dues preguntes, un sol plec",
+          "en": null
+        },
+        "text": {
+          "ca": "Són dues afirmacions independents. Un rombe té els quatre costats iguals — i aquesta única propietat, ben mirada, respon totes dues alhora.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "pensa-ho com un plec de paper",
+          "en": null
+        },
+        "text": {
+          "ca": "Si retallessis el rombe i el doblegues per una diagonal, què passa amb els dos triangles que queden a banda i banda? (Els quatre costats són iguals, així que...)",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-018.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "El plec (la diagonal) parteix el rombe en dos triangles amb els tres costats iguals dos a dos (les marquetes ho diuen) — són congruents. D'aquí surt que la diagonal bisecta els dos angles que talla. I ara ve el pas clau: en un triangle isòsceles, la bisectriu de l'angle del vèrtex és també perpendicular al costat oposat. Aplica això dues vegades (un cop a cada triangle format per l'ALTRA diagonal) i tens la perpendicularitat. Per al paral·lelisme, torna als dos triangles congruents del primer plec: quina parella d'angles iguals et diu que dos costats són paral·lels?",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Rombe amb diagonals de 6 i 8 (perpendiculars per construcció), vèrtexs a (±3,0) i (0,±4). Comprova que els quatre costats fan 5 (el triangle 3-4-5), i que el pendent d'un costat és igual al del costat oposat.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "El mateix plec (una diagonal parteix la figura en dos triangles congruents per SSS) és el que demostra propietats de qualsevol paral·lelogram, no només del rombe — la diferència és que un paral·lelogram general només et dona UN parell d'aquests triangles, no dos, perquè només dos costats (no quatre) són iguals de dos en dos.",
+      "en": null
+    }
+  },
+  "q13": {
+    "moviment": "redueix-al-conegut",
+    "movimentTitol": {
+      "ca": "redueix el desconegut al conegut",
+      "en": null
+    },
+    "lot": 2,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "què has de produir",
+          "en": null
+        },
+        "text": {
+          "ca": "No n'hi ha prou de dir \"sí\". Has d'acabar podent explicar per què, i la raó ha de funcionar per a qualsevol triangle, no només per al que hagis dibuixat.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "el fet que ho decideix tot",
+          "en": null
+        },
+        "text": {
+          "ca": "Si dos triangles tenen la mateixa base i la mateixa alçada, què saps de les seves àrees? (És literalment la fórmula base × alçada / 2 — no hi ha res més amagat.) Ara mira els dos triangles que et queden després del tall: quina d'aquestes dues coses comparteixen sense haver de mesurar res?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-014.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Les marquetes et diuen que les dues meitats de la base fan el mateix. L'altura que has afegit en sanguina és la mateixa per als dos triangles — és la distància del vèrtex de dalt a la recta de la base, i aquesta recta no canvia entre un triangle i l'altre. Base igual, alçada igual: ja ho tens.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Base de 12, vèrtex desplaçat (no centrat) a alçada 7. Amb el tall al punt mitjà (a distància 6 de cada cantó), l'àrea de cada meitat surt 21 — sumen 42, que és l'àrea sencera. Prova-ho també desplaçant el vèrtex a un altre lloc de la mateixa alçada 7: les dues meitats han de continuar sortint iguals entre elles, encara que ja no facin 21 cadascuna.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "\"Mateixa base, mateixa alçada, mateixa àrea\" és el motor que fa funcionar mig llibre. El tornaràs a veure servir-se sol, sense que ningú t'ho recordi, quan arribis al principi de Cavalieri.",
+      "en": null
+    }
+  },
+  "q23": {
+    "moviment": "dues-maneres",
+    "movimentTitol": {
+      "ca": "digues la mateixa distància de dues maneres",
+      "en": null
+    },
+    "lot": 2,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "reconeix la palanca",
+          "en": null
+        },
+        "text": {
+          "ca": "El llibre et planteja tres puzles de cop. Fes primer el de l'esquerra (un cercle gran tallat pels seus dos diàmetres, amb un cercle petit encaixat en un dels quatre racons). Els altres dos es resolen amb la mateixa idea — te'ls deixo per a després.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "el mateix truc, disfressat",
+          "en": null
+        },
+        "text": {
+          "ca": "A q22 la distància entre els centres de dos cercles tangents es podia dir de dues maneres: per Pitàgores (amb els catets que calguessin) i per la tangència (suma o resta de radis). Aquí els \"dos costats\" que fan de catets ja no són dos radis R — són què, exactament? Mira on toca el cercle petit.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-017.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "El cercle petit toca els dos diàmetres, així que el seu centre és a distància r de cadascun — aquests són els dos catets, i tots dos fan r (no R). La hipotenusa (el segment \"?\") la pots dir per Pitàgores, r√2, i també per la tangència amb el cercle gran, R−r. Iguala-les.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Amb R = 1 surt r = √2 − 1 ≈ 0,414 — exactament el mateix valor numèric que et va sortir a q22, tot i que la figura és diferent del tot. No és casualitat: comprova que l'equació r(√2+1) = R que has fet servir aquí és, mirada amb calma, la mateixa equació de q22.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Ara fes els altres dos puzles de q23 amb la mateixa palanca (en un, la \"tangència\" és amb una diagonal en lloc d'un altre cercle — la distància d'un punt a una recta hi fa d'hipotenusa). I quan vulguis una versió amb encara més incògnites, q44 t'hi espera.",
+      "en": null
+    }
+  },
+  "q42": {
+    "moviment": "distingeix-casos",
+    "movimentTitol": {
+      "ca": "distingeix els casos",
+      "en": null
+    },
+    "lot": 2,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "què vol dir \"el mateix arc\"",
+          "en": null
+        },
+        "text": {
+          "ca": "Una corda AB parteix el cercle en dos arcs. \"El mateix arc\" vol dir que els dos punts que connectes (P i Q) són tots dos a la banda gran, o tots dos a la banda petita — no un a cada banda. L'angle \"resultant\" és l'angle que es veu des d'aquell punt mirant cap a A i cap a B.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "que no et faci l'esquena la novetat",
+          "en": null
+        },
+        "text": {
+          "ca": "A q41 ja vas resoldre el cas particular en què AB és un diàmetre: l'angle sempre és recte, on sigui que posis el punt. Aquí AB ja no és un diàmetre — és una corda qualsevol. Prova-ho amb xifres: posa un cercle de radi 10, la corda AB fixa, i calcula l'angle des de dues posicions diferents del mateix arc. (Si tens ganes de comprovar-ho abans de llegir més avall: 200° i 340° per a A i B, 80° i 140° per als dos punts, amb el centre a l'origen — et sortirà el mateix angle als dos.)",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": {
+          "ca": "(El truc és el mateix de q41: un radi fa un triangle isòsceles. Aquí, en lloc del radi a un vèrtex donat, tria el diàmetre que passa pel punt P.)",
+          "en": null
+        },
+        "figura": "fig-015.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Als dos triangles isòsceles que t'ha creat el diàmetre (OPA i OPB, amb OP=OA=OB perquè tots tres són radis — per això hi ha tres marquetes iguals), anomena α i β els angles de la base a P. L'angle que veus des de P és α+β o bé α−β, segons si el diàmetre que has traçat cau dins o fora de l'angle APB — mira el teu dibuix i decideix quin cas tens. Ara fes exactament el mateix per Q, amb el seu propi diàmetre. Fixa't en una cosa: encara que el cas (suma o resta) pugui ser diferent per a P i per a Q, la relació final amb l'angle central AOB acaba sent la mateixa als dos casos. Compara-ho.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Cercle de radi 10, centre a l'origen. A i B als angles 200° i 340°; P a 80°, Q a 140°. L'angle central AOB val 140°. Calcula (amb coordenades, o amb un transportador sobre el teu propi dibuix) l'angle APB i l'angle AQB: tots dos han de sortir 70°, exactament la meitat de l'angle central.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquest resultat (\"angle inscrit = meitat de l'angle central\") el faràs servir moltes vegades més sense que el llibre t'ho recordi — sempre que quatre punts estiguin sobre un mateix cercle, per exemple. I nota una cosa: aquesta és la segona vegada que un argument es parteix en casos que tot i així arriben a la mateixa fórmula — la primera va ser q15.",
+      "en": null
+    }
+  },
+  "q45": {
+    "moviment": "desenrotlla",
+    "movimentTitol": {
+      "ca": "desenrotlla la superfície",
+      "en": null
+    },
+    "lot": 2,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "un avís abans de començar",
+          "en": null
+        },
+        "text": {
+          "ca": "En un dibuix en perspectiva les circumferències de dalt i de baix del cilindre no semblen cercles — surten aixafades, com el·lipses. Fia't de l'objecte, no del dibuix: són cercles de veritat.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "pensa en l'etiqueta d'una llauna",
+          "en": null
+        },
+        "text": {
+          "ca": "Si talles l'etiqueta de paper d'una llauna de sopa en vertical i l'estires plana, quina forma té? Amb radi 3 i alçada 10: l'amplada de l'etiqueta és la longitud de la circumferència, 2π×3 ≈ 18,85; l'alçada és 10, la mateixa del cilindre. Ja tens un rectangle.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-021.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "L'àrea lateral del cilindre és, exactament, l'àrea d'aquest rectangle: (2πr) × h. No cal cap fórmula nova ni cap límit — un cop desenrotllat, és literalment base × alçada. El parany habitual: l'amplada del rectangle és la circumferència, no el diàmetre ni el radi.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Amb r=3, h=10: àrea lateral = 2π(3)(10) = 60π ≈ 188,5. Si hi afegeixes les dues tapes circulars (2×πr² = 18π), la superfície total surt 78π ≈ 245,0.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "El mateix truc no funciona igual de net per a un con (q51): un con desenrotllat no dona un rectangle sinó un sector de cercle, perquè el \"radi\" de l'etiqueta ja no és constant. I quan vulguis mesurar la longitud d'una hèlix (q123), \"desenrotllar\" torna a ser la idea — ara desenrotllant un cilindre sencer, no només la seva superfície.",
+      "en": null
+    }
+  },
+  "q86": {
+    "moviment": "contraexemple",
+    "movimentTitol": {
+      "ca": "per refutar en basta un contraexemple",
+      "en": null
+    },
+    "lot": 2,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "quina és exactament la feina",
+          "en": null
+        },
+        "text": {
+          "ca": "\"Insuficient\" es refuta amb un exemple: dos triangles diferents (no congruents) que comparteixin els dos costats i l'angle donats. Ara bé — compte, perquè aquí \"un angle\" vol dir un angle que no és l'angle entre els dos costats donats (si ho fos, seria el cas SAS de q08c-recíproc, i aquell sí que determina el triangle). Aquesta distinció és tota la dificultat de la pregunta.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "mou-ho amb un compàs, mentalment",
+          "en": null
+        },
+        "text": {
+          "ca": "Fixa un angle a un vèrtex A, i un dels costats donats sortint d'A cap a un punt B (això fixa A i B del tot). L'altre costat donat té una longitud fixa, però només saps que l'altre extrem (diguem-li C) és en algun lloc del segon costat de l'angle — no saps on. Si claves un compàs a B amb aquella longitud fixa, quantes vegades pot tallar el segon costat de l'angle?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-016.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Els dos triangles ABC i ABC′ comparteixen: l'angle a A, el costat AB, i el costat BC (les marquetes ho diuen: BC i BC′ fan el mateix). Però són triangles diferents — mira els angles a C i C′, o el costat AC. Dos costats i un angle (no comprès) et donen, en general, dues respostes possibles, no una. Compara amb el cas SAS: per què allà el compàs només pot tallar en un lloc?",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Amb angle A = 30°, AB = 8 i BC = 5, el teorema del cosinus et dona una equació de segon grau per a AC amb dues solucions positives: AC ≈ 9,93 i AC ≈ 3,93. Comprova-ho tu mateix — i fixa't que si canviessis \"dos costats i un angle\" per \"dos costats i l'angle comprès\" (SAS), la mateixa equació només tindria una solució possible.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Dels cinc criteris clàssics de congruència de triangles (SSS, SAS, ASA, AAS...), SSA és l'únic que falla — per això té nom propi (\"el cas ambigu\") en trigonometria, i reapareix cada vegada que resols un triangle amb el teorema del sinus.",
+      "en": null
+    }
+  },
+  "q97": {
+    "moviment": "reflexio",
+    "movimentTitol": {
+      "ca": "reflecteix, i el camí trencat es torna recte",
+      "en": null
+    },
+    "lot": 2,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "un rebot més",
+          "en": null
+        },
+        "text": {
+          "ca": "A q96 el camí tocava una sola recta. Aquí en toca dues — un cop cadascuna. La idea és la mateixa, però l'has d'aplicar dos cops, no un.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "un rebot cada vegada",
+          "en": null
+        },
+        "text": {
+          "ca": "Reflecteix A respecte de la recta de dalt: ja tens A′. Un tros del teu camí (A fins al primer punt de contacte) ara es pot substituir per un tram recte des d'A′. Et queda encara la recta de baix per resoldre — què hi faries, per la mateixa raó?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-019.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Amb A′ (reflex d'A respecte de la recta de dalt) i B′ (reflex de B respecte de la recta de baix), el segment recte A′B′ creua totes dues rectes. Aquests dos punts de creuament són els punts de contacte que buscaves: el camí A → (creuament de dalt) → (creuament de baix) → B fa exactament la mateixa longitud que el segment recte A′B′, per a qualsevol elecció dels punts de contacte — i un segment recte és el camí més curt entre els seus extrems.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Rectes y=6 (dalt) i y=0 (baix). A=(1,4), B=(9,1). Reflectint: A′=(1,8), B′=(9,−1). La distància A′B′ (i per tant la longitud del camí òptim) és √145 ≈ 12,042. Compara-ho amb un camí \"a ull\" que toqui totes dues rectes a x=4: aquest surt ≈ 14,705 — més llarg, com havia de ser.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Si en lloc de dues rectes tinguessis un triangle sencer (tres costats) i volguessis el camí tancat més curt que toqués els tres, la mateixa idea —reflectir, un cop per cada costat— hi funciona, encara que amb tres reflexions en cadena en lloc de dues. I com ja vas veure prometut a q96: la propietat de reflexió d'una el·lipse (q98, en aquest mateix lot) és la mateixa idea mirada des d'una corba en lloc de dues rectes.",
+      "en": null
+    }
+  },
+  "q98": {
+    "moviment": "construeix-per-definir",
+    "movimentTitol": {
+      "ca": "construeix la figura, i que la construcció mateixa sigui la prova",
+      "en": null
+    },
+    "lot": 2,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "què has de produir",
+          "en": null
+        },
+        "text": {
+          "ca": "No cal demostrar cap fórmula. Has d'explicar per què aquest mètode físic dibuixa sempre la mateixa mena de corba — què és exactament el que el fil manté constant mentre mous el llapis.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "mesura el que no canvia",
+          "en": null
+        },
+        "text": {
+          "ca": "El fil té una longitud fixa L (el talles un cop i ja està). Clava els dos punxons, tensa el fil amb el llapis en dues posicions diferents, i mesura (o calcula amb coordenades) les dues distàncies del llapis a cada punxó a cada posició. Què es manté igual entre una posició i l'altra?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-020.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "El fil no s'estira: sigui on sigui el llapis, la suma de les dues distàncies als punxons val sempre L, perquè és tota la longitud del fil repartida en dos trossos. Això és la definició d'una el·lipse: el conjunt de punts la suma de les distàncies dels quals a dos punts fixos (els focus) és constant. El mètode del fil no s'inventa res — simplement fabrica aquesta condició amb un objecte que físicament no pot fer altra cosa.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Punxons a (−3,0) i (3,0), fil de longitud 10. Al punt (0,4): distàncies 5 i 5, sumen 10. Al punt (5,0) (un extrem de l'el·lipse): distàncies 8 i 2, sumen també 10.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Ara ajunta aquest fet amb el de q96/q97 (reflectir converteix un camí trencat en un de recte): és exactament el que fa que una bola de billar llançada des d'un focus d'una taula el·líptica passi sempre per l'altre focus, sigui quin sigui l'angle de sortida.",
+      "en": null
+    }
+  },
+  "q26": {
+    "moviment": "redueix-al-conegut",
+    "movimentTitol": {
+      "ca": "redueix el desconegut al conegut",
+      "en": null
+    },
+    "lot": 3,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": null,
+        "text": {
+          "ca": "L'alçada parteix el triangle en dos trossos. Mira'ls per separat: quin tipus de triangle és cadascun?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": null,
+        "text": {
+          "ca": "Cada meitat és un triangle rectangle amb hipotenusa el costat del triangle (s) i un catet la meitat de la base (s/2). Pitàgores et dona directament l'altre catet — que és, precisament, l'alçada.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-022.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "h² = s² − (s/2)² = s² − s²/4 = (3/4)s². Arrel quadrada: h = s·√3/2.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Amb s=10: h²=100−25=75, h=√75=5√3≈8,66 — i (1/2)√3×10≈8,66.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquest mateix parell (meitat de la base, alçada, Pitàgores) el tornaràs a fer servir immediatament per calcular l'àrea.",
+      "en": null
+    }
+  },
+  "q28": {
+    "moviment": "redueix-al-conegut",
+    "movimentTitol": {
+      "ca": "redueix el desconegut al conegut",
+      "en": null
+    },
+    "lot": 3,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": null,
+        "text": {
+          "ca": "Ja tens l'alçada de q26. L'àrea d'un triangle és sempre la mateixa fórmula, la facis servir on la facis servir.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": null,
+        "text": {
+          "ca": "Àrea = (1/2)·base·alçada. La base és s. L'alçada és el que ja vas trobar a q26. Substitueix-ho i simplifica.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-023.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Àrea = (1/2)·s·(s√3/2) = (√3/4)s². No hi ha res més a demostrar — és substituir un resultat ja fet dins una fórmula ja coneguda.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Amb s=10: (√3/4)×100≈43,30. Comprova-ho també multiplicant directament (1/2)×10×8,66≈43,30 — han de coincidir.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Encara que sembli un pas trivial, aquesta és la primera vegada del llibre que reutilitzes un resultat teu propi (no un teorema del llibre) com a peça d'una altra demostració — val la pena notar-ho.",
+      "en": null
+    }
+  },
+  "q44": {
+    "moviment": "dues-maneres",
+    "movimentTitol": {
+      "ca": "digues la mateixa distància de dues maneres",
+      "en": null
+    },
+    "lot": 3,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": null,
+        "text": {
+          "ca": "Ja saps dir, de dues maneres, la distància entre els centres de dos cercles tangents a la mateixa recta (q23). Aquí en tens tres parelles de cercles tangents (gran-petit esquerre, gran-petit dret, petit-gran esquerre amb gran dret) — i les tres relacions han de ser certes alhora.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": null,
+        "text": {
+          "ca": "Per a dos cercles de radis a i b, tots dos tangents a la mateixa recta i tangents entre ells, la distància horitzontal entre els peus (on toquen la recta) és 2√(ab) — és el mateix triangle rectangle de q23, amb catets (a−b) i 2√(ab), hipotenusa (a+b). Aplica'l a la parella (R₁, r).",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-024.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "La mateixa relació val per a (R₂, r). Els peus dels tres cercles són tots sobre la mateixa recta, així que la distància entre el peu de R₁ i el peu de R₂ (que ja saps que és 2√(R₁R₂), directament de q23) ha de ser la suma de les altres dues distàncies parcials (peu de R₁ a peu de r, i peu de r a peu de R₂) — perquè r és, precisament, en algun punt entremig. Escriu aquesta equació amb els tres √( ) i aïlla r.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Amb R₁=1, R₂=1 (dos cercles iguals): hauria de sortir 1/√r = 1/√1+1/√1 = 2, r=1/4. Comprova-ho també geomètricament: per simetria, amb dos cercles iguals el petit ha de quedar centrat i el resultat 1/4 és fàcil de verificar per Pitàgores directe.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "La relació que acabes de trobar (1/√r = 1/√R₁ + 1/√R₂) és un cas particular d'una fórmula més general (el teorema de Descartes per a cercles), que val per a qualsevol quatre cercles mútuament tangents, no només tres en línia.",
+      "en": null
+    }
+  },
+  "q46": {
+    "moviment": "dilatacio",
+    "movimentTitol": {
+      "ca": "nou: dilatacio",
+      "en": null
+    },
+    "lot": 3,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": null,
+        "text": {
+          "ca": "Ja coneixes l'àrea d'un cercle. Una el·lipse de semieixos a i b es pot obtenir a partir d'un cercle de radi a estirant-lo verticalment per un factor k = b/a. Si sabessis com canvia l'àrea quan estires una figura qualsevol per un factor fix, ja tindries la resposta.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": null,
+        "text": {
+          "ca": "Talla el cercle (mentalment) en franges verticals molt primes. Quan l'estires verticalment per un factor k, cada franja canvia d'alçada per aquell mateix factor k, però la seva amplada (horitzontal) no canvia gens. Què li passa a l'àrea de cada franja? I a la suma de totes?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-025.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Cada franja veu la seva àrea multiplicada per k; per tant tota la figura (la suma de totes les franges) també veu la seva àrea multiplicada per k. Àrea del cercle de radi a: πa². Amb k=b/a: àrea de l'el·lipse = πa²·(b/a) = πab.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Amb a=5, b=3: àrea = π×5×3=15π≈47,12. Comprova el cas particular b=a (l'\"el·lipse\" és el cercle mateix): πa·a=πa², correcte.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquest mateix argument de \"franges que s'estiren\" funciona per a qualsevol figura, no només un cercle — és, de fet, una altra manera d'arribar al mateix tipus de raonament que Cavalieri (q54, en aquest mateix lot) fa servir per a àrees en general.",
+      "en": null
+    }
+  },
+  "q47": {
+    "moviment": "un-altre-pla",
+    "movimentTitol": {
+      "ca": "tria un altre pla",
+      "en": null
+    },
+    "lot": 3,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "un avís abans de començar",
+          "en": null
+        },
+        "text": {
+          "ca": "En un dibuix en perspectiva els angles rectes del cub no semblen rectes. Fia't de l'objecte, no del dibuix.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": null,
+        "text": {
+          "ca": "Posa el cub amb centre a l'origen i costat 2 (vèrtexs a (±1,±1,±1)) — els nombres surten més nets que amb costat 1. Amb aquesta tria, els sis centres de cara són (±1,0,0), (0,±1,0), (0,0,±1). L'octàedre que formen es pot partir en dues piràmides iguals, unides per la base. Quina és la base, i quina l'alçada de cadascuna?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-026.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Cada piràmide té per base el quadrat que formen quatre dels sis centres (per exemple (±1,0,0),(0,±1,0), un quadrat de diagonal 2) i per alçada la distància fins al cinquè centre (0,0,1), que és 1. Volum d'una piràmide = (1/3)·base·alçada. Suma les dues piràmides i compara amb el volum del cub (2³=8).",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Àrea del quadrat base (diagonal 2, costat √2): (√2)²=2. Volum d'una piràmide: (1/3)×2×1=2/3. Dues piràmides: 4/3. Fracció del cub: (4/3)/8 = 1/6.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "El mateix cub amb el mateix sistema de coordenades et servirà sense cap canvi per a q52 i q56, en aquest mateix lot.",
+      "en": null
+    }
+  },
+  "q49": {
+    "moviment": "simetria-i-demostra",
+    "movimentTitol": {
+      "ca": "endevina per simetria, després demostra",
+      "en": null
+    },
+    "lot": 3,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": null,
+        "text": {
+          "ca": "Un tetràedre regular té una simetria total entre els seus quatre vèrtexs — cap n'és especial. Si el \"centre\" existeix, la simetria ja et diu una cosa forta sobre on ha de ser.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": null,
+        "text": {
+          "ca": "Des de cada vèrtex, traça el segment fins al centre (centre de gravetat) de la cara oposada. Per simetria, aquests quatre segments haurien de trobar-se tots en un sol punt. Comprova-ho amb coordenades: si els quatre vèrtexs són A, B, C, D, quin punt surt de fer la mitjana dels quatre?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-027.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "El punt G=(A+B+C+D)/4 és, alhora, el punt que hi ha a 3/4 del camí de cada vèrtex cap al centre de gravetat de la cara oposada — comprova-ho algebraicament per a un vèrtex qualsevol i generalitza per simetria als altres tres.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Amb A=(1,1,1), B=(1,−1,−1), C=(−1,1,−1), D=(−1,−1,1) (un tetràedre regular clàssic inscrit en un cub): G=(0,0,0). El centre de la cara BCD és ((1−1−1)/3,(−1+1−1)/3,(−1−1+1)/3)=(−1/3,−1/3,−1/3). El punt a 3/4 del camí d'A cap a aquest centre: A+(3/4)((−1/3,−1/3,−1/3)−A) = (1,1,1)+(3/4)(−4/3,−4/3,−4/3) = (1,1,1)+(−1,−1,−1) = (0,0,0) = G ✓.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquesta relació 3:1 (vèrtex–centre : centre–cara) és l'anàleg en 3D de la relació 2:1 del baricentre d'un triangle en 2D.",
+      "en": null
+    }
+  },
+  "q51": {
+    "moviment": "desenrotlla",
+    "movimentTitol": {
+      "ca": "desenrotlla la superfície",
+      "en": null
+    },
+    "lot": 3,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "un avís abans de començar",
+          "en": null
+        },
+        "text": {
+          "ca": "Com sempre en un dibuix en perspectiva, la base del con no sembla un cercle. És un cercle de veritat.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": null,
+        "text": {
+          "ca": "A q45 vas desenrotllar un cilindre i et va sortir un rectangle. Prova de fer el mateix amb un con: talla'l des de la punta fins a la vora de la base, en línia recta, i estira'l pla. Ja no surt un rectangle — surt un tros de cercle. Quin radi té aquest tros de cercle? I quina llargada d'arc?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-030.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "El radi del sector és exactament la llargada de la línia que has tallat — l'aresta inclinada del con des de la punta fins a la vora (l'anomenem \"generatriu\" o alçada inclinada, L). L'arc del sector ha de fer, en longitud, exactament la circumferència de la base (2πr), ja que abans d'estirar-lo el con era la vora d'aquella base. Un sector de cercle de radi L amb arc de longitud 2πr té àrea (1/2)×L×(2πr) = πrL — la mateixa fórmula \"base × alçada / 2\" que fas servir per a qualsevol sector.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Amb r=3, L=8: l'angle del sector és 2π(3)/8 = 3π/4 (135°). Àrea lateral = πrL = π×3×8 = 24π ≈ 75,4. Comprova-ho també amb la fórmula del sector: (1/2)×8²×(3π/4) = (1/2)×64×2,356=75,4 ✓.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "A diferència del cilindre, aquí l'\"amplada\" de la superfície desenrotllada no és constant — és un arc, no un segment recte. Aquesta diferència és exactament el que fa que el con, a diferència del cilindre, no es pugui \"desenrotllar\" en un rectangle.",
+      "en": null
+    }
+  },
+  "q52": {
+    "moviment": "un-altre-pla",
+    "movimentTitol": {
+      "ca": "tria un altre pla",
+      "en": null
+    },
+    "lot": 3,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": null,
+        "text": {
+          "ca": "No qualsevol pla de tall serveix — n'hi ha un que funciona per raons de simetria. Pensa en la diagonal principal del cub (la que va d'un vèrtex al vèrtex oposat, travessant l'interior): quina mena de simetria té el cub al voltant d'aquesta diagonal?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": null,
+        "text": {
+          "ca": "El cub té simetria de rotació de 120° al voltant de qualsevol diagonal principal (gira'l i es veu igual, tres cops per volta). Un pla tallat perpendicularment a aquesta diagonal, pel centre del cub, hereta aquesta mateixa simetria de 120°. Quina figura, si té simetria de 120° i toca cada cara del cub un cop, pot sortir-ne?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-028.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "El pla talla exactament sis arestes del cub (les sis que no toquen cap dels dos vèrtexs de la diagonal triada), pel seu punt mitjà. Amb coordenades (cub de costat 1, diagonal de (0,0,0) a (1,1,1)): comprova que els sis punts mitjans són tots a la mateixa distància del centre del cub, i que la distància entre dos punts mitjans consecutius és la mateixa arreu.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Punts mitjans com (1, 0.5, 0) i (0.5, 1, 0): distància √((0.5)²+(0.5)²+0²)=√0,5≈0,707. Fes-ho amb un altre parell consecutiu, per exemple (0.5,1,0) i (0,1,0.5): √(0,25+0+0,25)=√0,5≈0,707 — igual.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquest mateix pla (perpendicular a una diagonal principal, pel centre) és el que fa servir q56, en aquest mateix lot, per trobar el tetràedre inscrit al cub — val la pena notar que totes dues figures viuen sobre el mateix cub, mirat des del mateix eix.",
+      "en": null
+    }
+  },
+  "q53": {
+    "moviment": "contraexemple",
+    "movimentTitol": {
+      "ca": "per refutar en basta un contraexemple",
+      "en": null
+    },
+    "lot": 3,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": null,
+        "text": {
+          "ca": "No cal cap objecte estrany. Compara un cilindre recte amb un cilindre \"inclinat\" (com una pila de monedes que s'ha desplaçat de costat sense girar cap moneda) — mateixa base, mateixa alçada.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": null,
+        "text": {
+          "ca": "A cada alçada, el tall horitzontal dels dos cilindres és un cercle idèntic (mateix radi) — per Cavalieri, doncs, tenen el mateix volum. Però un és \"recte\" i l'altre \"s'inclina\": mira la superfície lateral de cadascun. Quina creus que serà més gran, i per què?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-031.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "El cilindre inclinat té una superfície lateral estrictament més gran que el recte, encara que el volum sigui idèntic — cada \"franja\" vertical de la superfície s'allarga en inclinar-se, de la mateixa manera que la hipotenusa d'un triangle rectangle és més llarga que el catet.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Amb un cilindre recte de radi 2, alçada 10: superfície lateral 2π(2)(10)=40π≈125,7. Si l'inclines de manera que cada \"franja\" s'allargui per un factor 1,2 (un pendent moderat), la superfície lateral inclinada surt ≈150,8 — més gran, mentre que el volum (àrea de la base × alçada vertical) es manté exactament igual als dos.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquest exemple és el bessó en 3D del que trobaràs a q55 (en aquest mateix lot): igual que aquí el volum no \"sent\" la inclinació però la superfície sí, allà l'àrea no sentirà els esglaons però el perímetre sí.",
+      "en": null
+    }
+  },
+  "q54": {
+    "moviment": "invariant",
+    "movimentTitol": {
+      "ca": "nou: invariant",
+      "en": null
+    },
+    "lot": 3,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": null,
+        "text": {
+          "ca": "Pensa en un rectangle. Ara imagina que n'agafes la part de dalt i la desplaces cap al costat, mantenint l'alçada, fins que el rectangle es converteix en un paral·lelogram inclinat. Ha canviat l'àrea?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": null,
+        "text": {
+          "ca": "A cada alçada, quina longitud té el tall horitzontal del paral·lelogram? Compara-la amb la longitud del tall del rectangle a la mateixa alçada.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-032.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "A qualsevol alçada, el tall horitzontal del paral·lelogram té exactament la mateixa longitud que la base — igual que el rectangle. Si dues figures tenen el mateix tall a cada alçada, l'àrea (que no és res més que la \"suma\" de tots els talls, un per cada alçada) ha de ser la mateixa. Aquest és el principi de Cavalieri per a àrees.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Rectangle de base 6, alçada 4: àrea 24. Paral·lelogram amb la mateixa base i alçada, inclinat 3 unitats: l'àrea (base × alçada, independentment de la inclinació) segueix sent 24. Comprova-ho també descomponent el paral·lelogram en el rectangle més un triangle a un costat menys el mateix triangle a l'altre.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquest mateix principi, aplicat a volums en lloc d'àrees (tallant amb plans en lloc de rectes), és el que permetrà comparar volums de sòlids que semblen molt diferents — i és exactament la idea que fa servir q53, en aquest mateix lot, per al cas contrari (quan NO es conserva alguna cosa).",
+      "en": null
+    }
+  },
+  "q55": {
+    "moviment": "cas-limit",
+    "movimentTitol": {
+      "ca": "nou: cas-limit",
+      "en": null
+    },
+    "lot": 3,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": null,
+        "text": {
+          "ca": "Fixa't en l'escala de q54 (o al llibre): a mesura que fas els esglaons més petits i més nombrosos, l'escala s'assembla més i més a la diagonal, a ull. Això vol dir que la seva longitud s'acosta a la longitud de la diagonal?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": null,
+        "text": {
+          "ca": "Suma tots els trams horitzontals de l'escala (sense els verticals): quant val la suma, sigui quin sigui el nombre de graons? Fes el mateix amb els verticals. Ara suma-ho tot: aquesta és la longitud total del camí en escala.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-033.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Els trams horitzontals sempre sumen exactament el costat del quadrat (s), sigui quin sigui el nombre de graons — es limiten a repartir el mateix recorregut total en trossos més petits. El mateix passa amb els verticals. La longitud de l'escala és, doncs, sempre 2s, independentment de com de fins siguin els graons — mentre que la diagonal fa s√2 < 2s. Per fins que siguin els graons, la longitud del camí mai no s'acosta a la diagonal: es queda sempre igual.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Amb s=10: diagonal = 10√2≈14,14. Escala amb qualsevol nombre de graons: longitud sempre 20 — amb 2 graons, amb 20 graons, amb 2000 graons. La diferència (20−14,14≈5,86) no es redueix mai, per molt que l'escala s'assembli visualment a la diagonal.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquest és exactament el motiu pel qual el mètode d'exhaustió, que sí que funciona per a àrees (q54) i per a volums, no es pot aplicar ingènuament a longituds — cal un argument diferent (i molt més delicat) per mesurar corbes com a límits de poligonals, que és per això que mesurar la longitud d'una circumferència com a límit de polígons inscrits requereix més cura que mesurar-ne l'àrea.",
+      "en": null
+    }
+  },
+  "q56": {
+    "moviment": "un-altre-pla",
+    "movimentTitol": {
+      "ca": "tria un altre pla",
+      "en": null
+    },
+    "lot": 3,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": null,
+        "text": {
+          "ca": "\"Diagonals\" aquí vol dir diagonals de cara (no la diagonal principal de q47/q52). Tria quatre dels vuit vèrtexs del cub de manera que cap parella triada sigui una aresta del cub — només diagonals.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": null,
+        "text": {
+          "ca": "Amb el cub de costat 1 i vèrtexs a {0,1}³, tria (0,0,0), (1,1,0), (1,0,1), (0,1,1). Comprova que cada parella d'aquests quatre punts està a distància √2 (una diagonal de cara) — si ho és per a totes sis parelles, tens un tetràedre regular.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-029.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "El volum del tetràedre es pot calcular amb el producte mixt: (1/6)|det[B−A, C−A, D−A]|. Calcula'l amb les coordenades de la Pista 1 i compara amb el volum del cub (que és 1, amb costat 1).",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Amb A=(0,0,0), B=(1,1,0), C=(1,0,1), D=(0,1,1): det[(1,1,0),(1,0,1),(0,1,1)] = 1(0−1)−1(1−0)+0(1−0) = −1−1+0=−2. Volum = 2/6 = 1/3. El tetràedre ocupa exactament un terç del cub.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "El cub sencer es pot partir en aquest tetràedre més quatre petits tetràedres iguals, un a cada vèrtex retallat — comprova que 4×(volum d'un d'aquests) + 1/3 = 1 (el cub sencer).",
+      "en": null
+    }
+  },
+  "q01": {
+    "moviment": "centre-per-simetria",
+    "movimentTitol": {
+      "ca": "troba un punt per simetria (moviment nou d'aquest lot)",
+      "en": null
+    },
+    "lot": 4,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "què vol dir \"el\" centre",
+          "en": null
+        },
+        "text": {
+          "ca": "Un triangle qualsevol té diversos punts que es podrien dir \"centre\": on es tallen les altures, on es tallen les bisectrius, on es tallen les medianes... En general són tres punts diferents. La pregunta interessant no és calcular- ne un, és preguntar-se per què, en el cas equilàter, tothom en diu el centre com si n'hi hagués només un.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "comença per una sola mediana",
+          "en": null
+        },
+        "text": {
+          "ca": "Tria un vèrtex i uneix-lo amb el punt mitjà del costat oposat. Aquesta línia, per simetria del triangle equilàter (els dos costats que surten del vèrtex triat són iguals), parteix l'angle del vèrtex en dos d'iguals i el costat oposat en dos d'iguals alhora. Cap altre triangle té aquesta propietat de franc amb una sola línia.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": {
+          "ca": "Fixa't que les tres medianes semblen tallar-se en un sol punt. No és un accident del dibuix.",
+          "en": null
+        },
+        "figura": "fig-034.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Per simetria, si repeteixes l'argument de la pista 1 amb els altres dos vèrtexs, obtens tres línies, cadascuna alhora bisectriu d'angle, mediana i altura del seu vèrtex. Que les tres coincideixin en un punt és el que fa que, en aquest cas (i només en aquest), \"el centre\" tingui sentit sense ambigüitat: bisectrius, medianes i altures hi són totes tres alhora.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Un triangle equilàter de costat 12. La mediana des d'un vèrtex fa 6√3 ≈ 10,39. El centre hi és a 2/3 d'aquesta distància des del vèrtex: 2/3 × 10,39 ≈ 6,93. Si el teu raonament dona una altra proporció, revisa-la.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquest \"punt on coincideixen tres rectes que en un triangle general són tres punts diferents\" és un patró que reapareixerà cada vegada que afegeixis una simetria a una figura: la simetria no crea coincidències, en col·lapsa d'altres que ja existien per separat.",
+      "en": null
+    }
+  },
+  "q02": {
+    "moviment": "redueix-al-conegut",
+    "movimentTitol": {
+      "ca": "redueix el desconegut al conegut",
+      "en": null
+    },
+    "lot": 4,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "què has de produir",
+          "en": null
+        },
+        "text": {
+          "ca": "No has de demostrar que un parell és congruent: n'hi ha quatre, i has d'explicar per què tots quatre ho són entre ells, amb un sol argument que valgui per als quatre alhora.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "mira només els costats nous",
+          "en": null
+        },
+        "text": {
+          "ca": "Cada línia nova que has afegit uneix dos punts mitjans de costats del triangle gran. Aquesta línia, per un resultat que probablement ja coneixes (el segment que uneix dos punts mitjans és paral·lel al tercer costat i en fa la meitat), et diu la mida dels tres costats de cadascun dels quatre triangles petits sense haver de mesurar res.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": {
+          "ca": "El segon triangle (el de la dreta, no equilàter) és a posta: el mateix argument ha de funcionar-hi igual, sense cap simetria addicional a ajudar.",
+          "en": null
+        },
+        "figura": "fig-035.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Si els tres costats d'un triangle mesuren la meitat dels tres costats d'un altre (i en el mateix ordre), els dos triangles són congruents — és el criteri costat-costat-costat. Aplica'l als quatre triangles petits: tots quatre tenen per costats la meitat dels tres costats del triangle gran.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Un triangle de costats 6, 8, 10. Cada triangle petit ha de tenir costats 3, 4, 5 — i per tant és rectangle (3² + 4² = 5²), encara que el triangle gran no ho fos necessàriament abans de comprovar-ho.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquesta subdivisió en quatre és la mateixa que fa servir la demostració clàssica del teorema de Pitàgores per dissecció, i la retrobaràs si mai treballes amb el rombe (q02 → q11/q12 comparteixen la idea de \"quin paral·lelogram surt de connectar punts mitjans\").",
+      "en": null
+    }
+  },
+  "q05": {
+    "moviment": "redueix-al-conegut",
+    "movimentTitol": {
+      "ca": "redueix el desconegut al conegut — un triangle isòsceles amagat a cada punta",
+      "en": null
+    },
+    "lot": 4,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "les dues estrelles no són el mateix objecte \"amb més puntes\"",
+          "en": null
+        },
+        "text": {
+          "ca": "L'estrella de cinc puntes es dibuixa unint cada vèrtex d'un pentàgon regular amb el següent-però-un (saltant-ne un). La de vuit puntes fa el mateix però saltant-ne dos. Aquest \"quants en saltes\" no és un detall estètic: és el número que determina l'angle de la punta.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "aïlla una sola punta",
+          "en": null
+        },
+        "text": {
+          "ca": "Cada punta de l'estrella és el vèrtex d'un triangle isòsceles format per dos segments de l'estrella i, com a base, la corda que uneix els dos punts on aquests segments toquen la circumferència que passa per totes les puntes. L'angle que busques és l'angle al vèrtex d'aquest triangle.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": {
+          "ca": "L'arc marcat és a una sola punta de cada estrella —el mateix argument val per a totes les altres per simetria, no cal repetir el dibuix cinc (o vuit) vegades.",
+          "en": null
+        },
+        "figura": "fig-048.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "L'angle a la punta d'una estrella {n/k} (n puntes, saltant k-1 vèrtexs cada vegada) es pot obtenir com 180° × (n − 2k)/n, a partir de mirar quant arc de la circumferència queda \"fora\" del triangle isòsceles de la punta. No cal que et memoritzis aquesta fórmula: val més que la retrobis tu mateix mirant quants arcs iguals (dels n en què queda partida la circumferència pels n vèrtexs) queden entre els dos costats de cada punta.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Estrella de cinc puntes (n=5, saltant-ne 1, és a dir k=2): 180×(5−4)/5 = 36°. Estrella de vuit puntes com la del dibuix (n=8, k=3): 180×(8−6)/8 = 45°. Suma dels angles de les cinc puntes del pentagrama: 5×36° = 180° —una coincidència curiosa que val la pena que comprovis si es manté amb l'estrella de vuit puntes (5×36 no aplica aquí: fes el càlcul anàleg amb 8×45).",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquesta manera de descriure una estrella com \"polígon {n/k}\" —n vèrtexs, saltant-ne k−1 cada vegada— és la mateixa notació amb què es descriuen els polígons estrellats en general, i determina no només l'angle de la punta sinó també si la figura surt d'un sol traç continu o de diversos (depenent de si n i k tenen factors comuns).",
+      "en": null
+    }
+  },
+  "q06": {
+    "moviment": "redueix-al-conegut",
+    "movimentTitol": {
+      "ca": "redueix el desconegut al conegut (una altra mirada sobre la triangulació de q70/q29)",
+      "en": null
+    },
+    "lot": 4,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "aquí no compten triangles, es miren angles",
+          "en": null
+        },
+        "text": {
+          "ca": "q70 i q29 preguntaven \"quants\". Aquesta pregunta no vol un recompte: vol que et fixis en la mida de cadascun dels quatre angles que es formen al vèrtex entre diagonals consecutives, i que trobis la relació que hi ha entre ells.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "aposta abans de mirar la construcció",
+          "en": null
+        },
+        "text": {
+          "ca": "Amb quatre angles diferents dibuixats al mateix vèrtex d'un heptàgon regular, esperes que siguin tots diferents, que hi hagi parells iguals, o que siguin tots exactament iguals? Escriu la teva aposta abans de continuar.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": {
+          "ca": "Els quatre arcs són a radis diferents només perquè, si els dibuixéssim tots al mateix radi des d'un vèrtex on conflueixen sis línies, es taparien entre ells. La mida del radi no significa res: només hi és per poder-los distingir a simple vista.",
+          "en": null
+        },
+        "figura": "fig-038.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "En un polígon regular inscrit en una circumferència, l'angle que es veu des d'un vèrtex entre dos vèrtexs consecutius depèn només de quants costats del polígon separen aquests dos vèrtexs — no de quins vèrtexs concrets siguin. Com que els quatre angles del dibuix separen sempre un vèrtex del següent (mai en salten dos de cop), els quatre subtendeixen el mateix arc de circumferència, i per tant són el mateix angle.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Amb la fórmula de l'angle inscrit, cadascun d'aquests quatre angles val 180°/7 ≈ 25,71°. Multiplicat pels quatre: 102,86°, que sumat als dos angles dels extrems del ventall (que no són d'aquest tipus) hauria de completar la suma total que ja coneixes de q70 per a n=7: 900°.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquest és un cas particular d'un fet més general que segurament ja coneixes amb un altre nom: angles inscrits que subtendeixen el mateix arc són iguals. Aquí l'has vist aparèixer dins d'una triangulació, no dins d'una circumferència amb dos radis com sol presentar-se.",
+      "en": null
+    }
+  },
+  "q08a": {
+    "moviment": "construeix-per-definir",
+    "movimentTitol": {
+      "ca": "construeix per definir — abans de respondre \"quins\", cal fixar què vol dir \"simètric\" aquí",
+      "en": null
+    },
+    "lot": 4,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "\"simètric\" és ambigu si no l'acotes",
+          "en": null
+        },
+        "text": {
+          "ca": "Un poliedre pot tenir moltes menes de simetria (reflexió en un pla, gir al voltant d'un eix, simetria puntual...). Aquesta pregunta, tal com la planteja el llibre en aquest punt, es refereix als poliedres amb el grau més alt possible de simetria: aquells on totes les cares són el mateix polígon regular i tots els vèrtexs tenen el mateix aspecte al seu voltant. Val la pena que fixis aquesta definició abans de continuar, perquè si la relaxes surten moltes més figures.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "comença pel cas que ja coneixes bé",
+          "en": null
+        },
+        "text": {
+          "ca": "El cub és l'exemple més familiar: sis cares quadrades, tres arestes a cada vèrtex. Té, entre altres simetries, eixos que passen per parells de vèrtexs oposats (la diagonal principal), eixos pel centre de cares oposades, i eixos pel punt mitjà d'arestes oposades. Identificar-los tots en un sol sòlid conegut et dona el vocabulari per parlar-ne en general.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": {
+          "ca": "La diagonal sanguina uneix dos vèrtexs oposats del cub —un dels eixos de simetria de rotació del cub (gir de 120° al voltant d'aquest eix porta el cub sobre ell mateix).",
+          "en": null
+        },
+        "figura": "fig-051.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Fixa't que no tot poliedre amb cares totes iguals és \"simètric\" en aquest sentit fort: cal a més que els vèrtexs siguin tots equivalents entre ells. Aquesta doble condició (cares regulars i iguals, vèrtexs tots equivalents) és exactament la que defineix els poliedres regulars, que la pregunta següent (q08b) et demana llistar exhaustivament.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Compta, per al cub, quants eixos de simetria de cada tipus té: 4 eixos vèrtex-a-vèrtex, 3 eixos cara-a-cara, 6 eixos aresta-a-aresta — 13 eixos en total (sense comptar el centre com a eix). Aquest recompte, combinat amb els girs que cada eix permet, dona el grup de simetries complet del cub, d'ordre 24.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "La pregunta natural que ve després de \"quins són els poliedres amb aquest grau de simetria\" és \"quants n'hi ha, en total, en tot l'espai\" —i la resposta, sorprenentment petita i tancada, és exactament el que demana q08b.",
+      "en": null
+    }
+  },
+  "q08b": {
+    "moviment": "contraexemple",
+    "movimentTitol": {
+      "ca": "contraexemple i comptatge — per què n'hi ha exactament cinc, ni un més",
+      "en": null
+    },
+    "lot": 4,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "la pregunta interessant no és \"quins\", és \"per què només cinc\"",
+          "en": null
+        },
+        "text": {
+          "ca": "Saber-ne els noms (tetraedre, cub, octaedre, dodecaedre, icosaedre) és fàcil de memoritzar. El que val la pena entendre és per què la llista s'acaba exactament aquí i no continua —per què no hi ha, per exemple, un poliedre regular fet de set triangles equilàters a cada vèrtex.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "què ha de complir un vèrtex perquè \"tanqui\" en 3D",
+          "en": null
+        },
+        "text": {
+          "ca": "A cada vèrtex d'un poliedre convex s'hi han d'ajuntar com a mínim tres cares, i la suma dels seus angles en aquell vèrtex ha de ser estrictament menor que 360° (si sumessin exactament 360°, la figura quedaria plana; si sumessin més, no es podria construir en absolut). Aquesta única condició, aplicada a cada polígon regular possible, és la que talla la llista.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": {
+          "ca": "El tetraedre (quatre cares triangulars, tres a cada vèrtex) i l'octaedre (vuit cares triangulars, quatre a cada vèrtex) són dos dels cinc casos: fixa't que al tetraedre l'angle a cada vèrtex és 3×60°=180° (molt per sota de 360°) i a l'octaedre 4×60°=240° (encara per sota).",
+          "en": null
+        },
+        "figura": "fig-052.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho comptant els casos possibles",
+          "en": null
+        },
+        "text": {
+          "ca": "Amb triangles equilàters (60° cadascun) pots ajuntar-ne 3, 4 o 5 a un vèrtex (180°, 240° o 300°, tots per sota de 360°) —però no 6 (exactament 360°, queda pla). Amb quadrats (90°) només en pots ajuntar 3 (270°) —amb 4 ja fan 360° exactes. Amb pentàgons regulars (108°) només 3 (324°). Amb hexàgons (120°) ja 3 sols en fan 360°, cap combinació funciona. Amb polígons de més costats, l'angle és encara més gran i la situació només empitjora. Compta quantes combinacions vàlides has trobat en total.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Hauries d'arribar a exactament cinc combinacions vàlides: 3 triangles/vèrtex (tetraedre), 4 triangles/vèrtex (octaedre), 5 triangles/vèrtex (icosaedre), 3 quadrats/vèrtex (cub), 3 pentàgons/vèrtex (dodecaedre). Si en trobes més o menys de cinc, revisa el càlcul de l'angle d'algun dels polígons.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquest argument —comptar quantes configuracions locals a un vèrtex són geomètricament possibles— és un dels primers exemples que segurament veuràs d'una demostració que combina geometria amb un argument purament combinatori de comptatge finit, un estil de raonament que reapareix constantment més endavant en matemàtiques.",
+      "en": null
+    }
+  },
+  "q11": {
+    "moviment": "dues-maneres",
+    "movimentTitol": {
+      "ca": "dues maneres de mirar la mateixa figura",
+      "en": null
+    },
+    "lot": 4,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "què saps del paral·lelogram sense demostrar res",
+          "en": null
+        },
+        "text": {
+          "ca": "Per definició, un paral·lelogram té els dos parells de costats paral·lels. Això, i només això —cap mesura, cap suposició addicional— és tot el que et pots permetre servir-te al començament.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "una diagonal parteix la figura en dos",
+          "en": null
+        },
+        "text": {
+          "ca": "Traça una diagonal. Els dos triangles que en resulten comparteixen aquesta diagonal com a costat comú. Amb els costats paral·lels donats, quins angles d'aquests dos triangles pots dir que són iguals sense mesurar, només per la propietat de rectes paral·leles tallades per una transversal?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": {
+          "ca": "Els arcs marquen quins angles resulten iguals amb aquest argument: un arc per a un parell, dos arcs per a l'altre parell. No són el mateix angle repetit dues vegades, són dos parells diferents.",
+          "en": null
+        },
+        "figura": "fig-039.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Amb els dos triangles congruents (comparteixen la diagonal, i tenen dos parells d'angles iguals per paral·lelisme, cosa que en determina el tercer), suma els angles que cauen en cada vèrtex del paral·lelogram original i compara els vèrtexs oposats entre ells.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Si un angle del paral·lelogram fa 65°, el seu oposat també n'ha de fer 65°, i els altres dos (adjacents a aquest) n'han de fer 115° cada un —perquè els quatre han de sumar 360°, i els adjacents entre ells sumen sempre 180°.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "El mateix parell de triangles que has fet servir aquí és el que tornaràs a fer servir a q12, per a una pregunta relacionada però amb la implicació girada: allà no et donen que és un paral·lelogram, t'ho donen com una cosa a demostrar.",
+      "en": null
+    }
+  },
+  "q12": {
+    "moviment": "contraexemple",
+    "movimentTitol": {
+      "ca": "contraexemple i demostració — quan una condició extra ho canvia tot",
+      "en": null
+    },
+    "lot": 4,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "separa el que et donen del que has de trobar",
+          "en": null
+        },
+        "text": {
+          "ca": "Aquí et donen més que a q11: no només és un paral·lelogram, a més les dues diagonals fan la mateixa llargada. La pregunta és què pots concloure que no podies concloure abans amb menys informació.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "prova-ho amb un paral·lelogram inclinat",
+          "en": null
+        },
+        "text": {
+          "ca": "Dibuixa mentalment un paral·lelogram ben esbiaixat (com el de la figura, no un rectangle). Les dues diagonals hi tenen longituds diferents. Ara imagina que el vas \"redreçant\" fins que les diagonals s'igualen: què li passa als angles pel camí?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": {
+          "ca": "Les marquetes a les dues diagonals diuen \"iguals entre elles\", no diuen encara res sobre els angles del paral·lelogram.",
+          "en": null
+        },
+        "figura": "fig-040.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Mira els dos triangles que formen una diagonal amb dos costats consecutius. Amb els costats iguals dos a dos (per ser paral·lelogram) i ara també la diagonal compartida igual a l'altra diagonal (dada nova), tens prou per demostrar-los congruents amb el criteri costat-costat-costat, i d'aquí recuperar que els angles adjacents sumen 180° i són iguals entre ells — l'única manera que passi és que cadascun sigui de 90°.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Un paral·lelogram amb costats 5 i 12: si les diagonals fan totes dues 13, hauria de sortir un rectangle (i, de fet, 5-12-13 és un triangle rectangle conegut — no és casualitat).",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "\"Paral·lelogram + diagonals iguals = rectangle\" és el recíproc d'un fet que segurament ja coneixes en l'altra direcció (rectangle ⟹ diagonals iguals). Aquest tipus de pregunta —quina condició extra converteix un objecte general en un de particular— reapareixerà a q71, on la condició de partida serà una altra (quatre angles rectes) i el que caldrà recuperar serà el paral·lelisme dels costats.",
+      "en": null
+    }
+  },
+  "q18b": {
+    "moviment": "invariant",
+    "movimentTitol": {
+      "ca": "invariant sota escala (moviment nou d'aquest lot — com canvia una magnitud quan la figura s'infla)",
+      "en": null
+    },
+    "lot": 4,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "no calculis un cub concret, raona amb el cub genèric",
+          "en": null
+        },
+        "text": {
+          "ca": "No cal que et fixis un valor numèric de costat: la pregunta és sobre com canvia el volum en funció de k, per a qualsevol sòlid, i el cub és el cas més senzill per veure-ho amb claredat abans de generalitzar.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "un cub de costat s, i el mateix cub a escala k",
+          "en": null
+        },
+        "text": {
+          "ca": "El volum d'un cub de costat s és s³. Si ara totes les arestes es multipliquen per k, el nou costat és k·s. Quin volum té el nou cub, escrit en funció de k i de l'antic volum s³?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": {
+          "ca": "Els dos cubs es dibuixen amb el mateix angle de projecció (per poder comparar-los d'un cop d'ull), amb el segon clarament més gran que el primer.",
+          "en": null
+        },
+        "figura": "fig-049.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "(k·s)³ = k³·s³. El volum del cub gran és k³ vegades el volum del cub petit —no k vegades, com potser esperaries si pensessis només en longituds. Ara pensa per què aquest mateix argument (multiplicar per k cadascuna de les tres dimensions independents) hauria de valer per a qualsevol sòlid, no només per al cub.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Un cub de costat 2 (volum 8) escalat per k=3: el nou costat és 6, i el nou volum ha de ser 6³=216. Comprova que 216 = 3³×8 = 27×8.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquest resultat —el volum escala amb el cub del factor lineal, mentre que l'àrea escala amb el seu quadrat— és el que fa que un sòlid molt gran i un de molt petit amb la mateixa forma es comportin de manera molt diferent per la relació entre la seva superfície i el seu volum (per què un animal petit es refreda més ràpid que un de gran, per exemple). El mateix principi d'\"invariant sota una transformació\" el retrobaràs a q60, encara que allà la transformació que es fa servir no és una escala sinó el principi de Cavalieri.",
+      "en": null
+    }
+  },
+  "q29": {
+    "moviment": "redueix-al-conegut",
+    "movimentTitol": {
+      "ca": "redueix el desconegut al conegut (reaplicació directa de q70)",
+      "en": null
+    },
+    "lot": 4,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "no tornis a demostrar q70",
+          "en": null
+        },
+        "text": {
+          "ca": "Ja tens la fórmula: un polígon de n costats, triangulat des d'un vèrtex, dona n−3 diagonals i n−2 triangles. Aquesta pregunta no et demana redemostrar-ho, et demana fer-lo servir amb valors concrets de n.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "compta amb els dits abans de fer servir la fórmula",
+          "en": null
+        },
+        "text": {
+          "ca": "Mira el dibuix de l'hexàgon. Des del vèrtex de dalt, compta les diagonals una per una. Compta els triangles un per un. Comprova que els dos comptatges coincideixen amb n−3 i n−2 per a n=6 abans de confiar-hi cegament per a n=8.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": {
+          "ca": "Els dos polígons són regulars (a diferència del de q70), però aquí la regularitat és només perquè es vegi net al dibuix — la fórmula que fas servir no la necessita per res.",
+          "en": null
+        },
+        "figura": "fig-037.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Aplica n−3 i n−2 per a n=6 i n=8 per separat. Aquí no hi ha cap pas nou de raonament: el pas nou ja el vas fer a q70. El que hi ha aquí és la comprovació que la fórmula, un cop obtinguda en abstracte, dona números correctes en casos concrets.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Hexàgon (n=6): 3 diagonals, 4 triangles, suma d'angles 720°. Octàgon (n=8): 5 diagonals, 6 triangles, suma d'angles 1080°.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquest patró —demostrar-ho en abstracte una vegada (q70) i després aplicar-ho repetidament sense repetir l'argument (q29, i també q06, que hi torna des d'un altre angle)— és com funciona la major part de la geometria a partir d'aquí: un teorema, moltes aplicacions.",
+      "en": null
+    }
+  },
+  "q37": {
+    "moviment": "dues-maneres",
+    "movimentTitol": {
+      "ca": "dues equacions, dues incògnites — plantejar el sistema que la construcció exigeix",
+      "en": null
+    },
+    "lot": 4,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "dues condicions, no una",
+          "en": null
+        },
+        "text": {
+          "ca": "\"Mateixa àrea\" és una condició. \"Mateix perímetre\" n'és una altra, independent. Un rectangle té dues dimensions lliures (base i altura), i tens exactament dues condicions per fixar-les totes dues —això hauria d'engegar-te l'alarma de \"sistema de dues equacions amb dues incògnites\".",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "escriu les dues magnituds del triangle primer",
+          "en": null
+        },
+        "text": {
+          "ca": "Si el triangle equilàter té costat s, el seu perímetre és 3s i la seva àrea és (√3/4)s². Aquests dos números són ara constants conegudes: el que et falta trobar són les dues dimensions x, y del rectangle.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": {
+          "ca": "El rectangle es dibuixa amb un interrogant a posta: no hi ha unes dimensions \"correctes\" per pintar-hi, perquè encara no les has calculat — són precisament el resultat que busques.",
+          "en": null
+        },
+        "figura": "fig-046.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Planteja 2x + 2y = 3s (mateix perímetre) i xy = (√3/4)s² (mateixa àrea). De la primera equació, aïlla y en funció de x i s; substitueix-ho a la segona. Et queda una equació de segon grau en x.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Amb s = 4: perímetre 12, àrea 4√3 ≈ 6,93. Si resols el sistema, has de trobar dues solucions per a (x, y) que, multiplicades, donin ≈ 6,93, i sumades (×2) donin 12. Comprova que la teva parella de solucions compleix totes dues coses alhora, no només una.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Fixa't que el sistema té, en general, dues solucions diferents per a (x, y) (els papers de x i y es poden intercanviar, i a més n'hi pot haver una altra parella no trivial): \"mateixa àrea i mateix perímetre\" no determina un únic rectangle. És un recordatori útil que dues figures amb la mateixa àrea i el mateix perímetre no necessiten ser congruents ni úniques.",
+      "en": null
+    }
+  },
+  "q38": {
+    "moviment": "identitat-com-a-figura",
+    "movimentTitol": {
+      "ca": "la identitat com a figura — plantejar l'equació que la construcció mateixa dicta",
+      "en": null
+    },
+    "lot": 4,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "tradueix \"semblant\" a una proporció",
+          "en": null
+        },
+        "text": {
+          "ca": "\"El rectangle petit és semblant a l'original\" vol dir que la raó entre els seus costats és la mateixa raó que als costats de l'original. Aquesta és tota la informació de l'enunciat; no n'hi ha cap altra.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "posa noms als costats",
+          "en": null
+        },
+        "text": {
+          "ca": "Sigui el costat curt del rectangle original 1, i el llarg x (x > 1). En treure'n el quadrat de costat 1, queda un rectangle de costats 1 i (x−1). Escriu la proporció \"el rectangle petit és semblant a l'original\" amb aquests noms.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": {
+          "ca": "La línia sanguina marca on cauria el tall que separa el quadrat de la resta. Els dos segments etiquetats \"1\" i \"x\" corresponen als dos trams en què queda partit el costat llarg.",
+          "en": null
+        },
+        "figura": "fig-042.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "La proporció costat llarg / costat curt ha de ser la mateixa als dos rectangles: x/1 = 1/(x−1). Aquesta equació, un cop desenvolupada, és una equació de segon grau en x. Resol-la (només té sentit la solució positiva) i identifica el número que t'ha sortit.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "x hauria de sortir (1+√5)/2 ≈ 1,618. Comprova-ho substituint aquest valor a la proporció original: 1,618/1 hauria de ser (aproximadament) igual a 1/0,618.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquest número és el nombre auri, i el retrobaràs si mai treballes amb pentàgons regulars i les seves diagonals — la mateixa proporció hi torna a sortir, per una via completament diferent (diagonal entre costat, no rectangle entre rectangle).",
+      "en": null
+    }
+  },
+  "q39": {
+    "moviment": "redueix-al-conegut",
+    "movimentTitol": {
+      "ca": "redueix el desconegut al conegut (reaplica q76, amb una peça extra)",
+      "en": null
+    },
+    "lot": 4,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "ja has resolt un problema molt semblant",
+          "en": null
+        },
+        "text": {
+          "ca": "A q76 vas partir un triangle en tres triangles des del seu incentre i vas sumar-ne les àrees. Aquí faràs exactament el mateix amb un pentàgon regular i el seu centre —amb l'avantatge que, com que el pentàgon és regular, els cinc triangles que en surten són tots iguals entre ells, no cal sumar cinc termes diferents.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "un triangle, cinc vegades",
+          "en": null
+        },
+        "text": {
+          "ca": "Uneix el centre amb els cinc vèrtexs. Surten cinc triangles isòsceles idèntics. Si en trobes l'àrea d'un, ja tens la resposta: multiplica per 5.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": {
+          "ca": "La peça nova respecte de q76 és l'apotema (el segment discontinu curt del centre al punt mitjà d'un costat): fa d'altura de cadascun dels cinc triangles, i el radi R (centre a un vèrtex) no és directament la mateixa cosa que l'apotema —una confusió freqüent val la pena evitar-la ara.",
+          "en": null
+        },
+        "figura": "fig-047.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Cada triangle té per base el costat s del pentàgon i per altura l'apotema a. La seva àrea és (1/2) × s × a. Multiplica per 5 triangles, i, si vols una fórmula només en funció de s, hauràs d'expressar a en funció de s amb trigonometria (a = s / (2 tan(36°))) —o deixar la fórmula en funció de s i a alhora, que sovint és més útil a la pràctica.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Amb s = 10: l'apotema val a ≈ 6,88. Àrea d'un triangle: (1/2)×10×6,88 = 34,4. Àrea del pentàgon: 5×34,4 = 172. Aquest resultat ha de coincidir (amb petit marge d'arrodoniment) amb la fórmula estàndard Àrea = (5/4) s² / tan(36°) ≈ 172,05.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "El mateix moviment —n triangles iguals des del centre, un per costat— funciona per a qualsevol polígon regular, no només el pentàgon: és la manera general de trobar l'àrea d'un polígon regular de n costats coneixent-ne el costat i l'apotema.",
+      "en": null
+    }
+  },
+  "q60": {
+    "moviment": "invariant",
+    "movimentTitol": {
+      "ca": "invariant — Cavalieri amb un sòlid complementari (reaplica q54/q55 del lot 3)",
+      "en": null
+    },
+    "lot": 4,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "no calculis els dos volums per separat encara",
+          "en": null
+        },
+        "text": {
+          "ca": "Si ja saps les fórmules del volum del con i de l'esfera, podries fer-ho per càlcul directe —però l'objectiu d'aquesta guia és que ho vegis també per comparació directa de seccions, que és el mateix moviment que vas fer servir a q54 i q55 per comparar volums sense fórmules.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "mira el sòlid que \"falta\"",
+          "en": null
+        },
+        "text": {
+          "ca": "Dins del cilindre que envolta la semiesfera (mateix radi, mateixa alçada), hi ha dos sòlids: la semiesfera mateixa, i —si hi retalles també un con invertit amb el vèrtex al centre de la base i la base dalt de tot— el sòlid que queda entre el cilindre i aquest con. Aquest sòlid \"que queda\" té una propietat notable en relació amb la semiesfera.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": {
+          "ca": "Aquest dibuix mostra el con inscrit de l'enunciat (vèrtex a dalt, base a baix, tocant la semiesfera) — no el con invertit complementari de la pista 1. Són dos objectes relacionats però diferents: aquest dibuix és el punt de partida de l'enunciat, la pista 1 et proposa un sòlid auxiliar per comparar-hi.",
+          "en": null
+        },
+        "figura": "fig-050.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "A qualsevol alçada h des de la base, la secció horitzontal del sòlid \"cilindre menys con invertit\" té exactament la mateixa àrea que la secció de la semiesfera a la mateixa alçada (aquest és el pas de Cavalieri: dues seccions iguals a totes les alçades ⟹ mateix volum). Com que coneixes el volum del cilindre i el del con invertit per separat, en pots deduir el de la semiesfera —i per tant comparar-lo amb el con inscrit de l'enunciat, que és exactament la meitat del con invertit (mateixa base, mateixa alçada, mateix vèrtex a un extrem).",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Amb radi R=3: volum de la semiesfera = (2/3)πR³ = 18π. Volum del con inscrit (radi 3, alçada 3) = (1/3)πR²h = 9π. La raó con/semi- esfera és 9π/18π = 1/2 exactament —ni més ni menys que la meitat, per a qualsevol R.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Que la resposta surti exactament 1/2, sense arrodoniments ni aproximacions, no és casualitat: és el mateix tipus de relació neta entre volums que vas trobar a q54/q55 amb el con i la piràmide, i reapareix cada vegada que dos sòlids comparteixen la mateixa \"funció d'àrea de secció\" a una constant de proporcionalitat de distància.",
+      "en": null
+    }
+  },
+  "q70": {
+    "moviment": "redueix-al-conegut",
+    "movimentTitol": {
+      "ca": "redueix el desconegut al conegut",
+      "en": null
+    },
+    "lot": 4,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "què és \"conegut\" aquí",
+          "en": null
+        },
+        "text": {
+          "ca": "L'únic polígon del qual ja saps la suma d'angles amb certesa és el triangle: 180°. Tota aquesta demostració consisteix a convertir un polígon de n costats en un cert nombre de triangles, sense deixar-ne cap forat ni superposar-ne cap.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "un cas petit primer",
+          "en": null
+        },
+        "text": {
+          "ca": "Un quadrilàter (n=4): traça'n una diagonal. Queda partit en dos triangles. Suma: 2 × 180° = 360°. Ara fes el mateix amb un pentàgon (n=5) triant totes les diagonals des d'un sol vèrtex. Quants triangles surten?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": {
+          "ca": "Fixa't que el polígon del dibuix no és regular. És a posta: l'argument no pot dependre de cap simetria, ha de valer per a qualsevol polígon simple.",
+          "en": null
+        },
+        "figura": "fig-036.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Des d'un vèrtex d'un polígon de n costats, quantes diagonals hi caben (sense comptar els dos costats que ja hi surten)? Cada diagonal afegeix un triangle més als dos que ja fan els costats adjacents al vèrtex. Compta els triangles en funció de n i multiplica per 180°.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Un hexàgon (n=6): hauries d'obtenir 4 triangles i, per tant, 720°. Un polígon de 10 costats: 8 triangles, 1440°. La fórmula general hauria de donar (n−2) × 180°.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquest mateix moviment —triangular des d'un sol vèrtex— és exactament el que reutilitzaràs a q29 per calcular diagonals concretes d'un hexàgon i un octàgon, i a q06 per mirar els angles que es formen en aquest ventall de triangles, no només comptar-los.",
+      "en": null
+    }
+  },
+  "q71": {
+    "moviment": "dues-maneres",
+    "movimentTitol": {
+      "ca": "dues maneres de mirar la mateixa figura (recíproc de q11/q12)",
+      "en": null
+    },
+    "lot": 4,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "què saps del quadrilàter i què no",
+          "en": null
+        },
+        "text": {
+          "ca": "No saps, d'entrada, que els costats oposats siguin paral·lels ni iguals — només saps que els quatre angles interiors fan 90° cadascun. Has d'esbrinar quina condició sobre els costats es dedueix necessàriament d'aquesta única dada sobre els angles.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "parteix-lo amb una diagonal, com a q11",
+          "en": null
+        },
+        "text": {
+          "ca": "Traça una diagonal. Els dos triangles resultants no comparteixen encara cap informació evident sobre costats —però sí que pots fer servir que la suma d'angles de cada triangle és 180°, combinat amb els angles rectes donats als dos vèrtexs originals de cada triangle, per trobar els altres dos angles de cadascun.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": {
+          "ca": "Els quatre angles rectes hi són tots marcats des del principi —no com una cosa a demostrar, sinó com la dada de partida des d'on has de treballar cap enrere.",
+          "en": null
+        },
+        "figura": "fig-053.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Amb els quatre angles fixats a 90°, els dos costats que arriben a cada vèrtex hi arriben perpendiculars. D'aquí es dedueix que costats oposats han de ser paral·lels (dues rectes perpendiculars a una tercera són paral·leles entre elles), i un cop tens el paral·lelisme, ets en la mateixa situació que q11: és un paral·lelogram, i per tant costats oposats iguals. La condició final sobre les longituds és, doncs, costats oposats iguals dos a dos —el mateix que ja sabies d'un rectangle, però ara deduït només a partir dels angles, sense donar per fet el paral·lelisme des del principi.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Si construeixes un quadrilàter amb els quatre angles a 90° i tries lliurement dos costats consecutius (per exemple 5 i 8), els altres dos costats no els pots triar lliurement: han de sortir també 5 i 8 (el costat oposat a cadascun). Prova de forçar-ne un de diferent (per exemple 5, 8, 5, 9) i comprova que és impossible tancar la figura amb els quatre angles rectes.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquest recíproc de q11/q12 tanca el cercle d'aquest bloc de quadrilàters: q11 partia d'un paral·lelogram i en deduïa els angles; q12 partia d'un paral·lelogram amb diagonals iguals i en deduïa que era un rectangle; q71 parteix només dels angles rectes i en dedueix el paral·lelisme i la igualtat de costats. Tres direccions diferents del mateix feix d'implicacions entre angles, costats i diagonals d'un quadrilàter.",
+      "en": null
+    }
+  },
+  "q73": {
+    "moviment": "informacio-no-usada",
+    "movimentTitol": {
+      "ca": "quanta informació cal — i què passa quan no n'hi ha prou",
+      "en": null
+    },
+    "lot": 4,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "dues preguntes en una",
+          "en": null
+        },
+        "text": {
+          "ca": "Fixa't que en realitat són dues preguntes independents amb, molt probablement, respostes diferents: una pel triangle, una altra pel quadrilàter general. No donis per fet que la resposta és la mateixa.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "comença pel triangle",
+          "en": null
+        },
+        "text": {
+          "ca": "Si tens els tres punts mitjans M_AB, M_BC, M_CA, el triangle que formen (el \"triangle medial\") és semblant al triangle original, a escala 1/2 i girat 180°. Si coneixes el triangle medial, coneixes la seva orientació i la seva mida — et falta només \"desfer\" l'escala i el gir. Hi ha una única manera de fer-ho?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": {
+          "ca": "El triangle en tinta (petit, al mig) és la dada que tens. El triangle en sanguina discontínua (gran, al voltant) és la incògnita que has de recuperar — per això aquí la incògnita és la que va en sanguina, al revés del conveni habitual: normalment dibuixem en tinta el que ja tenim.",
+          "en": null
+        },
+        "figura": "fig-041.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho pel triangle, i pensa el quadrilàter",
+          "en": null
+        },
+        "text": {
+          "ca": "Cada vèrtex del triangle original és el simètric d'un vèrtex del triangle medial respecte del punt mitjà del costat oposat del medial — o, dit d'una altra manera, cada costat del triangle original passa pel punt mitjà corresponent i és paral·lel al costat oposat del medial, a doble llargada. Això sí que reconstrueix un únic triangle. Ara pensa un quadrilàter: si et donen els quatre punts mitjans dels seus costats, què saps segur (el polígon que formen aquests quatre punts sempre és un paral·lelogram, sigui quin sigui el quadrilàter de partida) i què no pots recuperar-ne (la posició exacta dels quatre vèrtexs originals no queda determinada de manera única).",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Amb un triangle medial de costats 3, 4, 5, el triangle original ha de tenir costats 6, 8, 10 — el doble de cadascun, en el mateix ordre.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquesta distinció —un triangle sí que es reconstrueix de manera única a partir dels punts mitjans, un quadrilàter general no— és un primer tast de per què els triangles són, en geometria sintètica, la unitat mínima que sol fer-se servir per demostrar coses sobre polígons més grans (el mateix esperit que q02, q70 i q29).",
+      "en": null
+    }
+  },
+  "q76": {
+    "moviment": "separa-i-reorienta",
+    "movimentTitol": {
+      "ca": "separa i reorienta — parteix la figura en peces que ja saps mesurar",
+      "en": null
+    },
+    "lot": 4,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "el cercle no és la peça útil, el centre sí",
+          "en": null
+        },
+        "text": {
+          "ca": "Oblida't del cercle un moment. La peça de la construcció que fa tota la feina no és la circumferència: és el punt del seu centre, i el fet que aquest punt és a la mateixa distància (el radi r) de cadascun dels tres costats.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "uneix el centre amb els tres vèrtexs",
+          "en": null
+        },
+        "text": {
+          "ca": "Si uneixes el centre del cercle inscrit amb els tres vèrtexs del triangle, el triangle gran queda partit en tres triangles més petits. Què tenen en comú, com a mesura, aquests tres triangles petits, encara que tinguin bases diferents (a, b i c)?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": {
+          "ca": "Els tres segments discontinus curts (els radis cap a cada costat) tenen tots la mateixa marca — i, a diferència d'altres figures d'aquest lot, aquí sí és literalment cert que els tres fan la mateixa longitud, perquè tots tres són el radi del mateix cercle inscrit.",
+          "en": null
+        },
+        "figura": "fig-043.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Cadascun dels tres triangles petits té per base un costat del triangle gran (a, b o c) i per altura, exactament, r —perquè el radi cap a cada costat hi és perpendicular. La seva àrea és, doncs, (1/2)×a×r, (1/2)×b×r i (1/2)×c×r respectivament. Suma les tres i iguala-ho a l'àrea total del triangle.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Un triangle de costats 3, 4, 5 (rectangle, àrea = 6). Amb la fórmula que n'has tret, r = 2×Àrea/(a+b+c) = 12/12 = 1. Comprova-ho: el radi del cercle inscrit d'un 3-4-5 és, efectivament, 1.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquesta manera de \"veure\" l'àrea d'un triangle des del seu centre, sumant-hi tres peces més petites, és el mateix moviment que fas servir a q39 per a l'àrea d'un pentàgon regular —allà, en comptes de tres triangles diferents, en surten cinc d'iguals.",
+      "en": null
+    }
+  },
+  "q80": {
+    "moviment": "dues-maneres",
+    "movimentTitol": {
+      "ca": "dues maneres de mirar la mateixa figura (base × altura, però amb l'altura amagada dins un angle)",
+      "en": null
+    },
+    "lot": 4,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "ja saps una fórmula, aquesta n'és una altra versió",
+          "en": null
+        },
+        "text": {
+          "ca": "Ja saps que l'àrea d'un triangle és (1/2) × base × altura. Aquesta pregunta no et demana una fórmula nova des de zero: et demana escriure \"altura\" en funció de coses que sí et donen (un costat i un angle), quan l'altura en si no t'han donat directament.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "quin triangle rectangle amaga l'altura",
+          "en": null
+        },
+        "text": {
+          "ca": "Si deixes caure la perpendicular des d'un vèrtex fins a la recta que conté el costat oposat, aquesta perpendicular (l'altura) és un catet d'un triangle rectangle petit. La hipotenusa d'aquest triangle rectangle petit és un dels costats donats. Quina raó trigonomètrica lliga l'altura, la hipotenusa i l'angle que hi ha entre ells?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": {
+          "ca": "L'angle marcat en sanguina és el que fas servir com a \"l'angle entre els dos costats\" a la fórmula. L'altura h es dibuixa discontínua perquè és una línia de construcció, no un costat del triangle.",
+          "en": null
+        },
+        "figura": "fig-044.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Amb h = b × sin(C) (el costat b fa de hipotenusa del triangle rectangle petit, i l'angle C hi és l'angle conegut), substitueix-ho a la fórmula (1/2) × base × altura, on la base és el costat a.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Un triangle amb a = 6, b = 7 i l'angle entre ells C = 30°. Àrea = (1/2) × 6 × 7 × sin(30°) = 21 × 0,5 = 10,5.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquesta fórmula no necessita que el triangle sigui rectangle ni que en sàpigues l'altura per endavant — funciona amb qualsevol triangle del qual coneguis dos costats i l'angle que formen, i és la porta d'entrada natural a la llei del sinus i del cosinus si mai hi treballes.",
+      "en": null
+    }
+  },
+  "q89": {
+    "moviment": "contraexemple",
+    "movimentTitol": {
+      "ca": "contraexemple i demostració — quan la intuïció i la resposta correcta coincideixen per raons no òbvies",
+      "en": null
+    },
+    "lot": 4,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "aposta abans de raonar",
+          "en": null
+        },
+        "text": {
+          "ca": "Aquest és un dels resultats clàssics de la geometria elemental que costa més de demostrar del que sembla a primer cop d'ull (es coneix com el teorema de Steiner–Lehmus). Antic de saber-ho: la teva intuïció probablement et diu que sí, és isòsceles. Aquesta vegada la intuïció encerta —però val la pena que notis que no és evident per què, i que un argument ràpid del tipus \"és simètric, doncs...\" no n'és una demostració vàlida.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "per què \"és fàcil de creure\" no compta",
+          "en": null
+        },
+        "text": {
+          "ca": "Si el triangle ja fos isòsceles, és fàcil veure per simetria que les dues bisectrius (dels dos angles iguals) fan la mateixa longitud —aquest sentit és senzill. Aquí et demanen l'altre sentit: si les dues bisectrius surten iguals, has de deduir que el triangle era isòsceles. Aquesta implicació inversa és la que necessita una demostració real (i no la donarem aquí sencera: és massa llarga per a una pista puntual d'aquest lot).",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": {
+          "ca": "El triangle del dibuix s'ha fet expressament no isòsceles a ull. La bisectriu dibuixada surt del vèrtex B; els dos arcs marquen els dos angles en què la queda partit l'angle de B, que per definició de bisectriu són iguals entre ells (encara que el triangle no ho sigui).",
+          "en": null
+        },
+        "figura": "fig-045.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "el que sí pots fer amb les eines d'aquest lot",
+          "en": null
+        },
+        "text": {
+          "ca": "El que sí està al teu abast és comprovar el resultat numèricament en un cas concret, i raonar per què un triangle molt escalè (costats molt diferents) hauria de donar bisectrius molt diferents —encara que demostrar-ho en general no hi sigui.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "En un triangle escalè \"normal\" (per exemple, costats 5, 6, 7), calcula (amb la fórmula de la longitud de la bisectriu, si la tens a mà, o amb un dibuix a escala) les longituds de dues bisectrius diferents: haurien de sortir clarament diferents entre elles. Això no demostra el teorema, però confirma que \"diferents costats ⟹ diferents bisectrius\" no falla en el cas típic, que és el que fa creïble la implicació inversa.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquest és l'únic resultat d'aquest lot on la demostració completa se't queda fora d'abast expressament —val la pena saber que existeixen teoremes senzills d'enunciar i difícils de provar, i que \"contraintuïtivament difícil\" no vol dir \"fals\".",
+      "en": null
+    }
+  }
+};
