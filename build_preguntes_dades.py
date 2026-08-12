@@ -127,6 +127,23 @@ F. DOS CAMPS NOUS: dimensio ("2D"/"3D") i dificultat (1/2/3).
    comprovacions de regressio (canvis D/E ho fan igual amb ids concrets):
    no impedeixen un error de classificacio, pero si que una edicio
    accidental de la taula passi desapercebuda.
+
+G. LES GUIES DE DEMOSTRACIÓ NO VIUEN EN AQUEST FITXER.
+   A partir del primer lot de guies, cada pregunta pot tenir una "escala de
+   pistes" (4 nivells + comprovació + i-després + una figura de construcció).
+   Aquest contingut NO s'afegeix a preguntes-dades.js: viu a part, a
+   js/data/guies-dades.js, i s'uneix per id en temps d'execució
+   (js/nucli/guies.js).
+   MOTIU, i és el mateix que ja fa mal amb enunciat.ca/pista/notaEditorial
+   (v. nota REGENERACIÓ més avall): aquest script SOBREESCRIU net. Tot el que
+   sigui contingut escrit a mà i col·locat dins del registre de la pregunta es
+   perd la pròxima vegada que es regeneri des del JSON d'extracció. Les guies
+   són desenes de milers de caràcters escrits i revisats en lots successius;
+   posar-les aquí seria garantir que un dia es destrueixin.
+   Conseqüència pràctica: aquest script es pot tornar a executar sense por
+   d'afectar cap guia. La comprovació de cobertura de guies (que cap guia
+   apunti a un id inexistent) no es fa aquí sinó a parse_guies.py, que és qui
+   genera guies-dades.js.
 """
 
 import json
