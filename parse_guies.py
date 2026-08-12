@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-Converteix GUIES-LOT-N.md (lots 1-4) en dades estructurades per al lloc web.
+Converteix GUIES-LOT-N.md (lots 1-4) en dades estructurades per al lloc web,
+i escriu directament js/data/guies-dades.js (window.GUIES).
 
 Estratègia: els fitxers de guia són markdown escrit a mà per agents diferents,
 i ja han divergit en dos punts (el castellanisme "I después" als lots 2-3, i la
@@ -8,15 +9,33 @@ referència de figura per nom descriptiu al lot 4). El parser NORMALITZA les
 dues coses en lloc d'exigir que els fitxers font siguin idèntics, i peta si
 troba una divergència que NO sap normalitzar — millor aturar-se que emetre una
 guia incompleta en silenci.
+
+Execució: des de l'arrel del repo, `python3 parse_guies.py`. Les rutes es
+resolen relatives a la ubicació d'aquest fitxer, no al directori de treball,
+perquè funcioni igual sigui quin sigui el cwd des d'on es cridi.
+
+NOTA (2026-08, rework lliurament 5): les rutes d'aquest fitxer apuntaven
+originalment a directoris absoluts d'un altre entorn (/home/claude/lot1,
+/home/claude/aval/lot2..4) que no existeixen en aquest repositori, i el
+fitxer només escrivia un guies.json intermedi -- mai window.GUIES. Cap
+d'aquestes dues coses funcionava des d'un checkout net. Corregit aquí:
+rutes relatives al repo, i pas final que genera js/data/guies-dades.js
+directament (v. NOTA-LOT-5.md, secció 5).
 """
-import re, json, sys, os, unicodedata
+import re, json, sys, os
+
+REPO = os.path.dirname(os.path.abspath(__file__))
+def rel(*parts): return os.path.join(REPO, *parts)
 
 LOTS = [
-    ("/home/claude/lot1/GUIES-LOT-1.md", 1),
-    ("/home/claude/aval/lot2/GUIES-LOT-2.md", 2),
-    ("/home/claude/aval/lot3/GUIES-LOT-3.md", 3),
-    ("/home/claude/aval/lot4/GUIES-LOT-4.md", 4),
+    (rel("docs/guies/GUIES-LOT-1.md"), 1),
+    (rel("docs/guies/GUIES-LOT-2.md"), 2),
+    (rel("docs/guies/GUIES-LOT-3.md"), 3),
+    (rel("docs/guies/GUIES-LOT-4.md"), 4),
+    (rel("docs/guies/GUIES-LOT-6.md"), 6),
 ]
+MANIFEST = rel("docs/manifest-figures.tsv")
+OUT_JS = rel("js/data/guies-dades.js")
 
 # --- normalitzacions -------------------------------------------------------
 def fix_llengua(t):
@@ -35,7 +54,7 @@ LOT1 = {
 }
 
 def fig_num(ref):
-    """fig-014.png (lots 2-3) | 034_centre_triangle.png (lot 4) | nom del lot 1 -> 'NNN'."""
+    """fig-014.png (lots 2-5) | 034_centre_triangle.png (lot 4, historic) | nom del lot 1 -> 'NNN'."""
     base = ref[:-4] if ref.endswith(".png") else ref
     if base in LOT1:
         return LOT1[base]
@@ -54,7 +73,7 @@ def neteja(t):
     parts = [re.sub(r"\s*\n\s*", " ", p).strip() for p in re.split(r"\n\s*\n", t)]
     return "\n\n".join(p for p in parts if p)
 
-# --- parser ----------------------------------------------------------------
+# --- parser markdown --------------------------------------------------------
 CAP = re.compile(r"^##\s+\d+\.\s+(\S+)\s+—\s*(.*)$", re.M)
 BLOC = re.compile(r"^\*\*(Moviment|Pista 0|Pista 1|Pista 2|Pista 3|Comprovació|I després)"
                   r"[^*]*\*\*\s*(.*?)(?=^\*\*(?:Moviment|Pista [0-3]|Comprovació|I després)|^---|\Z)",
@@ -89,11 +108,15 @@ def parse(path, lot):
                     txt = txt.replace(m.group(0), "")
                     g["figura"] = g["figura"] or fitxer
                     g["figures"].append(fitxer)
-                # el títol del bloc ("— la construcció.") és informatiu
+                # el títol del bloc ("— la construcció.") és informatiu. Quan no n'hi ha
+                # (p.ex. "**Pista 0.**" sense "— subtítol"), el grup capturat és només un
+                # punt solt -- que és "veritable" per .strip() però buit un cop netejat i
+                # despullat del punt final. Cal comprovar el resultat NET, no el cru.
                 sub = re.match(r"^\*\*Pista \d\s*—?\s*([^*]*)\*\*", b.group(0))
+                titol_net = neteja(sub.group(1)).rstrip(".") if sub else ""
                 g["pistes"].append({
                     "nivell": n,
-                    "titol": neteja(sub.group(1)).rstrip(".") if sub and sub.group(1).strip() else None,
+                    "titol": titol_net or None,
                     "text": neteja(txt) or None,
                     "figura": fitxer,
                 })
@@ -106,7 +129,29 @@ def parse(path, lot):
         out.append(g)
     return out
 
-# --- execució --------------------------------------------------------------
+# --- moviment (slug): font de veritat es la columna `moviment` de manifest --
+def carrega_moviments(path):
+    moviments = {}
+    if not os.path.exists(path):
+        return moviments, ["FALTA el manifest %s" % path]
+    probs = []
+    with open(path, encoding="utf-8") as f:
+        capcalera = f.readline()  # "num\tid\tnivell\tmoviment\tlot\trev\tdescripcio"
+        cols_cap = capcalera.rstrip("\n").split("\t")
+        i_id, i_mov = cols_cap.index("id"), cols_cap.index("moviment")
+        for line in f:
+            line = line.rstrip("\n")
+            if not line:
+                continue
+            cols = line.split("\t")
+            qid, mov = cols[i_id], cols[i_mov]
+            if qid in moviments and moviments[qid] != mov:
+                probs.append("moviment inconsistent al manifest per %s: %r vs %r"
+                              % (qid, moviments[qid], mov))
+            moviments[qid] = mov
+    return moviments, probs
+
+# --- execució ----------------------------------------------------------------
 totes, problemes = [], []
 for path, lot in LOTS:
     if not os.path.exists(path):
@@ -127,9 +172,97 @@ for g in totes:
     if not g["figura"]:
         problemes.append("%s: cap figura referenciada" % g["id"])
 
+MOV, mov_probs = carrega_moviments(MANIFEST)
+problemes.extend(mov_probs)
+for g in totes:
+    if g["id"] not in MOV:
+        problemes.append("%s: cap moviment (slug) trobat a manifest-figures.tsv" % g["id"])
+
 print("guies analitzades:", len(totes))
 print("problemes:", len(problemes))
 for p in problemes[:40]:
     print("   -", p)
-json.dump(totes, open("/home/claude/aval/guies.json", "w", encoding="utf-8"),
-          ensure_ascii=False, indent=1)
+
+if problemes:
+    print("\nNO s'ha escrit %s (hi ha problemes pendents)." % OUT_JS)
+    sys.exit(1)
+
+# --- generació de js/data/guies-dades.js -------------------------------------
+def amb_idioma(x):
+    """str -> {ca:str, en:null}; None -> None (el 'null' bare que ja fa servir l'esquema)."""
+    return None if x is None else {"ca": x, "en": None}
+
+sortida = {}
+for g in totes:
+    qid = g["id"]
+    sortida[qid] = {
+        "moviment": MOV[qid],
+        "movimentTitol": amb_idioma(g["moviment"]),
+        "lot": g["lot"],
+        "pistes": [
+            {
+                "nivell": p["nivell"],
+                "titol": amb_idioma(p["titol"]),
+                "text": amb_idioma(p["text"]),
+                "figura": p["figura"],
+            }
+            for p in g["pistes"]
+        ],
+        "comprovacio": amb_idioma(g["comprovacio"]),
+        "iDespres": amb_idioma(g["iDespres"]),
+    }
+# ordre estable de les claus (per id), perquè el diff entre generacions sigui net
+sortida = {k: sortida[k] for k in sorted(sortida)}
+
+CAPCALERA = """/*
+  PROJECTE:     Geometria — preguntes del llibre (llibre complet, p. 1-193)
+  FITXER:       js/data/guies-dades.js
+  ROL:          Guies de demostració ("escala de pistes") per a les preguntes
+                que en tenen. Estructura paral·lela a preguntes-dades.js:
+                variable GLOBAL window.GUIES, no un JSON amb fetch(), perquè
+                el lloc s'ha d'obrir amb doble clic sobre file:// i qualsevol
+                fetch() hi seria bloquejat per CORS (mateixa raó documentada
+                a PROJECTES-TECHNICAL-REFERENCE.md per a preguntes-dades.js).
+
+  PER QUÈ UN FITXER A PART I NO UN CAMP DINS DE preguntes-dades.js
+  Les guies s'escriuen en lots successius i es revisen a fora (fitxers
+  GUIES-LOT-N.md), mentre que preguntes-dades.js es REGENERA sencer des del
+  JSON d'extracció del llibre. Tenir-les separades vol dir que regenerar les
+  preguntes no pot destruir les guies, i que afegir un lot de guies no obliga
+  a tornar a generar les 130 preguntes. La unió es fa en temps d'execució per
+  id (v. js/nucli/guies.js).
+
+  ESQUEMA (per id de pregunta)
+    moviment       — slug del moviment que ensenya la guia; vocabulari tancat,
+                     filtrable igual que dimensio/dificultat. Font de veritat:
+                     la columna `moviment` de manifest.tsv.
+    movimentTitol  — {ca,en} el mateix, en prosa, per mostrar a la interfície.
+    lot            — número de lliurament (1-4). Traçabilitat de revisió.
+    pistes[]       — SEMPRE 4, nivells 0..3, en ordre. Els quatre nivells
+                     difereixen en ESPÈCIE, no en quantitat:
+                       0 encàrrec  — reformula què cal produir
+                       1 concreta  — particularitza, prova amb números
+                       2 figura    — la construcció, com a imatge
+                       3 tanca     — què cal mirar, sense dir la conclusió
+                     `figura` només és no-null al nivell 2 (excepció: q15, que
+                     en té una a l'1 i una altra al 3).
+    comprovacio    — {ca,en} predicció verificable. MAI la solució.
+    iDespres       — {ca,en} on retorna aquest moviment més endavant.
+
+  IDIOMA: el contingut és en CATALÀ. Els camps `en` són null a propòsit i
+  cauen a `ca` via geoContingut.resolCamp() — l'invers de preguntes-dades.js,
+  on l'original és l'anglès. contingut.js ho tracta amb resolCampGuia(), que
+  fa el fallback en la direcció correcta per a aquest fitxer.
+
+  GENERAT per parse_guies.py a partir de GUIES-LOT-1..4.md. No editar a mà:
+  edita el .md corresponent i torna a generar.
+*/
+"""
+
+with open(OUT_JS, "w", encoding="utf-8") as f:
+    f.write(CAPCALERA)
+    f.write("\nwindow.GUIES = ")
+    f.write(json.dumps(sortida, ensure_ascii=False, indent=2))
+    f.write(";\n")
+
+print("\nescrit:", OUT_JS, "(%d guies)" % len(sortida))
