@@ -68,3 +68,17 @@ num	id	nivell	moviment	lot	rev	descripcio
 067	q30	2	redueix-al-conegut	6	0	dodecagon triangulat des d'un vertex
 068	q35	2	construeix-per-definir	6	0	suma i diferencia, segment partit
 069	q03	3	recompte-o-induccio	6	0	mosaics, angles a un vertex sumant 360
+070	q43	3	dues-maneres	7	0	dos cercles solapats, triangle equilater dels centres
+071	q59	2	redueix-al-conegut	7	0	esfera inscrita en un cub
+072	q62	2	redueix-al-conegut	7	0	casquet esferic, pla de tall a alcada h
+073	q63	1	distingeix-casos	7	0	cilindre per translacio de cercle o rotacio de rectangle
+074	q48	3	redueix-al-conegut	7	0	frustum, arestes prolongades fins al vertex comu
+075	q50	2	cas-limit	7	0	con aproximat per discs apilats
+076	q57	3	redueix-al-conegut	7	0	tetraedre i octaedre, piramides des del centre
+077	q58	3	redueix-al-conegut	7	0	dos cilindres perpendiculars, seccio quadrada
+078	q61	2	dues-maneres	7	0	esfera i el seu cilindre tancat circumscrit
+079	q64	2	cas-limit	7	0	baston lliscant, envolupant astroide
+080	q65	3	construeix-per-definir	7	0	rectangle girat al voltant d'un costat, centroide
+081	q67	2	construeix-per-definir	7	0	segment girat, centroide de perimetre
+082	q66	2	redueix-al-conegut	7	0	rectangle no tocant l'eix, tub per Pappus
+083	q68	2	dues-maneres	7	0	triangle rectangle girat, centroide del con
