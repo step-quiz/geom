@@ -261,3 +261,85 @@ actual — concretament, si una imatge generada (sense `paginaFont` real, perqu�
 cap pàgina del llibre) hi conviu amb un camp `imatge.origen` (`"llibre"` /
 `"generada"`) o si substitueix les imatges existents. Decisió pendent, no presa
 encara.
+
+---
+
+## 9. Glossari (`js/data/glossari-dades.js`, `js/nucli/glossari.js`, `js/ui/glossari.js`) i itinerari (`js/nucli/itinerari.js`)
+
+Implementats a partir de dos documents de disseny rebuts junts
+(`GLOSSARY-DESIGN-NOTES.md`, `ITINERARY-DESIGN-NOTES.md`), cadascun ja marcat com
+"conclusions de disseny, res implementat encara". Aquesta secció en documenta la
+implementació real i on diverge del document original.
+
+### Glossari: direcció del fallback, decidida explícitament (no implícita)
+
+El document demanava explícitament decidir, abans d'escriure contingut, si el
+glossari seguia la direcció de `preguntes-dades.js` (en canònic, `resolCamp()`) o
+de `guies-dades.js` (ca canònic, `resolCampGuia()`) — i després, contradictòriament,
+deia "reuse `geoContingut.resolCamp()`". Com que el contingut d'aquest glossari
+s'escriu en català (com les guies, no com el llibre font), reutilitzar `resolCamp()`
+tal qual hauria deixat les definicions buides per a qualsevol usuari amb la interfície
+en anglès. Es va seguir la direcció de `guies-dades.js` (`resolCampGlossari()`, mateixa
+forma exacta que `resolCampGuia()`), i es documenta la tria i el motiu a la capçalera
+de `glossari-dades.js` — exactament el que el document demanava, tot i acabar fent
+literalment el contrari del que deia una de les seves pròpies frases.
+
+### Glossari: "mitjana" vs "mediana" — decisió de l'owner, no resolta en silenci
+
+El document assenyalava una ambigüitat real: la llista de termes incloïa totes dues
+paraules, i "mediana" ja s'usa correctament per al segment geomètric mentre que
+"mitjana" apareix un cop a q49 amb sentit estadístic. Es va preguntar explícitament a
+l'owner en lloc de triar-ho — resposta: una sola entrada ("mitjana" era un lapsus de
+"mediana").
+
+### Glossari: dos bugs reals trobats en provar-ho (Playwright, no a ull)
+
+- **`[hidden]` no amagava l'overlay.** `.glossari-overlay { display: flex }` i la regla
+  `[hidden] { display: none }` del navegador tenen la MATEIXA especificitat (0,0,1,0
+  cadascuna); com que la meva regla és posterior al full d'estils per defecte, guanyava
+  ella — l'overlay quedava invisible però `position:fixed; inset:0` seguia interceptant
+  clics a tota la pàgina. Detectat perquè un test de Playwright no podia clicar cap
+  element de sota. Corregit amb una regla `.glossari-overlay[hidden] { display: none }`
+  explícita.
+- **Marca d'angle recte al vèrtex equivocat** (figura `gloss-triangles-angles.png`):
+  es va dibuixar `rightAngle()` al vèrtex A d'un triangle amb l'angle recte geomètric
+  real al vèrtex B (comprovat després amb un producte escalar en Python). `rightAngle()`
+  només dibuixa la marca decorativa; no verifica que l'angle indicat sigui realment de
+  90° — cal comprovar-ho a part, com ja adverteix, per a un cas diferent, la nota de
+  q31 al lliurament 6.
+
+### Itinerari: què es va deixar deliberadament fora, i per què
+
+El camp opcional `hintLevelsOpened` que proposa §5 del document **no s'implementa**.
+El document mateix ja assenyala la tensió: `detall.js` decideix explícitament no
+persistir mai quants nivells de pista s'obren, "perquè una pregunta es pugui reintentar
+en fred" — i cap de les regles 1/2/3/5 que sí s'implementen el necessita (només una
+extensió hipotètica de la regla 2, no construïda). Documentar-ho i no decidir-ho en
+silenci era exactament el que el document demanava.
+
+També es deixen fora, seguint l'ordre de treball suggerit pel propi document (§11:
+"only after 1-5..."): la regla 4 (petició explícita de repàs) i tot el bloc §10
+("extres socràtics" — `stuckReason`, `iDespresRef`, pista-com-a-pregunta, escotilla de
+`comprovacio`, `reason` visible a la UI). Cap decisió d'esquema queda tancada que
+n'impedeixi afegir-los més endavant — per això `schemaVersion` hi és des del primer dia.
+
+### Itinerari: bug real trobat en provar-ho — el bloc "suggerit" no es refrescava
+
+Primera versió: `pintaSuggerit()` es cridava un sol cop en `render()`, abans que
+`pintaValoracio()` existís com a control interactiu. Resultat: valorar una pregunta com
+a "molt" no canviava mai el que es suggeria a sota fins a la pròxima visita — la dada
+canviava, però la UI mostrada quedava desactualitzada dins la mateixa sessió. Detectat
+comparant explícitament, amb Playwright, el text del bloc "suggerit" abans i després de
+clicar una valoració. Corregit fent que `pintaSuggerit()` es pinti dins d'un `slotEl`
+estable que es pot tornar a cridar, i passant un callback `onCanvi` des de
+`pintaValoracio()` que el torna a pintar just després d'escriure la valoració.
+
+### Verificació
+
+`python3 verifica_projecte.py` (36 comprovacions, cap coneix encara el glossari ni
+l'itinerari explícitament, però totes segueixen passant després d'afegir-los —
+comprovat abans i després). Playwright sobre les 68 preguntes amb guia: 4 passos, peu
+visible, control de valoració present, cap imatge trencada, 0 errors JS. Provat també
+manualment amb captures de pantalla (popover inline sobre un terme detectat dins d'un
+enunciat real, i el panell overlay amb cerca i navegació per relacionats).
+
