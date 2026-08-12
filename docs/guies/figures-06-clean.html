@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+ body{margin:0;background:#fff}canvas{display:block;margin:0 0 24px 0}
+</style></head><body>
+<script src="../hand-draw.js"></script>
+<script src="../comu.js"></script>
+<script>
+function stampNum(ctx,h,num){ /* no-op: render net per al pas de publicacio */ }
+function regularPoly(n,cx,cy,R,a0){
+  const pts=[];
+  for(let i=0;i<n;i++){const t=a0+i*2*Math.PI/n;pts.push({x:cx+R*Math.cos(t),y:cy+R*Math.sin(t)});}
+  return pts;
+}
+function mid(a,b){return {x:(a.x+b.x)/2,y:(a.y+b.y)/2};}
+function lineIntersect(p1,p2,p3,p4){
+  const x1=p1.x,y1=p1.y,x2=p2.x,y2=p2.y,x3=p3.x,y3=p3.y,x4=p4.x,y4=p4.y;
+  const den=(x1-x2)*(y3-y4)-(y1-y2)*(x3-x4);
+  const px=((x1*y2-y1*x2)*(x3-x4)-(x1-x2)*(x3*y4-y3*x4))/den;
+  const py=((x1*y2-y1*x2)*(y3-y4)-(y1-y2)*(x3*y4-y3*x4))/den;
+  return {x:px,y:py};
+}
+function dotGrid(hd,x0,y0,cols,rows,step,r,col){
+  const pts=[];
+  for(let j=0;j<rows;j++){const row=[];
+    for(let i=0;i<cols;i++){const p={x:x0+i*step,y:y0+j*step}; hd.handDot(p.x,p.y,r,col||INK); row.push(p);}
+    pts.push(row);}
+  return pts;
+}
+
+/* ============================================================
+   fig-054 -- q04: angles d'un poligon regular de n costats.
+   Moviment: redueix-al-conegut (reaplica q70: suma d'angles interiors). */
+(function(){
+  const ctx=mk('d1',560,520),hd=makeHandDraw(ctx,401);ctx.translate(280,260);
+  const n=8,R=220;
+  const ideal=regularPoly(n,0,0,R,-Math.PI/2);
+  const P=ideal.map(p=>jit(hd,p,R,1));
+  for(let i=0;i<n;i++) hd.handSegment(P[i].x,P[i].y,P[(i+1)%n].x,P[(i+1)%n].y,{lineWidth:2.6,color:INK});
+  // triangulacio des del vertex 0 (com a q70)
+  for(let i=2;i<n-1;i++) hd.handSegment(P[0].x,P[0].y,P[i].x,P[i].y,{lineWidth:1.4,dashed:true,dashPattern:[6,5],color:INK});
+  // l'angle complet al vertex 0 -- la suma de tots els triangles que hi couen
+  angleMark(hd,P[0].x,P[0].y,P[1].x,P[1].y,P[n-1].x,P[n-1].y,40,1,SANG);
+  lbl(ctx,'(n-2)·180°/n',P[0].x+16,P[0].y-8,SANG,20);
+  stampNum(ctx,505,'054');
+})();
+
+/* ============================================================
+   fig-055 -- q18a: volum d'una capsa -- comptar cubs unitat.
+   Moviment: redueix-al-conegut. */
+(function(){
+  const ctx=mk('d2',560,480),hd=makeHandDraw(ctx,402);ctx.translate(70,150);
+  const a=3,b=2,c=2, Sx=110,Sy=110,dx=60,dy=-40;
+  function P(x,y,z){return {x:x*Sx+z*dx, y:(b-y)*Sy+z*dy};}
+  // filat exterior
+  const V={};
+  for(let x=0;x<=a;x+=a) for(let y=0;y<=b;y+=b) for(let z=0;z<=c;z+=c)
+    V[x+'_'+y+'_'+z]=jit(hd,P(x,y,z),Sx,0.7);
+  function seg(a1,b1,opt){hd.handSegment(V[a1].x,V[a1].y,V[b1].x,V[b1].y,opt);}
+  const solidE=[['0_0_0','3_0_0'],['3_0_0','3_2_0'],['3_2_0','0_2_0'],['0_2_0','0_0_0'],
+    ['0_2_0','0_2_2'],['3_2_0','3_2_2'],['0_2_2','3_2_2'],
+    ['3_0_0','3_0_2'],['3_0_2','3_2_2'],['0_0_2','0_2_2'],['0_0_2','3_0_2']];
+  const hiddenE=[['0_0_0','0_0_2']];
+  solidE.forEach(e=>seg(e[0],e[1],{lineWidth:2.6,color:INK}));
+  hiddenE.forEach(e=>seg(e[0],e[1],{lineWidth:2.2,dashed:true,dashPattern:[7,6],color:INK}));
+  // graella visible: cara frontal (a x b) i cara de dalt (a x c)
+  for(let x=1;x<a;x++) hd.handSegment(P(x,0,0).x,P(x,0,0).y,P(x,b,0).x,P(x,b,0).y,{lineWidth:1.2,color:INK});
+  for(let y=1;y<b;y++) hd.handSegment(P(0,y,0).x,P(0,y,0).y,P(a,y,0).x,P(a,y,0).y,{lineWidth:1.2,color:INK});
+  for(let x=1;x<a;x++) hd.handSegment(P(x,b,0).x,P(x,b,0).y,P(x,b,c).x,P(x,b,c).y,{lineWidth:1.2,color:INK});
+  for(let z=1;z<c;z++) hd.handSegment(P(0,b,z).x,P(0,b,z).y,P(a,b,z).x,P(a,b,z).y,{lineWidth:1.2,color:INK});
+  // sanguina: una capa horitzontal (y=0..1), la unitat que es repeteix h cops
+  const layer=[P(0,0,0),P(a,0,0),P(a,1,0),P(0,1,0)];
+  for(let i=0;i<4;i++){const A=layer[i],B=layer[(i+1)%4];
+    hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2,color:SANG});}
+  hd.handSegment(P(0,1,0).x,P(0,1,0).y,P(0,1,c).x,P(0,1,c).y,{lineWidth:1.6,dashed:true,dashPattern:[6,5],color:SANG});
+  hd.handSegment(P(a,1,0).x,P(a,1,0).y,P(a,1,c).x,P(a,1,c).y,{lineWidth:1.6,dashed:true,dashPattern:[6,5],color:SANG});
+  lbl(ctx,'l',P(a/2,0,0).x-6,P(a/2,0,0).y+26,INK,20);
+  lbl(ctx,'w',P(a,b/2,0).x+30,P(a,b/2,0).y+6,INK,20);
+  lbl(ctx,'h',P(0,b,c/2).x-30,P(0,b,c/2).y-2,INK,20);
+  lbl(ctx,'1 capa = l·w',P(a,0.5,0).x+18,P(a,0.5,0).y,SANG,18);
+  stampNum(ctx,455,'055');
+})();
+
+/* ============================================================
+   fig-056 -- q19: senar x senar = senar (5 x 3, com a graella).
+   Moviment: identitat-com-a-figura (reaplica q34). */
+(function(){
+  const ctx=mk('d3',480,340),hd=makeHandDraw(ctx,403);ctx.translate(60,50);
+  const cols=5,rows=3,step=68,r=9;
+  // graella completa en tinta
+  const pts=dotGrid(hd,0,0,cols,rows,step,r,INK);
+  // separacio sanguina: bloc parell 4x2, fila extra, columna extra, cantonada
+  hd.handSegment(3.5*step,-24,3.5*step,2*step+24,{dashed:true,lineWidth:1.8,dashPattern:[7,6],color:SANG});
+  hd.handSegment(-24,1.5*step,4*step+24,1.5*step,{dashed:true,lineWidth:1.8,dashPattern:[7,6],color:SANG});
+  lbl(ctx,'4×2 (parell)',0.6*step,-34,SANG,17);
+  lbl(ctx,'+1 fila',0.9*step,2*step+40,SANG,17);
+  lbl(ctx,'+1 col',4.1*step,0.6*step,SANG,17);
+  hd.handDot(4*step,2*step,r+2,SANG);
+  lbl(ctx,'+1',4.05*step,2*step+34,SANG,17);
+  stampNum(ctx,315,'056');
+})();
+
+/* ============================================================
+   fig-057 -- q20: parell x parell es divisible per 4 (6 x 4, blocs de 2x2).
+   Moviment: identitat-com-a-figura (reaplica q19). */
+(function(){
+  const ctx=mk('d4',560,340),hd=makeHandDraw(ctx,404);ctx.translate(60,50);
+  const cols=6,rows=4,step=62,r=8;
+  dotGrid(hd,0,0,cols,rows,step,r,INK);
+  for(let x=0;x<=cols;x+=2) hd.handSegment(x*step-20,-20,x*step-20,(rows-1)*step+20,{dashed:true,lineWidth:1.6,dashPattern:[6,5],color:SANG});
+  for(let y=0;y<=rows;y+=2) hd.handSegment(-20,y*step-20,(cols-1)*step+20,y*step-20,{dashed:true,lineWidth:1.6,dashPattern:[6,5],color:SANG});
+  lbl(ctx,'blocs de 4',1.5*step,-34,SANG,18);
+  stampNum(ctx,315,'057');
+})();
+
+/* ============================================================
+   fig-058 -- q27_implicit: tres cercles tangents (triangle / quadrat / cercle).
+   Moviment: dues-maneres (reaplica q22). */
+(function(){
+  const ctx=mk('d5',1000,340),hd=makeHandDraw(ctx,405);
+
+  // Panell 1: 3 cercles iguals dins un triangle equilater
+  (function(){
+    ctx.save();ctx.translate(40,40);
+    const Sd=260,h0=Sd*Math.sqrt(3)/2;
+    const A={x:Sd/2,y:0},B={x:0,y:h0},C={x:Sd,y:h0};
+    hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.6,color:INK});
+    const G={x:(A.x+B.x+C.x)/3,y:(A.y+B.y+C.y)/3};
+    const r = Sd*(Math.sqrt(3)-1)/4/ (Sd/(2*(Math.sqrt(3)+1))) * (Sd/(2*(Math.sqrt(3)+1))); // = Sd(sqrt3-1)/4
+    const rr = Sd*(Math.sqrt(3)-1)/4;
+    [A,B,C].forEach(V=>{
+      const ux=(G.x-V.x),uy=(G.y-V.y); const L=Math.hypot(ux,uy);
+      const cx=V.x+ux/L*2*rr, cy=V.y+uy/L*2*rr;
+      hd.handEllipse(cx,cy,rr,rr,{lineWidth:2.2,irregularity:0.03,color:INK});
+    });
+    // sanguina: el centroide, i les dues distancies que es comparen (G-a-vertex, G-a-centre)
+    hd.handDot(G.x,G.y,4,SANG);
+    const V=A, ux=(G.x-V.x),uy=(G.y-V.y),L=Math.hypot(ux,uy);
+    const centerA={x:V.x+ux/L*2*rr,y:V.y+uy/L*2*rr};
+    hd.handSegment(G.x,G.y,V.x,V.y,{dashed:true,lineWidth:1.8,dashPattern:[6,5],color:SANG});
+    hd.handSegment(G.x,G.y,centerA.x,centerA.y,{dashed:true,lineWidth:1.8,dashPattern:[6,5],color:SANG});
+    tick(hd,V.x,V.y,centerA.x,centerA.y);
+    ctx.restore();
+  })();
+
+  // Panell 2: cercle circumscrit a un quadrat
+  (function(){
+    ctx.save();ctx.translate(360,40);
+    const s=190, cx=s/2, cy=s/2, Rc=s*Math.SQRT2/2;
+    hd.handEllipse(cx,cy,Rc,Rc,{lineWidth:2.6,irregularity:0.03,color:INK});
+    quad(hd,0,0,s,s,s,{lineWidth:2.6,color:INK});
+    hd.handSegment(0,0,s,s,{dashed:true,lineWidth:1.8,dashPattern:[6,5],color:SANG});
+    tick(hd,0,0,s,s);
+    lbl(ctx,'s',s/2-6,s+28,INK,20);
+    lbl(ctx,'R',s*0.72,s*0.30,SANG,20);
+    ctx.restore();
+  })();
+
+  // Panell 3: quatre cercles dins un cercle gran (sense anotar -- extensio mes dificil)
+  (function(){
+    ctx.save();ctx.translate(650,40);
+    const Rbig=150,cx=Rbig,cy=Rbig;
+    hd.handEllipse(cx,cy,Rbig,Rbig,{lineWidth:2.6,irregularity:0.03,color:INK});
+    const rSmall=Rbig*0.42;
+    const positions=[[-0.42,-0.72],[-0.72,0.0],[0.05,0.0],[-0.42,0.72]];
+    // s'aproximen visualment (no exactes): l'objectiu es mostrar la mateixa familia de puzle, no resoldre'l aqui
+    const cs=[
+      {x:cx-0.02*Rbig,y:cy-0.55*Rbig,r:rSmall*0.62},
+      {x:cx-0.55*Rbig,y:cy,r:rSmall},
+      {x:cx+0.42*Rbig,y:cy,r:rSmall},
+      {x:cx-0.02*Rbig,y:cy+0.55*Rbig,r:rSmall*0.62},
+    ];
+    cs.forEach(c=>hd.handEllipse(c.x,c.y,c.r,c.r,{lineWidth:2.2,irregularity:0.03,color:INK}));
+    ctx.restore();
+  })();
+  stampNum(ctx,320,'058');
+})();
+
+/* ============================================================
+   fig-059 -- q40_implicit: (a) quadrat inscrit en un cercle,
+   (b) dos cercles i un quadrat en fila dins un cercle gran.
+   Moviment: dues-maneres (reaplica q22/q27_implicit).
+   Simplificacio: el panell (a) es dibuixa com el quadrat inscrit
+   ESTANDARD (4 vertexs sobre el cercle) -- l'escaneig original sembla
+   tenir un petit detall addicional a dalt que no he pogut resoldre amb
+   confianca (v. NOTA-LOT-6.md). */
+(function(){
+  const ctx=mk('d6',760,360),hd=makeHandDraw(ctx,406);
+
+  (function(){
+    ctx.save();ctx.translate(110,50);
+    const s=190,Rc=s*Math.SQRT2/2,cx=s/2,cy=s/2;
+    hd.handEllipse(cx,cy,Rc,Rc,{lineWidth:2.6,irregularity:0.03,color:INK});
+    const rot=Math.PI/4;
+    const V=regularPoly(4,cx,cy,Rc,rot+Math.PI/4);
+    for(let i=0;i<4;i++) hd.handSegment(V[i].x,V[i].y,V[(i+1)%4].x,V[(i+1)%4].y,{lineWidth:2.6,color:INK});
+    hd.handSegment(V[0].x,V[0].y,V[2].x,V[2].y,{dashed:true,lineWidth:1.8,dashPattern:[6,5],color:SANG});
+    tick(hd,V[0].x,V[0].y,V[1].x,V[1].y);tick(hd,V[1].x,V[1].y,V[2].x,V[2].y);
+    lbl(ctx,'s',(V[0].x+V[1].x)/2+10,(V[0].y+V[1].y)/2,INK,20);
+    lbl(ctx,'2R',cx+10,cy-6,SANG,20);
+    ctx.restore();
+  })();
+
+  (function(){
+    ctx.save();ctx.translate(380,40);
+    const Rbig=150,cx0=Rbig,cy0=Rbig;
+    hd.handEllipse(cx0,cy0,Rbig,Rbig,{lineWidth:2.6,irregularity:0.03,color:INK});
+    // dos cercles iguals + un quadrat, en fila, tots tangents entre si i els extrems tangents al cercle gran
+    // amb R=Rbig i dos cercles de radi r + quadrat de costat 2r ocupant el diametre: 4r=2Rbig -> r=Rbig/2 (aprox
+    // visual, no es resol l'equacio exacta aqui -- es la incognita que demana la pista 1)
+    const r=Rbig*0.42;
+    const c1={x:cx0-Rbig+r,y:cy0}, c2={x:c1.x+2*r,y:cy0};
+    hd.handEllipse(c1.x,c1.y,r,r,{lineWidth:2.4,irregularity:0.03,color:INK});
+    hd.handEllipse(c2.x,c2.y,r,r,{lineWidth:2.4,irregularity:0.03,color:INK});
+    const sq=2*r*0.86;
+    quad(hd,c2.x+r-2,cy0-sq/2,sq,sq,sq,{lineWidth:2.4,color:INK});
+    // sanguina: radi net del cercle gran, cap amunt -- sense ambiguitat
+    hd.handSegment(cx0,cy0,cx0,cy0-Rbig,{dashed:true,lineWidth:1.8,dashPattern:[6,5],color:SANG});
+    hd.handDot(cx0,cy0,4,SANG);
+    lbl(ctx,'R',cx0+10,cy0-Rbig*0.5,SANG,20);
+    ctx.restore();
+  })();
+  stampNum(ctx,340,'059');
+})();
+
+/* ============================================================
+   fig-060 -- q31: pentagon amb 3 diagonals -- triangles A, B, C.
+   Moviment: simetria-i-demostra. */
+(function(){
+  const ctx=mk('d7',560,560),hd=makeHandDraw(ctx,407);ctx.translate(280,270);
+  const R=240;
+  const ideal=regularPoly(5,0,0,R,-Math.PI/2); // 0=Top,1=UR,2=LR,3=LL,4=UL
+  const P=ideal.map(p=>jit(hd,p,R,0.8));
+  for(let i=0;i<5;i++) hd.handSegment(P[i].x,P[i].y,P[(i+1)%5].x,P[(i+1)%5].y,{lineWidth:2.6,color:INK});
+  const dUL_UR=hd.handSegment(P[4].x,P[4].y,P[1].x,P[1].y,{lineWidth:2,color:INK});
+  const dUL_LR=hd.handSegment(P[4].x,P[4].y,P[2].x,P[2].y,{lineWidth:2,color:INK});
+  const dUR_LL=hd.handSegment(P[1].x,P[1].y,P[3].x,P[3].y,{lineWidth:2,color:INK});
+  const X=lineIntersect(P[4],P[2],P[1],P[3]);
+  // marques: classe 108 (2 arcs) a l'apex de A i als dos costats de X; classe 36 (1 arc) a les bases de A i C
+  angleMark(hd,P[0].x,P[0].y,P[4].x,P[4].y,P[1].x,P[1].y,26,2,SANG);
+  angleMark(hd,X.x,X.y,P[4].x,P[4].y,P[1].x,P[1].y,22,2,SANG);
+  angleMark(hd,X.x,X.y,P[2].x,P[2].y,P[3].x,P[3].y,22,2,SANG);
+  angleMark(hd,P[4].x,P[4].y,P[0].x,P[0].y,P[1].x,P[1].y,26,1,SANG);
+  angleMark(hd,P[1].x,P[1].y,P[4].x,P[4].y,P[0].x,P[0].y,26,1,SANG);
+  angleMark(hd,P[2].x,P[2].y,X.x,X.y,P[3].x,P[3].y,22,1,SANG);
+  angleMark(hd,P[3].x,P[3].y,P[2].x,P[2].y,X.x,X.y,22,1,SANG);
+  lblC(ctx,'A',(P[0].x+P[4].x+P[1].x)/3,(P[0].y+P[4].y+P[1].y)/3,INK,24);
+  lblC(ctx,'B',(P[4].x+P[1].x+X.x)/3,(P[4].y+P[1].y+X.y)/3+6,INK,24);
+  lblC(ctx,'C',(X.x+P[2].x+P[3].x)/3,(X.y+P[2].y+P[3].y)/3,INK,24);
+  stampNum(ctx,520,'060');
+})();
+
+/* ============================================================
+   fig-061 -- q32: pentagrama -- quant fa el pentagon petit?
+   Moviment: dilatacio. */
+(function(){
+  const ctx=mk('d8',560,540),hd=makeHandDraw(ctx,408);ctx.translate(280,280);
+  const R=230;
+  const ideal=regularPoly(5,0,0,R,-Math.PI/2);
+  const P=ideal.map(p=>jit(hd,p,R,0.8));
+  for(let i=0;i<5;i++) hd.handSegment(P[i].x,P[i].y,P[(i+1)%5].x,P[(i+1)%5].y,{lineWidth:2.6,color:INK});
+  for(let i=0;i<5;i++) hd.handSegment(P[i].x,P[i].y,P[(i+2)%5].x,P[(i+2)%5].y,{lineWidth:2,color:INK});
+  const inner=[];
+  for(let i=0;i<5;i++){
+    const a1=P[i],b1=P[(i+2)%5], a2=P[(i+1)%5],b2=P[(i+4)%5];
+    inner.push(lineIntersect(a1,b1,a2,b2));
+  }
+  for(let i=0;i<5;i++){const a=inner[i],b=inner[(i+1)%5];
+    hd.handSegment(a.x,a.y,b.x,b.y,{lineWidth:2.4,color:SANG});}
+  tick(hd,P[0].x,P[0].y,P[1].x,P[1].y);
+  tick(hd,inner[0].x,inner[0].y,inner[1].x,inner[1].y);tick(hd,inner[0].x,inner[0].y,inner[1].x,inner[1].y);
+  lbl(ctx,'s',(P[0].x+P[1].x)/2+14,(P[0].y+P[1].y)/2-8,INK,20);
+  lbl(ctx,'s\'',(inner[0].x+inner[1].x)/2,(inner[0].y+inner[1].y)/2-16,SANG,20);
+  stampNum(ctx,520,'061');
+})();
+
+/* ============================================================
+   fig-062 -- q33: dos pentagons -- prova alternativa de d^2 = d+1.
+   Moviment: identitat-com-a-figura.
+   Construccio EXACTA (verificada numericament): costat s, apotema=Rcos36,
+   R=s/(2 sin36). Pentagon dret amb centre (apotema,0) i rotacio 0 te dos
+   vertexs EXACTES a (0,-s/2) i (0,s/2) -- l'aresta compartida. El pentagon
+   esquerre n'es el mirall. El vertex mes allunyat del dret (angle 0, "F")
+   es a distancia d (una diagonal) de tots dos extrems de l'aresta compartida. */
+(function(){
+  const ctx=mk('d9',760,460),hd=makeHandDraw(ctx,409);ctx.translate(380,230);
+  const s=210, R=s/(2*Math.sin(Math.PI/5)), apo=R*Math.cos(Math.PI/5);
+  const idealR=regularPoly(5,apo,0,R,0);      // k=2 top(0,s/2), k=3 bot(0,-s/2), k=0 F (mes lluny)
+  const idealL=idealR.map(p=>({x:-p.x,y:p.y}));
+  const PR=idealR.map(p=>jit(hd,p,R,0.7));
+  const PL=idealL.map(p=>jit(hd,p,R,0.7));
+  for(let i=0;i<5;i++) hd.handSegment(PL[i].x,PL[i].y,PL[(i+1)%5].x,PL[(i+1)%5].y,{lineWidth:2.6,color:INK});
+  for(let i=0;i<5;i++) hd.handSegment(PR[i].x,PR[i].y,PR[(i+1)%5].x,PR[(i+1)%5].y,{lineWidth:2.6,color:INK});
+  const top=PR[2], bot=PR[3], F=PR[0];
+  hd.handSegment(top.x,top.y,F.x,F.y,{dashed:true,lineWidth:1.8,dashPattern:[7,6],color:SANG});
+  hd.handSegment(bot.x,bot.y,F.x,F.y,{dashed:true,lineWidth:1.8,dashPattern:[7,6],color:SANG});
+  tick(hd,top.x,top.y,bot.x,bot.y,SANG);
+  lbl(ctx,'1',top.x-26,(top.y+bot.y)/2,SANG,20);
+  lbl(ctx,'d',(top.x+F.x)/2+10,(top.y+F.y)/2-8,SANG,20);
+  lbl(ctx,'d',(bot.x+F.x)/2+10,(bot.y+F.y)/2+16,SANG,20);
+  stampNum(ctx,400,'062');
+})();
+
+/* ============================================================
+   fig-063 -- q07: pentagrama -- la volta total es mes d'un gir sencer.
+   Moviment: invariant (reaplica q05). */
+(function(){
+  const ctx=mk('d10',560,540),hd=makeHandDraw(ctx,410);ctx.translate(280,280);
+  const R=230;
+  const P=regularPoly(5,0,0,R,-Math.PI/2);
+  for(let i=0;i<5;i++){const j=(i+2)%5;
+    hd.handSegment(P[i].x,P[i].y,P[j].x,P[j].y,{lineWidth:2.6,color:INK});}
+  for(let i=0;i<5;i++){
+    const prev=P[(i-2+5)%5], next=P[(i+2)%5];
+    angleMark(hd,P[i].x,P[i].y,prev.x,prev.y,next.x,next.y,30,1,SANG);
+  }
+  lbl(ctx,'5 × 144° = 720° = 2 voltes',-190,240,SANG,20);
+  stampNum(ctx,520,'063');
+})();
+
+/* ============================================================
+   fig-064 -- q17: costat s = raiz(ab) com a mitjana geometrica (Tales).
+   Moviment: separa-i-reorienta. */
+(function(){
+  const ctx=mk('d11',680,420),hd=makeHandDraw(ctx,411);ctx.translate(40,220);
+  const a=340,b=110;
+  const Aax={x:0,y:0}, Bx={x:a,y:0}, Cx={x:a+b,y:0};
+  const cx=(a+b)/2, R=(a+b)/2;
+  hd.handEllipse(cx,0,R,R,{startAngle:Math.PI,endAngle:2*Math.PI,lineWidth:2.4,irregularity:0.02,color:INK});
+  hd.handSegment(Aax.x,Aax.y,Cx.x,Cx.y,{lineWidth:2.4,color:INK});
+  const hgt=Math.sqrt(a*b);
+  const foot={x:a,y:0};
+  const apex={x:a,y:-hgt};
+  hd.handSegment(Aax.x,Aax.y,apex.x,apex.y,{lineWidth:2,color:INK});
+  hd.handSegment(apex.x,apex.y,Cx.x,Cx.y,{lineWidth:2,color:INK});
+  hd.handSegment(foot.x,foot.y,apex.x,apex.y,{lineWidth:2.2,dashed:true,dashPattern:[7,6],color:SANG});
+  rightAngle(hd,foot.x,foot.y,Aax.x,Aax.y,apex.x,apex.y,14,SANG);
+  tick(hd,Aax.x,Aax.y,foot.x,foot.y);
+  tick(hd,foot.x,foot.y,Cx.x,Cx.y);
+  lbl(ctx,'a',a/2-8,18,INK,20);
+  lbl(ctx,'b',a+b/2-6,18,INK,20);
+  lbl(ctx,'s = √(ab)',a+14,-hgt/2,SANG,20);
+  stampNum(ctx,395,'064');
+})();
+
+/* ============================================================
+   fig-065 -- q21: es irracional arrel(3)? -- si 3 | p^2 aleshores 3 | p.
+   Moviment: definicio-i-absurd (reaplica q95).
+   Tres casos concrets (p=3,4,5): nomes quan p ja es multiple de 3, p^2 es
+   parteix en 3 grups iguals sense resta -- aixo es el fet que fa
+   funcionar la demostracio per reduccio a l'absurd (si 3 | p^2 pero
+   3 no dividis p, cap dels altres dos casos (p≡1, p≡2 mod 3) hi val). */
+(function(){
+  const ctx=mk('d12',760,340),hd=makeHandDraw(ctx,412);ctx.translate(40,60);
+  function bloc(x0,cols,label,ok){
+    const step=30,r=6;
+    dotGrid(hd,x0,0,cols,cols,step,r,INK);
+    if(ok){
+      for(let g=1;g<3;g++) hd.handSegment(x0+g*cols/3*step-12,-14,x0+g*cols/3*step-12,(cols-1)*step+14,
+        {dashed:true,lineWidth:1.6,dashPattern:[6,5],color:SANG});
+    }
+    lbl(ctx,label,x0+cols*step/2-40,(cols-1)*step+42,ok?SANG:INK,18);
+  }
+  bloc(0,3,'p=3: 9=3+3+3 ✓',true);
+  bloc(160,4,'p=4: 16, resta 1',false);
+  bloc(360,5,'p=5: 25, resta 1',false);
+  stampNum(ctx,275,'065');
+})();
+
+/* ============================================================
+   fig-066 -- q24: rectangles amb costats i diagonal enters (Pitagores).
+   Moviment: redueix-al-conegut. */
+(function(){
+  const ctx=mk('d13',480,340),hd=makeHandDraw(ctx,413);ctx.translate(50,260);
+  const a=360,b=270*0.5; // proporcions 3:4 aprox per llegibilitat, no exactes
+  const A={x:0,y:0},B={x:a,y:0},C={x:a,y:-180};
+  hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.8,color:INK});
+  hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.8,color:INK});
+  const hyp=hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.8,color:SANG});
+  rightAngle(hd,B.x,B.y,A.x,A.y,C.x,C.y,16,INK);
+  lbl(ctx,'a = 3',a/2-14,22,INK,22);
+  lbl(ctx,'b = 4',a+14,-90,INK,22);
+  lbl(ctx,'c = 5',a/2-60,-100,SANG,22);
+  stampNum(ctx,320,'066');
+})();
+
+/* ============================================================
+   fig-067 -- q30: dodecagon -- diagonals i area per triangulacio.
+   Moviment: redueix-al-conegut (reaplica q29). */
+(function(){
+  const ctx=mk('d14',560,560),hd=makeHandDraw(ctx,414);ctx.translate(280,290);
+  const n=12,R=250;
+  const ideal=regularPoly(n,0,0,R,-Math.PI/2);
+  const P=ideal.map(p=>jit(hd,p,R,0.7));
+  for(let i=0;i<n;i++) hd.handSegment(P[i].x,P[i].y,P[(i+1)%n].x,P[(i+1)%n].y,{lineWidth:2.4,color:INK});
+  for(let i=2;i<n-1;i++) hd.handSegment(P[0].x,P[0].y,P[i].x,P[i].y,{lineWidth:1.1,dashed:true,dashPattern:[5,5],color:INK});
+  // una sola peca del ventall, en sanguina, per fixar-hi l'atencio
+  hd.handSegment(P[0].x,P[0].y,P[5].x,P[5].y,{lineWidth:2,color:SANG});
+  hd.handSegment(P[0].x,P[0].y,P[6].x,P[6].y,{lineWidth:2,color:SANG});
+  hd.handSegment(P[5].x,P[5].y,P[6].x,P[6].y,{lineWidth:2,color:SANG});
+  stampNum(ctx,540,'067');
+})();
+
+/* ============================================================
+   fig-068 -- q35: coneixent suma i diferencia, trobar els dos numeros.
+   Moviment: construeix-per-definir. */
+(function(){
+  const ctx=mk('d15',560,260),hd=makeHandDraw(ctx,415);ctx.translate(50,90);
+  const total=440;
+  const A={x:0,y:0}, B={x:total,y:0};
+  hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.8,color:INK});
+  const xFrac=0.68; // x > y, punt de tall no simetric a posta
+  const M=mid(A,B);
+  const cutX=total*xFrac;
+  hd.handDot(cutX,0,5,SANG);
+  hd.handDot(M.x,M.y,4,INK);
+  hd.handDot(A.x,A.y,4,INK);
+  hd.handDot(B.x,B.y,4,INK);
+  hd.handSegment(M.x,M.y-30,cutX,-30,{dashed:true,lineWidth:1.8,dashPattern:[6,5],color:SANG});
+  lbl(ctx,'x',cutX/2-6,-40,INK,22);
+  lbl(ctx,'y',(cutX+total)/2-6,-40,INK,22);
+  lbl(ctx,'(x−y)/2',(M.x+cutX)/2-30,-46,SANG,18);
+  lbl(ctx,'x+y',total/2-20,32,INK,20);
+  stampNum(ctx,235,'068');
+})();
+
+/* ============================================================
+   fig-069 -- q03: mosaics -- quan sumen exactament 360° a un vertex?
+   Moviment: recompte-o-induccio (NOU, v. NOTA-LOT-6.md).
+   Cada poligon es col.loca perque un dels seus vertexs caigui EXACTAMENT
+   a l'origen compartit, ocupant la falca angular [wedgeStart,wedgeStart+
+   wedgeWidth) -- wedgeWidth ha de ser el seu propi angle interior perque
+   les vores coincideixin amb les del vei (mateix costat a tots dos). */
+(function(){
+  const ctx=mk('d16',900,460),hd=makeHandDraw(ctx,416);
+  function polyAtVertex(n,side,wedgeStart,wedgeWidth){
+    const R=side/(2*Math.sin(Math.PI/n));
+    const phi=wedgeStart+wedgeWidth/2;
+    const cx=R*Math.cos(phi), cy=R*Math.sin(phi);
+    const a0=phi+Math.PI;
+    return regularPoly(n,cx,cy,R,a0);
+  }
+  function wedgePoint(r,ang){return {x:r*Math.cos(ang),y:r*Math.sin(ang)};}
+
+  // cas que funciona: 3 hexagons, 120+120+120=360
+  (function(){
+    ctx.save();ctx.translate(230,240);
+    const side=95;
+    const starts=[0,2*Math.PI/3,4*Math.PI/3], w=2*Math.PI/3;
+    starts.forEach(a0=>{
+      const H=polyAtVertex(6,side,a0,w).map(p=>jit(hd,p,side,0.8));
+      for(let i=0;i<6;i++) hd.handSegment(H[i].x,H[i].y,H[(i+1)%6].x,H[(i+1)%6].y,{lineWidth:2.2,color:INK});
+    });
+    const p0=wedgePoint(46,0), p1=wedgePoint(46,w);
+    angleMark(hd,0,0,p0.x,p0.y,p1.x,p1.y,30,1,SANG);
+    hd.handDot(0,0,4,SANG);
+    lbl(ctx,'120+120+120=360°',-150,205,SANG,18);
+    ctx.restore();
+  })();
+
+  // cas que falla: 2 hexagons + 1 quadrat, 120+120+90=330 -- queda una escletxa de 30
+  (function(){
+    ctx.save();ctx.translate(650,240);
+    const side=95;
+    const wHex=2*Math.PI/3, wSq=Math.PI/2;
+    const starts=[[6,0],[6,wHex],[4,2*wHex]];
+    starts.forEach(([n,a0])=>{
+      const w=(n===6)?wHex:wSq;
+      const H=polyAtVertex(n,side,a0,w).map(p=>jit(hd,p,side,0.8));
+      for(let i=0;i<n;i++) hd.handSegment(H[i].x,H[i].y,H[(i+1)%n].x,H[(i+1)%n].y,{lineWidth:2.2,color:INK});
+    });
+    const gapStart=2*wHex+wSq, gapEnd=2*Math.PI;
+    const p0=wedgePoint(46,gapStart), p1=wedgePoint(46,gapEnd);
+    angleMark(hd,0,0,p0.x,p0.y,p1.x,p1.y,30,1,SANG);
+    hd.handDot(0,0,4,SANG);
+    lbl(ctx,'120+120+90=330° (falten 30°)',-190,205,SANG,18);
+    ctx.restore();
+  })();
+  stampNum(ctx,440,'069');
+})();
+</script>
+</body></html>

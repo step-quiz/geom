@@ -249,8 +249,13 @@ exemple (0.5,1,0) i (0,1,0.5): √(0,25+0+0,25)=√0,5≈0,707 — igual.
 
 **I després.** Aquest mateix pla (perpendicular a una diagonal principal,
 pel centre) és el que fa servir q56, en aquest mateix lot, per trobar el
-tetràedre inscrit al cub — val la pena notar que totes dues figures viuen
-sobre el mateix cub, mirat des del mateix eix.
+tetràedre inscrit al cub. El dibuix, però, es mira des d'un angle diferent
+del de q56: exactament al llarg de la diagonal principal, perquè és
+l'única direcció des de la qual el pla de tall es veu en veritable magnitud
+i l'hexàgon surt regular en lloc d'aixafat (rev1, v. `docs/guies/REVISIONS.md`).
+Si tornes a la figura de q56 hi reconeixeràs el mateix cub dibuixat amb la
+projecció habitual d'aquest quadern: la direcció de mirada és part del
+contingut de cada figura, no un simple estil.
 
 ---
 

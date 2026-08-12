@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+ body{margin:0;background:#fff}canvas{display:block;margin:0 0 24px 0}
+</style></head><body>
+<script src="../hand-draw.js"></script>
+<script src="../comu.js"></script>
+<script>
+function stampNum(ctx,h,num){
+  ctx.save();ctx.setTransform(1,0,0,1,0,0);
+  ctx.font='18px Georgia';ctx.fillStyle='#8a8580';
+  ctx.fillText(num, 8, h-8);ctx.restore();
+}
+function regularPoly(n,cx,cy,R,a0){
+  const pts=[];
+  for(let i=0;i<n;i++){const t=a0+i*2*Math.PI/n;pts.push({x:cx+R*Math.cos(t),y:cy+R*Math.sin(t)});}
+  return pts;
+}
+
+/* ============================================================
+   fig-028 REV1 -- q52: tall hexagonal del cub.
+   DEFECTE (HANDOFF §4): la projecció cavallera (compartida amb q25/q47/q56)
+   aixafa l'hexàgon a aspecte ~0.25 -- pitjor encara, l'ordre cíclic dels 6
+   punts mitjans deixa de ser l'ordre angular un cop projectat, així que els
+   segments es creuen entre si. Es veu una ziga-zaga, no un hexàgon.
+   FIX: la direcció de mirada és part del contingut (no de l'estil, HANDOFF
+   §4). Es reprojecta EXACTAMENT al llarg de la diagonal principal (0,0,0)-
+   (1,1,1): és l'única direcció des de la qual un pla perpendicular a aquesta
+   diagonal es veu en veritable magnitud, i per tant l'hexàgon surt regular.
+   Efecte lateral conegut i acceptat: els dos vèrtexs de la diagonal es
+   projecten al mateix punt (és la vista "isomètrica" clàssica d'un cub,
+   reconeixible i estàndard -- no un error). Aquesta figura ja NO comparteix
+   projecció amb q56 (v. nota a GUIES-LOT-3.md, secció q52, "I després").
+   ============================================================ */
+(function(){
+  const ctx=mk('r1',560,520), hd=makeHandDraw(ctx,5252);
+  const cx=280, cy=280, S=252;
+  const SQ2=Math.SQRT2, SQ6=Math.sqrt(6);
+  // Projecció ortogràfica sobre el pla perpendicular a (1,1,1): u,v ortonormals
+  // que hi generen el pla. cap distorsió relativa entre x,y,z (a diferència de
+  // la cavallera, que tracta z de manera diferent de x,y).
+  function P(x,y,z){
+    const U=(x-y)/SQ2, V=(x+y-2*z)/SQ6;
+    return {x:cx+U*S, y:cy-V*S};
+  }
+  const ideal={
+    o000:P(0,0,0), o100:P(1,0,0), o110:P(1,1,0), o010:P(0,1,0),
+    o001:P(0,0,1), o101:P(1,0,1), o111:P(1,1,1), o011:P(0,1,1)
+  };
+  // Jitter ~1% a nivell de vèrtex primitiu (tècnica §1.3) -- mateix S com a escala.
+  const V={}; for(const k in ideal) V[k]=jit(hd,ideal[k],S,1);
+
+  // Les 6 arestes que NO toquen cap dels dos vèrtexs de la diagonal escollida
+  // -- són exactament les que porta el tall (v. Pista 3 del text).
+  const eq=[['o100','o110'],['o110','o010'],['o010','o011'],
+            ['o011','o001'],['o001','o101'],['o101','o100']];
+  const eqStrokes=eq.map(([a,b])=>
+    hd.handSegment(V[a].x,V[a].y,V[b].x,V[b].y,{lineWidth:2.6,color:INK}));
+
+  // Les 6 arestes "de pol": de cada vèrtex de la diagonal cap a les tres
+  // alternes -- juntes completen el filat del cub (com dos trípodes que
+  // es toquen al mateix punt de projecció).
+  const pol=[['o000','o100'],['o000','o010'],['o000','o001'],
+             ['o111','o110'],['o111','o101'],['o111','o011']];
+  pol.forEach(([a,b])=>
+    hd.handSegment(V[a].x,V[a].y,V[b].x,V[b].y,{lineWidth:2.6,color:INK}));
+
+  // Hexàgon de tall: el punt mig REAL (sobre el traç ja dibuixat, no l'ideal)
+  // de cadascuna de les 6 arestes "d'equador" -- tècnica §1.3/Apèndix.
+  const Mp=eqStrokes.map(s=>s.pointAtT(0.5));
+  for(let i=0;i<6;i++){
+    const a=Mp[i], b=Mp[(i+1)%6];
+    hd.handSegment(a.x,a.y,b.x,b.y,{lineWidth:2.4,color:SANG});
+  }
+  tick(hd,Mp[0].x,Mp[0].y,Mp[1].x,Mp[1].y);
+  tick(hd,Mp[3].x,Mp[3].y,Mp[4].x,Mp[4].y);
+  Mp.forEach(p=>hd.handDot(p.x,p.y,4,SANG));
+  stampNum(ctx,505,'028');
+})();
+
+/* ============================================================
+   fig-045 REV1 -- q89: bisectrius iguals força isòsceles (Steiner-Lehmus).
+   DEFECTE (HANDOFF §4): només es dibuixava UNA bisectriu (des de B). El
+   teorema parla de DUES bisectrius iguals -- amb una sola ni tan sols es
+   pot escriure la hipòtesi.
+   FIX: s'afegeix la segona bisectriu (des de C cap a AB), amb el seu propi
+   parell d'arcs (2 arcs, classe diferent dels de B) i una ratlleta a
+   cadascuna de les DUES bisectrius (BP i CQ) marcant-les com a "iguals per
+   hipòtesi". Nota important: en un triangle realment escalè com aquest,
+   BP i CQ NO surten exactament iguals en pixels (Steiner-Lehmus diu
+   exactament que això és impossible tret que el triangle sigui isòsceles):
+   la ratlleta és la hipòtesi que s'està suposant, no una mesura d'aquest
+   dibuix concret -- exactament com ja s'usa la notació arreu del projecte.
+   ============================================================ */
+(function(){
+  const ctx=mk('r2',580,420),hd=makeHandDraw(ctx,8989);ctx.translate(50,50);
+  const A=jit(hd,{x:80,y:20},380), B=jit(hd,{x:0,y:320},380), C=jit(hd,{x:420,y:220},380);
+  const sAB=hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:3,color:INK});
+  hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:3,color:INK});
+  const sCA=hd.handSegment(C.x,C.y,A.x,A.y,{lineWidth:3,color:INK});
+  function d(p,q){return Math.hypot(p.x-q.x,p.y-q.y);}
+  const BC=d(B,C), BA=d(B,A), CA=d(C,A), CB=BC;
+
+  // bisectriu des de B cap al costat CA (teorema de la bisectriu: CP/PA = BC/BA)
+  const tP = BC/(BC+BA);
+  const P = sCA.pointAtT(1-tP); // sCA va de C cap a A
+  hd.handSegment(B.x,B.y,P.x,P.y,{dashed:true,lineWidth:2,dashPattern:[8,6],color:SANG});
+  angleMark(hd,B.x,B.y,A.x,A.y,P.x,P.y,30,1,SANG);
+  angleMark(hd,B.x,B.y,P.x,P.y,C.x,C.y,30,1,SANG);
+
+  // NOVA: bisectriu des de C cap al costat AB (teorema de la bisectriu: AQ/QB = CA/CB)
+  const tQ = CA/(CA+CB);
+  const Q = sAB.pointAtT(tQ); // sAB va de A cap a B
+  hd.handSegment(C.x,C.y,Q.x,Q.y,{dashed:true,lineWidth:2,dashPattern:[8,6],color:SANG});
+  angleMark(hd,C.x,C.y,A.x,A.y,Q.x,Q.y,30,2,SANG);
+  angleMark(hd,C.x,C.y,Q.x,Q.y,B.x,B.y,30,2,SANG);
+
+  // la hipòtesi del teorema: BP i CQ es marquen iguals (una ratlleta, mateixa classe)
+  tick(hd,B.x,B.y,P.x,P.y,SANG);
+  tick(hd,C.x,C.y,Q.x,Q.y,SANG);
+
+  lblC(ctx,'A',A.x,A.y-16,INK,24);lblC(ctx,'B',B.x+8,B.y+22,INK,24);lblC(ctx,'C',C.x+16,C.y+6,INK,24);
+  lblC(ctx,'P',P.x+18,P.y-4,SANG,20);lblC(ctx,'Q',Q.x-6,Q.y-16,SANG,20);
+  stampNum(ctx,410,'045');
+})();
+
+/* ============================================================
+   fig-048 REV1 -- q05: estrelles {5/2} i {8/3}, angle a cada punta.
+   DEFECTE (HANDOFF §4): dues estrelles en tinta amb un arc sanguina
+   negligible -- pràcticament cap capa d'anotació.
+   FIX: a cada estrella, es tanca en sanguina discontínua la CORDA base de
+   l'isòsceles de la Pista 1 (els dos punts on els dos costats que arriben a
+   la punta "toquen la circumferència"), i es marquen amb ratlletes els dos
+   costats iguals (les cames de l'isòsceles). Ara la figura mostra la
+   CONSTRUCCIÓ (el triangle isòsceles amagat), no només l'objecte.
+   ============================================================ */
+(function(){
+  const ctx=mk('r3',820,400),hd=makeHandDraw(ctx,55);ctx.translate(40,40);
+  function starPts(n,k,cx,cy,R,a0){return regularPoly(n,cx,cy,R,a0);}
+  function drawStar(hd,n,k,cx,cy,R,a0,col){
+    const P=starPts(n,k,cx,cy,R,a0);
+    for(let i=0;i<n;i++){const j=(i+k)%n;
+      hd.handSegment(P[i].x,P[i].y,P[j].x,P[j].y,{lineWidth:2.6,color:col});}
+    return P;
+  }
+  const P5=drawStar(hd,5,2,150,170,150,-Math.PI/2,INK);
+  angleMark(hd,P5[0].x,P5[0].y,P5[3].x,P5[3].y,P5[2].x,P5[2].y,34,1,SANG);
+  // base de l'isòsceles: NO és cap aresta de l'estrella (l'estrella només "salta 2"),
+  // és la construcció auxiliar que tanca el triangle de la punta.
+  hd.handSegment(P5[3].x,P5[3].y,P5[2].x,P5[2].y,{dashed:true,lineWidth:2,dashPattern:[7,6],color:SANG});
+  tick(hd,P5[3].x,P5[3].y,P5[0].x,P5[0].y);
+  tick(hd,P5[0].x,P5[0].y,P5[2].x,P5[2].y);
+
+  const ox=440;
+  const P8=drawStar(hd,8,3,ox+150,170,150,-Math.PI/2,INK);
+  angleMark(hd,P8[0].x,P8[0].y,P8[5].x,P8[5].y,P8[3].x,P8[3].y,34,1,SANG);
+  hd.handSegment(P8[5].x,P8[5].y,P8[3].x,P8[3].y,{dashed:true,lineWidth:2,dashPattern:[7,6],color:SANG});
+  tick(hd,P8[5].x,P8[5].y,P8[0].x,P8[0].y);
+  tick(hd,P8[0].x,P8[0].y,P8[3].x,P8[3].y);
+  stampNum(ctx,390,'048');
+})();
+
+/* ============================================================
+   fig-050 REV1 -- q60: con inscrit en semiesfera -- Cavalieri.
+   DEFECTE (HANDOFF §4): cap pla de tall, que és tota la idea. Una "R"
+   flotant no etiqueta res.
+   FIX: s'afegeix el pla de tall horitzontal (en sanguina) a una alçada h
+   QUALSEVOL (no una posició especial), amb els dos punts on talla les vores
+   del con marcats -- exactament l'eina que la Pista 1/3 demana fer servir
+   per comparar seccions. Es manté el con INSCRIT tal com el defineix
+   l'enunciat (vèrtex a dalt) -- el con invertit complementari de la Pista 1
+   és un objecte auxiliar diferent, descrit en text, no en aquesta figura.
+   ============================================================ */
+(function(){
+  const ctx=mk('r4',600,430),hd=makeHandDraw(ctx,6060);ctx.translate(40,60);
+  const rx=250, cy=260;
+  const eqRy=42, domeRy=250;
+  hd.handEllipse(rx,cy,rx,eqRy,{startAngle:0,endAngle:Math.PI,lineWidth:2.6,color:INK});
+  hd.handEllipse(rx,cy,rx,domeRy,{startAngle:Math.PI,endAngle:2*Math.PI,lineWidth:2.6,color:INK});
+  const apex={x:rx,y:cy-domeRy};
+  const baseL={x:0,y:cy}, baseR={x:2*rx,y:cy};
+  const sL=hd.handSegment(apex.x,apex.y,baseL.x,baseL.y,{lineWidth:2.8,color:INK});
+  const sR=hd.handSegment(apex.x,apex.y,baseR.x,baseR.y,{lineWidth:2.8,color:INK});
+
+  // NOU: pla de tall a alçada h qualsevol (fracció f des de la base, no un valor especial)
+  const f=0.45;
+  const PL=sL.pointAtT(1-f), PR=sR.pointAtT(1-f);
+  const cutCx=(PL.x+PR.x)/2, cutCy=(PL.y+PR.y)/2, rCut=(PR.x-PL.x)/2;
+  hd.handEllipse(cutCx,cutCy,rCut,eqRy*(rCut/rx),
+    {startAngle:0,endAngle:Math.PI,passes:1,lineWidth:2,irregularity:0.03,color:SANG});
+  hd.handDot(PL.x,PL.y,3.5,SANG); hd.handDot(PR.x,PR.y,3.5,SANG);
+  // eix vertical de l'alçada h (base -> pla de tall) i radi R (centre de la base -> vora),
+  // perquè les dues lletres s'agafin a un segment concret, no que "flotin" sense etiquetar res.
+  hd.handSegment(rx,cy,rx,cutCy,{dashed:true,lineWidth:1.6,dashPattern:[6,5],color:SANG});
+  hd.handSegment(rx,cy,baseR.x,baseR.y,{dashed:true,lineWidth:1.6,dashPattern:[6,5],color:SANG});
+  lbl(ctx,'h',rx+10,(cy+cutCy)/2+6,SANG,22);
+  lbl(ctx,'R',(rx+baseR.x)/2-8,cy-12,SANG,22);
+  stampNum(ctx,410,'050');
+})();
+
+/* ============================================================
+   fig-052 REV1 -- q08b: els cinc poliedres regulars, angle al vèrtex <360°.
+   DEFECTE (HANDOFF §4): dos sòlids dibuixats, cap marca d'angle al vèrtex,
+   malgrat que el manifest promet "angle al vèrtex < 360°".
+   FIX: es marquen (en sanguina) els angles de cara que es troben al vèrtex
+   de dalt de cada sòlid, i s'hi afegeix la xifra 3×60° / 4×60°. A
+   l'octaedre, dels 4 angles que s'hi ajunten només 2 es poden marcar sense
+   ambigüitat en aquesta projecció (els altres 2 impliquen el vèrtex del
+   darrere, que en aquesta vista cau exactament darrere del del davant): es
+   marquen els mateixos 2 també a baix, i el text ho explicita per simetria.
+   ============================================================ */
+(function(){
+  const ctx=mk('r5',740,480),hd=makeHandDraw(ctx,80802);ctx.translate(50,70);
+  // tetraedre
+  const bS=200;
+  const b1={x:0,y:220}, b2={x:bS,y:220}, b3={x:bS/2+40,y:220-bS*0.42};
+  const apex={x:bS/2+14,y:20};
+  hd.handSegment(b1.x,b1.y,b2.x,b2.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(b2.x,b2.y,b3.x,b3.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(b3.x,b3.y,b1.x,b1.y,{lineWidth:2,dashed:true,dashPattern:[7,6],color:INK});
+  hd.handSegment(apex.x,apex.y,b1.x,b1.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(apex.x,apex.y,b2.x,b2.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(apex.x,apex.y,b3.x,b3.y,{lineWidth:2,dashed:true,dashPattern:[7,6],color:INK});
+  // els 3 angles de cara que es troben a l'apex (3x60deg=180 < 360). En aquesta
+  // projecció plana els tres raigs (apex->b2, apex->b3, apex->b1) cauen tots dins
+  // del mateix semiplà: només 2 dels 3 buits angulars són visualment diferenciables
+  // (b2-b3 i b3-b1); el tercer "forat" (b1-b2 directe) se superposaria exactament
+  // amb la suma dels altres dos, així que no es marca per separat -- la xifra ho diu.
+  angleMark(hd,apex.x,apex.y,b2.x,b2.y,b3.x,b3.y,20,1,SANG);
+  angleMark(hd,apex.x,apex.y,b3.x,b3.y,b1.x,b1.y,20,1,SANG);
+  lbl(ctx,'3×60°',apex.x+34,apex.y+10,SANG,18);
+
+  // octaedre
+  const ox=390, R=110, cx=ox+R, cy=200;
+  const oL={x:cx-R,y:cy}, oR={x:cx+R,y:cy}, oF={x:cx,y:cy+R*0.42}, oB={x:cx,y:cy-R*0.42};
+  const oTop={x:cx,y:cy-R*0.42-90}, oBot={x:cx,y:cy+R*0.42+90};
+  hd.handSegment(oL.x,oL.y,oF.x,oF.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(oF.x,oF.y,oR.x,oR.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(oR.x,oR.y,oB.x,oB.y,{lineWidth:2,dashed:true,dashPattern:[7,6],color:INK});
+  hd.handSegment(oB.x,oB.y,oL.x,oL.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(oTop.x,oTop.y,oL.x,oL.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(oTop.x,oTop.y,oF.x,oF.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(oTop.x,oTop.y,oR.x,oR.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(oTop.x,oTop.y,oB.x,oB.y,{lineWidth:2,dashed:true,dashPattern:[7,6],color:INK});
+  hd.handSegment(oBot.x,oBot.y,oL.x,oL.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(oBot.x,oBot.y,oF.x,oF.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(oBot.x,oBot.y,oR.x,oR.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(oBot.x,oBot.y,oB.x,oB.y,{lineWidth:2,dashed:true,dashPattern:[7,6],color:INK});
+  // 2 dels 4 angles a cada vèrtex (els altres 2, simètrics, cauen amagats darrere)
+  angleMark(hd,oTop.x,oTop.y,oL.x,oL.y,oF.x,oF.y,20,1,SANG);
+  angleMark(hd,oTop.x,oTop.y,oF.x,oF.y,oR.x,oR.y,20,1,SANG);
+  angleMark(hd,oBot.x,oBot.y,oL.x,oL.y,oF.x,oF.y,20,1,SANG);
+  angleMark(hd,oBot.x,oBot.y,oF.x,oF.y,oR.x,oR.y,20,1,SANG);
+  lbl(ctx,'4×60°',oTop.x-56,oTop.y+2,SANG,18);
+  stampNum(ctx,460,'052');
+})();
+</script>
+</body></html>

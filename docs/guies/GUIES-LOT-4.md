@@ -524,11 +524,17 @@ iguals, has de deduir que el triangle era isòsceles. Aquesta implicació
 inversa és la que necessita una demostració real (i no la donarem aquí
 sencera: és massa llarga per a una pista puntual d'aquest lot).
 
-**Pista 2 — la construcció.** → `045_bisectrius_triangle.png`
-El triangle del dibuix s'ha fet **expressament no isòsceles** a ull. La
-bisectriu dibuixada surt del vèrtex B; els dos arcs marquen els dos angles
-en què la queda partit l'angle de B, que per definició de bisectriu són
-iguals entre ells (encara que el triangle no ho sigui).
+**Pista 2 — la construcció.** → `fig-045.png`
+El triangle del dibuix s'ha fet **expressament no isòsceles** a ull. Hi ha
+**dues** bisectrius, una des de B i una des de C — calen totes dues per
+poder-ne escriure la hipòtesi. Els arcs distingeixen quina bisectriu parteix
+quin angle (un arc a B, dos arcs a C: són bisectrius diferents, no cal que
+es corresponguin). Les ratlletes a BP i a CQ marquen la hipòtesi —"aquestes
+dues longituds es fan iguals"— però no una mesura d'aquest dibuix concret:
+en un triangle realment escalè com aquest **no poden sortir exactament
+iguals en píxels** (és tota la gràcia del teorema: si ho fossin de veritat,
+el triangle seria isòsceles). La ratlleta és la hipòtesi que estàs suposant,
+no el que veus.
 
 **Pista 3 — el que sí pots fer amb les eines d'aquest lot.**
 El que sí està al teu abast és comprovar el resultat numèricament en un cas
@@ -648,10 +654,14 @@ dos segments de l'estrella i, com a base, la corda que uneix els dos punts
 on aquests segments toquen la circumferència que passa per totes les
 puntes. L'angle que busques és l'angle al vèrtex d'aquest triangle.
 
-**Pista 2 — la construcció.** → `048_estrelles_angle_punta.png`
+**Pista 2 — la construcció.** → `fig-048.png`
 L'arc marcat és a una sola punta de cada estrella —el mateix argument val
 per a totes les altres per simetria, no cal repetir el dibuix cinc (o vuit)
-vegades.
+vegades. La corda discontínua tanca el triangle isòsceles de la punta: uneix
+els dos punts on hi arriben els dos costats marcats amb ratlleta (les cames
+de l'isòsceles). Aquesta corda no és cap aresta de l'estrella —l'estrella
+només "salta" vèrtexs— és la construcció auxiliar que fa visible el
+triangle que la Pista 1 descriu.
 
 **Pista 3 — tanca-ho.**
 L'angle a la punta d'una estrella {n/k} (n puntes, saltant k-1 vèrtexs cada
@@ -735,12 +745,16 @@ invertit amb el vèrtex al centre de la base i la base dalt de tot— el
 sòlid que queda entre el cilindre i aquest con. Aquest sòlid "que queda" té
 una propietat notable en relació amb la semiesfera.
 
-**Pista 2 — la construcció.** → `050_con_semiesfera.png`
+**Pista 2 — la construcció.** → `fig-050.png`
 Aquest dibuix mostra el con *inscrit* de l'enunciat (vèrtex a dalt, base a
 baix, tocant la semiesfera) — no el con invertit complementari de la pista
 1. Són dos objectes relacionats però diferents: aquest dibuix és el punt de
 partida de l'enunciat, la pista 1 et proposa un sòlid auxiliar per
-comparar-hi.
+comparar-hi. El pla horitzontal marcat en sanguina, a una alçada h
+qualsevol, és l'eina de comparació: talla el con en dos punts (marcats), i
+és exactament aquest mateix pla —a la mateixa alçada— el que hauries de
+comparar amb la secció de la semiesfera per completar l'argument de la
+pista 1.
 
 **Pista 3 — tanca-ho.**
 A qualsevol alçada h des de la base, la secció horitzontal del sòlid
@@ -829,11 +843,16 @@ menor que 360°** (si sumessin exactament 360°, la figura quedaria plana; si
 sumessin més, no es podria construir en absolut). Aquesta única condició,
 aplicada a cada polígon regular possible, és la que talla la llista.
 
-**Pista 2 — la construcció.** → `052_tetraedre_octaedre.png`
+**Pista 2 — la construcció.** → `fig-052.png`
 El tetraedre (quatre cares triangulars, tres a cada vèrtex) i l'octaedre
 (vuit cares triangulars, quatre a cada vèrtex) són dos dels cinc casos:
 fixa't que al tetraedre l'angle a cada vèrtex és 3×60°=180° (molt per sota
-de 360°) i a l'octaedre 4×60°=240° (encara per sota).
+de 360°) i a l'octaedre 4×60°=240° (encara per sota). Els arcs marcats al
+vèrtex de dalt de cada sòlid són els angles de cara que s'hi ajunten — a
+l'octaedre només se'n poden distingir dos sense ambigüitat en aquest dibuix
+(els altres dos impliquen el vèrtex del darrere, amagat exactament darrere
+del de davant); els altres dos són iguals per simetria, com als altres
+vèrtexs de quatre cares.
 
 **Pista 3 — tanca-ho comptant els casos possibles.**
 Amb triangles equilàters (60° cadascun) pots ajuntar-ne 3, 4 o 5 a un
