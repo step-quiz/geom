@@ -43,6 +43,7 @@ window.UI_LANGS = {
     list: {
       question_count: "{n} questions",
       no_image_badge: "no figure",
+      guide_badge: "◆ guide",
       page_label: "p. {page}",
       open: "Open",
     },
@@ -57,6 +58,25 @@ window.UI_LANGS = {
       back_to_list: "← All questions",
       prev: "← Previous",
       next: "Next →",
+    },
+
+    guide: {
+      title: "Proof guide",
+      move_label: "The move: {move}",
+      start: "Start the guide",
+      next_hint: "Show hint {n} of {total}",
+      level_0: "Hint 0",
+      level_1: "Hint 1",
+      level_2: "Hint 2",
+      level_3: "Hint 3",
+      check: "Check your answer",
+      after: "And afterwards",
+      figure_alt: "Construction: the book's figure in black, what you add in sanguine",
+      level_0_fallback: "what you must produce",
+      level_1_fallback: "make it concrete",
+      level_2_fallback: "the construction",
+      level_3_fallback: "close it",
+      legend_toggle: "How to read these figures",
     },
 
     lang: {
@@ -81,6 +101,7 @@ window.UI_LANGS = {
     list: {
       question_count: "{n} preguntes",
       no_image_badge: "sense figura",
+      guide_badge: "◆ guia",
       page_label: "pàg. {page}",
       open: "Obre",
     },
@@ -95,6 +116,25 @@ window.UI_LANGS = {
       back_to_list: "← Totes les preguntes",
       prev: "← Anterior",
       next: "Següent →",
+    },
+
+    guide: {
+      title: "Guia de demostració",
+      move_label: "El moviment: {move}",
+      start: "Comença la guia",
+      next_hint: "Mostra la pista {n} de {total}",
+      level_0: "Pista 0",
+      level_1: "Pista 1",
+      level_2: "Pista 2",
+      level_3: "Pista 3",
+      check: "Comprovació",
+      after: "I després",
+      figure_alt: "Construcció: la figura del llibre en negre, el que hi afegeixes tu en sanguina",
+      level_0_fallback: "què has de produir",
+      level_1_fallback: "fes-ho concret",
+      level_2_fallback: "la construcció",
+      level_3_fallback: "tanca-ho",
+      legend_toggle: "Com es llegeixen aquestes figures",
     },
 
     lang: {
