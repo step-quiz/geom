@@ -334,3 +334,306 @@
   letter-spacing: var(--tracking-mono);
   color: var(--pencil);
 }
+
+/* ==========================================================================
+   Glossari (GLOSSARY-DESIGN-NOTES.md) — dues superfícies, un sol estil
+   ========================================================================== */
+
+/* ---------- Botó a la capçalera (§4.1) ---------- */
+
+.glossari-obre {
+  border: var(--stroke-hairline) solid var(--rule-strong);
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--ink-soft);
+  font-family: var(--font-serif);
+  font-size: var(--fs-metadata);
+  padding: var(--space-1) var(--space-3);
+  white-space: nowrap;
+  transition: border-color var(--dur-fast) var(--ease-settle),
+    color var(--dur-fast) var(--ease-settle);
+}
+.glossari-obre:hover { border-color: var(--pencil-soft); color: var(--ink); }
+.glossari-obre:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+
+/* ---------- Overlay (§4.1, §6: mai per location.hash) ---------- */
+
+.glossari-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(33, 30, 27, 0.35);
+  display: flex;
+  justify-content: flex-end;
+}
+/*
+  Bug real trobat en provar-ho: [hidden] del navegador (display:none) i
+  aquesta mateixa regla (display:flex) tenen la MATEIXA especificitat
+  (0,0,1,0 totes dues -- un selector d'atribut i un de classe), i com que
+  aquesta viu més avall al full d'estils que la fulla per defecte del
+  navegador, GUANYAVA ELLA: l'overlay quedava "amagat" visualment (opacitat
+  normal, però mai --era-- realment display:none) i seguia interceptant
+  clics per sota. Cal la regla explícita següent perquè [hidden] torni a
+  guanyar sempre, sigui quin sigui l'ordre de càrrega dels fulls d'estil.
+*/
+.glossari-overlay[hidden] {
+  display: none;
+}
+
+.glossari-panell {
+  width: min(26rem, 100vw);
+  height: 100%;
+  background: var(--paper);
+  border-left: var(--stroke-rule) solid var(--rule-strong);
+  overflow-y: auto;
+  padding: var(--space-5);
+}
+
+@media (max-width: 640px) {
+  .glossari-panell { width: 100vw; padding: var(--space-4); }
+}
+
+.glossari-panell__header {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--space-4);
+  padding-bottom: var(--space-3);
+  border-bottom: var(--stroke-hairline) solid var(--rule);
+}
+.glossari-panell__header h2 {
+  font-size: 1.25rem;
+  margin: 0;
+}
+
+.glossari-tancar,
+.glossari-tornar {
+  background: transparent;
+  border: none;
+  color: var(--ink-soft);
+  font-family: var(--font-mono);
+  font-size: var(--fs-metadata);
+  letter-spacing: var(--tracking-mono);
+  cursor: pointer;
+  padding: var(--space-1);
+}
+.glossari-tancar:hover,
+.glossari-tornar:hover { color: var(--pencil); }
+.glossari-tornar { margin-bottom: var(--space-4); }
+
+.glossari-cerca {
+  width: 100%;
+  font-family: var(--font-serif);
+  font-size: var(--fs-body);
+  color: var(--ink);
+  background: var(--paper-raised);
+  border: var(--stroke-hairline) solid var(--rule-strong);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-3);
+  margin-bottom: var(--space-4);
+}
+.glossari-cerca:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+
+.glossari-categoria {
+  font-family: var(--font-mono);
+  font-size: var(--fs-metadata);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: var(--space-4) 0 var(--space-2);
+}
+.glossari-categoria:first-child { margin-top: 0; }
+
+.glossari-llista__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.glossari-llista__item {
+  display: block;
+  width: 100%;
+  text-align: left;
+  background: transparent;
+  border: none;
+  border-bottom: var(--stroke-hairline) solid var(--rule);
+  color: var(--ink);
+  font-family: var(--font-serif);
+  font-size: var(--fs-body);
+  padding: var(--space-2) 0;
+  cursor: pointer;
+}
+.glossari-llista__item:hover { color: var(--pencil); }
+
+.glossari-buit { color: var(--ink-soft); }
+
+/* ---------- Contingut d'un terme (compartit: overlay + popover inline) --- */
+
+.glossari-entry__title {
+  font-size: 1.1rem;
+  margin: 0 0 var(--space-3);
+  font-style: italic;
+}
+.glossari-entry__def {
+  color: var(--ink);
+  max-width: var(--measure);
+  margin: 0 0 var(--space-3);
+}
+.glossari-entry__figure {
+  margin: var(--space-3) 0;
+}
+.glossari-entry__figure img {
+  max-width: 100%;
+  height: auto;
+  mix-blend-mode: multiply;
+}
+.glossari-entry__relacionats {
+  font-size: var(--fs-metadata);
+  color: var(--ink-soft);
+}
+.glossari-entry__relacionats-label {
+  margin-right: var(--space-2);
+}
+.glossari-entry__relacionat {
+  background: transparent;
+  border: none;
+  color: var(--pencil);
+  font-family: var(--font-mono);
+  font-size: var(--fs-metadata);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  cursor: pointer;
+  padding: 0;
+}
+.glossari-entry__relacionat:hover { color: var(--ink); }
+
+/* ---------- Terme invocat inline dins d'un enunciat (§4.2) ---------- */
+
+.glossari-term-wrap {
+  position: relative;
+}
+
+.glossari-term {
+  background: transparent;
+  border: none;
+  border-bottom: var(--stroke-rule) dotted var(--pencil-soft);
+  color: inherit;
+  font: inherit;
+  font-weight: inherit;
+  cursor: pointer;
+  padding: 0;
+}
+.glossari-term:hover,
+.glossari-term[aria-expanded="true"] {
+  border-bottom-color: var(--pencil);
+  color: var(--pencil);
+}
+.glossari-term:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+
+.glossari-popover {
+  position: absolute;
+  z-index: 10;
+  top: 100%;
+  left: 0;
+  margin-top: var(--space-2);
+  width: max(18rem, min(24rem, 90vw));
+  background: var(--paper-raised);
+  border: var(--stroke-hairline) solid var(--rule-strong);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  font-weight: 400;
+  font-size: var(--fs-body);
+  box-shadow: 0 4px 16px rgba(33, 30, 27, 0.12);
+}
+.glossari-popover .glossari-entry__title { font-size: 1rem; }
+
+/* ==========================================================================
+   Itinerari (ITINERARY-DESIGN-NOTES.md) — valoració, suggerit, continua
+   ========================================================================== */
+
+.valoracio {
+  margin-top: var(--space-4);
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+  flex-wrap: wrap;
+}
+.valoracio__prompt {
+  font-family: var(--font-mono);
+  font-size: var(--fs-metadata);
+  color: var(--ink-soft);
+  margin-right: var(--space-1);
+}
+.valoracio__opcio {
+  border: var(--stroke-hairline) solid var(--rule-strong);
+  border-radius: var(--radius-md);
+  background: transparent;
+  color: var(--ink-soft);
+  font-family: var(--font-serif);
+  font-size: var(--fs-metadata);
+  padding: var(--space-1) var(--space-3);
+  cursor: pointer;
+  transition: border-color var(--dur-fast) var(--ease-settle),
+    color var(--dur-fast) var(--ease-settle);
+}
+.valoracio__opcio:hover { border-color: var(--pencil-soft); color: var(--ink); }
+.valoracio__opcio[aria-pressed="true"] {
+  border-color: var(--pencil);
+  color: var(--pencil);
+  font-weight: 600;
+}
+.valoracio__opcio:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+
+/*
+  "Suggerit per a tu": al costat de detail-nav, no en lloc seu (§7) --
+  visualment una mica més present (vora esquerra de color) perquè es
+  distingeixi de la navegació posicional, sense competir-hi en pes.
+*/
+.suggerit {
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  padding-left: var(--space-4);
+  border-top: var(--stroke-hairline) solid var(--rule);
+  border-left: var(--stroke-rule) solid var(--pencil-soft);
+}
+.suggerit__title {
+  font-family: var(--font-mono);
+  font-size: var(--fs-metadata);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0 0 var(--space-3);
+}
+.suggerit__items {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.suggerit__link {
+  color: var(--ink);
+  text-decoration: none;
+}
+.suggerit__link:hover { color: var(--pencil); }
+.suggerit__link:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.suggerit__id {
+  font-family: var(--font-mono);
+  font-size: var(--fs-metadata);
+  color: var(--pencil);
+  margin-right: var(--space-2);
+}
+
+/* Banner "continua on ho vas deixar" a la llista (§7) */
+.continua-banner {
+  font-family: var(--font-mono);
+  font-size: var(--fs-metadata);
+  color: var(--ink-soft);
+  margin: 0 0 var(--space-3);
+}
+.continua-banner a {
+  color: var(--pencil);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.continua-banner a:hover { color: var(--ink); }
