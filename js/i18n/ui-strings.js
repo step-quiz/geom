@@ -111,6 +111,20 @@ window.UI_LANGS = {
       reason_fallback: "next in the book",
       continue_banner: "Continue where you left off:",
     },
+
+    demo: {
+      header_link: "What's a proof?",
+      eyebrow: "Before the 130 questions",
+      page_title: "What's a proof?",
+      intro: "Three short, worked examples — solved in full, start to finish — so the real questions ahead read as the same kind of thing, not a different genre. Nothing here is scored or hidden.",
+      beat_why: "Why this needs an argument",
+      beat_argument: "The argument",
+      beat_move: "What just happened",
+      move_label: "The move: {move}",
+      figure_alt: "The construction, drawn step by step",
+      open_question: "Open {id} →",
+      back_to_list: "← All 130 questions",
+    },
   },
 
   ca: {
@@ -193,6 +207,20 @@ window.UI_LANGS = {
       reason_review_moviment: "entrena la mateixa idea — {move}",
       reason_fallback: "la següent del llibre",
       continue_banner: "Continua on ho vas deixar:",
+    },
+
+    demo: {
+      header_link: "Què és una demostració?",
+      eyebrow: "Abans de les 130 preguntes",
+      page_title: "Què és una demostració?",
+      intro: "Tres exemples curts, resolts sencers de cap a cap — perquè les preguntes reals que venen després es llegeixin com el mateix tipus de cosa, no com un gènere diferent. Res, aquí, es puntua ni s'amaga.",
+      beat_why: "Per què cal un argument",
+      beat_argument: "L'argument",
+      beat_move: "Què acaba de passar",
+      move_label: "El moviment: {move}",
+      figure_alt: "La construcció, pas a pas",
+      open_question: "Obre {id} →",
+      back_to_list: "← Totes les 130 preguntes",
     },
   },
 };
