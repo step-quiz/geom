@@ -169,6 +169,21 @@ està documentada a `docs/HAND_DRAWN_GEOMETRY_TECHNIQUE.md`; llegeix-ne §1.4, �
 i §2.3b abans de tocar cap figura, perquè totes tres van néixer de revisions
 humanes que van contradir la intuïció inicial.
 
+Abans i després de tocar res, executa des de l'arrel:
+
+```bash
+python3 verifica_projecte.py
+```
+
+Comprova dades, figures, guies i cablejat: presència de fitxers, els invariants
+130 / 88-42 / 28-70-32, integritat guia↔pregunta, acord figura↔manifest,
+convenció de noms, ordre dels `<script>`, paritat d'i18n i absència de
+castellanismes. Ha de dir `Tot correcte.`
+
+Per continuar la producció de guies hi ha un document de traspàs complet:
+`HANDOFF-COMPLETAR-GUIES.md` (en anglès, pensat per a un agent que arriba en
+fred), amb el full de ruta de les 78 preguntes que queden.
+
 `docs/manifest-figures.tsv` és el registre de les 53 figures: número, pregunta,
 nivell, moviment, lot i revisió. **Un número de figura és permanent**: si una
 figura es redibuixa, conserva el número i puja el camp `rev`.
