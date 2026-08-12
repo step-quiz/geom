@@ -15,7 +15,14 @@
                 moment.
   DEPENDÈNCIES: js/i18n/i18n-core.js, js/nucli/contingut.js,
                 js/nucli/progres.js, js/nucli/router.js (per calcular
-                anterior/següent i navegar-hi)
+                anterior/següent i navegar-hi), js/nucli/glossari.js +
+                js/ui/glossari.js (§3/§4.2 de GLOSSARY-DESIGN-NOTES.md:
+                termes inline dins l'enunciat), js/nucli/itinerari.js
+                (§7 de ITINERARY-DESIGN-NOTES.md: valoració + suggerit).
+                Cap d'aquests quatre és obligatori en temps d'execució —
+                cada crida hi comprova `window.geoXxx &&` abans d'usar-lo,
+                així que detall.js es degrada correctament si algun
+                d'aquests fitxers no s'ha carregat.
 
   REGLES QUE CAL RESPECTAR AMB PRECISIÓ (v. PROPOSTA-ARQUITECTURA.md §4)
   - "una entrada null cau automàticament a en" — tot el contingut bilingüe
@@ -328,6 +335,7 @@
     checkbox.checked = window.geoProgres.esFet(pregunta.id);
     checkbox.addEventListener("change", () => {
       window.geoProgres.marcaFet(pregunta.id, checkbox.checked);
+      if (window.geoItinerari) window.geoItinerari.sincronitzaFet(pregunta.id);
     });
 
     label.appendChild(checkbox);
@@ -339,6 +347,120 @@
 
     contenidor.appendChild(label);
   }
+
+  /**
+   * Control de valoració (ITINERARY-DESIGN-NOTES.md §7): tres botons
+   * "molt / normal / poc", independents del checkbox "explorat" -- un
+   * alumne pot valorar una pregunta que ha mirat sense marcar-la feta
+   * (§7: "'poc' és sovint una raó legítima per NO marcar-la feta").
+   * S'escriu directament a geoItinerari, mai a geoProgres (que només sap
+   * de "fet", v. capçalera d'itinerari.js).
+   *
+   * `onCanvi` es crida després d'escriure la valoració -- detall.js
+   * l'usa per repintar el bloc "suggerit" (v. pintaSuggerit): sense
+   * això, valorar una pregunta no canviaria mai el que es suggereix a
+   * sota fins a la següent visita, encara que la dada ja hagi canviat.
+   */
+  function pintaValoracio(pregunta, contenidor, onCanvi) {
+    if (!window.geoItinerari) return;
+
+    const bloc = document.createElement("div");
+    bloc.className = "valoracio";
+
+    const label = document.createElement("span");
+    label.className = "valoracio__prompt";
+    label.textContent = window.t("itinerary.rate_prompt");
+    bloc.appendChild(label);
+
+    const actual = window.geoItinerari.estatDe(pregunta.id);
+    const opcions = [
+      ["molt", "itinerary.rate_molt"],
+      ["normal", "itinerary.rate_normal"],
+      ["poc", "itinerary.rate_poc"],
+    ];
+
+    opcions.forEach(([valor, clau]) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "valoracio__opcio";
+      if (actual && actual.rating === valor) btn.setAttribute("aria-pressed", "true");
+      btn.textContent = window.t(clau);
+      btn.addEventListener("click", () => {
+        const jaTriat = btn.getAttribute("aria-pressed") === "true";
+        // clicar la mateixa opció una segona vegada la desmarca (permet
+        // "no valorat" com a estat vàlid, no només els tres explícits)
+        window.geoItinerari.marcaValoracio(pregunta.id, jaTriat ? null : valor);
+        bloc.querySelectorAll(".valoracio__opcio").forEach((b) => b.removeAttribute("aria-pressed"));
+        if (!jaTriat) btn.setAttribute("aria-pressed", "true");
+        if (onCanvi) onCanvi();
+      });
+      bloc.appendChild(btn);
+    });
+
+    contenidor.appendChild(bloc);
+  }
+
+  /**
+   * Bloc "suggerit per a tu" (§6/§7): fins a 3 suggeriments ranquejats,
+   * cadascun amb la seva raó explícita -- mai un sol "següent" imposat.
+   * Es col·loca AL COSTAT de, no en lloc de, la navegació posicional
+   * anterior/següent (pintaNavegacio), que es manté sempre disponible
+   * per a qui prefereixi llegir en l'ordre del llibre (§7).
+   *
+   * Es pinta dins d'un `slotEl` estable perquè es pugui RECALCULAR sense
+   * repintar tota la pàgina (v. pintaValoracio: valorar una pregunta pot
+   * canviar què es recomana a sota, a l'instant, dins la mateixa visita).
+   */
+  function pintaSuggerit(pregunta, slotEl) {
+    slotEl.innerHTML = "";
+    if (!window.geoItinerari) return;
+    const suggeriments = window.geoItinerari.suggereix(pregunta.id, 3);
+    if (!suggeriments.length) return;
+
+    const bloc = document.createElement("div");
+    bloc.className = "suggerit";
+
+    const titol = document.createElement("h3");
+    titol.className = "suggerit__title";
+    titol.textContent = window.t("itinerary.suggested_title");
+    bloc.appendChild(titol);
+
+    const ul = document.createElement("ul");
+    ul.className = "suggerit__items";
+    suggeriments.forEach((s) => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = "#" + s.pregunta.id;
+      a.className = "suggerit__link";
+
+      let raoText;
+      if (s.reason === "review_moviment") {
+        raoText = window.tf("itinerary.reason_review_moviment", { move: s.moviment });
+      } else {
+        raoText = window.t("itinerary." + "reason_" + s.reason);
+      }
+
+      const idSpan = document.createElement("span");
+      idSpan.className = "suggerit__id";
+      idSpan.textContent = s.pregunta.id;
+      a.appendChild(idSpan);
+      a.appendChild(document.createTextNode(" — " + raoText));
+
+      // Marca aquesta navegació com a "recommended" al log de camí,
+      // ABANS que el hashchange dispari el render de la pregunta destí
+      // (v. registraProperaNavegacio/render més avall).
+      a.addEventListener("click", () => {
+        properaNavegacioVia = "recommended";
+      });
+
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+    bloc.appendChild(ul);
+    slotEl.appendChild(bloc);
+  }
+
+  let properaNavegacioVia = "manual";
 
   function pintaNavegacio(pregunta, contenidor) {
     const { anterior, seguent } = veins(pregunta.id);
@@ -371,6 +493,84 @@
     contenidor.appendChild(nav);
   }
 
+  /**
+   * ENUNCIAT AMB GLOSSARI INLINE (§3/§4.2 de GLOSSARY-DESIGN-NOTES.md).
+   *
+   * Substitueix el simple `prompt.textContent = ...` per una versió que
+   * embolcalla cada terme detectat (window.geoGlossari.trobaTermes) en un
+   * <button> -- mateix patró de disclosure que ja fan servir dues vegades
+   * en aquest fitxer (pintaPista, pintaGuia): aria-expanded + un germà
+   * amagat que es mostra/amaga en clicar. Res de nou s'inventa aquí.
+   *
+   * Si window.geoGlossari no existeix (per exemple, algú ha tret el
+   * script per error) o no hi ha cap terme detectat, es degrada al
+   * textContent pla d'abans -- mai trenca la pàgina per l'absència
+   * d'aquesta funcionalitat opcional.
+   */
+  function pintaEnunciatAmbGlossari(text, lang, contenidor) {
+    const p = document.createElement("p");
+    p.className = "question-entry__prompt";
+
+    const trobats = window.geoGlossari ? window.geoGlossari.trobaTermes(text, lang) : [];
+    if (!trobats.length) {
+      p.textContent = text;
+      contenidor.appendChild(p);
+      return p;
+    }
+
+    function tancaAltres(exceptBtn) {
+      p.querySelectorAll(".glossari-term[aria-expanded='true']").forEach((altre) => {
+        if (altre !== exceptBtn) {
+          altre.setAttribute("aria-expanded", "false");
+          altre.nextElementSibling.hidden = true;
+        }
+      });
+    }
+
+    let cursor = 0;
+    trobats.forEach((m) => {
+      if (m.start > cursor) {
+        p.appendChild(document.createTextNode(text.slice(cursor, m.start)));
+      }
+
+      const wrap = document.createElement("span");
+      wrap.className = "glossari-term-wrap";
+
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "glossari-term";
+      btn.setAttribute("aria-expanded", "false");
+      btn.textContent = m.matchText;
+
+      const pop = document.createElement("div");
+      pop.className = "glossari-popover";
+      pop.hidden = true;
+
+      function omplePopover(id) {
+        window.geoGlossariUI.pintaContingutTerme(id, lang, pop, omplePopover);
+      }
+
+      btn.addEventListener("click", () => {
+        const jaObert = btn.getAttribute("aria-expanded") === "true";
+        tancaAltres(btn);
+        btn.setAttribute("aria-expanded", String(!jaObert));
+        pop.hidden = jaObert;
+        if (!jaObert) omplePopover(m.id);
+      });
+
+      wrap.appendChild(btn);
+      wrap.appendChild(pop);
+      p.appendChild(wrap);
+      cursor = m.end;
+    });
+    if (cursor < text.length) {
+      p.appendChild(document.createTextNode(text.slice(cursor)));
+    }
+
+    contenidor.appendChild(p);
+    return p;
+  }
+
   function render(view, root) {
     if (!contenidorEl || !contenidorEl.isConnected) {
       munta(root);
@@ -395,10 +595,11 @@
 
     contenidorEl.appendChild(meta);
 
-    const prompt = document.createElement("p");
-    prompt.className = "question-entry__prompt";
-    prompt.textContent = window.geoContingut.resolCamp(pregunta.enunciat, lang);
-    contenidorEl.appendChild(prompt);
+    pintaEnunciatAmbGlossari(
+      window.geoContingut.resolCamp(pregunta.enunciat, lang),
+      lang,
+      contenidorEl
+    );
 
     if (window.geoContingut.esFallback(pregunta.enunciat, lang)) {
       const notice = document.createElement("p");
@@ -411,7 +612,20 @@
     pintaPista(pregunta, lang, contenidorEl);
     pintaGuia(pregunta, lang, contenidorEl);
     pintaMarcadorFet(pregunta, contenidorEl);
+
+    const suggeritSlot = document.createElement("div");
+    pintaValoracio(pregunta, contenidorEl, () => pintaSuggerit(pregunta, suggeritSlot));
+    contenidorEl.appendChild(suggeritSlot);
+    pintaSuggerit(pregunta, suggeritSlot);
+
     pintaNavegacio(pregunta, contenidorEl);
+
+    if (window.geoItinerari) {
+      window.geoItinerari.marcaVista(pregunta.id);
+      window.geoItinerari.sincronitzaFet(pregunta.id);
+      window.geoItinerari.registraVisita(pregunta.id, properaNavegacioVia);
+      properaNavegacioVia = "manual"; // consumit -- la següent navegació torna a ser "manual" per defecte
+    }
   }
 
   window.geoDetall = {

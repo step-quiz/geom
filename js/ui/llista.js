@@ -160,6 +160,24 @@
 
     const header = document.createElement("header");
 
+    // "Continua on ho vas deixar" (§7): només quan hi ha estat d'itinerari
+    // real -- mai per a un alumne nou, que ja té la llista mateixa com a
+    // "comença aquí" (§7: "don't show an empty or generic start-here").
+    if (window.geoItinerari && !window.geoItinerari.esBuit()) {
+      const suggeriments = window.geoItinerari.suggereix(null, 1);
+      if (suggeriments.length) {
+        const s = suggeriments[0];
+        const continua = document.createElement("p");
+        continua.className = "continua-banner";
+        const a = document.createElement("a");
+        a.href = "#" + s.pregunta.id;
+        a.textContent =
+          window.t("itinerary.continue_banner") + " " + s.pregunta.id;
+        continua.appendChild(a);
+        contenidorEl.appendChild(continua);
+      }
+    }
+
     const count = document.createElement("p");
     count.className = "eyebrow";
     const etiqueta = etiquetaFiltre(view.filtres);

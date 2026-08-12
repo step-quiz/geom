@@ -9,14 +9,21 @@
                 capçalera de cadascun, llistat sencer aquí per referència
                 ràpida en un sol lloc):
                   1. js/data/preguntes-dades.js
-                  2. js/i18n/ui-strings.js
-                  3. js/i18n/i18n-core.js
-                  4. js/nucli/contingut.js
-                  5. js/nucli/progres.js
-                  6. js/nucli/router.js       (necessita window.PREGUNTES)
-                  7. js/ui/llista.js          (necessita 1,3,4,5)
-                  8. js/ui/detall.js          (necessita 3,4,5,6)
-                  9. js/ui/main.js            (aquest fitxer — necessita 1-8)
+                  2. js/data/guies-dades.js
+                  3. js/data/glossari-dades.js
+                  4. js/i18n/ui-strings.js
+                  5. js/i18n/i18n-core.js
+                  6. js/nucli/contingut.js
+                  7. js/nucli/progres.js
+                  8. js/nucli/guies.js
+                  9. js/nucli/glossari.js
+                 10. js/nucli/itinerari.js     (necessita 2,7,8 — v. la
+                     seva pròpia capçalera)
+                 11. js/nucli/router.js        (necessita window.PREGUNTES)
+                 12. js/ui/glossari.js         (necessita 3,4,5,9)
+                 13. js/ui/llista.js           (necessita 1,3,4,7,9,10,11)
+                 14. js/ui/detall.js           (necessita 3,4,7,9,10,11,12)
+                 15. js/ui/main.js             (aquest fitxer — necessita 1-14)
   DEPENDÈNCIES: Tots els anteriors.
 
   ON DIVERGEIX DEL §8 DE PROPOSTA-ARQUITECTURA.md, I PER QUÈ
@@ -110,6 +117,11 @@
     }
 
     muntaSelectorIdioma();
+
+    if (window.geoGlossariUI) {
+      const header = document.querySelector(".site-header__row");
+      if (header) window.geoGlossariUI.munta(header);
+    }
 
     window.geoRouter.on(pinta);
     // geoRouter ja resol i notifica la ruta inicial sol en carregar-se
