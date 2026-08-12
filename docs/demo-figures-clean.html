@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+ body{margin:0;background:#fff}canvas{display:block;margin:0 0 24px 0}
+</style></head><body>
+<script src="hand-draw.js"></script>
+<script src="comu.js"></script>
+<script>
+function stampNum(ctx,h,num){ /* no-op */ }
+function panelLabel(ctx,x,y,text){
+  lbl(ctx,text,x,y,'#8B5E3C',16);
+}
+
+/* ============================================================
+   Conveni de color d'aquestes figures (DEMO-PROOF-INTRO-DESIGN-NOTES.md
+   §4): TINTA = el que ja hi havia en aquell panell; SANGUINA = el que
+   s'acaba de CONSTRUIR en aquest mateix panell -- s'acumula d'esquerra
+   a dreta. Explícitament NO el conveni llibre/alumne de les guies (aquí
+   no hi ha "el llibre" ni "l'alumne", és una sola autoria contínua) --
+   la sanguina és només una marca de seqüència.
+   ============================================================ */
+
+/* ---------- demo-01: angle-sum ---------- */
+(function(){
+  const ctx=mk('d1',1180,400),hd=makeHandDraw(ctx,7001);
+  const A={x:150,y:0}, B={x:0,y:260}, C={x:340,y:220};
+  function triangle(hd){
+    hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.6,color:INK});
+  }
+  const dx=C.x-B.x, dy=C.y-B.y, norm=Math.hypot(dx,dy), ux=dx/norm, uy=dy/norm;
+  const Lp={x:A.x-ux*130,y:A.y-uy*130}, Rp={x:A.x+ux*130,y:A.y+uy*130};
+
+  // panell 1: nomes el triangle
+  (function(){ ctx.save();ctx.translate(30,60); triangle(hd);
+    panelLabel(ctx,80,300,'1. el triangle'); ctx.restore(); })();
+
+  // panell 2: + la linia auxiliar (sanguina -- acabada d'afegir)
+  (function(){ ctx.save();ctx.translate(400,60); triangle(hd);
+    hd.handSegment(Lp.x,Lp.y,Rp.x,Rp.y,{lineWidth:2,color:SANG});
+    panelLabel(ctx,60,300,'2. una línia paral·lela a BC, per A'); ctx.restore(); })();
+
+  // panell 3: + els angles (sanguina)
+  (function(){ ctx.save();ctx.translate(770,60); triangle(hd);
+    hd.handSegment(Lp.x,Lp.y,Rp.x,Rp.y,{lineWidth:2,color:SANG});
+    angleMark(hd,A.x,A.y,Lp.x,Lp.y,B.x,B.y,30,2,SANG);
+    angleMark(hd,B.x,B.y,A.x,A.y,C.x,C.y,26,2,SANG);
+    angleMark(hd,A.x,A.y,B.x,B.y,C.x,C.y,20,1,SANG);
+    angleMark(hd,A.x,A.y,C.x,C.y,Rp.x,Rp.y,30,3,SANG);
+    angleMark(hd,C.x,C.y,B.x,B.y,A.x,A.y,26,3,SANG);
+    panelLabel(ctx,50,300,'3. angles alterns iguals: 180° en línia recta'); ctx.restore(); })();
+
+  stampNum(ctx,380,'demo-01');
+})();
+
+/* ---------- demo-02: isosceles median=altitude ---------- */
+(function(){
+  const ctx=mk('d2',1180,420),hd=makeHandDraw(ctx,7002);
+  const A={x:150,y:0}, B={x:0,y:280}, C={x:300,y:280};
+  const M={x:150,y:280};
+  function triangle(hd){
+    hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.6,color:INK});
+  }
+
+  (function(){ ctx.save();ctx.translate(40,40); triangle(hd);
+    tick(hd,A.x,A.y,B.x,B.y,INK); tick(hd,A.x,A.y,C.x,C.y,INK);
+    panelLabel(ctx,60,330,'1. AB = AC (donat)'); ctx.restore(); })();
+
+  (function(){ ctx.save();ctx.translate(400,40); triangle(hd);
+    tick(hd,A.x,A.y,B.x,B.y,INK); tick(hd,A.x,A.y,C.x,C.y,INK);
+    hd.handSegment(A.x,A.y,M.x,M.y,{lineWidth:2,color:SANG});
+    hd.handDot(M.x,M.y,4,SANG);
+    panelLabel(ctx,20,330,'2. M = punt mitjà de BC; traça AM'); ctx.restore(); })();
+
+  (function(){ ctx.save();ctx.translate(760,40); triangle(hd);
+    tick(hd,A.x,A.y,B.x,B.y,INK); tick(hd,A.x,A.y,C.x,C.y,INK);
+    hd.handSegment(A.x,A.y,M.x,M.y,{lineWidth:2,color:SANG});
+    hd.handDot(M.x,M.y,4,SANG);
+    rightAngle(hd,M.x,M.y,A.x,A.y,C.x,C.y,16,SANG);
+    panelLabel(ctx,-30,330,'3. pel plec, els angles a M'); panelLabel(ctx,-30,350,'   són iguals i sumen 180° → 90°'); ctx.restore(); })();
+
+  stampNum(ctx,410,'demo-02');
+})();
+
+/* ---------- demo-03: four triangles from midpoints ---------- */
+(function(){
+  const ctx=mk('d3',1180,400),hd=makeHandDraw(ctx,7003);
+  const A={x:150,y:0}, B={x:0,y:260}, C={x:300,y:260};
+  function triangle(hd){
+    hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.6,color:INK});
+  }
+  const D={x:(A.x+B.x)/2,y:(A.y+B.y)/2};
+  const E={x:(B.x+C.x)/2,y:(B.y+C.y)/2};
+  const F={x:(C.x+A.x)/2,y:(C.y+A.y)/2};
+
+  (function(){ ctx.save();ctx.translate(40,60); triangle(hd);
+    panelLabel(ctx,80,300,'1. el triangle'); ctx.restore(); })();
+
+  (function(){ ctx.save();ctx.translate(410,60); triangle(hd);
+    [D,E,F].forEach(p=>hd.handDot(p.x,p.y,4,INK));
+    panelLabel(ctx,10,300,'2. D, E, F: punts mitjans'); ctx.restore(); })();
+
+  (function(){ ctx.save();ctx.translate(780,60); triangle(hd);
+    [D,E,F].forEach(p=>hd.handDot(p.x,p.y,4,INK));
+    hd.handSegment(D.x,D.y,E.x,E.y,{lineWidth:2,color:SANG});
+    hd.handSegment(E.x,E.y,F.x,F.y,{lineWidth:2,color:SANG});
+    hd.handSegment(F.x,F.y,D.x,D.y,{lineWidth:2,color:SANG});
+    panelLabel(ctx,-30,300,'3. quatre triangles congruents'); ctx.restore(); })();
+
+  stampNum(ctx,380,'demo-03');
+})();
+</script>
+</body></html>
