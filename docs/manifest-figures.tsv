@@ -26,7 +26,7 @@ num	id	nivell	moviment	lot	rev	descripcio
 025	q46	2	dilatacio	3	0	cercle estirat en el·lipse, a i b
 026	q47	2	un-altre-pla	3	0	octàedre dels centres de cara del cub
 027	q49	2	simetria-i-demostra	3	0	tetràedre, les quatre medianes es troben al centre
-028	q52	2	un-altre-pla	3	0	tall hexagonal del cub, perpendicular a la diagonal
+028	q52	2	un-altre-pla	3	1	tall hexagonal del cub, perpendicular a la diagonal
 029	q56	2	un-altre-pla	3	0	tetràedre inscrit per les diagonals de cara
 030	q51	2	desenrotlla	3	0	con desenrotllat en sector circular
 031	q53	3	contraexemple	3	0	cilindre recte vs oblic, mateix tall diferent superfície
@@ -43,12 +43,28 @@ num	id	nivell	moviment	lot	rev	descripcio
 042	q38	2	identitat-com-a-figura	4	0	rectangle auri, quadrat retallat semblant
 043	q76	2	separa-i-reorienta	4	0	cercle inscrit, suma de tres triangles amb l'incentre
 044	q80	2	dues-maneres	4	0	àrea triangle = 1/2 ab sinC, altura amagada
-045	q89	3	contraexemple	4	0	bisectrius iguals força isòsceles (Steiner-Lehmus)
+045	q89	3	contraexemple	4	1	bisectrius iguals força isòsceles (Steiner-Lehmus)
 046	q37	2	dues-maneres	4	0	rectangle mateixa àrea i perímetre que triangle equilàter
 047	q39	2	redueix-al-conegut	4	0	àrea pentàgon regular, 5 triangles des del centre
-048	q05	2	redueix-al-conegut	4	0	angle de puntes d'estrelles {5/2} i {8/3}
+048	q05	2	redueix-al-conegut	4	1	angle de puntes d'estrelles {5/2} i {8/3}
 049	q18b	2	invariant	4	0	dilatació de sòlid, volum escala amb k³
-050	q60	2	invariant	4	0	con inscrit en semiesfera, Cavalieri
+050	q60	2	invariant	4	1	con inscrit en semiesfera, Cavalieri
 051	q08a	2	construeix-per-definir	4	0	simetries del cub, eix vèrtex-a-vèrtex
-052	q08b	3	contraexemple	4	0	els cinc poliedres regulars, angle al vèrtex <360°
+052	q08b	3	contraexemple	4	1	els cinc poliedres regulars, angle al vèrtex <360°
 053	q71	2	dues-maneres	4	0	quadrilàter amb 4 angles rectes, recíproc de q11/q12
+054	q04	1	redueix-al-conegut	6	0	angle d'un poligon regular, n-2 triangles / n
+055	q18a	1	redueix-al-conegut	6	0	volum d'una capsa, capes de cubs unitat
+056	q19	1	identitat-com-a-figura	6	0	senar x senar = senar, graella 5x3
+057	q20	1	identitat-com-a-figura	6	0	parell x parell divisible per 4, blocs 2x2
+058	q27_implicit	2	dues-maneres	6	0	tres cercles tangents (triangle/quadrat/cercle)
+059	q40_implicit	2	dues-maneres	6	0	quadrat inscrit i cadena de cercles+quadrat en cercle
+060	q31	2	simetria-i-demostra	6	0	pentagon amb 3 diagonals, triangles A/B/C semblants
+061	q32	3	dilatacio	6	0	pentagrama, mida del pentagon petit
+062	q33	2	identitat-com-a-figura	6	0	dos pentagons compartint aresta, d^2=d+1
+063	q07	2	invariant	6	0	pentagrama, gir total de 720 graus
+064	q17	3	separa-i-reorienta	6	0	mitjana geometrica via semicercle de Tales
+065	q21	2	definicio-i-absurd	6	0	arrel de 3 irracional, casos p mod 3
+066	q24	2	redueix-al-conegut	6	0	triangle 3-4-5, Pitagores
+067	q30	2	redueix-al-conegut	6	0	dodecagon triangulat des d'un vertex
+068	q35	2	construeix-per-definir	6	0	suma i diferencia, segment partit
+069	q03	3	recompte-o-induccio	6	0	mosaics, angles a un vertex sumant 360
