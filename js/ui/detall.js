@@ -626,6 +626,21 @@
       window.geoItinerari.registraVisita(pregunta.id, properaNavegacioVia);
       properaNavegacioVia = "manual"; // consumit -- la següent navegació torna a ser "manual" per defecte
     }
+
+    // Handoff demo-03 -> q02 (DEMO-PROOF-INTRO-DESIGN-NOTES.md §6): el
+    // disparador de marcaFet és "ha obert q02 de debò", no "ha llegit la
+    // demo" -- per això es consumeix aquí, en pintar la pregunta real, i
+    // no dins de demo.js en clicar l'enllaç.
+    if (pregunta.id === "q02" && window.geoDemos && window.geoDemos.consumeixHandoffQ02()) {
+      if (window.geoProgres) window.geoProgres.marcaFet("q02", true);
+      if (window.geoItinerari) window.geoItinerari.sincronitzaFet("q02");
+      // el checkbox "explorat" ja s'ha pintat abans amb l'estat vell:
+      // el tornem a repintar perque reflecteixi el marcatge que acabem
+      // de fer, en lloc de deixar-lo visualment desactualitzat fins al
+      // proxim render.
+      const checkbox = contenidorEl.querySelector(".done-toggle input");
+      if (checkbox) checkbox.checked = true;
+    }
   }
 
   window.geoDetall = {

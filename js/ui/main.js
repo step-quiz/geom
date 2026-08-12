@@ -11,19 +11,22 @@
                   1. js/data/preguntes-dades.js
                   2. js/data/guies-dades.js
                   3. js/data/glossari-dades.js
-                  4. js/i18n/ui-strings.js
-                  5. js/i18n/i18n-core.js
-                  6. js/nucli/contingut.js
-                  7. js/nucli/progres.js
-                  8. js/nucli/guies.js
-                  9. js/nucli/glossari.js
-                 10. js/nucli/itinerari.js     (necessita 2,7,8 — v. la
-                     seva pròpia capçalera)
-                 11. js/nucli/router.js        (necessita window.PREGUNTES)
-                 12. js/ui/glossari.js         (necessita 3,4,5,9)
-                 13. js/ui/llista.js           (necessita 1,3,4,7,9,10,11)
-                 14. js/ui/detall.js           (necessita 3,4,7,9,10,11,12)
-                 15. js/ui/main.js             (aquest fitxer — necessita 1-14)
+                  4. js/data/demos-dades.js
+                  5. js/i18n/ui-strings.js
+                  6. js/i18n/i18n-core.js
+                  7. js/nucli/contingut.js
+                  8. js/nucli/progres.js
+                  9. js/nucli/guies.js
+                 10. js/nucli/glossari.js
+                 11. js/nucli/itinerari.js     (necessita 2,7,8,9)
+                 12. js/nucli/demos.js         (necessita 8,11 en temps
+                     de crida, no de càrrega — v. la seva pròpia capçalera)
+                 13. js/nucli/router.js        (necessita window.PREGUNTES)
+                 14. js/ui/glossari.js         (necessita 3,5,6,10)
+                 15. js/ui/llista.js           (necessita 1,3,5,6,8,10,11,13)
+                 16. js/ui/detall.js           (necessita 3,5,6,8,10,11,12,13,14)
+                 17. js/ui/demo.js             (necessita 4,5,6,12,13)
+                 18. js/ui/main.js             (aquest fitxer — necessita 1-17)
   DEPENDÈNCIES: Tots els anteriors.
 
   ON DIVERGEIX DEL §8 DE PROPOSTA-ARQUITECTURA.md, I PER QUÈ
@@ -76,6 +79,11 @@
       return;
     }
 
+    if (view.kind === "demo") {
+      window.geoDemo.render(view, appEl);
+      return;
+    }
+
     if (view.kind === "not-found") {
       // Sense vista dedicada encara (fora d'abast d'aquest pas): es
       // tracta com una llista sense filtre, la mateixa degradació que
@@ -106,6 +114,16 @@
     });
   }
 
+  function muntaEnllacDemo() {
+    const header = document.querySelector(".site-header__row");
+    if (!header) return;
+    const a = document.createElement("a");
+    a.href = "#demo";
+    a.className = "demo-obre";
+    a.textContent = window.t("demo.header_link");
+    header.appendChild(a);
+  }
+
   function arrenca() {
     appEl = document.getElementById("app");
     if (!appEl) {
@@ -121,6 +139,22 @@
     if (window.geoGlossariUI) {
       const header = document.querySelector(".site-header__row");
       if (header) window.geoGlossariUI.munta(header);
+    }
+
+    muntaEnllacDemo();
+
+    // Primer visitant genuí (§5 de DEMO-PROOF-INTRO-DESIGN-NOTES.md):
+    // envia'l un cop a #demo, mai com a porta obligatòria per a qui ja
+    // hi ha tornat. S'ha de decidir ABANS de deixar que geoRouter resolgui
+    // el hash buit cap a la llista -- per això es comprova aquí mateix,
+    // no dins de pinta().
+    if (
+      window.geoDemos &&
+      location.hash === "" &&
+      window.geoDemos.calEnviarADemo()
+    ) {
+      window.geoDemos.marcaIntroMostrada();
+      location.hash = "demo";
     }
 
     window.geoRouter.on(pinta);
