@@ -99,6 +99,99 @@ of primitive points (vertices, angle estimates), essentially 0% forced error at 
 level of derived coincidences.** Let the coincidences fail on their own; do not
 sabotage them a second time.
 
+### 1.4 Refinement: not every global constraint fails — the test is *correctability*
+
+Section 1.2 lumps together everything a hand cannot achieve "by eye." Human
+review of generated figures showed that list is too coarse, and using it as
+written produces a specific, recognizable error: **circles that visibly fail to
+be tangent.** A human draughtsman nails tangency. Reviewers notice immediately
+when tangency is off, and read it not as "hand-drawn" but as "wrong."
+
+The correct dividing line is not local vs. global. It is:
+
+> **Can the draughtsman see the error at the moment of drawing, at the place it
+> occurs, and correct it without contradicting something already committed to?**
+
+If yes, the hand succeeds and the figure must honour the constraint exactly.
+If no, the hand fails and the imperfection is what makes the drawing read as
+hand-made.
+
+**Succeeds — enforce these exactly:**
+- Tangency of a curve to another curve or to a straight edge. The curve is being
+  drawn freehand; the draughtsman watches the contact point and nudges as they go.
+- Incidence: a point lying on a line, a curve passing through a marked point,
+  a stroke ending exactly on another stroke.
+- Two strokes meeting at a vertex.
+
+**Fails — let these drift (~1%):**
+- Two segments being *exactly* equal in length, when they are far apart.
+- Two lines being *exactly* parallel.
+- An angle being *exactly* 90°.
+- A figure being *exactly* symmetric about an axis.
+- Curvature being *exactly* constant all the way round a circle.
+- Three independently-determined lines being concurrent.
+
+Concurrency is the case that shows why "correctability" is the right test rather
+than "can you see it." The draughtsman *can* see that three medians miss each
+other. They cannot fix it: each median's two endpoints are already committed, so
+there is nothing left to nudge. Tangency is the opposite — the whole curve is
+still free while it is being drawn. Same visibility, opposite outcome, because
+correctability differs.
+
+**Mechanically:** the imperfection must be *steered away from* contact points and
+concentrated between them. `handEllipse` implements this with `pinAngles`: a list
+of directions at which the radius must equal its nominal value. The harmonic
+perturbation of §3.3 is multiplied by a window that vanishes at each pinned
+angle and rises to 1 away from it, and the per-pass global radius shift is
+disabled whenever any angle is pinned (a 1% uniform radius shift would break
+every tangency at once). Four mutually tangent circles inside a square need,
+for each circle, pins toward: each square side it touches, each neighbouring
+circle, and the central circle.
+
+The same reasoning applies to straight edges that a circle must touch. If the
+edge itself bows by 2%, the tangency is destroyed no matter how well the circle
+is pinned. Long straight sides that carry a tangency should be drawn with
+reduced correction amplitude (`wobble` ≈ 1.0 rather than the 2.2 default).
+
+### 1.5 Two figure-design rules that are not rendering rules
+
+Both came out of the same review and are worth recording, because no amount of
+correct stroke rendering fixes them.
+
+**Keep the deviation of a straight stroke at or below ~1%.** §2.3 scales the
+correction amplitude by segment length; at the default `wobble` this reaches
+about 2% on a 500 px segment, and at that magnitude the line reads as *bowed*
+rather than as hand-drawn. A human line is straight; what the human misses is
+the relationship between lines, not the straightness of one line. For segments
+over roughly 300 px, pass a smaller `wobble`.
+
+**A shape meant to be arbitrary must not be nearly regular.** A quadrilateral
+intended to illustrate "any four-sided figure" was drawn with all four angles
+within about 6° of 90° and its sides near horizontal and vertical. Every reviewer
+read it as *a rectangle drawn badly* rather than as a deliberately irregular
+quadrilateral — which also quietly undermines the generality the figure exists to
+demonstrate. Make such shapes unmistakably irregular: no angle within ~20° of
+90°, no side within ~15° of horizontal or vertical, and no two sides of similar
+length.
+
+**An incidental repeated motif must come out regular.** A figure of nested
+rectangles of fixed perimeter, drawn to show that their far corners lie on a
+line, incidentally produced a grid of cells. The eye checks any grid for
+regularity immediately. Widths chosen as 50/100/150/210/265 — mathematically
+arbitrary and irrelevant to the point being made — produced cells that were
+square everywhere except the bottom row, and reviewers read that as an error in
+the drawing rather than as an arbitrary choice. Changing to 50/100/150/200/250
+cost nothing mathematically and made every cell a 50×50 square. **When free
+parameters have no mathematical content, spend them on making incidental motifs
+regular.**
+
+**Annotation marks are sized for legibility, not realism.** Equal-length tick
+marks and equal-angle arcs are notation, not drawing. On figures of the scale
+used here (~500 px across) tick marks need to be roughly 25 px long end to end;
+at 18 px reviewers reported simply not seeing them.
+
+---
+
 ---
 
 ## Part 2 — Stroke-level rendering: the pencil model
@@ -191,6 +284,39 @@ const lengthScale = Math.min(1, segLen / 500);
 Forgetting this step is a specific, recognizable failure: short auxiliary lines
 (medians, radii, tangent-point segments) come out looking like exaggerated arcs
 instead of the nearly-straight short segments a hand actually produces.
+
+### 2.3b Correction: a short stroke has *no* mid-stroke correction at all
+
+§2.3 scales the correction amplitude linearly with segment length. Human review
+showed this is still wrong at the short end: a 260 px altitude drawn with a
+linear falloff still receives a full correction event, and reviewers described the
+result as *"not straight enough — it suddenly bends."*
+
+The underlying fact:
+
+> **A short stroke is one confident gesture and comes out essentially perfectly
+> straight. Mid-stroke correction is a phenomenon of long strokes only** — it
+> exists because over a long travel the hand drifts off the intended line and has
+> to be reconducted. There is nothing to reconduct on a short stroke.
+
+This is the same theme as §1.4: the hand does not fail uniformly. It fails where
+the task exceeds what one committed motion can hold.
+
+Two changes follow, both in `handTrajectory`:
+
+1. **Correction count falls to zero below a threshold.** At the figure scale used
+   here (~500 px characteristic dimension), no correction at all below ~200 px;
+   0–1 between 200 and 400 px; 1–2 above 400 px. Expressed as a fraction: below
+   about 40% of the figure's characteristic dimension, draw the segment straight.
+
+2. **Amplitude falls off superlinearly.** `pow(min(1, segLen/500), 2)` rather than
+   `min(1, segLen/500)`. A 260 px segment now receives roughly a quarter of the
+   deviation it received before, not half.
+
+A useful consequence: after this change, most of the per-figure `wobble` overrides
+that had been tuned by hand to stop long segments bowing become unnecessary. If
+the model is right, hand-tuning should mostly disappear — that is a good test of
+whether a rendering rule is correct or is a patch.
 
 ### 2.4 Multiple passes ("pencil texture") without creating a doubled line
 

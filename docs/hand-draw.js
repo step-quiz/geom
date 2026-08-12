@@ -16,7 +16,11 @@ function makeHandDraw(ctx, seed) {
 
   // ---------- Trajectòria: pols estable + 1-2 correccions localitzades ----------
   function handTrajectory(n, segAmp, segLen) {
-    const lengthScale = Math.min(1, segLen / 500);
+    // La correcció a mig traç és un fenomen de traç LLARG: la mà només ha de
+    // rectificar quan el recorregut és prou llarg perquè li derivi. Un segment
+    // curt es fa d'un sol gest i surt pràcticament recte. Per això la caiguda és
+    // superlineal i, per sota d'un llindar, no hi ha cap correcció. v. §2.3bis.
+    const lengthScale = Math.pow(Math.min(1, segLen / 500), 2);
     const vals = new Array(n).fill(0);
 
     const microAmp = segAmp * 0.12;
@@ -26,7 +30,9 @@ function makeHandDraw(ctx, seed) {
       vals[i] += Math.sin(i * microFreq + microPhase) * microAmp * (0.4 + 0.6*Math.sin(i*0.05+1));
     }
 
-    const numCorrections = rand() < 0.5 ? 1 : 2;
+    const numCorrections = segLen < 240 ? 0
+                         : segLen < 420 ? (rand() < 0.6 ? 1 : 0)
+                         : (rand() < 0.45 ? 1 : 2);
     for (let c = 0; c < numCorrections; c++) {
       const center = n * (0.22 + rand() * 0.56);
       const width = n * (0.16 + rand() * 0.14);
@@ -44,7 +50,8 @@ function makeHandDraw(ctx, seed) {
   function handSegment(x0, y0, x1, y1, opts={}) {
     const {
       wobble = 2.2, steps = 50, overshoot = 3, passes = 2, passSpread = 0.6,
-      lineWidth = 3.2, widthVariation = 1.1, dashed = false, dashPattern = [14, 10]
+      lineWidth = 3.2, widthVariation = 1.1, dashed = false, dashPattern = [14, 10],
+      color = 'black'
     } = opts;
 
     const dx = x1 - x0, dy = y1 - y0;
@@ -80,7 +87,7 @@ function makeHandDraw(ctx, seed) {
         x1 + ux*over1*overSign*0.4 + px*(rand()-0.5)*passSpread,
         y1 + uy*over1*overSign*0.4 + py*(rand()-0.5)*passSpread
       );
-      ctx.strokeStyle = 'black';
+      ctx.strokeStyle = color;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
       ctx.stroke();
@@ -105,12 +112,12 @@ function makeHandDraw(ctx, seed) {
   }
 
   // ---------- Punt notable (per camuflar interseccions imperfectes) ----------
-  function handDot(x, y, r=7) {
+  function handDot(x, y, r=7, color='black') {
     ctx.beginPath();
     const jx = x + (rand()-0.5)*2;
     const jy = y + (rand()-0.5)*2;
     ctx.arc(jx, jy, r + (rand()-0.5)*1.5, 0, Math.PI*2);
-    ctx.fillStyle = 'black';
+    ctx.fillStyle = color;
     ctx.fill();
   }
 
@@ -124,7 +131,12 @@ function makeHandDraw(ctx, seed) {
       steps = 120, passes = 2, lineWidth = 4, widthVariation = 1.4,
       irregularity = 0.045,  // fracció del radi que pot variar per irregularitat de curvatura
       rotation = 0,
-      startAngle = 0, endAngle = Math.PI*2
+      startAngle = 0, endAngle = Math.PI*2, color = 'black',
+      // Direccions (en radians) on el radi ha de valer EXACTAMENT el nominal.
+      // Serveix per als punts de contacte: una mà humana encerta la tangència
+      // (la pot veure i corregir sobre la marxa) i falla, en canvi, la curvatura
+      // entre contacte i contacte. v. Part 1.4 del document tècnic.
+      pinAngles = [], pinSigma = 0.30
     } = opts;
 
     // Generem 2-3 harmònics de baixa freqüència amb fases random -> forma "quasi-el·lipse"
@@ -142,7 +154,7 @@ function makeHandDraw(ctx, seed) {
       // Cada passada té el seu propi petit desfasament de fase (com repassar el cercle una 2a vegada
       // sense clavar exactament la mateixa corba)
       const passPhaseShift = (rand()-0.5) * 0.15;
-      const passRadiusShift = 1 + (rand()-0.5) * 0.02;
+      const passRadiusShift = pinAngles.length ? 1 : 1 + (rand()-0.5) * 0.02;
       // Descorrelació X/Y CONSTANT per aquesta passada (abans es recalculava a cada punt del bucle,
       // cosa que introduïa soroll d'alta freqüència indesitjat -- "peludo" -- en lloc de la forma
       // globalment asimètrica i suau que busquem)
@@ -156,8 +168,17 @@ function makeHandDraw(ctx, seed) {
       for (let i = 0; i <= N; i++) {
         const t = startAngle + (endAngle-startAngle) * i / N;
         let rFactorX = passRadiusShift, rFactorY = passRadiusShift;
+        // Finestra: val 0 justament a cada angle fixat i puja a 1 lluny d'ells,
+        // de manera que la imperfecció es concentra ENTRE els punts de contacte.
+        let w = 1;
+        for (const pa of pinAngles) {
+          let d = t - pa;
+          while (d >  Math.PI) d -= 2*Math.PI;
+          while (d < -Math.PI) d += 2*Math.PI;
+          w *= (1 - Math.exp(-(d/pinSigma)*(d/pinSigma)));
+        }
         for (const h of harmonics) {
-          const dev = h.amp * Math.sin(h.freq * t + h.phase + passPhaseShift);
+          const dev = h.amp * Math.sin(h.freq * t + h.phase + passPhaseShift) * w;
           rFactorX += dev;
           rFactorY += dev * xyDecorrelation;
         }
@@ -168,7 +189,7 @@ function makeHandDraw(ctx, seed) {
         const y = cy + localX*Math.sin(rotation) + localY*Math.cos(rotation);
         if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
       }
-      ctx.strokeStyle = 'black';
+      ctx.strokeStyle = color;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
       ctx.stroke();
