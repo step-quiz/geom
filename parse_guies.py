@@ -33,6 +33,7 @@ LOTS = [
     (rel("docs/guies/GUIES-LOT-3.md"), 3),
     (rel("docs/guies/GUIES-LOT-4.md"), 4),
     (rel("docs/guies/GUIES-LOT-6.md"), 6),
+    (rel("docs/guies/GUIES-LOT-7.md"), 7),
 ]
 MANIFEST = rel("docs/manifest-figures.tsv")
 OUT_JS = rel("js/data/guies-dades.js")
