@@ -59,7 +59,7 @@ A la llista, les preguntes que tenen guia porten la marca ◆.
 | Pistes curtes (`pista`) | `pista.en`/`pista.ca` continuen sent `null` a totes 130. NO les substitueixen les guies: són coses diferents (una pista curta seria una frase; una guia és una escala completa). El botó 💡 simplement no apareix quan no n'hi ha |
 | Guies per a les 78 preguntes restants | En producció per lots successius, amb revisió humana entre lot i lot. V. `docs/guies/` |
 | Assignació per curs (`#curs=2ESO` i similars) | El camp `curs` existeix a l'esquema de dades però és `null` arreu — decisió de contingut ajornada conscientment, no una limitació tècnica. El filtre ja funciona (prova-ho a la barra d'adreces); simplement no hi ha encara cap valor assignat |
-| Mode d'interacció (resposta oberta, dibuix, etc.) | Ídem: `interaccio` és `null` a tot arreu, estructura preparada, contingut pendent |
+| Mode d'interacció (resposta oberta, dibuix, etc.) | Ídem: `interaccio` és `null` a tot arreu, estructura preparada, contingut pendent. No és només contingut per assignar: la interactivitat real (punts arrossegables, recàlcul en viu) exigiria una capa de renderitzat completament diferent de la que hi ha ara (`docs/render.js` genera PNG estàtics per disseny, no SVG/canvas en viu al navegador) — és a dir, un canvi d'arquitectura real, no una dada per omplir. Es deixa aquí explícitament perquè un futur contribuïdor no ho confongui amb un descuit i el comenci sense haver-ho decidit (v. `docs/guies/REFERENTS-PEDAGOGICS.md`, secció Castelnuovo) |
 
 ## Estructura
 
