@@ -175,6 +175,148 @@
     contenidor.appendChild(text);
   }
 
+
+  /**
+   * ESCALA DE PISTES (guia de demostració).
+   *
+   * Regla pedagògica que el DOM ha de fer complir, no només suggerir: els
+   * quatre nivells difereixen en ESPÈCIE, no en quantitat (0 encàrrec,
+   * 1 concreta, 2 figura, 3 tanca), i cap d'ells dona la solució. Per això
+   * es revelen d'un en un i EN ORDRE: si es mostressin tots alhora, l'ull
+   * cauria directament a la figura del nivell 2 i els nivells 0 i 1 —que són
+   * els que ensenyen QUÈ és una demostració— no es llegirien mai.
+   *
+   * No es desa res a progres.js: quantes pistes ha obert algú en una
+   * pregunta és informació efímera i, si es recordés entre visites, la
+   * pregunta ja no es podria tornar a intentar en fred.
+   */
+  function pintaGuia(pregunta, lang, contenidor) {
+    if (!window.geoGuies || !window.geoGuies.teGuia(pregunta)) return;
+
+    const guia = window.geoGuies.guiaDe(pregunta);
+    const r = (camp) => window.geoGuies.resolCampGuia(camp, lang);
+
+    const seccio = document.createElement("section");
+    seccio.className = "guia";
+
+    const cap = document.createElement("div");
+    cap.className = "guia__header";
+    const titol = document.createElement("h2");
+    titol.className = "guia__title";
+    titol.textContent = window.t("guide.title");
+    cap.appendChild(titol);
+    if (guia.movimentTitol) {
+      const mov = document.createElement("p");
+      mov.className = "guia__move";
+      mov.textContent = window.tf("guide.move_label", { move: r(guia.movimentTitol) });
+      cap.appendChild(mov);
+    }
+    seccio.appendChild(cap);
+
+    const llista = document.createElement("ol");
+    llista.className = "guia__steps";
+    seccio.appendChild(llista);
+
+    // Peu: comprovació i "i després". Es creen ara però només s'insereixen
+    // quan s'ha obert l'última pista — són el tancament de l'escala, i
+    // ensenyar la comprovació abans d'haver mirat cap pista convidaria a
+    // saltar-se-la.
+    const peu = document.createElement("div");
+    peu.className = "guia__footer";
+    peu.hidden = true;
+    [["guide.check", guia.comprovacio, "guia__check"],
+     ["guide.after", guia.iDespres, "guia__after"]].forEach(([clau, camp, cls]) => {
+      const text = r(camp);
+      if (!text) return;
+      const bloc = document.createElement("div");
+      bloc.className = cls;
+      const h = document.createElement("h3");
+      h.className = "guia__subtitle";
+      h.textContent = window.t(clau);
+      bloc.appendChild(h);
+      afegeixParagrafs(bloc, text);
+      peu.appendChild(bloc);
+    });
+    seccio.appendChild(peu);
+
+    const boto = document.createElement("button");
+    boto.type = "button";
+    boto.className = "guia__reveal";
+    seccio.appendChild(boto);
+
+    let obertes = 0;
+
+    function actualitzaBoto() {
+      if (obertes === 0) {
+        boto.textContent = window.t("guide.start");
+      } else if (obertes < guia.pistes.length) {
+        boto.textContent = window.tf("guide.next_hint", {
+          n: obertes + 1, total: guia.pistes.length,
+        });
+      } else {
+        boto.hidden = true;
+        peu.hidden = false;
+      }
+    }
+
+    function revela() {
+      const pista = guia.pistes[obertes];
+      if (!pista) return;
+
+      const li = document.createElement("li");
+      li.className = "guia__step guia__step--n" + pista.nivell;
+
+      const etiqueta = document.createElement("p");
+      etiqueta.className = "guia__step-label";
+      // L'etiqueta i18n només aporta el número ("Pista 2"); la part
+      // descriptiva la posa el subtítol propi de la guia, que ja ve escrit
+      // al .md d'origen. Si es fessin servir totes dues completes, el mateix
+      // sintagma sortiria repetit i en dos idiomes diferents.
+      const nom = window.t("guide.level_" + pista.nivell);
+      const sub = (pista.titol ? r(pista.titol) : "") ||
+                  window.t("guide.level_" + pista.nivell + "_fallback");
+      etiqueta.textContent = sub ? nom + " — " + sub : nom;
+      li.appendChild(etiqueta);
+
+      const text = r(pista.text);
+      if (text) afegeixParagrafs(li, text);
+
+      if (pista.figura) {
+        const fig = document.createElement("figure");
+        fig.className = "guia__figure";
+        const img = document.createElement("img");
+        img.src = window.geoGuies.rutaFigura(pista.figura);
+        img.alt = window.t("guide.figure_alt");
+        img.loading = "lazy";
+        fig.appendChild(img);
+        li.appendChild(fig);
+      }
+
+      llista.appendChild(li);
+      obertes += 1;
+      actualitzaBoto();
+    }
+
+    boto.addEventListener("click", revela);
+    actualitzaBoto();
+    contenidor.appendChild(seccio);
+  }
+
+  /**
+   * El text de les guies conserva els salts de paràgraf del .md d'origen
+   * (separats per una línia en blanc). Es respecten com a <p> separats en
+   * lloc d'ajuntar-ho tot: a les pistes llargues, el segon paràgraf sol ser
+   * l'aclariment entre parèntesis, i ha de poder-se saltar amb la vista.
+   */
+  function afegeixParagrafs(destinacio, text) {
+    String(text).split("\n\n").forEach((tros) => {
+      const p = document.createElement("p");
+      p.className = "guia__text";
+      p.textContent = tros;
+      destinacio.appendChild(p);
+    });
+  }
+
   function pintaMarcadorFet(pregunta, contenidor) {
     if (!window.geoProgres) return;
 
@@ -267,6 +409,7 @@
 
     pintaImatges(pregunta, contenidorEl);
     pintaPista(pregunta, lang, contenidorEl);
+    pintaGuia(pregunta, lang, contenidorEl);
     pintaMarcadorFet(pregunta, contenidorEl);
     pintaNavegacio(pregunta, contenidorEl);
   }

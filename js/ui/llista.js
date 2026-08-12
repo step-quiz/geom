@@ -101,6 +101,19 @@
       meta.appendChild(badge);
     }
 
+    // Marca de guia: perquè les 52 preguntes que ja tenen escala de pistes
+    // siguin localitzables des de la llista sense haver d'entrar-hi una a
+    // una. Es fa amb el mateix patró que list.no_image_badge de sobre, i
+    // desapareix sol quan una pregunta encara no en té (no hi ha estat
+    // "sense guia" explícit, igual que no hi ha botó de pista buit a
+    // detall.js).
+    if (window.geoGuies && window.geoGuies.teGuia(pregunta)) {
+      const guiaBadge = document.createElement("span");
+      guiaBadge.className = "meta meta--separated guia-badge";
+      guiaBadge.textContent = window.t("list.guide_badge");
+      meta.appendChild(guiaBadge);
+    }
+
     li.appendChild(meta);
 
     const prompt = document.createElement("p");
