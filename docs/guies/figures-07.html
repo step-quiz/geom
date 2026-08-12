@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+ body{margin:0;background:#fff}canvas{display:block;margin:0 0 24px 0}
+</style></head><body>
+<script src="../hand-draw.js"></script>
+<script src="../comu.js"></script>
+<script>
+function stampNum(ctx,h,num){
+  ctx.save();ctx.setTransform(1,0,0,1,0,0);
+  ctx.font='18px Georgia';ctx.fillStyle='#8a8580';
+  ctx.fillText(num, 8, h-8);ctx.restore();
+}
+function cubeVerts(S,dx,dy){
+  function P(x,y,z){return {x:x*S+z*dx, y:(1-y)*S+z*dy};}
+  return {fBL:P(0,0,0),fBR:P(1,0,0),fTR:P(1,1,0),fTL:P(0,1,0),
+          bBL:P(0,0,1),bBR:P(1,0,1),bTR:P(1,1,1),bTL:P(0,1,1)};
+}
+function drawCubeWire(hd,V,lw){
+  lw=lw||2.6;
+  const solid=[[V.fTL,V.fTR],[V.fTR,V.fBR],[V.fBR,V.fBL],[V.fBL,V.fTL],
+    [V.fTL,V.bTL],[V.fTR,V.bTR],[V.fBR,V.bBR],[V.bTL,V.bTR],[V.bTR,V.bBR]];
+  const hidden=[[V.fBL,V.bBL],[V.bTL,V.bBL],[V.bBL,V.bBR]];
+  solid.forEach(s=>hd.handSegment(s[0].x,s[0].y,s[1].x,s[1].y,{lineWidth:lw,color:INK}));
+  hidden.forEach(s=>hd.handSegment(s[0].x,s[0].y,s[1].x,s[1].y,{lineWidth:lw*0.85,dashed:true,dashPattern:[8,7],color:INK}));
+}
+function mid(a,b){return {x:(a.x+b.x)/2,y:(a.y+b.y)/2};}
+function regularPoly(n,cx,cy,R,a0){
+  const pts=[];
+  for(let i=0;i<n;i++){const t=a0+i*2*Math.PI/n;pts.push({x:cx+R*Math.cos(t),y:cy+R*Math.sin(t)});}
+  return pts;
+}
+
+/* ============================================================
+   fig-070 -- q43: dos cercles solapats, cadascun pel centre de l'altre.
+   Moviment: dues-maneres. */
+(function(){
+  const ctx=mk('h1',620,420),hd=makeHandDraw(ctx,5001);ctx.translate(180,60);
+  const r=150, c1={x:0,y:150}, c2={x:r,y:150};
+  hd.handEllipse(c1.x,c1.y,r,r,{lineWidth:2.6,irregularity:0.03,color:INK});
+  hd.handEllipse(c2.x,c2.y,r,r,{lineWidth:2.6,irregularity:0.03,color:INK});
+  const dy=Math.sqrt(r*r-(r/2)*(r/2));
+  const Pt={x:r/2,y:150-dy}, Pb={x:r/2,y:150+dy};
+  hd.handSegment(c1.x,c1.y,c2.x,c2.y,{lineWidth:1.8,dashed:true,dashPattern:[7,6],color:SANG});
+  hd.handSegment(c1.x,c1.y,Pt.x,Pt.y,{lineWidth:1.8,color:SANG});
+  hd.handSegment(c2.x,c2.y,Pt.x,Pt.y,{lineWidth:1.8,color:SANG});
+  tick(hd,c1.x,c1.y,c2.x,c2.y);tick(hd,c1.x,c1.y,Pt.x,Pt.y);tick(hd,c2.x,c2.y,Pt.x,Pt.y);
+  hd.handDot(c1.x,c1.y,4,SANG);hd.handDot(c2.x,c2.y,4,SANG);hd.handDot(Pt.x,Pt.y,4,SANG);
+  angleMark(hd,c1.x,c1.y,c2.x,c2.y,Pt.x,Pt.y,26,1,SANG);
+  lbl(ctx,'r',(c1.x+c2.x)/2-6,168,SANG,20);
+  stampNum(ctx,400,'070');
+})();
+
+/* ============================================================
+   fig-071 -- q59: esfera inscrita en un cub.
+   Moviment: redueix-al-conegut. */
+(function(){
+  const ctx=mk('h2',560,500),hd=makeHandDraw(ctx,5002);ctx.translate(60,100);
+  const S=340,dx=0.3*S,dy=-0.2*S, V=cubeVerts(S,dx,dy);
+  drawCubeWire(hd,V,2.6);
+  const cx=(V.fBL.x+V.fTR.x)/2, cy=(V.fBL.y+V.fTR.y)/2, R=S/2;
+  hd.handEllipse(cx,cy,R,R,{lineWidth:2.4,irregularity:0.03,color:INK});
+  hd.handEllipse(cx,cy,R,R*0.32,{lineWidth:1.6,irregularity:0.03,rotation:-0.18,color:INK});
+  hd.handSegment(cx,cy,cx+R,cy,{lineWidth:1.8,dashed:true,dashPattern:[6,5],color:SANG});
+  hd.handDot(cx,cy,4,SANG);
+  lbl(ctx,'r',cx+R/2-6,cy-14,SANG,20);
+  stampNum(ctx,460,'071');
+})();
+
+/* ============================================================
+   fig-072 -- q62: casquet esferic, alcada h sobre esfera de radi R.
+   Moviment: redueix-al-conegut. */
+(function(){
+  const ctx=mk('h3',520,480),hd=makeHandDraw(ctx,5003);ctx.translate(260,260);
+  const R=200;
+  hd.handEllipse(0,0,R,R,{lineWidth:2.6,irregularity:0.025,color:INK});
+  const h=110; // alcada del casquet des del cim
+  const yCut=-R+h;
+  const rCut=Math.sqrt(R*R-yCut*yCut);
+  hd.handEllipse(0,yCut,rCut,rCut*0.28,{lineWidth:2,irregularity:0.03,color:SANG});
+  hd.handSegment(0,-R,0,yCut,{lineWidth:1.8,dashed:true,dashPattern:[6,5],color:SANG});
+  hd.handSegment(0,0,0,-R,{lineWidth:1.6,dashed:true,dashPattern:[4,4],color:INK});
+  hd.handDot(0,-R,3.5,SANG);hd.handDot(0,yCut,3.5,SANG);hd.handDot(0,0,3.5,INK);
+  lbl(ctx,'h',10,(-R+yCut)/2,SANG,20);
+  lbl(ctx,'R',10,-R/2,INK,20);
+  stampNum(ctx,460,'072');
+})();
+
+/* ============================================================
+   fig-073 -- q63: dues maneres de generar un cilindre per moviment.
+   Moviment: distingeix-casos. */
+(function(){
+  const ctx=mk('h4',900,420),hd=makeHandDraw(ctx,5004);
+
+  (function(){
+    ctx.save();ctx.translate(40,60);
+    const r=70;
+    hd.handEllipse(r,r,r,r,{lineWidth:2,irregularity:0.03,color:INK});
+    hd.handEllipse(r+240,r,r,r,{lineWidth:2,irregularity:0.03,color:INK});
+    hd.handSegment(r,0,r+240,0,{lineWidth:1.6,dashed:true,dashPattern:[6,5],color:SANG});
+    hd.handSegment(r,2*r,r+240,2*r,{lineWidth:1.6,dashed:true,dashPattern:[6,5],color:SANG});
+    lbl(ctx,'translació d\'un cercle',30,220,ACCENT_LOCAL(),20);
+    ctx.restore();
+  })();
+
+  (function(){
+    ctx.save();ctx.translate(480,40);
+    const w=140,hgt=220,ax=0;
+    quad(hd,ax,0,w,hgt,hgt,{lineWidth:2.4,color:INK});
+    hd.handSegment(ax,-10,ax,hgt+10,{lineWidth:2,dashed:true,dashPattern:[6,5],color:SANG});
+    // fletxa de gir
+    const arcMid={x:ax+30,y:hgt/2};
+    hd.handEllipse(ax,hgt/2,34,10,{startAngle:-1.6,endAngle:1.6,lineWidth:1.6,irregularity:0.05,color:SANG});
+    lbl(ctx,'rotació d\'un rectangle',10,270,ACCENT_LOCAL(),20);
+    ctx.restore();
+  })();
+
+  stampNum(ctx,400,'073');
+})();
+function ACCENT_LOCAL(){return '#8B5E3C';}
+
+/* ============================================================
+   fig-074 -- q48: frustum, arestes prolongades fins al vertex comu.
+   Moviment: redueix-al-conegut. */
+(function(){
+  const ctx=mk('h5',620,460),hd=makeHandDraw(ctx,5005);ctx.translate(60,170);
+  // vista frontal simplificada (2D suficient per mostrar la idea de completar la piramide)
+  const bw=260, tw=110, hgt=220, apexY=-140;
+  const BL={x:0,y:hgt},BR={x:bw,y:hgt}, TL={x:(bw-tw)/2,y:0}, TR={x:(bw+tw)/2,y:0};
+  hd.handSegment(BL.x,BL.y,BR.x,BR.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(TL.x,TL.y,TR.x,TR.y,{lineWidth:2.6,color:INK});
+  const sL=hd.handSegment(BL.x,BL.y,TL.x,TL.y,{lineWidth:2.6,color:INK});
+  const sR=hd.handSegment(BR.x,BR.y,TR.x,TR.y,{lineWidth:2.6,color:INK});
+  // prolongacio (sanguina) fins al vertex comu
+  const apex={x:bw/2,y:apexY};
+  hd.handSegment(TL.x,TL.y,apex.x,apex.y,{lineWidth:2,dashed:true,dashPattern:[7,6],color:SANG});
+  hd.handSegment(TR.x,TR.y,apex.x,apex.y,{lineWidth:2,dashed:true,dashPattern:[7,6],color:SANG});
+  hd.handDot(apex.x,apex.y,4,SANG);
+  hd.handSegment(bw/2,hgt,bw/2,apexY,{lineWidth:1.4,dashed:true,dashPattern:[4,4],color:INK});
+  lbl(ctx,'a',(TL.x+TR.x)/2-6,-14,INK,20);
+  lbl(ctx,'b',(BL.x+BR.x)/2-6,hgt+30,INK,20);
+  lbl(ctx,'h',bw/2+14,hgt/2,INK,20);
+  stampNum(ctx,420,'074');
+})();
+
+/* ============================================================
+   fig-075 -- q50: con aproximat per discs apilats.
+   Moviment: cas-limit. */
+(function(){
+  const ctx=mk('h6',520,560),hd=makeHandDraw(ctx,5006);ctx.translate(260,40);
+  const R=190, H=480, n=7;
+  hd.handSegment(0,0,-R,H,{lineWidth:2.6,color:INK});
+  hd.handSegment(0,0,R,H,{lineWidth:2.6,color:INK});
+  for(let i=1;i<=n;i++){
+    const yTop=(i-1)*H/n, yBot=i*H/n;
+    const rTop=R*yTop/H, rBot=R*yBot/H;
+    const col=(i===4)?SANG:INK;
+    hd.handEllipse(0,yTop,rTop,rTop*0.22,{lineWidth:1.8,irregularity:0.03,color:col});
+    hd.handSegment(-rTop,yTop,-rBot,yBot,{lineWidth:1.8,color:col});
+    hd.handSegment(rTop,yTop,rBot,yBot,{lineWidth:1.8,color:col});
+    hd.handEllipse(0,yBot,rBot,rBot*0.22,{lineWidth:1.8,irregularity:0.03,color:col});
+  }
+  stampNum(ctx,540,'075');
+})();
+
+/* ============================================================
+   fig-076 -- q57: tetraedre i octaedre, partits en piramides des del centre.
+   Moviment: redueix-al-conegut. */
+(function(){
+  const ctx=mk('h7',740,480),hd=makeHandDraw(ctx,5007);ctx.translate(50,70);
+  const bS=200;
+  const b1={x:0,y:220}, b2={x:bS,y:220}, b3={x:bS/2+40,y:220-bS*0.42};
+  const apex={x:bS/2+14,y:20};
+  hd.handSegment(b1.x,b1.y,b2.x,b2.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(b2.x,b2.y,b3.x,b3.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(b3.x,b3.y,b1.x,b1.y,{lineWidth:2,dashed:true,dashPattern:[7,6],color:INK});
+  hd.handSegment(apex.x,apex.y,b1.x,b1.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(apex.x,apex.y,b2.x,b2.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(apex.x,apex.y,b3.x,b3.y,{lineWidth:2,dashed:true,dashPattern:[7,6],color:INK});
+  const centreT={x:(b1.x+b2.x+b3.x+apex.x)/4,y:(b1.y+b2.y+b3.y+apex.y)/4};
+  [b1,b2,b3,apex].forEach(v=>hd.handSegment(centreT.x,centreT.y,v.x,v.y,{lineWidth:1.6,dashed:true,dashPattern:[5,5],color:SANG}));
+  hd.handDot(centreT.x,centreT.y,4,SANG);
+
+  const ox=390, R=110, cx=ox+R, cy=200;
+  const oL={x:cx-R,y:cy}, oR={x:cx+R,y:cy}, oF={x:cx,y:cy+R*0.42}, oB={x:cx,y:cy-R*0.42};
+  const oTop={x:cx,y:cy-R*0.42-90}, oBot={x:cx,y:cy+R*0.42+90};
+  hd.handSegment(oL.x,oL.y,oF.x,oF.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(oF.x,oF.y,oR.x,oR.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(oR.x,oR.y,oB.x,oB.y,{lineWidth:2,dashed:true,dashPattern:[7,6],color:INK});
+  hd.handSegment(oB.x,oB.y,oL.x,oL.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(oTop.x,oTop.y,oL.x,oL.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(oTop.x,oTop.y,oF.x,oF.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(oTop.x,oTop.y,oR.x,oR.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(oTop.x,oTop.y,oB.x,oB.y,{lineWidth:2,dashed:true,dashPattern:[7,6],color:INK});
+  hd.handSegment(oBot.x,oBot.y,oL.x,oL.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(oBot.x,oBot.y,oF.x,oF.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(oBot.x,oBot.y,oR.x,oR.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(oBot.x,oBot.y,oB.x,oB.y,{lineWidth:2,dashed:true,dashPattern:[7,6],color:INK});
+  hd.handDot(cx,cy,4,SANG);
+  [oL,oR,oF,oB,oTop,oBot].forEach(v=>hd.handSegment(cx,cy,v.x,v.y,{lineWidth:1.4,dashed:true,dashPattern:[4,4],color:SANG}));
+  stampNum(ctx,440,'076');
+})();
+
+/* ============================================================
+   fig-077 -- q58: dos cilindres perpendiculars (solid de Steinmetz).
+   Moviment: redueix-al-conegut (Cavalieri). */
+(function(){
+  const ctx=mk('h8',700,460),hd=makeHandDraw(ctx,5008);ctx.translate(60,60);
+  const r=150;
+  // cilindre horitzontal
+  hd.handEllipse(0,r,r*0.32,r,{lineWidth:2.2,irregularity:0.03,rotation:0,color:INK});
+  hd.handSegment(0,0,480,0,{lineWidth:2.4,color:INK});
+  hd.handSegment(0,2*r,480,2*r,{lineWidth:2.4,color:INK});
+  hd.handEllipse(480,r,r*0.32,r,{lineWidth:2.2,irregularity:0.03,color:INK});
+  // cilindre vertical (creuat)
+  const cx2=240;
+  hd.handEllipse(cx2,0,r,r*0.32,{lineWidth:2.2,irregularity:0.03,color:INK});
+  hd.handSegment(cx2-r,0,cx2-r,300,{lineWidth:2.4,color:INK});
+  hd.handSegment(cx2+r,0,cx2+r,300,{lineWidth:2.4,color:INK});
+  hd.handEllipse(cx2,300,r,r*0.32,{lineWidth:2.2,irregularity:0.03,color:INK});
+  // pla de tall horitzontal (sanguina) marcant la seccio quadrada de la interseccio
+  const yCut=r*0.55;
+  const half=Math.sqrt(r*r-(r-yCut)*(r-yCut));
+  const sq=[{x:cx2-half,y:r-half},{x:cx2+half,y:r-half},{x:cx2+half,y:r+half},{x:cx2-half,y:r+half}];
+  for(let i=0;i<4;i++) hd.handSegment(sq[i].x,sq[i].y,sq[(i+1)%4].x,sq[(i+1)%4].y,{lineWidth:2,color:SANG});
+  stampNum(ctx,420,'077');
+})();
+
+/* ============================================================
+   fig-078 -- q61: esfera vs cilindre tancat que la circumscriu.
+   Moviment: dues-maneres. */
+(function(){
+  const ctx=mk('h9',820,440),hd=makeHandDraw(ctx,5009);ctx.translate(60,60);
+  const R=150;
+  hd.handEllipse(R,R,R,R,{lineWidth:2.4,irregularity:0.03,color:INK});
+  hd.handEllipse(R,R,R,R*0.3,{lineWidth:1.6,irregularity:0.03,rotation:-0.15,color:INK});
+  lblC(ctx,'r',R,R-40,INK,20);
+
+  const ox=420, r2=R;
+  hd.handEllipse(ox+r2,0,r2,r2*0.28,{lineWidth:2.2,irregularity:0.03,color:INK});
+  hd.handSegment(ox,0,ox,2*R,{lineWidth:2.4,color:INK});
+  hd.handSegment(ox+2*r2,0,ox+2*r2,2*R,{lineWidth:2.4,color:INK});
+  hd.handEllipse(ox+r2,2*R,r2,r2*0.28,{lineWidth:2.2,irregularity:0.03,color:INK});
+  lbl(ctx,'r',ox+r2-6,-16,INK,20);
+  lbl(ctx,'2r',ox+2*r2+14,R,INK,20);
+  stampNum(ctx,400,'078');
+})();
+
+/* ============================================================
+   fig-079 -- q64: bastó que rellisca entre paret i terra -- l'envolupant.
+   Moviment: cas-limit. */
+(function(){
+  const ctx=mk('h10',520,520),hd=makeHandDraw(ctx,5010);ctx.translate(40,40);
+  const L=420, n=11;
+  hd.handSegment(0,L,0,0,{lineWidth:2.6,color:INK});
+  hd.handSegment(0,L,L,L,{lineWidth:2.6,color:INK});
+  for(let i=0;i<=n;i++){
+    const t=(i/n)*(Math.PI/2);
+    const floorEnd={x:L*Math.cos(t),y:L};
+    const wallEnd={x:0,y:L-L*Math.sin(t)};
+    hd.handSegment(floorEnd.x,floorEnd.y,wallEnd.x,wallEnd.y,{lineWidth:1.6,color:(i===0||i===n)?INK:SANG});
+  }
+  lbl(ctx,'L',-34,L-60,INK,20);
+  stampNum(ctx,480,'079');
+})();
+
+/* ============================================================
+   fig-080 -- q65: rectangle girat al voltant d'un costat -> cilindre.
+   Moviment: construeix-per-definir. */
+(function(){
+  const ctx=mk('h11',480,420),hd=makeHandDraw(ctx,5011);ctx.translate(60,60);
+  const w=180,hgt=260;
+  quad(hd,0,0,w,hgt,hgt,{lineWidth:2.6,color:INK});
+  hd.handSegment(0,-16,0,hgt+16,{lineWidth:2,dashed:true,dashPattern:[6,5],color:INK});
+  const cen={x:w,y:hgt/2};
+  hd.handDot(cen.x,cen.y,5,SANG);
+  lbl(ctx,'centroide',cen.x-70,cen.y-16,SANG,17);
+  hd.handEllipse(0,hgt/2,26,7,{startAngle:-1.6,endAngle:1.6,lineWidth:1.6,irregularity:0.05,color:SANG});
+  stampNum(ctx,380,'080');
+})();
+
+/* ============================================================
+   fig-081 -- q67: segment girat -> superficie lateral d'un cilindre.
+   Moviment: construeix-per-definir. */
+(function(){
+  const ctx=mk('h12',480,420),hd=makeHandDraw(ctx,5012);ctx.translate(60,80);
+  const w=180,hgt=220;
+  hd.handSegment(w,0,w,hgt,{lineWidth:2.8,color:INK});
+  hd.handSegment(0,-16,0,hgt+16,{lineWidth:2,dashed:true,dashPattern:[6,5],color:INK});
+  const cen={x:w,y:hgt/2};
+  hd.handDot(cen.x,cen.y,5,SANG);
+  lbl(ctx,'centroide',cen.x-100,cen.y-16,SANG,17);
+  hd.handEllipse(0,hgt/2,26,7,{startAngle:-1.6,endAngle:1.6,lineWidth:1.6,irregularity:0.05,color:SANG});
+  stampNum(ctx,380,'081');
+})();
+
+/* ============================================================
+   fig-082 -- q66: rectangle NO tocant l'eix -> tub (Pappus, aplicacio).
+   Moviment: redueix-al-conegut. */
+(function(){
+  const ctx=mk('h13',540,420),hd=makeHandDraw(ctx,5013);ctx.translate(60,60);
+  const d=110, w=110, hgt=240;
+  quad(hd,d,0,w,hgt,hgt,{lineWidth:2.6,color:INK});
+  hd.handSegment(0,-16,0,hgt+16,{lineWidth:2,dashed:true,dashPattern:[6,5],color:INK});
+  hd.handSegment(0,hgt/2,d,hgt/2,{lineWidth:1.6,dashed:true,dashPattern:[5,5],color:SANG});
+  lbl(ctx,'d',d/2-6,hgt/2-10,SANG,18);
+  lbl(ctx,'w',d+w/2-6,-14,INK,18);
+  lbl(ctx,'H',d+w+14,hgt/2,INK,18);
+  hd.handDot(d+w/2,hgt/2,4,SANG);
+  stampNum(ctx,380,'082');
+})();
+
+/* ============================================================
+   fig-083 -- q68: triangle rectangle girat -> con; on esta el centroide?
+   Moviment: dues-maneres. */
+(function(){
+  const ctx=mk('h14',480,420),hd=makeHandDraw(ctx,5014);ctx.translate(60,60);
+  const r=180,hgt=260;
+  const O={x:0,y:hgt}, R={x:r,y:hgt}, Tp={x:0,y:0};
+  hd.handSegment(O.x,O.y,R.x,R.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(R.x,R.y,Tp.x,Tp.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(Tp.x,Tp.y,O.x,O.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(0,-16,0,hgt+16,{lineWidth:1.8,dashed:true,dashPattern:[6,5],color:INK});
+  rightAngle(hd,O.x,O.y,R.x,R.y,Tp.x,Tp.y,16,INK);
+  const d=r/3;
+  hd.handSegment(d,hgt-10,d,hgt+10,{lineWidth:2,color:SANG});
+  hd.handDot(d,hgt,5,SANG);
+  lbl(ctx,'centroide?',d-20,hgt+34,SANG,17);
+  lbl(ctx,'r',r/2-6,hgt+22,INK,18);
+  lbl(ctx,'h',-24,hgt/2,INK,18);
+  hd.handEllipse(0,hgt/2,22,7,{startAngle:-1.6,endAngle:1.6,lineWidth:1.6,irregularity:0.05,color:SANG});
+  stampNum(ctx,380,'083');
+})();
+</script>
+</body></html>
