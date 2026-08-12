@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+ body{margin:0;background:#fff}canvas{display:block;margin:0 0 24px 0}
+</style></head><body>
+<script src="hand-draw.js"></script>
+<script src="comu.js"></script>
+<script>
+function stampNum(ctx,h,num){
+  ctx.save();ctx.setTransform(1,0,0,1,0,0);
+  ctx.font='16px Georgia';ctx.fillStyle='#8a8580';
+  ctx.fillText(num, 8, h-8);ctx.restore();
+}
+function regularPoly(n,cx,cy,R,a0){
+  const pts=[];
+  for(let i=0;i<n;i++){const t=a0+i*2*Math.PI/n;pts.push({x:cx+R*Math.cos(t),y:cy+R*Math.sin(t)});}
+  return pts;
+}
+// Etiquetes de terme: un únic color d'accent restringit, DIFERENT de la
+// sanguina de les guies (SANG=#b0453a) -- v. GLOSSARY-DESIGN-NOTES.md §5,
+// "not the two-layer authorship distinction". Reutilitza --pencil de
+// tokens.css (#8B5E3C), l'accent que la UI ja fa servir fora del canvas.
+const ACCENT='#8B5E3C';
+
+/* ============================================================
+   gloss-triangles-costats.png -- equilàter / isòsceles / escalè.
+   Tot INK: no hi ha "figura del llibre" vs "afegit de l'alumne" aquí,
+   només un sol diagrama. Els noms de terme són l'únic que porta accent. */
+(function(){
+  const ctx=mk('g1',900,340),hd=makeHandDraw(ctx,9001);
+
+  // equilater
+  (function(){
+    ctx.save();ctx.translate(40,40);
+    const Sd=220,h0=Sd*Math.sqrt(3)/2;
+    const A={x:Sd/2,y:0},B={x:0,y:h0},C={x:Sd,y:h0};
+    hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.6,color:INK});
+    tick(hd,A.x,A.y,B.x,B.y,INK);tick(hd,A.x,A.y,C.x,C.y,INK);tick(hd,B.x,B.y,C.x,C.y,INK);
+    lblC(ctx,'equilàter',Sd/2,h0+34,ACCENT,20);
+    ctx.restore();
+  })();
+
+  // isosceles
+  (function(){
+    ctx.save();ctx.translate(340,40);
+    const A={x:110,y:0},B={x:0,y:220},C={x:230,y:220};
+    hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.6,color:INK});
+    tick(hd,A.x,A.y,B.x,B.y,INK);tick(hd,A.x,A.y,C.x,C.y,INK);
+    lblC(ctx,'isòsceles',115,254,ACCENT,20);
+    ctx.restore();
+  })();
+
+  // escale
+  (function(){
+    ctx.save();ctx.translate(640,40);
+    const A={x:40,y:10},B={x:0,y:230},C={x:230,y:170};
+    hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.6,color:INK});
+    lblC(ctx,'escalè',115,264,ACCENT,20);
+    ctx.restore();
+  })();
+
+  stampNum(ctx,320,'g-001');
+})();
+
+/* ============================================================
+   gloss-triangles-angles.png -- acutangle / rectangle / obtusangle. */
+(function(){
+  const ctx=mk('g2',900,340),hd=makeHandDraw(ctx,9002);
+
+  // acutangle
+  (function(){
+    ctx.save();ctx.translate(40,40);
+    const A={x:90,y:0},B={x:0,y:220},C={x:230,y:190};
+    hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.6,color:INK});
+    lblC(ctx,'acutangle',115,254,ACCENT,20);
+    ctx.restore();
+  })();
+
+  // rectangle
+  (function(){
+    ctx.save();ctx.translate(340,40);
+    const A={x:0,y:0},B={x:0,y:220},C={x:230,y:220};
+    hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.6,color:INK});
+    rightAngle(hd,B.x,B.y,A.x,A.y,C.x,C.y,20,INK);
+    lblC(ctx,'triangle rectangle',115,254,ACCENT,20);
+    lbl(ctx,'hipotenusa',95,95,INK,15);
+    ctx.restore();
+  })();
+
+  // obtusangle
+  (function(){
+    ctx.save();ctx.translate(640,60);
+    const A={x:20,y:0},B={x:0,y:190},C={x:230,y:110};
+    hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.6,color:INK});
+    angleMark(hd,B.x,B.y,A.x,A.y,C.x,C.y,30,1,INK);
+    lblC(ctx,'obtusangle',115,234,ACCENT,20);
+    ctx.restore();
+  })();
+
+  stampNum(ctx,320,'g-002');
+})();
+
+/* ============================================================
+   gloss-cevianes.png -- altura, mediana, bisectriu: un sol triangle,
+   les tres cevianes des del MATEIX vèrtex, distingides per traç
+   (contínua/discontínua/puntejada) ja que aquí no hi ha sanguina que
+   les separi per color. */
+(function(){
+  const ctx=mk('g3',640,420),hd=makeHandDraw(ctx,9003);ctx.translate(70,40);
+  const A={x:150,y:0},B={x:0,y:300},C={x:500,y:260};
+  hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.8,color:INK});
+  hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.8,color:INK});
+  const baseS=hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.8,color:INK});
+
+  // mediana: A al punt mitja de BC
+  const M=baseS.pointAtT(0.5);
+  hd.handSegment(A.x,A.y,M.x,M.y,{lineWidth:2,dashed:true,dashPattern:[10,7],color:INK});
+  tick(hd,B.x,B.y,M.x,M.y,INK);tick(hd,M.x,M.y,C.x,C.y,INK);
+
+  // altura: perpendicular real des de A a la recta BC
+  const dx=C.x-B.x,dy=C.y-B.y,L2=dx*dx+dy*dy;
+  const tFoot=((A.x-B.x)*dx+(A.y-B.y)*dy)/L2;
+  const foot={x:B.x+tFoot*dx,y:B.y+tFoot*dy};
+  hd.handSegment(A.x,A.y,foot.x,foot.y,{lineWidth:2,dashed:true,dashPattern:[3,6],color:INK});
+  rightAngle(hd,foot.x,foot.y,A.x,A.y,C.x,C.y,16,INK);
+
+  // bisectriu: cap al punt de BC segons el teorema de la bisectriu
+  function d(p,q){return Math.hypot(p.x-q.x,p.y-q.y);}
+  const AB=d(A,B),AC=d(A,C);
+  const tBis=AB/(AB+AC);
+  const P=baseS.pointAtT(tBis);
+  hd.handSegment(A.x,A.y,P.x,P.y,{lineWidth:2,dashed:true,dashPattern:[2,5],color:INK});
+  angleMark(hd,A.x,A.y,B.x,B.y,P.x,P.y,30,1,INK);
+  angleMark(hd,A.x,A.y,P.x,P.y,C.x,C.y,30,1,INK);
+
+  lbl(ctx,'altura',foot.x-58,foot.y+34,ACCENT,17);
+  lbl(ctx,'bisectriu',P.x-20,foot.y+58,ACCENT,17);
+  lbl(ctx,'mediana',M.x+18,foot.y+34,ACCENT,17);
+  stampNum(ctx,400,'g-003');
+})();
+
+/* ============================================================
+   gloss-parelles-angles.png -- oposats pel vèrtex, complementaris,
+   suplementaris: dos panells petits. */
+(function(){
+  const ctx=mk('g4',760,400),hd=makeHandDraw(ctx,9004);
+
+  // panell 1: dues rectes que es creuen -- oposats pel vertex + suplementaris
+  (function(){
+    ctx.save();ctx.translate(180,150);
+    const L=150;
+    const a1=-20*Math.PI/180, a2=a1+Math.PI;
+    const b1=100*Math.PI/180, b2=b1+Math.PI;
+    hd.handSegment(L*Math.cos(a1),L*Math.sin(a1),L*Math.cos(a2),L*Math.sin(a2),{lineWidth:2.4,color:INK});
+    hd.handSegment(L*Math.cos(b1),L*Math.sin(b1),L*Math.cos(b2),L*Math.sin(b2),{lineWidth:2.4,color:INK});
+    angleMark(hd,0,0,L*Math.cos(a1),L*Math.sin(a1),L*Math.cos(b1),L*Math.sin(b1),24,1,INK);
+    angleMark(hd,0,0,L*Math.cos(a2),L*Math.sin(a2),L*Math.cos(b2),L*Math.sin(b2),24,1,INK);
+    angleMark(hd,0,0,L*Math.cos(b1),L*Math.sin(b1),L*Math.cos(a2),L*Math.sin(a2),44,2,INK);
+    angleMark(hd,0,0,L*Math.cos(b2),L*Math.sin(b2),L*Math.cos(a1),L*Math.sin(a1),44,2,INK);
+    lblC(ctx,'oposats pel vèrtex (1 arc) i suplementaris (1+2 arcs)',0,175,ACCENT,16);
+    ctx.restore();
+  })();
+
+  stampNum(ctx,380,'g-004a');
+})();
+(function(){
+  const ctx=mk('g5',420,300),hd=makeHandDraw(ctx,9005);ctx.translate(40,220);
+  const L=220;
+  const a1=0, a2=55*Math.PI/180, a3=Math.PI/2;
+  hd.handSegment(0,0,L,0,{lineWidth:2.4,color:INK});
+  hd.handSegment(0,0,L*Math.cos(a3),-L*Math.sin(a3),{lineWidth:2.4,color:INK});
+  hd.handSegment(0,0,L*Math.cos(a2),-L*Math.sin(a2),{lineWidth:2.2,color:INK});
+  rightAngle(hd,0,0,L,0,L*Math.cos(a3),-L*Math.sin(a3),18,INK);
+  angleMark(hd,0,0,L,0,L*Math.cos(a2),-L*Math.sin(a2),34,1,INK);
+  angleMark(hd,0,0,L*Math.cos(a2),-L*Math.sin(a2),L*Math.cos(a3),-L*Math.sin(a3),34,2,INK);
+  lblC(ctx,'complementaris: junts fan 90°',110,40,ACCENT,17);
+  stampNum(ctx,260,'g-004b');
+})();
+
+/* ============================================================
+   gloss-triangles-semblants.png -- mateixos angles, mides diferents. */
+(function(){
+  const ctx=mk('g6',780,420),hd=makeHandDraw(ctx,9006);
+
+  (function(){
+    ctx.save();ctx.translate(40,40);
+    const A={x:60,y:0},B={x:0,y:150},C={x:170,y:130};
+    hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.4,color:INK});
+    hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.4,color:INK});
+    hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.4,color:INK});
+    angleMark(hd,A.x,A.y,B.x,B.y,C.x,C.y,20,1,INK);
+    angleMark(hd,B.x,B.y,A.x,A.y,C.x,C.y,20,2,INK);
+    angleMark(hd,C.x,C.y,A.x,A.y,B.x,B.y,20,3,INK);
+    ctx.restore();
+  })();
+
+  (function(){
+    ctx.save();ctx.translate(320,10);
+    const A={x:130,y:0},B={x:0,y:320},C={x:360,y:280};
+    hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.6,color:INK});
+    angleMark(hd,A.x,A.y,B.x,B.y,C.x,C.y,42,1,INK);
+    angleMark(hd,B.x,B.y,A.x,A.y,C.x,C.y,42,2,INK);
+    angleMark(hd,C.x,C.y,A.x,A.y,B.x,B.y,42,3,INK);
+    ctx.restore();
+  })();
+
+  lblC(ctx,'triangles semblants — mateixos angles, mides diferents',390,390,ACCENT,18);
+  stampNum(ctx,400,'g-005');
+})();
+
+/* ============================================================
+   gloss-arc-capac.png -- angle inscrit / arc capaç / quadrilàter cíclic
+   en una sola figura: quatre punts sobre un cercle (quadrilàter cíclic),
+   i dos dels quatre veient el mateix segment BC amb el mateix angle
+   (angle inscrit sobre el mateix arc = arc capaç). */
+(function(){
+  const ctx=mk('g7',520,520),hd=makeHandDraw(ctx,9007);ctx.translate(260,260);
+  const R=220;
+  const P=regularPoly(4,0,0,R,-Math.PI/2-0.3).map((p,i)=>{
+    // desplaça'ls perquè no siguin un quadrat perfecte -- un quadrilater
+    // ciclic qualsevol, no un cas especial
+    const jitAng=[0,0.35,-0.15,0.2][i];
+    const t=Math.atan2(p.y,p.x)+jitAng;
+    return {x:R*Math.cos(t),y:R*Math.sin(t)};
+  });
+  const circ=hd.handEllipse(0,0,R,R,{lineWidth:2.4,irregularity:0.02,color:INK});
+  const [A,B,C,D]=P;
+  hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.2,color:INK});
+  hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.2,color:INK});
+  hd.handSegment(C.x,C.y,D.x,D.y,{lineWidth:2.2,color:INK});
+  hd.handSegment(D.x,D.y,A.x,A.y,{lineWidth:2.2,color:INK});
+  // angle inscrit a A i a D, tots dos mirant el segment BC (mateix arc)
+  hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:1.6,dashed:true,dashPattern:[6,5],color:INK});
+  hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:1.6,dashed:true,dashPattern:[6,5],color:INK});
+  hd.handSegment(D.x,D.y,B.x,B.y,{lineWidth:1.6,dashed:true,dashPattern:[6,5],color:INK});
+  hd.handSegment(D.x,D.y,C.x,C.y,{lineWidth:1.6,dashed:true,dashPattern:[6,5],color:INK});
+  angleMark(hd,A.x,A.y,B.x,B.y,C.x,C.y,34,1,INK);
+  angleMark(hd,D.x,D.y,B.x,B.y,C.x,C.y,34,1,INK);
+  lblC(ctx,'A',A.x*1.12,A.y*1.12,INK,20);
+  lblC(ctx,'B',B.x*1.12,B.y*1.12,INK,20);
+  lblC(ctx,'C',C.x*1.12,C.y*1.12,INK,20);
+  lblC(ctx,'D',D.x*1.12,D.y*1.12,INK,20);
+  lblC(ctx,'angle inscrit sobre el mateix arc BC: A i D el veuen igual',0,240,ACCENT,17);
+  stampNum(ctx,500,'g-006');
+})();
+</script>
+</body></html>
