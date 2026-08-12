@@ -20,6 +20,10 @@
     index.html#                 → vista llista (totes, o filtrada)
     index.html#q01              → vista detall de la pregunta q01
     index.html#curs=2ESO        → llista filtrada (quan existeixi §6)
+    index.html#demo             → intro "què és una demostració" (v.
+                                   DEMO-PROOF-INTRO-DESIGN-NOTES.md §5) —
+                                   ruta reservada i literal, afegida com a
+                                   un cas més abans de la cerca d'id.
 
   ORIGEN DEL PATRÓ I ON DIVERGEIX DE sol/tasca.html
   El mecanisme show(id) + classList.toggle('active') de sol/tasca.html es
@@ -68,6 +72,15 @@
 
     if (hash === "") {
       return { kind: "llista", filtres: {} };
+    }
+
+    // Ruta reservada i literal per a la intro "què és una demostració"
+    // (DEMO-PROOF-INTRO-DESIGN-NOTES.md §5): es comprova ABANS de la
+    // cerca d'id de pregunta, pel mateix motiu que el cas clau=valor ja
+    // hi seu abans -- cap redisseny d'aquesta funció, una sola entrada
+    // més a la mateixa cadena de casos.
+    if (hash === "demo") {
+      return { kind: "demo" };
     }
 
     // Forma clau=valor: reservat per a filtres (curs, i en el futur
