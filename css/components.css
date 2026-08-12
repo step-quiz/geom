@@ -210,3 +210,127 @@
   flex: 1 1 12rem;
   margin-top: 0;
 }
+
+/* ─────────────────────────────────────────────────────────────────────
+   GUIA DE DEMOSTRACIÓ (escala de pistes)
+   
+   Aparença deliberadament SÒBRIA: tot el color de la guia viu dins dels
+   PNG (la sanguina #b0453a de les construccions). Si la interfície també
+   fes servir aquest to, la sanguina deixaria de significar "això ho
+   afegeixes tu" i passaria a ser simplement "el color de la secció de
+   pistes", que és precisament la distinció que les figures existeixen per
+   ensenyar. Per això aquí només s'usen --pencil i els grisos del paper.
+   
+   NOTA DE PALETA: tokens.css diu explícitament que s'evita "qualsevol to
+   proper al terracota". Les figures de guia el fan servir (sanguina), però
+   només DINS de la imatge i mai com a color d'interfície, de manera que la
+   regla del document es manté allà on es va escriure: als elements del
+   lloc.
+   ───────────────────────────────────────────────────────────────────── */
+
+.guia {
+  margin-top: var(--space-6);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--rule);
+  max-width: var(--measure);
+}
+
+.guia__header { margin-bottom: var(--space-4); }
+
+.guia__title {
+  font-family: var(--font-serif);
+  font-size: var(--fs-eyebrow);
+  font-weight: 600;
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+.guia__move {
+  font-family: var(--font-serif);
+  font-size: var(--fs-body);
+  font-style: italic;
+  color: var(--ink);
+  margin: var(--space-2) 0 0;
+}
+
+/* Els passos porten numeració pròpia (la "Pista N" del títol), així que la
+   dels <li> sobra i duplicaria el número. */
+.guia__steps { list-style: none; margin: 0; padding: 0; }
+
+.guia__step {
+  margin-bottom: var(--space-5);
+  padding-left: var(--space-4);
+  border-left: 2px solid var(--rule);
+}
+
+/* El nivell 2 és la figura: l'únic que es marca, perquè és el gir de
+   l'escala i ha de ser localitzable d'una ullada quan es torna enrere. */
+.guia__step--n2 { border-left-color: var(--pencil-soft); }
+
+.guia__step-label {
+  font-family: var(--font-mono);
+  font-size: var(--fs-metadata);
+  letter-spacing: var(--tracking-mono);
+  color: var(--ink-faint);
+  margin: 0 0 var(--space-2);
+}
+
+.guia__text {
+  font-family: var(--font-serif);
+  font-size: var(--fs-body);
+  line-height: var(--lh-body);
+  color: var(--ink);
+  margin: 0 0 var(--space-3);
+}
+
+.guia__figure { margin: var(--space-4) 0 0; }
+
+/* multiply: mateix motiu que a les figures del llibre — el blanc del PNG
+   desapareix i el traç es fon amb el crema del paper (v. base.css). */
+.guia__figure img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  mix-blend-mode: multiply;
+}
+
+.guia__reveal {
+  font-family: var(--font-serif);
+  font-size: var(--fs-body);
+  color: var(--ink);
+  background: var(--paper-raised);
+  border: 1px solid var(--rule-strong);
+  border-radius: 2px;
+  padding: var(--space-2) var(--space-4);
+  cursor: pointer;
+  margin-top: var(--space-2);
+}
+.guia__reveal:hover { border-color: var(--pencil); color: var(--pencil); }
+.guia__reveal:focus-visible { outline: 2px solid var(--pencil); outline-offset: 2px; }
+
+.guia__footer {
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px dashed var(--rule);
+}
+
+.guia__subtitle {
+  font-family: var(--font-mono);
+  font-size: var(--fs-metadata);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0 0 var(--space-2);
+}
+
+.guia__check { margin-bottom: var(--space-4); }
+
+/* La marca de la llista: una pregunta amb guia es distingeix d'una sense. */
+.guia-badge {
+  font-family: var(--font-mono);
+  font-size: var(--fs-metadata);
+  letter-spacing: var(--tracking-mono);
+  color: var(--pencil);
+}
