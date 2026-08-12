@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+ body{margin:0;background:#fff}canvas{display:block;margin:0 0 24px 0}
+</style></head><body>
+<script src="hand-draw.js"></script>
+<script src="comu.js"></script>
+<script>
+// Segell de número de producció -- marca de producció, mai part de la figura.
+// Reinicia la transformació abans d'escriure perquè el marge sigui sempre
+// relatiu al canvas, independentment de qualsevol translate() previ.
+function stampNum(ctx,h,num){
+  ctx.save();
+  ctx.setTransform(1,0,0,1,0,0);
+  ctx.font='18px Georgia';
+  ctx.fillStyle='#8a8580';
+  ctx.fillText(num, 8, h-8);
+  ctx.restore();
+}
+
+/* fig-014 -- q13: la ceviana al punt mitjà (mateixa base, mateixa alçada) */
+(function(){const ctx=mk('g1',620,430),hd=makeHandDraw(ctx,1313);ctx.translate(60,50);
+ const B=jit(hd,{x:0,y:320},480), C=jit(hd,{x:460,y:320},480), A=jit(hd,{x:150,y:10},480);
+ hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:3.2,color:INK});
+ hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:3.2,color:INK});
+ const base=hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:3.4,color:INK});
+ const M=base.pointAtT(0.5);
+ // peu de l'alçada: projecció real de A sobre BC, després llegida del traç real
+ const vx=C.x-B.x, vy=C.y-B.y, L2=vx*vx+vy*vy;
+ let tFoot=((A.x-B.x)*vx+(A.y-B.y)*vy)/L2;
+ tFoot=Math.max(0.04,Math.min(0.96,tFoot));
+ const foot=base.pointAtT(tFoot);
+ hd.handSegment(A.x,A.y,M.x,M.y,{dashed:true,lineWidth:2.6,dashPattern:[13,10],color:INK});
+ hd.handSegment(A.x,A.y,foot.x,foot.y,{dashed:true,lineWidth:2.4,dashPattern:[9,8],color:SANG});
+ rightAngle(hd,foot.x,foot.y,A.x,A.y,C.x,C.y,18);
+ tick(hd,B.x,B.y,M.x,M.y);tick(hd,M.x,M.y,C.x,C.y);
+ lbl(ctx,'A',A.x-6,A.y-14,INK,28);
+ stampNum(ctx,430,'014');})();
+
+/* fig-015 -- q42: el diàmetre pel punt, com a q41 */
+(function(){const ctx=mk('g2',640,640),hd=makeHandDraw(ctx,4242);ctx.translate(70,60);
+ const O={x:250,y:250}, R=220;
+ function D2R(d){return d*Math.PI/180;}
+ function pt(deg){return {x:O.x+R*Math.cos(D2R(deg)), y:O.y-R*Math.sin(D2R(deg))};}
+ const A=pt(200), B=pt(340), P=pt(80), Q=pt(140), Pp=pt(260);
+ hd.handEllipse(O.x,O.y,R,R,{lineWidth:3.2,color:INK,irregularity:0.03});
+ [[P,A],[P,B],[Q,A],[Q,B],[A,B]].forEach(s=>hd.handSegment(s[0].x,s[0].y,s[1].x,s[1].y,{lineWidth:2.8,color:INK}));
+ angleMark(hd,P.x,P.y,A.x,A.y,B.x,B.y,34,1,INK);
+ angleMark(hd,Q.x,Q.y,A.x,A.y,B.x,B.y,34,1,INK);
+ [A,B,P,Q].forEach(p=>hd.handDot(p.x,p.y,6,INK));
+ hd.handDot(O.x,O.y,5,INK);
+ hd.handSegment(P.x,P.y,Pp.x,Pp.y,{dashed:true,lineWidth:2.4,dashPattern:[11,9],color:SANG});
+ hd.handDot(Pp.x,Pp.y,6,SANG);
+ hd.handSegment(O.x,O.y,A.x,A.y,{dashed:true,lineWidth:1.6,dashPattern:[7,7],color:SANG});
+ hd.handSegment(O.x,O.y,B.x,B.y,{dashed:true,lineWidth:1.6,dashPattern:[7,7],color:SANG});
+ tick(hd,O.x,O.y,A.x,A.y);tick(hd,O.x,O.y,B.x,B.y);tick(hd,O.x,O.y,P.x,P.y);
+ lbl(ctx,'A',A.x-24,A.y+8,INK,26);lbl(ctx,'B',B.x+10,B.y+8,INK,26);
+ lbl(ctx,'P',P.x-6,P.y-14,INK,26);lbl(ctx,'Q',Q.x-6,Q.y-14,INK,26);
+ stampNum(ctx,640,'015');})();
+
+/* fig-016 -- q86: el mateix angle i els mateixos dos costats, dos triangles */
+(function(){const ctx=mk('g3',680,460),hd=makeHandDraw(ctx,8686);ctx.translate(60,50);
+ const A=jit(hd,{x:0,y:340},400), B=jit(hd,{x:400,y:340},400);
+ const ang=D2R=30*Math.PI/180;
+ const rayEnd={x:A.x+560*Math.cos(ang), y:A.y-560*Math.sin(ang)};
+ hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:3.2,color:INK});
+ hd.handSegment(A.x,A.y,rayEnd.x,rayEnd.y,{lineWidth:3,color:INK});
+ angleMark(hd,A.x,A.y,B.x,B.y,rayEnd.x,rayEnd.y,40,1,INK);
+ // interseccions reals de l'arc de radi r=260 centrat a B amb el raig
+ const r=260;
+ const ux=Math.cos(ang), uy=-Math.sin(ang);
+ const bx=A.x, by=A.y; // paràmetre t: punt = A + t*(ux,uy)
+ const dxAB=bx-B.x, dyAB=by-B.y;
+ const a2=1, b2=2*(ux*(A.x-B.x)+uy*(A.y-B.y)), c2=(A.x-B.x)**2+(A.y-B.y)**2-r*r;
+ const disc=b2*b2-4*a2*c2, sq=Math.sqrt(disc);
+ const t1=(-b2+sq)/2, t2=(-b2-sq)/2;
+ const C1={x:A.x+ux*t1,y:A.y+uy*t1}, C2={x:A.x+ux*t2,y:A.y+uy*t2};
+ // arc sanguina que mostra el compàs (només el tram entre C2 i C1)
+ // handEllipse fa servir x=cx+r*cos(t), y=cy+r*sin(t) -- SENSE invertir la y.
+ const a1=Math.atan2(C1.y-B.y,C1.x-B.x), a2b=Math.atan2(C2.y-B.y,C2.x-B.x);
+ hd.handEllipse(B.x,B.y,r,r,{startAngle:Math.min(a1,a2b)-0.12,endAngle:Math.max(a1,a2b)+0.12,
+   passes:1,lineWidth:2.2,irregularity:0.02,color:SANG});
+ hd.handSegment(B.x,B.y,C1.x,C1.y,{dashed:true,lineWidth:2.2,dashPattern:[9,8],color:SANG});
+ hd.handSegment(B.x,B.y,C2.x,C2.y,{dashed:true,lineWidth:2.2,dashPattern:[9,8],color:SANG});
+ tick(hd,B.x,B.y,C1.x,C1.y);tick(hd,B.x,B.y,C2.x,C2.y);
+ hd.handDot(C1.x,C1.y,6,SANG);hd.handDot(C2.x,C2.y,6,SANG);
+ hd.handDot(A.x,A.y,6,INK);hd.handDot(B.x,B.y,6,INK);
+ lbl(ctx,'A',A.x-24,A.y+6,INK,26);lbl(ctx,'B',B.x-6,B.y+30,INK,26);
+ lbl(ctx,'C',C1.x+10,C1.y-6,SANG,26);lbl(ctx,"C'",C2.x+10,C2.y-6,SANG,26);
+ stampNum(ctx,460,'016');})();
+
+/* fig-017 -- q23 (a): el mateix truc de q22, amb un sol cercle i dos diàmetres */
+(function(){const ctx=mk('g4',520,520),hd=makeHandDraw(ctx,2323);ctx.translate(60,50);
+ const O={x:200,y:200}, R=190, r=R*(Math.SQRT2-1);
+ hd.handSegment(O.x-R,O.y,O.x+R,O.y,{lineWidth:2.8,wobble:1.0,color:INK});
+ hd.handSegment(O.x,O.y-R,O.x,O.y+R,{lineWidth:2.8,wobble:1.0,color:INK});
+ hd.handEllipse(O.x,O.y,R,R,{lineWidth:3.2,color:INK,irregularity:0.03});
+ const c={x:O.x+r,y:O.y-r};
+ hd.handEllipse(c.x,c.y,r,r,{lineWidth:3,color:INK,pinAngles:[Math.PI/2,Math.PI,-Math.PI/4],pinSigma:0.4});
+ const legPt={x:c.x,y:O.y};
+ hd.handSegment(O.x,O.y,c.x,c.y,{dashed:true,lineWidth:2.4,dashPattern:[11,9],color:SANG});
+ hd.handSegment(legPt.x,legPt.y,c.x,c.y,{dashed:true,lineWidth:2,dashPattern:[7,7],color:SANG});
+ rightAngle(hd,legPt.x,legPt.y,O.x,O.y,c.x,c.y,16);
+ hd.handDot(O.x,O.y,6,SANG);hd.handDot(c.x,c.y,6,SANG);
+ lbl(ctx,'r',(legPt.x+c.x)/2+10,(legPt.y+c.y)/2+6,SANG,26);
+ lbl(ctx,'?',(O.x+c.x)/2-28,(O.y+c.y)/2-6,SANG,30);
+ stampNum(ctx,520,'017');})();
+
+/* fig-018 -- q10: la diagonal com a plec de simetria */
+(function(){const ctx=mk('g5',480,500),hd=makeHandDraw(ctx,1010);ctx.translate(60,50);
+ const T=jit(hd,{x:200,y:50},340), Bo=jit(hd,{x:200,y:390},340),
+       L=jit(hd,{x:90,y:220},340), R=jit(hd,{x:310,y:220},340);
+ [[T,R],[R,Bo],[Bo,L],[L,T]].forEach(s=>{
+   hd.handSegment(s[0].x,s[0].y,s[1].x,s[1].y,{lineWidth:3.2,color:INK});
+   tick(hd,s[0].x,s[0].y,s[1].x,s[1].y,INK);});
+ hd.handSegment(T.x,T.y,Bo.x,Bo.y,{dashed:true,lineWidth:2.6,dashPattern:[13,10],color:SANG});
+ stampNum(ctx,500,'018');})();
+
+/* fig-019 -- q97: dues reflexions, dos punts, un sol camí recte */
+(function(){const ctx=mk('g6',760,600),hd=makeHandDraw(ctx,9797);ctx.translate(50,150);
+ const topY=0, botY=340;
+ hd.handSegment(-20,topY,680,topY,{lineWidth:3.2,wobble:1.0,color:INK});
+ hd.handSegment(-20,botY,680,botY,{lineWidth:3.2,wobble:1.0,color:INK});
+ const A={x:120,y:120}, B={x:560,y:260};
+ const Ap={x:120,y:2*topY-120}, Bp={x:560,y:2*botY-260};
+ hd.handDot(A.x,A.y,6,INK);hd.handDot(B.x,B.y,6,INK);
+ lbl(ctx,'A',A.x-28,A.y+6,INK,26);lbl(ctx,'B',B.x+12,B.y+6,INK,26);
+ const line=hd.handSegment(Ap.x,Ap.y,Bp.x,Bp.y,{dashed:true,lineWidth:2.2,dashPattern:[10,8],color:SANG});
+ hd.handDot(Ap.x,Ap.y,6,SANG);hd.handDot(Bp.x,Bp.y,6,SANG);
+ lbl(ctx,"A'",Ap.x-34,Ap.y+8,SANG,26);lbl(ctx,"B'",Bp.x+12,Bp.y+8,SANG,26);
+ // punts de contacte reals: interpolats sobre el traç ja dibuixat de A'-B'
+ function tAtY(y){return (y-Ap.y)/(Bp.y-Ap.y);}
+ const P=line.pointAtT(tAtY(topY)), Q=line.pointAtT(tAtY(botY));
+ hd.handSegment(A.x,A.y,P.x,P.y,{lineWidth:3,color:SANG});
+ hd.handSegment(P.x,P.y,Q.x,Q.y,{lineWidth:3,color:SANG});
+ hd.handSegment(Q.x,Q.y,B.x,B.y,{lineWidth:3,color:SANG});
+ [P,Q].forEach(p=>hd.handDot(p.x,p.y,5,SANG));
+ stampNum(ctx,600,'019');})();
+
+/* fig-020 -- q98: els dos punxons i el fil tibant */
+(function(){const ctx=mk('g7',620,420),hd=makeHandDraw(ctx,9898);ctx.translate(60,60);
+ const F1={x:80,y:200}, F2={x:400,y:200}, Pn={x:220,y:60};
+ hd.handEllipse(240,200,213,140.6,{lineWidth:1.6,passes:1,irregularity:0.02,color:SANG});
+ [F1,F2].forEach(f=>{hd.handDot(f.x,f.y,7,INK);hd.handDot(f.x,f.y,2,PAPER);});
+ hd.handSegment(F1.x,F1.y,Pn.x,Pn.y,{lineWidth:2.4,wobble:1.0,color:SANG});
+ hd.handSegment(F2.x,F2.y,Pn.x,Pn.y,{lineWidth:2.4,wobble:1.0,color:SANG});
+ hd.handDot(Pn.x,Pn.y,6,SANG);
+ stampNum(ctx,420,'020');})();
+
+/* fig-021 -- q45: el cilindre desenrotllat */
+(function(){const ctx=mk('g8',760,460),hd=makeHandDraw(ctx,4545);ctx.translate(50,50);
+ const cx=140,cyT=60,cyB=300,rx=90,ry=28;
+ hd.handEllipse(cx,cyT,rx,ry,{lineWidth:3,color:INK,irregularity:0.03});
+ hd.handEllipse(cx,cyB,rx,ry,{lineWidth:3,color:INK,irregularity:0.03});
+ hd.handSegment(cx-rx,cyT,cx-rx,cyB,{lineWidth:3,wobble:1.0,color:INK});
+ hd.handSegment(cx+rx,cyT,cx+rx,cyB,{lineWidth:3,wobble:1.0,color:INK});
+ hd.handSegment(cx+rx,cyT,cx+rx,cyB,{dashed:true,lineWidth:2,dashPattern:[8,7],color:SANG});
+ const rect=quad(hd,340,60,320,240,320,{lineWidth:2.6,dashed:true,dashPattern:[12,9],color:SANG});
+ lblC(ctx,'C',(rect[0].x+rect[1].x)/2,rect[0].y-16,SANG,26);
+ lblC(ctx,'h',rect[1].x+26,(rect[1].y+rect[2].y)/2,SANG,26);
+ stampNum(ctx,460,'021');})();
+
+</script></body></html>

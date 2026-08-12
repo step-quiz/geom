@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+ body{margin:0;background:#fff}canvas{display:block;margin:0 0 24px 0}
+</style></head><body>
+<script src="hand-draw.js"></script>
+<script src="comu.js"></script>
+<script>
+/* 1. q14 — l'altura des de la punta */
+(function(){const ctx=mk('f1',560,400),hd=makeHandDraw(ctx,12345);ctx.translate(60,60);
+ const W=420,H=260,f=150/W;
+ const c=quad(hd,0,0,W,H,W,{lineWidth:3.4,color:INK});
+ const A=onSeg(c[0],c[1],f), F=jit(hd,onSeg(c[3],c[2],f),W);   // derivats dels vèrtexs REALS
+ hd.handSegment(c[3].x,c[3].y,A.x,A.y,{lineWidth:3.4,color:INK});
+ hd.handSegment(A.x,A.y,c[2].x,c[2].y,{lineWidth:3.4,color:INK});
+ hd.handSegment(A.x,A.y,F.x,F.y,{dashed:true,lineWidth:2.8,dashPattern:[13,10],color:SANG});
+ lblC(ctx,'½',(c[3].x+A.x+F.x)/3,(c[3].y+A.y+F.y)/3);
+ lblC(ctx,'½',(A.x+F.x+c[2].x)/3,(A.y+F.y+c[2].y)/3);})();
+
+/* 2. q15a — llisqui on llisqui: mateixa base, mateixa altura */
+(function(){const ctx=mk('f2',1010,300),hd=makeHandDraw(ctx,555);ctx.translate(45,55);
+ const W=205,H=150,PAN=290;
+ [[60,0],[205,0],[292,1]].forEach((cfg,i)=>{
+   const ox=i*PAN,px=cfg[0],fora=cfg[1];
+   const B0=jit(hd,{x:ox,y:H},W),B1=jit(hd,{x:ox+W,y:H},W);
+   const T=jit(hd,{x:ox+px,y:0},W),F=jit(hd,{x:ox+px,y:H},W);
+   hd.handSegment(B0.x,B0.y,B1.x,B1.y,{lineWidth:3.4,color:INK});
+   hd.handSegment(B0.x,B0.y,T.x,T.y,{lineWidth:3,color:INK});
+   hd.handSegment(T.x,T.y,B1.x,B1.y,{lineWidth:3,color:INK});
+   if(fora)hd.handSegment(B1.x,B1.y,F.x,F.y,{dashed:true,lineWidth:2,dashPattern:[7,7],color:SANG});
+   hd.handSegment(T.x,T.y,F.x,F.y,{dashed:true,lineWidth:2.6,dashPattern:[11,9],color:SANG});
+   hd.handDot(T.x,T.y,6,SANG);
+   tick(hd,B0.x,B0.y,B1.x,B1.y);tick(hd,T.x,T.y,F.x,F.y);});})();
+
+/* 3. q15b — quan surt: un de gran menys un de petit */
+(function(){const ctx=mk('f2b',780,380),hd=makeHandDraw(ctx,888);ctx.translate(55,60);
+ const W=380,H=240,PX=W+185;
+ const c=quad(hd,0,0,W,H,W,{lineWidth:3,color:INK});
+ const T=jit(hd,{x:PX,y:0},W),F=jit(hd,{x:PX,y:H},W);
+ hd.handSegment(c[3].x,c[3].y,T.x,T.y,{lineWidth:3.4,color:INK});
+ hd.handSegment(T.x,T.y,c[2].x,c[2].y,{lineWidth:3.4,color:INK});
+ hd.handSegment(c[2].x,c[2].y,F.x,F.y,{dashed:true,lineWidth:2.4,dashPattern:[9,8],color:SANG});
+ hd.handSegment(T.x,T.y,F.x,F.y,{dashed:true,lineWidth:2.8,dashPattern:[13,10],color:SANG});
+ rightAngle(hd,F.x,F.y,T.x,T.y,c[2].x,c[2].y,20);
+ for(let y=T.y+26;y<c[2].y-8;y+=24){                    // ratllat = aquesta peça es TREU
+   const xl=c[2].x+(T.x-c[2].x)*(y-c[2].y)/(T.y-c[2].y);
+   const xr=F.x+(T.x-F.x)*(y-F.y)/(T.y-F.y);
+   if(xr-xl>12)hd.handSegment(xl+4,y,xr-3,y,{lineWidth:1.8,passes:1,overshoot:1,color:SANG});}})();
+
+/* 4. q41 — el radi que no havies fet servir */
+(function(){const ctx=mk('f3',700,430),hd=makeHandDraw(ctx,4141);ctx.translate(45,50);
+ const O={x:305,y:325},R=285,ang=2.0;
+ hd.handEllipse(O.x,O.y,R,R,{startAngle:Math.PI,endAngle:2*Math.PI,lineWidth:3.4,irregularity:0.022,color:INK});
+ const A={x:O.x-R,y:O.y},B={x:O.x+R,y:O.y},
+       C={x:O.x+R*Math.cos(ang),y:O.y-R*Math.sin(ang)};
+ [[A,B],[A,C],[C,B]].forEach(s=>hd.handSegment(s[0].x,s[0].y,s[1].x,s[1].y,{lineWidth:3.4,color:INK}));
+ [A,B,C,O].forEach(p=>hd.handDot(p.x,p.y,6,INK));
+ hd.handSegment(O.x,O.y,C.x,C.y,{dashed:true,lineWidth:2.8,dashPattern:[13,10],color:SANG});
+ tick(hd,O.x,O.y,C.x,C.y);tick(hd,O.x,O.y,A.x,A.y);tick(hd,O.x,O.y,B.x,B.y);
+ angleMark(hd,A.x,A.y,B.x,B.y,C.x,C.y,44,1);
+ angleMark(hd,C.x,C.y,A.x,A.y,O.x,O.y,46,1);
+ angleMark(hd,B.x,B.y,A.x,A.y,C.x,C.y,44,2);
+ angleMark(hd,C.x,C.y,O.x,O.y,B.x,B.y,36,2);})();
+
+/* 5. q09 — d'on surten les tres peces, i com són de fet */
+(function(){const ctx=mk('f4',1330,470),hd=makeHandDraw(ctx,909);
+ const w=300,h=200,L=Math.hypot(w,h),AF=h*h/L,FC=w*h/L,FB=L-AF;
+ const F={x:h*h*w/(L*L),y:h*h*h/(L*L)};
+ ctx.translate(45,55);
+ // panell original
+ hd.handSegment(0,0,0,h,{lineWidth:3.2,color:INK});
+ hd.handSegment(0,h,w,h,{lineWidth:3.2,color:INK});
+ hd.handSegment(w,h,0,0,{lineWidth:3.2,color:INK});
+ hd.handSegment(0,h,F.x,F.y,{dashed:true,lineWidth:2.6,dashPattern:[12,9],color:SANG});
+ lbl(ctx,'③',24,84,SANG,30);lbl(ctx,'②',118,166,SANG,30);
+ lbl(ctx,'① = triangle més gran',6,h+52,SANG,26);
+ // les tres peces, mateixa orientació
+ function tri(ox,oy,bx,by,nom){
+   hd.handSegment(ox,oy,ox+bx,oy,{lineWidth:3,color:INK});
+   hd.handSegment(ox,oy,ox,oy-by,{lineWidth:3,color:INK});
+   hd.handSegment(ox,oy-by,ox+bx,oy,{lineWidth:3,color:INK});
+   angleMark(hd,ox+bx,oy,ox,oy,ox,oy-by,32,1);
+   angleMark(hd,ox,oy-by,ox,oy,ox+bx,oy,32,2);
+   rightAngle(hd,ox,oy,ox+bx,oy,ox,oy-by,20,INK);
+   lbl(ctx,nom,ox+bx*0.34,oy+52,SANG,30);}
+ tri(430,h,w,h,'①');tri(790,h,FB,FC,'②');tri(1090,h,FC,AF,'③');})();
+
+/* 6. q16 — la diagonal que no és a l'enunciat */
+(function(){const ctx=mk('f5',800,500),hd=makeHandDraw(ctx,1616);ctx.translate(35,25);
+ const A={x:80,y:300},B={x:400,y:60},C={x:720,y:180},D={x:500,y:430},
+   m=(p,q)=>({x:(p.x+q.x)/2,y:(p.y+q.y)/2}),
+   M1=m(A,B),M2=m(B,C),M3=m(C,D),M4=m(D,A);
+ [[A,B],[B,C],[C,D],[D,A]].forEach(s=>hd.handSegment(s[0].x,s[0].y,s[1].x,s[1].y,{lineWidth:3.2,wobble:1.2,color:INK}));
+ [[M1,M2],[M2,M3],[M3,M4],[M4,M1]].forEach(s=>hd.handSegment(s[0].x,s[0].y,s[1].x,s[1].y,
+   {dashed:true,lineWidth:2.8,wobble:1.1,dashPattern:[16,11],color:INK}));
+ [M1,M2,M3,M4].forEach(p=>hd.handDot(p.x,p.y,7,INK));
+ hd.handSegment(A.x,A.y,C.x,C.y,{dashed:true,lineWidth:2.6,dashPattern:[9,8],color:SANG});
+ tick(hd,M1.x,M1.y,M2.x,M2.y);tick(hd,M3.x,M3.y,M4.x,M4.y);})();
+
+/* 7. q22 — la mateixa longitud, dita de dues maneres */
+(function(){const ctx=mk('f6',620,620),hd=makeHandDraw(ctx,2222);ctx.translate(50,50);
+ const R=130,S=4*R,cx=S/2,cy=S/2,r=R*(Math.SQRT2-1);
+ [[0,0,S,0],[S,0,S,S],[S,S,0,S],[0,S,0,0]].forEach(s=>hd.handSegment(s[0],s[1],s[2],s[3],{lineWidth:3.2,wobble:1.0,color:INK}));
+ const P=Math.PI;
+ // cada cercle gran toca: 2 costats del quadrat, 2 cercles veïns i el central
+ [[R,R,[P,-P/2,0,P/2,P/4]],[3*R,R,[0,-P/2,P,P/2,3*P/4]],
+  [R,3*R,[P,P/2,0,-P/2,-P/4]],[3*R,3*R,[0,P/2,P,-P/2,-3*P/4]]]
+   .forEach(c=>hd.handEllipse(c[0],c[1],R,R,{lineWidth:3.2,color:INK,pinAngles:c[2]}));
+ // el central toca els quatre grans en diagonal
+ hd.handEllipse(cx,cy,r,r,{lineWidth:3.2,color:INK,pinAngles:[P/4,3*P/4,-P/4,-3*P/4],pinSigma:0.5});
+ const Q={x:3*R,y:R};
+ hd.handDot(cx,cy,7,SANG);hd.handDot(Q.x,Q.y,7,SANG);
+ hd.handSegment(cx,cy,Q.x,Q.y,{dashed:true,lineWidth:2.8,dashPattern:[13,10],color:SANG});
+ hd.handSegment(cx,cy,Q.x,cy,{dashed:true,lineWidth:2,dashPattern:[7,7],color:SANG});
+ hd.handSegment(Q.x,cy,Q.x,Q.y,{dashed:true,lineWidth:2,dashPattern:[7,7],color:SANG});
+ rightAngle(hd,Q.x,cy,cx,cy,Q.x,Q.y,20);
+ lbl(ctx,'R',(cx+Q.x)/2-8,cy+38,SANG,28);lbl(ctx,'R',Q.x+16,(cy+Q.y)/2+8,SANG,28);
+ lbl(ctx,'?',(cx+Q.x)/2-34,(cy+Q.y)/2-4,SANG,36);})();
+
+/* 8. q95 — dibuixa el que NO pot ser */
+(function(){const ctx=mk('f7',720,540),hd=makeHandDraw(ctx,9595);ctx.translate(60,55);
+ const O={x:290,y:200},R=200,d=160,half=Math.sqrt(R*R-d*d);
+ const P={x:O.x-half,y:O.y+d},Pp={x:O.x+half,y:O.y+d},H={x:O.x,y:O.y+d};
+ hd.handEllipse(O.x,O.y,R,R,{lineWidth:3.2,color:INK});
+ hd.handSegment(O.x-350,O.y+d,O.x+350,O.y+d,{lineWidth:3.2,color:INK});
+ hd.handSegment(O.x,O.y,P.x,P.y,{lineWidth:3.2,color:INK});
+ hd.handDot(O.x,O.y,7,INK);hd.handDot(P.x,P.y,7,INK);
+ lbl(ctx,'P',P.x-16,P.y+42,INK,30);
+ hd.handSegment(O.x,O.y,H.x,H.y,{dashed:true,lineWidth:2.4,dashPattern:[9,8],color:SANG});
+ hd.handSegment(O.x,O.y,Pp.x,Pp.y,{dashed:true,lineWidth:2.8,dashPattern:[13,10],color:SANG});
+ hd.handDot(Pp.x,Pp.y,7,SANG);
+ rightAngle(hd,H.x,H.y,O.x,O.y,Pp.x,Pp.y,20);
+ tick(hd,O.x,O.y,P.x,P.y);tick(hd,O.x,O.y,Pp.x,Pp.y);
+ lbl(ctx,"P'",Pp.x+8,Pp.y+44,SANG,30);})();
+
+/* 9. q34 — la identitat algebraica com a figura */
+(function(){const ctx=mk('f8',540,540),hd=makeHandDraw(ctx,3434);ctx.translate(70,60);
+ const X=250,Y=150,S=X+Y,f=X/S;
+ const c=quad(hd,0,0,S,S,S,{lineWidth:3.2,wobble:1.1,color:INK});
+ const top=onSeg(c[0],c[1],f),bot=onSeg(c[3],c[2],f),
+       lef=onSeg(c[0],c[3],f),rig=onSeg(c[1],c[2],f);
+ hd.handSegment(top.x,top.y,bot.x,bot.y,{dashed:true,lineWidth:2.6,wobble:1.0,dashPattern:[13,10],color:SANG});
+ hd.handSegment(lef.x,lef.y,rig.x,rig.y,{dashed:true,lineWidth:2.6,wobble:1.0,dashPattern:[13,10],color:SANG});
+ lblC(ctx,'x',(c[0].x+top.x)/2,-22);lblC(ctx,'y',(top.x+c[1].x)/2,-22);
+ lblC(ctx,'x',-30,(c[0].y+lef.y)/2);lblC(ctx,'y',-30,(lef.y+c[3].y)/2);})();
+
+/* 10. q08c — una figura basta per refutar */
+(function(){const ctx=mk('f9',700,540),hd=makeHandDraw(ctx,808);ctx.translate(45,45);
+ function tri(ox,oy,b,h){
+   const A=jit(hd,{x:ox,y:oy+h},b),B=jit(hd,{x:ox+b,y:oy+h},b),C=jit(hd,{x:ox+0.34*b,y:oy},b);
+   [[A,B],[B,C],[C,A]].forEach(s=>hd.handSegment(s[0].x,s[0].y,s[1].x,s[1].y,{lineWidth:3,wobble:1.4,color:INK}));
+   angleMark(hd,A.x,A.y,B.x,B.y,C.x,C.y,30,1);
+   angleMark(hd,B.x,B.y,C.x,C.y,A.x,A.y,30,2);}
+ tri(0,0,175,120); tri(300,0,262,180);
+ lbl(ctx,'mateixos angles',0,205,SANG,25);
+ function rect(ox,oy,w,h){
+   const c=quad(hd,ox,oy,w,h,Math.max(w,h),{lineWidth:3,color:INK});
+   for(let i=0;i<4;i++)rightAngle(hd,c[i].x,c[i].y,c[(i+3)%4].x,c[(i+3)%4].y,c[(i+1)%4].x,c[(i+1)%4].y,18);}
+ rect(0,290,175,130); rect(300,290,300,72);
+ lbl(ctx,'mateixos angles',0,470,SANG,25);})();
+
+/* 11. q96 — reflecteix i el camí trencat es torna recte */
+(function(){const ctx=mk('f10',700,520),hd=makeHandDraw(ctx,9696);ctx.translate(50,45);
+ const L=250,A={x:110,y:100},B={x:450,y:170},Ap={x:110,y:2*L-100};
+ const t=(L-Ap.y)/(B.y-Ap.y),P={x:Ap.x+(B.x-Ap.x)*t,y:L};
+ hd.handSegment(-25,L,610,L,{lineWidth:3.2,wobble:1.0,color:INK});
+ hd.handSegment(A.x,A.y,P.x,P.y,{lineWidth:3.2,color:INK});
+ hd.handSegment(P.x,P.y,B.x,B.y,{lineWidth:3.2,color:INK});
+ [A,B,P].forEach(p=>hd.handDot(p.x,p.y,7,INK));
+ lbl(ctx,'A',A.x-30,A.y+8,INK,30);lbl(ctx,'B',B.x+14,B.y+8,INK,30);
+ lbl(ctx,'P',P.x-8,L+38,INK,30);
+ hd.handSegment(A.x,A.y,Ap.x,Ap.y,{dashed:true,lineWidth:1.8,wobble:0.8,dashPattern:[7,7],color:SANG});
+ hd.handSegment(Ap.x,Ap.y,P.x,P.y,{dashed:true,lineWidth:2.8,wobble:1.0,dashPattern:[13,10],color:SANG});
+ hd.handDot(Ap.x,Ap.y,7,SANG);lbl(ctx,"A'",Ap.x-38,Ap.y+10,SANG,30);
+ tick(hd,A.x,A.y,P.x,P.y);tick(hd,Ap.x,Ap.y,P.x,P.y);
+ angleMark(hd,P.x,P.y,-25,L,A.x,A.y,40,1);
+ angleMark(hd,P.x,P.y,B.x,B.y,610,L,40,1);})();
+
+/* 12. q25 — el mateix argument, ara en un altre pla */
+(function(){const ctx=mk('f11',660,400),hd=makeHandDraw(ctx,2525);ctx.translate(60,140);
+ const W=380,H=200,dx=140,dy=95,SC=W;
+ const P=(x,y)=>jit(hd,{x:x,y:y},SC,0.8);
+ const FBL=P(0,H),FBR=P(W,H),FTR=P(W,0),FTL=P(0,0),
+       BBL=P(dx,H-dy),BBR=P(W+dx,H-dy),BTR=P(W+dx,-dy),BTL=P(dx,-dy);
+ [[FBL,FBR],[FBR,FTR],[FTR,FTL],[FTL,FBL],[BBL,BBR],[BBR,BTR],[BTR,BTL],[BTL,BBL],
+  [FBL,BBL],[FBR,BBR],[FTR,BTR],[FTL,BTL]]
+  .forEach(s=>hd.handSegment(s[0].x,s[0].y,s[1].x,s[1].y,{lineWidth:2.8,wobble:1.2,color:INK}));
+ hd.handSegment(FBL.x,FBL.y,BTR.x,BTR.y,{lineWidth:3.4,wobble:1.0,color:INK});     // la diagonal de la caixa
+ hd.handSegment(FBL.x,FBL.y,BBR.x,BBR.y,{dashed:true,lineWidth:2.8,wobble:0.9,dashPattern:[13,10],color:SANG});
+ lblC(ctx,'a',(FBL.x+FBR.x)/2,FBL.y+34,SANG);
+ lblC(ctx,'b',(FBR.x+BBR.x)/2+26,(FBR.y+BBR.y)/2+30,SANG);
+ lblC(ctx,'c',BBR.x+22,(BBR.y+BTR.y)/2,SANG);})();
+
+/* 13. q36 — perímetre fix: una sola llibertat */
+(function(){const ctx=mk('f12',420,420),hd=makeHandDraw(ctx,3636);ctx.translate(55,50);
+ const S=300, WS=[50,100,150,200,250];
+ hd.handSegment(0,0,S,S,{dashed:true,lineWidth:2.4,wobble:1.0,dashPattern:[11,9],color:SANG});
+ const BL=jit(hd,{x:0,y:S},S);                       // cantonada compartida: una de sola
+ const BR=jit(hd,{x:265,y:S},S), TL=jit(hd,{x:0,y:35},S);
+ hd.handSegment(BL.x,BL.y,BR.x,BR.y,{lineWidth:3.2,wobble:1.0,color:INK});
+ hd.handSegment(BL.x,BL.y,TL.x,TL.y,{lineWidth:3.2,wobble:1.0,color:INK});
+ WS.forEach(w=>{
+   const lw = (w===150)?3.2:1.8;
+   const C=jit(hd,{x:w,y:w},S);                      // el vèrtex oposat
+   const onL=onSeg(BL,TL,(BL.y-w)/(BL.y-TL.y));      // sobre l'eix vertical realment dibuixat
+   const onB=onSeg(BL,BR,w/(BR.x-BL.x));             // sobre l'eix horitzontal realment dibuixat
+   hd.handSegment(onL.x,onL.y,C.x,C.y,{lineWidth:lw,wobble:1.0,color:INK});
+   hd.handSegment(C.x,C.y,onB.x,onB.y,{lineWidth:lw,wobble:1.0,color:INK});
+   if(w===150)hd.handDot(C.x,C.y,8,SANG);});})();
+
+</script></body></html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+ body{margin:0;background:#fff}canvas{display:block;margin:0 0 24px 0}
+</style></head><body>
+<script src="hand-draw.js"></script>
+<script src="comu.js"></script>
+<script>
+function stampNum(ctx,h,num){
+  ctx.save();ctx.setTransform(1,0,0,1,0,0);
+  ctx.font='18px Georgia';ctx.fillStyle='#8a8580';
+  ctx.fillText(num, 8, h-8);ctx.restore();
+}
+// Cub en projecció cavallera: x,y,z locals a [0,1], S=costat en px, (dx,dy)=vector de profunditat.
+function cubeVerts(S,dx,dy){
+  function P(x,y,z){return {x:x*S+z*dx, y:(1-y)*S+z*dy};}
+  return {fBL:P(0,0,0),fBR:P(1,0,0),fTR:P(1,1,0),fTL:P(0,1,0),
+          bBL:P(0,0,1),bBR:P(1,0,1),bTR:P(1,1,1),bTL:P(0,1,1)};
+}
+function drawCubeWire(hd,V,lw){
+  lw=lw||2.6;
+  const solid=[[V.fTL,V.fTR],[V.fTR,V.fBR],[V.fBR,V.fBL],[V.fBL,V.fTL],
+    [V.fTL,V.bTL],[V.fTR,V.bTR],[V.fBR,V.bBR],[V.bTL,V.bTR],[V.bTR,V.bBR]];
+  const hidden=[[V.fBL,V.bBL],[V.bTL,V.bBL],[V.bBL,V.bBR]];
+  solid.forEach(s=>hd.handSegment(s[0].x,s[0].y,s[1].x,s[1].y,{lineWidth:lw,color:INK}));
+  hidden.forEach(s=>hd.handSegment(s[0].x,s[0].y,s[1].x,s[1].y,{lineWidth:lw*0.85,dashed:true,dashPattern:[8,7],color:INK}));
+}
+function mid(a,b){return {x:(a.x+b.x)/2,y:(a.y+b.y)/2};}
+function avg(pts){let x=0,y=0;pts.forEach(p=>{x+=p.x;y+=p.y});return {x:x/pts.length,y:y/pts.length};}
+
+/* fig-022 -- q26: alcada del triangle equilater, dos 30-60-90 */
+(function(){const ctx=mk('g1',560,420),hd=makeHandDraw(ctx,2626);ctx.translate(60,40);
+ const Sd=320, h0=Sd*Math.sqrt(3)/2;
+ const B=jit(hd,{x:0,y:h0},380), C=jit(hd,{x:Sd,y:h0},380), A=jit(hd,{x:Sd/2,y:0},380);
+ hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:3.2,color:INK});
+ hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:3.2,color:INK});
+ const base=hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:3.4,color:INK});
+ tick(hd,A.x,A.y,B.x,B.y,INK);tick(hd,A.x,A.y,C.x,C.y,INK);
+ const M=base.pointAtT(0.5);
+ hd.handSegment(A.x,A.y,M.x,M.y,{dashed:true,lineWidth:2.4,dashPattern:[10,8],color:SANG});
+ rightAngle(hd,M.x,M.y,A.x,A.y,C.x,C.y,16);
+ tick(hd,B.x,B.y,M.x,M.y);tick(hd,M.x,M.y,C.x,C.y);
+ lbl(ctx,'s',(A.x+B.x)/2-30,(A.y+B.y)/2,INK,26);
+ lbl(ctx,'h',(A.x+M.x)/2+8,(A.y+M.y)/2,SANG,26);
+ stampNum(ctx,420,'022');})();
+
+/* fig-023 -- q28: la mateixa alcada, ara com a base per l'area */
+(function(){const ctx=mk('g2',560,420),hd=makeHandDraw(ctx,2828);ctx.translate(60,40);
+ const Sd=320, h0=Sd*Math.sqrt(3)/2;
+ const B=jit(hd,{x:0,y:h0},380), C=jit(hd,{x:Sd,y:h0},380), A=jit(hd,{x:Sd/2,y:0},380);
+ hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:3.2,color:INK});
+ hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:3.2,color:INK});
+ const base=hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:3.4,color:INK});
+ const M=base.pointAtT(0.5);
+ hd.handSegment(A.x,A.y,M.x,M.y,{dashed:true,lineWidth:2.4,dashPattern:[10,8],color:SANG});
+ rightAngle(hd,M.x,M.y,A.x,A.y,C.x,C.y,16);
+ const belowB={x:B.x,y:B.y+34}, belowC={x:C.x,y:C.y+34};
+ hd.handSegment(belowB.x,belowB.y,belowC.x,belowC.y,{lineWidth:1.8,color:SANG});
+ lbl(ctx,'base = s',(belowB.x+belowC.x)/2-40,belowB.y+26,SANG,24);
+ lbl(ctx,'h',(A.x+M.x)/2+8,(A.y+M.y)/2,SANG,26);
+ stampNum(ctx,420,'023');})();
+
+/* fig-024 -- q44: dos cercles i el petit encaixat, tots tangents a la recta */
+(function(){const ctx=mk('g3',460,300),hd=makeHandDraw(ctx,4444);ctx.translate(30,20);
+ const Y0=240, R1=110,R2=71, r=21.831;
+ const x1=130, x2=306.75, x3=228.01;
+ hd.handSegment(-10,Y0,410,Y0,{lineWidth:2.8,wobble:1.0,color:INK});
+ hd.handEllipse(x1,Y0-R1,R1,R1,{lineWidth:3,color:INK,pinAngles:[Math.PI/2],pinSigma:0.3});
+ hd.handEllipse(x2,Y0-R2,R2,R2,{lineWidth:3,color:INK,pinAngles:[Math.PI/2],pinSigma:0.3});
+ const aC1C3=Math.atan2((Y0-r)-(Y0-R1),x3-x1);
+ hd.handEllipse(x3,Y0-r,r,r,{lineWidth:2.6,color:INK,
+   pinAngles:[Math.PI/2, Math.PI+aC1C3-Math.PI, aC1C3-Math.PI],pinSigma:0.35});
+ const C1={x:x1,y:Y0-R1}, C3={x:x3,y:Y0-r}, legP={x:x1,y:Y0-r};
+ hd.handSegment(C1.x,C1.y,C3.x,C3.y,{dashed:true,lineWidth:2.2,dashPattern:[9,8],color:SANG});
+ hd.handSegment(legP.x,legP.y,C3.x,C3.y,{dashed:true,lineWidth:1.8,dashPattern:[7,6],color:SANG});
+ hd.handSegment(legP.x,legP.y,C1.x,C1.y,{dashed:true,lineWidth:1.8,dashPattern:[7,6],color:SANG});
+ rightAngle(hd,legP.x,legP.y,C1.x,C1.y,C3.x,C3.y,12);
+ lbl(ctx,'R1',x1-32,Y0-R1+6,INK,22);lbl(ctx,'R2',x2+R2-38,Y0-R2-14,INK,22);lbl(ctx,'r',x3+r+6,Y0-r,INK,20);
+ stampNum(ctx,300,'024');})();
+
+/* fig-025 -- q46: el cercle estirat esdeve el.lipse */
+(function(){const ctx=mk('g4',480,420),hd=makeHandDraw(ctx,4646);ctx.translate(60,60);
+ const cx=180,cy=150,a=140,k=90/140;
+ hd.handEllipse(cx,cy,a,a,{lineWidth:2,passes:1,irregularity:0.025,color:INK});
+ hd.handEllipse(cx,cy,a,a*k,{lineWidth:3,color:INK});
+ [60,90,120,240,270,300].forEach(deg=>{
+   const t=deg*Math.PI/180;
+   const p0={x:cx+a*Math.cos(t),y:cy+a*Math.sin(t)};
+   const p1={x:cx+a*Math.cos(t),y:cy+a*k*Math.sin(t)};
+   hd.handSegment(p0.x,p0.y,p1.x,p1.y,{dashed:true,lineWidth:1.8,dashPattern:[6,6],color:SANG});
+   hd.handDot(p1.x,p1.y,3.5,SANG);
+ });
+ lbl(ctx,'a',cx+a-18,cy-8,INK,24);lbl(ctx,'b',cx+6,cy-a*k+16,INK,24);
+ stampNum(ctx,420,'025');})();
+
+/* fig-026 -- q47: l'octaedre dels centres de cara */
+(function(){const ctx=mk('g5',530,400),hd=makeHandDraw(ctx,4747);ctx.translate(90,110);
+ const S=260,dx=0.3*S,dy=-0.2*S, V=cubeVerts(S,dx,dy);
+ drawCubeWire(hd,V,2.4);
+ const F={front:avg([V.fTL,V.fTR,V.fBR,V.fBL]), back:avg([V.bTL,V.bTR,V.bBR,V.bBL]),
+   top:avg([V.fTL,V.fTR,V.bTL,V.bTR]), bot:avg([V.fBL,V.fBR,V.bBL,V.bBR]),
+   left:avg([V.fTL,V.fBL,V.bTL,V.bBL]), right:avg([V.fTR,V.fBR,V.bTR,V.bBR])};
+ const adj=[['front','top'],['front','bot'],['front','left'],['front','right'],
+   ['back','top'],['back','bot'],['back','left'],['back','right'],
+   ['top','left'],['top','right'],['bot','left'],['bot','right']];
+ adj.forEach(e=>hd.handSegment(F[e[0]].x,F[e[0]].y,F[e[1]].x,F[e[1]].y,{lineWidth:2,color:SANG}));
+ Object.values(F).forEach(p=>hd.handDot(p.x,p.y,4.5,SANG));
+ stampNum(ctx,400,'026');})();
+
+/* fig-027 -- q49: el tetraedre i el punt on es troben les quatre medianes */
+(function(){const ctx=mk('g6',520,460),hd=makeHandDraw(ctx,4949);ctx.translate(60,40);
+ const D={x:230,y:20}, A={x:90,y:400}, B={x:10,y:150}, C={x:420,y:260};
+ hd.handSegment(D.x,D.y,A.x,A.y,{lineWidth:3,color:INK});
+ hd.handSegment(D.x,D.y,B.x,B.y,{lineWidth:3,color:INK});
+ hd.handSegment(D.x,D.y,C.x,C.y,{lineWidth:3,color:INK});
+ hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:3,color:INK});
+ hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:3,color:INK});
+ hd.handSegment(B.x,B.y,C.x,C.y,{dashed:true,lineWidth:2.4,dashPattern:[9,7],color:INK});
+ const GA=avg([B,C,D]), GB=avg([A,C,D]), GC=avg([A,B,D]), GD=avg([A,B,C]);
+ [[A,GA],[B,GB],[C,GC],[D,GD]].forEach(s=>
+   hd.handSegment(s[0].x,s[0].y,s[1].x,s[1].y,{dashed:true,lineWidth:1.8,dashPattern:[7,6],color:SANG}));
+ const center=avg([A,B,C,D]);
+ hd.handDot(center.x,center.y,5,SANG);
+ stampNum(ctx,460,'027');})();
+
+/* fig-028 -- q52: el tall hexagonal del cub */
+(function(){const ctx=mk('g7',560,480),hd=makeHandDraw(ctx,5252);ctx.translate(100,140);
+ const S=240,dx=0.3*S,dy=-0.2*S, V=cubeVerts(S,dx,dy);
+ drawCubeWire(hd,V,2.4);
+ function P(x,y,z){return {x:x*S+z*dx, y:(1-y)*S+z*dy};}
+ const Mp=[[1,0.5,0],[0.5,1,0],[0,1,0.5],[0,0.5,1],[0.5,0,1],[1,0,0.5]].map(p=>P(...p));
+ for(let i=0;i<6;i++){
+   const a=Mp[i], b=Mp[(i+1)%6];
+   hd.handSegment(a.x,a.y,b.x,b.y,{lineWidth:2.4,color:SANG});
+ }
+ tick(hd,Mp[0].x,Mp[0].y,Mp[1].x,Mp[1].y);tick(hd,Mp[2].x,Mp[2].y,Mp[3].x,Mp[3].y);
+ Mp.forEach(p=>hd.handDot(p.x,p.y,4,SANG));
+ stampNum(ctx,480,'028');})();
+
+/* fig-029 -- q56: el tetraedre inscrit per les diagonals de cara */
+(function(){const ctx=mk('g8',500,380),hd=makeHandDraw(ctx,5656);ctx.translate(70,90);
+ const S=260,dx=0.3*S,dy=-0.2*S, V=cubeVerts(S,dx,dy);
+ drawCubeWire(hd,V,2.2);
+ const T=[V.fBL,V.fTR,V.bBR,V.bTL];
+ for(let i=0;i<4;i++)for(let j=i+1;j<4;j++)
+   hd.handSegment(T[i].x,T[i].y,T[j].x,T[j].y,{lineWidth:2.2,color:SANG});
+ T.forEach(p=>hd.handDot(p.x,p.y,4.5,SANG));
+ stampNum(ctx,380,'029');})();
+
+/* fig-030 -- q51: el con i el sector en que es desenrotlla */
+(function(){const ctx=mk('g9',900,520),hd=makeHandDraw(ctx,5151);ctx.translate(40,40);
+ const cx=160,rx=90,ry=26,baseY=300,apex={x:cx,y:60};
+ hd.handEllipse(cx,baseY,rx,ry,{lineWidth:3,color:INK,irregularity:0.03});
+ hd.handSegment(apex.x,apex.y,cx-rx,baseY,{lineWidth:3,color:INK});
+ hd.handSegment(apex.x,apex.y,cx+rx,baseY,{lineWidth:3,color:INK});
+ hd.handSegment(apex.x,apex.y,cx+rx,baseY,{dashed:true,lineWidth:2,dashPattern:[8,7],color:SANG});
+ const L=Math.hypot(rx,baseY-apex.y);
+ const center={x:560,y:180}, theta=2*Math.PI*rx/L, start=Math.PI/2-theta/2, end=Math.PI/2+theta/2;
+ hd.handEllipse(center.x,center.y,L,L,{startAngle:start,endAngle:end,passes:1,
+   lineWidth:2.2,irregularity:0.02,color:SANG});
+ const p0={x:center.x+L*Math.cos(start),y:center.y+L*Math.sin(start)};
+ const p1={x:center.x+L*Math.cos(end),y:center.y+L*Math.sin(end)};
+ hd.handSegment(center.x,center.y,p0.x,p0.y,{dashed:true,lineWidth:2,dashPattern:[8,7],color:SANG});
+ hd.handSegment(center.x,center.y,p1.x,p1.y,{dashed:true,lineWidth:2,dashPattern:[8,7],color:SANG});
+ hd.handDot(center.x,center.y,4,SANG);
+ stampNum(ctx,520,'030');})();
+
+/* fig-031 -- q53: mateix tall a cada alcada, superficie lateral diferent */
+(function(){const ctx=mk('g10',720,420),hd=makeHandDraw(ctx,5353);ctx.translate(50,40);
+ const rx=70,ry=20,topY=20,botY=300;
+ hd.handEllipse(140,topY,rx,ry,{lineWidth:3,color:INK,irregularity:0.03});
+ hd.handEllipse(140,botY,rx,ry,{lineWidth:3,color:INK,irregularity:0.03});
+ hd.handSegment(140-rx,topY,140-rx,botY,{lineWidth:3,wobble:1.0,color:INK});
+ hd.handSegment(140+rx,topY,140+rx,botY,{lineWidth:3,wobble:1.0,color:INK});
+ const shift=110;
+ hd.handEllipse(460,topY,rx,ry,{lineWidth:3,color:INK,irregularity:0.03});
+ hd.handEllipse(460+shift,botY,rx,ry,{lineWidth:3,color:INK,irregularity:0.03});
+ hd.handSegment(460-rx,topY,460+shift-rx,botY,{lineWidth:3,wobble:1.0,color:INK});
+ hd.handSegment(460+rx,topY,460+shift+rx,botY,{lineWidth:3,wobble:1.0,color:INK});
+ const midY=160;
+ const s1L={x:140-rx,y:midY}, s1R={x:140+rx,y:midY};
+ const off=(midY-topY)/(botY-topY)*shift;
+ const s2L={x:460-rx+off,y:midY}, s2R={x:460+rx+off,y:midY};
+ hd.handSegment(s1L.x,s1L.y,s1R.x,s1R.y,{dashed:true,lineWidth:2.2,dashPattern:[9,7],color:SANG});
+ hd.handSegment(s2L.x,s2L.y,s2R.x,s2R.y,{dashed:true,lineWidth:2.2,dashPattern:[9,7],color:SANG});
+ tick(hd,s1L.x,s1L.y,s1R.x,s1R.y);tick(hd,s2L.x,s2L.y,s2R.x,s2R.y);
+ stampNum(ctx,420,'031');})();
+
+/* fig-032 -- q54: rectangle i paral·lelogram, el mateix tall a cada alçada */
+(function(){const ctx=mk('g11',720,340),hd=makeHandDraw(ctx,5454);ctx.translate(50,40);
+ const W=180,H=260,shear=90;
+ // rectangle
+ const rTL=jit(hd,{x:0,y:0},300), rTR=jit(hd,{x:W,y:0},300), rBR=jit(hd,{x:W,y:H},300), rBL=jit(hd,{x:0,y:H},300);
+ [[rTL,rTR],[rTR,rBR],[rBR,rBL],[rBL,rTL]].forEach(s=>hd.handSegment(s[0].x,s[0].y,s[1].x,s[1].y,{lineWidth:2.8,color:INK}));
+ // paral·lelogram (mateixa base W, mateixa alçada H, cim desplaçat)
+ const ox=340;
+ const pTL=jit(hd,{x:ox+shear,y:0},300), pTR=jit(hd,{x:ox+shear+W,y:0},300),
+       pBR=jit(hd,{x:ox+W,y:H},300), pBL=jit(hd,{x:ox,y:H},300);
+ [[pTL,pTR],[pTR,pBR],[pBR,pBL],[pBL,pTL]].forEach(s=>hd.handSegment(s[0].x,s[0].y,s[1].x,s[1].y,{lineWidth:2.8,color:INK}));
+ // tall sanguina a la mateixa alçada als dos, amb marquetes iguals
+ const yCut=150;
+ const t=yCut/H;
+ const rL={x:0,y:yCut}, rR={x:W,y:yCut};
+ const pL={x:ox+shear*(1-t),y:yCut}, pR={x:ox+shear*(1-t)+W,y:yCut};
+ hd.handSegment(rL.x,rL.y,rR.x,rR.y,{dashed:true,lineWidth:2.2,dashPattern:[9,7],color:SANG});
+ hd.handSegment(pL.x,pL.y,pR.x,pR.y,{dashed:true,lineWidth:2.2,dashPattern:[9,7],color:SANG});
+ tick(hd,rL.x,rL.y,rR.x,rR.y);tick(hd,pL.x,pL.y,pR.x,pR.y);
+ stampNum(ctx,340,'032');})();
+
+/* fig-033 -- q55: la mateixa escala, la suma dels trams no s'acosta a la diagonal */
+(function(){const ctx=mk('g12',480,540),hd=makeHandDraw(ctx,5555);ctx.translate(50,40);
+ const S=380,n=10, step=S/n;
+ const TL={x:0,y:0},TR={x:S,y:0},BR={x:S,y:S},BL={x:0,y:S};
+ hd.handSegment(TL.x,TL.y,TR.x,TR.y,{lineWidth:2.8,color:INK});
+ hd.handSegment(TR.x,TR.y,BR.x,BR.y,{lineWidth:2.8,color:INK});
+ hd.handSegment(BR.x,BR.y,BL.x,BL.y,{lineWidth:2.8,color:INK});
+ hd.handSegment(BL.x,BL.y,TL.x,TL.y,{lineWidth:2.8,color:INK});
+ let cx=TL.x,cy=TL.y;
+ for(let i=0;i<n;i++){
+   hd.handSegment(cx,cy,cx+step,cy,{lineWidth:2.2,color:INK});
+   hd.handSegment(cx+step,cy,cx+step,cy+step,{lineWidth:2.2,color:INK});
+   cx+=step;cy+=step;
+ }
+ hd.handSegment(TL.x,TL.y,BR.x,BR.y,{dashed:true,lineWidth:2,dashPattern:[9,7],color:SANG});
+ const bracketY=S+30;
+ hd.handSegment(0,bracketY,S,bracketY,{lineWidth:1.8,color:SANG});
+ lbl(ctx,'s',S/2-6,bracketY+26,SANG,24);
+ const bracketX=S+30;
+ hd.handSegment(bracketX,0,bracketX,S,{lineWidth:1.8,color:SANG});
+ lbl(ctx,'s',bracketX+10,S/2,SANG,24);
+ stampNum(ctx,540,'033');})();
+
+</script></body></html>
