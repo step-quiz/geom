@@ -86,6 +86,31 @@ window.UI_LANGS = {
     meta: {
       untranslated_notice: "This question hasn't been translated yet — showing the original English.",
     },
+
+    glossary: {
+      open_button: "📖 Glossary",
+      close_button: "Close",
+      title: "Glossary",
+      search_placeholder: "Search a term…",
+      no_results: "No terms found.",
+      back_to_list: "← All terms",
+      related_label: "See also:",
+      figure_alt: "Diagram illustrating this term",
+      uncategorized: "Other",
+    },
+
+    itinerary: {
+      rate_prompt: "How did this one feel?",
+      rate_molt: "Loved it",
+      rate_normal: "Fine",
+      rate_poc: "Not much",
+      suggested_title: "Suggested for you",
+      reason_continue: "you started this one",
+      reason_adjacent_level: "similar level to what you just did",
+      reason_review_moviment: "trains the same idea — {move}",
+      reason_fallback: "next in the book",
+      continue_banner: "Continue where you left off:",
+    },
   },
 
   ca: {
@@ -143,6 +168,31 @@ window.UI_LANGS = {
 
     meta: {
       untranslated_notice: "Aquesta pregunta encara no s'ha traduït — es mostra l'original en anglès.",
+    },
+
+    glossary: {
+      open_button: "📖 Glossari",
+      close_button: "Tanca",
+      title: "Glossari",
+      search_placeholder: "Cerca un terme…",
+      no_results: "Cap terme trobat.",
+      back_to_list: "← Tots els termes",
+      related_label: "Vegeu també:",
+      figure_alt: "Diagrama que il·lustra aquest terme",
+      uncategorized: "Altres",
+    },
+
+    itinerary: {
+      rate_prompt: "Què t'ha semblat?",
+      rate_molt: "M'ha agradat molt",
+      rate_normal: "Normal",
+      rate_poc: "No gaire",
+      suggested_title: "Suggerit per a tu",
+      reason_continue: "l'havies començada",
+      reason_adjacent_level: "nivell semblant al que acabes de fer",
+      reason_review_moviment: "entrena la mateixa idea — {move}",
+      reason_fallback: "la següent del llibre",
+      continue_banner: "Continua on ho vas deixar:",
     },
   },
 };
