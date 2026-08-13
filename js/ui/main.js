@@ -74,6 +74,16 @@
    */
   function pinta(view) {
     vistaActual = view;
+    // Cada canvi de VISTA (pregunta nova via anterior/següent o un
+    // enllaç, tornar a la llista, obrir "què és una demostració") ha de
+    // començar sempre per dalt de la pàgina -- si no, qui ve de
+    // "següent" es queda mig desplaçat avall, llegint sense saber-ho el
+    // final de la pregunta ANTERIOR en lloc de l'enunciat de la nova.
+    // Deliberadament aquí, al punt únic per on passen totes les
+    // navegacions reals (v. geoRouter.on(pinta) més avall) -- revelar
+    // una pista dins la MATEIXA pregunta no crida mai pinta(), així que
+    // mai es veurà afectat per aquest reset.
+    window.scrollTo(0, 0);
     appEl.innerHTML = "";
 
     if (view.kind === "detall") {
