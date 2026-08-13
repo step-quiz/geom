@@ -65,10 +65,15 @@ window.UI_LANGS = {
       move_label: "The move: {move}",
       start: "Start the guide",
       next_hint: "Show hint {n} of {total}",
-      level_0: "Hint 0",
-      level_1: "Hint 1",
-      level_2: "Hint 2",
-      level_3: "Hint 3",
+      // Les claus (level_0..level_3) segueixen l'índex INTERN de
+      // pista.nivell (0-3, mai canvia — v. guies-dades.js/parse_guies.py).
+      // El TEXT mostrat és 1-indexat a petició explícita del propietari
+      // (cap alumne hauria de veure mai "Pista 0") — desalineat a
+      // propòsit, no un error de comptatge.
+      level_0: "Hint 1",
+      level_1: "Hint 2",
+      level_2: "Hint 3",
+      level_3: "Hint 4",
       check: "Check your answer",
       after: "And afterwards",
       figure_alt: "Construction: the book's figure in black, what you add in sanguine",
@@ -162,10 +167,10 @@ window.UI_LANGS = {
       move_label: "El moviment: {move}",
       start: "Comença la guia",
       next_hint: "Mostra la pista {n} de {total}",
-      level_0: "Pista 0",
-      level_1: "Pista 1",
-      level_2: "Pista 2",
-      level_3: "Pista 3",
+      level_0: "Pista 1",
+      level_1: "Pista 2",
+      level_2: "Pista 3",
+      level_3: "Pista 4",
       check: "Comprovació",
       after: "I després",
       figure_alt: "Construcció: la figura del llibre en negre, el que hi afegeixes tu en sanguina",
