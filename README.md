@@ -21,12 +21,18 @@ mòbil a la mateixa xarxa), qualsevol servidor estàtic funciona igual de bé:
 
 ## Què hi ha, i què no
 
-**Hi ha:** 130 preguntes amb el seu enunciat original en anglès (el text del llibre),
-67 amb la seva figura corresponent (dibuix a mà extret del PDF font), navegació entre
-preguntes, un marcador personal "explorat" que es desa al navegador, i una interfície
-completa en anglès i català (el contingut de les preguntes, no).
+**Hi ha:** 130 preguntes amb el seu enunciat original en anglès (el text del llibre)
+**i en català** (traduït), 98 amb la seva figura de guia corresponent, navegació entre
+preguntes, un marcador personal "explorat" que es desa al navegador, un itinerari amb
+suggeriments personalitzats, un glossari de 53 termes amb detecció automàtica dins
+dels enunciats, una intro "què és una demostració" per a qui arriba per primer cop, i
+una interfície completa en anglès i català — ara, també el contingut de les preguntes.
 
 **I, des del lot 8 de guies: 97 de les 130 preguntes tenen una GUIA DE DEMOSTRACIÓ.**
+Els lliuraments 9 i 10 (les 33 preguntes restants) estan en marxa, cadascun encarregat
+a un agent diferent en paral·lel — v. `HANDOFF-LLIURAMENT-9.md` i
+`HANDOFF-LLIURAMENT-10.md` per als seus encàrrecs exactes (fora d'aquest repositori
+mentre treballen; s'integraran quan arribin).
 És una escala de quatre pistes que es revelen d'una en una, pensada per a qui sap
 resoldre equacions però no ha fet mai geometria sintètica. Els quatre nivells
 difereixen en *espècie*, no en quantitat:
@@ -46,18 +52,48 @@ no un oblit.
 A les figures de guia, **el negre és la figura del llibre i la sanguina és el que
 hi afegeixes tu**. La distinció visual és la distinció conceptual que tot plegat
 existeix per ensenyar: la figura del llibre és un enunciat; la línia que hi
-afegeixes és una decisió teva.
+afegeixes és una decisió teva. (Als glossari i a la intro "què és una demostració",
+aquesta mateixa paleta hi és, però amb un significat diferent — v. més avall.)
 
 A la llista, les preguntes que tenen guia porten la marca ◆.
+
+### Glossari
+
+Botó "📖 Glossari" a la capçalera: un panell de cerca i navegació per categoria amb
+53 termes (triangles, angles, cercles, polígons, sòlids, còniques...), més la
+detecció automàtica de qualsevol d'aquests termes dins l'enunciat d'una pregunta —
+apareix subratllat i, en clicar-lo, un popover hi mostra la definició al mateix lloc.
+Dades a `js/data/glossari-dades.js`; només 1 dels 53 termes té figura pròpia encara
+(la resta, ampliada recentment per un altre agent en paral·lel, espera il·lustracions
+— v. `docs/guies/NOTA-GLOSSARI-AMPLIACIO.md`). Les figures que sí n'hi ha són **tinta
+sola, sense sanguina**: aquí no hi ha "figura del llibre" vs "afegit de l'alumne",
+només un sol diagrama — un accent (`--pencil`, el mateix que ja fa servir la interfície
+fora del canvas) marca els noms de terme.
+
+### Itinerari
+
+Cada pregunta que obres es registra; un control de valoració (molt / normal / poc,
+independent del checkbox "explorat") i un bloc "suggerit per a tu" amb fins a tres
+opcions ranquejades —cadascuna amb la seva raó explícita, mai un sol "següent"
+imposat— conviuen amb la navegació anterior/següent de sempre, mai en lloc seu.
+Estat a `localStorage`, motor a `js/nucli/itinerari.js`.
+
+### "Què és una demostració?"
+
+Enllaç "Què és una demostració?" a la capçalera (`#demo`): tres demostracions curtes,
+completes, SEMPRE visibles senceres —l'única excepció deliberada a la regla "cap
+nivell dona la solució" que sí regeix les guies reals. Un alumne que arriba per
+primer cop (sense cap pregunta feta encara) hi és enviat un únic cop; qui hi torna,
+mai més. Dades a `js/data/demos-dades.js`.
 
 **No hi ha, i per què:**
 
 | Element | Per què no hi és |
 |---|---|
 | Correcció o puntuació | El llibre no en té — cada pregunta és un punt de partida per pensar-hi, no un test |
-| Traduccions al català del contingut | `enunciat.ca` és `null` a totes les 130 preguntes; la interfície fa fallback a l'anglès automàticament. Traduir-les és feina de contingut, no de codi — pendent |
 | Pistes curtes (`pista`) | `pista.en`/`pista.ca` continuen sent `null` a totes 130. NO les substitueixen les guies: són coses diferents (una pista curta seria una frase; una guia és una escala completa). El botó 💡 simplement no apareix quan no n'hi ha |
-| Guies per a les 78 preguntes restants | En producció per lots successius, amb revisió humana entre lot i lot. V. `docs/guies/` |
+| Guies per a les 33 preguntes restants | Lliuraments 9 i 10, en marxa en paral·lel — v. més amunt |
+| Figures per a 52 dels 53 termes del glossari | Contingut escrit; il·lustracions pendents — és literalment la pròxima tasca (v. `docs/guies/NOTA-GLOSSARI-AMPLIACIO.md`) |
 | Assignació per curs (`#curs=2ESO` i similars) | El camp `curs` existeix a l'esquema de dades però és `null` arreu — decisió de contingut ajornada conscientment, no una limitació tècnica. El filtre ja funciona (prova-ho a la barra d'adreces); simplement no hi ha encara cap valor assignat |
 | Mode d'interacció (resposta oberta, dibuix, etc.) | Ídem: `interaccio` és `null` a tot arreu, estructura preparada, contingut pendent. No és només contingut per assignar: la interactivitat real (punts arrossegables, recàlcul en viu) exigiria una capa de renderitzat completament diferent de la que hi ha ara (`docs/render.js` genera PNG estàtics per disseny, no SVG/canvas en viu al navegador) — és a dir, un canvi d'arquitectura real, no una dada per omplir. Es deixa aquí explícitament perquè un futur contribuïdor no ho confongui amb un descuit i el comenci sense haver-ho decidit (v. `docs/guies/REFERENTS-PEDAGOGICS.md`, secció Castelnuovo) |
 
@@ -66,24 +102,36 @@ A la llista, les preguntes que tenen guia porten la marca ◆.
 ```
 index.html                    — única pàgina real de l'app
 assets/img/pistes/            — 98 figures de guia (fig-001…fig-098)
+assets/img/glossari/          — figures del glossari (1 de 53 termes, ampliant-se)
+assets/img/demo/              — 3 figures de la intro "què és una demostració"
 css/
   tokens.css                  — variables de disseny (color, tipografia, espai)
   base.css                    — ritme de lectura, layout "llibre obert"
-  components.css              — elements interactius (botons, selector d'idioma, navegació)
+  components.css              — elements interactius (botons, glossari, itinerari, demo...)
 js/
-  data/preguntes-dades.js     — les 130 preguntes (generat, no editar a mà — v. més avall)
+  data/
+    preguntes-dades.js        — les 130 preguntes, en/ca (generat, no editar a mà — v. més avall)
+    guies-dades.js             — les 97 guies (generat per parse_guies.py, no editar a mà)
+    glossari-dades.js         — els 53 termes del glossari (s'edita a mà)
+    demos-dades.js             — les 3 demostracions fixes (s'edita a mà)
   i18n/
     ui-strings.js             — textos d'interfície en/ca
     i18n-core.js              — resolució d'idioma i lookup de textos
   nucli/
     contingut.js              — fallback de contingut (enunciat.ca → en quan falta)
     progres.js                — marcador "explorat", desat a localStorage
-    router.js                 — hash-routing (#q01, #curs=2ESO...)
+    guies.js                   — unió guia↔pregunta per id
+    glossari.js                — accés al glossari + detecció de termes dins de text
+    itinerari.js                — estat i motor de recomanació
+    demos.js                    — estat de la intro "què és una demostració"
+    router.js                 — hash-routing (#q01, #curs=2ESO, #demo...)
   ui/
     llista.js                 — vista "totes les preguntes"
     detall.js                 — vista d'una pregunta
+    glossari.js                — panell overlay + popovers inline
+    demo.js                     — vista "què és una demostració"
     main.js                   — connecta el router a les vistes
-assets/img/                   — les 68 imatges (67 preguntes + q40_implicit amb dues)
+assets/img/                   — les 68 imatges font (67 preguntes + q40_implicit amb dues)
 ```
 
 Per a detalls tècnics de cada decisió de disseny (per què cada fitxer és com és, quins
@@ -128,9 +176,17 @@ Els sis passos de l'arquitectura original estan complets i provats de cap a cap
 (inclosa una càrrega real via `file://` sense servidor, amb clics reals a cada element
 interactiu). Pendents coneguts, cap dels quals bloqueja l'ús actual del lloc:
 
-- Traduccions de contingut al català (enunciats, pistes, notes editorials)
-- Assignació de `curs` i mode d'`interaccio` per pregunta
-- **Guies per a les 33 preguntes que encara no en tenen** (97 de 130 fetes)
+- **Guies per als lots 9 i 10** (les 33 preguntes que encara no en tenen, 97 de 130
+  fetes) — en marxa en paral·lel, cadascun amb el seu propi handoff
+  (`HANDOFF-LLIURAMENT-9.md`, `HANDOFF-LLIURAMENT-10.md`).
+- **Figures del glossari**: 52 dels 53 termes encara no en tenen (v.
+  `docs/guies/NOTA-GLOSSARI-AMPLIACIO.md`) — la pròxima tasca prevista.
+- Assignació de `curs` i mode d'`interaccio` per pregunta.
+
+Ja fets, per si es cerca aquí per costum: totes les 130 preguntes tenen ja
+`enunciat.ca` (traduït i revisat — v. `js/data/preguntes-dades.js`); el glossari,
+l'itinerari i la intro "què és una demostració" (v. seccions de dalt) hi són sencers
+i provats.
 
 ### Guies de demostració — com funciona el circuit
 

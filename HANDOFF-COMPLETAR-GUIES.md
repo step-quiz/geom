@@ -1,5 +1,24 @@
 # HANDOFF — completing the proof guides
 
+> **NOTA D'ESTAT (afegida després, no forma part de l'handoff original).**
+> Aquest document és una fotografia del moment del lliurament 5 (52/130,
+> abans de reprendre'l). El protocol que descriu —convenis de dibuix, escala
+> de quatre nivells, format de lliurament— continua vigent sense excepcions
+> i regeix encara els lliuraments 9 i 10. Però les XIFRES concretes d'aquest
+> document ("52 of 130", "53 figures") ja NO reflecteixen l'estat actual.
+> Per l'estat real, consulta:
+> - `README.md` — comptador actualitzat i visió general.
+> - `docs/guies/NOTA-LOT-N.md` (fins a N=8) — cada lliurament fet des
+>   d'aquest document.
+> - `PROJECTES-TECHNICAL-REFERENCE.md` §9–§11 — glossari, itinerari, intro
+>   "què és una demostració", i l'ampliació recent del glossari.
+> - `HANDOFF-LLIURAMENT-9.md` / `HANDOFF-LLIURAMENT-10.md` — els dos
+>   encàrrecs actualment en marxa per completar les 33 preguntes restants.
+>
+> En el moment d'escriure aquesta nota: **97 de 130 preguntes tenen guia**,
+> totes les 130 tenen `enunciat.ca`, i el glossari té 53 termes (1 amb
+> figura).
+
 **To:** a cold-start Claude Sonnet agent (successor to "agent IMG"), given this
 file plus the `geom` repository.
 **Task:** write proof guides and hint figures for the **78 questions that do not

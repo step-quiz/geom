@@ -343,3 +343,75 @@ visible, control de valoració present, cap imatge trencada, 0 errors JS. Provat
 manualment amb captures de pantalla (popover inline sobre un terme detectat dins d'un
 enunciat real, i el panell overlay amb cerca i navegació per relacionats).
 
+---
+
+## 10. Intro "què és una demostració" (`js/data/demos-dades.js`, `js/nucli/demos.js`, `js/ui/demo.js`)
+
+Implementada a partir de `DEMO-PROOF-INTRO-DESIGN-NOTES.md` (mateix estatus que els
+dos documents de la §9: "conclusions de disseny, res implementat encara"). No hi havia
+cap secció d'aquesta referència tècnica que ho documentés fins ara — aquesta n'és la
+primera.
+
+**Per què no reutilitza l'escala de pistes de `detall.js`.** Deliberat: aquí la
+solució s'ha de donar SENCERA, sempre visible, mai amagada rere un botó de revelar —
+l'excepció explícita i única a la regla "cap nivell dona mai la solució" que sí regeix
+les guies reals. Reutilitzar el mecanisme de revelar-un-per-un hauria aplicat una eina
+pensada per protegir un enunciat obert a un contingut que, per disseny, no n'és un.
+
+**Conveni de color diferent del de les guies.** A les tres figures
+(`assets/img/demo/`), tinta = el que ja hi havia en aquell panell; sanguina = el que
+s'acaba de CONSTRUIR en aquell mateix panell, acumulant-se d'esquerra a dreta —
+purament una marca de seqüència, no la distinció llibre/alumne de les guies. La
+mateixa idea que ja calia aplicar a les figures del glossari (§9).
+
+**Handoff demo→q02: el disparador és "ha obert q02 de debò", no "ha llegit la demo".**
+`geoDemos.marcaHandoffQ02Seguit()` es crida en clicar l'enllaç; `detall.js` la
+consumeix en pintar q02 i només aleshores crida `geoProgres.marcaFet("q02", true)` —
+mai com a efecte lateral d'acabar de llegir el text.
+
+**Redirecció de primer visitant, amb bandera pròpia.** `geo:demo-intro-mostrada` és
+independent de "geoProgres/itinerari buits": un alumne que ja ha vist la intro no hi
+torna a ser enviat cada cop que obre el lloc sense haver fet encara cap pregunta real
+— la bandera es marca en el mateix moment de la redirecció, no en acabar de llegir.
+
+**Bug real trobat en escollir els enllaços de tancament de les altres dues demos.**
+El document demanava un enllaç concret cap a una pregunta real per a totes tres demos
+(no només la que ja acaba amb un handoff explícit), "worth checking the 130 for the
+best fit rather than guessing". Es va cercar entre les preguntes reals: demo 1
+(suma d'angles) → q70 (extensió directa, mateixa dificultat); demo 2 (isòsceles) →
+q89 (Steiner–Lehmus, únic resultat isòsceles disponible en aquell moment, però un
+salt de dificultat real que la pròpia demo reconeix al seu text en lloc d'amagar-lo).
+
+---
+
+## 11. Ampliació del glossari — de 18 a 53 termes, treball d'un agent en paral·lel
+
+El glossari original (§9) es va lliurar amb 18 termes, deliberadament pocs ("3-4 real
+entries first to prove the schema holds" — v. `GLOSSARY-DESIGN-NOTES.md` §7/§8). Un
+segon agent, en una conversa separada i sense accés a aquesta, hi va afegir 35 termes
+més (53 en total), organitzats en sis categories noves (cercles, punts notables de
+triangle, conceptes generals, polígons, sòlids, còniques). Revisió feta abans
+d'integrar-lo:
+
+- **Esquema**: 0 problemes — totes les entrades noves segueixen exactament la mateixa
+  forma que les 18 originals (`termes.ca`/`.en`, `definicio.ca` string + `.en` null,
+  `figura`, `relacionats`, `categoria`).
+- **Enllaços `relacionats`**: 0 de trencats — cap referència a un id que no existeix.
+- **Castellanismes**: 0 de reals (dues coincidències de cerca automàtica, totes dues
+  falsos positius dins de formes catalanes correctes: "travessar"/"travessa").
+- **Figures**: només 1 dels 35 termes nous en reutilitza una d'existent
+  (`criteris-semblanca-triangles` → `gloss-triangles-semblants.png`, coherent amb el
+  seu contingut). La resta (34) tenen `figura: null` — pendents, la pròxima tasca
+  prevista pel projecte (v. `docs/guies/NOTA-GLOSSARI-AMPLIACIO.md`).
+- **Un cas que semblava un problema de contingut i no ho era**: l'entrada
+  `circumferencia-cercle` uneix "circumferència" i "cercle" com a sinònims de
+  cerca — dues paraules que en geometria noten coses diferents (la corba vs. la
+  regió). La pròpia definició ho explicita ("la circumferència és la vora i el
+  cercle és la regió"), en lloc de conflating-los en silenci — disseny correcte,
+  no error.
+
+Verificat amb Playwright després d'integrar-lo: el panell mostra 53 termes en 8
+categories, la cerca hi funciona, i la detecció inline sobre enunciats reals ara
+troba termes que abans no existien al glossari (per exemple, "tangent" i "radi" a
+q95, que abans no en detectava cap).
+
