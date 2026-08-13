@@ -4564,6 +4564,69 @@ window.GUIES = {
       "en": null
     }
   },
+  "q69": {
+    "moviment": "dues-maneres",
+    "movimentTitol": {
+      "ca": "dues maneres",
+      "en": null
+    },
+    "lot": 8,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "què has de produir",
+          "en": null
+        },
+        "text": {
+          "ca": "DUES distàncies diferents (no una): la del centroide de la regió semicircular (l'àrea) i la del centroide del seu arc (el perímetre, sense comptar el diàmetre) — cadascuna respecte del centre del cercle, sobre el diàmetre.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "gira-ho, com a q68",
+          "en": null
+        },
+        "text": {
+          "ca": "Si gires el semicercle (la regió) al voltant del seu diàmetre, quin sòlid en surt? I si gires només l'arc (sense la regió)?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-085.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Girar la REGIÓ dona una esfera sencera (volum conegut). Girar l'ARC dona la SUPERFÍCIE d'aquesta mateixa esfera (àrea coneguda). Aplica Pappus a l'inrevés, com a q68: iguala el volum (o la superfície) coneguts amb (àrea, o longitud) × 2π × distància, i aïlla la distància — dues vegades, un cop per a cada centroide.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "r=3: centroide de l'àrea a distància 4r/(3π)≈1,27 del centre. Centroide del perímetre a distància 2r/π≈1,91. Fixa't que són DIFERENTS — exactament el que q67 ja avisava que calia esperar.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Que aquestes dues distàncies surtin diferents confirma, amb un exemple concret, per què calia la doble definició de q65 i q67: \"el centroide\" no és una sola idea, són dues, i aquí ho pots veure amb xifres.",
+      "en": null
+    }
+  },
   "q70": {
     "moviment": "redueix-al-conegut",
     "movimentTitol": {
@@ -4696,6 +4759,69 @@ window.GUIES = {
       "en": null
     }
   },
+  "q72": {
+    "moviment": "dues-maneres",
+    "movimentTitol": {
+      "ca": "dues maneres",
+      "en": null
+    },
+    "lot": 8,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "què has de produir",
+          "en": null
+        },
+        "text": {
+          "ca": "No un polígon concret: la LLISTA dels problemes que caldria resoldre, en general, per saber si una successió de \"avança tant, gira tant\" torna mai al punt de partida.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "descompon cada tram en dues direccions",
+          "en": null
+        },
+        "text": {
+          "ca": "Cada tram de la teva llista (una longitud, en una direcció determinada pels girs acumulats fins aquell moment) es pot descompondre en un avanç horitzontal i un de vertical — exactament sinus i cosinus de l'angle acumulat, aplicats a la longitud del tram.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-094.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "El polígon es tanca si, i només si, DUES sumes independents donen zero alhora: la suma de tots els avanços horitzontals, i la suma de tots els avanços verticals. Cada avanç individual és un \"problema de triangle rectangle\" (longitud coneguda, angle conegut, troba els dos catets).",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Tres trams: 3 unitats a 0°, 4 unitats a 90°, 5 unitats a tal angle que tanqui el triangle (recorda el 3-4-5!). Comprova que la suma horitzontal i la vertical donen totes dues zero amb l'angle adequat.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquesta mateixa descomposició en dues sumes independents (horitzontal i vertical) és el nucli de com es couen coordenades i vectors a partir de la trigonometria — una idea que reapareixerà si mai treballes amb navegació, robòtica, o qualsevol cosa que impliqui sumar moviments en direccions diferents.",
+      "en": null
+    }
+  },
   "q73": {
     "moviment": "informacio-no-usada",
     "movimentTitol": {
@@ -4759,6 +4885,135 @@ window.GUIES = {
     },
     "iDespres": {
       "ca": "Aquesta distinció —un triangle sí que es reconstrueix de manera única a partir dels punts mitjans, un quadrilàter general no— és un primer tast de per què els triangles són, en geometria sintètica, la unitat mínima que sol fer-se servir per demostrar coses sobre polígons més grans (el mateix esperit que q02, q70 i q29).",
+      "en": null
+    }
+  },
+  "q74": {
+    "moviment": "cas-limit",
+    "movimentTitol": {
+      "ca": "cas límit",
+      "en": null
+    },
+    "lot": 8,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "què has de produir",
+          "en": null
+        },
+        "text": {
+          "ca": "Una resposta de NO, amb la condició exacta que separa quan sí d'quan no — no n'hi ha prou de dir \"no sempre\".",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "prova-ho amb un cas que falla",
+          "en": null
+        },
+        "text": {
+          "ca": "1, 2, 10: intenta dibuixar-lo. Amb un compàs, traça el segment de longitud 10; després, un arc de radi 1 des d'un extrem i un arc de radi 2 des de l'altre. Es toquen els dos arcs?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": {
+          "ca": "El cas 3-4-5 (els arcs es toquen, es forma un triangle) al costat del cas 1-2-10 (els arcs no arriben a tocar-se).",
+          "en": null
+        },
+        "figura": "fig-084.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Els dos arcs es toquen exactament quan la suma dels dos radis és més gran que la distància entre els centres. Quina desigualtat, en termes dels tres costats a, b, c (amb c el més llarg), diu això mateix?",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "3,4,5: 3+4=7>5 ✓, es forma triangle. 2,3,6: 2+3=5<6, no se'n forma cap — comprova-ho intentant-lo dibuixar amb compàs.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "El cas límit exacte (a+b=c) és un triangle \"aixafat\": els tres vèrtexs alineats, àrea zero. Aquesta mateixa idea de cas límit —una figura que es degenera en una de més senzilla just a la frontera— reapareix a q90, quan un quadrilàter cíclic es \"aixafa\" en un triangle.",
+      "en": null
+    }
+  },
+  "q75": {
+    "moviment": "contraexemple",
+    "movimentTitol": {
+      "ca": "contraexemple",
+      "en": null
+    },
+    "lot": 8,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "què has de produir",
+          "en": null
+        },
+        "text": {
+          "ca": "Dos triangles NO congruents (costats diferents) amb exactament la mateixa àrea i el mateix perímetre. Que existeixin ja demostra alguna cosa: a diferència del criteri costat-costat-costat, \"àrea i perímetre iguals\" NO determina un triangle únic.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "converteix-ho en un problema de números",
+          "en": null
+        },
+        "text": {
+          "ca": "Amb semiperímetre s fix, la fórmula de Heron diu que l'àrea només depèn del producte (s−a)(s−b)(s−c). Si anomenes x=s−a, y=s−b, z=s−c, el problema es converteix en: troba dues ternes diferents (x,y,z) amb la MATEIXA suma i el MATEIX producte.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-089.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Amb s=35: la terna (18,10,7) dona els costats (17,25,28). Busca una altra terna de tres nombres positius que sumin 35 i multiplicats donin el mateix producte que 18×10×7.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "(17,25,28): perímetre 70, àrea (Heron) = √(35·18·10·7) = √44100 = 210. (20,21,29): perímetre 70 també, àrea = √(35·15·14·6) = √44100 = 210 també. Dos triangles genuïnament diferents, mateixa àrea i perímetre.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Contrasta-ho amb el criteri SSS (tres costats determinen un triangle de manera única): aquí has vist que DOS números (àrea i perímetre junts) no basten per fer el mateix — calen tres dades independents, no dues, per fixar un triangle.",
       "en": null
     }
   },
@@ -4828,6 +5083,198 @@ window.GUIES = {
       "en": null
     }
   },
+  "q77": {
+    "moviment": "dilatacio",
+    "movimentTitol": {
+      "ca": "dilatació",
+      "en": null
+    },
+    "lot": 8,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "què has de produir",
+          "en": null
+        },
+        "text": {
+          "ca": "Un NOM per a la tècnica (no un càlcul nou encara): com vas trobar la longitud de la diagonal del pentàgon a q32, sense mesurar-la directament?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "recorda q32",
+          "en": null
+        },
+        "text": {
+          "ca": "No vas mesurar la diagonal amb un regle: vas trobar una figura semblant —més petita— amagada dins de la gran, i vas plantejar una equació a partir de la proporció entre totes dues.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": {
+          "ca": "Un exemple nou, diferent del pentàgon: un triangle amb una línia paral·lela a un costat, que en talla els altres dos i crea un triangle petit semblant a l'original.",
+          "en": null
+        },
+        "figura": "fig-090.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "La tècnica es diu, en aquest projecte, \"dilatació\": dues figures semblants (una és una versió escalada de l'altra) donen una PROPORCIÓ — una equació que relaciona longituds—, sense necessitat de Pitàgores ni de mesurar-les una per una.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Triangle amb costats 6 i 9 des d'un vèrtex; una paral·lela al tercer costat que talla el primer costat a 4 unitats del vèrtex. Per semblança, talla el segon costat a 4×(9/6)=6 unitats del mateix vèrtex.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquesta mateixa idea —una proporció entre triangles semblants, no una mesura directa— és, de fet, la idea de fons de sinus i cosinus (q78): totes dues són proporcions que només depenen de l'angle, precisament perquè tots els triangles rectangles amb aquell angle són semblants entre si.",
+      "en": null
+    }
+  },
+  "q78": {
+    "moviment": "construeix-per-definir",
+    "movimentTitol": {
+      "ca": "construeix la solució a partir de la seva pròpia definició",
+      "en": null
+    },
+    "lot": 8,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "què has de produir",
+          "en": null
+        },
+        "text": {
+          "ca": "Primer, la definició (sinus = costat oposat / hipotenusa; cosinus = costat contigu / hipotenusa, per a un angle agut d'un triangle rectangle). Després, la relació entre els sinus i cosinus dels DOS angles aguts d'un mateix triangle rectangle.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "el mateix costat, dos noms diferents",
+          "en": null
+        },
+        "text": {
+          "ca": "Un triangle rectangle té dos angles aguts, A i B (que sumen 90°, perquè el tercer és de 90°). El costat que és \"oposat\" a A, és \"oposat\" o \"contigu\" a B?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-086.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "El costat oposat a A és exactament el contigu a B, i el contigu a A és l'oposat a B (la hipotenusa és la mateixa per a tots dos). Escriu sinA i cosB en termes d'aquests mateixos dos costats — i compara-les.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Triangle 3-4-5, angle A oposat al costat 3: sinA=3/5=0,6, cosA=4/5=0,8. Angle B oposat al costat 4: sinB=4/5=0,8, cosB=3/5=0,6. Comprova que sinA=cosB i cosA=sinB.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Com que A+B=90° sempre en un triangle rectangle, això diu sin(θ)=cos(90°−θ) per a qualsevol angle agut θ — una identitat que faràs servir constantment a la resta d'aquest lot.",
+      "en": null
+    }
+  },
+  "q79": {
+    "moviment": "redueix-al-conegut",
+    "movimentTitol": {
+      "ca": "redueix el desconegut al conegut",
+      "en": null
+    },
+    "lot": 8,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "què has de produir",
+          "en": null
+        },
+        "text": {
+          "ca": "Una generalització de Pitàgores per a un triangle amb un angle obtús C —Pitàgores sol només val per al cas de 90°. C' és, com a q87, el suplementari de C.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "la mateixa alçada de q87",
+          "en": null
+        },
+        "text": {
+          "ca": "Traça l'alçada des del vèrtex oposat a c, que cau fora del triangle (com a q87). Aquesta alçada crea DOS triangles rectangles: un de gran (que inclou tot el triangle original) i un de petit (el tros extra, fora del triangle original).",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-092.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Aplica Pitàgores al triangle rectangle gran (hipotenusa c). La base d'aquest triangle gran és a + (un tros extra que surt del triangle petit, en termes de b i cos C'). Substitueix-ho i simplifica.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "a=5, b=4, C=120° (C'=60°): c²=25+16+2(5)(4)(0,5)=41+20=61, c=√61≈7,81. Comprova-ho amb coordenades: si situes els dos costats a,b amb l'angle de 120° entre ells, la distància entre els extrems ha de sortir el mateix valor.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Quan C=90° (C'=90° també, ja que són suplementaris i tots dos fan 90°), cos C'=0 i la fórmula es converteix exactament en el Pitàgores de tota la vida —aquest resultat el conté com a cas particular, no el substitueix.",
+      "en": null
+    }
+  },
   "q80": {
     "moviment": "dues-maneres",
     "movimentTitol": {
@@ -4894,6 +5341,321 @@ window.GUIES = {
       "en": null
     }
   },
+  "q81": {
+    "moviment": "redueix-al-conegut",
+    "movimentTitol": {
+      "ca": "redueix el desconegut al conegut",
+      "en": null
+    },
+    "lot": 8,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "què has de produir",
+          "en": null
+        },
+        "text": {
+          "ca": "Un angle \"diedre\" (entre dues cares que comparteixen una aresta) —no l'angle pla d'una cara, que ja coneixes. N'hi ha prou de treballar-ne un o dos sòlids amb detall; el mateix mètode val per als altres tres.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "troba dos segments, un a cada cara, perpendiculars a l'aresta compartida",
+          "en": null
+        },
+        "text": {
+          "ca": "A cada una de les dues cares que es toquen en una aresta, traça —dins d'aquella cara— el segment des del punt mitjà de l'aresta fins al vèrtex oposat d'aquella cara (l'alçada del triangle equilàter de la cara). Aquests dos segments, un a cada banda, formen l'angle diedre que busques.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-096.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Amb les coordenades dels vèrtexs del tetràedre (o mesurant els dos segments i el segment que uneix els altres dos vèrtexs), planteja el triangle format pels dos peus i el centre, i fes servir el teorema del cosinus (q79) per aïllar l'angle diedre.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Tetràedre regular: angle diedre = arccos(1/3) ≈ 70,53°. Octàedre regular: angle diedre = arccos(−1/3) ≈ 109,47°. Comprova que aquests dos angles sumen exactament 180°.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquesta suma de 180° entre l'angle diedre del tetràedre i el de l'octàedre no és casualitat — és exactament el que fa possible omplir l'espai alternant-ne, la pregunta següent d'aquest lot.",
+      "en": null
+    }
+  },
+  "q82": {
+    "moviment": "recompte-o-induccio",
+    "movimentTitol": {
+      "ca": "recompte o inducció",
+      "en": null
+    },
+    "lot": 8,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "què has de produir",
+          "en": null
+        },
+        "text": {
+          "ca": "Una comprovació que, al voltant de cada aresta compartida, els angles diedres dels sòlids que hi conflueixen sumen exactament 360° — el mateix test que vas aplicar als mosaics plans de q03, ara en 3D i sobre arestes en lloc de vèrtexs.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "quants sòlids de cada mena, a cada aresta",
+          "en": null
+        },
+        "text": {
+          "ca": "A cada aresta d'aquest folrat, hi conflueixen alguns tetràedres i alguns octàedres. Amb l'angle diedre de cada un (q81), quina combinació suma 360°?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-097.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Dos angles diedres de tetràedre (2×70,53°) més dos d'octàedre (2×109,47°) sumen 360° exactes —perquè cada parella (un tetràedre, un octàedre) ja en suma 180° (q81). Comprova que aquesta combinació concreta (2+2) és la que realment es fa servir en aquest folrat.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "2×70,53°+2×109,47° = 141,06°+218,94° = 360° exacte.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "A diferència del mosaic pla (q03), on un sol tipus de polígon regular (el triangle, el quadrat, l'hexàgon) ja pot folrar tot sol, aquí calen DOS sòlids diferents junts —el tetràedre regular sol no pot omplir l'espai (el seu angle diedre, 70,53°, no divideix 360° de manera exacta cap nombre de vegades).",
+      "en": null
+    }
+  },
+  "q83": {
+    "moviment": "redueix-al-conegut",
+    "movimentTitol": {
+      "ca": "redueix el desconegut al conegut",
+      "en": null
+    },
+    "lot": 8,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "què has de produir",
+          "en": null
+        },
+        "text": {
+          "ca": "Un sisè de volta = 360°/6 = 60°. Dos números concrets (o dues expressions amb arrels), no una aproximació decimal.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "parteix un triangle equilàter",
+          "en": null
+        },
+        "text": {
+          "ca": "Un triangle equilàter, costat 2, partit per la meitat des d'un vèrtex fins al punt mitjà del costat oposat. Quin triangle rectangle en surt, i quins costats té?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-087.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "El triangle rectangle té hipotenusa 2, un catet 1 (la meitat del costat que has partit), i l'altre catet per Pitàgores. L'angle de 60° és el que queda al vèrtex original —quin catet hi és oposat, quin hi és contigu?",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Catets 1 i √3, hipotenusa 2: sin60°=√3/2≈0,866, cos60°=1/2. Comprova amb Pitàgores: 1²+(√3)²=1+3=4=2² ✓.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "El mateix triangle partit et dona també, de franc, el sinus i el cosinus de 30° (l'altre angle agut d'aquest mateix triangle rectangle) — per la relació que acabes de trobar a q78.",
+      "en": null
+    }
+  },
+  "q84": {
+    "moviment": "redueix-al-conegut",
+    "movimentTitol": {
+      "ca": "redueix el desconegut al conegut",
+      "en": null
+    },
+    "lot": 8,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "què has de produir",
+          "en": null
+        },
+        "text": {
+          "ca": "Una identitat que valgui per a QUALSEVOL angle agut, no un parell de xifres concretes.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "torna a la definició",
+          "en": null
+        },
+        "text": {
+          "ca": "sinθ = oposat/hipotenusa, cosθ = contigu/hipotenusa. Què diu Pitàgores sobre oposat² + contigu²?",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-088.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "oposat² + contigu² = hipotenusa². Divideix tots dos costats de l'equació per hipotenusa².",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Triangle 3-4-5: sinθ=3/5, cosθ=4/5. sin²θ+cos²θ = 9/25+16/25=25/25=1 ✓, per a qualsevol dels dos angles aguts.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquesta identitat (sin²+cos²=1) és la que fa possible definir sinus i cosinus com les coordenades d'un punt que es mou sobre un cercle de radi 1 —una manera diferent de pensar-hi que reapareixerà si continues estudiant trigonometria més enllà d'aquest quadern.",
+      "en": null
+    }
+  },
+  "q85": {
+    "moviment": "dilatacio",
+    "movimentTitol": {
+      "ca": "dilatació",
+      "en": null
+    },
+    "lot": 8,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "què has de produir",
+          "en": null
+        },
+        "text": {
+          "ca": "Un cinquè de volta = 72°. Sinus i cosinus d'aquest angle, en termes del nombre auri φ=(1+√5)/2.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "comença per la meitat de l'angle",
+          "en": null
+        },
+        "text": {
+          "ca": "36° és la meitat de 72°, i és exactament l'angle a la punta del triangle isòsceles daurat que ja vas trobar a q31/q32 (dos costats en raó φ:1). Si en saps el cosinus de 36°, l'angle doble (q88) et dona el de 72°.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-095.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Al triangle daurat (dos costats φ, base 1, angle 36° al vèrtex), parteix- lo per la meitat des del vèrtex: obtens cos36°=(φ/2). Aplica la fórmula de l'angle doble de q88 per obtenir cos72° i sin72° a partir d'això.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "cos36°=φ/2≈0,809. cos72°=2cos²36°−1=2(0,809)²−1≈0,309. sin72°=√(1−cos²72°)≈0,951. Comprova que φ²=φ+1 (l'equació que ja coneixes de q33) simplifica cos72° a exactament (φ−1)/2 = 1/(2φ).",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquest mateix valor, sin72°≈0,951, és el que fa falta per calcular l'àrea exacta d'un pentàgon regular en termes només del seu costat, sense passar per l'apotema mesurada per separat.",
+      "en": null
+    }
+  },
   "q86": {
     "moviment": "contraexemple",
     "movimentTitol": {
@@ -4954,6 +5716,132 @@ window.GUIES = {
     },
     "iDespres": {
       "ca": "Dels cinc criteris clàssics de congruència de triangles (SSS, SAS, ASA, AAS...), SSA és l'únic que falla — per això té nom propi (\"el cas ambigu\") en trigonometria, i reapareix cada vegada que resols un triangle amb el teorema del sinus.",
+      "en": null
+    }
+  },
+  "q87": {
+    "moviment": "construeix-per-definir",
+    "movimentTitol": {
+      "ca": "construeix la solució a partir de la seva pròpia definició",
+      "en": null
+    },
+    "lot": 8,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "què has de produir",
+          "en": null
+        },
+        "text": {
+          "ca": "Una definició, no un càlcul: la definició de sinus de q78 (oposat/ hipotenusa) només té sentit per a un angle agut d'un triangle rectangle —un angle obtús no en pot ser mai un. Cal decidir què vol dir sin(120°), per exemple.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "cau la perpendicular fora del triangle",
+          "en": null
+        },
+        "text": {
+          "ca": "En un triangle amb un angle obtús C, l'alçada des del vèrtex oposat cau FORA del triangle, no a dins. Aquesta alçada forma un triangle rectangle nou, amb un angle C' que és el suplementari de C (C'=180°−C).",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-091.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Defineix sin(C) := sin(C'), fent servir l'angle agut suplementari, que sí que és l'angle d'un triangle rectangle de veritat. Comprova, amb aquesta definició, que el teorema del sinus (costat / sin(angle oposat) igual als tres vèrtexs) encara dona el mateix valor als tres costats del triangle obtusangle.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "C=120°, C'=60°: sin(120°):=sin(60°)=√3/2≈0,866.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Aquesta mateixa construcció (l'alçada que cau fora, l'angle suplementari C') és exactament la que fa servir q79, la propera guia, per generalitzar Pitàgores a triangles amb un angle obtús.",
+      "en": null
+    }
+  },
+  "q88": {
+    "moviment": "redueix-al-conegut",
+    "movimentTitol": {
+      "ca": "redueix el desconegut al conegut",
+      "en": null
+    },
+    "lot": 8,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "què has de produir",
+          "en": null
+        },
+        "text": {
+          "ca": "Dues fórmules, sin(2θ) i cos(2θ), en termes de sinθ i cosθ solament.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "un triangle isòsceles amb angle 2θ al vèrtex",
+          "en": null
+        },
+        "text": {
+          "ca": "Triangle isòsceles, dos costats de longitud 1, angle 2θ entre ells. Calcula'n l'àrea de dues maneres: (a) amb la fórmula \"meitat del producte de dos costats pel sinus de l'angle entre ells\", i (b) partint-lo per la meitat amb l'alçada des del vèrtex, que en dona dos triangles rectangles d'angle θ.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-093.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Per a sin(2θ): iguala les dues àrees de la Pista 1. Per a cos(2θ): aplica el teorema del cosinus de q79 a aquest mateix triangle isòsceles (costats 1, 1, angle 2θ) per trobar el costat que falta al quadrat, i compara-ho amb el mateix costat calculat com el doble de sinθ (per la partició en dos triangles rectangles).",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "θ=37°: sin(74°)≈0,961, i 2·sin37°·cos37°≈2(0,602)(0,799) ≈0,961 ✓. cos(74°)≈0,276, i 1−2sin²37°≈1−2(0,362)≈0,276 ✓.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "q85, un parell de guies més endavant en aquest mateix lot, fa servir exactament aquesta fórmula del cosinus doble per trobar el sinus i el cosinus de 72° a partir dels de 36°.",
       "en": null
     }
   },
@@ -5020,6 +5908,69 @@ window.GUIES = {
     },
     "iDespres": {
       "ca": "Aquest és l'únic resultat d'aquest lot on la demostració completa se't queda fora d'abast expressament —val la pena saber que existeixen teoremes senzills d'enunciar i difícils de provar, i que \"contraintuïtivament difícil\" no vol dir \"fals\".",
+      "en": null
+    }
+  },
+  "q90": {
+    "moviment": "redueix-al-conegut",
+    "movimentTitol": {
+      "ca": "redueix el desconegut al conegut",
+      "en": null
+    },
+    "lot": 8,
+    "pistes": [
+      {
+        "nivell": 0,
+        "titol": {
+          "ca": "què has de produir",
+          "en": null
+        },
+        "text": {
+          "ca": "Una fórmula que generalitza la de Heron (àrea d'un triangle a partir només dels seus costats) a un quadrilàter —però només quan els quatre vèrtexs són sobre un mateix cercle: aquesta condició és imprescindible, no decorativa.",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 1,
+        "titol": {
+          "ca": "parteix el quadrilàter en dos triangles per una diagonal",
+          "en": null
+        },
+        "text": {
+          "ca": "Els dos triangles comparteixen la diagonal i tenen angles oposats en aquell vèrtex del quadrilàter que, per estar inscrit en un cercle, sumen 180° (angles oposats d'un quadrilàter cíclic — recorda q90 mateix ho demana com a hipòtesi, i el fet ja el vas veure encunyat, sense el nom, en algun quadrilàter cíclic anterior).",
+          "en": null
+        },
+        "figura": null
+      },
+      {
+        "nivell": 2,
+        "titol": {
+          "ca": "la construcció",
+          "en": null
+        },
+        "text": null,
+        "figura": "fig-098.png"
+      },
+      {
+        "nivell": 3,
+        "titol": {
+          "ca": "tanca-ho",
+          "en": null
+        },
+        "text": {
+          "ca": "Escriu la diagonal al quadrat de dues maneres (teorema del cosinus, un cop a cada triangle) i iguala-les — com que els dos angles són suplementaris, els cosinus són oposats, i es poden eliminar. Suma les dues àrees (cadascuna, mig producte de costats pel sinus de l'angle comú) i simplifica amb sin²+cos²=1 fins arribar a la forma de Heron generalitzada.",
+          "en": null
+        },
+        "figura": null
+      }
+    ],
+    "comprovacio": {
+      "ca": "Costats 2, 3, 4, 5: s=7. A=√[(7−2)(7−3)(7−4)(7−5)] = √(5·4·3·2) = √120 ≈ 10,95.",
+      "en": null
+    },
+    "iDespres": {
+      "ca": "Quan un dels quatre costats es \"col·lapsa\" a zero (d→0), la fórmula de Brahmagupta es converteix exactament en la de Heron per a un triangle de costats a, b, c —el mateix cas límit que ja vas veure a q74, ara amb un vèrtex de més. I, com ja apuntava q89 (Steiner-Lehmus, ja fet): totes dues preguntes comparteixen l'esperit de trobar una relació algebraica que la geometria, per si sola, amaga darrere d'una arrel quadrada.",
       "en": null
     }
   },
