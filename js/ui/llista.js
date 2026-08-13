@@ -15,7 +15,9 @@
                 al router perquè main.js ha de poder decidir quina vista
                 actual mostrar en cada moment (llista.js i detall.js
                 comparteixen el mateix punt de muntatge al DOM).
-  DEPENDÈNCIES: js/data/preguntes-dades.js (window.PREGUNTES)
+  DEPENDÈNCIES: js/data/preguntes-dades.js (window.PREGUNTES),
+                js/nucli/ordre.js (ordre de presentació — v. la seva
+                pròpia capçalera; es degrada bé si no hi és)
                 js/i18n/i18n-core.js (t/tf per a textos d'interfície)
                 js/nucli/contingut.js (fallback de contingut de pregunta)
                 js/nucli/progres.js (estat "fet")
@@ -155,7 +157,7 @@
     contenidorEl.innerHTML = "";
 
     const lang = window.geoI18n.getLang();
-    const totes = window.PREGUNTES || [];
+    const totes = window.geoOrdre ? window.geoOrdre.preguntesOrdenades() : (window.PREGUNTES || []);
     const filtrades = aplicaFiltres(totes, view.filtres);
 
     const header = document.createElement("header");

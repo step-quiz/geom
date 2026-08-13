@@ -9,24 +9,26 @@
                 capçalera de cadascun, llistat sencer aquí per referència
                 ràpida en un sol lloc):
                   1. js/data/preguntes-dades.js
-                  2. js/data/guies-dades.js
-                  3. js/data/glossari-dades.js
-                  4. js/data/demos-dades.js
-                  5. js/i18n/ui-strings.js
-                  6. js/i18n/i18n-core.js
-                  7. js/nucli/contingut.js
-                  8. js/nucli/progres.js
-                  9. js/nucli/guies.js
-                 10. js/nucli/glossari.js
-                 11. js/nucli/itinerari.js     (necessita 2,7,8,9)
-                 12. js/nucli/demos.js         (necessita 8,11 en temps
+                  2. js/data/ordre-preguntes.js
+                  3. js/data/guies-dades.js
+                  4. js/data/glossari-dades.js
+                  5. js/data/demos-dades.js
+                  6. js/i18n/ui-strings.js
+                  7. js/i18n/i18n-core.js
+                  8. js/nucli/contingut.js
+                  9. js/nucli/ordre.js          (necessita 1,2)
+                 10. js/nucli/progres.js
+                 11. js/nucli/guies.js
+                 12. js/nucli/glossari.js
+                 13. js/nucli/itinerari.js     (necessita 1,8,9,11,10)
+                 14. js/nucli/demos.js         (necessita 10,13 en temps
                      de crida, no de càrrega — v. la seva pròpia capçalera)
-                 13. js/nucli/router.js        (necessita window.PREGUNTES)
-                 14. js/ui/glossari.js         (necessita 3,5,6,10)
-                 15. js/ui/llista.js           (necessita 1,3,5,6,8,10,11,13)
-                 16. js/ui/detall.js           (necessita 3,5,6,8,10,11,12,13,14)
-                 17. js/ui/demo.js             (necessita 4,5,6,12,13)
-                 18. js/ui/main.js             (aquest fitxer — necessita 1-17)
+                 15. js/nucli/router.js        (necessita window.PREGUNTES)
+                 16. js/ui/glossari.js         (necessita 4,6,7,12)
+                 17. js/ui/llista.js           (necessita 1,4,6,7,9,10,12,13,15)
+                 18. js/ui/detall.js           (necessita 4,6,7,9,10,12,13,14,15,16)
+                 19. js/ui/demo.js             (necessita 5,6,7,14,15)
+                 20. js/ui/main.js             (aquest fitxer — necessita 1-19)
   DEPENDÈNCIES: Tots els anteriors.
 
   ON DIVERGEIX DEL §8 DE PROPOSTA-ARQUITECTURA.md, I PER QUÈ

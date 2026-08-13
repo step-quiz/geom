@@ -15,11 +15,14 @@
                 moment.
   DEPENDÈNCIES: js/i18n/i18n-core.js, js/nucli/contingut.js,
                 js/nucli/progres.js, js/nucli/router.js (per calcular
-                anterior/següent i navegar-hi), js/nucli/glossari.js +
+                anterior/següent i navegar-hi), js/nucli/ordre.js
+                (anterior/següent segueix l'ordre de presentació
+                configurable, no l'ordre del llibre — v. veins() més
+                avall), js/nucli/glossari.js +
                 js/ui/glossari.js (§3/§4.2 de GLOSSARY-DESIGN-NOTES.md:
                 termes inline dins l'enunciat), js/nucli/itinerari.js
                 (§7 de ITINERARY-DESIGN-NOTES.md: valoració + suggerit).
-                Cap d'aquests quatre és obligatori en temps d'execució —
+                Cap d'aquests cinc és obligatori en temps d'execució —
                 cada crida hi comprova `window.geoXxx &&` abans d'usar-lo,
                 així que detall.js es degrada correctament si algun
                 d'aquests fitxers no s'ha carregat.
@@ -49,14 +52,17 @@
   }
 
   /**
-   * Troba l'índex de la pregunta actual dins window.PREGUNTES EN EL
-   * MOMENT DE CRIDAR-HO (mai memoritzat), perquè anterior/següent
-   * segueixin sent correctes encara que l'array hagi crescut o canviat
-   * d'ordre entre generacions de preguntes-dades.js — mateix principi
-   * que router.js ja aplica per a la resolució d'id (v. pas 4).
+   * Troba l'índex de la pregunta actual EN EL MOMENT DE CRIDAR-HO (mai
+   * memoritzat), perquè anterior/següent segueixin sent correctes encara
+   * que l'array hagi crescut o canviat d'ordre entre generacions de
+   * preguntes-dades.js — mateix principi que router.js ja aplica per a
+   * la resolució d'id (v. pas 4). Des que existeix js/nucli/ordre.js,
+   * "anterior/següent" segueix l'ordre de PRESENTACIÓ configurable
+   * (js/data/ordre-preguntes.js), no l'ordre del llibre — són coses
+   * diferents a propòsit (v. la capçalera d'aquell fitxer).
    */
   function veins(id) {
-    const totes = window.PREGUNTES || [];
+    const totes = window.geoOrdre ? window.geoOrdre.preguntesOrdenades() : (window.PREGUNTES || []);
     const idx = totes.findIndex((p) => p.id === id);
     if (idx === -1) return { anterior: null, seguent: null };
     return {
@@ -405,7 +411,11 @@
    * cadascun amb la seva raó explícita -- mai un sol "següent" imposat.
    * Es col·loca AL COSTAT de, no en lloc de, la navegació posicional
    * anterior/següent (pintaNavegacio), que es manté sempre disponible
-   * per a qui prefereixi llegir en l'ordre del llibre (§7).
+   * per a qui prefereixi llegir en l'ordre de presentació configurat
+   * (js/data/ordre-preguntes.js — ja NO l'ordre del llibre, des que
+   * existeix aquell fitxer; v. §7 del document de disseny original, que
+   * parlava encara de l'ordre del llibre perquè és anterior a aquest
+   * canvi).
    *
    * Es pinta dins d'un `slotEl` estable perquè es pugui RECALCULAR sense
    * repintar tota la pàgina (v. pintaValoracio: valorar una pregunta pot
