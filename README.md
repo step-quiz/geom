@@ -26,7 +26,7 @@ mòbil a la mateixa xarxa), qualsevol servidor estàtic funciona igual de bé:
 preguntes, un marcador personal "explorat" que es desa al navegador, i una interfície
 completa en anglès i català (el contingut de les preguntes, no).
 
-**I, des del lot 7 de guies: 82 de les 130 preguntes tenen una GUIA DE DEMOSTRACIÓ.**
+**I, des del lot 8 de guies: 97 de les 130 preguntes tenen una GUIA DE DEMOSTRACIÓ.**
 És una escala de quatre pistes que es revelen d'una en una, pensada per a qui sap
 resoldre equacions però no ha fet mai geometria sintètica. Els quatre nivells
 difereixen en *espècie*, no en quantitat:
@@ -65,7 +65,7 @@ A la llista, les preguntes que tenen guia porten la marca ◆.
 
 ```
 index.html                    — única pàgina real de l'app
-assets/img/pistes/            — 83 figures de guia (fig-001…fig-083)
+assets/img/pistes/            — 98 figures de guia (fig-001…fig-098)
 css/
   tokens.css                  — variables de disseny (color, tipografia, espai)
   base.css                    — ritme de lectura, layout "llibre obert"
@@ -130,7 +130,7 @@ interactiu). Pendents coneguts, cap dels quals bloqueja l'ús actual del lloc:
 
 - Traduccions de contingut al català (enunciats, pistes, notes editorials)
 - Assignació de `curs` i mode d'`interaccio` per pregunta
-- **Guies per a les 48 preguntes que encara no en tenen** (82 de 130 fetes)
+- **Guies per a les 33 preguntes que encara no en tenen** (97 de 130 fetes)
 
 ### Guies de demostració — com funciona el circuit
 
@@ -148,13 +148,13 @@ js/data/guies-dades.js      ← generat; no editar
 Fitxers nous que aquest sistema afegeix al projecte:
 
 ```
-js/data/guies-dades.js      — les 82 guies (generat per parse_guies.py)
+js/data/guies-dades.js      — les 97 guies (generat per parse_guies.py)
 js/nucli/guies.js           — unió guia↔pregunta per id + fallback d'idioma
-assets/img/pistes/          — 83 figures publicades
+assets/img/pistes/          — 98 figures publicades
 parse_guies.py              — .md → guies-dades.js
 docs/guies/                 — els .md font, les notes de lliurament i les
                               fonts HTML que regeneren cada figura
-docs/manifest-figures.tsv   — registre numerat de les 83 figures
+docs/manifest-figures.tsv   — registre numerat de les 98 figures
 docs/comu.js, docs/render.js, docs/hand-draw.js — eines de dibuix
 ```
 
@@ -184,7 +184,7 @@ Per continuar la producció de guies hi ha un document de traspàs complet:
 `HANDOFF-COMPLETAR-GUIES.md` (en anglès, pensat per a un agent que arriba en
 fred), amb el full de ruta de les 78 preguntes que queden.
 
-`docs/manifest-figures.tsv` és el registre de les 83 figures: número, pregunta,
+`docs/manifest-figures.tsv` és el registre de les 98 figures: número, pregunta,
 nivell, moviment, lot i revisió. **Un número de figura és permanent**: si una
 figura es redibuixa, conserva el número i puja el camp `rev`.
 
