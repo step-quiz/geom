@@ -86,7 +86,32 @@ nivell dona la solució" que sí regeix les guies reals. Un alumne que arriba pe
 primer cop (sense cap pregunta feta encara) hi és enviat un únic cop; qui hi torna,
 mai més. Dades a `js/data/demos-dades.js`.
 
+### Ordre de presentació
+
+L'ordre en què es veuen les 130 preguntes (a la llista, i a "anterior/
+següent" dins d'una pregunta) **és independent de l'ordre del llibre**
+i viu tot sol a `js/data/ordre-preguntes.js` — un array pla d'ids,
+editable directament, sense tocar cap altre fitxer. Per defecte:
+agrupat primer per dificultat i després per dimensió —
+
+```
+dificultat 1 + 2D → dificultat 1 + 3D →
+dificultat 2 + 2D → dificultat 2 + 3D →
+dificultat 3 + 2D → dificultat 3 + 3D
+```
+
+— i, dins de cada un d'aquests sis grups, un itinerari pensat perquè
+preguntes emparentades (per tècnica o per dependència real ja
+documentada a les guies) quedin juntes. No sempre és possible —
+algunes cadenes de dependència reals travessen la frontera de
+dificultat o de dimensió— i on no ho és, es respecta l'ordre del llibre
+com a criteri de reserva. `js/nucli/ordre.js` és qui ho resol en temps
+d'execució (amb degradació segura si l'array queda incomplet o
+desapareix); `js/data/preguntes-dades.js` mai canvia d'ordre — segueix
+sent, sempre, l'ordre real del llibre.
+
 **No hi ha, i per què:**
+
 
 | Element | Per què no hi és |
 |---|---|
@@ -111,6 +136,8 @@ css/
 js/
   data/
     preguntes-dades.js        — les 130 preguntes, en/ca (generat, no editar a mà — v. més avall)
+    ordre-preguntes.js        — ordre de PRESENTACIÓ (llista + anterior/següent), separat de
+                                 l'ordre del llibre — s'edita a mà, v. secció pròpia més avall
     guies-dades.js             — les 97 guies (generat per parse_guies.py, no editar a mà)
     glossari-dades.js         — els 53 termes del glossari (s'edita a mà)
     demos-dades.js             — les 3 demostracions fixes (s'edita a mà)
@@ -119,6 +146,7 @@ js/
     i18n-core.js              — resolució d'idioma i lookup de textos
   nucli/
     contingut.js              — fallback de contingut (enunciat.ca → en quan falta)
+    ordre.js                    — resol ordre-preguntes.js de manera segura (v. secció pròpia)
     progres.js                — marcador "explorat", desat a localStorage
     guies.js                   — unió guia↔pregunta per id
     glossari.js                — accés al glossari + detecció de termes dins de text
