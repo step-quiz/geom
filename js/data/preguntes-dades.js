@@ -142,7 +142,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Where is the center of an equilateral triangle?",
-      "ca": null
+      "ca": "On és el centre d'un triangle equilàter?"
     },
     "pista": {
       "en": null,
@@ -171,7 +171,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Are these four triangles identical?",
-      "ca": null
+      "ca": "Aquests quatre triangles, són idèntics?"
     },
     "pista": {
       "en": null,
@@ -195,7 +195,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "What are all the different ways to make symmetrical mosaic designs using regular polygons?",
-      "ca": null
+      "ca": "Quantes maneres diferents hi ha de fer dissenys de mosaic simètrics amb polígons regulars?"
     },
     "pista": {
       "en": null,
@@ -219,7 +219,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "What are the angles of a regular n-sided polygon?",
-      "ca": null
+      "ca": "Quins són els angles d'un polígon regular de n costats?"
     },
     "pista": {
       "en": null,
@@ -248,7 +248,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Can you measure the angles of a regular n-pointed star?",
-      "ca": null
+      "ca": "Es poden mesurar els angles d'una estrella regular de n puntes?"
     },
     "pista": {
       "en": null,
@@ -277,7 +277,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Do the diagonals drawn from one corner of a regular polygon always make equal angles?",
-      "ca": null
+      "ca": "Les diagonals traçades des d'un vèrtex d'un polígon regular, sempre formen angles iguals?"
     },
     "pista": {
       "en": null,
@@ -301,7 +301,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "What happens if the angle sum is more than a full turn?",
-      "ca": null
+      "ca": "Què passa si la suma dels angles és més d'una volta sencera?"
     },
     "pista": {
       "en": null,
@@ -325,7 +325,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "What are all the symmetrical polyhedra?",
-      "ca": null
+      "ca": "Quins són tots els poliedres simètrics?"
     },
     "pista": {
       "en": null,
@@ -349,7 +349,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "What are the five regular polyhedra?",
-      "ca": null
+      "ca": "Quins són els cinc poliedres regulars?"
     },
     "pista": {
       "en": null,
@@ -373,7 +373,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "If two triangles have the same angles, are they necessarily similar? How about four-sided shapes?",
-      "ca": null
+      "ca": "Si dos triangles tenen els mateixos angles, són necessàriament semblants? I les figures de quatre costats?"
     },
     "pista": {
       "en": null,
@@ -402,7 +402,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Show that if a right triangle is chopped into two smaller ones, they must both be similar to the original triangle.",
-      "ca": null
+      "ca": "Demostra que si tallem un triangle rectangle en dos de més petits, tots dos han de ser semblants al triangle original."
     },
     "pista": {
       "en": null,
@@ -431,7 +431,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Are the opposite sides of a rhombus always parallel? Are the diagonals perpendicular?",
-      "ca": null
+      "ca": "Els costats oposats d'un rombe, sempre són paral·lels? Les diagonals són perpendiculars?"
     },
     "pista": {
       "en": null,
@@ -460,7 +460,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "A parallelogram is a four-sided polygon with opposite sides parallel (i.e., a slanted box). Must the opposite angles of a parallelogram be equal?",
-      "ca": null
+      "ca": "Un paral·lelogram és un polígon de quatre costats amb els costats oposats paral·lels (és a dir, una caixa inclinada). Els angles oposats d'un paral·lelogram han de ser iguals?"
     },
     "pista": {
       "en": null,
@@ -489,7 +489,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Prove that a parallelogram with equal diagonals must be a rectangle.",
-      "ca": null
+      "ca": "Demostra que un paral·lelogram amb les diagonals iguals ha de ser un rectangle."
     },
     "pista": {
       "en": null,
@@ -518,7 +518,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Suppose we cut a triangle from one corner to the middle of the opposite side. Does the area get cut in half?",
-      "ca": null
+      "ca": "Suposa que tallem un triangle des d'un vèrtex fins al punt mitjà del costat oposat. L'àrea queda partida per la meitat?"
     },
     "pista": {
       "en": null,
@@ -547,7 +547,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Why does a triangle take up exactly half of its box?",
-      "ca": null
+      "ca": "Per què un triangle ocupa exactament la meitat de la seva caixa?"
     },
     "pista": {
       "en": null,
@@ -576,7 +576,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "What happens to the area of the triangle as we slide the tip horizontally? What if it goes past the sides of the box?",
-      "ca": null
+      "ca": "Què li passa a l'àrea del triangle quan desplacem el vèrtex horitzontalment? Què passa si sobrepassa els costats de la caixa?"
     },
     "pista": {
       "en": null,
@@ -605,7 +605,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Show that when we connect the midpoints of the sides of any four-sided shape, it forms a parallelogram. What is its area?",
-      "ca": null
+      "ca": "Demostra que, en unir els punts mitjans dels costats d'una figura de quatre costats qualsevol, s'obté un paral·lelogram. Quina és la seva àrea?"
     },
     "pista": {
       "en": null,
@@ -629,7 +629,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Can a polygon always be chopped into pieces and reassembled to form a square?",
-      "ca": null
+      "ca": "Es pot sempre retallar un polígon en peces i recompondre'l com un quadrat?"
     },
     "pista": {
       "en": null,
@@ -653,7 +653,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "How does the volume of a box depend on the lengths of its sides?",
-      "ca": null
+      "ca": "Com depèn el volum d'una caixa de les longituds dels seus costats?"
     },
     "pista": {
       "en": null,
@@ -677,7 +677,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "What is the effect of scaling on volume?",
-      "ca": null
+      "ca": "Quin és l'efecte de l'escalat sobre el volum?"
     },
     "pista": {
       "en": null,
@@ -701,7 +701,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Why is the product of two odd numbers always odd?",
-      "ca": null
+      "ca": "Per què el producte de dos nombres senars és sempre senar?"
     },
     "pista": {
       "en": null,
@@ -725,7 +725,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Why is the product of two even numbers always divisible by 4?",
-      "ca": null
+      "ca": "Per què el producte de dos nombres parells sempre és divisible per 4?"
     },
     "pista": {
       "en": null,
@@ -749,7 +749,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Is √3 irrational? What about √2 + √3?",
-      "ca": null
+      "ca": "És irracional √3? I √2 + √3?"
     },
     "pista": {
       "en": null,
@@ -778,7 +778,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "The big circles are clearly half as wide as the square. How about the small circle?",
-      "ca": null
+      "ca": "Els cercles grans clarament tenen la meitat d'amplada que el quadrat. I el cercle petit?"
     },
     "pista": {
       "en": null,
@@ -807,7 +807,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "How big are these circles?",
-      "ca": null
+      "ca": "Quant fan aquests cercles?"
     },
     "pista": {
       "en": null,
@@ -831,7 +831,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Which rectangles have whole number sides and diagonals?",
-      "ca": null
+      "ca": "Quins rectangles tenen els costats i les diagonals de nombre enter?"
     },
     "pista": {
       "en": null,
@@ -860,7 +860,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "How does the diagonal of a box depend on its three sides?",
-      "ca": null
+      "ca": "Com depèn la diagonal d'una caixa dels seus tres costats?"
     },
     "pista": {
       "en": null,
@@ -884,7 +884,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Show that the height of an equilateral triangle is (1/2)√3 times as long as its side.",
-      "ca": null
+      "ca": "Demostra que l'altura d'un triangle equilàter és (1/2)√3 vegades el seu costat."
     },
     "pista": {
       "en": null,
@@ -913,7 +913,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Some geometry problems speak for themselves.",
-      "ca": null
+      "ca": "Alguns problemes de geometria parlen per si sols."
     },
     "pista": {
       "en": null,
@@ -937,7 +937,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "What is the area of an equilateral triangle?",
-      "ca": null
+      "ca": "Quina és l'àrea d'un triangle equilàter?"
     },
     "pista": {
       "en": null,
@@ -966,7 +966,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Can you measure the diagonals and areas of the regular hexagon and octagon?",
-      "ca": null
+      "ca": "Es poden mesurar les diagonals i les àrees de l'hexàgon i l'octàgon regulars?"
     },
     "pista": {
       "en": null,
@@ -995,7 +995,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Can you measure the diagonals and area of the regular dodecagon?",
-      "ca": null
+      "ca": "Es poden mesurar les diagonals i l'àrea del dodecàgon regular?"
     },
     "pista": {
       "en": null,
@@ -1024,7 +1024,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Why are the three triangles similar? Why are the larger ones identical?",
-      "ca": null
+      "ca": "Per què els tres triangles són semblants? Per què els més grans són idèntics?"
     },
     "pista": {
       "en": null,
@@ -1053,7 +1053,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "How big is the small pentagon?",
-      "ca": null
+      "ca": "Quant fa el pentàgon petit?"
     },
     "pista": {
       "en": null,
@@ -1082,7 +1082,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Use this configuration of two pentagons to give an alternate proof that the diagonal satisfies d² = d + 1.",
-      "ca": null
+      "ca": "Fes servir aquesta configuració de dos pentàgons per donar una demostració alternativa que la diagonal compleix d² = d + 1."
     },
     "pista": {
       "en": null,
@@ -1106,7 +1106,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Construct a mosaic design that demonstrates the algebraic relation (x + y)² = x² + 2xy + y².",
-      "ca": null
+      "ca": "Construeix un disseny de mosaic que demostri la relació algebraica (x + y)² = x² + 2xy + y²."
     },
     "pista": {
       "en": null,
@@ -1130,7 +1130,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Suppose you are given both the sum and difference of two numbers. How can you determine the numbers themselves? What if it's the sum and product that are given?",
-      "ca": null
+      "ca": "Suposa que et donen tant la suma com la diferència de dos nombres. Com pots determinar els nombres mateixos? I si et donen la suma i el producte?"
     },
     "pista": {
       "en": null,
@@ -1154,7 +1154,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Show that among all rectangles of a fixed perimeter, the square has the largest area.",
-      "ca": null
+      "ca": "Demostra que, entre tots els rectangles de perímetre fix, el quadrat és el que té l'àrea més gran."
     },
     "pista": {
       "en": null,
@@ -1178,7 +1178,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Find a rectangle with the same area and perimeter as a given equilateral triangle.",
-      "ca": null
+      "ca": "Troba un rectangle amb la mateixa àrea i el mateix perímetre que un triangle equilàter donat."
     },
     "pista": {
       "en": null,
@@ -1207,7 +1207,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "A golden rectangle has the property that when a square is removed, the remaining rectangle is similar to the original. What are the proportions of a golden rectangle?",
-      "ca": null
+      "ca": "Un rectangle auri té la propietat que, en treure-li un quadrat, el rectangle que queda és semblant a l'original. Quines són les proporcions d'un rectangle auri?"
     },
     "pista": {
       "en": null,
@@ -1231,7 +1231,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "What is the area of a regular pentagon?",
-      "ca": null
+      "ca": "Quina és l'àrea d'un pentàgon regular?"
     },
     "pista": {
       "en": null,
@@ -1269,7 +1269,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Two of my favorites.",
-      "ca": null
+      "ca": "Dues de les meves preferides."
     },
     "pista": {
       "en": null,
@@ -1298,7 +1298,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "When a point on a circle is connected to both ends of a diameter it always makes a right angle. Why?",
-      "ca": null
+      "ca": "Quan un punt d'un cercle es connecta amb els dos extrems d'un diàmetre, sempre forma un angle recte. Per què?"
     },
     "pista": {
       "en": null,
@@ -1327,7 +1327,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Show that if two points are connected to the same arc, the resulting angles must be the same.",
-      "ca": null
+      "ca": "Demostra que, si dos punts es connecten al mateix arc, els angles resultants han de ser iguals."
     },
     "pista": {
       "en": null,
@@ -1356,7 +1356,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "If two circles are arranged so that each passes through the center of the other, what are the area and perimeter of the overlap? What about for three overlapping circles?",
-      "ca": null
+      "ca": "Si dos cercles es disposen de manera que cadascun passa pel centre de l'altre, quina és l'àrea i el perímetre de la intersecció? I per a tres cercles superposats?"
     },
     "pista": {
       "en": null,
@@ -1385,7 +1385,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Two circles lie on a line, touching each other at a point. A small circle is inscribed in the space between. How does its radius depend on the radii of the two larger circles?",
-      "ca": null
+      "ca": "Dos cercles es troben sobre una línia i es toquen en un punt. S'inscriu un cercle petit a l'espai entre tots dos. Com depèn el seu radi dels radis dels dos cercles grans?"
     },
     "pista": {
       "en": null,
@@ -1409,7 +1409,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "How can we measure the surface area of a (generalized) cylinder?",
-      "ca": null
+      "ca": "Com podem mesurar l'àrea de la superfície d'un cilindre (generalitzat)?"
     },
     "pista": {
       "en": null,
@@ -1433,7 +1433,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "What is the area of an ellipse?",
-      "ca": null
+      "ca": "Quina és l'àrea d'una el·lipse?"
     },
     "pista": {
       "en": null,
@@ -1462,7 +1462,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "The centers of the faces of a cube can be joined to form a regular octahedron. How much of the volume of the cube does it take up?",
-      "ca": null
+      "ca": "Els centres de les cares d'un cub es poden unir per formar un octaedre regular. Quina part del volum del cub ocupa?"
     },
     "pista": {
       "en": null,
@@ -1491,7 +1491,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "A square of side a is placed at a height h above a square of side b, forming an incomplete pyramid. How does its volume depend on a, b, and h?",
-      "ca": null
+      "ca": "Un quadrat de costat a se situa a una altura h damunt d'un quadrat de costat b, formant una piràmide incompleta. Com depèn el seu volum de a, b i h?"
     },
     "pista": {
       "en": null,
@@ -1520,7 +1520,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Where is the center of a regular tetrahedron?",
-      "ca": null
+      "ca": "On és el centre d'un tetraedre regular?"
     },
     "pista": {
       "en": null,
@@ -1549,7 +1549,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Can you figure out the pattern to these approximations?",
-      "ca": null
+      "ca": "Pots endevinar el patró d'aquestes aproximacions?"
     },
     "pista": {
       "en": null,
@@ -1578,7 +1578,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "How can we measure the surface area of a cone?",
-      "ca": null
+      "ca": "Com podem mesurar l'àrea de la superfície d'un con?"
     },
     "pista": {
       "en": null,
@@ -1602,7 +1602,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Can you find a cross-section of a cube that is a regular hexagon?",
-      "ca": null
+      "ca": "Pots trobar una secció transversal d'un cub que sigui un hexàgon regular?"
     },
     "pista": {
       "en": null,
@@ -1626,7 +1626,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Can you find two objects with equal cross-sections and different surface areas?",
-      "ca": null
+      "ca": "Pots trobar dos objectes amb seccions transversals iguals i àrees de superfície diferents?"
     },
     "pista": {
       "en": null,
@@ -1655,7 +1655,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Can you devise a Cavalieri principle for areas in the plane?",
-      "ca": null
+      "ca": "Pots idear un principi de Cavalieri per a àrees en el pla?"
     },
     "pista": {
       "en": null,
@@ -1684,7 +1684,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Why can't the method of exhaustion be used in this way to measure the diagonal of a square?",
-      "ca": null
+      "ca": "Per què no es pot fer servir el mètode d'exhaustió d'aquesta manera per mesurar la diagonal d'un quadrat?"
     },
     "pista": {
       "en": null,
@@ -1713,7 +1713,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "The diagonals of a cube form a regular tetrahedron. How much of the cube does it take up?",
-      "ca": null
+      "ca": "Les diagonals d'un cub formen un tetraedre regular. Quina part del cub ocupa?"
     },
     "pista": {
       "en": null,
@@ -1737,7 +1737,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "What are the volumes of the Platonic solids? How about the other symmetrical polyhedra?",
-      "ca": null
+      "ca": "Quins són els volums dels sòlids platònics? I els d'altres poliedres simètrics?"
     },
     "pista": {
       "en": null,
@@ -1766,7 +1766,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Suppose two identical cylinders meet at right angles. What does their intersection look like, and what is its volume? What about three mutually perpendicular cylinders?",
-      "ca": null
+      "ca": "Suposa que dos cilindres idèntics es troben en angle recte. Quin aspecte té la seva intersecció, i quin volum té? I per a tres cilindres mútuament perpendiculars?"
     },
     "pista": {
       "en": null,
@@ -1795,7 +1795,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "How much of a cube does a sphere occupy? Is it more than half?",
-      "ca": null
+      "ca": "Quina part d'un cub ocupa una esfera? És més de la meitat?"
     },
     "pista": {
       "en": null,
@@ -1824,7 +1824,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Show that a cone in a hemisphere occupies exactly half the volume.",
-      "ca": null
+      "ca": "Demostra que un con dins d'un hemisferi ocupa exactament la meitat del volum."
     },
     "pista": {
       "en": null,
@@ -1848,7 +1848,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Show that the surface area of a sphere is exactly two-thirds that of its (closed) cylinder.",
-      "ca": null
+      "ca": "Demostra que l'àrea de la superfície d'una esfera és exactament dos terços de la del seu cilindre (tancat)."
     },
     "pista": {
       "en": null,
@@ -1877,7 +1877,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "What are the volume and surface area of a spherical cap?",
-      "ca": null
+      "ca": "Quins són el volum i l'àrea de la superfície d'un casquet esfèric?"
     },
     "pista": {
       "en": null,
@@ -1901,7 +1901,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Can you think of two different ways that a cylinder can be regarded as the result of a motion?",
-      "ca": null
+      "ca": "Se t'acudeixen dues maneres diferents de considerar un cilindre com el resultat d'un moviment?"
     },
     "pista": {
       "en": null,
@@ -1925,7 +1925,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "What is the perimeter of a region formed by a moving stick?",
-      "ca": null
+      "ca": "Quin és el perímetre d'una regió formada per un bastó en moviment?"
     },
     "pista": {
       "en": null,
@@ -1949,7 +1949,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "How should we define the centroid of a shape? Can we do it in such a way that Pappus's theorem holds?",
-      "ca": null
+      "ca": "Com hauríem de definir el centroide d'una figura? Ho podem fer de manera que es compleixi el teorema de Pappus?"
     },
     "pista": {
       "en": null,
@@ -1978,7 +1978,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Show that Pappus's theorem works for a cylinder formed by rotating a rectangle.",
-      "ca": null
+      "ca": "Demostra que el teorema de Pappus funciona per a un cilindre format en fer girar un rectangle."
     },
     "pista": {
       "en": null,
@@ -2002,7 +2002,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "How should we define the centroid of perimeter?",
-      "ca": null
+      "ca": "Com hauríem de definir el centroide del perímetre?"
     },
     "pista": {
       "en": null,
@@ -2031,7 +2031,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "If we rotate a right triangle it forms a cone. Assuming Pappus is right, where must the centroid of the triangle be?",
-      "ca": null
+      "ca": "Si fem girar un triangle rectangle, forma un con. Suposant que Pappus té raó, on ha d'estar el centroide del triangle?"
     },
     "pista": {
       "en": null,
@@ -2055,7 +2055,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Can you find the centroid of a semicircle? How about its centroid of perimeter?",
-      "ca": null
+      "ca": "Pots trobar el centroide d'un semicercle? I el seu centroide de perímetre?"
     },
     "pista": {
       "en": null,
@@ -2079,7 +2079,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "What do the inside angles of a polygon add up to?",
-      "ca": null
+      "ca": "Quant sumen els angles interns d'un polígon?"
     },
     "pista": {
       "en": null,
@@ -2103,7 +2103,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "If all the angles of a simple closed four-sided polygon are right angles, what condition must the side lengths satisfy?",
-      "ca": null
+      "ca": "Si tots els angles d'un polígon simple tancat de quatre costats són rectes, quina condició han de complir les longituds dels costats?"
     },
     "pista": {
       "en": null,
@@ -2127,7 +2127,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Make a short list of lengths and turns. What triangle problems do you need to solve in order to determine if your polygon is closed?",
-      "ca": null
+      "ca": "Fes una llista curta de longituds i girs. Quins problemes de triangles cal resoldre per determinar si el teu polígon és tancat?"
     },
     "pista": {
       "en": null,
@@ -2151,7 +2151,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Are the midpoints of the sides of a triangle enough information to reconstruct the triangle? How about for four-sided polygons?",
-      "ca": null
+      "ca": "Els punts mitjans dels costats d'un triangle són prou informació per reconstruir el triangle? I per als polígons de quatre costats?"
     },
     "pista": {
       "en": null,
@@ -2175,7 +2175,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Do any three lengths form a triangle?",
-      "ca": null
+      "ca": "Qualsevol tria de tres longituds forma un triangle?"
     },
     "pista": {
       "en": null,
@@ -2199,7 +2199,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Can you find two different triangles with the same area and perimeter?",
-      "ca": null
+      "ca": "Pots trobar dos triangles diferents amb la mateixa àrea i el mateix perímetre?"
     },
     "pista": {
       "en": null,
@@ -2228,7 +2228,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "If a triangle has sides a, b, and c, what is the radius of the inscribed circle?",
-      "ca": null
+      "ca": "Si un triangle té costats a, b i c, quin és el radi del cercle inscrit?"
     },
     "pista": {
       "en": null,
@@ -2252,7 +2252,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "There is actually another technique for measuring lengths, which we used for the diagonal of a regular pentagon. What is it?",
-      "ca": null
+      "ca": "En realitat hi ha una altra tècnica per mesurar longituds, que vam fer servir per a la diagonal d'un pentàgon regular. Quina és?"
     },
     "pista": {
       "en": null,
@@ -2281,7 +2281,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "How are the sines and cosines of the two angles of a right triangle related to each other?",
-      "ca": null
+      "ca": "Com es relacionen entre si els sinus i els cosinus dels dos angles d'un triangle rectangle?"
     },
     "pista": {
       "en": null,
@@ -2310,7 +2310,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Show that in this case we get c^2 = a^2 + b^2 + 2ab cos C'.",
-      "ca": null
+      "ca": "Demostra que, en aquest cas, obtenim c² = a² + b² + 2ab cos C'."
     },
     "pista": {
       "en": null,
@@ -2334,7 +2334,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Show that if a triangle has sides a and b meeting at an angle C, then its area is (1/2)ab sin C.",
-      "ca": null
+      "ca": "Demostra que, si un triangle té els costats a i b que es troben formant un angle C, la seva àrea és (1/2)ab sin C."
     },
     "pista": {
       "en": null,
@@ -2358,7 +2358,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "What is the angle between the faces of a regular tetrahedron? How about for the other regular polyhedra?",
-      "ca": null
+      "ca": "Quin és l'angle entre les cares d'un tetraedre regular? I per als altres poliedres regulars?"
     },
     "pista": {
       "en": null,
@@ -2382,7 +2382,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Show that you can fill space completely using regular octahedrons and tetrahedrons. Can you find any other ways to tile three-dimensional space with symmetrical polyhedra?",
-      "ca": null
+      "ca": "Demostra que es pot omplir l'espai completament fent servir octaedres i tetraedres regulars. Pots trobar altres maneres d'enrajolar l'espai tridimensional amb poliedres simètrics?"
     },
     "pista": {
       "en": null,
@@ -2406,7 +2406,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "What are the sine and cosine of one-sixth of a turn?",
-      "ca": null
+      "ca": "Quins són el sinus i el cosinus d'un sisè de volta?"
     },
     "pista": {
       "en": null,
@@ -2430,7 +2430,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "What is the relationship between the sine and cosine of an angle?",
-      "ca": null
+      "ca": "Quina és la relació entre el sinus i el cosinus d'un angle?"
     },
     "pista": {
       "en": null,
@@ -2454,7 +2454,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Can you use a regular pentagon to find the sine and cosine of one-fifth of a turn?",
-      "ca": null
+      "ca": "Es pot fer servir un pentàgon regular per trobar el sinus i el cosinus d'un cinquè de volta?"
     },
     "pista": {
       "en": null,
@@ -2478,7 +2478,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Why are two sides and an angle insufficient in general to specify a triangle?",
-      "ca": null
+      "ca": "Per què dos costats i un angle no basten, en general, per determinar un triangle?"
     },
     "pista": {
       "en": null,
@@ -2502,7 +2502,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "How should we define the sine of an obtuse angle? Can we do it so the law of sines still holds?",
-      "ca": null
+      "ca": "Com hauríem de definir el sinus d'un angle obtús? Ho podem fer de manera que el teorema del sinus encara es compleixi?"
     },
     "pista": {
       "en": null,
@@ -2526,7 +2526,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "How are the sine and cosine of an angle related to the sine and cosine of an angle twice as large?",
-      "ca": null
+      "ca": "Com es relacionen el sinus i el cosinus d'un angle amb el sinus i el cosinus d'un angle del doble de mida?"
     },
     "pista": {
       "en": null,
@@ -2550,7 +2550,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Prove that if two angle bisectors of a triangle are equal, then the triangle must be isosceles.",
-      "ca": null
+      "ca": "Demostra que, si dues bisectrius d'un triangle són iguals, el triangle ha de ser isòsceles."
     },
     "pista": {
       "en": null,
@@ -2574,7 +2574,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Show that if a four-sided shape with sides a, b, c, and d is inscribed in a circle, then its area is given by Brahmagupta's formula: A = sqrt[(s-a)(s-b)(s-c)(s-d)], where s = (1/2)(a+b+c+d).",
-      "ca": null
+      "ca": "Demostra que, si una figura de quatre costats amb costats a, b, c i d està inscrita en un cercle, la seva àrea ve donada per la fórmula de Brahmagupta: A = √[(s-a)(s-b)(s-c)(s-d)], on s = (1/2)(a+b+c+d)."
     },
     "pista": {
       "en": null,
@@ -2603,7 +2603,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "How exactly does the dilation factor depend on the angle between the planes?",
-      "ca": null
+      "ca": "Com depèn exactament el factor de dilatació de l'angle entre els plans?"
     },
     "pista": {
       "en": null,
@@ -2632,7 +2632,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Do projections in any direction always produce dilations?",
-      "ca": null
+      "ca": "Les projeccions en qualsevol direcció sempre produeixen dilatacions?"
     },
     "pista": {
       "en": null,
@@ -2661,7 +2661,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Why do the tangents from a given point to a sphere all have the same length?",
-      "ca": null
+      "ca": "Per què totes les tangents d'un punt donat a una esfera tenen la mateixa longitud?"
     },
     "pista": {
       "en": null,
@@ -2685,7 +2685,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "A circle is a special type of ellipse. Where are its focal points?",
-      "ca": null
+      "ca": "Un cercle és un tipus especial d'el·lipse. On són els seus focus?"
     },
     "pista": {
       "en": null,
@@ -2714,7 +2714,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Why is the tangent to a circle perpendicular to the radius?",
-      "ca": null
+      "ca": "Per què la tangent a un cercle és perpendicular al radi?"
     },
     "pista": {
       "en": null,
@@ -2743,7 +2743,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Why does the shortest path make equal angles with the line?",
-      "ca": null
+      "ca": "Per què el camí més curt forma angles iguals amb la línia?"
     },
     "pista": {
       "en": null,
@@ -2772,7 +2772,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Suppose two points lie between parallel lines. What is the shortest path from one to the other that hits both lines?",
-      "ca": null
+      "ca": "Suposa que dos punts es troben entre dues línies paral·leles. Quin és el camí més curt d'un a l'altre que toqui totes dues línies?"
     },
     "pista": {
       "en": null,
@@ -2796,7 +2796,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Can you see how to make a rough model of an ellipse using a pencil, two thumbtacks, and a piece of string?",
-      "ca": null
+      "ca": "Se t'acut com fer un model aproximat d'una el·lipse fent servir un llapis, dues xinxetes i un tros de fil?"
     },
     "pista": {
       "en": null,
@@ -2820,7 +2820,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Can you work out the details of this proof?",
-      "ca": null
+      "ca": "Pots treballar els detalls d'aquesta demostració?"
     },
     "pista": {
       "en": null,
@@ -2844,7 +2844,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "What is the effect of central projection when the planes are parallel? What if the projection point lies between the planes?",
-      "ca": null
+      "ca": "Quin és l'efecte de la projecció central quan els plans són paral·lels? Què passa si el punt de projecció es troba entre els plans?"
     },
     "pista": {
       "en": null,
@@ -2868,7 +2868,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Can any three points on a line be projected to any other three collinear points? How about four points?",
-      "ca": null
+      "ca": "Es poden projectar tres punts qualssevol d'una línia sobre qualsevol altra tria de tres punts col·lineals? I quatre punts?"
     },
     "pista": {
       "en": null,
@@ -2892,7 +2892,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Are all triangles the same projectively? How about all four-sided polygons?",
-      "ca": null
+      "ca": "Tots els triangles són iguals projectivament? I tots els polígons de quatre costats?"
     },
     "pista": {
       "en": null,
@@ -2921,7 +2921,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Is a projection of a polygon always a polygon?",
-      "ca": null
+      "ca": "La projecció d'un polígon sempre és un polígon?"
     },
     "pista": {
       "en": null,
@@ -2945,7 +2945,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "What does a projection of three parallel lines look like?",
-      "ca": null
+      "ca": "Quin aspecte té la projecció de tres línies paral·leles?"
     },
     "pista": {
       "en": null,
@@ -2974,7 +2974,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Do two lines in projective space necessarily intersect?",
-      "ca": null
+      "ca": "Dues línies en l'espai projectiu s'intersequen necessàriament?"
     },
     "pista": {
       "en": null,
@@ -2998,7 +2998,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Can you discover a projective invariant?",
-      "ca": null
+      "ca": "Pots descobrir un invariant projectiu?"
     },
     "pista": {
       "en": null,
@@ -3027,7 +3027,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "When a cone is sliced by a plane to form a hyperbola, which two points on the circle are projected to infinity?",
-      "ca": null
+      "ca": "Quan un con es talla amb un pla per formar una hipèrbola, quins dos punts del cercle es projecten a l'infinit?"
     },
     "pista": {
       "en": null,
@@ -3051,7 +3051,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Shine a flashlight on the wall at various angles. Can you see all three types of conic section?",
-      "ca": null
+      "ca": "Il·lumina la paret amb una llanterna en diversos angles. Pots veure els tres tipus de secció cònica?"
     },
     "pista": {
       "en": null,
@@ -3080,7 +3080,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Can you work out the details of this proof?",
-      "ca": null
+      "ca": "Pots treballar els detalls d'aquesta demostració?"
     },
     "pista": {
       "en": null,
@@ -3109,7 +3109,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Why do hyperbolas have so much symmetry?",
-      "ca": null
+      "ca": "Per què les hipèrboles tenen tanta simetria?"
     },
     "pista": {
       "en": null,
@@ -3138,7 +3138,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Why is the focal constant of a hyperbola equal to the side of the diamond?",
-      "ca": null
+      "ca": "Per què la constant focal d'una hipèrbola és igual al costat del rombe?"
     },
     "pista": {
       "en": null,
@@ -3167,7 +3167,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Why is every hyperbola a dilation of a right hyperbola?",
-      "ca": null
+      "ca": "Per què tota hipèrbola és una dilatació d'una hipèrbola rectangular?"
     },
     "pista": {
       "en": null,
@@ -3191,7 +3191,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "If an ellipse has long radius a and short radius b, where are its focal points?",
-      "ca": null
+      "ca": "Si una el·lipse té radi llarg a i radi curt b, on són els seus focus?"
     },
     "pista": {
       "en": null,
@@ -3220,7 +3220,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Where are the focal points of a unit hyperbola? What if we dilate it by factors a and b?",
-      "ca": null
+      "ca": "On són els focus d'una hipèrbola unitat? Què passa si la dilatem per factors a i b?"
     },
     "pista": {
       "en": null,
@@ -3244,7 +3244,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Show that the focal constant of an ellipse or hyperbola is equal to its diameter.",
-      "ca": null
+      "ca": "Demostra que la constant focal d'una el·lipse o d'una hipèrbola és igual al seu diàmetre."
     },
     "pista": {
       "en": null,
@@ -3268,7 +3268,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Can you discover the tangent property of a hyperbola?",
-      "ca": null
+      "ca": "Pots descobrir la propietat de la tangent d'una hipèrbola?"
     },
     "pista": {
       "en": null,
@@ -3297,7 +3297,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "What about dilations of a parabola?",
-      "ca": null
+      "ca": "Què passa amb les dilatacions d'una paràbola?"
     },
     "pista": {
       "en": null,
@@ -3326,7 +3326,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Can you prove this tangent property directly, without any \\\"infinity\\\" mumbo-jumbo?",
-      "ca": null
+      "ca": "Pots demostrar directament aquesta propietat de la tangent, sense cap mena de \"trucs de l'infinit\"?"
     },
     "pista": {
       "en": null,
@@ -3355,7 +3355,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "If you connect lines in this evenly spaced pattern, a parabola appears. Why?",
-      "ca": null
+      "ca": "Si connectes línies seguint aquest patró equidistant, apareix una paràbola. Per què?"
     },
     "pista": {
       "en": null,
@@ -3384,7 +3384,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Why is the area of a parabolic sector equal to half the area of the parabolic rectangle?",
-      "ca": null
+      "ca": "Per què l'àrea d'un sector parabòlic és igual a la meitat de l'àrea del rectangle parabòlic?"
     },
     "pista": {
       "en": null,
@@ -3413,7 +3413,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Show that a parabolic section takes up exactly two-thirds of its box.",
-      "ca": null
+      "ca": "Demostra que una secció parabòlica ocupa exactament dos terços de la seva caixa."
     },
     "pista": {
       "en": null,
@@ -3442,7 +3442,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "How can we view a spiral as the result of a motion?",
-      "ca": null
+      "ca": "Com podem veure una espiral com el resultat d'un moviment?"
     },
     "pista": {
       "en": null,
@@ -3471,7 +3471,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "How can we measure the length of a helix?",
-      "ca": null
+      "ca": "Com podem mesurar la longitud d'una hèlix?"
     },
     "pista": {
       "en": null,
@@ -3500,7 +3500,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "How does the number of cusps of a hypocycloid depend on the radii of the two circles? What about for an epicycloid?",
-      "ca": null
+      "ca": "Com depèn el nombre de cúspides d'una hipocicloide dels radis dels dos cercles? I en el cas d'una epicicloide?"
     },
     "pista": {
       "en": null,
@@ -3529,7 +3529,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "What happens if the tracing point is at the center?",
-      "ca": null
+      "ca": "Què passa si el punt que traça la corba és al centre?"
     },
     "pista": {
       "en": null,
@@ -3553,7 +3553,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "Can you think of a way to describe a helix on a torus?",
-      "ca": null
+      "ca": "Se t'acut alguna manera de descriure una hèlix sobre un tor?"
     },
     "pista": {
       "en": null,
@@ -3577,7 +3577,7 @@ window.PREGUNTES = [
     "imatge": null,
     "enunciat": {
       "en": "A ladder slips down the wall until it hits the floor. What curve does its midpoint describe?",
-      "ca": null
+      "ca": "Una escala llisca per la paret fins que toca el terra. Quina corba descriu el seu punt mitjà?"
     },
     "pista": {
       "en": null,
