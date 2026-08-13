@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+ body{margin:0;background:#fff}canvas{display:block;margin:0 0 24px 0}
+</style></head><body>
+<script src="../hand-draw.js"></script>
+<script src="../comu.js"></script>
+<script>
+function stampNum(ctx,h,num){
+  ctx.save();ctx.setTransform(1,0,0,1,0,0);
+  ctx.font='18px Georgia';ctx.fillStyle='#8a8580';
+  ctx.fillText(num, 8, h-8);ctx.restore();
+}
+function mid(a,b){return {x:(a.x+b.x)/2,y:(a.y+b.y)/2};}
+function ACCENT_LOCAL(){return '#8B5E3C';}
+
+/* fig-084 -- q74: la desigualtat triangular -- dos arcs es toquen o no. Moviment: cas-limit. */
+(function(){
+  const ctx=mk('i1',900,340),hd=makeHandDraw(ctx,6001);
+  (function(){
+    ctx.save();ctx.translate(40,60);
+    const A={x:0,y:200},B={x:200,y:200};
+    hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.4,color:INK});
+    hd.handEllipse(A.x,A.y,120,120,{startAngle:-1.0,endAngle:0.9,lineWidth:1.8,irregularity:0.03,color:SANG});
+    hd.handEllipse(B.x,B.y,160,160,{startAngle:Math.PI-0.9,endAngle:Math.PI+1.0,lineWidth:1.8,irregularity:0.03,color:SANG});
+    const C={x:90,y:200-193.6};
+    hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.2,color:INK});
+    hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.2,color:INK});
+    lblC(ctx,'3, 4, 5: es toca',100,260,ACCENT_LOCAL(),18);
+    ctx.restore();
+  })();
+  (function(){
+    ctx.save();ctx.translate(500,60);
+    const A={x:0,y:200},B={x:280,y:200};
+    hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.4,color:INK});
+    hd.handEllipse(A.x,A.y,60,60,{startAngle:-0.7,endAngle:0.7,lineWidth:1.8,irregularity:0.03,color:SANG});
+    hd.handEllipse(B.x,B.y,90,90,{startAngle:Math.PI-0.7,endAngle:Math.PI+0.7,lineWidth:1.8,irregularity:0.03,color:SANG});
+    lblC(ctx,'2, 3, 6: no es toca',140,260,ACCENT_LOCAL(),18);
+    ctx.restore();
+  })();
+  stampNum(ctx,320,'084');
+})();
+
+/* fig-085 -- q69: semicercle girat -- esfera (regio) i la seva superficie (arc). Moviment: dues-maneres. */
+(function(){
+  const ctx=mk('i2',520,380),hd=makeHandDraw(ctx,6002);ctx.translate(260,220);
+  const r=170;
+  hd.handSegment(-r,0,r,0,{lineWidth:2.6,color:INK});
+  hd.handEllipse(0,0,r,r,{startAngle:Math.PI,endAngle:2*Math.PI,lineWidth:2.6,irregularity:0.03,color:INK});
+  hd.handEllipse(0,0,r,r*0.26,{startAngle:0,endAngle:Math.PI,lineWidth:1.6,dashed:true,dashPattern:[6,5],irregularity:0.04,color:SANG});
+  hd.handDot(-r,0,3.5,INK);hd.handDot(r,0,3.5,INK);hd.handDot(0,0,3.5,SANG);
+  lbl(ctx,'r',r/2-10,-14,INK,20);
+  stampNum(ctx,360,'085');
+})();
+
+/* fig-086 -- q78: triangle rectangle, oposat/contigu per als DOS angles aguts A i B (angle recte a C). Moviment: construeix-per-definir. */
+(function(){
+  const ctx=mk('i3',620,420),hd=makeHandDraw(ctx,6003);ctx.translate(140,60);
+  const A={x:0,y:280},B={x:400,y:280},C={x:85.28,y:116.17};
+  hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.8,color:SANG});
+  hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.8,color:INK});
+  hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.8,color:INK});
+  rightAngle(hd,C.x,C.y,A.x,A.y,B.x,B.y,18,INK);
+  angleMark(hd,A.x,A.y,C.x,C.y,B.x,B.y,30,1,SANG);
+  angleMark(hd,B.x,B.y,A.x,A.y,C.x,C.y,30,2,SANG);
+  lblC(ctx,'C',C.x-6,C.y-18,INK,22);
+  lblC(ctx,'A',A.x-18,A.y+16,INK,22);
+  lblC(ctx,'B',B.x+18,B.y+16,INK,22);
+  // AC: contigu a A / oposat a B -- BC: oposat a A / contigu a B -- AB: hipotenusa (cap dels dos)
+  lbl(ctx,'contigu a A',A.x-70,(A.y+C.y)/2-10,ACCENT_LOCAL(),15);
+  lbl(ctx,'oposat a B',A.x-70,(A.y+C.y)/2+16,ACCENT_LOCAL(),15);
+  lbl(ctx,'oposat a A',(B.x+C.x)/2+10,(B.y+C.y)/2-10,ACCENT_LOCAL(),15);
+  lbl(ctx,'contigu a B',(B.x+C.x)/2+10,(B.y+C.y)/2+16,ACCENT_LOCAL(),15);
+  lbl(ctx,'hipotenusa (per a tots dos)',A.x+80,A.y+40,SANG,16);
+  stampNum(ctx,380,'086');
+})();
+
+/* fig-087 -- q83: triangle equilater partit -- 30-60-90. Moviment: redueix-al-conegut. */
+(function(){
+  const ctx=mk('i4',480,420),hd=makeHandDraw(ctx,6004);ctx.translate(60,40);
+  const Sd=280,h0=Sd*Math.sqrt(3)/2;
+  const A={x:Sd/2,y:0},B={x:0,y:h0},C={x:Sd,y:h0},M={x:Sd/2,y:h0};
+  hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(A.x,A.y,M.x,M.y,{lineWidth:2,dashed:true,dashPattern:[7,6],color:SANG});
+  rightAngle(hd,M.x,M.y,A.x,A.y,C.x,C.y,14,SANG);
+  angleMark(hd,A.x,A.y,B.x,B.y,M.x,M.y,26,1,SANG);
+  tick(hd,B.x,B.y,M.x,M.y);tick(hd,M.x,M.y,C.x,C.y);
+  lbl(ctx,'60°',A.x-40,60,SANG,18);
+  lbl(ctx,'1',(B.x+M.x)/2-6,h0+26,INK,18);
+  lbl(ctx,'2',(A.x+B.x)/2-30,h0/2,INK,18);
+  stampNum(ctx,380,'087');
+})();
+
+/* fig-088 -- q84: sin^2+cos^2=1 -- triangle rectangle etiquetat. Moviment: redueix-al-conegut. */
+(function(){
+  const ctx=mk('i5',560,420),hd=makeHandDraw(ctx,6005);ctx.translate(160,260);
+  const A={x:0,y:0},B={x:300,y:0},C={x:0,y:-225};
+  hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.8,color:INK});
+  hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.8,color:INK});
+  hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.8,color:SANG});
+  rightAngle(hd,A.x,A.y,B.x,B.y,C.x,C.y,16,INK);
+  lbl(ctx,'oposat (=sinθ·hip)',A.x+90,A.y+26,INK,16);
+  lbl(ctx,'contigu (=cosθ·hip)',A.x-140,-100,INK,16);
+  lbl(ctx,'hipotenusa',150,-140,SANG,16);
+  angleMark(hd,C.x,C.y,A.x,A.y,B.x,B.y,26,1,SANG);
+  lbl(ctx,'θ',C.x+16,C.y+34,SANG,20);
+  stampNum(ctx,360,'088');
+})();
+
+/* fig-089 -- q75: dos triangles diferents, mateixa area i perimetre. Moviment: contraexemple. */
+(function(){
+  const ctx=mk('i6',900,360),hd=makeHandDraw(ctx,6006);
+  function drawTri(ox,oy,a,b,c,label){
+    ctx.save();ctx.translate(ox,oy);
+    const A={x:0,y:0}, B={x:c*4,y:0};
+    const x = (c*c*16 + a*a*16 - b*b*16)/(2*c*4);
+    const y2 = a*a*16-x*x;
+    const y = -Math.sqrt(Math.max(0,y2));
+    const C={x:x,y:y};
+    hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.4,color:INK});
+    hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.4,color:INK});
+    hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.4,color:INK});
+    lblC(ctx,label,(A.x+B.x+C.x)/3,40,ACCENT_LOCAL(),18);
+    ctx.restore();
+  }
+  drawTri(40,260,17,25,28,'17, 25, 28');
+  drawTri(480,260,20,21,29,'20, 21, 29');
+  lblC(ctx,'totes dues: perímetre 70, àrea 210',450,320,ACCENT_LOCAL(),18);
+  stampNum(ctx,340,'089');
+})();
+
+/* fig-090 -- q77: triangle amb paral.lela -- semblanca (dilatacio). Moviment: dilatacio. */
+(function(){
+  const ctx=mk('i7',520,420),hd=makeHandDraw(ctx,6007);ctx.translate(60,40);
+  const A={x:150,y:0},B={x:0,y:320},C={x:340,y:280};
+  hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.6,color:INK});
+  const t=0.55;
+  const P={x:A.x+(B.x-A.x)*t,y:A.y+(B.y-A.y)*t};
+  const Q={x:A.x+(C.x-A.x)*t,y:A.y+(C.y-A.y)*t};
+  hd.handSegment(P.x,P.y,Q.x,Q.y,{lineWidth:2,dashed:true,dashPattern:[7,6],color:SANG});
+  hd.handDot(P.x,P.y,4,SANG);hd.handDot(Q.x,Q.y,4,SANG);
+  lblC(ctx,'A',A.x,A.y-16,INK,20);lblC(ctx,'B',B.x-16,B.y+10,INK,20);lblC(ctx,'C',C.x+16,C.y+10,INK,20);
+  stampNum(ctx,380,'090');
+})();
+
+/* fig-091 -- q87: angle obtus -- alcada cau fora, C i C'. Moviment: construeix-per-definir. */
+(function(){
+  const ctx=mk('i8',620,380),hd=makeHandDraw(ctx,6008);ctx.translate(260,300);
+  const a=200,bLen=160,CpDeg=60;
+  const Cp=CpDeg*Math.PI/180;
+  const apex={x:-bLen*Math.cos(Cp),y:-bLen*Math.sin(Cp)};
+  const A={x:a,y:0}, Bv={x:0,y:0};
+  hd.handSegment(Bv.x,Bv.y,A.x,A.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(Bv.x,Bv.y,apex.x,apex.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(A.x,A.y,apex.x,apex.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(apex.x,apex.y,apex.x,0,{lineWidth:1.8,dashed:true,dashPattern:[6,5],color:SANG});
+  hd.handSegment(apex.x,0,Bv.x,Bv.y,{lineWidth:1.8,dashed:true,dashPattern:[4,4],color:SANG});
+  rightAngle(hd,apex.x,0,apex.x,apex.y,Bv.x,Bv.y,14,SANG);
+  angleMark(hd,Bv.x,Bv.y,A.x,A.y,apex.x,apex.y,34,1,SANG);
+  angleMark(hd,Bv.x,Bv.y,apex.x,apex.y,apex.x,0,26,2,SANG);
+  lblC(ctx,'C',Bv.x-18,Bv.y+16,INK,20);
+  lblC(ctx,"C'",apex.x-6,18,SANG,18);
+  stampNum(ctx,340,'091');
+})();
+
+/* fig-092 -- q79: llei del cosinus generalitzada (angle obtus). Moviment: redueix-al-conegut. */
+(function(){
+  const ctx=mk('i9',640,380),hd=makeHandDraw(ctx,6009);ctx.translate(260,300);
+  const a=200,b=160,CpDeg=60;
+  const Cp=CpDeg*Math.PI/180;
+  const apex={x:-b*Math.cos(Cp),y:-b*Math.sin(Cp)};
+  const A={x:a,y:0}, Bv={x:0,y:0};
+  hd.handSegment(Bv.x,Bv.y,A.x,A.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(Bv.x,Bv.y,apex.x,apex.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(A.x,A.y,apex.x,apex.y,{lineWidth:2.6,color:SANG});
+  hd.handSegment(apex.x,apex.y,apex.x,0,{lineWidth:1.8,dashed:true,dashPattern:[6,5],color:INK});
+  rightAngle(hd,apex.x,0,apex.x,apex.y,Bv.x,Bv.y,14,INK);
+  lblC(ctx,'a',(A.x+Bv.x)/2,20,INK,20);
+  lblC(ctx,'b',(apex.x+Bv.x)/2-16,(apex.y)/2,INK,20);
+  lblC(ctx,'c',(A.x+apex.x)/2+18,(apex.y)/2,SANG,20);
+  lblC(ctx,"C'",Bv.x+22,Bv.y-14,SANG,18);
+  stampNum(ctx,340,'092');
+})();
+
+/* fig-093 -- q88: triangle isosceles apex 2theta -- angle doble. Moviment: redueix-al-conegut. */
+(function(){
+  const ctx=mk('i10',480,420),hd=makeHandDraw(ctx,6010);ctx.translate(240,40);
+  const thetaDeg=37, theta=thetaDeg*Math.PI/180;
+  const L=320;
+  const apex={x:0,y:0};
+  const B={x:-L*Math.sin(theta),y:L*Math.cos(theta)};
+  const C={x:L*Math.sin(theta),y:L*Math.cos(theta)};
+  hd.handSegment(apex.x,apex.y,B.x,B.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(apex.x,apex.y,C.x,C.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(apex.x,apex.y,0,L*Math.cos(theta),{lineWidth:1.8,dashed:true,dashPattern:[6,5],color:SANG});
+  rightAngle(hd,0,L*Math.cos(theta),apex.x,apex.y,C.x,C.y,14,SANG);
+  angleMark(hd,apex.x,apex.y,B.x,B.y,0,L*Math.cos(theta),26,1,SANG);
+  angleMark(hd,apex.x,apex.y,0,L*Math.cos(theta),C.x,C.y,26,1,SANG);
+  lbl(ctx,'1',B.x/2-20,B.y/2,INK,20);
+  lbl(ctx,'1',C.x/2+6,C.y/2,INK,20);
+  lbl(ctx,'θ',-14,60,SANG,20);
+  lbl(ctx,'θ',10,60,SANG,20);
+  stampNum(ctx,380,'093');
+})();
+
+/* fig-094 -- q72: poligon de trams i girs -- descomposicio x/y. Moviment: dues-maneres. */
+(function(){
+  const ctx=mk('i11',560,420),hd=makeHandDraw(ctx,6011);ctx.translate(60,320);
+  const P0={x:0,y:0}, P1={x:220,y:0};
+  hd.handSegment(P0.x,P0.y,P1.x,P1.y,{lineWidth:2.6,color:INK});
+  const ang2=-53*Math.PI/180;
+  const P2={x:P1.x+180*Math.cos(ang2),y:P1.y+180*Math.sin(ang2)};
+  hd.handSegment(P1.x,P1.y,P2.x,P2.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(P1.x,P1.y,P2.x,P1.y,{lineWidth:1.6,dashed:true,dashPattern:[5,5],color:SANG});
+  hd.handSegment(P2.x,P1.y,P2.x,P2.y,{lineWidth:1.6,dashed:true,dashPattern:[5,5],color:SANG});
+  rightAngle(hd,P2.x,P1.y,P1.x,P1.y,P2.x,P2.y,12,SANG);
+  hd.handDot(P0.x,P0.y,4,INK);hd.handDot(P1.x,P1.y,4,INK);hd.handDot(P2.x,P2.y,4,INK);
+  lbl(ctx,'avanç horitzontal',P1.x+20,P1.y+22,SANG,15);
+  lbl(ctx,'avanç vertical',P2.x+10,(P1.y+P2.y)/2,SANG,15);
+  stampNum(ctx,400,'094');
+})();
+
+/* fig-095 -- q85: triangle daurat (36-72-72) partit. Moviment: dilatacio. */
+(function(){
+  const ctx=mk('i12',480,460),hd=makeHandDraw(ctx,6012);ctx.translate(240,40);
+  const halfAngle=18*Math.PI/180;
+  const L=300;
+  const apex={x:0,y:0};
+  const B={x:-L*Math.sin(halfAngle),y:L*Math.cos(halfAngle)};
+  const C={x:L*Math.sin(halfAngle),y:L*Math.cos(halfAngle)};
+  hd.handSegment(apex.x,apex.y,B.x,B.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(apex.x,apex.y,C.x,C.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(apex.x,apex.y,0,L*Math.cos(halfAngle),{lineWidth:1.8,dashed:true,dashPattern:[6,5],color:SANG});
+  rightAngle(hd,0,L*Math.cos(halfAngle),apex.x,apex.y,C.x,C.y,14,SANG);
+  angleMark(hd,apex.x,apex.y,B.x,B.y,0,L*Math.cos(halfAngle),22,1,SANG);
+  lbl(ctx,'φ',B.x/2-24,B.y/2,INK,20);
+  lbl(ctx,'φ',C.x/2+8,C.y/2,INK,20);
+  lbl(ctx,'1',-10,L*Math.cos(halfAngle)+26,INK,20);
+  lbl(ctx,'36°',-16,50,SANG,18);
+  stampNum(ctx,420,'095');
+})();
+
+/* fig-096 -- q81: angle diedre del tetraedre. Moviment: redueix-al-conegut. */
+(function(){
+  const ctx=mk('i13',520,480),hd=makeHandDraw(ctx,6013);ctx.translate(60,60);
+  const bS=280;
+  const b1={x:0,y:280}, b2={x:bS,y:280}, b3={x:bS/2+50,y:280-bS*0.5};
+  const apex={x:bS/2+16,y:20};
+  hd.handSegment(b1.x,b1.y,b2.x,b2.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(b2.x,b2.y,b3.x,b3.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(b3.x,b3.y,b1.x,b1.y,{lineWidth:2,dashed:true,dashPattern:[7,6],color:INK});
+  hd.handSegment(apex.x,apex.y,b1.x,b1.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(apex.x,apex.y,b2.x,b2.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(apex.x,apex.y,b3.x,b3.y,{lineWidth:2,dashed:true,dashPattern:[7,6],color:INK});
+  const Medge=mid(b1,b2);
+  hd.handSegment(Medge.x,Medge.y,apex.x,apex.y,{lineWidth:1.8,dashed:true,dashPattern:[5,5],color:SANG});
+  hd.handSegment(Medge.x,Medge.y,b3.x,b3.y,{lineWidth:1.8,dashed:true,dashPattern:[5,5],color:SANG});
+  angleMark(hd,Medge.x,Medge.y,apex.x,apex.y,b3.x,b3.y,30,1,SANG);
+  stampNum(ctx,440,'096');
+})();
+
+/* fig-097 -- q82: tetraedre i octaedre compartint una aresta (omplir l'espai). Moviment: recompte-o-induccio. */
+(function(){
+  const ctx=mk('i14',620,460),hd=makeHandDraw(ctx,6014);ctx.translate(60,60);
+  const bS=200;
+  const b1={x:0,y:200}, b2={x:bS,y:200}, b3={x:bS/2+36,y:200-bS*0.42};
+  const apex={x:bS/2+12,y:10};
+  hd.handSegment(b1.x,b1.y,b2.x,b2.y,{lineWidth:2.4,color:INK});
+  hd.handSegment(b2.x,b2.y,b3.x,b3.y,{lineWidth:2.4,color:INK});
+  hd.handSegment(b3.x,b3.y,b1.x,b1.y,{lineWidth:1.8,dashed:true,dashPattern:[6,5],color:INK});
+  hd.handSegment(apex.x,apex.y,b1.x,b1.y,{lineWidth:2.4,color:INK});
+  hd.handSegment(apex.x,apex.y,b2.x,b2.y,{lineWidth:2.4,color:INK});
+  hd.handSegment(apex.x,apex.y,b3.x,b3.y,{lineWidth:1.8,dashed:true,dashPattern:[6,5],color:INK});
+  const R=110, cx=bS+180, cy=190;
+  const oL={x:cx-R,y:cy}, oR={x:cx+R,y:cy}, oF={x:cx,y:cy+R*0.42}, oB={x:cx,y:cy-R*0.42};
+  const oTop={x:cx,y:cy-R*0.42-90}, oBot={x:cx,y:cy+R*0.42+90};
+  hd.handSegment(oL.x,oL.y,oF.x,oF.y,{lineWidth:2.4,color:INK});
+  hd.handSegment(oF.x,oF.y,oR.x,oR.y,{lineWidth:2.4,color:INK});
+  hd.handSegment(oR.x,oR.y,oB.x,oB.y,{lineWidth:1.8,dashed:true,dashPattern:[6,5],color:INK});
+  hd.handSegment(oB.x,oB.y,oL.x,oL.y,{lineWidth:2.4,color:INK});
+  hd.handSegment(oTop.x,oTop.y,oL.x,oL.y,{lineWidth:2.4,color:INK});
+  hd.handSegment(oTop.x,oTop.y,oF.x,oF.y,{lineWidth:2.4,color:INK});
+  hd.handSegment(oTop.x,oTop.y,oR.x,oR.y,{lineWidth:2.4,color:INK});
+  hd.handSegment(oTop.x,oTop.y,oB.x,oB.y,{lineWidth:1.8,dashed:true,dashPattern:[6,5],color:INK});
+  hd.handSegment(oBot.x,oBot.y,oL.x,oL.y,{lineWidth:2.4,color:INK});
+  hd.handSegment(oBot.x,oBot.y,oF.x,oF.y,{lineWidth:2.4,color:INK});
+  hd.handSegment(oBot.x,oBot.y,oR.x,oR.y,{lineWidth:2.4,color:INK});
+  hd.handSegment(oBot.x,oBot.y,oB.x,oB.y,{lineWidth:1.8,dashed:true,dashPattern:[6,5],color:INK});
+  hd.handSegment(b2.x,b2.y,b3.x,b3.y,{lineWidth:2.6,color:SANG});
+  hd.handSegment(oL.x,oL.y,oF.x,oF.y,{lineWidth:2.6,color:SANG});
+  lblC(ctx,'2×70,53° + 2×109,47° = 360°',cx-120,380,ACCENT_LOCAL(),17);
+  stampNum(ctx,440,'097');
+})();
+
+/* fig-098 -- q90: quadrilater ciclic, partit per una diagonal. Moviment: redueix-al-conegut. */
+(function(){
+  const ctx=mk('i15',520,520),hd=makeHandDraw(ctx,6015);ctx.translate(260,260);
+  const R=220;
+  const angs=[-100,-10,60,190].map(a=>a*Math.PI/180);
+  const P=angs.map(a=>({x:R*Math.cos(a),y:R*Math.sin(a)}));
+  hd.handEllipse(0,0,R,R,{lineWidth:2.2,irregularity:0.02,color:INK});
+  for(let i=0;i<4;i++) hd.handSegment(P[i].x,P[i].y,P[(i+1)%4].x,P[(i+1)%4].y,{lineWidth:2.4,color:INK});
+  hd.handSegment(P[0].x,P[0].y,P[2].x,P[2].y,{lineWidth:2,dashed:true,dashPattern:[7,6],color:SANG});
+  angleMark(hd,P[1].x,P[1].y,P[0].x,P[0].y,P[2].x,P[2].y,30,1,SANG);
+  angleMark(hd,P[3].x,P[3].y,P[2].x,P[2].y,P[0].x,P[0].y,30,2,SANG);
+  const labels=['a','b','c','d'];
+  for(let i=0;i<4;i++){
+    const mpt=mid(P[i],P[(i+1)%4]);
+    const ext={x:mpt.x*1.14,y:mpt.y*1.14};
+    lblC(ctx,labels[i],ext.x,ext.y,INK,20);
+  }
+  stampNum(ctx,500,'098');
+})();
+</script>
+</body></html>
