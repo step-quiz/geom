@@ -9,12 +9,16 @@
                 diferent (aquí SÍ cal ser curós si localStorage falla,
                 perquè un reset silenciós tornaria a suggerir preguntes ja
                 fetes i trencaria la confiança en el "reactiu").
-  ARQUITECTURA: Es carrega després de progres.js i guies.js (l'engine
-                llegeix `moviment` de window.GUIES i dificultat/dimensio de
-                window.PREGUNTES) i abans de ui/detall.js i ui/llista.js.
+  ARQUITECTURA: Es carrega després de progres.js, ordre.js i guies.js
+                (l'engine llegeix `moviment` de window.GUIES i
+                dificultat/dimensio de window.PREGUNTES) i abans de
+                ui/detall.js i ui/llista.js.
   DEPENDÈNCIES: js/nucli/progres.js (geoProgres.esFet — font única de
                 veritat per "fet", v. més avall), js/nucli/guies.js
-                (per `moviment`), window.PREGUNTES.
+                (per `moviment`), js/nucli/ordre.js (la regla 5 de
+                reserva — v. totesPreguntes() més avall — segueix l'ordre
+                de presentació configurable, no l'ordre del llibre; es
+                degrada bé si no hi és), window.PREGUNTES.
 
   QUÈ ES DIFEREIX DEL DOCUMENT DE DISSENY, EXPLÍCITAMENT
   §5 del document proposa un camp opcional `hintLevelsOpened` per pregunta,
@@ -149,7 +153,10 @@
   // ---------------------------------------------------------------------
 
   function totesPreguntes() {
-    return window.PREGUNTES || [];
+    // "següent" (regla 5, reserva) segueix l'ordre de PRESENTACIÓ
+    // configurable (js/nucli/ordre.js), no l'ordre del llibre -- coherent
+    // amb el que ja fan llista.js i detall.js.
+    return window.geoOrdre ? window.geoOrdre.preguntesOrdenades() : (window.PREGUNTES || []);
   }
 
   function trobaPregunta(id) {
