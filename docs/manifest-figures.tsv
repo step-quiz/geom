@@ -82,3 +82,18 @@ num	id	nivell	moviment	lot	rev	descripcio
 081	q67	2	construeix-per-definir	7	0	segment girat, centroide de perimetre
 082	q66	2	redueix-al-conegut	7	0	rectangle no tocant l'eix, tub per Pappus
 083	q68	2	dues-maneres	7	0	triangle rectangle girat, centroide del con
+084	q74	1	cas-limit	8	0	desigualtat triangular, dos arcs es toquen o no
+085	q69	2	dues-maneres	8	0	centroide d'area i de perimetre d'un semicercle
+086	q78	1	construeix-per-definir	8	0	sinus i cosinus, oposat/contigu per als dos angles aguts
+087	q83	1	redueix-al-conegut	8	0	sinus i cosinus de 60 graus, triangle equilater partit
+088	q84	1	redueix-al-conegut	8	0	sin2+cos2=1 via Pitagores
+089	q75	2	contraexemple	8	0	dos triangles diferents, mateixa area i perimetre
+090	q77	2	dilatacio	8	0	triangle amb paral·lela, semblanca
+091	q87	2	construeix-per-definir	8	0	sinus d'un angle obtus, angle suplementari
+092	q79	3	redueix-al-conegut	8	0	teorema del cosinus generalitzat, angle obtus
+093	q88	2	redueix-al-conegut	8	0	sinus i cosinus de l'angle doble
+094	q72	2	dues-maneres	8	0	poligon de trams i girs, descomposicio x/y
+095	q85	3	dilatacio	8	0	sinus i cosinus de 72 graus via pentagon
+096	q81	3	redueix-al-conegut	8	0	angle diedre del tetraedre
+097	q82	3	recompte-o-induccio	8	0	omplir l'espai amb tetraedres i octaedres
+098	q90	3	redueix-al-conegut	8	0	formula de Brahmagupta, quadrilater ciclic
