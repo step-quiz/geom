@@ -108,7 +108,7 @@ window.UI_LANGS = {
       reason_continue: "you started this one",
       reason_adjacent_level: "similar level to what you just did",
       reason_review_moviment: "trains the same idea — {move}",
-      reason_fallback: "next in the book",
+      reason_fallback: "next in the list",
       continue_banner: "Continue where you left off:",
     },
 
@@ -205,7 +205,7 @@ window.UI_LANGS = {
       reason_continue: "l'havies començada",
       reason_adjacent_level: "nivell semblant al que acabes de fer",
       reason_review_moviment: "entrena la mateixa idea — {move}",
-      reason_fallback: "la següent del llibre",
+      reason_fallback: "la següent de la llista",
       continue_banner: "Continua on ho vas deixar:",
     },
 
