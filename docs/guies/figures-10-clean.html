@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+ body{margin:0;background:#fff}canvas{display:block;margin:0 0 24px 0}
+</style></head><body>
+<script src="../hand-draw.js"></script>
+<script src="../comu.js"></script>
+<script>
+function stampNum(ctx,h,num){ /* no-op */ }
+function mid(a,b){return {x:(a.x+b.x)/2,y:(a.y+b.y)/2};}
+function ACCENT_LOCAL(){return '#8B5E3C';}
+
+/* handCurve -- helper NOU d'aquest lot (no toca hand-draw.js, nomes en fa
+   servir l'API publica: hd.rand() i hd.handTrajectory()). Dibuixa una corba
+   parametrica qualsevol (hiperbola, parabola, espiral, hipocicloide...) amb
+   el mateix model de soroll que la resta del projecte: pertorbacio
+   PERPENDICULAR a la tangent local de la corba en cada punt, amb amplitud
+   que cau en trams curts -- exactament el principi de SS2.7 de la tecnica,
+   generalitzat de "segment recte" a "corba qualsevol". No altera l'ordre de
+   crides rand() de cap figura existent perque handTrajectory ja es part de
+   l'API exposada de makeHandDraw.
+   ctx: el context 2D. hd: l'objecte de makeHandDraw(). points: array dens
+   (>=150) de {x,y} en coordenades ja transformades (locals al translate
+   vigent). opts: wobble, passes, lineWidth, widthVariation, dashed,
+   dashPattern, color -- mateixos noms que handSegment. */
+function handCurve(ctx, hd, points, opts={}) {
+  const {
+    wobble = 2.0, passes = 2, lineWidth = 2.6, widthVariation = 1.1,
+    dashed = false, dashPattern = [8,6], color = 'black', closed = false
+  } = opts;
+  const n = points.length;
+  // index amb embolcall (corbes tancades: hipocicloide, epicicloide...) o clamp (obertes)
+  const idx = closed ? (i => ((i % n) + n) % n) : (i => Math.max(0, Math.min(n-1, i)));
+  let totalLen = 0;
+  for (let i=1;i<n;i++) totalLen += Math.hypot(points[i].x-points[i-1].x, points[i].y-points[i-1].y);
+
+  for (let p=0; p<passes; p++) {
+    const noise = hd.handTrajectory(n, wobble, totalLen);
+    ctx.beginPath();
+    ctx.lineWidth = Math.max(0.6, lineWidth + (hd.rand()-0.5)*widthVariation);
+    ctx.setLineDash(dashed ? dashPattern.map(d => d + (hd.rand()-0.5)*3) : []);
+    // Radi de cerca EIXAMPLABLE per a la tangent local: prop d'una cuspide (on
+    // punts consecutius gairebe coincideixen) la diferencia immediata és
+    // numericament inestable, així que ampliem la finestra fins trobar punts
+    // prou separats. Aixo evita que el soroll perpendicular es dispari just
+    // on la corba frena (cuspides de hipocicloide/epicicloide, per exemple).
+    const minSep = Math.max(1, totalLen / n * 0.35);
+    for (let i=0; i<n; i++) {
+      let w = 1, prev = points[idx(i-1)], next = points[idx(i+1)];
+      while (Math.hypot(next.x-prev.x, next.y-prev.y) < minSep && w < n/2) {
+        w++;
+        prev = points[idx(i-w)];
+        next = points[idx(i+w)];
+      }
+      let tx = next.x-prev.x, ty = next.y-prev.y;
+      const tl = Math.hypot(tx,ty) || 1;
+      tx/=tl; ty/=tl;
+      const px = -ty, py = tx; // perpendicular unitari
+      // amortim el soroll mateix (no nomes la tangent) a prop de qualsevol
+      // punt on la corba frena molt, perque una ma real tambe clava amb mes
+      // precisio els punts on la ploma "s'atura" (cuspide) -- mateix
+      // principi que pinAngles a handEllipse.
+      const localSpeed = Math.hypot(points[idx(i+1)].x-points[idx(i-1)].x,
+                                     points[idx(i+1)].y-points[idx(i-1)].y);
+      // Amortiment QUADRATIC (no lineal): prop d'una cuspide cal que el
+      // desplacament caigui molt mes de pressa que la velocitat local,
+      // perque sino un bony de correccio normal (handTrajectory) -- pensat
+      // per a un tram llarg i recte -- pot ser mes gran que la distancia
+      // entre punts veins just alla on la corba frena, i dibuixa un bucle
+      // visible en lloc d'una cuspide neta.
+      const speedDampLin = Math.min(1, localSpeed / (minSep*1.5));
+      const speedDamp = speedDampLin * speedDampLin;
+      // a mes, retallem el desplacament perque mai superi una fraccio de
+      // la separacio local real entre punts (independentment del valor cru
+      // del soroll): una ploma real tampoc pot desviar-se mes que "una mica"
+      // del que li permet el propi tram que esta dibuixant en aquell instant.
+      const cap = Math.max(0.15, localSpeed * 0.9);
+      const localJ = (hd.rand()-0.5) * 0.5 * speedDamp;
+      let dispX = px*(noise[i]+localJ)*speedDamp;
+      let dispY = py*(noise[i]+localJ)*speedDamp;
+      const dispLen = Math.hypot(dispX,dispY);
+      if (dispLen > cap) { const f = cap/dispLen; dispX*=f; dispY*=f; }
+      const x = points[i].x + dispX;
+      const y = points[i].y + dispY;
+      if (i===0) ctx.moveTo(x,y); else ctx.lineTo(x,y);
+    }
+    if (closed) ctx.closePath();
+    ctx.strokeStyle = color;
+    ctx.lineCap = 'round';
+    ctx.lineJoin = 'round';
+    ctx.stroke();
+  }
+}
+
+/* Genera punts densos d'una corba parametrica x(t),y(t) per a t en [t0,t1].
+   closed=true: EXCLOU l'ultim punt (t1 saltat) perque per a una corba
+   tancada t0 i t1 son el mateix punt geometric -- si es duen tots dos,
+   handCurve(closed:true) troba una separacio zero exactament a la costura
+   i la finestra de cerca de tangent s'hi dispara. */
+function paramPoints(fx, fy, t0, t1, nPts, closed=false) {
+  const pts = [];
+  const denom = closed ? nPts : nPts-1;
+  for (let i=0;i<nPts;i++) {
+    const t = t0 + (t1-t0)*i/denom;
+    pts.push({x:fx(t), y:fy(t)});
+  }
+  return pts;
+}
+
+/* fig-116 -- q112: hiperbola qualsevol i, en sanguina, la seva dilatacio a
+   hiperbola recta (asimptotes perpendiculars). Moviment: dilatacio. */
+(function(){
+  const ctx=mk('i1',900,460),hd=makeHandDraw(ctx,7001);
+  (function(){
+    ctx.save();ctx.translate(230,230);
+    const a=90,b=50;
+    function branchPts(sign,tmin,tmax,n){
+      return paramPoints(t=>sign*a*Math.cosh(t), t=>b*Math.sinh(t), tmin,tmax,n);
+    }
+    handCurve(ctx,hd,branchPts(1,-1.15,1.15,140),{lineWidth:2.6,color:INK});
+    handCurve(ctx,hd,branchPts(-1,-1.15,1.15,140),{lineWidth:2.6,color:INK});
+    hd.handSegment(-160,-160*b/a,160,160*b/a,{lineWidth:1.6,dashed:true,color:INK});
+    hd.handSegment(-160,160*b/a,160,-160*b/a,{lineWidth:1.6,dashed:true,color:INK});
+    lblC(ctx,'hiperbola original',0,150,INK,17);
+    ctx.restore();
+  })();
+  (function(){
+    ctx.save();ctx.translate(650,230);
+    const s=70;
+    function branchPtsR(sign,tmin,tmax,n){
+      return paramPoints(t=>sign*s*Math.cosh(t), t=>s*Math.sinh(t), tmin,tmax,n);
+    }
+    handCurve(ctx,hd,branchPtsR(1,-1.15,1.15,140),{lineWidth:2.6,color:SANG});
+    handCurve(ctx,hd,branchPtsR(-1,-1.15,1.15,140),{lineWidth:2.6,color:SANG});
+    hd.handSegment(-140,-140,140,140,{lineWidth:1.6,dashed:true,color:SANG});
+    hd.handSegment(-140,140,140,-140,{lineWidth:1.6,dashed:true,color:SANG});
+    rightAngle(hd,0,0,100,0,0,-100,16,SANG);
+    lblC(ctx,'dilatada: recta (90°)',0,150,SANG,17);
+    ctx.restore();
+  })();
+  stampNum(ctx,460,'099');
+})();
+
+/* fig-117 -- q114: hiperbola unitat amb focus marcats, i la mateixa dilatada
+   per (a,b) amb els seus propis focus. Moviment: dilatacio. */
+(function(){
+  const ctx=mk('i2',900,420),hd=makeHandDraw(ctx,7002);
+  (function(){
+    ctx.save();ctx.translate(220,210);
+    const s=80;
+    function br(sign){return paramPoints(t=>sign*s*Math.cosh(t), t=>s*Math.sinh(t), -1.1,1.1,130);}
+    handCurve(ctx,hd,br(1),{lineWidth:2.6,color:INK});
+    handCurve(ctx,hd,br(-1),{lineWidth:2.6,color:INK});
+    hd.handSegment(-130,-130,130,130,{lineWidth:1.4,dashed:true,color:INK});
+    hd.handSegment(-130,130,130,-130,{lineWidth:1.4,dashed:true,color:INK});
+    hd.handDot(s,0,3.5,INK);hd.handDot(-s,0,3.5,INK);
+    const c=s*Math.SQRT2;
+    hd.handDot(c,0,4,SANG);hd.handDot(-c,0,4,SANG);
+    lbl(ctx,'F',c-8,-14,SANG,20);lbl(ctx,"F'",-c-22,-14,SANG,20);
+    lblC(ctx,'unitat: c=√2',0,150,INK,17);
+    ctx.restore();
+  })();
+  (function(){
+    ctx.save();ctx.translate(650,210);
+    const A=100,B=55;
+    function br(sign){return paramPoints(t=>sign*A*Math.cosh(t), t=>B*Math.sinh(t), -1.1,1.1,130);}
+    handCurve(ctx,hd,br(1),{lineWidth:2.6,color:SANG});
+    handCurve(ctx,hd,br(-1),{lineWidth:2.6,color:SANG});
+    hd.handSegment(-150,-150*B/A,150,150*B/A,{lineWidth:1.4,dashed:true,color:SANG});
+    hd.handSegment(-150,150*B/A,150,-150*B/A,{lineWidth:1.4,dashed:true,color:SANG});
+    hd.handDot(A,0,3.5,SANG);hd.handDot(-A,0,3.5,SANG);
+    const c=Math.sqrt(A*A+B*B);
+    hd.handDot(c,0,4,SANG);hd.handDot(-c,0,4,SANG);
+    lbl(ctx,'F',c-8,-14,SANG,20);lbl(ctx,"F'",-c-22,-14,SANG,20);
+    lblC(ctx,'dilatada (a,b): c=√(a²+b²)',0,150,SANG,17);
+    ctx.restore();
+  })();
+  stampNum(ctx,420,'100');
+})();
+
+/* fig-118 -- q113: triangle rectangle dels focus d'una el.lipse (punt mes
+   alt, catet b, hipotenusa a, catet c). Moviment: redueix-al-conegut. */
+(function(){
+  const ctx=mk('i3',620,460),hd=makeHandDraw(ctx,7003);
+  ctx.translate(310,330);
+  const A=220,B=130;
+  const ell=paramPoints(t=>A*Math.cos(t), t=>-B*Math.sin(t), 0, 2*Math.PI, 200);
+  handCurve(ctx,hd,ell,{lineWidth:2.6,color:INK});
+  const c=Math.sqrt(A*A-B*B);
+  hd.handDot(c,0,4,INK);hd.handDot(-c,0,4,INK);
+  lbl(ctx,'F',c-6,20,INK,20);lbl(ctx,"F'",-c-20,20,INK,20);
+  const top={x:0,y:-B};
+  hd.handDot(top.x,top.y,4,INK);
+  hd.handSegment(top.x,top.y,c,0,{lineWidth:2.2,color:SANG});
+  hd.handSegment(top.x,top.y,-c,0,{lineWidth:2.2,color:SANG});
+  hd.handSegment(top.x,top.y,0,0,{lineWidth:1.8,dashed:true,color:SANG});
+  rightAngle(hd,0,0,c,0,0,-B,14,SANG);
+  lbl(ctx,'b',10,-B/2-6,SANG,20);
+  lbl(ctx,'c',c/2-10,-10,SANG,20);
+  lbl(ctx,'a',-c/2-24,-B/2-6,SANG,20);
+  stampNum(ctx,460,'101');
+})();
+
+/* fig-119 -- q115: constant focal = diametre, comprovat al vertex mateix,
+   el.lipse i hiperbola. Moviment: dues-maneres. */
+(function(){
+  const ctx=mk('i4',900,420),hd=makeHandDraw(ctx,7004);
+  (function(){
+    ctx.save();ctx.translate(230,210);
+    const A=170,B=105,c=Math.sqrt(A*A-B*B);
+    handCurve(ctx,hd,paramPoints(t=>A*Math.cos(t),t=>-B*Math.sin(t),0,2*Math.PI,200),{lineWidth:2.4,color:INK});
+    hd.handDot(A,0,4,INK);hd.handDot(c,0,3.5,SANG);hd.handDot(-c,0,3.5,SANG);
+    hd.handSegment(A,0,c,0,{lineWidth:2,color:SANG});
+    hd.handSegment(A,0,-c,0,{lineWidth:2,color:SANG});
+    lbl(ctx,'a−c',(A+c)/2-24,-10,SANG,16);
+    lbl(ctx,'a+c',(A-c)/2-70,-10,SANG,16);
+    lbl(ctx,'F',c-6,20,SANG,18);lbl(ctx,"F'",-c-20,20,SANG,18);
+    lblC(ctx,"el·lipse: (a−c)+(a+c)=2a",0,150,INK,16);
+    ctx.restore();
+  })();
+  (function(){
+    ctx.save();ctx.translate(650,210);
+    const A=90,B=60,c=Math.sqrt(A*A+B*B);
+    function br(sign){return paramPoints(t=>sign*A*Math.cosh(t), t=>B*Math.sinh(t), -1.3,1.3,140);}
+    handCurve(ctx,hd,br(1),{lineWidth:2.4,color:INK});
+    handCurve(ctx,hd,br(-1),{lineWidth:2.4,color:INK});
+    hd.handDot(A,0,4,INK);hd.handDot(c,0,3.5,SANG);hd.handDot(-c,0,3.5,SANG);
+    hd.handSegment(A,0,c,0,{lineWidth:2,color:SANG});
+    hd.handSegment(A,0,-c,0,{lineWidth:2,color:SANG});
+    lbl(ctx,'c−a',(A+c)/2-22,-10,SANG,16);
+    lbl(ctx,'c+a',(A-c)/2-140,-10,SANG,16);
+    lbl(ctx,'F',c-6,20,SANG,18);lbl(ctx,"F'",-c-20,20,SANG,18);
+    lblC(ctx,"hipèrbola: (c+a)−(c−a)=2a",0,150,INK,16);
+    ctx.restore();
+  })();
+  stampNum(ctx,420,'102');
+})();
+
+/* fig-120 -- q116: tangent d'una hiperbola bisecta l'angle ENTRE els dos
+   radis focals (bisectriu interior). Moviment: redueix-al-conegut. */
+(function(){
+  const ctx=mk('i5',700,520),hd=makeHandDraw(ctx,7005);
+  ctx.translate(320,300);
+  const A=100,B=80,c=Math.sqrt(A*A+B*B);
+  handCurve(ctx,hd,paramPoints(t=>A*Math.cosh(t),t=>B*Math.sinh(t),-1.3,1.3,150),{lineWidth:2.6,color:INK});
+  handCurve(ctx,hd,paramPoints(t=>-A*Math.cosh(t),t=>B*Math.sinh(t),-1.3,1.3,150),{lineWidth:2.6,color:INK});
+  hd.handSegment(-230,-230*B/A,230,230*B/A,{lineWidth:1.3,dashed:true,color:INK});
+  hd.handSegment(-230,230*B/A,230,-230*B/A,{lineWidth:1.3,dashed:true,color:INK});
+  hd.handDot(c,0,4,INK);hd.handDot(-c,0,4,INK);
+  lbl(ctx,'F',c+10,6,INK,20);lbl(ctx,"F'",-c-30,6,INK,20);
+  // punt P al brac dret, part alta
+  const tp=0.95;
+  const P={x:A*Math.cosh(tp), y:B*Math.sinh(tp)};
+  hd.handDot(P.x,P.y,4,INK);
+  hd.handSegment(P.x,P.y,c,0,{lineWidth:2,color:SANG});
+  hd.handSegment(P.x,P.y,-c,0,{lineWidth:2,color:SANG});
+  const slope=(B*B*P.x)/(A*A*P.y);
+  const dnorm=Math.hypot(1,slope); const dx=130/dnorm, dy=130*slope/dnorm;
+  hd.handSegment(P.x-dx,P.y-dy,P.x+dx,P.y+dy,{lineWidth:2.2,dashed:true,color:SANG});
+  angleMark(hd,P.x,P.y,c,0,P.x+dx,P.y+dy,30,1,SANG);
+  angleMark(hd,P.x,P.y,-c,0,P.x-dx,P.y-dy,30,1,SANG);
+  lblC(ctx,'P',P.x+24,P.y-2,INK,20);
+  stampNum(ctx,520,'103');
+})();
+
+/* fig-121 -- q117: dues paraboles amb el mateix vertex/directriu, focus a
+   alcades diferents (com al llibre), i en sanguina la dilatacio marcada.
+   Moviment: dilatacio. */
+(function(){
+  const ctx=mk('i6',900,420),hd=makeHandDraw(ctx,7006);
+  ctx.translate(450,340);
+  hd.handSegment(-380,0,380,0,{lineWidth:2.2,color:INK});
+  function parab(p,xr){
+    return paramPoints(x=>x, x=>-x*x/(4*p), -xr, xr, 140);
+  }
+  const p1=45, p2=110;
+  handCurve(ctx,hd,parab(p1,230),{lineWidth:2.6,color:INK});
+  handCurve(ctx,hd,parab(p2,260),{lineWidth:2.6,color:INK});
+  hd.handDot(0,-p1,4,SANG);hd.handDot(0,-p2,4,SANG);
+  hd.handSegment(0,-p1,0,-p2,{lineWidth:1.8,dashed:true,color:SANG});
+  lbl(ctx,'focus 1',14,-p1-6,SANG,17);
+  lbl(ctx,'focus 2',14,-p2-6,SANG,17);
+  lblC(ctx,'mateixa directriu, dilatació uniforme',0,40,INK,17);
+  stampNum(ctx,420,'104');
+})();
+
+/* fig-122 -- q118: demostracio directa (sense infinit) de la propietat de
+   la tangent: la mediatriu de FD es la tangent en P. Moviment:
+   construeix-per-definir. */
+(function(){
+  const ctx=mk('i7',680,520),hd=makeHandDraw(ctx,7007);
+  ctx.translate(260,430);
+  const p=70;
+  handCurve(ctx,hd,paramPoints(x=>x,x=>-x*x/(4*p),-280,280,180),{lineWidth:2.6,color:INK});
+  hd.handSegment(-280,0,280,0,{lineWidth:1.6,color:INK});
+  const F={x:0,y:-p};
+  hd.handDot(F.x,F.y,4,INK);
+  lbl(ctx,'F',F.x+12,F.y-6,INK,20);
+  // punt P
+  const px=170, py=-px*px/(4*p);
+  const P={x:px,y:py};
+  hd.handDot(P.x,P.y,4,INK);
+  lblC(ctx,'P',P.x+22,P.y-4,INK,20);
+  const D={x:px,y:0};
+  hd.handDot(D.x,D.y,3.5,SANG);
+  lbl(ctx,'D',D.x-8,D.y+22,SANG,18);
+  hd.handSegment(P.x,P.y,D.x,D.y,{lineWidth:2,dashed:true,color:SANG});
+  hd.handSegment(P.x,P.y,F.x,F.y,{lineWidth:2,color:SANG});
+  hd.handSegment(F.x,F.y,D.x,D.y,{lineWidth:1.8,dashed:true,color:SANG});
+  const M={x:(F.x+D.x)/2,y:(F.y+D.y)/2};
+  hd.handDot(M.x,M.y,3.5,SANG);
+  lbl(ctx,'M',M.x-32,M.y-8,SANG,17);
+  // tangent (recta P-M allargada)
+  const dirx=M.x-P.x, diry=M.y-P.y, dl=Math.hypot(dirx,diry);
+  const ux=dirx/dl, uy=diry/dl;
+  hd.handSegment(P.x-ux*260,P.y-uy*260,P.x+ux*260,P.y+uy*260,{lineWidth:2.2,color:SANG});
+  rightAngle(hd,M.x,M.y,F.x,F.y,P.x,P.y,14,SANG);
+  stampNum(ctx,520,'105');
+})();
+
+/* fig-123 -- q119: envolupant d'un feix de rectes (dos eixos, punts
+   equiespaiats) que forma una parabola. Moviment: cas-limit. */
+(function(){
+  const ctx=mk('i8',620,620),hd=makeHandDraw(ctx,7008);
+  ctx.translate(120,500);
+  const n=10, L=380;
+  // eixos
+  hd.handSegment(0,0,L,0,{lineWidth:2,color:INK});
+  hd.handSegment(0,0,0,-L,{lineWidth:2,color:INK});
+  for(let i=0;i<=n;i++){
+    const A={x:i*(L/n),y:0};
+    const B={x:0,y:-(n-i)*(L/n)};
+    hd.handDot(A.x,A.y,2.6,INK);
+    hd.handDot(B.x,B.y,2.6,INK);
+    hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:1.5,wobble:1.4,color:INK});
+  }
+  // envolupant: paràbola sqrt(x)+sqrt(y)=sqrt(n) en unitats de L/n -- calculem en
+  // coordenades reals: sqrt(x/(L/n)) + sqrt(y/(L/n)) = sqrt(n)  =>  parametritzem per angle
+  const unit=L/n;
+  const pts=[];
+  for(let k=0;k<=200;k++){
+    const s=k/200; // fraccio de sqrt(x) sobre sqrt(n*unit)
+    const sqx=s*Math.sqrt(n*unit), sqy=(1-s)*Math.sqrt(n*unit);
+    pts.push({x:sqx*sqx, y:-sqy*sqy});
+  }
+  handCurve(ctx,hd,pts,{lineWidth:2.4,color:SANG});
+  lblC(ctx,'envolupant: una paràbola',300,-40,SANG,18);
+  stampNum(ctx,620,'106');
+})();
+
+/* fig-124 -- q120: la tangent en P talla l'eix al punt mitjà T de V-N;
+   el triangle TNP es la meitat de VNP. Moviment: redueix-al-conegut. */
+(function(){
+  const ctx=mk('i9',700,420),hd=makeHandDraw(ctx,7009);
+  ctx.translate(80,380);
+  const px=380, py=-280;
+  const k=-py/(px*px);
+  handCurve(ctx,hd,paramPoints(x=>x,x=>-k*x*x,-30,px+20,160),{lineWidth:2.6,color:INK});
+  hd.handSegment(-30,0,px+20,0,{lineWidth:1.8,color:INK});
+  const V={x:0,y:0};
+  const N={x:px,y:0}, P={x:px,y:py};
+  const T={x:px/2,y:0};
+  hd.handDot(V.x,V.y,4,INK);
+  hd.handDot(N.x,N.y,4,SANG);
+  hd.handDot(P.x,P.y,4,INK);
+  hd.handDot(T.x,T.y,4,SANG);
+  hd.handSegment(N.x,N.y,P.x,P.y,{lineWidth:1.8,dashed:true,color:SANG});
+  hd.handSegment(V.x,V.y,P.x,P.y,{lineWidth:2,color:SANG});
+  const slope=-2*k*px;
+  hd.handSegment(T.x-35,T.y-35*slope,P.x+25,P.y+25*slope,{lineWidth:2.2,color:SANG});
+  lbl(ctx,'V',V.x-22,V.y+8,INK,20);
+  lbl(ctx,'T',T.x-8,T.y+26,SANG,19);
+  lbl(ctx,'N',N.x-8,N.y+26,SANG,19);
+  lblC(ctx,'P',P.x+22,P.y-4,INK,20);
+  rightAngle(hd,N.x,N.y,V.x,V.y,P.x,P.y,14,SANG);
+  stampNum(ctx,420,'107');
+})();
+
+/* fig-125 -- q121: paràbola inscrita a la caixa (com al llibre), i en
+   sanguina, al costat, la mateixa caixa partida en franges amb els
+   rectangles ombrejats per sota de la corba. Moviment: exhauriment. */
+(function(){
+  const ctx=mk('i10',900,460),hd=makeHandDraw(ctx,7010);
+  (function(){
+    ctx.save();ctx.translate(220,400);
+    const W=180,H=340;
+    hd.handSegment(-W,-H,W,-H,{lineWidth:2,color:INK});
+    hd.handSegment(-W,-H,-W,0,{lineWidth:2,color:INK});
+    hd.handSegment(W,-H,W,0,{lineWidth:2,color:INK});
+    hd.handSegment(-W,0,W,0,{lineWidth:2,color:INK});
+    handCurve(ctx,hd,paramPoints(x=>x,x=>-H*(x*x)/(W*W),-W,W,150),{lineWidth:2.6,color:INK});
+    lblC(ctx,'2/3 de la caixa',0,-380,INK,17);
+    ctx.restore();
+  })();
+  (function(){
+    ctx.save();ctx.translate(660,400);
+    const W=180,H=340,nStrips=8;
+    ctx.save();
+    for(let i=0;i<nStrips;i++){
+      const x0=-W+i*(2*W/nStrips), x1=-W+(i+1)*(2*W/nStrips);
+      const yTop=-H*(x1*x1)/(W*W); // altura MINIMA de la franja (la mes propera al vertex, x1 en valor absolut mes gran)
+      ctx.globalAlpha=0.35;
+      ctx.fillStyle=SANG;
+      ctx.beginPath();ctx.rect(x0,0,x1-x0,yTop);ctx.fill();
+      ctx.globalAlpha=1;
+    }
+    ctx.restore();
+    hd.handSegment(-W,-H,W,-H,{lineWidth:2,color:INK});
+    hd.handSegment(-W,-H,-W,0,{lineWidth:2,color:INK});
+    hd.handSegment(W,-H,W,0,{lineWidth:2,color:INK});
+    hd.handSegment(-W,0,W,0,{lineWidth:2,color:INK});
+    for(let i=1;i<nStrips;i++){
+      const x=-W+i*(2*W/nStrips);
+      hd.handSegment(x,0,x,-H*(x*x)/(W*W),{lineWidth:1.2,dashed:true,color:SANG});
+    }
+    handCurve(ctx,hd,paramPoints(x=>x,x=>-H*(x*x)/(W*W),-W,W,150),{lineWidth:2.6,color:SANG});
+    lblC(ctx,'suma de rectangles → 1/3',0,-380,SANG,17);
+    ctx.restore();
+  })();
+  stampNum(ctx,460,'108');
+})();
+
+/* fig-126 -- q122: espiral d'Arquimedes amb un punt marcat i la direccio
+   del seu moviment (tangent, en sanguina). Moviment: construeix-per-definir. */
+(function(){
+  const ctx=mk('i11',560,560),hd=makeHandDraw(ctx,7011);
+  ctx.translate(280,280);
+  const a=8, turns=2.6;
+  const pts=paramPoints(t=>a*t*Math.cos(t), t=>a*t*Math.sin(t), 0, turns*2*Math.PI, 220);
+  handCurve(ctx,hd,pts,{lineWidth:2.6,color:INK});
+  const tp=1.55*2*Math.PI+1.1;
+  const P={x:a*tp*Math.cos(tp), y:a*tp*Math.sin(tp)};
+  hd.handDot(P.x,P.y,4,SANG);
+  // tangent aproximada per diferencies
+  const eps=0.01;
+  const P2={x:a*(tp+eps)*Math.cos(tp+eps), y:a*(tp+eps)*Math.sin(tp+eps)};
+  let vx=P2.x-P.x, vy=P2.y-P.y; const vl=Math.hypot(vx,vy); vx/=vl;vy/=vl;
+  hd.handSegment(P.x,P.y,P.x+vx*70,P.y+vy*70,{lineWidth:2.4,color:SANG});
+  // fletxa
+  const ang=Math.atan2(vy,vx);
+  const ax=P.x+vx*70, ay=P.y+vy*70;
+  hd.handSegment(ax,ay,ax-14*Math.cos(ang-0.4),ay-14*Math.sin(ang-0.4),{lineWidth:2,color:SANG});
+  hd.handSegment(ax,ay,ax-14*Math.cos(ang+0.4),ay-14*Math.sin(ang+0.4),{lineWidth:2,color:SANG});
+  hd.handDot(0,0,3.5,INK);
+  stampNum(ctx,560,'109');
+})();
+
+/* fig-127 -- q123: cilindre amb helix (com al llibre), i al costat, en
+   sanguina, el mateix cilindre desenrotllat en un rectangle amb la
+   diagonal (l'helix esdevinguda recta). Moviment: un-altre-pla. */
+(function(){
+  const ctx=mk('i12',920,480),hd=makeHandDraw(ctx,7012);
+  (function(){
+    ctx.save();ctx.translate(230,60);
+    const rx=150, ry=42, H=380, turns=4;
+    // el·lipse superior
+    hd.handEllipse(0,0,rx,ry,{startAngle:0,endAngle:2*Math.PI,lineWidth:2.2,irregularity:0.025,color:INK});
+    // costats del cilindre
+    hd.handSegment(-rx,0,-rx,H,{lineWidth:2.2,color:INK});
+    hd.handSegment(rx,0,rx,H,{lineWidth:2.2,color:INK});
+    hd.handEllipse(0,H,rx,ry,{startAngle:0,endAngle:Math.PI,lineWidth:2.2,irregularity:0.025,color:INK});
+    hd.handEllipse(0,H,rx,ry,{startAngle:Math.PI,endAngle:2*Math.PI,lineWidth:1.4,dashed:true,irregularity:0.025,color:INK});
+    // helix: nomes la part VISIBLE (davant, angle t en (0,pi) aprox segons projeccio) -- simplifiquem
+    // dibuixant-la sencera pero discontinua on quedaria darrere
+    const helixPts=[];
+    const n=turns;
+    for(let i=0;i<=300;i++){
+      const s=i/300;
+      const ang=s*n*2*Math.PI;
+      const y=s*H;
+      const x=rx*Math.cos(ang);
+      const zfactor=Math.sin(ang); // >0 = davant (visible), <0 = darrere
+      helixPts.push({x,y,front:zfactor>0});
+    }
+    // separem en trams contigus del mateix costat per no unir davant amb darrere
+    let seg=[];
+    for(let i=0;i<helixPts.length;i++){
+      seg.push(helixPts[i]);
+      const last=i===helixPts.length-1;
+      if(last || helixPts[i+1].front!==helixPts[i].front){
+        if(seg.length>1) handCurve(ctx,hd,seg,{lineWidth:2,dashed:!seg[0].front,color:INK});
+        seg=[];
+      }
+    }
+    lblC(ctx,'hèlix, 4 voltes',0,H+60,INK,17);
+    ctx.restore();
+  })();
+  (function(){
+    ctx.save();ctx.translate(560,60);
+    const w=300, H=380;
+    hd.handSegment(0,0,w,0,{lineWidth:2,color:SANG});
+    hd.handSegment(0,0,0,H,{lineWidth:2,color:SANG});
+    hd.handSegment(w,0,w,H,{lineWidth:2,color:SANG});
+    hd.handSegment(0,H,w,H,{lineWidth:2,color:SANG});
+    hd.handSegment(0,0,w,H,{lineWidth:2.4,color:SANG});
+    lbl(ctx,'2πRn',w/2-30,-14,SANG,17);
+    lbl(ctx,'H',w+12,H/2,SANG,17);
+    lblC(ctx,'desenrotllat: la hipotenusa',w/2,H+60,SANG,17);
+    ctx.restore();
+  })();
+  stampNum(ctx,480,'110');
+})();
+
+/* fig-128 -- q126: hèlix (nus tòric) sobre un tor -- corba en sanguina que
+   avança uniformement al voltant del forat i del tub alhora. Moviment:
+   construeix-per-definir. */
+(function(){
+  const ctx=mk('i13',620,560),hd=makeHandDraw(ctx,7013);
+  ctx.translate(310,240);
+  const R=170, r=68, squash=0.42;
+  // "tub" del tor: unes quantes el.lipses petites (secció del tub) al voltant, per suggerir volum
+  for(let k=0;k<14;k++){
+    const u=k/14*2*Math.PI;
+    const cx=R*Math.cos(u), cy=R*Math.sin(u)*squash;
+    const rxTube=r*0.55, ryTube=r*0.55*squash*1.8*Math.abs(Math.cos(u))+r*0.14;
+    if(Math.sin(u)>0.05) continue; // nomes la meitat de darrere, discreta
+    hd.handEllipse(cx,cy,Math.max(8,rxTube),Math.max(5,ryTube),{startAngle:0,endAngle:2*Math.PI,lineWidth:1,irregularity:0.06,color:'#c9c4ba'});
+  }
+  hd.handEllipse(0,0,R+r,(R+r)*squash,{startAngle:0,endAngle:2*Math.PI,lineWidth:2,irregularity:0.02,color:INK});
+  hd.handEllipse(0,0,R-r,(R-r)*squash,{startAngle:0,endAngle:Math.PI,lineWidth:1.6,dashed:true,irregularity:0.03,color:INK});
+  hd.handEllipse(0,0,R-r,(R-r)*squash,{startAngle:Math.PI,endAngle:2*Math.PI,lineWidth:2,irregularity:0.03,color:INK});
+  function torusPt(u,v){
+    const rad=R+r*Math.cos(v);
+    const x=rad*Math.cos(u);
+    const y=rad*Math.sin(u)*squash - r*Math.sin(v)*0.75;
+    return {x,y,depth:Math.sin(u)};
+  }
+  const p=2,q=3;
+  const pts=[];
+  for(let i=0;i<=400;i++){
+    const s=i/400*2*Math.PI;
+    pts.push(torusPt(p*s, q*s));
+  }
+  let seg=[];
+  for(let i=0;i<pts.length;i++){
+    seg.push(pts[i]);
+    const last=i===pts.length-1;
+    if(last || (pts[i+1].depth>0)!==(pts[i].depth>0)){
+      if(seg.length>1) handCurve(ctx,hd,seg,{lineWidth:2.2,dashed:seg[0].depth>0,color:SANG});
+      seg=[];
+    }
+  }
+  lblC(ctx,'nus tòric (2,3): 2 voltes pel forat, 3 pel tub',0,290,SANG,17);
+  stampNum(ctx,560,'111');
+})();
+
+/* fig-129 -- q124: hipocicloide (R/r=3, deltoide) i epicicloide (R/r=1,
+   cardioide), amb el punt de contacte marcat. Moviment: recompte-o-induccio. */
+(function(){
+  const ctx=mk('i14',1000,560),hd=makeHandDraw(ctx,7014);
+  (function(){
+    ctx.save();ctx.translate(240,260);
+    const R=160,r=160/3;
+    hd.handEllipse(0,0,R,R,{startAngle:0,endAngle:2*Math.PI,lineWidth:1.6,dashed:true,irregularity:0.02,color:INK});
+    const pts=paramPoints(t=>(R-r)*Math.cos(t)+r*Math.cos((R-r)/r*t),
+                           t=>(R-r)*Math.sin(t)-r*Math.sin((R-r)/r*t), 0, 2*Math.PI, 320, true);
+    handCurve(ctx,hd,pts,{lineWidth:2.4,color:SANG,closed:true});
+    const t0=1.0;
+    const cx=(R-r)*Math.cos(t0), cy=(R-r)*Math.sin(t0);
+    hd.handEllipse(cx,cy,r,r,{startAngle:0,endAngle:2*Math.PI,lineWidth:1.4,irregularity:0.03,color:INK});
+    const contactX=R*Math.cos(t0), contactY=R*Math.sin(t0);
+    hd.handDot(contactX,contactY,4,INK);
+    lblC(ctx,'dins: R/r=3 → 3 pics (deltoide)',0,235,SANG,17);
+    ctx.restore();
+  })();
+  (function(){
+    ctx.save();ctx.translate(680,270);
+    const R=95,r=95;
+    hd.handEllipse(0,0,R,R,{startAngle:0,endAngle:2*Math.PI,lineWidth:1.6,dashed:true,irregularity:0.02,color:INK});
+    const pts=paramPoints(t=>(R+r)*Math.cos(t)-r*Math.cos((R+r)/r*t),
+                           t=>(R+r)*Math.sin(t)-r*Math.sin((R+r)/r*t), 0, 2*Math.PI, 320, true);
+    handCurve(ctx,hd,pts,{lineWidth:2.4,color:SANG,closed:true});
+    const t0=0.85;
+    const cx=(R+r)*Math.cos(t0), cy=(R+r)*Math.sin(t0);
+    hd.handEllipse(cx,cy,r,r,{startAngle:0,endAngle:2*Math.PI,lineWidth:1.4,irregularity:0.03,color:INK});
+    const contactX=R*Math.cos(t0), contactY=R*Math.sin(t0);
+    hd.handDot(contactX,contactY,4,INK);
+    lblC(ctx,'fora: R/r=1 → 1 pic (cardioide)',0,255,SANG,17);
+    ctx.restore();
+  })();
+  stampNum(ctx,560,'112');
+})();
+
+/* fig-130 -- q125: espirograf habitual (traç negre, moltes espires) i, al
+   costat en sanguina, el cas degenerat (punt al centre -> cercle simple de
+   radi R-r). Moviment: cas-limit. */
+(function(){
+  const ctx=mk('i15',920,480),hd=makeHandDraw(ctx,7015);
+  (function(){
+    ctx.save();ctx.translate(230,240);
+    const R=190,rr=190/7,d=60;
+    hd.handEllipse(0,0,R,R,{startAngle:0,endAngle:2*Math.PI,lineWidth:1.6,dashed:true,irregularity:0.02,color:INK});
+    const pts=paramPoints(t=>(R-rr)*Math.cos(t)+d*Math.cos((R-rr)/rr*t),
+                           t=>(R-rr)*Math.sin(t)-d*Math.sin((R-rr)/rr*t), 0, 2*Math.PI, 900, true);
+    handCurve(ctx,hd,pts,{lineWidth:1.8,passes:1,wobble:1.2,color:INK});
+    lblC(ctx,'espirògraf general',0,220,INK,17);
+    ctx.restore();
+  })();
+  (function(){
+    ctx.save();ctx.translate(680,240);
+    const R=190,rr=70;
+    hd.handEllipse(0,0,R,R,{startAngle:0,endAngle:2*Math.PI,lineWidth:1.6,dashed:true,irregularity:0.02,color:INK});
+    hd.handEllipse(0,0,R-rr,R-rr,{startAngle:0,endAngle:2*Math.PI,lineWidth:2.4,irregularity:0.025,color:SANG});
+    lblC(ctx,'punt al centre: cercle de radi R−r',0,220,SANG,17);
+    ctx.restore();
+  })();
+  stampNum(ctx,480,'113');
+})();
+
+/* fig-131 -- q127: bastó lliscant (com q64) en dos instants, amb el punt
+   mitjà marcat i el quart de cercle que descriu. Moviment:
+   redueix-al-conegut. */
+(function(){
+  const ctx=mk('i16',560,560),hd=makeHandDraw(ctx,7016);
+  ctx.translate(80,480);
+  const L=380;
+  hd.handSegment(0,0,L+40,0,{lineWidth:2,color:INK});
+  hd.handSegment(0,0,0,-(L+40),{lineWidth:2,color:INK});
+  // quart de cercle (discontinu) que traça el punt mitjà
+  const arcPts=paramPoints(t=>(L/2)*Math.cos(t), t=>-(L/2)*Math.sin(t), 0, Math.PI/2, 100);
+  handCurve(ctx,hd,arcPts,{lineWidth:1.6,dashed:true,color:SANG});
+  function drawLadder(ang,col){
+    const foot={x:L*Math.cos(ang),y:0};
+    const wall={x:0,y:-L*Math.sin(ang)};
+    hd.handSegment(foot.x,foot.y,wall.x,wall.y,{lineWidth:2.2,color:col});
+    const M={x:(foot.x+wall.x)/2,y:(foot.y+wall.y)/2};
+    hd.handDot(M.x,M.y,4,SANG);
+    return M;
+  }
+  drawLadder(0.35,INK);
+  drawLadder(1.0,INK);
+  lblC(ctx,'el bastó de q64, ara amb el seu punt mitjà',180,-(L+70),SANG,17);
+  stampNum(ctx,560,'114');
+})();
+</script></body></html>

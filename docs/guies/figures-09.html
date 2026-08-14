@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+ body{margin:0;background:#fff}canvas{display:block;margin:0 0 24px 0}
+</style></head><body>
+<script src="../hand-draw.js"></script>
+<script src="../comu.js"></script>
+<script>
+function stampNum(ctx,h,num){
+  ctx.save();ctx.setTransform(1,0,0,1,0,0);
+  ctx.font='18px Georgia';ctx.fillStyle='#8a8580';
+  ctx.fillText(num, 8, h-8);ctx.restore();
+}
+function mid(a,b){return {x:(a.x+b.x)/2,y:(a.y+b.y)/2};}
+function handCurve(hd,pts,opts){
+  for(let i=0;i<pts.length-1;i++) hd.handSegment(pts[i].x,pts[i].y,pts[i+1].x,pts[i+1].y,opts);
+}
+
+/* ============================================================
+   fig-099 -- q91: dilatacio entre dos plans, triangle rectangle
+   entre un segment i la seva projeccio perpendicular.
+   Moviment: redueix-al-conegut. */
+(function(){
+  const ctx=mk('h1',620,480),hd=makeHandDraw(ctx,9001);ctx.translate(60,60);
+  // pla horitzontal (baix)
+  const Hc=quad(hd,0,300,440,120,300,{lineWidth:2.6,color:INK});
+  const foldL=Hc[0], foldR=Hc[1];
+  // pla inclinat (amunt), compartint la vora de tall foldL-foldR
+  const tiltTL={x:foldL.x+70,y:foldL.y-260}, tiltTR={x:foldR.x+70,y:foldR.y-260};
+  hd.handSegment(foldL.x,foldL.y,tiltTL.x,tiltTL.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(foldR.x,foldR.y,tiltTR.x,tiltTR.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(tiltTL.x,tiltTL.y,tiltTR.x,tiltTR.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(foldL.x,foldL.y,foldR.x,foldR.y,{lineWidth:2.6,color:INK});
+  // eixos locals del pla inclinat: al llarg de la linia de tall, i "amunt" pel pla
+  const foldDir={x:foldR.x-foldL.x,y:foldR.y-foldL.y};
+  const foldLen=Math.hypot(foldDir.x,foldDir.y);
+  const foldUnit={x:foldDir.x/foldLen,y:foldDir.y/foldLen};
+  const upDir={x:tiltTL.x-foldL.x,y:tiltTL.y-foldL.y};
+  const upLen=Math.hypot(upDir.x,upDir.y);
+  const upUnit={x:upDir.x/upLen,y:upDir.y/upLen};
+  // punt base del segment, SOBRE la linia de tall (perque la seva projeccio caigui
+  // exactament allà i el triangle rectangle es vegi complet)
+  const segBase={x:foldL.x+foldUnit.x*190,y:foldL.y+foldUnit.y*190};
+  const segTop={x:segBase.x+upUnit.x*230,y:segBase.y+upUnit.y*230};
+  hd.handSegment(segBase.x,segBase.y,segTop.x,segTop.y,{lineWidth:2.8,color:INK});
+  hd.handDot(segTop.x,segTop.y,4,INK);
+  // projeccio perpendicular sobre el pla horitzontal: cap avall (direccio "vertical" del
+  // croquis, que en aquest dibuix de mà representa la perpendicular real al pla horitzontal)
+  const foot={x:segTop.x,y:segBase.y+95};
+  hd.handSegment(segTop.x,segTop.y,foot.x,foot.y,{lineWidth:1.8,dashed:true,dashPattern:[7,6],color:SANG});
+  hd.handSegment(segBase.x,segBase.y,foot.x,foot.y,{lineWidth:2.4,color:SANG});
+  rightAngle(hd,segBase.x,segBase.y,foot.x,foot.y,segTop.x,segTop.y,16,SANG);
+  hd.handDot(segBase.x,segBase.y,4,INK);hd.handDot(foot.x,foot.y,4,SANG);
+  lbl(ctx,'L',segTop.x-32,(segTop.y+segBase.y)/2-10,INK,20);
+  lbl(ctx,"L·cosθ",foot.x+14,foot.y+4,SANG,18);
+  angleMark(hd,segTop.x,segTop.y,segBase.x,segBase.y,foot.x,foot.y,26,1,INK);
+  lbl(ctx,'θ',segBase.x-32,segBase.y+30,INK,18);
+  stampNum(ctx,420,'099');
+})();
+
+/* ============================================================
+   fig-100 -- q92: projeccio central -- dos punts a distancies
+   diferents del punt de projeccio, contraexemple a la dilatacio uniforme.
+   Moviment: contraexemple. */
+(function(){
+  const ctx=mk('h2',620,460),hd=makeHandDraw(ctx,9002);ctx.translate(60,60);
+  const O={x:280,y:20};
+  const planeY=340;
+  hd.handSegment(0,planeY,520,planeY,{lineWidth:2.6,color:INK});
+  hd.handDot(O.x,O.y,5,INK);lbl(ctx,'punt de projecció',O.x-90,O.y-14,INK,17);
+  // dos segments iguals (sanguina), a distancies diferents d'O, ambdos paral·lels al pla
+  const nearY=110, farY=200;
+  const A1={x:O.x-70,y:nearY}, A2={x:O.x+10,y:nearY};
+  const B1={x:O.x-100,y:farY}, B2={x:O.x+20,y:farY};
+  hd.handSegment(A1.x,A1.y,A2.x,A2.y,{lineWidth:2.4,color:SANG});
+  hd.handSegment(B1.x,B1.y,B2.x,B2.y,{lineWidth:2.4,color:SANG});
+  tick(hd,A1.x,A1.y,A2.x,A2.y);tick(hd,B1.x,B1.y,B2.x,B2.y);
+  // rajos de projeccio (discontinus) cap al pla
+  function proj(P){const t=(planeY-O.y)/(P.y-O.y); return {x:O.x+(P.x-O.x)*t,y:planeY};}
+  const A1p=proj(A1),A2p=proj(A2),B1p=proj(B1),B2p=proj(B2);
+  [A1,A2,B1,B2].forEach(P=>{const Pp=proj(P);
+    hd.handSegment(O.x,O.y,Pp.x,Pp.y,{lineWidth:1.4,dashed:true,dashPattern:[6,5],color:INK});});
+  hd.handSegment(A1p.x,A1p.y,A2p.x,A2p.y,{lineWidth:2.4,color:SANG});
+  hd.handSegment(B1p.x,B1p.y,B2p.x,B2p.y,{lineWidth:2.4,color:SANG});
+  tick(hd,A1p.x,A1p.y,A2p.x,A2p.y);tick(hd,B1p.x,B1p.y,B2p.x,B2p.y);
+  lbl(ctx,'imatges: mides diferents',A1p.x-30,planeY+30,SANG,16);
+  stampNum(ctx,400,'100');
+})();
+
+/* ============================================================
+   fig-101 -- q93: esfera, tangents des d'un punt exterior,
+   triangle rectangle O-T-P.
+   Moviment: redueix-al-conegut. */
+(function(){
+  const ctx=mk('h3',560,520),hd=makeHandDraw(ctx,9003);ctx.translate(220,260);
+  const R=190;
+  hd.handEllipse(0,0,R,R,{lineWidth:2.6,irregularity:0.03,color:INK});
+  hd.handEllipse(0,0,R,R*0.3,{lineWidth:1.6,irregularity:0.03,rotation:-0.12,color:INK});
+  hd.handDot(0,0,4,INK);lbl(ctx,'O',10,6,INK,20);
+  const P={x:280,y:-150};
+  hd.handDot(P.x,P.y,4,INK);lbl(ctx,'P',P.x+14,P.y-6,INK,20);
+  // punts de tangencia aproximats (calculats geometricament per al triangle rectangle O-T-P)
+  const d=Math.hypot(P.x,P.y);
+  const theta=Math.acos(R/d);
+  const phi=Math.atan2(P.y,P.x);
+  const T1={x:R*Math.cos(phi+theta),y:R*Math.sin(phi+theta)};
+  const T2={x:R*Math.cos(phi-theta),y:R*Math.sin(phi-theta)};
+  hd.handSegment(P.x,P.y,T1.x,T1.y,{lineWidth:2.2,color:SANG});
+  hd.handSegment(P.x,P.y,T2.x,T2.y,{lineWidth:2.2,color:SANG});
+  hd.handSegment(0,0,T1.x,T1.y,{lineWidth:1.6,dashed:true,dashPattern:[6,5],color:INK});
+  hd.handSegment(0,0,T2.x,T2.y,{lineWidth:1.6,dashed:true,dashPattern:[6,5],color:INK});
+  hd.handSegment(0,0,P.x,P.y,{lineWidth:1.6,dashed:true,dashPattern:[5,5],color:INK});
+  rightAngle(hd,T1.x,T1.y,0,0,P.x,P.y,16,SANG);
+  hd.handDot(T1.x,T1.y,4,SANG);hd.handDot(T2.x,T2.y,4,SANG);
+  lbl(ctx,'T₁',T1.x+10,T1.y-6,SANG,18);
+  lbl(ctx,'T₂',T2.x-24,T2.y+18,SANG,18);
+  stampNum(ctx,480,'101');
+})();
+
+/* ============================================================
+   fig-102 -- q94: el·lipse allargada (dos focus separats) al costat
+   d'un cercle (focus fosos al centre).
+   Moviment: cas-limit. */
+(function(){
+  const ctx=mk('h4',900,420),hd=makeHandDraw(ctx,9004);ctx.translate(240,210);
+  // el·lipse allargada
+  const a=190,b=120;
+  hd.handEllipse(0,0,a,b,{lineWidth:2.6,irregularity:0.03,color:INK});
+  const c=Math.sqrt(a*a-b*b);
+  hd.handDot(-c,0,5,SANG);hd.handDot(c,0,5,SANG);
+  lbl(ctx,'F₁',-c-10,-16,SANG,18);
+  lbl(ctx,'F₂',c-4,-16,SANG,18);
+  lblC(ctx,"el·lipse: dos focus",0,170,INK,18);
+  // cercle amb focus fosos
+  ctx.save();ctx.translate(500,0);
+  const R=140;
+  hd.handEllipse(0,0,R,R,{lineWidth:2.6,irregularity:0.03,color:INK});
+  hd.handDot(0,0,6,SANG);
+  lbl(ctx,'F₁=F₂',12,6,SANG,18);
+  lblC(ctx,"cercle: focus fosos",0,170,INK,18);
+  ctx.restore();
+  stampNum(ctx,380,'102');
+})();
+/* ============================================================
+   fig-103 -- q99: quatre punts en una recta projectats des d'O,
+   triangles OAB i similars per a la prova d'invariancia de la rao doble.
+   Moviment: audita-la-demostracio. */
+(function(){
+  const ctx=mk('h5',680,420),hd=makeHandDraw(ctx,9005);ctx.translate(40,40);
+  const O={x:300,y:20};
+  const lineY=260;
+  hd.handSegment(20,lineY,600,lineY,{lineWidth:2.4,color:INK});
+  hd.handDot(O.x,O.y,5,INK);lbl(ctx,'O',O.x+10,O.y-4,INK,20);
+  const pts={A:{x:120,y:lineY},B:{x:230,y:lineY},C:{x:380,y:lineY},D:{x:540,y:lineY}};
+  Object.entries(pts).forEach(([name,P])=>{
+    hd.handSegment(O.x,O.y,P.x,P.y,{lineWidth:1.6,dashed:true,dashPattern:[6,5],color:INK});
+    hd.handDot(P.x,P.y,4,SANG);
+    lbl(ctx,name,P.x-6,P.y+26,SANG,19);
+  });
+  lblC(ctx,"àrea(OAC) = ½·OA·OC·sin(∠AOC)",340,lineY+70,INK,17);
+  lblC(ctx,"— i també = ½·AC·(alçada des d'O)",340,lineY+96,INK,17);
+  stampNum(ctx,380,'103');
+})();
+
+/* ============================================================
+   fig-104 -- q100: dos plans paral·lels, punt de projeccio fora
+   (dilatacio) i entre (inversio).
+   Moviment: distingeix-casos. */
+(function(){
+  const ctx=mk('h6',900,520),hd=makeHandDraw(ctx,9006);ctx.translate(40,40);
+  // cas 1: punt de projeccio FORA (per sobre) dels dos plans
+  const y0=170,y1=280,yO1=40;
+  hd.handSegment(20,y0,340,y0,{lineWidth:2.2,color:INK});
+  hd.handSegment(20,y1,340,y1,{lineWidth:2.2,color:INK});
+  const O1={x:180,y:yO1};
+  hd.handDot(O1.x,O1.y,5,INK);lbl(ctx,'O',O1.x+10,O1.y-4,INK,18);
+  const seg0a={x:110,y:y0},seg0b={x:160,y:y0};
+  hd.handSegment(seg0a.x,seg0a.y,seg0b.x,seg0b.y,{lineWidth:2.2,color:SANG});
+  hd.handDot(seg0a.x,seg0a.y,3,SANG);lbl(ctx,'P',seg0a.x-16,seg0a.y+20,SANG,15);
+  hd.handDot(seg0b.x,seg0b.y,3,SANG);lbl(ctx,'Q',seg0b.x-2,seg0b.y+20,SANG,15);
+  function proj(P,O,targetY){const t=(targetY-O.y)/(P.y-O.y);return{x:O.x+(P.x-O.x)*t,y:targetY};}
+  const seg1a=proj(seg0a,O1,y1),seg1b=proj(seg0b,O1,y1);
+  hd.handSegment(seg1a.x,seg1a.y,seg1b.x,seg1b.y,{lineWidth:2.2,color:SANG});
+  hd.handDot(seg1a.x,seg1a.y,3,SANG);lbl(ctx,"P′",seg1a.x-18,seg1a.y+22,SANG,15);
+  hd.handDot(seg1b.x,seg1b.y,3,SANG);lbl(ctx,"Q′",seg1b.x+4,seg1b.y+22,SANG,15);
+  [seg0a,seg0b].forEach(P=>hd.handSegment(O1.x,O1.y,proj(P,O1,y1).x,y1,{lineWidth:1.3,dashed:true,dashPattern:[5,5],color:INK}));
+  lblC(ctx,"O fora: P′,Q′ en el mateix ordre — dilatació",185,y1+50,INK,17);
+
+  // cas 2: punt de projeccio ENTRE els dos plans
+  ctx.save();ctx.translate(460,0);
+  hd.handSegment(20,y0,340,y0,{lineWidth:2.2,color:INK});
+  hd.handSegment(20,y1,340,y1,{lineWidth:2.2,color:INK});
+  const O2={x:180,y:(y0+y1)/2};
+  hd.handDot(O2.x,O2.y,5,INK);lbl(ctx,'O',O2.x+10,O2.y-4,INK,18);
+  hd.handSegment(seg0a.x,seg0a.y,seg0b.x,seg0b.y,{lineWidth:2.2,color:SANG});
+  hd.handDot(seg0a.x,seg0a.y,3,SANG);lbl(ctx,'P',seg0a.x-16,seg0a.y+20,SANG,15);
+  hd.handDot(seg0b.x,seg0b.y,3,SANG);lbl(ctx,'Q',seg0b.x-2,seg0b.y+20,SANG,15);
+  const seg1a2=proj(seg0a,O2,y1),seg1b2=proj(seg0b,O2,y1);
+  hd.handSegment(seg1a2.x,seg1a2.y,seg1b2.x,seg1b2.y,{lineWidth:2.2,color:SANG});
+  hd.handDot(seg1a2.x,seg1a2.y,3,SANG);lbl(ctx,"P′",seg1a2.x-18,seg1a2.y+22,SANG,15);
+  hd.handDot(seg1b2.x,seg1b2.y,3,SANG);lbl(ctx,"Q′",seg1b2.x+4,seg1b2.y+22,SANG,15);
+  [seg0a,seg0b].forEach(P=>hd.handSegment(O2.x,O2.y,proj(P,O2,y1).x,y1,{lineWidth:1.3,dashed:true,dashPattern:[5,5],color:INK}));
+  lblC(ctx,"O entremig: P′,Q′ intercanviats — capgirada",185,y1+50,INK,17);
+  ctx.restore();
+  stampNum(ctx,480,'104');
+})();
+
+/* ============================================================
+   fig-107 -- q103: costat que passa pel punt de projeccio, fent que
+   la seva imatge fugi a l'infinit.
+   Moviment: distingeix-casos. */
+(function(){
+  const ctx=mk('h9',680,500),hd=makeHandDraw(ctx,9009);ctx.translate(40,20);
+  const O={x:300,y:30};
+  hd.handDot(O.x,O.y,5,INK);lbl(ctx,'O',O.x+10,O.y-6,INK,20);
+  // triangle amb el costat BC prolongat passant per O: C esta sobre el segment O-B,
+  // a prop d'O, aixi tot queda dins el canvas
+  const A={x:110,y:230}, B={x:200,y:330};
+  const s=0.42; const C2={x:O.x+s*(B.x-O.x), y:O.y+s*(B.y-O.y)};
+  hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.4,color:INK});
+  hd.handSegment(B.x,B.y,C2.x,C2.y,{lineWidth:2.4,color:INK});
+  hd.handSegment(C2.x,C2.y,A.x,A.y,{lineWidth:2.4,color:INK});
+  // recta B-C prolongada fins O (discontinua, per mostrar que C, B, O son colineals)
+  hd.handSegment(C2.x,C2.y,O.x,O.y,{lineWidth:1.3,dashed:true,dashPattern:[5,5],color:INK});
+  [A,B,C2].forEach(P=>hd.handDot(P.x,P.y,4,INK));
+  lbl(ctx,'A',A.x-22,A.y+8,INK,18);lbl(ctx,'B',B.x+10,B.y+8,INK,18);lbl(ctx,'C',C2.x-22,C2.y+6,INK,18);
+  // recta d'arribada
+  const groundY=400;
+  hd.handSegment(20,groundY,620,groundY,{lineWidth:2.2,color:INK});
+  function proj(P){const s2=(groundY-O.y)/(P.y-O.y);return{x:O.x+(P.x-O.x)*s2,y:groundY};}
+  const Ap=proj(A), Bp=proj(B);
+  hd.handSegment(O.x,O.y,Ap.x,Ap.y,{lineWidth:1.4,dashed:true,dashPattern:[6,5],color:SANG});
+  hd.handSegment(O.x,O.y,Bp.x,Bp.y,{lineWidth:1.4,dashed:true,dashPattern:[6,5],color:SANG});
+  hd.handDot(Ap.x,Ap.y,4,SANG);hd.handDot(Bp.x,Bp.y,4,SANG);
+  lbl(ctx,"A′",Ap.x-24,Ap.y+8,SANG,17);lbl(ctx,"B′",Bp.x-38,Bp.y+18,SANG,17);
+  lbl(ctx,"C′ → s'escapa cap a l'infinit",Bp.x+30,groundY-14,SANG,17);
+  lblC(ctx,"BC prolongat passa per O: C no té imatge ordinària",340,groundY+56,INK,16);
+  stampNum(ctx,440,'107');
+})();
+
+/* ============================================================
+   fig-108 -- q104: tres rectes paral·leles projectades des d'O,
+   convertides en tres rectes concurrents al punt de fuga.
+   Moviment: construeix-per-definir. */
+(function(){
+  const ctx=mk('h10',760,420),hd=makeHandDraw(ctx,9010);ctx.translate(40,40);
+  // tres rectes paral·leles (INK), horitzontals
+  const xs0=40, xs1=260;
+  [70,150,230].forEach(y=>hd.handSegment(xs0,y,xs1,y,{lineWidth:2.2,color:INK}));
+  lblC(ctx,"3 rectes paral·leles",150,20,INK,16);
+  // punt de fuga
+  const V={x:600,y:150};
+  hd.handDot(V.x,V.y,5,SANG);lbl(ctx,'punt de fuga',V.x+10,V.y-10,SANG,17);
+  [70,150,230].forEach(y=>{
+    hd.handSegment(xs1,y,V.x,V.y,{lineWidth:2.2,color:SANG});
+  });
+  lblC(ctx,"imatges: concurrents en un sol punt",420,340,INK,17);
+  stampNum(ctx,380,'108');
+})();
+
+/* ============================================================
+   fig-109 -- q105: diverses rectes gairebe paral·leles convergint
+   totes cap a un punt marcat infinit.
+   Moviment: redueix-al-conegut. */
+(function(){
+  const ctx=mk('h11',720,320),hd=makeHandDraw(ctx,9011);ctx.translate(30,50);
+  const V={x:600,y:110};
+  [40,80,120,160].forEach((y0,i)=>{
+    hd.handSegment(0,y0,V.x,V.y,{lineWidth:1.8,color: i%2? SANG:INK});
+  });
+  hd.handDot(V.x,V.y,5,SANG);lbl(ctx,'∞',V.x+16,V.y+8,SANG,24);
+  lblC(ctx,"rectes secants: sempre es tallen (ordinàriament o a l'infinit)",320,230,INK,17);
+  stampNum(ctx,270,'109');
+})();
+
+/* ============================================================
+   fig-110 -- q106: definicio visual de la rao doble com invariant
+   (recorda fig-105, ara amb la formula).
+   Moviment: invariant. */
+(function(){
+  const ctx=mk('h12',680,300),hd=makeHandDraw(ctx,9012);ctx.translate(40,50);
+  const y0=40;
+  hd.handSegment(0,y0,600,y0,{lineWidth:2.2,color:INK});
+  const P={A:0,B:60,C:170,D:330};
+  Object.entries(P).forEach(([n,x])=>{hd.handDot(x,y0,4,INK);lbl(ctx,n,x-4,y0-14,INK,18);});
+  lblC(ctx,"raó doble (A,B;C,D) = (AC·BD)/(BC·AD)",300,120,SANG,19);
+  lblC(ctx,"— el mateix valor sobre qualsevol recta projectada",300,150,INK,17);
+  stampNum(ctx,260,'110');
+})();
+
+/* ============================================================
+   fig-111 -- q107: con tallat per un pla mes inclinat que dues
+   generatrius (paral·leles al pla de tall) -> hiperbola.
+   Moviment: redueix-al-conegut. */
+(function(){
+  const ctx=mk('h13',620,560),hd=makeHandDraw(ctx,9013);ctx.translate(310,40);
+  const R=190,H=440;
+  // con (una nappa), generatrius extremes i cercle base
+  hd.handSegment(0,0,-R,H,{lineWidth:2.6,color:INK});
+  hd.handSegment(0,0,R,H,{lineWidth:2.6,color:INK});
+  hd.handEllipse(0,H,R,R*0.22,{lineWidth:2.2,irregularity:0.03,color:INK});
+  hd.handDot(0,0,4,INK);lbl(ctx,'vèrtex',12,4,INK,17);
+  // dues generatrius (SANGUINA) que passarien pels punts que fugen a l'infinit --
+  // aproximadament paral·leles al pla de tall (representat aqui inclinat, tallant les dues nappes)
+  const g1={x:-R*0.55,y:H*0.55}, g2={x:R*0.55,y:H*0.55};
+  hd.handSegment(0,0,g1.x,g1.y,{lineWidth:2.4,color:SANG});
+  hd.handSegment(0,0,g2.x,g2.y,{lineWidth:2.4,color:SANG});
+  hd.handDot(g1.x,g1.y,4,SANG);hd.handDot(g2.x,g2.y,4,SANG);
+  lbl(ctx,"P₁ (fuig a l'infinit)",g1.x-150,g1.y-4,SANG,15);
+  lbl(ctx,"P₂ (fuig a l'infinit)",g2.x+14,g2.y-4,SANG,15);
+  // pla de tall (linia recta que travessa mes inclinada que les generatrius g1,g2 -- representada
+  // com una linia discontinua que passa a prop dels dos punts P1,P2)
+  hd.handSegment(g1.x-60,g1.y-40,g2.x+60,g2.y+40,{lineWidth:1.6,dashed:true,dashPattern:[7,6],color:INK});
+  lblC(ctx,"el pla de tall és paral·lel a les generatrius per P₁,P₂",0,H+64,INK,16);
+  lblC(ctx,"→ la secció és una hipèrbola (dos punts fugen a l'infinit)",0,H+88,INK,16);
+  stampNum(ctx,520,'111');
+})();
+
+/* ============================================================
+   fig-112 -- q108: con de llum (una llanterna) i tres orientacions
+   de la paret: perpendicular, paral·lela a una generatriu, mes inclinada.
+   Moviment: un-altre-pla. */
+(function(){
+  const ctx=mk('h14',900,420),hd=makeHandDraw(ctx,9014);ctx.translate(40,40);
+  function litCone(x0,capt,wallAngle){
+    ctx.save();ctx.translate(x0,0);
+    const apex={x:70,y:20}, R=90,H=220;
+    hd.handSegment(apex.x,apex.y,apex.x-R*0.5,apex.y+H,{lineWidth:1.8,color:INK});
+    hd.handSegment(apex.x,apex.y,apex.x+R*0.5,apex.y+H,{lineWidth:1.8,color:INK});
+    hd.handSegment(apex.x,apex.y,apex.x-R,apex.y+H*1.35,{lineWidth:1.8,color:INK});
+    hd.handSegment(apex.x,apex.y,apex.x+R,apex.y+H*1.35,{lineWidth:1.8,color:INK});
+    hd.handDot(apex.x,apex.y,4,INK);
+    // paret com a segment inclinat segons wallAngle (graus respecte horitzontal),
+    // situada a una alcada fixa
+    const wy=apex.y+H*1.1;
+    const wc={x:apex.x,y:wy};
+    const rad=wallAngle*Math.PI/180;
+    const wl={x:wc.x-140*Math.cos(rad),y:wc.y-140*Math.sin(rad)};
+    const wr={x:wc.x+140*Math.cos(rad),y:wc.y+140*Math.sin(rad)};
+    hd.handSegment(wl.x,wl.y,wr.x,wr.y,{lineWidth:2.6,color:SANG});
+    lblC(ctx,capt,70,370,INK,16);
+    ctx.restore();
+  }
+  litCone(0,"paret ⊥ a l'eix: cercle",90);
+  litCone(310,"paret ∥ a una generatriu: paràbola",42);
+  litCone(620,"paret mes inclinada: hipèrbola",18);
+  stampNum(ctx,340,'112');
+})();
+
+/* ============================================================
+   fig-113 -- q109: esferes de Dandelin, un con tallat per un pla,
+   dues esferes tangents al con i al pla, punts de tangencia = focus.
+   Moviment: dues-maneres. */
+(function(){
+  const ctx=mk('h15',640,760),hd=makeHandDraw(ctx,9015);ctx.translate(320,40);
+  const R=200,H=540;
+  hd.handSegment(0,0,-R,H,{lineWidth:2.6,color:INK});
+  hd.handSegment(0,0,R,H,{lineWidth:2.6,color:INK});
+  hd.handEllipse(0,H,R,R*0.2,{lineWidth:2.2,irregularity:0.03,color:INK});
+  hd.handDot(0,0,4,INK);
+  // pla de tall: el·lipse inclinada tallant el con (representada com una el·lipse a mitja alcada,
+  // amb l'eix major visiblement mes gran per la inclinacio)
+  const yCut=H*0.62;
+  const rCutAtY=R*yCut/H;
+  hd.handEllipse(0,yCut,rCutAtY*1.15,rCutAtY*0.42,{lineWidth:2.4,irregularity:0.03,rotation:-0.05,color:SANG});
+  // esfera petita (per damunt del pla de tall, mes a prop del vertex)
+  const y1=H*0.40, r1=R*y1/H*0.85;
+  hd.handEllipse(0,y1,r1,r1,{lineWidth:2.2,irregularity:0.03,color:INK});
+  hd.handEllipse(0,y1,r1,r1*0.3,{lineWidth:1.4,irregularity:0.03,rotation:-0.12,color:INK});
+  // esfera gran (per sota del pla de tall)
+  const y2=H*0.84, r2=R*y2/H*0.85;
+  hd.handEllipse(0,y2,r2,r2,{lineWidth:2.2,irregularity:0.03,color:INK});
+  hd.handEllipse(0,y2,r2,r2*0.3,{lineWidth:1.4,irregularity:0.03,rotation:-0.12,color:INK});
+  // focus: punts de tangencia aproximats de cada esfera amb el pla de tall, ben separats
+  // sobre l'eix major aparent del pla de tall
+  const F1={x:-rCutAtY*0.85,y:yCut-6};
+  const F2={x:rCutAtY*0.35,y:yCut+20};
+  hd.handDot(F1.x,F1.y,5,SANG);lbl(ctx,'F₁',F1.x-8,F1.y-16,SANG,18);
+  hd.handDot(F2.x,F2.y,5,SANG);lbl(ctx,'F₂',F2.x+12,F2.y+22,SANG,18);
+  // un punt P de la corba de tall, situat a l'esquerra (lluny del contorn dret del con,
+  // per no confondre la generatriu amb la vora del con)
+  const P={x:-rCutAtY*1.12,y:yCut+4};
+  hd.handDot(P.x,P.y,4,INK);lbl(ctx,'P',P.x-24,P.y-4,INK,18);
+  hd.handSegment(P.x,P.y,0,y1,{lineWidth:1.6,dashed:true,dashPattern:[6,5],color:SANG});
+  hd.handSegment(P.x,P.y,0,y2,{lineWidth:1.6,dashed:true,dashPattern:[6,5],color:SANG});
+  hd.handSegment(P.x,P.y,F1.x,F1.y,{lineWidth:1.6,color:SANG});
+  hd.handSegment(P.x,P.y,F2.x,F2.y,{lineWidth:1.6,color:SANG});
+  lblC(ctx,"PF₁ = tangent des de P a l'esfera petita",0,H+50,INK,16);
+  lblC(ctx,"    = tros de generatriu fins al cercle de tangència (i igual per PF₂)",0,H+74,INK,15);
+  lblC(ctx,"PF₁+PF₂ = tros de generatriu entre els dos cercles — constant",0,H+98,INK,16);
+  stampNum(ctx,690,'113');
+})();
+
+/* ============================================================
+   fig-114 -- q110: hiperbola amb els dos eixos de simetria marcats.
+   Moviment: identitat-com-a-figura. */
+(function(){
+  const ctx=mk('h16',560,560),hd=makeHandDraw(ctx,9016);ctx.translate(280,280);
+  const a=95,b=90,N=16,ext=150;
+  function branch(sign){
+    const pts=[];
+    for(let i=0;i<=N;i++){
+      const x=a+ (ext)*(i/N);
+      const y=b*Math.sqrt((x/a)*(x/a)-1);
+      pts.push({x:sign*x,y:-y});
+    }
+    return pts;
+  }
+  const right=branch(1), left=branch(-1);
+  const rightFull=[...right.slice().reverse().map(p=>({x:p.x,y:-p.y})), ...right];
+  const leftFull=[...left.slice().reverse().map(p=>({x:p.x,y:-p.y})), ...left];
+  handCurve(hd,rightFull,{lineWidth:2.6,color:INK});
+  handCurve(hd,leftFull,{lineWidth:2.6,color:INK});
+  // eixos de simetria (discontinus)
+  hd.handSegment(-260,0,260,0,{lineWidth:1.4,dashed:true,dashPattern:[7,6],color:SANG});
+  hd.handSegment(0,-240,0,240,{lineWidth:1.4,dashed:true,dashPattern:[7,6],color:SANG});
+  hd.handDot(0,0,4,SANG);
+  lbl(ctx,'eix horitzontal',150,-14,SANG,15);
+  lbl(ctx,'eix vertical',10,-220,SANG,15);
+  stampNum(ctx,480,'114');
+})();
+
+/* ============================================================
+   fig-115 -- q111: hiperbola (branques amunt/avall), asimptotes, i
+   el diamant (rombe) format per les tangents als vertexs.
+   Moviment: redueix-al-conegut. */
+(function(){
+  const ctx=mk('h17',560,560),hd=makeHandDraw(ctx,9017);ctx.translate(280,280);
+  const A=90,B=120,N=14,ext=150;
+  // hiperbola oberta amunt/avall: y^2/A^2 - x^2/B^2=1, branca superior i inferior
+  function branch(sign){
+    const pts=[];
+    for(let i=0;i<=N;i++){
+      const x=-ext+ (2*ext)*(i/N);
+      const y=A*Math.sqrt((x/B)*(x/B)+1);
+      pts.push({x:x,y:sign*(-y)});
+    }
+    return pts;
+  }
+  handCurve(hd,branch(1),{lineWidth:2.6,color:INK});
+  handCurve(hd,branch(-1),{lineWidth:2.6,color:INK});
+  // asimptotes (discontinues): y=±(A/B)x
+  const ax=220;
+  hd.handSegment(-ax,-A/B*ax,ax,A/B*ax,{lineWidth:1.4,dashed:true,dashPattern:[7,6],color:SANG});
+  hd.handSegment(-ax,A/B*ax,ax,-A/B*ax,{lineWidth:1.4,dashed:true,dashPattern:[7,6],color:SANG});
+  // diamant (rombe): vertexs (0,-A) i (0,A), i cantonades (±B,0)
+  const top={x:0,y:-A}, bot={x:0,y:A}, rgt={x:B,y:0}, lft={x:-B,y:0};
+  hd.handSegment(top.x,top.y,rgt.x,rgt.y,{lineWidth:2.2,color:INK});
+  hd.handSegment(rgt.x,rgt.y,bot.x,bot.y,{lineWidth:2.2,color:INK});
+  hd.handSegment(bot.x,bot.y,lft.x,lft.y,{lineWidth:2.2,color:INK});
+  hd.handSegment(lft.x,lft.y,top.x,top.y,{lineWidth:2.2,color:INK});
+  hd.handDot(top.x,top.y,4,INK);hd.handDot(bot.x,bot.y,4,INK);
+  lbl(ctx,'vèrtex',top.x+10,top.y-6,INK,16);
+  lbl(ctx,'vèrtex',bot.x+10,bot.y+20,INK,16);
+  lbl(ctx,'costat = √(A²+B²) = c',rgt.x-160,rgt.y-170,SANG,16);
+  stampNum(ctx,480,'115');
+})();
+
+/* ============================================================
+   fig-105 -- q101: tres punts lliures A,B,C i el quart D determinat
+   per la rao doble sobre una segona recta.
+   Moviment: invariant. */
+(function(){
+  const ctx=mk('h7',700,300),hd=makeHandDraw(ctx,9007);ctx.translate(40,60);
+  const y0=40;
+  hd.handSegment(0,y0,600,y0,{lineWidth:2.2,color:INK});
+  const P={A:0,B:60,C:170,D:330};
+  Object.entries(P).forEach(([n,x])=>{hd.handDot(x,y0,4,INK);lbl(ctx,n,x-4,y0-14,INK,18);});
+  const y1=200;
+  hd.handSegment(0,y1,600,y1,{lineWidth:2.2,color:SANG});
+  const Pp={"A′":40,"B′":150,"C′":230};
+  Object.entries(Pp).forEach(([n,x])=>{hd.handDot(x,y1,4,SANG);lbl(ctx,n,x-10,y1+26,SANG,18);});
+  hd.handDot(470,y1,4,SANG);lbl(ctx,"D′ (determinat)",430,y1+26,SANG,17);
+  [ [0,y0,40,y1],[60,y0,150,y1],[170,y0,230,y1],[330,y0,470,y1] ].forEach(([x0,yy0,x1,yy1])=>{
+    hd.handSegment(x0,yy0,x1,yy1,{lineWidth:1.2,dashed:true,dashPattern:[5,5],color:INK});
+  });
+  lblC(ctx,"A, B, C lliures — D queda fixat perquè la raó doble no canviï",300,260,INK,17);
+  stampNum(ctx,240,'105');
+})();
+
+/* ============================================================
+   fig-106 -- q102: quadrilater i la recta auxiliar amb la rao doble
+   dels quatre punts on les diagonals prolongades la tallen.
+   Moviment: dues-maneres. */
+(function(){
+  const ctx=mk('h8',640,520),hd=makeHandDraw(ctx,9008);ctx.translate(60,40);
+  const V=[{x:60,y:80},{x:400,y:40},{x:460,y:340},{x:40,y:300}];
+  for(let i=0;i<4;i++){const a=V[i],b=V[(i+1)%4];hd.handSegment(a.x,a.y,b.x,b.y,{lineWidth:2.4,color:INK});}
+  V.forEach((P,i)=>hd.handDot(P.x,P.y,4,INK));
+  // diagonals prolongades
+  function extend(a,b,t0,t1){return {x0:a.x+(b.x-a.x)*t0,y0:a.y+(b.y-a.y)*t0,x1:a.x+(b.x-a.x)*t1,y1:a.y+(b.y-a.y)*t1};}
+  const d1=extend(V[0],V[2],-0.25,1.35), d2=extend(V[1],V[3],-0.2,1.3);
+  hd.handSegment(d1.x0,d1.y0,d1.x1,d1.y1,{lineWidth:1.6,dashed:true,dashPattern:[6,5],color:SANG});
+  hd.handSegment(d2.x0,d2.y0,d2.x1,d2.y1,{lineWidth:1.6,dashed:true,dashPattern:[6,5],color:SANG});
+  lblC(ctx,"les diagonals prolongades tallen una recta auxiliar",280,430,INK,17);
+  lblC(ctx,"en 4 punts — la seva raó doble és fixa del quadrilàter",280,454,INK,17);
+  stampNum(ctx,480,'106');
+})();
+</script>
+</body></html>
