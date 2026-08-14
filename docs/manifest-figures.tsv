@@ -97,3 +97,36 @@ num	id	nivell	moviment	lot	rev	descripcio
 096	q81	3	redueix-al-conegut	8	0	angle diedre del tetraedre
 097	q82	3	recompte-o-induccio	8	0	omplir l'espai amb tetraedres i octaedres
 098	q90	3	redueix-al-conegut	8	0	formula de Brahmagupta, quadrilater ciclic
+099	q91	2	redueix-al-conegut	9	0	triangle rectangle entre segment i la seva projeccio
+100	q92	2	contraexemple	9	0	projeccio central, dos punts a distancies diferents
+101	q93	2	redueix-al-conegut	9	0	esfera, tangents des d'un punt, triangle rectangle
+102	q94	2	cas-limit	9	0	el·lipse allargada vs cercle amb focus fosos
+103	q99	2	audita-la-demostracio	9	0	triangles des d'un punt de projeccio, area de dues maneres
+104	q100	2	distingeix-casos	9	0	punt de projeccio fora o entre dos plans paral·lels
+105	q101	2	invariant	9	0	tres punts lliures, quart punt determinat per la rao doble
+106	q102	2	dues-maneres	9	0	quadrilater projectat, rao doble sobre recta auxiliar
+107	q103	2	distingeix-casos	9	0	costat pel punt de projeccio, vertex fuig a l'infinit
+108	q104	2	construeix-per-definir	9	0	tres rectes paral·leles projectades, concurrents al punt de fuga
+109	q105	2	redueix-al-conegut	9	0	rectes convergint a un punt marcat infinit
+110	q106	2	invariant	9	0	rao doble com invariant projectiu, definicio
+111	q107	2	redueix-al-conegut	9	0	con tallat, generatrius paral·leles al pla, hiperbola
+112	q108	2	un-altre-pla	9	0	con de llum, tres orientacions de la paret
+113	q109	2	dues-maneres	9	0	doble con amb esferes de Dandelin, tangents des d'un punt
+114	q110	2	identitat-com-a-figura	9	0	hiperbola, simetria respecte dels dos eixos
+115	q111	2	redueix-al-conegut	9	0	diamant format per asimptotes i tangents, rombe
+116	q112	2	dilatacio	10	0	hiperbola i la seva dilatacio a hiperbola recta
+117	q114	2	dilatacio	10	0	hiperbola unitat, focus a costat i costat
+118	q113	2	redueix-al-conegut	10	0	triangle rectangle dels focus de l'el·lipse
+119	q115	2	dues-maneres	10	0	constant focal igual al diametre, el·lipse i hiperbola
+120	q116	3	redueix-al-conegut	10	0	bisectriu interior dels radis focals a la hiperbola
+121	q117	1	dilatacio	10	0	dues paraboles amb la mateixa directriu
+122	q118	3	construeix-per-definir	10	0	mediatriu de FD, tangent a la parabola sense infinit
+123	q119	3	cas-limit	10	0	envolupant de rectes que formen una parabola
+124	q120	2	redueix-al-conegut	10	0	tangent que talla l'eix al punt mitjà, sector parabolic
+125	q121	3	exhauriment	10	0	seccio parabolica com a 2/3 de la caixa
+126	q122	1	construeix-per-definir	10	0	espiral com moviment amb gir i allunyament uniformes
+127	q123	3	un-altre-pla	10	0	helix desenrotllada sobre un cilindre pla
+128	q126	2	construeix-per-definir	10	0	helix sobre un tor
+129	q124	3	recompte-o-induccio	10	0	pics de la hipocicloide i epicicloide
+130	q125	1	cas-limit	10	0	espirograf degenerat, punt al centre
+131	q127	3	redueix-al-conegut	10	0	punt mitjà del bastó lliscant traça un quart de cercle
