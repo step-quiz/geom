@@ -8,14 +8,7 @@
 // Segell de número de producció -- marca de producció, mai part de la figura.
 // Reinicia la transformació abans d'escriure perquè el marge sigui sempre
 // relatiu al canvas, independentment de qualsevol translate() previ.
-function stampNum(ctx,h,num){
-  ctx.save();
-  ctx.setTransform(1,0,0,1,0,0);
-  ctx.font='18px Georgia';
-  ctx.fillStyle='#8a8580';
-  ctx.fillText(num, 8, h-8);
-  ctx.restore();
-}
+function stampNum(ctx,h,num){ /* no-op */ }
 
 /* fig-014 -- q13: la ceviana al punt mitjà (mateixa base, mateixa alçada) */
 (function(){const ctx=mk('g1',620,430),hd=makeHandDraw(ctx,1313);ctx.translate(60,50);

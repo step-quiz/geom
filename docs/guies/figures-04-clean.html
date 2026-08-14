@@ -5,11 +5,7 @@
 <script src="../hand-draw.js"></script>
 <script src="../comu.js"></script>
 <script>
-function stampNum(ctx,h,num){
-  ctx.save();ctx.setTransform(1,0,0,1,0,0);
-  ctx.font='18px Georgia';ctx.fillStyle='#8a8580';
-  ctx.fillText(num, 8, h-8);ctx.restore();
-}
+function stampNum(ctx,h,num){ /* no-op */ }
 // Cub en projecció cavallera -- reprès literalment de figures-03.html (mateix conveni,
 // mateix vector de profunditat 0.3S,-0.2S en totes les figures amb cub d'aquest lot).
 function cubeVerts(S,dx,dy){

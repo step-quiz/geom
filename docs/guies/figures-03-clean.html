@@ -5,11 +5,7 @@
 <script src="../hand-draw.js"></script>
 <script src="../comu.js"></script>
 <script>
-function stampNum(ctx,h,num){
-  ctx.save();ctx.setTransform(1,0,0,1,0,0);
-  ctx.font='18px Georgia';ctx.fillStyle='#8a8580';
-  ctx.fillText(num, 8, h-8);ctx.restore();
-}
+function stampNum(ctx,h,num){ /* no-op */ }
 // Cub en projecció cavallera: x,y,z locals a [0,1], S=costat en px, (dx,dy)=vector de profunditat.
 function cubeVerts(S,dx,dy){
   function P(x,y,z){return {x:x*S+z*dx, y:(1-y)*S+z*dy};}
