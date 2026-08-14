@@ -22,17 +22,18 @@ mòbil a la mateixa xarxa), qualsevol servidor estàtic funciona igual de bé:
 ## Què hi ha, i què no
 
 **Hi ha:** 130 preguntes amb el seu enunciat original en anglès (el text del llibre)
-**i en català** (traduït), 98 amb la seva figura de guia corresponent, navegació entre
-preguntes, un marcador personal "explorat" que es desa al navegador, un itinerari amb
-suggeriments personalitzats, un glossari de 53 termes amb detecció automàtica dins
-dels enunciats, una intro "què és una demostració" per a qui arriba per primer cop, i
-una interfície completa en anglès i català — ara, també el contingut de les preguntes.
+**i en català** (traduït), totes 130 amb la seva figura de guia corresponent, navegació
+entre preguntes, un marcador personal "explorat" que es desa al navegador, un
+itinerari amb suggeriments personalitzats, un glossari de 53 termes amb detecció
+automàtica dins dels enunciats, una intro "què és una demostració" per a qui arriba per
+primer cop, i una interfície completa en anglès i català.
 
-**I, des del lot 8 de guies: 97 de les 130 preguntes tenen una GUIA DE DEMOSTRACIÓ.**
-Els lliuraments 9 i 10 (les 33 preguntes restants) estan en marxa, cadascun encarregat
-a un agent diferent en paral·lel — v. `HANDOFF-LLIURAMENT-9.md` i
-`HANDOFF-LLIURAMENT-10.md` per als seus encàrrecs exactes (fora d'aquest repositori
-mentre treballen; s'integraran quan arribin).
+**Les 130 de 130 preguntes tenen ja una GUIA DE DEMOSTRACIÓ — el llibre sencer.**
+Els lliuraments 9 (projecció i còniques) i 10 (corbes i el final del llibre) es van fer
+en paral·lel, cadascun encarregat a un agent diferent (`HANDOFF-LLIURAMENT-9.md`,
+`HANDOFF-LLIURAMENT-10.md`), i integrats després en un sol pas — v.
+`docs/guies/NOTA-FUSIO-LOT-9-10.md` per als detalls d'aquesta fusió, incloent-hi una
+col·lisió real de numeració de figures que calia resoldre abans d'ajuntar-los.
 És una escala de quatre pistes que es revelen d'una en una, pensada per a qui sap
 resoldre equacions però no ha fet mai geometria sintètica. Els quatre nivells
 difereixen en *espècie*, no en quantitat:
@@ -117,7 +118,6 @@ sent, sempre, l'ordre real del llibre.
 |---|---|
 | Correcció o puntuació | El llibre no en té — cada pregunta és un punt de partida per pensar-hi, no un test |
 | Pistes curtes (`pista`) | `pista.en`/`pista.ca` continuen sent `null` a totes 130. NO les substitueixen les guies: són coses diferents (una pista curta seria una frase; una guia és una escala completa). El botó 💡 simplement no apareix quan no n'hi ha |
-| Guies per a les 33 preguntes restants | Lliuraments 9 i 10, en marxa en paral·lel — v. més amunt |
 | Figures per a 52 dels 53 termes del glossari | Contingut escrit; il·lustracions pendents — és literalment la pròxima tasca (v. `docs/guies/NOTA-GLOSSARI-AMPLIACIO.md`) |
 | Assignació per curs (`#curs=2ESO` i similars) | El camp `curs` existeix a l'esquema de dades però és `null` arreu — decisió de contingut ajornada conscientment, no una limitació tècnica. El filtre ja funciona (prova-ho a la barra d'adreces); simplement no hi ha encara cap valor assignat |
 | Mode d'interacció (resposta oberta, dibuix, etc.) | Ídem: `interaccio` és `null` a tot arreu, estructura preparada, contingut pendent. No és només contingut per assignar: la interactivitat real (punts arrossegables, recàlcul en viu) exigiria una capa de renderitzat completament diferent de la que hi ha ara (`docs/render.js` genera PNG estàtics per disseny, no SVG/canvas en viu al navegador) — és a dir, un canvi d'arquitectura real, no una dada per omplir. Es deixa aquí explícitament perquè un futur contribuïdor no ho confongui amb un descuit i el comenci sense haver-ho decidit (v. `docs/guies/REFERENTS-PEDAGOGICS.md`, secció Castelnuovo) |
@@ -126,7 +126,7 @@ sent, sempre, l'ordre real del llibre.
 
 ```
 index.html                    — única pàgina real de l'app
-assets/img/pistes/            — 98 figures de guia (fig-001…fig-098)
+assets/img/pistes/            — 131 figures de guia (fig-001…fig-131)
 assets/img/glossari/          — figures del glossari (1 de 53 termes, ampliant-se)
 assets/img/demo/              — 3 figures de la intro "què és una demostració"
 css/
@@ -138,7 +138,7 @@ js/
     preguntes-dades.js        — les 130 preguntes, en/ca (generat, no editar a mà — v. més avall)
     ordre-preguntes.js        — ordre de PRESENTACIÓ (llista + anterior/següent), separat de
                                  l'ordre del llibre — s'edita a mà, v. secció pròpia més avall
-    guies-dades.js             — les 97 guies (generat per parse_guies.py, no editar a mà)
+    guies-dades.js             — les 130 guies — el llibre sencer (generat per parse_guies.py, no editar a mà)
     glossari-dades.js         — els 53 termes del glossari (s'edita a mà)
     demos-dades.js             — les 3 demostracions fixes (s'edita a mà)
   i18n/
@@ -202,19 +202,18 @@ existents (documentat també al capçalera del propi script).
 
 Els sis passos de l'arquitectura original estan complets i provats de cap a cap
 (inclosa una càrrega real via `file://` sense servidor, amb clics reals a cada element
-interactiu). Pendents coneguts, cap dels quals bloqueja l'ús actual del lloc:
+interactiu). **Les 130 guies del llibre estan fetes** (lliuraments 9 i 10 integrats —
+v. `docs/guies/NOTA-FUSIO-LOT-9-10.md`). Pendents coneguts, cap dels quals bloqueja
+l'ús actual del lloc:
 
-- **Guies per als lots 9 i 10** (les 33 preguntes que encara no en tenen, 97 de 130
-  fetes) — en marxa en paral·lel, cadascun amb el seu propi handoff
-  (`HANDOFF-LLIURAMENT-9.md`, `HANDOFF-LLIURAMENT-10.md`).
 - **Figures del glossari**: 52 dels 53 termes encara no en tenen (v.
   `docs/guies/NOTA-GLOSSARI-AMPLIACIO.md`) — la pròxima tasca prevista.
 - Assignació de `curs` i mode d'`interaccio` per pregunta.
 
 Ja fets, per si es cerca aquí per costum: totes les 130 preguntes tenen ja
 `enunciat.ca` (traduït i revisat — v. `js/data/preguntes-dades.js`); el glossari,
-l'itinerari i la intro "què és una demostració" (v. seccions de dalt) hi són sencers
-i provats.
+l'itinerari, la intro "què és una demostració", i l'ordre de presentació configurable
+(v. seccions de dalt) hi són sencers i provats.
 
 ### Guies de demostració — com funciona el circuit
 
@@ -232,13 +231,13 @@ js/data/guies-dades.js      ← generat; no editar
 Fitxers nous que aquest sistema afegeix al projecte:
 
 ```
-js/data/guies-dades.js      — les 97 guies (generat per parse_guies.py)
+js/data/guies-dades.js      — les 130 guies (generat per parse_guies.py)
 js/nucli/guies.js           — unió guia↔pregunta per id + fallback d'idioma
-assets/img/pistes/          — 98 figures publicades
+assets/img/pistes/          — 131 figures publicades
 parse_guies.py              — .md → guies-dades.js
 docs/guies/                 — els .md font, les notes de lliurament i les
                               fonts HTML que regeneren cada figura
-docs/manifest-figures.tsv   — registre numerat de les 98 figures
+docs/manifest-figures.tsv   — registre numerat de les 131 figures
 docs/comu.js, docs/render.js, docs/hand-draw.js — eines de dibuix
 ```
 
@@ -268,7 +267,7 @@ Per continuar la producció de guies hi ha un document de traspàs complet:
 `HANDOFF-COMPLETAR-GUIES.md` (en anglès, pensat per a un agent que arriba en
 fred), amb el full de ruta de les 78 preguntes que queden.
 
-`docs/manifest-figures.tsv` és el registre de les 98 figures: número, pregunta,
+`docs/manifest-figures.tsv` és el registre de les 131 figures: número, pregunta,
 nivell, moviment, lot i revisió. **Un número de figura és permanent**: si una
 figura es redibuixa, conserva el número i puja el camp `rev`.
 
