@@ -38,13 +38,13 @@ num	id	nivell	moviment	lot	rev	descripcio
 037	q29	2	redueix-al-conegut	4	0	hexàgon i octàgon triangulats, diagonals i triangles
 038	q06	2	redueix-al-conegut	4	0	heptàgon, angles iguals al vèrtex per angle inscrit
 039	q11	1	dues-maneres	4	1	angles oposats paral·lelogram, diagonal auxiliar
-040	q12	2	contraexemple	4	0	diagonals iguals en paral·lelogram força rectangle
+040	q12	2	contraexemple	4	1	diagonals iguals en paral·lelogram força rectangle
 041	q73	2	informacio-no-usada	4	0	triangle medial, reconstrucció des de punts mitjans
-042	q38	2	identitat-com-a-figura	4	0	rectangle auri, quadrat retallat semblant
+042	q38	2	identitat-com-a-figura	4	1	rectangle auri, quadrat retallat semblant
 043	q76	2	separa-i-reorienta	4	0	cercle inscrit, suma de tres triangles amb l'incentre
-044	q80	2	dues-maneres	4	0	àrea triangle = 1/2 ab sinC, altura amagada
+044	q80	2	dues-maneres	4	1	àrea triangle = 1/2 ab sinC, altura amagada
 045	q89	3	contraexemple	4	1	bisectrius iguals força isòsceles (Steiner-Lehmus)
-046	q37	2	dues-maneres	4	0	rectangle mateixa àrea i perímetre que triangle equilàter
+046	q37	2	dues-maneres	4	1	rectangle mateixa àrea i perímetre que triangle equilàter
 047	q39	2	redueix-al-conegut	4	0	àrea pentàgon regular, 5 triangles des del centre
 048	q05	2	redueix-al-conegut	4	1	angle de puntes d'estrelles {5/2} i {8/3}
 049	q18b	2	invariant	4	0	dilatació de sòlid, volum escala amb k³
@@ -53,7 +53,7 @@ num	id	nivell	moviment	lot	rev	descripcio
 052	q08b	3	contraexemple	4	1	els cinc poliedres regulars, angle al vèrtex <360°
 053	q71	2	dues-maneres	4	0	quadrilàter amb 4 angles rectes, recíproc de q11/q12
 054	q04	1	redueix-al-conegut	6	0	angle d'un poligon regular, n-2 triangles / n
-055	q18a	1	redueix-al-conegut	6	0	volum d'una capsa, capes de cubs unitat
+055	q18a	1	redueix-al-conegut	6	1	volum d'una capsa, capes de cubs unitat
 056	q19	1	identitat-com-a-figura	6	0	senar x senar = senar, graella 5x3
 057	q20	1	identitat-com-a-figura	6	0	parell x parell divisible per 4, blocs 2x2
 058	q27_implicit	2	dues-maneres	6	0	tres cercles tangents (triangle/quadrat/cercle)
