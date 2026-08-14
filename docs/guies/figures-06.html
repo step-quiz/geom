@@ -77,9 +77,10 @@ function dotGrid(hd,x0,y0,cols,rows,step,r,col){
     hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2,color:SANG});}
   hd.handSegment(P(0,1,0).x,P(0,1,0).y,P(0,1,c).x,P(0,1,c).y,{lineWidth:1.6,dashed:true,dashPattern:[6,5],color:SANG});
   hd.handSegment(P(a,1,0).x,P(a,1,0).y,P(a,1,c).x,P(a,1,c).y,{lineWidth:1.6,dashed:true,dashPattern:[6,5],color:SANG});
+  hd.handSegment(P(0,1,c).x,P(0,1,c).y,P(a,1,c).x,P(a,1,c).y,{lineWidth:1.6,dashed:true,dashPattern:[6,5],color:SANG});
   lbl(ctx,'l',P(a/2,0,0).x-6,P(a/2,0,0).y+26,INK,20);
-  lbl(ctx,'w',P(a,b/2,0).x+30,P(a,b/2,0).y+6,INK,20);
-  lbl(ctx,'h',P(0,b,c/2).x-30,P(0,b,c/2).y-2,INK,20);
+  lbl(ctx,'h',P(a,b/2,0).x+30,P(a,b/2,0).y+6,INK,20);
+  lbl(ctx,'w',P(0,b,c/2).x-30,P(0,b,c/2).y-2,INK,20);
   lbl(ctx,'1 capa = l·w',P(a,0.5,0).x+18,P(a,0.5,0).y,SANG,18);
   stampNum(ctx,455,'055');
 })();

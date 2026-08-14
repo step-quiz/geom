@@ -138,9 +138,17 @@ function regularPoly(n,cx,cy,R,a0){
  hd.handSegment(TR.x,TR.y,BR.x,BR.y,{lineWidth:2.8,color:INK});
  hd.handSegment(BR.x,BR.y,BL.x,BL.y,{lineWidth:2.8,color:INK});
  hd.handSegment(BL.x,BL.y,TL.x,TL.y,{lineWidth:2.8,color:INK});
- hd.handSegment(TL.x,TL.y,BR.x,BR.y,{dashed:true,lineWidth:2.2,dashPattern:[9,7],color:SANG});
- hd.handSegment(TR.x,TR.y,BL.x,BL.y,{dashed:true,lineWidth:2.2,dashPattern:[9,7],color:SANG});
- tick(hd,TL.x,TL.y,BR.x,BR.y);tick(hd,TR.x,TR.y,BL.x,BL.y);
+ const d1=hd.handSegment(TL.x,TL.y,BR.x,BR.y,{dashed:true,lineWidth:2.2,dashPattern:[9,7],color:SANG});
+ const d2=hd.handSegment(TR.x,TR.y,BL.x,BL.y,{dashed:true,lineWidth:2.2,dashPattern:[9,7],color:SANG});
+ // el tick marca el punt mig EXACTE entre els dos punts que se li passen -- si li passessim les
+ // diagonals senceres, els dos tick caurien tots dos al centre (mateix punt de tall) i es llegirien
+ // com una sola creu confusa. Per separar-los mantenint-los sobre el trac real de cada diagonal,
+ // li passem un subtram de cada diagonal, lluny del centre (t=0.62..0.82, a banda i banda del
+ // creuament), llegit amb pointAtT del propi handSegment ja dibuixat.
+ const d1a=d1.pointAtT(0.62), d1b=d1.pointAtT(0.82), d2a=d2.pointAtT(0.18), d2b=d2.pointAtT(0.38);
+ tick(hd,d1a.x,d1a.y,d1b.x,d1b.y);tick(hd,d2a.x,d2a.y,d2b.x,d2b.y);
+ lbl(ctx,'A',TL.x-24,TL.y-14,INK,26);lbl(ctx,'B',TR.x+10,TR.y-14,INK,26);
+ lbl(ctx,'C',BR.x+10,BR.y+22,INK,26);lbl(ctx,'D',BL.x-24,BL.y+22,INK,26);
  stampNum(ctx,340,'040');})();
 
 /* fig-041 -- q73: punts mitjans dels costats d'un triangle -- prou per reconstruir-lo? */
@@ -167,12 +175,25 @@ function regularPoly(n,cx,cy,R,a0){
  const sTop=hd.handSegment(TL.x,TL.y,TR.x,TR.y,{lineWidth:2.8,color:INK});
  hd.handSegment(TR.x,TR.y,BR.x,BR.y,{lineWidth:2.8,color:INK});
  hd.handSegment(BR.x,BR.y,BL.x,BL.y,{lineWidth:2.8,color:INK});
- hd.handSegment(BL.x,BL.y,TL.x,TL.y,{lineWidth:2.8,color:INK});
+ const sLeft=hd.handSegment(BL.x,BL.y,TL.x,TL.y,{lineWidth:2.8,color:INK});
  // el quadrat que es treu, marcat amb la divisio sanguina vertical a distancia H del cantó esquerre
  const cutTop=sTop.pointAtT(H/W);
  hd.handSegment(cutTop.x,cutTop.y,cutTop.x,BL.y,{dashed:true,lineWidth:2,dashPattern:[9,7],color:SANG});
- lbl(ctx,'1',W/2-100,H+34,SANG,24);lbl(ctx,'x',W/2+30,H+34,SANG,24);
- tick(hd,BL.x,BL.y,cutTop.x,BL.y);tick(hd,cutTop.x,BL.y,BR.x,BR.y);
+ // etiquetes '1' i 'x' llegides del punt mig de cada tram del costat de baix. El punt de tall al
+ // costat de baix es (cutBot.x=cutTop.x, BL.y) -- cutTop viu al costat de DALT (sTop.pointAtT), no
+ // al de baix, aixi que cal fer servir la seva x amb la y del costat inferior, no cutTop directament.
+ // BL-cutBot-BR son punts del trac real (BL jitterat, cutTop.x llegit de sTop.pointAtT) -- onSeg
+ // entre ells es exacte perque el costat de baix es un sol trac BR->BL, no dos trams independents.
+ // El costat curt esquerre (que tambe val 1, per definicio de l'enunciat) es marca en tinta amb el
+ // mateix conveni que el tram '1' de baix -- deixa clar que son la mateixa mesura.
+ // IMPORTANT: nomes aquests DOS segments (costat esquerre i tram '1') porten tick -- son l'unica
+ // igualtat real de la figura. El tram 'x' NO en porta cap: val H(phi-1), diferent de H, i posar-hi
+ // la mateixa marca simple afirmaria visualment una igualtat falsa amb els altres dos.
+ const cutBot={x:cutTop.x,y:BL.y};
+ const Mleft=sLeft.pointAtT(0.5), Mbot1=onSeg(BL,cutBot,0.5), Mbot2=onSeg(cutBot,BR,0.5);
+ tick(hd,BL.x,BL.y,cutBot.x,BL.y);tick(hd,BL.x,BL.y,TL.x,TL.y,INK);
+ lbl(ctx,'1',Mbot1.x-8,Mbot1.y+42,SANG,24);lbl(ctx,'x',Mbot2.x-6,Mbot2.y+42,SANG,24);
+ lbl(ctx,'1',Mleft.x-30,Mleft.y+8,INK,24);
  stampNum(ctx,320,'042');})();
 
 /* fig-043 -- q76: cercle inscrit -- el triangle es 3 triangles amb el centre i el radi */
@@ -218,11 +239,11 @@ function regularPoly(n,cx,cy,R,a0){
  // alcada des de A cap a la recta CB (sanguina, discontinua) -- la peca que fa servir sin(C)
  const foot={x:A.x,y:C.y};
  hd.handSegment(A.x,A.y,foot.x,foot.y,{dashed:true,lineWidth:2,dashPattern:[8,6],color:SANG});
- rightAngle(hd,foot.x,foot.y,A.x,A.y,C.x,C.y,14);
+ rightAngle(hd,foot.x,foot.y,A.x,A.y,C.x,C.y,20);
  angleMark(hd,C.x,C.y,B.x,B.y,A.x,A.y,30,1,SANG);
  lbl(ctx,'a',(C.x+B.x)/2-10,C.y+30,INK,24);
  lbl(ctx,'b',(C.x+A.x)/2-46,(C.y+A.y)/2+2,INK,24);
- lbl(ctx,'C',C.x-8,C.y-14,SANG,24);
+ lbl(ctx,'C',C.x-22,C.y+20,SANG,24);
  lbl(ctx,'h = b·sinC',foot.x+10,(A.y+C.y)/2,SANG,20);
  stampNum(ctx,360,'044');})();
 
@@ -258,13 +279,22 @@ function regularPoly(n,cx,cy,R,a0){
  // rectangle al costat, dimensions NO donades numericament aqui (es la incognita que cal trobar) --
  // es dibuixa proporcionat pero sense pretendre ser el resultat exacte, en sanguina per marcar
  // que es la construccio que l'alumne ha de determinar.
+ // Construit "caminant" vertex a vertex (angle ~90exact impossible)
+ // en lloc de jitterar 4 cantonades independents (que trenca la perpendicularitat visual).
  const ox=360, rw=220, rh=90;
- const rTL=jit(hd,{x:ox,y:h0-rh},260), rTR=jit(hd,{x:ox+rw,y:h0-rh},260),
-       rBR=jit(hd,{x:ox+rw,y:h0},260), rBL=jit(hd,{x:ox,y:h0},260);
+ function angleErr(){const m=(0.4+hd.rand()*1.4)*Math.PI/180; return (hd.rand()>0.5?1:-1)*m;}
+ function lenErr(t){return t*(1+(hd.rand()-0.5)*0.02);}
+ const rTL={x:ox,y:h0-rh};
+ let heading=0, cur=rTL;
+ const rTR={x:cur.x+Math.cos(heading)*lenErr(rw), y:cur.y+Math.sin(heading)*lenErr(rw)};
+ heading+=Math.PI/2+angleErr(); cur=rTR;
+ const rBR={x:cur.x+Math.cos(heading)*lenErr(rh), y:cur.y+Math.sin(heading)*lenErr(rh)};
+ heading+=Math.PI/2+angleErr(); cur=rBR;
+ const rBL={x:cur.x+Math.cos(heading)*lenErr(rw), y:cur.y+Math.sin(heading)*lenErr(rw)};
  hd.handSegment(rTL.x,rTL.y,rTR.x,rTR.y,{lineWidth:2.4,color:SANG});
  hd.handSegment(rTR.x,rTR.y,rBR.x,rBR.y,{lineWidth:2.4,color:SANG});
  hd.handSegment(rBR.x,rBR.y,rBL.x,rBL.y,{lineWidth:2.4,color:SANG});
- hd.handSegment(rBL.x,rBL.y,rTL.x,rTL.y,{lineWidth:2.4,color:SANG});
+ hd.handSegment(rBL.x,rBL.y,rTL.x,rTL.y,{lineWidth:2.4,color:SANG}); // tanca cap a l'inici dibuixat: petit buit visible, es voluble
  lbl(ctx,'s',(A.x+B.x)/2-38,(A.y+B.y)/2,INK,24);
  lbl(ctx,'?',(rTL.x+rTR.x)/2-6,rTL.y-14,SANG,26);
  stampNum(ctx,360,'046');})();
