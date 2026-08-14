@@ -12,18 +12,18 @@ num	id	nivell	moviment	lot	rev	descripcio
 011	q96	2	reflexio	1	0	A' i el camí recte
 012	q25	2	un-altre-pla	1	0	diagonal de la cara i de la caixa
 013	q95	2	definicio-i-absurd	1	0	P' destapa la contradicció
-014	q13	1	redueix-al-conegut	2	0	ceviana al punt mitjà: mateixa base, mateixa alçada
-015	q42	2	distingeix-casos	2	0	diàmetre pel punt P, com a q41
-016	q86	2	contraexemple	2	0	dos triangles, mateixos dos costats i angle, C i C'
+014	q13	1	redueix-al-conegut	2	1	ceviana al punt mitjà: mateixa base, mateixa alçada
+015	q42	2	distingeix-casos	2	1	diàmetre pel punt P, com a q41
+016	q86	2	contraexemple	2	1	dos triangles, mateixos dos costats i angle, C i C'
 017	q23	2	dues-maneres	2	0	cercle tallat pels diàmetres, r=R(√2-1) com a q22
 018	q10	1	simetria-i-demostra	2	0	el rombe doblegat per una diagonal
 019	q97	2	reflexio	2	0	dues reflexions, A' i B', camí recte
-020	q98	1	construeix-per-definir	2	0	els dos punxons i el fil tibant
+020	q98	1	construeix-per-definir	2	1	els dos punxons i el fil tibant
 021	q45	2	desenrotlla	2	0	el cilindre i el seu rectangle desenrotllat
 022	q26	1	redueix-al-conegut	3	0	alçada del triangle equilàter, dos 30-60-90
 023	q28	1	redueix-al-conegut	3	0	base i alçada, àrea del triangle equilàter
-024	q44	3	dues-maneres	3	0	tres cercles tangents a una recta, r combina R1 i R2
-025	q46	2	dilatacio	3	0	cercle estirat en el·lipse, a i b
+024	q44	3	dues-maneres	3	1	tres cercles tangents a una recta, r combina R1 i R2
+025	q46	2	dilatacio	3	1	cercle estirat en el·lipse, a i b
 026	q47	2	un-altre-pla	3	0	octàedre dels centres de cara del cub
 027	q49	2	simetria-i-demostra	3	0	tetràedre, les quatre medianes es troben al centre
 028	q52	2	un-altre-pla	3	1	tall hexagonal del cub, perpendicular a la diagonal
@@ -37,7 +37,7 @@ num	id	nivell	moviment	lot	rev	descripcio
 036	q70	1	redueix-al-conegut	4	0	suma angles polígon per triangulació des d'un vèrtex
 037	q29	2	redueix-al-conegut	4	0	hexàgon i octàgon triangulats, diagonals i triangles
 038	q06	2	redueix-al-conegut	4	0	heptàgon, angles iguals al vèrtex per angle inscrit
-039	q11	1	dues-maneres	4	0	angles oposats paral·lelogram, diagonal auxiliar
+039	q11	1	dues-maneres	4	1	angles oposats paral·lelogram, diagonal auxiliar
 040	q12	2	contraexemple	4	0	diagonals iguals en paral·lelogram força rectangle
 041	q73	2	informacio-no-usada	4	0	triangle medial, reconstrucció des de punts mitjans
 042	q38	2	identitat-com-a-figura	4	0	rectangle auri, quadrat retallat semblant

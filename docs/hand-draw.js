@@ -150,6 +150,13 @@ function makeHandDraw(ctx, seed) {
       });
     }
 
+    // Guardem els punts de la trajectòria REAL (primera passada), com fa
+    // handSegment amb realPoints -- per poder llegir després on cau un punt
+    // marcat (P, Q, A, B...) SOBRE EL TRAÇ DIBUIXAT, no sobre el cercle
+    // ideal. La incidència (un punt que ha de quedar sobre la corba) és un
+    // dels casos que la tècnica exigeix complir exactament (Part 1.4).
+    const realPoints = [];
+
     for (let p = 0; p < passes; p++) {
       // Cada passada té el seu propi petit desfasament de fase (com repassar el cercle una 2a vegada
       // sense clavar exactament la mateixa corba)
@@ -188,12 +195,33 @@ function makeHandDraw(ctx, seed) {
         const x = cx + localX*Math.cos(rotation) - localY*Math.sin(rotation);
         const y = cy + localX*Math.sin(rotation) + localY*Math.cos(rotation);
         if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+        if (p === 0) realPoints.push({ t, x, y });
       }
       ctx.strokeStyle = color;
       ctx.lineCap = 'round';
       ctx.lineJoin = 'round';
       ctx.stroke();
     }
+
+    // Consulta la trajectòria real (primera passada) a un angle theta donat,
+    // amb interpolació lineal entre mostres -- anàleg a pointAtT de handSegment.
+    function pointAtAngle(theta) {
+      const span = endAngle - startAngle;
+      let th = theta;
+      // Porta theta al rang [startAngle, startAngle+2π) abans de normalitzar,
+      // perquè angles negatius o >2π (habituals en aquest tipus de crida)
+      // no col·lapsin cap a l'extrem de la trajectòria.
+      while (th < startAngle) th += 2 * Math.PI;
+      while (th >= startAngle + 2 * Math.PI) th -= 2 * Math.PI;
+      let u = (th - startAngle) / span;
+      u = Math.max(0, Math.min(1, u));
+      const idx = Math.min(realPoints.length - 2, Math.max(0, Math.floor(u * steps)));
+      const frac = u * steps - idx;
+      const p0 = realPoints[idx], p1 = realPoints[idx + 1];
+      return { x: p0.x + (p1.x - p0.x) * frac, y: p0.y + (p1.y - p0.y) * frac };
+    }
+
+    return { pointAtAngle };
   }
 
   return { rand, handTrajectory, handSegment, handDot, handEllipse };
