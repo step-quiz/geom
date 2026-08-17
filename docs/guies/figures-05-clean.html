@@ -5,7 +5,7 @@
 <script src="../hand-draw.js"></script>
 <script src="../comu.js"></script>
 <script>
-function stampNum(ctx,h,num){ /* no-op: render net per al pas de publicacio */ }
+function stampNum(ctx,h,num){ /* no-op */ }
 function regularPoly(n,cx,cy,R,a0){
   const pts=[];
   for(let i=0;i<n;i++){const t=a0+i*2*Math.PI/n;pts.push({x:cx+R*Math.cos(t),y:cy+R*Math.sin(t)});}
@@ -170,8 +170,11 @@ function regularPoly(n,cx,cy,R,a0){
   const ctx=mk('r4',600,430),hd=makeHandDraw(ctx,6060);ctx.translate(40,60);
   const rx=250, cy=260;
   const eqRy=42, domeRy=250;
-  hd.handEllipse(rx,cy,rx,eqRy,{startAngle:0,endAngle:Math.PI,lineWidth:2.6,color:INK});
-  hd.handEllipse(rx,cy,rx,domeRy,{startAngle:Math.PI,endAngle:2*Math.PI,lineWidth:2.6,color:INK});
+  // pinAngles: el con toca l'equador a t=0/PI (baseR/baseL) i la cúpula a
+  // t=1.5PI (àpex) -- són punts de CONTACTE (incidència con/semiesfera), no
+  // curvatura lliure, per tant s'han d'encertar exactament (v. tècnica §1.4/§3.5).
+  hd.handEllipse(rx,cy,rx,eqRy,{startAngle:0,endAngle:Math.PI,lineWidth:2.6,color:INK,pinAngles:[0,Math.PI]});
+  hd.handEllipse(rx,cy,rx,domeRy,{startAngle:Math.PI,endAngle:2*Math.PI,lineWidth:2.6,color:INK,pinAngles:[1.5*Math.PI]});
   const apex={x:rx,y:cy-domeRy};
   const baseL={x:0,y:cy}, baseR={x:2*rx,y:cy};
   const sL=hd.handSegment(apex.x,apex.y,baseL.x,baseL.y,{lineWidth:2.8,color:INK});
@@ -181,8 +184,18 @@ function regularPoly(n,cx,cy,R,a0){
   const f=0.45;
   const PL=sL.pointAtT(1-f), PR=sR.pointAtT(1-f);
   const cutCx=(PL.x+PR.x)/2, cutCy=(PL.y+PR.y)/2, rCut=(PR.x-PL.x)/2;
-  hd.handEllipse(cutCx,cutCy,rCut,eqRy*(rCut/rx),
-    {startAngle:0,endAngle:Math.PI,passes:1,lineWidth:2,irregularity:0.03,color:SANG});
+  const cutRy=eqRy*(rCut/rx);
+  // meitat posterior (oculta darrere el con): mateixa el·lipse, arc PI..2PI,
+  // discontínua -- junts els dos arcs formen la circumferència sencera que
+  // resulta de tallar el con amb el pla horitzontal (Pista 2).
+  hd.handEllipse(cutCx,cutCy,rCut,cutRy,
+    {startAngle:Math.PI,endAngle:2*Math.PI,passes:1,lineWidth:1.8,irregularity:0.03,
+     dashed:true,dashPattern:[7,6],color:SANG,pinAngles:[Math.PI,2*Math.PI]});
+  // meitat davantera (visible): igual que abans, però pinnada als mateixos dos
+  // punts de contacte PL/PR perquè les dues meitats es trobin exactament allà.
+  hd.handEllipse(cutCx,cutCy,rCut,cutRy,
+    {startAngle:0,endAngle:Math.PI,passes:1,lineWidth:2,irregularity:0.03,color:SANG,
+     pinAngles:[0,Math.PI]});
   hd.handDot(PL.x,PL.y,3.5,SANG); hd.handDot(PR.x,PR.y,3.5,SANG);
   // eix vertical de l'alçada h (base -> pla de tall) i radi R (centre de la base -> vora),
   // perquè les dues lletres s'agafin a un segment concret, no que "flotin" sense etiquetar res.

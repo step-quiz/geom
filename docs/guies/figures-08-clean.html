@@ -13,24 +13,45 @@ function ACCENT_LOCAL(){return '#8B5E3C';}
 (function(){
   const ctx=mk('i1',900,340),hd=makeHandDraw(ctx,6001);
   (function(){
-    ctx.save();ctx.translate(40,60);
-    const A={x:0,y:200},B={x:200,y:200};
+    // Triangle 3-4-5 REAL construit amb compas: base AB=5k (el costat mes llarg), arc de radi
+    // 4k des de A i arc de radi 3k des de B; llur interseccio es el tercer vertex C. Amb aixo
+    // el triangle es rectangle (angle recte a C), no equilater -- abans es dibuixava un triangle
+    // equilater arbitrari sota l'etiqueta "3,4,5", cosa que no corresponia a la construccio real.
+    ctx.save();ctx.translate(60,60);
+    const k=44, a=3*k, b=4*k, c=5*k; // a=BC, b=AC, c=AB(base)
+    const A={x:0,y:200},B={x:c,y:200};
+    const cx=(b*b-a*a+c*c)/(2*c), cy=Math.sqrt(b*b-cx*cx);
+    const C={x:cx,y:200-cy};
     hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.4,color:INK});
-    hd.handEllipse(A.x,A.y,120,120,{startAngle:-1.0,endAngle:0.9,lineWidth:1.8,irregularity:0.03,color:SANG});
-    hd.handEllipse(B.x,B.y,160,160,{startAngle:Math.PI-0.9,endAngle:Math.PI+1.0,lineWidth:1.8,irregularity:0.03,color:SANG});
-    const C={x:90,y:200-193.6};
+    // arc des de A, radi b=AC=176: nomes al voltant d'on arriba a C (no un semicercle sencer).
+    // pinAngles:[angA] forca el radi a valer EXACTAMENT b just en direccio a C (v. hand-draw.js
+    // linia 136-138: mecanisme pensat per a punts de contacte/tangencia) -- sense aixo, la
+    // irregularitat normal del trac (irregularity:0.03) podia desviar l'arc prou perque no
+    // arribes a tocar el vertex, sobretot amb un radi gran com aquest (176px).
+    const angA=Math.atan2(C.y-A.y,C.x-A.x);
+    hd.handEllipse(A.x,A.y,b,b,{startAngle:angA-0.35,endAngle:angA+0.35,lineWidth:1.8,irregularity:0.03,pinAngles:[angA],color:SANG});
+    // arc des de B, radi a=BC=132 -- mateix mecanisme
+    const angB=Math.atan2(C.y-B.y,C.x-B.x);
+    hd.handEllipse(B.x,B.y,a,a,{startAngle:angB-0.35,endAngle:angB+0.35,lineWidth:1.8,irregularity:0.03,pinAngles:[angB],color:SANG});
     hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.2,color:INK});
     hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.2,color:INK});
-    lblC(ctx,'3, 4, 5: es toca',100,260,ACCENT_LOCAL(),18);
+    lblC(ctx,'3, 4, 5: hi ha intersecció',c/2,260,ACCENT_LOCAL(),18);
     ctx.restore();
   })();
   (function(){
+    // Cas "no es toca": 1, 2, 10 -- exactament l'exemple de la Pista 1 de la guia q74 (abans es
+    // feia servir 2,3,6, que no es l'exemple que la guia demana). Arcs de radi 1k i 2k des dels
+    // extrems d'un segment de longitud 10k: com que 1k+2k=3k << 10k, els arcs no arriben a
+    // acostar-se -- es veu clarament que NO es pot tancar cap triangle.
     ctx.save();ctx.translate(500,60);
-    const A={x:0,y:200},B={x:280,y:200};
+    const k2=34, a2=1*k2, b2=2*k2, c2=10*k2;
+    const A={x:0,y:200},B={x:c2,y:200};
     hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.4,color:INK});
-    hd.handEllipse(A.x,A.y,60,60,{startAngle:-0.7,endAngle:0.7,lineWidth:1.8,irregularity:0.03,color:SANG});
-    hd.handEllipse(B.x,B.y,90,90,{startAngle:Math.PI-0.7,endAngle:Math.PI+0.7,lineWidth:1.8,irregularity:0.03,color:SANG});
-    lblC(ctx,'2, 3, 6: no es toca',140,260,ACCENT_LOCAL(),18);
+    hd.handEllipse(A.x,A.y,a2,a2,{startAngle:-0.9,endAngle:0.9,lineWidth:1.8,irregularity:0.03,color:SANG});
+    hd.handEllipse(B.x,B.y,b2,b2,{startAngle:Math.PI-0.9,endAngle:Math.PI+0.9,lineWidth:1.8,irregularity:0.03,color:SANG});
+    // marca els centres des d'on es traca cada arc, tal com ha demanat l'owner
+    hd.handDot(A.x,A.y,4,INK);hd.handDot(B.x,B.y,4,INK);
+    lblC(ctx,'1, 2, 10: no hi ha intersecció',c2/2,260,ACCENT_LOCAL(),18);
     ctx.restore();
   })();
   stampNum(ctx,320,'084');
@@ -41,8 +62,8 @@ function ACCENT_LOCAL(){return '#8B5E3C';}
   const ctx=mk('i2',520,380),hd=makeHandDraw(ctx,6002);ctx.translate(260,220);
   const r=170;
   hd.handSegment(-r,0,r,0,{lineWidth:2.6,color:INK});
-  hd.handEllipse(0,0,r,r,{startAngle:Math.PI,endAngle:2*Math.PI,lineWidth:2.6,irregularity:0.03,color:INK});
-  hd.handEllipse(0,0,r,r*0.26,{startAngle:0,endAngle:Math.PI,lineWidth:1.6,dashed:true,dashPattern:[6,5],irregularity:0.04,color:SANG});
+  hd.handEllipse(0,0,r,r,{startAngle:Math.PI,endAngle:2*Math.PI,lineWidth:2.6,irregularity:0.03,color:INK,pinAngles:[Math.PI,2*Math.PI],pinSigma:0.4});
+  hd.handEllipse(0,0,r,r*0.26,{startAngle:0,endAngle:Math.PI,lineWidth:1.6,dashed:true,dashPattern:[6,5],irregularity:0.04,color:SANG,pinAngles:[0,Math.PI],pinSigma:0.4});
   hd.handDot(-r,0,3.5,INK);hd.handDot(r,0,3.5,INK);hd.handDot(0,0,3.5,SANG);
   lbl(ctx,'r',r/2-10,-14,INK,20);
   stampNum(ctx,360,'085');
@@ -64,8 +85,8 @@ function ACCENT_LOCAL(){return '#8B5E3C';}
   // AC: contigu a A / oposat a B -- BC: oposat a A / contigu a B -- AB: hipotenusa (cap dels dos)
   lbl(ctx,'contigu a A',A.x-70,(A.y+C.y)/2-10,ACCENT_LOCAL(),15);
   lbl(ctx,'oposat a B',A.x-70,(A.y+C.y)/2+16,ACCENT_LOCAL(),15);
-  lbl(ctx,'oposat a A',(B.x+C.x)/2+10,(B.y+C.y)/2-10,ACCENT_LOCAL(),15);
-  lbl(ctx,'contigu a B',(B.x+C.x)/2+10,(B.y+C.y)/2+16,ACCENT_LOCAL(),15);
+  lbl(ctx,'oposat a A',(B.x+C.x)/2+10,(B.y+C.y)/2-22,ACCENT_LOCAL(),15);
+  lbl(ctx,'contigu a B',(B.x+C.x)/2+10,(B.y+C.y)/2+4,ACCENT_LOCAL(),15);
   lbl(ctx,'hipotenusa (per a tots dos)',A.x+80,A.y+40,SANG,16);
   stampNum(ctx,380,'086');
 })();
@@ -80,10 +101,10 @@ function ACCENT_LOCAL(){return '#8B5E3C';}
   hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.6,color:INK});
   hd.handSegment(A.x,A.y,M.x,M.y,{lineWidth:2,dashed:true,dashPattern:[7,6],color:SANG});
   rightAngle(hd,M.x,M.y,A.x,A.y,C.x,C.y,14,SANG);
-  angleMark(hd,A.x,A.y,B.x,B.y,M.x,M.y,26,1,SANG);
+  angleMark(hd,A.x,A.y,B.x,B.y,C.x,C.y,26,1,SANG);
   tick(hd,B.x,B.y,M.x,M.y);tick(hd,M.x,M.y,C.x,C.y);
-  lbl(ctx,'60°',A.x-40,60,SANG,18);
-  lbl(ctx,'1',(B.x+M.x)/2-6,h0+26,INK,18);
+  lbl(ctx,'60°',A.x+24,34,SANG,18);
+  lbl(ctx,'1',(B.x+M.x)/2-6,h0+38,INK,18);
   lbl(ctx,'2',(A.x+B.x)/2-30,h0/2,INK,18);
   stampNum(ctx,380,'087');
 })();
@@ -96,34 +117,57 @@ function ACCENT_LOCAL(){return '#8B5E3C';}
   hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.8,color:INK});
   hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.8,color:SANG});
   rightAngle(hd,A.x,A.y,B.x,B.y,C.x,C.y,16,INK);
-  lbl(ctx,'oposat (=sinθ·hip)',A.x+90,A.y+26,INK,16);
-  lbl(ctx,'contigu (=cosθ·hip)',A.x-140,-100,INK,16);
+  lbl(ctx,'catet oposat',A.x+90,A.y+26,INK,16);
+  lbl(ctx,'catet contigu',A.x-115,-100,INK,16);
   lbl(ctx,'hipotenusa',150,-140,SANG,16);
   angleMark(hd,C.x,C.y,A.x,A.y,B.x,B.y,26,1,SANG);
-  lbl(ctx,'θ',C.x+16,C.y+34,SANG,20);
+  lbl(ctx,'θ',C.x+16,C.y+40,SANG,20);
   stampNum(ctx,360,'088');
 })();
 
 /* fig-089 -- q75: dos triangles diferents, mateixa area i perimetre. Moviment: contraexemple. */
 (function(){
-  const ctx=mk('i6',900,360),hd=makeHandDraw(ctx,6006);
-  function drawTri(ox,oy,a,b,c,label){
+  const ctx=mk('i6',900,420),hd=makeHandDraw(ctx,6006);
+  // Escala augmentada (4->9): amb l'escala original els triangles nomes
+  // ocupaven una franja petita del canvas, deixant mig canvas buit -- amb
+  // costats reals fins a 29u, escala 9 aprofita be l'espai disponible.
+  function drawTri(ox,oy,a,b,c,scale){
     ctx.save();ctx.translate(ox,oy);
-    const A={x:0,y:0}, B={x:c*4,y:0};
-    const x = (c*c*16 + a*a*16 - b*b*16)/(2*c*4);
-    const y2 = a*a*16-x*x;
+    const A={x:0,y:0}, B={x:c*scale,y:0};
+    const x = (c*c*scale*scale + a*a*scale*scale - b*b*scale*scale)/(2*c*scale);
+    const y2 = a*a*scale*scale-x*x;
     const y = -Math.sqrt(Math.max(0,y2));
     const C={x:x,y:y};
-    hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.4,color:INK});
-    hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.4,color:INK});
-    hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.4,color:INK});
-    lblC(ctx,label,(A.x+B.x+C.x)/3,40,ACCENT_LOCAL(),18);
+    const AB=hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.4,color:INK});
+    const AC=hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.4,color:INK});
+    const BC=hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.4,color:INK});
+    // Etiqueta de cada costat amb la seva mida real (no escalada),
+    // desplaçada cap enfora del triangle. La direccio "cap enfora" es
+    // determina comparant amb el centroide (no assumint un signe fix): el
+    // vector perpendicular d'un segment canvia de signe segons quin dels
+    // dos punts es P i quin es Q, així que un "s" fix no dona sempre cap
+    // enfora als tres costats alhora (aixo produia el "17"/"20" quedant-se
+    // dins el triangle).
+    const centroid={x:(A.x+B.x+C.x)/3,y:(A.y+B.y+C.y)/3};
+    function sideLabel(P,Q,val){
+      const mid=onSeg(P,Q,0.5);
+      const dx=Q.x-P.x, dy=Q.y-P.y, len=Math.hypot(dx,dy);
+      let nx=-dy/len, ny=dx/len; // perpendicular unitari (un dels 2 sentits)
+      // si aquest sentit apunta CAP AL centroide, el girem
+      const toCentroid={x:centroid.x-mid.x,y:centroid.y-mid.y};
+      if (nx*toCentroid.x+ny*toCentroid.y>0){ nx=-nx; ny=-ny; }
+      lblC(ctx, String(val), mid.x+nx*30, mid.y+ny*30, ACCENT_LOCAL(), 17);
+    }
+    sideLabel(A,B,c);
+    sideLabel(A,C,b);
+    sideLabel(B,C,a);
+    lblC(ctx,'Perímetre = 70 u',(A.x+B.x)/2,68,ACCENT_LOCAL(),18);
+    lblC(ctx,'Àrea = 210 u²',(A.x+B.x)/2,94,ACCENT_LOCAL(),18);
     ctx.restore();
   }
-  drawTri(40,260,17,25,28,'17, 25, 28');
-  drawTri(480,260,20,21,29,'20, 21, 29');
-  lblC(ctx,'totes dues: perímetre 70, àrea 210',450,320,ACCENT_LOCAL(),18);
-  stampNum(ctx,340,'089');
+  drawTri(60,260,17,25,28,9);
+  drawTri(480,260,20,21,29,9);
+  stampNum(ctx,400,'089');
 })();
 
 /* fig-090 -- q77: triangle amb paral.lela -- semblanca (dilatacio). Moviment: dilatacio. */
@@ -173,11 +217,15 @@ function ACCENT_LOCAL(){return '#8B5E3C';}
   hd.handSegment(Bv.x,Bv.y,apex.x,apex.y,{lineWidth:2.6,color:INK});
   hd.handSegment(A.x,A.y,apex.x,apex.y,{lineWidth:2.6,color:SANG});
   hd.handSegment(apex.x,apex.y,apex.x,0,{lineWidth:1.8,dashed:true,dashPattern:[6,5],color:INK});
+  // Allarga el costat 'a' (discontinu) des de Bv fins al peu de l'alçada
+  // (apex.x, 0), que cau fora del triangle real perquè l'angle a Bv és
+  // obtús -- així es veu clarament on "trobaria" l'altura si es perllongués.
+  hd.handSegment(Bv.x,Bv.y,apex.x,0,{lineWidth:1.8,dashed:true,dashPattern:[6,5],color:INK});
   rightAngle(hd,apex.x,0,apex.x,apex.y,Bv.x,Bv.y,14,INK);
   lblC(ctx,'a',(A.x+Bv.x)/2,20,INK,20);
   lblC(ctx,'b',(apex.x+Bv.x)/2-16,(apex.y)/2,INK,20);
-  lblC(ctx,'c',(A.x+apex.x)/2+18,(apex.y)/2,SANG,20);
-  lblC(ctx,"C'",Bv.x+22,Bv.y-14,SANG,18);
+  lblC(ctx,'c',(A.x+apex.x)/2+28,(apex.y)/2-10,SANG,20);
+  lblC(ctx,'C',Bv.x-4,Bv.y+22,SANG,18);
   stampNum(ctx,340,'092');
 })();
 
@@ -233,11 +281,11 @@ function ACCENT_LOCAL(){return '#8B5E3C';}
   hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.6,color:INK});
   hd.handSegment(apex.x,apex.y,0,L*Math.cos(halfAngle),{lineWidth:1.8,dashed:true,dashPattern:[6,5],color:SANG});
   rightAngle(hd,0,L*Math.cos(halfAngle),apex.x,apex.y,C.x,C.y,14,SANG);
-  angleMark(hd,apex.x,apex.y,B.x,B.y,0,L*Math.cos(halfAngle),22,1,SANG);
+  angleMark(hd,apex.x,apex.y,B.x,B.y,0,L*Math.cos(halfAngle),55,1,SANG);
   lbl(ctx,'φ',B.x/2-24,B.y/2,INK,20);
   lbl(ctx,'φ',C.x/2+8,C.y/2,INK,20);
   lbl(ctx,'1',-10,L*Math.cos(halfAngle)+26,INK,20);
-  lbl(ctx,'36°',-16,50,SANG,18);
+  lbl(ctx,'18°',-30,108,SANG,18);
   stampNum(ctx,420,'095');
 })();
 
@@ -245,7 +293,7 @@ function ACCENT_LOCAL(){return '#8B5E3C';}
 (function(){
   const ctx=mk('i13',520,480),hd=makeHandDraw(ctx,6013);ctx.translate(60,60);
   const bS=280;
-  const b1={x:0,y:280}, b2={x:bS,y:280}, b3={x:bS/2+50,y:280-bS*0.5};
+  const b1={x:0,y:280}, b2={x:bS,y:280}, b3={x:bS/2+40,y:230};
   const apex={x:bS/2+16,y:20};
   hd.handSegment(b1.x,b1.y,b2.x,b2.y,{lineWidth:2.6,color:INK});
   hd.handSegment(b2.x,b2.y,b3.x,b3.y,{lineWidth:2.6,color:INK});
@@ -254,8 +302,13 @@ function ACCENT_LOCAL(){return '#8B5E3C';}
   hd.handSegment(apex.x,apex.y,b2.x,b2.y,{lineWidth:2.6,color:INK});
   hd.handSegment(apex.x,apex.y,b3.x,b3.y,{lineWidth:2,dashed:true,dashPattern:[7,6],color:INK});
   const Medge=mid(b1,b2);
-  hd.handSegment(Medge.x,Medge.y,apex.x,apex.y,{lineWidth:1.8,dashed:true,dashPattern:[5,5],color:SANG});
-  hd.handSegment(Medge.x,Medge.y,b3.x,b3.y,{lineWidth:1.8,dashed:true,dashPattern:[5,5],color:SANG});
+  // Els dos segments de l'angle diedre s'han de dibuixar amb precisio
+  // gairebe de maquina (wobble/overshoot/passSpread/widthVariation a 0,
+  // una sola passada), a diferencia de la resta de la figura -- aqui el
+  // que importa es la mesura exacta de l'angle, no l'aspecte "a ma".
+  const machinePrecision={wobble:0,passes:1,overshoot:0,passSpread:0,widthVariation:0,steps:2};
+  hd.handSegment(Medge.x,Medge.y,apex.x,apex.y,{lineWidth:1.8,dashed:true,dashPattern:[5,5],color:SANG,...machinePrecision});
+  hd.handSegment(Medge.x,Medge.y,b3.x,b3.y,{lineWidth:1.8,dashed:true,dashPattern:[5,5],color:SANG,...machinePrecision});
   angleMark(hd,Medge.x,Medge.y,apex.x,apex.y,b3.x,b3.y,30,1,SANG);
   stampNum(ctx,440,'096');
 })();
@@ -299,7 +352,11 @@ function ACCENT_LOCAL(){return '#8B5E3C';}
   const R=220;
   const angs=[-100,-10,60,190].map(a=>a*Math.PI/180);
   const P=angs.map(a=>({x:R*Math.cos(a),y:R*Math.sin(a)}));
-  hd.handEllipse(0,0,R,R,{lineWidth:2.2,irregularity:0.02,color:INK});
+  // pinAngles forca el radi de la circumferencia a valer EXACTAMENT R en les 4 direccions dels
+  // vertexs -- sense aixo, la irregularitat normal del trac del cercle (i dels segments, tots
+  // dos amb el seu propi jitter independent) podia deixar algun vertex just fora o dins del
+  // trac de la circumferencia en lloc de tocar-lo (mateix mecanisme que a fig-084).
+  hd.handEllipse(0,0,R,R,{lineWidth:2.2,irregularity:0.02,pinAngles:angs,color:INK});
   for(let i=0;i<4;i++) hd.handSegment(P[i].x,P[i].y,P[(i+1)%4].x,P[(i+1)%4].y,{lineWidth:2.4,color:INK});
   hd.handSegment(P[0].x,P[0].y,P[2].x,P[2].y,{lineWidth:2,dashed:true,dashPattern:[7,6],color:SANG});
   angleMark(hd,P[1].x,P[1].y,P[0].x,P[0].y,P[2].x,P[2].y,30,1,SANG);

@@ -23,10 +23,64 @@ function lineIntersect(p1,p2,p3,p4){
   const py=((x1*y2-y1*x2)*(y3-y4)-(y1-y2)*(x3*y4-y3*x4))/den;
   return {x:px,y:py};
 }
+// Troba on es creuen REALMENT dos handSegment (seg1, seg2, els objectes que
+// retorna handSegment, amb .pointAtT) en lloc de calcular la intersecció de
+// les rectes ideals. Necessari quan es vol marcar un angle (angleMark) al
+// vèrtex X: si es fa servir lineIntersect sobre punts ideals, el centre dels
+// arcs no coincideix amb el creuament visual dels dos traços "de mà", que
+// tenen el seu propi wobble independent (v. Part 1.4 de la tècnica: la
+// incidència s'ha de complir sobre el traç dibuixat, no sobre la geometria
+// ideal). Mostreja totes dues corbes a N passos i localitza el canvi de
+// signe del producte creuat relatiu; després afina per bisecció.
+function polylineIntersect(seg1,seg2,N){
+  N=N||100;
+  function side(t1,t2){
+    const a=seg1.pointAtT(t1), b=seg2.pointAtT(t2);
+    return {dx:b.x-a.x, dy:b.y-a.y};
+  }
+  // Mostreig simultani en t (ambdós segments recorren tot [0,1] al mateix ritme,
+  // vàlid aquí perquè totes dues diagonals van de vèrtex a vèrtex del pentàgon).
+  let prevCross=null, prevT=0;
+  for(let i=0;i<=N;i++){
+    const t=i/N;
+    const p1=seg1.pointAtT(t), p2=seg2.pointAtT(t);
+    const cross=(p1.x-p2.x); // proxy: nomes cal el canvi de signe de x1-x2 al llarg de t
+    if(prevCross!==null && Math.sign(cross)!==Math.sign(prevCross) && cross!==0){
+      // bisecció fina entre prevT i t
+      let lo=prevT, hi=t;
+      for(let k=0;k<25;k++){
+        const mid=(lo+hi)/2;
+        const pm1=seg1.pointAtT(mid), pm2=seg2.pointAtT(mid);
+        const c=pm1.x-pm2.x;
+        if(Math.sign(c)===Math.sign(prevCross)) lo=mid; else hi=mid;
+      }
+      const tm=(lo+hi)/2;
+      const pa=seg1.pointAtT(tm), pb=seg2.pointAtT(tm);
+      return {x:(pa.x+pb.x)/2, y:(pa.y+pb.y)/2, t1:tm};
+    }
+    prevCross=cross; prevT=t;
+  }
+  return null; // no s'ha trobat creuament (no hauria de passar per aquestes diagonals)
+}
 function dotGrid(hd,x0,y0,cols,rows,step,r,col){
   const pts=[];
   for(let j=0;j<rows;j++){const row=[];
     for(let i=0;i<cols;i++){const p={x:x0+i*step,y:y0+j*step}; hd.handDot(p.x,p.y,r,col||INK); row.push(p);}
+    pts.push(row);}
+  return pts;
+}
+function dotGridTight(hd,ctxLocal,x0,y0,cols,rows,step,r,col){
+  const pts=[];
+  for(let j=0;j<rows;j++){const row=[];
+    for(let i=0;i<cols;i++){
+      const p={x:x0+i*step,y:y0+j*step};
+      const jx=p.x+(hd.rand()-0.5)*2, jy=p.y+(hd.rand()-0.5)*2;
+      ctxLocal.beginPath();
+      ctxLocal.arc(jx,jy,r+(hd.rand()-0.5)*0.5,0,Math.PI*2);
+      ctxLocal.fillStyle=col||INK;
+      ctxLocal.fill();
+      row.push(p);
+    }
     pts.push(row);}
   return pts;
 }
@@ -153,30 +207,65 @@ function dotGrid(hd,x0,y0,cols,rows,step,r,col){
   (function(){
     ctx.save();ctx.translate(360,40);
     const s=190, cx=s/2, cy=s/2, Rc=s*Math.SQRT2/2;
-    hd.handEllipse(cx,cy,Rc,Rc,{lineWidth:2.6,irregularity:0.03,color:INK});
-    quad(hd,0,0,s,s,s,{lineWidth:2.6,color:INK});
-    hd.handSegment(0,0,s,s,{dashed:true,lineWidth:1.8,dashPattern:[6,5],color:SANG});
-    tick(hd,0,0,s,s);
+    const circle=hd.handEllipse(cx,cy,Rc,Rc,{lineWidth:2.6,irregularity:0.03,color:INK});
+    // Vertexs del quadrat llegits del traç REAL del cercle (no coordenades
+    // ideals amb jitter independent): garanteix alhora la incidencia
+    // (vertexs sobre la circumferencia) i angles propers a 90°, ja que
+    // tots quatre provenen d'una unica construccio consistent en lloc de
+    // 4 desplaçaments aleatoris independents (v. critica de l'owner:
+    // "algun angle massa allunyat de 90°" + "vertexs han d'estar sobre
+    // el perimetre").
+    const V0=circle.pointAtAngle(-135*Math.PI/180);
+    const V1=circle.pointAtAngle(-45*Math.PI/180);
+    const V2=circle.pointAtAngle(45*Math.PI/180);
+    const V3=circle.pointAtAngle(135*Math.PI/180);
+    [[V0,V1],[V1,V2],[V2,V3],[V3,V0]].forEach(seg=>
+      hd.handSegment(seg[0].x,seg[0].y,seg[1].x,seg[1].y,{lineWidth:2.6,color:INK}));
+    hd.handSegment(V0.x,V0.y,V2.x,V2.y,{dashed:true,lineWidth:1.8,dashPattern:[6,5],color:SANG});
+    tick(hd,V0.x,V0.y,V2.x,V2.y);
     lbl(ctx,'s',s/2-6,s+28,INK,20);
     lbl(ctx,'R',s*0.72,s*0.30,SANG,20);
     ctx.restore();
   })();
 
-  // Panell 3: quatre cercles dins un cercle gran (sense anotar -- extensio mes dificil)
+  // Panell 3: quatre cercles dins un cercle gran (C1 dreta / C2 dalt / C3
+  // esquerra / C4 baix). Construccio EXACTA (no aproximada com abans):
+  // C1 i C3 son tangents entre si i tangents interiorment a C0 -> son
+  // iguals, radi R/2, centres a distancia R/2 del centre de C0 sobre l'eix
+  // horitzontal. C2 i C4 son tangents a C0 (interiorment) i tangents
+  // alhora a C1 i a C3 -> per simetria son iguals, radi R/3, centres sobre
+  // l'eix vertical a distancia 2R/3 del centre. Vegeu deduccio algebraica
+  // (Pitagores + tangencia) al full de treball; comprovat numericament.
   (function(){
     ctx.save();ctx.translate(650,40);
-    const Rbig=150,cx=Rbig,cy=Rbig;
-    hd.handEllipse(cx,cy,Rbig,Rbig,{lineWidth:2.6,irregularity:0.03,color:INK});
-    const rSmall=Rbig*0.42;
-    const positions=[[-0.42,-0.72],[-0.72,0.0],[0.05,0.0],[-0.42,0.72]];
-    // s'aproximen visualment (no exactes): l'objectiu es mostrar la mateixa familia de puzle, no resoldre'l aqui
-    const cs=[
-      {x:cx-0.02*Rbig,y:cy-0.55*Rbig,r:rSmall*0.62},
-      {x:cx-0.55*Rbig,y:cy,r:rSmall},
-      {x:cx+0.42*Rbig,y:cy,r:rSmall},
-      {x:cx-0.02*Rbig,y:cy+0.55*Rbig,r:rSmall*0.62},
-    ];
-    cs.forEach(c=>hd.handEllipse(c.x,c.y,c.r,c.r,{lineWidth:2.2,irregularity:0.03,color:INK}));
+    const R=150,cx=R,cy=R;
+    const rGran=R/2, rPetit=R/3;
+    const d=rGran, e=R-rPetit; // d: centre C1/C3 des de O; e: centre C2/C4 des de O
+    // Petit marge deliberat (gap) restat als radis dels 4 cercles interiors:
+    // la tangencia matematica exacta, combinada amb el gruix real del
+    // trac (~2.2-2.6px), fa que dos cercles "tangents" es vegin superposats
+    // en lloc de tocar-se -- un humà que dibuixa cercles tangents sempre
+    // deixa aquest petit buit visual. No toca les posicions dels centres,
+    // només els radis de dibuix.
+    const gap=2.2;
+    const C0=hd.handEllipse(cx,cy,R,R,{lineWidth:2.6,irregularity:0.01,color:INK,
+      pinAngles:[0,Math.PI,-Math.PI/2,Math.PI/2],pinSigma:0.5});
+    // C1 (dreta) i C3 (esquerra): pinAngles al punt de tangencia amb C0
+    // (cap enfora, angle 0/180) i al punt de tangencia mutua (cap endins,
+    // tambe 0/180 vist des de cada centre) -- coincideixen en aquest cas
+    // simetric, per aixo un unic pin basta a cada cercle.
+    const C1=hd.handEllipse(cx+d,cy,rGran-gap,rGran-gap,{lineWidth:2.2,irregularity:0.01,color:INK,
+      pinAngles:[0,Math.PI],pinSigma:0.6});
+    const C3=hd.handEllipse(cx-d,cy,rGran-gap,rGran-gap,{lineWidth:2.2,irregularity:0.01,color:INK,
+      pinAngles:[0,Math.PI],pinSigma:0.6});
+    // C2 (dalt) i C4 (baix): pin al punt de tangencia amb C0 (amunt/avall,
+    // angle -90/90) i en direccio cap a C1/C3 per mantenir-hi la tangencia
+    // visual (angle cap a l'angle de la linia centre-C2 a centre-C1).
+    const aToC1=Math.atan2(cy-cy, (cx+d)-cx); // referencia, no s'usa directament
+    const C2=hd.handEllipse(cx,cy-e,rPetit-gap,rPetit-gap,{lineWidth:2.2,irregularity:0.018,color:INK,
+      pinAngles:[-Math.PI/2],pinSigma:0.45});
+    const C4=hd.handEllipse(cx,cy+e,rPetit-gap,rPetit-gap,{lineWidth:2.2,irregularity:0.018,color:INK,
+      pinAngles:[Math.PI/2],pinSigma:0.45});
     ctx.restore();
   })();
   stampNum(ctx,320,'058');
@@ -202,7 +291,7 @@ function dotGrid(hd,x0,y0,cols,rows,step,r,col){
     for(let i=0;i<4;i++) hd.handSegment(V[i].x,V[i].y,V[(i+1)%4].x,V[(i+1)%4].y,{lineWidth:2.6,color:INK});
     hd.handSegment(V[0].x,V[0].y,V[2].x,V[2].y,{dashed:true,lineWidth:1.8,dashPattern:[6,5],color:SANG});
     tick(hd,V[0].x,V[0].y,V[1].x,V[1].y);tick(hd,V[1].x,V[1].y,V[2].x,V[2].y);
-    lbl(ctx,'s',(V[0].x+V[1].x)/2+10,(V[0].y+V[1].y)/2,INK,20);
+    lbl(ctx,'s',(V[0].x+V[1].x)/2-24,(V[0].y+V[1].y)/2+18,INK,20);
     lbl(ctx,'2R',cx+10,cy-6,SANG,20);
     ctx.restore();
   })();
@@ -210,16 +299,41 @@ function dotGrid(hd,x0,y0,cols,rows,step,r,col){
   (function(){
     ctx.save();ctx.translate(380,40);
     const Rbig=150,cx0=Rbig,cy0=Rbig;
-    hd.handEllipse(cx0,cy0,Rbig,Rbig,{lineWidth:2.6,irregularity:0.03,color:INK});
-    // dos cercles iguals + un quadrat, en fila, tots tangents entre si i els extrems tangents al cercle gran
-    // amb R=Rbig i dos cercles de radi r + quadrat de costat 2r ocupant el diametre: 4r=2Rbig -> r=Rbig/2 (aprox
-    // visual, no es resol l'equacio exacta aqui -- es la incognita que demana la pista 1)
-    const r=Rbig*0.42;
+    // Construccio EXACTA (Pista 1 de la guia q40_implicit): dos cercles de
+    // radi r + un quadrat de costat 2r, en fila, ocupant tot el diametre
+    // 2R -> 2r+2r+2r=2R -> r=R/3. Verificat numericament (6r=2R amb R=150,
+    // r=50). El quadrat te el mateix "ample" 2r que els cercles, no una
+    // mida arbitraria.
+    const r=Rbig/3;
+    const gap=2.2; // mateix marge visual deliberat que a fig-058 (d5),
+                    // perque el gruix real de linia no faci que peces
+                    // tangents es vegin superposades.
     const c1={x:cx0-Rbig+r,y:cy0}, c2={x:c1.x+2*r,y:cy0};
-    hd.handEllipse(c1.x,c1.y,r,r,{lineWidth:2.4,irregularity:0.03,color:INK});
-    hd.handEllipse(c2.x,c2.y,r,r,{lineWidth:2.4,irregularity:0.03,color:INK});
-    const sq=2*r*0.86;
-    quad(hd,c2.x+r-2,cy0-sq/2,sq,sq,sq,{lineWidth:2.4,color:INK});
+    const sqLeft=c2.x+r, sqRight=sqLeft+2*r; // el quadrat continua la fila cap a la dreta
+    hd.handEllipse(cx0,cy0,Rbig,Rbig,{lineWidth:2.6,irregularity:0.012,color:INK,
+      pinAngles:[Math.PI,0],pinSigma:0.5});
+    hd.handEllipse(c1.x,c1.y,r-gap,r-gap,{lineWidth:2.4,irregularity:0.015,color:INK,
+      pinAngles:[Math.PI,0],pinSigma:0.55});
+    // C2: augment molt lleuger del radi de dibuix (gap més petit,
+    // gap2<gap) respecte a C1 i al quadrat, a peticio expressa de l'owner
+    // ("una mica mes tangent" pels dos costats).
+    const gap2=1.1;
+    hd.handEllipse(c2.x,c2.y,r-gap2,r-gap2,{lineWidth:2.4,irregularity:0.015,color:INK,
+      pinAngles:[Math.PI,0],pinSigma:0.55});
+    // Quadrat: costat exacte 2r (mateix ample que els cercles), alineat
+    // amb els eixos, amb el mateix gap deliberat respecte al cercle C2 i
+    // respecte al cercle gran, dibuixat amb 4 handSegment (no quad(), que
+    // jiteria el costat de manera independent i li faria perdre l'ample
+    // exacte 2r que demana la Pista 1).
+    // El costat dret del quadrat toca una CORBA (C0), no un altre segment:
+    // una recta tangent a un cercle és molt més sensible que dos cercles
+    // tangents (qualsevol petit error fa que la recta creui la corba en
+    // un tram, no nomwilli just en un punt) -- per aixo aqui cal un gap
+    // més gran que el que n'hi ha prou entre cercles.
+    const gapSquare=6;
+    const sqY0=cy0-r+gap, sqY1=cy0+r-gap, sqX0=sqLeft+gap, sqX1=sqRight-gapSquare;
+    const Q=[{x:sqX0,y:sqY0},{x:sqX1,y:sqY0},{x:sqX1,y:sqY1},{x:sqX0,y:sqY1}];
+    for(let i=0;i<4;i++) hd.handSegment(Q[i].x,Q[i].y,Q[(i+1)%4].x,Q[(i+1)%4].y,{lineWidth:2.4,color:INK});
     // sanguina: radi net del cercle gran, cap amunt -- sense ambiguitat
     hd.handSegment(cx0,cy0,cx0,cy0-Rbig,{dashed:true,lineWidth:1.8,dashPattern:[6,5],color:SANG});
     hd.handDot(cx0,cy0,4,SANG);
@@ -241,11 +355,16 @@ function dotGrid(hd,x0,y0,cols,rows,step,r,col){
   const dUL_UR=hd.handSegment(P[4].x,P[4].y,P[1].x,P[1].y,{lineWidth:2,color:INK});
   const dUL_LR=hd.handSegment(P[4].x,P[4].y,P[2].x,P[2].y,{lineWidth:2,color:INK});
   const dUR_LL=hd.handSegment(P[1].x,P[1].y,P[3].x,P[3].y,{lineWidth:2,color:INK});
-  const X=lineIntersect(P[4],P[2],P[1],P[3]);
+  const X=polylineIntersect(dUL_LR,dUR_LL);
+  // Xmark: mateix punt que X, desplaçat una mica cap a la dreta NOMÉS per
+  // centrar visualment els arcs dobles del creuament (angleMark obre l'arc
+  // cap a un costat, no simètricament, per això cal aquest petit ajust fi).
+  // No s'usa enlloc més (etiquetes B/C i els altres angleMark seguim amb X).
+  const Xmark={x:X.x+3,y:X.y};
   // marques: classe 108 (2 arcs) a l'apex de A i als dos costats de X; classe 36 (1 arc) a les bases de A i C
   angleMark(hd,P[0].x,P[0].y,P[4].x,P[4].y,P[1].x,P[1].y,26,2,SANG);
-  angleMark(hd,X.x,X.y,P[4].x,P[4].y,P[1].x,P[1].y,22,2,SANG);
-  angleMark(hd,X.x,X.y,P[2].x,P[2].y,P[3].x,P[3].y,22,2,SANG);
+  angleMark(hd,Xmark.x,Xmark.y,P[4].x,P[4].y,P[1].x,P[1].y,22,2,SANG);
+  angleMark(hd,Xmark.x,Xmark.y,P[2].x,P[2].y,P[3].x,P[3].y,22,2,SANG);
   angleMark(hd,P[4].x,P[4].y,P[0].x,P[0].y,P[1].x,P[1].y,26,1,SANG);
   angleMark(hd,P[1].x,P[1].y,P[4].x,P[4].y,P[0].x,P[0].y,26,1,SANG);
   angleMark(hd,P[2].x,P[2].y,X.x,X.y,P[3].x,P[3].y,22,1,SANG);
@@ -265,16 +384,44 @@ function dotGrid(hd,x0,y0,cols,rows,step,r,col){
   const ideal=regularPoly(5,0,0,R,-Math.PI/2);
   const P=ideal.map(p=>jit(hd,p,R,0.8));
   for(let i=0;i<5;i++) hd.handSegment(P[i].x,P[i].y,P[(i+1)%5].x,P[(i+1)%5].y,{lineWidth:2.6,color:INK});
-  for(let i=0;i<5;i++) hd.handSegment(P[i].x,P[i].y,P[(i+2)%5].x,P[(i+2)%5].y,{lineWidth:2,color:INK});
+  const diag=[];
+  for(let i=0;i<5;i++) diag.push(hd.handSegment(P[i].x,P[i].y,P[(i+2)%5].x,P[(i+2)%5].y,{lineWidth:2,color:INK}));
+  // pointAtT recorre sempre del primer punt donat cap al segon; per aparellar
+  // amb polylineIntersect necessitem el mateix sentit de recorregut que la
+  // intersecció ideal original (P[i+1] cap a P[i+4]), que és el revés de com
+  // s'ha dibuixat diag[i-1] (P[i-1] cap a P[i+1]). reverseSeg el capgira.
+  function reverseSeg(seg){ return { pointAtT: t => seg.pointAtT(1-t) }; }
+  // Cada tram del pentagon vermell NO és un segment nou entre dos punts:
+  // ambdós extrems del tram i (inner[i] i inner[i+1]) cauen sobre la MATEIXA
+  // diagonal negra diag[i] (és el punt on diag[i] creua amb diag[i-1] i amb
+  // diag[i+1], respectivament). Per tant cal el t sobre diag[i] a cada extrem.
+  const tOnDiag=[]; // tOnDiag[i] = [tInici, tFinal] sobre diag[i]
   const inner=[];
   for(let i=0;i<5;i++){
-    const a1=P[i],b1=P[(i+2)%5], a2=P[(i+1)%5],b2=P[(i+4)%5];
-    inner.push(lineIntersect(a1,b1,a2,b2));
+    const crossPrev=polylineIntersect(diag[i], reverseSeg(diag[(i+4)%5])); // amb diag[i-1]
+    const crossNext=polylineIntersect(diag[i], reverseSeg(diag[(i+1)%5])); // amb diag[i+1]
+    tOnDiag.push([crossPrev.t1, crossNext.t1]);
+    inner.push(crossPrev); // inner[i] = creuament de diag[i] amb diag[i-1], com abans
   }
-  for(let i=0;i<5;i++){const a=inner[i],b=inner[(i+1)%5];
-    hd.handSegment(a.x,a.y,b.x,b.y,{lineWidth:2.4,color:SANG});}
-  tick(hd,P[0].x,P[0].y,P[1].x,P[1].y);
-  tick(hd,inner[0].x,inner[0].y,inner[1].x,inner[1].y);tick(hd,inner[0].x,inner[0].y,inner[1].x,inner[1].y);
+  // Repassa en vermell el tram real de diag[i] entre els seus dos creuaments,
+  // llegint pointAtT en lloc de dibuixar un handSegment nou -- així el vermell
+  // coincideix amb el negre en tota la longitud del tram, no només als extrems.
+  function traceDiagPart(seg,tA,tB,lineWidth,color){
+    const steps=40;
+    ctx.beginPath();
+    for(let k=0;k<=steps;k++){
+      const t=tA+(tB-tA)*k/steps;
+      const p=seg.pointAtT(t);
+      if(k===0) ctx.moveTo(p.x,p.y); else ctx.lineTo(p.x,p.y);
+    }
+    ctx.strokeStyle=color; ctx.lineWidth=lineWidth;
+    ctx.lineCap='round'; ctx.lineJoin='round';
+    ctx.stroke();
+  }
+  for(let i=0;i<5;i++){
+    const [tA,tB]=tOnDiag[i];
+    traceDiagPart(diag[i],tA,tB,4.99,SANG);
+  }
   lbl(ctx,'s',(P[0].x+P[1].x)/2+14,(P[0].y+P[1].y)/2-8,INK,20);
   lbl(ctx,'s\'',(inner[0].x+inner[1].x)/2,(inner[0].y+inner[1].y)/2-16,SANG,20);
   stampNum(ctx,520,'061');
@@ -293,8 +440,14 @@ function dotGrid(hd,x0,y0,cols,rows,step,r,col){
   const s=210, R=s/(2*Math.sin(Math.PI/5)), apo=R*Math.cos(Math.PI/5);
   const idealR=regularPoly(5,apo,0,R,0);      // k=2 top(0,s/2), k=3 bot(0,-s/2), k=0 F (mes lluny)
   const idealL=idealR.map(p=>({x:-p.x,y:p.y}));
-  const PR=idealR.map(p=>jit(hd,p,R,0.7));
-  const PL=idealL.map(p=>jit(hd,p,R,0.7));
+  // top i bot son l'aresta COMPARTIDA pels dos pentagons: es jititegen una
+  // sola vegada i es reutilitzen (reflectits en x) als dos costats, perque
+  // aquesta incidencia s'ha de complir exactament (v. Part 1.4). Si es
+  // jititgen per separat a PR i PL, els dos pentagons deixen de tocar-se.
+  const topShared=jit(hd,idealR[2],R,0.7);
+  const botShared=jit(hd,idealR[3],R,0.7);
+  const PR=idealR.map((p,i)=>i===2?topShared:i===3?botShared:jit(hd,p,R,0.7));
+  const PL=idealL.map((p,i)=>i===2?{x:-topShared.x,y:topShared.y}:i===3?{x:-botShared.x,y:botShared.y}:jit(hd,p,R,0.7));
   for(let i=0;i<5;i++) hd.handSegment(PL[i].x,PL[i].y,PL[(i+1)%5].x,PL[(i+1)%5].y,{lineWidth:2.6,color:INK});
   for(let i=0;i<5;i++) hd.handSegment(PR[i].x,PR[i].y,PR[(i+1)%5].x,PR[(i+1)%5].y,{lineWidth:2.6,color:INK});
   const top=PR[2], bot=PR[3], F=PR[0];
@@ -315,7 +468,7 @@ function dotGrid(hd,x0,y0,cols,rows,step,r,col){
   const R=230;
   const P=regularPoly(5,0,0,R,-Math.PI/2);
   for(let i=0;i<5;i++){const j=(i+2)%5;
-    hd.handSegment(P[i].x,P[i].y,P[j].x,P[j].y,{lineWidth:2.6,color:INK});}
+    hd.handSegment(P[i].x,P[i].y,P[j].x,P[j].y,{lineWidth:2.6,wobble:1.0,color:INK});}
   for(let i=0;i<5;i++){
     const prev=P[(i-2+5)%5], next=P[(i+2)%5];
     angleMark(hd,P[i].x,P[i].y,prev.x,prev.y,next.x,next.y,30,1,SANG);
@@ -328,12 +481,12 @@ function dotGrid(hd,x0,y0,cols,rows,step,r,col){
    fig-064 -- q17: costat s = raiz(ab) com a mitjana geometrica (Tales).
    Moviment: separa-i-reorienta. */
 (function(){
-  const ctx=mk('d11',680,420),hd=makeHandDraw(ctx,411);ctx.translate(40,220);
+  const ctx=mk('d11',680,460),hd=makeHandDraw(ctx,411);ctx.translate(40,260);
   const a=340,b=110;
   const Aax={x:0,y:0}, Bx={x:a,y:0}, Cx={x:a+b,y:0};
   const cx=(a+b)/2, R=(a+b)/2;
   hd.handEllipse(cx,0,R,R,{startAngle:Math.PI,endAngle:2*Math.PI,lineWidth:2.4,irregularity:0.02,color:INK});
-  hd.handSegment(Aax.x,Aax.y,Cx.x,Cx.y,{lineWidth:2.4,color:INK});
+  hd.handSegment(Aax.x,Aax.y,Cx.x,Cx.y,{lineWidth:2.4,wobble:1.1,color:INK});
   const hgt=Math.sqrt(a*b);
   const foot={x:a,y:0};
   const apex={x:a,y:-hgt};
@@ -341,12 +494,10 @@ function dotGrid(hd,x0,y0,cols,rows,step,r,col){
   hd.handSegment(apex.x,apex.y,Cx.x,Cx.y,{lineWidth:2,color:INK});
   hd.handSegment(foot.x,foot.y,apex.x,apex.y,{lineWidth:2.2,dashed:true,dashPattern:[7,6],color:SANG});
   rightAngle(hd,foot.x,foot.y,Aax.x,Aax.y,apex.x,apex.y,14,SANG);
-  tick(hd,Aax.x,Aax.y,foot.x,foot.y);
-  tick(hd,foot.x,foot.y,Cx.x,Cx.y);
-  lbl(ctx,'a',a/2-8,18,INK,20);
-  lbl(ctx,'b',a+b/2-6,18,INK,20);
-  lbl(ctx,'s = √(ab)',a+14,-hgt/2,SANG,20);
-  stampNum(ctx,395,'064');
+  lbl(ctx,'a',a/2-8,34,INK,20);
+  lbl(ctx,'b',a+b/2-6,34,INK,20);
+  lbl(ctx,'s',a+14,-hgt/2,SANG,20);
+  stampNum(ctx,435,'064');
 })();
 
 /* ============================================================
@@ -360,7 +511,7 @@ function dotGrid(hd,x0,y0,cols,rows,step,r,col){
   const ctx=mk('d12',760,340),hd=makeHandDraw(ctx,412);ctx.translate(40,60);
   function bloc(x0,cols,label,ok){
     const step=30,r=6;
-    dotGrid(hd,x0,0,cols,cols,step,r,INK);
+    dotGridTight(hd,ctx,x0,0,cols,cols,step,r,INK);
     if(ok){
       for(let g=1;g<3;g++) hd.handSegment(x0+g*cols/3*step-12,-14,x0+g*cols/3*step-12,(cols-1)*step+14,
         {dashed:true,lineWidth:1.6,dashPattern:[6,5],color:SANG});
@@ -399,11 +550,14 @@ function dotGrid(hd,x0,y0,cols,rows,step,r,col){
   const ideal=regularPoly(n,0,0,R,-Math.PI/2);
   const P=ideal.map(p=>jit(hd,p,R,0.7));
   for(let i=0;i<n;i++) hd.handSegment(P[i].x,P[i].y,P[(i+1)%n].x,P[(i+1)%n].y,{lineWidth:2.4,color:INK});
-  for(let i=2;i<n-1;i++) hd.handSegment(P[0].x,P[0].y,P[i].x,P[i].y,{lineWidth:1.1,dashed:true,dashPattern:[5,5],color:INK});
-  // una sola peca del ventall, en sanguina, per fixar-hi l'atencio
-  hd.handSegment(P[0].x,P[0].y,P[5].x,P[5].y,{lineWidth:2,color:SANG});
-  hd.handSegment(P[0].x,P[0].y,P[6].x,P[6].y,{lineWidth:2,color:SANG});
-  hd.handSegment(P[5].x,P[5].y,P[6].x,P[6].y,{lineWidth:2,color:SANG});
+  for(let i=2;i<n-1;i++){ if(i===5||i===6) continue; // aquestes dues ja les marca el traç sanguina (soroll, no calen com a negre)
+    hd.handSegment(P[0].x,P[0].y,P[i].x,P[i].y,{lineWidth:1.1,dashed:true,dashPattern:[5,5],color:INK}); }
+  // una sola peca del ventall, en sanguina, per fixar-hi l'atencio -- traç net i regular,
+  // molt enganxat a les dues diagonals negres discontinues que ja marquen aquest mateix
+  // recorregut (wobble reduit perque no es "despengi" de la trajectoria subjacent)
+  hd.handSegment(P[0].x,P[0].y,P[5].x,P[5].y,{lineWidth:3.6,wobble:0.5,color:SANG});
+  hd.handSegment(P[0].x,P[0].y,P[6].x,P[6].y,{lineWidth:3.6,wobble:0.5,color:SANG});
+  hd.handSegment(P[5].x,P[5].y,P[6].x,P[6].y,{lineWidth:3.6,wobble:0.5,color:SANG});
   stampNum(ctx,540,'067');
 })();
 
@@ -414,7 +568,9 @@ function dotGrid(hd,x0,y0,cols,rows,step,r,col){
   const ctx=mk('d15',560,260),hd=makeHandDraw(ctx,415);ctx.translate(50,90);
   const total=440;
   const A={x:0,y:0}, B={x:total,y:0};
-  hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.8,color:INK});
+  // segment principal: traç força rectilini (com fa una ma humana en un tram llarg i net),
+  // wobble reduit perque no hi surti la "panxa" de correccio de mig trac
+  hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.8,wobble:0.5,color:INK});
   const xFrac=0.68; // x > y, punt de tall no simetric a posta
   const M=mid(A,B);
   const cutX=total*xFrac;

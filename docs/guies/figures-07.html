@@ -55,11 +55,18 @@ function regularPoly(n,cx,cy,R,a0){
    Moviment: redueix-al-conegut. */
 (function(){
   const ctx=mk('h2',560,500),hd=makeHandDraw(ctx,5002);ctx.translate(60,100);
-  const S=340,dx=0.3*S,dy=-0.2*S, V=cubeVerts(S,dx,dy);
+  // dx,dy reduïts respecte a la resta de cubs del kit: amb l'obliquitat original
+  // la profunditat (davant-darrere) es comprimia molt mes que esquerra-dreta/amunt-avall,
+  // i l'esfera (cercle+el·lipse) no podia ser tangent alhora a les 6 cares -- la tangencia
+  // dreta acabava caient sobre l'aresta vertical en lloc del centre de la cara.
+  // Amb dx,dy mes petits el cub es llegeix igual (profunditat suau) i el cercle de radi S/2
+  // centrat al veritable centre 3D del cub (mitjana dels 4 vertexs, no del quadrat frontal)
+  // es tangent EXACTE a les arestes esquerra/dreta (comprovat analiticament).
+  const S=340,dx=0.3*S*0.5,dy=-0.2*S*0.5, V=cubeVerts(S,dx,dy);
   drawCubeWire(hd,V,2.6);
-  const cx=(V.fBL.x+V.fTR.x)/2, cy=(V.fBL.y+V.fTR.y)/2, R=S/2;
-  hd.handEllipse(cx,cy,R,R,{lineWidth:2.4,irregularity:0.03,color:INK});
-  hd.handEllipse(cx,cy,R,R*0.32,{lineWidth:1.6,irregularity:0.03,rotation:-0.18,color:INK});
+  const cx=(V.fBL.x+V.fTR.x+V.bBL.x+V.bTR.x)/4, cy=(V.fBL.y+V.fTR.y+V.bBL.y+V.bTR.y)/4, R=S/2;
+  hd.handEllipse(cx,cy,R,R,{lineWidth:2.4,irregularity:0.03,color:INK,pinAngles:[0,Math.PI],pinSigma:0.4});
+  hd.handEllipse(cx,cy,R,R*0.32,{lineWidth:1.6,irregularity:0.03,color:INK,pinAngles:[0,Math.PI],pinSigma:0.4});
   hd.handSegment(cx,cy,cx+R,cy,{lineWidth:1.8,dashed:true,dashPattern:[6,5],color:SANG});
   hd.handDot(cx,cy,4,SANG);
   lbl(ctx,'r',cx+R/2-6,cy-14,SANG,20);
@@ -93,20 +100,32 @@ function regularPoly(n,cx,cy,R,a0){
 
   (function(){
     ctx.save();ctx.translate(40,60);
-    const r=70;
-    hd.handEllipse(r,r,r,r,{lineWidth:2,irregularity:0.03,color:INK});
-    hd.handEllipse(r+240,r,r,r,{lineWidth:2,irregularity:0.03,color:INK});
-    hd.handSegment(r,0,r+240,0,{lineWidth:1.6,dashed:true,dashPattern:[6,5],color:SANG});
-    hd.handSegment(r,2*r,r+240,2*r,{lineWidth:1.6,dashed:true,dashPattern:[6,5],color:SANG});
+    const r=70, rx=20, n=10, jitter=5, span=240, nFill=100;
+    for(let i=0;i<nFill;i++){
+      const x=r+hd.rand()*span;
+      const dy=(hd.rand()-0.5)*jitter*0.6;
+      const rrx=rx+(hd.rand()-0.5)*3, rry=r+(hd.rand()-0.5)*3;
+      hd.handEllipse(x,r+dy,rrx,rry,{lineWidth:0.9,irregularity:0.03,color:SANG});
+    }
+    for(let i=0;i<n;i++){
+      const dx=(hd.rand()-0.5)*jitter, dy=(hd.rand()-0.5)*jitter*0.6;
+      const rrx=rx+(hd.rand()-0.5)*3, rry=r+(hd.rand()-0.5)*3;
+      hd.handEllipse(r+dx,r+dy,rrx,rry,{lineWidth:1.4,irregularity:0.03,color:INK});
+    }
+    for(let i=0;i<n;i++){
+      const dx=(hd.rand()-0.5)*jitter, dy=(hd.rand()-0.5)*jitter*0.6;
+      const rrx=rx+(hd.rand()-0.5)*3, rry=r+(hd.rand()-0.5)*3;
+      hd.handEllipse(r+span+dx,r+dy,rrx,rry,{lineWidth:1.4,irregularity:0.03,color:SANG});
+    }
     lbl(ctx,'translació d\'un cercle',30,220,ACCENT_LOCAL(),20);
     ctx.restore();
   })();
 
   (function(){
     ctx.save();ctx.translate(480,40);
-    const w=140,hgt=220,ax=0;
+    const w=140,hgt=220,ax=0,axExt=hgt*0.1;
     quad(hd,ax,0,w,hgt,hgt,{lineWidth:2.4,color:INK});
-    hd.handSegment(ax,-10,ax,hgt+10,{lineWidth:2,dashed:true,dashPattern:[6,5],color:SANG});
+    hd.handSegment(ax,-axExt,ax,hgt+axExt,{lineWidth:2,dashed:true,dashPattern:[6,5],color:SANG});
     // fletxa de gir
     const arcMid={x:ax+30,y:hgt/2};
     hd.handEllipse(ax,hgt/2,34,10,{startAngle:-1.6,endAngle:1.6,lineWidth:1.6,irregularity:0.05,color:SANG});
@@ -136,7 +155,7 @@ function ACCENT_LOCAL(){return '#8B5E3C';}
   hd.handSegment(TR.x,TR.y,apex.x,apex.y,{lineWidth:2,dashed:true,dashPattern:[7,6],color:SANG});
   hd.handDot(apex.x,apex.y,4,SANG);
   hd.handSegment(bw/2,hgt,bw/2,apexY,{lineWidth:1.4,dashed:true,dashPattern:[4,4],color:INK});
-  lbl(ctx,'a',(TL.x+TR.x)/2-6,-14,INK,20);
+  lbl(ctx,'a',(TL.x+TR.x)/2-11,-14,INK,20);
   lbl(ctx,'b',(BL.x+BR.x)/2-6,hgt+30,INK,20);
   lbl(ctx,'h',bw/2+14,hgt/2,INK,20);
   stampNum(ctx,420,'074');
@@ -146,20 +165,34 @@ function ACCENT_LOCAL(){return '#8B5E3C';}
    fig-075 -- q50: con aproximat per discs apilats.
    Moviment: cas-limit. */
 (function(){
-  const ctx=mk('h6',520,560),hd=makeHandDraw(ctx,5006);ctx.translate(260,40);
+  const ctx=mk('h6',520,575),hd=makeHandDraw(ctx,5006);ctx.translate(260,32);
   const R=190, H=480, n=7;
-  hd.handSegment(0,0,-R,H,{lineWidth:2.6,color:INK});
-  hd.handSegment(0,0,R,H,{lineWidth:2.6,color:INK});
-  for(let i=1;i<=n;i++){
-    const yTop=(i-1)*H/n, yBot=i*H/n;
-    const rTop=R*yTop/H, rBot=R*yBot/H;
+  // La silueta del con NO es dibuixa com a linia a part: emergeix
+  // uniament de la concatenacio dels trams laterals de cada disc
+  // (linies 165 endavant), ja que cadascun ja segueix exactament el
+  // mateix cami recte del vertex a la vora. Dibuixar-la a més (com
+  // abans) produia la "generatriu duplicada" que l'owner va notar.
+  // Cada frontera y=i*H/n (i=0..n) es dibuixa UNA SOLA VEGADA -- abans el
+  // bucle repetia cada frontera interna dues vegades (com a yBot d'un disc
+  // i com a yTop del seguent), amb jitter independent cada cop, produint
+  // les "circumferencies i generatrius duplicades" que l'owner va notar.
+  // Igualment, cada tram lateral entre fronteres consecutives es dibuixa
+  // una unica vegada.
+  const ys=[]; for(let i=0;i<=n;i++) ys.push(i*H/n);
+  for(let i=0;i<=n;i++){
+    const y=ys[i], r=R*y/H;
     const col=(i===4)?SANG:INK;
-    hd.handEllipse(0,yTop,rTop,rTop*0.22,{lineWidth:1.8,irregularity:0.03,color:col});
-    hd.handSegment(-rTop,yTop,-rBot,yBot,{lineWidth:1.8,color:col});
-    hd.handSegment(rTop,yTop,rBot,yBot,{lineWidth:1.8,color:col});
-    hd.handEllipse(0,yBot,rBot,rBot*0.22,{lineWidth:1.8,irregularity:0.03,color:col});
+    if(r>0.5) hd.handEllipse(0,y,r,r*0.22,{lineWidth:1.8,irregularity:0.03,color:col,
+      pinAngles:[0,Math.PI],pinSigma:0.4});
   }
-  stampNum(ctx,540,'075');
+  for(let i=0;i<n;i++){
+    const yTop=ys[i], yBot=ys[i+1];
+    const rTop=R*yTop/H, rBot=R*yBot/H;
+    const col=(i+1===4)?SANG:INK;
+    hd.handSegment(-rTop,yTop,-rBot,yBot,{lineWidth:2.6,color:col});
+    hd.handSegment(rTop,yTop,rBot,yBot,{lineWidth:2.6,color:col});
+  }
+  stampNum(ctx,555,'075');
 })();
 
 /* ============================================================
@@ -208,15 +241,21 @@ function ACCENT_LOCAL(){return '#8B5E3C';}
   const r=150;
   // cilindre horitzontal
   hd.handEllipse(0,r,r*0.32,r,{lineWidth:2.2,irregularity:0.03,rotation:0,color:INK});
-  hd.handSegment(0,0,480,0,{lineWidth:2.4,color:INK});
-  hd.handSegment(0,2*r,480,2*r,{lineWidth:2.4,color:INK});
   hd.handEllipse(480,r,r*0.32,r,{lineWidth:2.2,irregularity:0.03,color:INK});
   // cilindre vertical (creuat)
   const cx2=240;
   hd.handEllipse(cx2,0,r,r*0.32,{lineWidth:2.2,irregularity:0.03,color:INK});
-  hd.handSegment(cx2-r,0,cx2-r,300,{lineWidth:2.4,color:INK});
-  hd.handSegment(cx2+r,0,cx2+r,300,{lineWidth:2.4,color:INK});
   hd.handEllipse(cx2,300,r,r*0.32,{lineWidth:2.2,irregularity:0.03,color:INK});
+  // Contorns dels cilindres (abans 4 segments negres continus, que feien
+  // doble funció de generatriu del cilindre + vora del quadrat màxim de
+  // secció): ara discontinus, perquè es vegin clarament com a REFERÈNCIA
+  // (quadrat màxim, y=0/centre, costat = diàmetre 2r) i es puguin comparar
+  // amb el tall vermell real (a yCut, per sobre del centre) sense that
+  // quedin amagats sota un traç continu que ja hi passava per sobre.
+  hd.handSegment(0,0,480,0,{lineWidth:1.3,dashed:true,dashPattern:[6,5],color:INK});
+  hd.handSegment(0,2*r,480,2*r,{lineWidth:1.3,dashed:true,dashPattern:[6,5],color:INK});
+  hd.handSegment(cx2-r,0,cx2-r,300,{lineWidth:1.3,dashed:true,dashPattern:[6,5],color:INK});
+  hd.handSegment(cx2+r,0,cx2+r,300,{lineWidth:1.3,dashed:true,dashPattern:[6,5],color:INK});
   // pla de tall horitzontal (sanguina) marcant la seccio quadrada de la interseccio
   const yCut=r*0.55;
   const half=Math.sqrt(r*r-(r-yCut)*(r-yCut));
@@ -231,16 +270,31 @@ function ACCENT_LOCAL(){return '#8B5E3C';}
 (function(){
   const ctx=mk('h9',820,440),hd=makeHandDraw(ctx,5009);ctx.translate(60,60);
   const R=150;
-  hd.handEllipse(R,R,R,R,{lineWidth:2.4,irregularity:0.03,color:INK});
+  const sphereOutline=hd.handEllipse(R,R,R,R,{lineWidth:2.4,irregularity:0.03,color:INK});
   hd.handEllipse(R,R,R,R*0.3,{lineWidth:1.6,irregularity:0.03,rotation:-0.15,color:INK});
-  lblC(ctx,'r',R,R-40,INK,20);
+  // Radi real de l'esfera: segment des del centre fins a la vora del cercle
+  // exterior (llegit amb pointAtAngle sobre el traç dibuixat, no la geometria
+  // ideal), amb 'r' ancorada a aquest segment -- abans "r" era text flotant
+  // sense cap marca que indiqués de quin radi es tractava.
+  const rEndSphere=sphereOutline.pointAtAngle(-Math.PI/4);
+  hd.handSegment(R,R,rEndSphere.x,rEndSphere.y,{lineWidth:1.8,color:INK});
+  lbl(ctx,'r',191.7,80,INK,20);
 
   const ox=420, r2=R;
-  hd.handEllipse(ox+r2,0,r2,r2*0.28,{lineWidth:2.2,irregularity:0.03,color:INK});
-  hd.handSegment(ox,0,ox,2*R,{lineWidth:2.4,color:INK});
-  hd.handSegment(ox+2*r2,0,ox+2*r2,2*R,{lineWidth:2.4,color:INK});
-  hd.handEllipse(ox+r2,2*R,r2,r2*0.28,{lineWidth:2.2,irregularity:0.03,color:INK});
-  lbl(ctx,'r',ox+r2-6,-16,INK,20);
+  const topEllipse=hd.handEllipse(ox+r2,0,r2,r2*0.28,{lineWidth:2.2,irregularity:0.03,color:INK});
+  const botEllipse=hd.handEllipse(ox+r2,2*R,r2,r2*0.28,{lineWidth:2.2,irregularity:0.03,color:INK});
+  // Alçada 2r: els dos segments verticals ara acaben EXACTAMENT sobre el
+  // traç real de cada el·lipse (dalt i baix), no a les coordenades ideals
+  // y=0/y=2R -- mateix patró d'incidència que fig-020.
+  const topL=topEllipse.pointAtAngle(Math.PI), botL=botEllipse.pointAtAngle(Math.PI);
+  const topR=topEllipse.pointAtAngle(0), botR=botEllipse.pointAtAngle(0);
+  hd.handSegment(topL.x,topL.y,botL.x,botL.y,{lineWidth:2.4,color:INK});
+  hd.handSegment(topR.x,topR.y,botR.x,botR.y,{lineWidth:2.4,color:INK});
+  // Radi real del cilindre: segment des del centre de l'el·lipse superior
+  // fins a la seva vora (mateix criteri que a l'esfera), amb 'r' ancorada.
+  const rEndCyl=topEllipse.pointAtAngle(-Math.PI*0.65);
+  hd.handSegment(ox+r2,0,rEndCyl.x,rEndCyl.y,{lineWidth:1.8,color:INK});
+  lbl(ctx,'r',548,-46,INK,20);
   lbl(ctx,'2r',ox+2*r2+14,R,INK,20);
   stampNum(ctx,400,'078');
 })();
@@ -251,13 +305,13 @@ function ACCENT_LOCAL(){return '#8B5E3C';}
 (function(){
   const ctx=mk('h10',520,520),hd=makeHandDraw(ctx,5010);ctx.translate(40,40);
   const L=420, n=11;
-  hd.handSegment(0,L,0,0,{lineWidth:2.6,color:INK});
-  hd.handSegment(0,L,L,L,{lineWidth:2.6,color:INK});
+  hd.handSegment(0,L,0,0,{lineWidth:2.6,wobble:1.0,color:INK});
+  hd.handSegment(0,L,L,L,{lineWidth:2.6,wobble:1.0,color:INK});
   for(let i=0;i<=n;i++){
     const t=(i/n)*(Math.PI/2);
     const floorEnd={x:L*Math.cos(t),y:L};
     const wallEnd={x:0,y:L-L*Math.sin(t)};
-    hd.handSegment(floorEnd.x,floorEnd.y,wallEnd.x,wallEnd.y,{lineWidth:1.6,color:(i===0||i===n)?INK:SANG});
+    hd.handSegment(floorEnd.x,floorEnd.y,wallEnd.x,wallEnd.y,{lineWidth:1.6,wobble:1.32,color:(i===0||i===n)?INK:SANG});
   }
   lbl(ctx,'L',-34,L-60,INK,20);
   stampNum(ctx,480,'079');
