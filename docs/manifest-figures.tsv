@@ -48,7 +48,7 @@ num	id	nivell	moviment	lot	rev	descripcio
 047	q39	2	redueix-al-conegut	4	0	àrea pentàgon regular, 5 triangles des del centre
 048	q05	2	redueix-al-conegut	4	1	angle de puntes d'estrelles {5/2} i {8/3}
 049	q18b	2	invariant	4	0	dilatació de sòlid, volum escala amb k³
-050	q60	2	invariant	4	1	con inscrit en semiesfera, Cavalieri
+050	q60	2	invariant	4	2	con inscrit en semiesfera, Cavalieri
 051	q08a	2	construeix-per-definir	4	0	simetries del cub, eix vèrtex-a-vèrtex
 052	q08b	3	contraexemple	4	1	els cinc poliedres regulars, angle al vèrtex <360°
 053	q71	2	dues-maneres	4	0	quadrilàter amb 4 angles rectes, recíproc de q11/q12
@@ -56,75 +56,75 @@ num	id	nivell	moviment	lot	rev	descripcio
 055	q18a	1	redueix-al-conegut	6	1	volum d'una capsa, capes de cubs unitat
 056	q19	1	identitat-com-a-figura	6	0	senar x senar = senar, graella 5x3
 057	q20	1	identitat-com-a-figura	6	0	parell x parell divisible per 4, blocs 2x2
-058	q27_implicit	2	dues-maneres	6	0	tres cercles tangents (triangle/quadrat/cercle)
-059	q40_implicit	2	dues-maneres	6	0	quadrat inscrit i cadena de cercles+quadrat en cercle
-060	q31	2	simetria-i-demostra	6	0	pentagon amb 3 diagonals, triangles A/B/C semblants
-061	q32	3	dilatacio	6	0	pentagrama, mida del pentagon petit
-062	q33	2	identitat-com-a-figura	6	0	dos pentagons compartint aresta, d^2=d+1
-063	q07	2	invariant	6	0	pentagrama, gir total de 720 graus
-064	q17	3	separa-i-reorienta	6	0	mitjana geometrica via semicercle de Tales
-065	q21	2	definicio-i-absurd	6	0	arrel de 3 irracional, casos p mod 3
+058	q27_implicit	2	dues-maneres	6	1	tres cercles tangents (triangle/quadrat/cercle)
+059	q40_implicit	2	dues-maneres	6	1	quadrat inscrit i cadena de cercles+quadrat en cercle
+060	q31	2	simetria-i-demostra	6	1	pentagon amb 3 diagonals, triangles A/B/C semblants
+061	q32	3	dilatacio	6	1	pentagrama, mida del pentagon petit
+062	q33	2	identitat-com-a-figura	6	1	dos pentagons compartint aresta, d^2=d+1
+063	q07	2	invariant	6	1	pentagrama, gir total de 720 graus
+064	q17	3	separa-i-reorienta	6	1	mitjana geometrica via semicercle de Tales
+065	q21	2	definicio-i-absurd	6	1	arrel de 3 irracional, casos p mod 3
 066	q24	2	redueix-al-conegut	6	0	triangle 3-4-5, Pitagores
-067	q30	2	redueix-al-conegut	6	0	dodecagon triangulat des d'un vertex
-068	q35	2	construeix-per-definir	6	0	suma i diferencia, segment partit
+067	q30	2	redueix-al-conegut	6	1	dodecagon triangulat des d'un vertex
+068	q35	2	construeix-per-definir	6	1	suma i diferencia, segment partit
 069	q03	3	recompte-o-induccio	6	0	mosaics, angles a un vertex sumant 360
 070	q43	3	dues-maneres	7	0	dos cercles solapats, triangle equilater dels centres
-071	q59	2	redueix-al-conegut	7	0	esfera inscrita en un cub
+071	q59	2	redueix-al-conegut	7	1	esfera inscrita en un cub
 072	q62	2	redueix-al-conegut	7	0	casquet esferic, pla de tall a alcada h
-073	q63	1	distingeix-casos	7	0	cilindre per translacio de cercle o rotacio de rectangle
-074	q48	3	redueix-al-conegut	7	0	frustum, arestes prolongades fins al vertex comu
-075	q50	2	cas-limit	7	0	con aproximat per discs apilats
+073	q63	1	distingeix-casos	7	1	cilindre per translacio de cercle o rotacio de rectangle
+074	q48	3	redueix-al-conegut	7	1	frustum, arestes prolongades fins al vertex comu
+075	q50	2	cas-limit	7	1	con aproximat per discs apilats
 076	q57	3	redueix-al-conegut	7	0	tetraedre i octaedre, piramides des del centre
-077	q58	3	redueix-al-conegut	7	0	dos cilindres perpendiculars, seccio quadrada
-078	q61	2	dues-maneres	7	0	esfera i el seu cilindre tancat circumscrit
-079	q64	2	cas-limit	7	0	baston lliscant, envolupant astroide
+077	q58	3	redueix-al-conegut	7	1	dos cilindres perpendiculars, seccio quadrada
+078	q61	2	dues-maneres	7	1	esfera i el seu cilindre tancat circumscrit
+079	q64	2	cas-limit	7	1	baston lliscant, envolupant astroide
 080	q65	3	construeix-per-definir	7	0	rectangle girat al voltant d'un costat, centroide
 081	q67	2	construeix-per-definir	7	0	segment girat, centroide de perimetre
 082	q66	2	redueix-al-conegut	7	0	rectangle no tocant l'eix, tub per Pappus
 083	q68	2	dues-maneres	7	0	triangle rectangle girat, centroide del con
-084	q74	1	cas-limit	8	0	desigualtat triangular, dos arcs es toquen o no
-085	q69	2	dues-maneres	8	0	centroide d'area i de perimetre d'un semicercle
-086	q78	1	construeix-per-definir	8	0	sinus i cosinus, oposat/contigu per als dos angles aguts
-087	q83	1	redueix-al-conegut	8	0	sinus i cosinus de 60 graus, triangle equilater partit
-088	q84	1	redueix-al-conegut	8	0	sin2+cos2=1 via Pitagores
-089	q75	2	contraexemple	8	0	dos triangles diferents, mateixa area i perimetre
+084	q74	1	cas-limit	8	1	desigualtat triangular, dos arcs es toquen o no
+085	q69	2	dues-maneres	8	1	centroide d'area i de perimetre d'un semicercle
+086	q78	1	construeix-per-definir	8	1	sinus i cosinus, oposat/contigu per als dos angles aguts
+087	q83	1	redueix-al-conegut	8	1	sinus i cosinus de 60 graus, triangle equilater partit
+088	q84	1	redueix-al-conegut	8	1	sin2+cos2=1 via Pitagores
+089	q75	2	contraexemple	8	1	dos triangles diferents, mateixa area i perimetre
 090	q77	2	dilatacio	8	0	triangle amb paral·lela, semblanca
 091	q87	2	construeix-per-definir	8	0	sinus d'un angle obtus, angle suplementari
-092	q79	3	redueix-al-conegut	8	0	teorema del cosinus generalitzat, angle obtus
+092	q79	3	redueix-al-conegut	8	1	teorema del cosinus generalitzat, angle obtus
 093	q88	2	redueix-al-conegut	8	0	sinus i cosinus de l'angle doble
 094	q72	2	dues-maneres	8	0	poligon de trams i girs, descomposicio x/y
-095	q85	3	dilatacio	8	0	sinus i cosinus de 72 graus via pentagon
-096	q81	3	redueix-al-conegut	8	0	angle diedre del tetraedre
+095	q85	3	dilatacio	8	1	sinus i cosinus de 72 graus via pentagon
+096	q81	3	redueix-al-conegut	8	1	angle diedre del tetraedre
 097	q82	3	recompte-o-induccio	8	0	omplir l'espai amb tetraedres i octaedres
-098	q90	3	redueix-al-conegut	8	0	formula de Brahmagupta, quadrilater ciclic
-099	q91	2	redueix-al-conegut	9	0	triangle rectangle entre segment i la seva projeccio
-100	q92	2	contraexemple	9	0	projeccio central, dos punts a distancies diferents
-101	q93	2	redueix-al-conegut	9	0	esfera, tangents des d'un punt, triangle rectangle
+098	q90	3	redueix-al-conegut	8	1	formula de Brahmagupta, quadrilater ciclic
+099	q91	2	redueix-al-conegut	9	1	triangle rectangle entre segment i la seva projeccio
+100	q92	2	contraexemple	9	1	projeccio central, dos punts a distancies diferents
+101	q93	2	redueix-al-conegut	9	1	esfera, tangents des d'un punt, triangle rectangle
 102	q94	2	cas-limit	9	0	el·lipse allargada vs cercle amb focus fosos
 103	q99	2	audita-la-demostracio	9	0	triangles des d'un punt de projeccio, area de dues maneres
-104	q100	2	distingeix-casos	9	0	punt de projeccio fora o entre dos plans paral·lels
-105	q101	2	invariant	9	0	tres punts lliures, quart punt determinat per la rao doble
+104	q100	2	distingeix-casos	9	1	punt de projeccio fora o entre dos plans paral·lels
+105	q101	2	invariant	9	1	tres punts lliures, quart punt determinat per la rao doble
 106	q102	2	dues-maneres	9	0	quadrilater projectat, rao doble sobre recta auxiliar
-107	q103	2	distingeix-casos	9	0	costat pel punt de projeccio, vertex fuig a l'infinit
+107	q103	2	distingeix-casos	9	1	costat pel punt de projeccio, vertex fuig a l'infinit
 108	q104	2	construeix-per-definir	9	0	tres rectes paral·leles projectades, concurrents al punt de fuga
-109	q105	2	redueix-al-conegut	9	0	rectes convergint a un punt marcat infinit
+109	q105	2	redueix-al-conegut	9	1	rectes convergint a un punt marcat infinit
 110	q106	2	invariant	9	0	rao doble com invariant projectiu, definicio
 111	q107	2	redueix-al-conegut	9	0	con tallat, generatrius paral·leles al pla, hiperbola
 112	q108	2	un-altre-pla	9	0	con de llum, tres orientacions de la paret
-113	q109	2	dues-maneres	9	0	doble con amb esferes de Dandelin, tangents des d'un punt
+113	q109	2	dues-maneres	9	1	doble con amb esferes de Dandelin, tangents des d'un punt
 114	q110	2	identitat-com-a-figura	9	0	hiperbola, simetria respecte dels dos eixos
 115	q111	2	redueix-al-conegut	9	0	diamant format per asimptotes i tangents, rombe
 116	q112	2	dilatacio	10	0	hiperbola i la seva dilatacio a hiperbola recta
 117	q114	2	dilatacio	10	0	hiperbola unitat, focus a costat i costat
-118	q113	2	redueix-al-conegut	10	0	triangle rectangle dels focus de l'el·lipse
+118	q113	2	redueix-al-conegut	10	1	triangle rectangle dels focus de l'el·lipse
 119	q115	2	dues-maneres	10	0	constant focal igual al diametre, el·lipse i hiperbola
-120	q116	3	redueix-al-conegut	10	0	bisectriu interior dels radis focals a la hiperbola
-121	q117	1	dilatacio	10	0	dues paraboles amb la mateixa directriu
-122	q118	3	construeix-per-definir	10	0	mediatriu de FD, tangent a la parabola sense infinit
+120	q116	3	redueix-al-conegut	10	1	bisectriu interior dels radis focals a la hiperbola
+121	q117	1	dilatacio	10	1	dues paraboles amb la mateixa directriu
+122	q118	3	construeix-per-definir	10	1	mediatriu de FD, tangent a la parabola sense infinit
 123	q119	3	cas-limit	10	0	envolupant de rectes que formen una parabola
-124	q120	2	redueix-al-conegut	10	0	tangent que talla l'eix al punt mitjà, sector parabolic
-125	q121	3	exhauriment	10	0	seccio parabolica com a 2/3 de la caixa
-126	q122	1	construeix-per-definir	10	0	espiral com moviment amb gir i allunyament uniformes
+124	q120	2	redueix-al-conegut	10	1	tangent que talla l'eix al punt mitjà, sector parabolic
+125	q121	3	exhauriment	10	1	seccio parabolica com a 2/3 de la caixa
+126	q122	1	construeix-per-definir	10	1	espiral com moviment amb gir i allunyament uniformes
 127	q123	3	un-altre-pla	10	0	helix desenrotllada sobre un cilindre pla
 128	q126	2	construeix-per-definir	10	0	helix sobre un tor
 129	q124	3	recompte-o-induccio	10	0	pics de la hipocicloide i epicicloide
