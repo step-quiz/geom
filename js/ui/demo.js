@@ -20,7 +20,12 @@
   l'argument (amb figura) / què acaba de passar -- la mateixa forma per a
   les tres demos, sempre visible sencera, mai amagada.
 
-  DEPENDÈNCIES: js/data/demos-dades.js (window.DEMOS), js/nucli/demos.js
+  TANCAMENT COMPARTIT (window.DEMOS_TANCAMENT, demos-dades.js): despres
+  de les tres, no dins de cap d'elles -- nomena les tres FAMILIES d'atac
+  que l'alumne acaba de veure com a conjunt. Es degrada be (no es pinta
+  cap tros a mitges) si mai el fitxer de dades no en te les tres.
+
+  DEPENDÈNCIES: js/data/demos-dades.js (window.DEMOS, window.DEMOS_TANCAMENT), js/nucli/demos.js
                 (window.geoDemos), js/nucli/router.js (per als enllaços
                 de tancament cap a preguntes reals), js/i18n/i18n-core.js.
 */
@@ -167,6 +172,21 @@
       // cap interacció addicional per marcar-la vista.
       if (window.geoDemos) window.geoDemos.marcaVista(demo.id);
     });
+
+    // Tancament compartit, despres de les tres (v. capçalera de
+    // demos-dades.js): nomes es pinta si hi ha les tres demos carregades
+    // -- es degrada be (simplement no apareix) si mai queda buit o parcial.
+    if (window.DEMOS_TANCAMENT && demos.length === 3) {
+      const r = (camp) => (camp && (camp[lang] || camp.ca)) || "";
+      const tancament = document.createElement("section");
+      tancament.className = "demo__tancament";
+      const h2t = document.createElement("h2");
+      h2t.className = "demo__tancament-title";
+      h2t.textContent = r(window.DEMOS_TANCAMENT.titol);
+      tancament.appendChild(h2t);
+      afegeixParagrafs(tancament, r(window.DEMOS_TANCAMENT.text), "demo__tancament-text");
+      contenidorEl.appendChild(tancament);
+    }
 
     const tornar = document.createElement("p");
     tornar.className = "demo__back";
