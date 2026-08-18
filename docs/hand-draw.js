@@ -150,12 +150,9 @@ function makeHandDraw(ctx, seed) {
       });
     }
 
-    // Guardem els punts de la trajectòria REAL (primera passada), com fa
-    // handSegment amb realPoints -- per poder llegir després on cau un punt
-    // marcat (P, Q, A, B...) SOBRE EL TRAÇ DIBUIXAT, no sobre el cercle
-    // ideal. La incidència (un punt que ha de quedar sobre la corba) és un
-    // dels casos que la tècnica exigeix complir exactament (Part 1.4).
-    const realPoints = [];
+    // Paràmetres de l'ÚLTIMA passada dibuixada (la que queda visible per sobre);
+    // es guarden per exposar pointAtAngle amb el mateix traç real, no la geometria ideal.
+    let lastPassPhaseShift = 0, lastPassRadiusShift = 1, lastXyDecorrelation = 1;
 
     for (let p = 0; p < passes; p++) {
       // Cada passada té el seu propi petit desfasament de fase (com repassar el cercle una 2a vegada
@@ -166,6 +163,9 @@ function makeHandDraw(ctx, seed) {
       // cosa que introduïa soroll d'alta freqüència indesitjat -- "peludo" -- en lloc de la forma
       // globalment asimètrica i suau que busquem)
       const xyDecorrelation = 0.85 + rand()*0.3;
+      lastPassPhaseShift = passPhaseShift;
+      lastPassRadiusShift = passRadiusShift;
+      lastXyDecorrelation = xyDecorrelation;
 
       ctx.beginPath();
       ctx.lineWidth = Math.max(0.6, lineWidth + (rand()-0.5)*widthVariation);
@@ -195,7 +195,6 @@ function makeHandDraw(ctx, seed) {
         const x = cx + localX*Math.cos(rotation) - localY*Math.sin(rotation);
         const y = cy + localX*Math.sin(rotation) + localY*Math.cos(rotation);
         if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
-        if (p === 0) realPoints.push({ t, x, y });
       }
       ctx.strokeStyle = color;
       ctx.lineCap = 'round';
@@ -203,22 +202,28 @@ function makeHandDraw(ctx, seed) {
       ctx.stroke();
     }
 
-    // Consulta la trajectòria real (primera passada) a un angle theta donat,
-    // amb interpolació lineal entre mostres -- anàleg a pointAtT de handSegment.
-    function pointAtAngle(theta) {
-      const span = endAngle - startAngle;
-      let th = theta;
-      // Porta theta al rang [startAngle, startAngle+2π) abans de normalitzar,
-      // perquè angles negatius o >2π (habituals en aquest tipus de crida)
-      // no col·lapsin cap a l'extrem de la trajectòria.
-      while (th < startAngle) th += 2 * Math.PI;
-      while (th >= startAngle + 2 * Math.PI) th -= 2 * Math.PI;
-      let u = (th - startAngle) / span;
-      u = Math.max(0, Math.min(1, u));
-      const idx = Math.min(realPoints.length - 2, Math.max(0, Math.floor(u * steps)));
-      const frac = u * steps - idx;
-      const p0 = realPoints[idx], p1 = realPoints[idx + 1];
-      return { x: p0.x + (p1.x - p0.x) * frac, y: p0.y + (p1.y - p0.y) * frac };
+    // Retorna un punt EXACTE sobre el traç real (última passada visible) a l'angle donat,
+    // amb el mateix càlcul que el bucle de dibuix -- per llegir vèrtexs/incidències reals
+    // en lloc de la geometria ideal (v. Part 4.1-4.2 del document tècnic).
+    function pointAtAngle(t) {
+      let rFactorX = lastPassRadiusShift, rFactorY = lastPassRadiusShift;
+      let w = 1;
+      for (const pa of pinAngles) {
+        let d = t - pa;
+        while (d >  Math.PI) d -= 2*Math.PI;
+        while (d < -Math.PI) d += 2*Math.PI;
+        w *= (1 - Math.exp(-(d/pinSigma)*(d/pinSigma)));
+      }
+      for (const h of harmonics) {
+        const dev = h.amp * Math.sin(h.freq * t + h.phase + lastPassPhaseShift) * w;
+        rFactorX += dev;
+        rFactorY += dev * lastXyDecorrelation;
+      }
+      const localX = rx * rFactorX * Math.cos(t);
+      const localY = ry * rFactorY * Math.sin(t);
+      const x = cx + localX*Math.cos(rotation) - localY*Math.sin(rotation);
+      const y = cy + localX*Math.sin(rotation) + localY*Math.cos(rotation);
+      return { x, y };
     }
 
     return { pointAtAngle };
