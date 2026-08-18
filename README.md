@@ -159,7 +159,8 @@ js/
     glossari.js                — panell overlay + popovers inline
     demo.js                     — vista "què és una demostració"
     main.js                   — connecta el router a les vistes
-assets/img/                   — les 68 imatges font (67 preguntes + q40_implicit amb dues)
+assets/img/                   — les 115 imatges d'enunciat (67 escanejades del llibre original +
+                                 47 dibuixades a mà pel mateix conveni + q40_implicit amb dues)
 ```
 
 Per a detalls tècnics de cada decisió de disseny (per què cada fitxer és com és, quins
@@ -185,7 +186,7 @@ com es van transformar les dades — la seva funció principal en aquest reposit
 explicar el mapeig, no ser un botó d'un sol clic.
 
 **El JSON font (`questions_full_book.json`) i les imatges font originals no s'inclouen
-en aquest repositori** — només `assets/img/` (les 68 imatges ja processades i llestes
+en aquest repositori** — només `assets/img/` (les 115 imatges ja processades i llestes
 per a l'app) i el `preguntes-dades.js` ja generat, que és tot el que el lloc necessita
 per funcionar. `build_preguntes_dades.py` s'inclou com a documentació de la
 transformació i per si algú té accés al JSON font i vol regenerar-lo, però executar-lo
@@ -203,11 +204,16 @@ existents (documentat també al capçalera del propi script).
 Els sis passos de l'arquitectura original estan complets i provats de cap a cap
 (inclosa una càrrega real via `file://` sense servidor, amb clics reals a cada element
 interactiu). **Les 130 guies del llibre estan fetes** (lliuraments 9 i 10 integrats —
-v. `docs/guies/NOTA-FUSIO-LOT-9-10.md`). Pendents coneguts, cap dels quals bloqueja
-l'ús actual del lloc:
+v. `docs/guies/NOTA-FUSIO-LOT-9-10.md`). **114 de 130 preguntes tenen ja gràfic
+d'enunciat** (67 escanejats del llibre + 47 dibuixats a mà — v.
+`docs/guies/NOTA-PART1-ENUNCIATS.md`), i **31 guies tenen un segon gràfic a Pista 2**,
+a més del que ja tenien a Pista 3 (v. `docs/guies/NOTA-PART2-PISTA2.md`). Pendents
+coneguts, cap dels quals bloqueja l'ús actual del lloc:
 
 - **Figures del glossari**: 52 dels 53 termes encara no en tenen (v.
   `docs/guies/NOTA-GLOSSARI-AMPLIACIO.md`) — la pròxima tasca prevista.
+- **16 preguntes sense gràfic d'enunciat** (de les 63 originals, se'n van triar 47;
+  les altres 16 es van descartar explícitament — v. `ANALISI-GRAFICS-NOUS.md`).
 - Assignació de `curs` i mode d'`interaccio` per pregunta.
 
 Ja fets, per si es cerca aquí per costum: totes les 130 preguntes tenen ja
