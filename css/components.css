@@ -731,6 +731,21 @@
 .demo__handoff-link:hover { text-decoration: underline; }
 .demo__handoff-link:focus-visible { outline: none; box-shadow: var(--focus-ring); }
 
+.demo__tancament {
+  max-width: var(--measure);
+  margin-top: var(--space-6);
+  padding-top: var(--space-6);
+  border-top: calc(var(--stroke-rule) * 2) solid var(--ink);
+}
+.demo__tancament-title {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: var(--fs-question);
+  line-height: var(--lh-question);
+  margin: 0 0 var(--space-4);
+}
+.demo__tancament-text { margin: 0 0 var(--space-3); color: var(--ink); }
+
 .demo__back {
   margin-top: var(--space-6);
   padding-top: var(--space-4);
