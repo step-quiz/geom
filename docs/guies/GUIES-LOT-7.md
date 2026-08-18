@@ -311,6 +311,8 @@ corda d'un cercle). La intersecció dels dos cilindres, en aquest pla, és
 on totes dues franges es superposen.
 
 **Pista 2 — la construcció.** → `fig-077.png`
+On es superposen les dues franges rectangulars (marcades en sanguina),
+quina forma dibuixen — un cercle, o alguna altra cosa?
 
 **Pista 3 — tanca-ho.**
 A cada alçada y, la secció de la intersecció NO és un cercle: és un
@@ -436,6 +438,8 @@ del rectangle, multiplicat per 2π i per la seva distància a l'eix,
 reprodueix exactament aquest volum?
 
 **Pista 2 — la construcció.** → `fig-080.png`
+El punt marcat "centroide": quina distància a l'eix, multiplicada per
+2π, hauria de reproduir el volum del cilindre que ja saps calcular?
 
 **Pista 3 — tanca-ho.**
 Per al rectangle, el punt que fa funcionar el teorema resulta ser el punt

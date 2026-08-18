@@ -307,6 +307,8 @@ inclou tot el triangle original) i un de petit (el tros extra, fora del
 triangle original).
 
 **Pista 2 — la construcció.** → `fig-092.png`
+El triangle rectangle gran (hipotenusa c): quina és la seva base, en
+termes d'a i del tros extra marcat?
 
 **Pista 3 — tanca-ho.**
 Aplica Pitàgores al triangle rectangle gran (hipotenusa c). La base
@@ -412,6 +414,9 @@ isòsceles daurat que ja vas trobar a q31/q32 (dos costats en raó φ:1). Si
 en saps el cosinus de 36°, l'angle doble (q88) et dona el de 72°.
 
 **Pista 2 — la construcció.** → `fig-095.png`
+L'alçada discontínua parteix l'angle de dalt (36°) exactament per la
+meitat — per això l'angle marcat val 18°. Quin costat i quin angle del
+triangle petit que en resulta ja coneixes?
 
 **Pista 3 — tanca-ho.**
 Al triangle daurat (dos costats φ, base 1, angle 36° al vèrtex), parteix-
@@ -451,6 +456,8 @@ cara). Aquests dos segments, un a cada banda, formen l'angle diedre que
 busques.
 
 **Pista 2 — la construcció.** → `fig-096.png`
+L'angle marcat entre els dos segments (en sanguina): és aquest, i no cap
+altre, l'angle diedre que busques?
 
 **Pista 3 — tanca-ho.**
 Amb les coordenades dels vèrtexs del tetràedre (o mesurant els dos
@@ -527,6 +534,8 @@ demana com a hipòtesi, i el fet ja el vas veure encunyat, sense el nom,
 en algun quadrilàter cíclic anterior).
 
 **Pista 2 — la construcció.** → `fig-098.png`
+Els dos angles marcats (a banda i banda de la diagonal): quina relació
+ja saps que els lliga, per estar inscrits en el mateix cercle?
 
 **Pista 3 — tanca-ho.**
 Escriu la diagonal al quadrat de dues maneres (teorema del cosinus, un

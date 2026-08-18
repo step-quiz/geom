@@ -98,6 +98,8 @@ q23, amb catets (a−b) i 2√(ab), hipotenusa (a+b). Aplica'l a la parella
 (R₁, r).
 
 **Pista 2 — la construcció.** → `fig-024.png`
+Aplica el mateix triangle a la parella (R₂, r) — quin és l'anàleg del catet
+(a−b) que ja vas fer servir per a (R₁, r)?
 
 **Pista 3 — tanca-ho.** La mateixa relació val per a (R₂, r). Els peus dels
 tres cercles són tots sobre la mateixa recta, així que la distància entre
@@ -343,6 +345,8 @@ volum. Però un és "recte" i l'altre "s'inclina": mira la superfície
 lateral de cadascun. Quina creus que serà més gran, i per què?
 
 **Pista 2 — la construcció.** → `fig-031.png`
+Mira la superfície lateral de cadascun, no el volum (que ja saps que
+coincideix) — quina franja vertical s'allarga en inclinar-se?
 
 **Pista 3 — tanca-ho.** El cilindre inclinat té una superfície lateral
 estrictament més gran que el recte, encara que el volum sigui idèntic —
@@ -378,6 +382,7 @@ paral·lelogram? Compara-la amb la longitud del tall del rectangle a la
 mateixa alçada.
 
 **Pista 2 — la construcció.** → `fig-032.png`
+Compara la longitud del tall (no l'àrea) a la mateixa alçada, als dos.
 
 **Pista 3 — tanca-ho.** A qualsevol alçada, el tall horitzontal del
 paral·lelogram té exactament la mateixa longitud que la base — igual que
@@ -418,6 +423,8 @@ mateix amb els verticals. Ara suma-ho tot: aquesta és la longitud total del
 camí en escala.
 
 **Pista 2 — la construcció.** → `fig-033.png`
+Suma primer els trams horitzontals sols (marcats), sigui quin sigui el
+nombre de graons — quant val, en termes de s?
 
 **Pista 3 — tanca-ho.** Els trams horitzontals sempre sumen exactament el
 costat del quadrat (s), sigui quin sigui el nombre de graons — es limiten a
