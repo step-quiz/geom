@@ -4881,7 +4881,10 @@ window.GUIES = {
           "ca": "la construcció",
           "en": null
         },
-        "text": null,
+        "text": {
+          "ca": "Aplica el mateix triangle a la parella (R₂, r) — quin és l'anàleg del catet (a−b) que ja vas fer servir per a (R₁, r)?",
+          "en": null
+        },
         "figura": "fig-024.png"
       },
       {
@@ -5421,7 +5424,10 @@ window.GUIES = {
           "ca": "la construcció",
           "en": null
         },
-        "text": null,
+        "text": {
+          "ca": "Mira la superfície lateral de cadascun, no el volum (que ja saps que coincideix) — quina franja vertical s'allarga en inclinar-se?",
+          "en": null
+        },
         "figura": "fig-031.png"
       },
       {
@@ -5478,7 +5484,10 @@ window.GUIES = {
           "ca": "la construcció",
           "en": null
         },
-        "text": null,
+        "text": {
+          "ca": "Compara la longitud del tall (no l'àrea) a la mateixa alçada, als dos.",
+          "en": null
+        },
         "figura": "fig-032.png"
       },
       {
@@ -5535,7 +5544,10 @@ window.GUIES = {
           "ca": "la construcció",
           "en": null
         },
-        "text": null,
+        "text": {
+          "ca": "Suma primer els trams horitzontals sols (marcats), sigui quin sigui el nombre de graons — quant val, en termes de s?",
+          "en": null
+        },
         "figura": "fig-033.png"
       },
       {
@@ -5721,7 +5733,10 @@ window.GUIES = {
           "ca": "la construcció",
           "en": null
         },
-        "text": null,
+        "text": {
+          "ca": "On es superposen les dues franges rectangulars (marcades en sanguina), quina forma dibuixen — un cercle, o alguna altra cosa?",
+          "en": null
+        },
         "figura": "fig-077.png"
       },
       {
@@ -6168,7 +6183,10 @@ window.GUIES = {
           "ca": "la construcció",
           "en": null
         },
-        "text": null,
+        "text": {
+          "ca": "El punt marcat \"centroide\": quina distància a l'eix, multiplicada per 2π, hauria de reproduir el volum del cilindre que ja saps calcular?",
+          "en": null
+        },
         "figura": "fig-080.png"
       },
       {
@@ -7068,7 +7086,10 @@ window.GUIES = {
           "ca": "la construcció",
           "en": null
         },
-        "text": null,
+        "text": {
+          "ca": "El triangle rectangle gran (hipotenusa c): quina és la seva base, en termes d'a i del tros extra marcat?",
+          "en": null
+        },
         "figura": "fig-092.png"
       },
       {
@@ -7197,7 +7218,10 @@ window.GUIES = {
           "ca": "la construcció",
           "en": null
         },
-        "text": null,
+        "text": {
+          "ca": "L'angle marcat entre els dos segments (en sanguina): és aquest, i no cap altre, l'angle diedre que busques?",
+          "en": null
+        },
         "figura": "fig-096.png"
       },
       {
@@ -7449,7 +7473,10 @@ window.GUIES = {
           "ca": "la construcció",
           "en": null
         },
-        "text": null,
+        "text": {
+          "ca": "L'alçada discontínua parteix l'angle de dalt (36°) exactament per la meitat — per això l'angle marcat val 18°. Quin costat i quin angle del triangle petit que en resulta ja coneixes?",
+          "en": null
+        },
         "figura": "fig-095.png"
       },
       {
@@ -7767,7 +7794,10 @@ window.GUIES = {
           "ca": "la construcció",
           "en": null
         },
-        "text": null,
+        "text": {
+          "ca": "Els dos angles marcats (a banda i banda de la diagonal): quina relació ja saps que els lliga, per estar inscrits en el mateix cercle?",
+          "en": null
+        },
         "figura": "fig-098.png"
       },
       {
