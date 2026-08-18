@@ -49,15 +49,15 @@ window.DEMOS = [
       en: null,
     },
     perque_no_es_obvi: {
-      ca: "Mira un triangle prim i llarg, i un altre gairebé equilàter: no s'assemblen gens. Que tots dos, i qualsevol altre que et puguis imaginar, sumin exactament el mateix número no es veu mirant — cal una raó que valgui per a tots alhora, no una mesura d'un cas concret.",
+      ca: "Mira un triangle prim i llarg, i un altre gairebé equilàter: no s'assemblen gens (fixa-t'hi al primer panell de la figura). Que tots dos, i qualsevol altre que et puguis imaginar, sumin exactament el mateix número no es veu mirant — cal una raó que valgui per a tots alhora, no una mesura d'un cas concret.",
       en: null,
     },
     argument: {
-      ca: "Dibuixa el triangle ABC. Ara traça, pel vèrtex de dalt (A), una línia paral·lela al costat de baix (BC) — una línia que l'enunciat original no demanava, la clau de tot l'argument.\n\nAquesta línia paral·lela, tallada per les dues bandes del triangle (AB i AC), crea dos parells d'angles alterns iguals: l'angle a l'esquerra de A (sobre la línia nova) és igual a l'angle B del triangle; l'angle a la dreta de A és igual a l'angle C. Això és la propietat bàsica de les paral·leles tallades per una secant — no res nou.\n\nAra mira només el que passa AL VOLTANT del punt A: els tres angles que hi conflueixen (l'angle esquerre igual a B, l'angle propi de A, i l'angle dret igual a C) formen, junts, una línia recta — 180° exactes, perquè és literalment un angle pla. Però aquests tres angles SÓN, en valor, A + B + C. Per tant A + B + C = 180°.",
+      ca: "Dibuixa el triangle ABC. Ara traça, pel vèrtex de dalt (A), una línia paral·lela al costat de baix (BC) — una línia que l'enunciat original no demanava, la clau de tot l'argument.\n\nAquesta línia paral·lela, tallada per les dues bandes del triangle (AB i AC), crea dos parells d'angles alterns iguals: l'angle a l'esquerra de A (sobre la línia nova) és igual a l'angle B del triangle; l'angle a la dreta de A és igual a l'angle C. Per què? Perquè AB (i, per separat, AC) és una única recta que talla dues paral·leles (la línia nova i BC) — i quan una recta en talla dues que són paral·leles, els angles que queden a banda i banda, un a cada paral·lela, són sempre iguals (és, literalment, la definició de què vol dir que dues rectes «no s'ajuntin mai»: si giressin en angles diferents respecte de qualsevol secant, s'acabarien creuant). No és un fet nou que et demanem que et creguis — és l'única manera que dues rectes puguin no trobar-se mai.\n\nAra mira només el que passa AL VOLTANT del punt A: els tres angles que hi conflueixen (l'angle esquerre igual a B, l'angle propi de A, i l'angle dret igual a C) formen, junts, una línia recta — 180° exactes, perquè és literalment un angle pla. Però aquests tres angles SÓN, en valor, A + B + C. Per tant A + B + C = 180°.",
       en: null,
     },
     que_acaba_de_passar: {
-      ca: "El pas clau no ha estat cap càlcul: ha estat afegir una línia que ningú et va demanar. Aquest moviment — construir alguna cosa que l'enunciat no esmenta, perquè converteix una cosa que no sabies mesurar en una que sí — es diu, en aquest projecte, «una línia no enunciada» (linia-no-enunciada), i el retrobaràs.\n\nAixò és el que és una demostració: no comprovar un exemple, sinó un argument que val per a qualsevol triangle que dibuixis — el prim, el gairebé equilàter, tots.",
+      ca: "El pas clau no ha estat cap càlcul: ha estat afegir una línia que ningú et va demanar. Aquest moviment — construir alguna cosa que l'enunciat no esmenta, perquè converteix una cosa que no sabies mesurar en una que sí — es diu, en aquest projecte, «una línia no enunciada» (linia-no-enunciada), i el retrobaràs.\n\nFixa't que en cap moment de l'argument hem fet servir la mida ni la forma concreta del triangle ABC — no hem mesurat cap angle amb un transportador, no hem donat per fet que és «prou normal». Per això val per al triangle prim i pel gairebé equilàter alhora: mira el darrer panell de la figura, el mateix argument aplicat al triangle més prim de tots, sense canviar-hi ni una lletra.\n\nAixò és el que és una demostració: no comprovar un exemple, sinó un argument que val per a qualsevol triangle que dibuixis — el prim, el gairebé equilàter, tots.",
       en: null,
     },
     handoff: {
@@ -80,15 +80,15 @@ window.DEMOS = [
       en: null,
     },
     perque_no_es_obvi: {
-      ca: "\"Va cap al punt mitjà\" (mediana) i \"cau perpendicular\" (altura) són dues definicions completament diferents, que en un triangle qualsevol donen segments diferents. Que aquí coincideixin exactament — que anar al punt mitjà i caure en angle recte siguin, per un cop, la mateixa acció — és una coincidència que necessita explicar-se, no una cosa que es vegi a ull.",
+      ca: "\"Va cap al punt mitjà\" (mediana) i \"cau perpendicular\" (altura) són dues definicions completament diferents, que en un triangle qualsevol donen segments diferents (mira el primer panell: un isòsceles molt agut i un de molt obtús — la mateixa pregunta, dues formes que no s'assemblen). Que aquí coincideixin exactament — que anar al punt mitjà i caure en angle recte siguin, per un cop, la mateixa acció — és una coincidència que necessita explicar-se, no una cosa que es vegi a ull.",
       en: null,
     },
     argument: {
-      ca: "Triangle ABC, isòsceles amb AB = AC. Sigui M el punt mitjà de BC. Traça el segment AM.\n\nImagina que retalles el triangle i el doblegues per AM, com un plec de paper. El costat AB cau exactament sobre AC (són iguals, per hipòtesi), i com que M és el punt mitjà, el punt B cau exactament sobre C. El plec fa coincidir els dos triangles ABM i ACM del tot: són imatge especular l'un de l'altre.\n\nSi els dos triangles coincideixen pel plec, els dos angles a M (l'angle AMB i l'angle AMC) també coincideixen — són iguals. Però, alhora, aquests dos angles junts formen una línia recta (B, M i C estan alineats): sumen 180°. Dos angles iguals que sumen 180° només poden ser de 90° cadascun. AM és perpendicular a BC.",
+      ca: "Triangle ABC, isòsceles amb AB = AC. Sigui M el punt mitjà de BC. Traça el segment AM.\n\nImagina que retalles el triangle i el doblegues per AM, com un plec de paper. Aquest plec és, en el llenguatge de la geometria, una REFLEXIÓ — i una reflexió té una propietat que fem servir sense dir-la sovint: no canvia cap longitud ni cap angle de la figura que mou, només en canvia la posició (com mirar-te al mirall: la teva alçada no varia perquè te la reflecteixin). És per això que, si el plec fa coincidir dos punts, tot el que hi ha entre ells —distàncies, angles— coincideix igual de exacte.\n\nEl costat AB cau exactament sobre AC (són iguals, per hipòtesi), i com que M és el punt mitjà, el punt B cau exactament sobre C. El plec fa coincidir els dos triangles ABM i ACM del tot: són imatge especular l'un de l'altre.\n\nSi els dos triangles coincideixen pel plec, els dos angles a M (l'angle AMB i l'angle AMC) també coincideixen — són iguals, precisament perquè la reflexió no els ha pogut canviar. Però, alhora, aquests dos angles junts formen una línia recta (B, M i C estan alineats): sumen 180°. Dos angles iguals que sumen 180° només poden ser de 90° cadascun. AM és perpendicular a BC.",
       en: null,
     },
     que_acaba_de_passar: {
-      ca: "L'argument no ha mesurat res: ha fet servir que la figura té una simetria (el plec) i n'ha llegit una conclusió que calia demostrar. Aquest moviment es diu «fes servir la simetria per demostrar-ho» (simetria-i-demostra) — el retrobaràs en preguntes que, a primer cop d'ull, no semblen tenir res a veure amb aquesta.\n\nAixò és el que és una demostració: la mateixa raó (el plec, la igualtat dels dos costats) val per a QUALSEVOL triangle isòsceles, no només per al que has dibuixat.",
+      ca: "L'argument no ha mesurat res: ha fet servir que la figura té una simetria (el plec, és a dir, una reflexió) i n'ha llegit una conclusió que calia demostrar. Aquest moviment es diu «fes servir la simetria per demostrar-ho» (simetria-i-demostra) — el retrobaràs en preguntes que, a primer cop d'ull, no semblen tenir res a veure amb aquesta.\n\nEn cap moment hem fet servir COM D'AGUT o COM D'OBTÚS és el triangle — només que AB = AC. Per això el mateix plec funciona per a l'isòsceles molt agut i pel molt obtús del primer panell (mira'n el darrer: el mateix argument, sense canviar-hi res, sobre el més esprimatxat dels dos).\n\nAixò és el que és una demostració: la mateixa raó (el plec, la igualtat dels dos costats) val per a QUALSEVOL triangle isòsceles, no només per al que has dibuixat.",
       en: null,
     },
     handoff: {
@@ -111,7 +111,7 @@ window.DEMOS = [
       en: null,
     },
     perque_no_es_obvi: {
-      ca: "\"Idèntics\" és una afirmació forta sobre QUATRE regions que, a ull, no s'assemblen: una queda cap per avall al mig, les altres tres dretes a les cantonades. Comprovar-ho mesurant un parell no basta — cal un sol argument que expliqui els quatre alhora, sense mirar-los un per un.",
+      ca: "\"Idèntics\" és una afirmació forta sobre QUATRE regions que, a ull, no s'assemblen (mira el primer panell: les quatre peces soltes, una capgirada) — una queda cap per avall al mig, les altres tres dretes a les cantonades. Comprovar-ho mesurant un parell no basta — cal un sol argument que expliqui els quatre alhora, sense mirar-los un per un.",
       en: null,
     },
     argument: {
@@ -119,7 +119,7 @@ window.DEMOS = [
       en: null,
     },
     que_acaba_de_passar: {
-      ca: "Cap pas d'aquest argument ha calgut inventar-lo: tot surt de reduir \"són congruents\" a dues coses que ja sabies (el segment dels punts mitjans, i el criteri SSS) aplicades quatre vegades amb el mateix argument. Aquest moviment es diu «redueix el desconegut al conegut» (redueix-al-conegut) — és, de llarg, el més repetit de tot aquest projecte.\n\nAixò és el que és una demostració: un sol argument que val per als quatre triangles alhora, no quatre comprovacions per separat.",
+      ca: "Cap pas d'aquest argument ha calgut inventar-lo: tot surt de reduir \"són congruents\" a dues coses que ja sabies (el segment dels punts mitjans, i el criteri SSS) aplicades quatre vegades amb el mateix argument. Aquest moviment es diu «redueix el desconegut al conegut» (redueix-al-conegut) — és, de llarg, el més repetit de tot aquest projecte.\n\nNi la forma del triangle ABC ni la posició de D, E, F com a punts \"especials\" hi han fet cap paper —només que són punts mitjans. Per això el mateix argument funciona igual sobre un triangle molt més aixafat (mira el darrer panell): el mateix fet dels punts mitjans, aplicat tres vegades, la mateixa conclusió.\n\nAixò és el que és una demostració: un sol argument que val per als quatre triangles alhora, no quatre comprovacions per separat.",
       en: null,
     },
     handoff: {
@@ -131,3 +131,24 @@ window.DEMOS = [
     },
   },
 ];
+
+/*
+  TANCAMENT COMPARTIT — no pertany a cap de les tres demos soles (§ nova,
+  a petició de l'owner: "un tancament final que lligui les tres
+  demostracions com a estrategies"). Es renderitza un sol cop, despres
+  de les tres, per js/ui/demo.js -- v. la seva capçalera per a on
+  exactament. Nomena explicitament les tres FAMILIES d'atac que
+  l'alumne acaba de veure, sense repetir cap text ja dit a cada
+  que_acaba_de_passar -- i tanca amb el "mira enrere" de Pólya (què NO
+  ha calgut fer servir) que cap de les tres demos feia fins ara.
+*/
+window.DEMOS_TANCAMENT = {
+  titol: {
+    ca: "Tres demostracions, tres maneres diferents d'atacar",
+    en: null,
+  },
+  text: {
+    ca: "Mira-les un cop més, ara les tres juntes, no com a fets aïllats sinó com a maneres d'ATACAR una afirmació que no pots comprovar mirant:\n\nA la primera, la resposta no hi era enlloc de la figura original — calia AFEGIR alguna cosa que ningú et va demanar (la línia paral·lela) per fer-la aparèixer. A la segona, la resposta ja hi era, amagada dins de la pròpia simetria de la figura (el plec) — calia RECONÈIXER-LA, no afegir res. A la tercera, la resposta es construeix sencera a partir de dues coses que ja sabies (el segment dels punts mitjans, el criteri SSS) — calia REDUIR el que no sabies a allò que ja dominaves.\n\nAfegir el que falta. Reconèixer la simetria que ja hi és. Reduir-ho a allò conegut. Cap de les tres és un truc d'una sola vegada: són les tres maneres més repetides d'atacar tot aquest llibre, i les retrobaràs barrejades, una dins de l'altra, en gairebé totes les guies que obris.\n\nUna última cosa, la mateixa a les tres: fixa't en tot el que NO ha calgut fer servir en cap dels tres arguments — cap mesura amb regle, cap valor numèric concret, cap suposició sobre \"aquest triangle en particular\". És exactament perquè no calen que els tres arguments valen per a qualsevol triangle, no només pel que has vist dibuixat.",
+    en: null,
+  },
+};
