@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+ body{margin:0;background:#fff}canvas{display:block;margin:0 0 24px 0}
+</style></head><body>
+<script src="../hand-draw.js"></script>
+<script src="../comu.js"></script>
+<script>
+function stampNum(ctx,h,num){
+  ctx.save();ctx.setTransform(1,0,0,1,0,0);
+  ctx.font='18px Georgia';ctx.fillStyle='#8a8580';
+  ctx.fillText(num, 8, h-8);ctx.restore();
+}
+function mid(a,b){return {x:(a.x+b.x)/2,y:(a.y+b.y)/2};}
+function regularPoly(n,cx,cy,R,a0){
+  const pts=[];
+  for(let i=0;i<n;i++){const t=a0+i*2*Math.PI/n;pts.push({x:cx+R*Math.cos(t),y:cy+R*Math.sin(t)});}
+  return pts;
+}
+function cubeVerts(S,dx,dy){
+  function P(x,y,z){return {x:x*S+z*dx, y:(1-y)*S+z*dy};}
+  return {fBL:P(0,0,0),fBR:P(1,0,0),fTR:P(1,1,0),fTL:P(0,1,0),
+          bBL:P(0,0,1),bBR:P(1,0,1),bTR:P(1,1,1),bTL:P(0,1,1)};
+}
+function drawCubeWire(hd,V,lw){
+  lw=lw||2.6;
+  const solid=[[V.fTL,V.fTR],[V.fTR,V.fBR],[V.fBR,V.fBL],[V.fBL,V.fTL],
+    [V.fTL,V.bTL],[V.fTR,V.bTR],[V.fBR,V.bBR],[V.bTL,V.bTR],[V.bTR,V.bBR]];
+  const hidden=[[V.fBL,V.bBL],[V.bTL,V.bBL],[V.bBL,V.bBR]];
+  solid.forEach(s=>hd.handSegment(s[0].x,s[0].y,s[1].x,s[1].y,{lineWidth:lw,color:INK}));
+  hidden.forEach(s=>hd.handSegment(s[0].x,s[0].y,s[1].x,s[1].y,{lineWidth:lw*0.85,dashed:true,dashPattern:[8,7],color:INK}));
+}
+
+/* ============================================================
+   ENUN-q37 -- triangle equilater al costat d'un rectangle buit
+   (neutre: cap dimensio del rectangle fixada, aixo es la resposta). */
+(function(){
+  const ctx=mk('b1',560,340),hd=makeHandDraw(ctx,11001);ctx.translate(40,50);
+  const Sd=200,h0=Sd*Math.sqrt(3)/2;
+  const A={x:Sd/2,y:0},B={x:0,y:h0},C={x:Sd,y:h0};
+  hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.4,color:INK});
+  hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.4,color:INK});
+  hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.4,color:INK});
+  lbl(ctx,'s',(B.x+C.x)/2-6,h0+28,INK,20);
+  ctx.save();ctx.translate(320,40);
+  quad(hd,0,0,150,110,110,{lineWidth:2,dashed:true,dashPattern:[7,6],color:INK});
+  ctx.restore();
+  stampNum(ctx,260,'148');
+})();
+
+/* ============================================================
+   ENUN-q39 -- pentagon regular, neutre (sense el centre marcat --
+   aquest es part de la construccio de la resposta). */
+(function(){
+  const ctx=mk('b2',460,440),hd=makeHandDraw(ctx,11002);ctx.translate(230,220);
+  const pts=regularPoly(5,0,0,180,-Math.PI/2);
+  for(let i=0;i<5;i++) hd.handSegment(pts[i].x,pts[i].y,pts[(i+1)%5].x,pts[(i+1)%5].y,{lineWidth:2.6,color:INK});
+  stampNum(ctx,400,'149');
+})();
+
+/* ============================================================
+   ENUN-q45 -- cilindre "generalitzat" (base no circular, per
+   il·lustrar que no cal que sigui un cercle -- una base ovalada
+   qualsevol, extrudida). */
+(function(){
+  const ctx=mk('b3',520,420),hd=makeHandDraw(ctx,11003);ctx.translate(260,120);
+  const H=220;
+  function ovalPts(cy){
+    const pts=[];
+    for(let i=0;i<40;i++){
+      const t=i/40*2*Math.PI;
+      pts.push({x:(110+40*Math.cos(3*t))*Math.cos(t), y:cy+(60+22*Math.cos(3*t))*Math.sin(t)*0.6});
+    }
+    return pts;
+  }
+  const top=ovalPts(0), bot=ovalPts(H);
+  for(let i=0;i<top.length;i++){
+    const a=top[i], b=top[(i+1)%top.length];
+    hd.handSegment(a.x,a.y,b.x,b.y,{lineWidth:2.2,color:INK});
+  }
+  for(let i=0;i<bot.length;i++){
+    const a=bot[i], b=bot[(i+1)%bot.length];
+    hd.handSegment(a.x,a.y,b.x,b.y,{lineWidth:2.2,dashed: i>bot.length*0.02 && i<bot.length*0.48, dashPattern:[6,5],color:INK});
+  }
+  hd.handSegment(top[0].x,top[0].y,bot[0].x,bot[0].y,{lineWidth:2.2,color:INK});
+  hd.handSegment(top[20].x,top[20].y,bot[20].x,bot[20].y,{lineWidth:2.2,color:INK});
+  stampNum(ctx,360,'150');
+})();
+
+/* ============================================================
+   ENUN-q46 -- el·lipse amb semieixos a,b etiquetats. */
+(function(){
+  const ctx=mk('b4',480,340),hd=makeHandDraw(ctx,11004);ctx.translate(240,170);
+  const A=190,B=110;
+  const ell=[];
+  for(let i=0;i<=200;i++){const t=i/200*2*Math.PI; ell.push({x:A*Math.cos(t),y:B*Math.sin(t)});}
+  for(let i=0;i<ell.length-1;i++) hd.handSegment(ell[i].x,ell[i].y,ell[i+1].x,ell[i+1].y,{lineWidth:2.4,color:INK});
+  hd.handSegment(0,0,A,0,{lineWidth:1.8,dashed:true,dashPattern:[6,5],color:INK});
+  hd.handSegment(0,0,0,-B,{lineWidth:1.8,dashed:true,dashPattern:[6,5],color:INK});
+  lbl(ctx,'a',A/2-6,20,INK,20);
+  lbl(ctx,'b',10,-B/2,INK,20);
+  stampNum(ctx,300,'151');
+})();
+
+/* ============================================================
+   ENUN-q52 -- cub simple (neutre, sense cap pla ni hexagon marcat --
+   la vista isometrica especial i el tall son la resposta). */
+(function(){
+  const ctx=mk('b5',480,440),hd=makeHandDraw(ctx,11005);ctx.translate(80,100);
+  const S=300,dx=0.32*S,dy=-0.22*S,V=cubeVerts(S,dx,dy);
+  drawCubeWire(hd,V,2.6);
+  stampNum(ctx,360,'152');
+})();
+
+/* ============================================================
+   ENUN-q57 -- tetraedre, cub i octaedre, neutres (sense particio en
+   piramides -- aixo es la resposta). Reutilitza icones de q08b. */
+(function(){
+  const ctx=mk('b6',760,320),hd=makeHandDraw(ctx,11006);
+
+  (function(){ctx.save();ctx.translate(110,220);
+    const b1={x:-70,y:0},b2={x:70,y:0},b3={x:0,y:-46},ap={x:0,y:-170};
+    hd.handSegment(b1.x,b1.y,b2.x,b2.y,{lineWidth:2.4,color:INK});
+    hd.handSegment(b2.x,b2.y,b3.x,b3.y,{lineWidth:2.4,dashed:true,dashPattern:[6,5],color:INK});
+    hd.handSegment(b3.x,b3.y,b1.x,b1.y,{lineWidth:2.4,color:INK});
+    hd.handSegment(ap.x,ap.y,b1.x,b1.y,{lineWidth:2.4,color:INK});
+    hd.handSegment(ap.x,ap.y,b2.x,b2.y,{lineWidth:2.4,color:INK});
+    hd.handSegment(ap.x,ap.y,b3.x,b3.y,{lineWidth:2.4,dashed:true,dashPattern:[6,5],color:INK});
+    ctx.restore();})();
+
+  (function(){ctx.save();ctx.translate(268,80);
+    const S=170,dx=0.32*S,dy=-0.22*S,V=cubeVerts(S,dx,dy);
+    drawCubeWire(hd,V,2.4);
+    ctx.restore();})();
+
+  (function(){ctx.save();ctx.translate(650,150);
+    const R=100,L={x:-R,y:0},Rt={x:R,y:0},F={x:0,y:R*0.42},B={x:0,y:-R*0.42},T={x:0,y:-R*1.3},Bo={x:0,y:R*1.3};
+    hd.handSegment(L.x,L.y,F.x,F.y,{lineWidth:2.4,color:INK});
+    hd.handSegment(F.x,F.y,Rt.x,Rt.y,{lineWidth:2.4,color:INK});
+    hd.handSegment(Rt.x,Rt.y,B.x,B.y,{lineWidth:2.4,dashed:true,dashPattern:[5,5],color:INK});
+    hd.handSegment(B.x,B.y,L.x,L.y,{lineWidth:2.4,dashed:true,dashPattern:[5,5],color:INK});
+    hd.handSegment(T.x,T.y,L.x,L.y,{lineWidth:2.4,color:INK});
+    hd.handSegment(T.x,T.y,F.x,F.y,{lineWidth:2.4,color:INK});
+    hd.handSegment(T.x,T.y,Rt.x,Rt.y,{lineWidth:2.4,color:INK});
+    hd.handSegment(T.x,T.y,B.x,B.y,{lineWidth:2.4,dashed:true,dashPattern:[5,5],color:INK});
+    hd.handSegment(Bo.x,Bo.y,L.x,L.y,{lineWidth:2.4,color:INK});
+    hd.handSegment(Bo.x,Bo.y,F.x,F.y,{lineWidth:2.4,color:INK});
+    hd.handSegment(Bo.x,Bo.y,Rt.x,Rt.y,{lineWidth:2.4,color:INK});
+    hd.handSegment(Bo.x,Bo.y,B.x,B.y,{lineWidth:2.4,dashed:true,dashPattern:[5,5],color:INK});
+    ctx.restore();})();
+
+  stampNum(ctx,280,'153');
+})();
+
+/* ============================================================
+   ENUN-q61 -- esfera i el seu cilindre circumscrit, neutres. */
+(function(){
+  const ctx=mk('b7',760,380),hd=makeHandDraw(ctx,11007);ctx.translate(50,60);
+  const R=140;
+  hd.handEllipse(R,R,R,R,{lineWidth:2.4,irregularity:0.03,color:INK});
+  hd.handEllipse(R,R,R,R*0.3,{lineWidth:1.6,irregularity:0.03,rotation:-0.15,color:INK});
+
+  const ox=380, r2=R;
+  hd.handEllipse(ox+r2,0,r2,r2*0.28,{lineWidth:2.2,irregularity:0.03,color:INK});
+  hd.handSegment(ox,0,ox,2*R,{lineWidth:2.4,color:INK});
+  hd.handSegment(ox+2*r2,0,ox+2*r2,2*R,{lineWidth:2.4,color:INK});
+  hd.handEllipse(ox+r2,2*R,r2,r2*0.28,{lineWidth:2.2,irregularity:0.03,color:INK});
+  stampNum(ctx,340,'154');
+})();
+
+/* ============================================================
+   ENUN-q64 -- bastó contra la paret i el terra, en UNA sola posicio
+   (neutre: no la familia sencera de posicions -- aixo es la
+   construccio de la resposta, ja feta a fig-079). */
+(function(){
+  const ctx=mk('b8',420,420),hd=makeHandDraw(ctx,11008);ctx.translate(40,40);
+  const L=320;
+  hd.handSegment(0,L,0,0,{lineWidth:2.6,color:INK});
+  hd.handSegment(0,L,L,L,{lineWidth:2.6,color:INK});
+  const t=0.6*Math.PI/2;
+  hd.handSegment(L*Math.cos(t),L,0,L-L*Math.sin(t),{lineWidth:2.6,color:INK});
+  stampNum(ctx,380,'155');
+})();
+
+/* ============================================================
+   ENUN-q69 -- semicercle simple, amb el diametre. */
+(function(){
+  const ctx=mk('b9',460,320),hd=makeHandDraw(ctx,11009);ctx.translate(230,190);
+  const r=170;
+  hd.handSegment(-r,0,r,0,{lineWidth:2.6,color:INK});
+  hd.handEllipse(0,0,r,r,{startAngle:Math.PI,endAngle:2*Math.PI,lineWidth:2.6,irregularity:0.03,color:INK});
+  stampNum(ctx,280,'156');
+})();
+
+/* ============================================================
+   ENUN-q70 -- un pentagon irregular (convex), neutre, sense
+   diagonals -- l'enunciat pregunta per la suma d'angles interns
+   de QUALSEVOL poligon, no nomes el regular. */
+(function(){
+  const ctx=mk('b10',460,400),hd=makeHandDraw(ctx,11010);ctx.translate(230,200);
+  const pts=[{x:-30,y:-160},{x:150,y:-60},{x:100,y:140},{x:-100,y:150},{x:-170,y:-40}];
+  for(let i=0;i<pts.length;i++){
+    const a=pts[i],b=pts[(i+1)%pts.length];
+    hd.handSegment(a.x,a.y,b.x,b.y,{lineWidth:2.4,color:INK});
+  }
+  stampNum(ctx,360,'157');
+})();
+
+/* ============================================================
+   ENUN-q71 -- quadrilater amb els 4 angles marcats rectes (donat
+   com a hipotesi -- NO com a rectangle encara, els costats
+   deliberadament no son iguals). */
+(function(){
+  const ctx=mk('b11',480,380),hd=makeHandDraw(ctx,11011);ctx.translate(90,90);
+  // rectangle GIRAT de veritat (angle recte exacte als 4 vertexs per
+  // construccio -- mai marques decoratives sobre coordenades que no ho
+  // compleixen realment, v. leccio de "notacio que menteix").
+  const w=270, h=190, rot=8*Math.PI/180;
+  const cx=Math.cos(rot), sx=Math.sin(rot);
+  function R(x,y){return {x:x*cx-y*sx, y:x*sx+y*cx};}
+  const A=R(0,0), B=R(w,0), C=R(w,h), D=R(0,h);
+  hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.4,color:INK});
+  hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.4,color:INK});
+  hd.handSegment(C.x,C.y,D.x,D.y,{lineWidth:2.4,color:INK});
+  hd.handSegment(D.x,D.y,A.x,A.y,{lineWidth:2.4,color:INK});
+  rightAngle(hd,A.x,A.y,B.x,B.y,D.x,D.y,14,INK);
+  rightAngle(hd,B.x,B.y,C.x,C.y,A.x,A.y,14,INK);
+  rightAngle(hd,C.x,C.y,D.x,D.y,B.x,B.y,14,INK);
+  rightAngle(hd,D.x,D.y,A.x,A.y,C.x,C.y,14,INK);
+  stampNum(ctx,320,'158');
+})();
+
+/* ============================================================
+   ENUN-q72 -- un tram inicial (una fletxa curta), neutre -- l'inici
+   d'un recorregut "avança i gira", sense completar-lo (completar-lo
+   seria la resposta). */
+(function(){
+  const ctx=mk('b12',420,300),hd=makeHandDraw(ctx,11012);ctx.translate(50,220);
+  hd.handSegment(0,0,180,0,{lineWidth:2.6,color:INK});
+  hd.handSegment(180,0,180-90*Math.cos(Math.PI/3),-90*Math.sin(Math.PI/3),{lineWidth:2.6,color:INK});
+  hd.handDot(0,0,4,INK);
+  stampNum(ctx,260,'159');
+})();
+
+/* ============================================================
+   ENUN-q73 -- triangle amb els 3 punts mitjans marcats (donat --
+   la reconstruccio es la resposta). */
+(function(){
+  const ctx=mk('b13',460,400),hd=makeHandDraw(ctx,11013);ctx.translate(60,60);
+  const A={x:120,y:0},B={x:0,y:280},C={x:320,y:260};
+  hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.4,color:INK});
+  hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.4,color:INK});
+  hd.handSegment(C.x,C.y,A.x,A.y,{lineWidth:2.4,color:INK});
+  [mid(A,B),mid(B,C),mid(C,A)].forEach(m=>hd.handDot(m.x,m.y,4.5,INK));
+  stampNum(ctx,340,'160');
+})();
+
+/* ============================================================
+   ENUN-q74 -- tres longituds soltes (segments separats, no
+   connectats -- la pregunta es si ES PODEN ajuntar en triangle). */
+(function(){
+  const ctx=mk('b14',420,240),hd=makeHandDraw(ctx,11014);ctx.translate(40,50);
+  hd.handSegment(0,0,90,0,{lineWidth:2.6,color:INK});
+  hd.handSegment(0,60,120,60,{lineWidth:2.6,color:INK});
+  hd.handSegment(0,120,300,120,{lineWidth:2.6,color:INK});
+  stampNum(ctx,200,'161');
+})();
+
+/* ============================================================
+   ENUN-q80 -- triangle amb dos costats i l'angle entre ells
+   etiquetats (a,b,C) -- sense l'altura marcada, que es part de la
+   resposta. */
+(function(){
+  const ctx=mk('b15',480,360),hd=makeHandDraw(ctx,11015);ctx.translate(60,280);
+  const Cv={x:0,y:0}, Av={x:260,y:-40}, Bv={x:80,y:-260};
+  hd.handSegment(Cv.x,Cv.y,Av.x,Av.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(Cv.x,Cv.y,Bv.x,Bv.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(Av.x,Av.y,Bv.x,Bv.y,{lineWidth:2.6,color:INK});
+  angleMark(hd,Cv.x,Cv.y,Av.x,Av.y,Bv.x,Bv.y,30,1,INK);
+  lbl(ctx,'a',(Cv.x+Av.x)/2-6,(Cv.y+Av.y)/2+26,INK,20);
+  lbl(ctx,'b',(Cv.x+Bv.x)/2-30,(Cv.y+Bv.y)/2,INK,20);
+  lbl(ctx,'C',Cv.x-30,Cv.y+10,INK,20);
+  stampNum(ctx,320,'162');
+})();
+
+/* ============================================================
+   ENUN-q81 -- tetraedre regular, neutre (sense cap angle diedre
+   marcat -- aixo es la resposta). */
+(function(){
+  const ctx=mk('b16',460,420),hd=makeHandDraw(ctx,11016);ctx.translate(70,80);
+  const b1={x:0,y:280},b2={x:280,y:280},b3={x:140,y:280-280*0.5};
+  const ap={x:140+16,y:20};
+  hd.handSegment(b1.x,b1.y,b2.x,b2.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(b2.x,b2.y,b3.x,b3.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(b3.x,b3.y,b1.x,b1.y,{lineWidth:2,dashed:true,dashPattern:[7,6],color:INK});
+  hd.handSegment(ap.x,ap.y,b1.x,b1.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(ap.x,ap.y,b2.x,b2.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(ap.x,ap.y,b3.x,b3.y,{lineWidth:2,dashed:true,dashPattern:[7,6],color:INK});
+  stampNum(ctx,380,'163');
+})();
+</script>
+</body></html>

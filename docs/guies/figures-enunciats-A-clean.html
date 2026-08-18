@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+ body{margin:0;background:#fff}canvas{display:block;margin:0 0 24px 0}
+</style></head><body>
+<script src="../hand-draw.js"></script>
+<script src="../comu.js"></script>
+<script>
+function stampNum(ctx,h,num){ /* no-op */ }
+function mid(a,b){return {x:(a.x+b.x)/2,y:(a.y+b.y)/2};}
+function regularPoly(n,cx,cy,R,a0){
+  const pts=[];
+  for(let i=0;i<n;i++){const t=a0+i*2*Math.PI/n;pts.push({x:cx+R*Math.cos(t),y:cy+R*Math.sin(t)});}
+  return pts;
+}
+function cubeVerts(S,dx,dy){
+  function P(x,y,z){return {x:x*S+z*dx, y:(1-y)*S+z*dy};}
+  return {fBL:P(0,0,0),fBR:P(1,0,0),fTR:P(1,1,0),fTL:P(0,1,0),
+          bBL:P(0,0,1),bBR:P(1,0,1),bTR:P(1,1,1),bTL:P(0,1,1)};
+}
+function drawCubeWire(hd,V,lw){
+  lw=lw||2.6;
+  const solid=[[V.fTL,V.fTR],[V.fTR,V.fBR],[V.fBR,V.fBL],[V.fBL,V.fTL],
+    [V.fTL,V.bTL],[V.fTR,V.bTR],[V.fBR,V.bBR],[V.bTL,V.bTR],[V.bTR,V.bBR]];
+  const hidden=[[V.fBL,V.bBL],[V.bTL,V.bBL],[V.bBL,V.bBR]];
+  solid.forEach(s=>hd.handSegment(s[0].x,s[0].y,s[1].x,s[1].y,{lineWidth:lw,color:INK}));
+  hidden.forEach(s=>hd.handSegment(s[0].x,s[0].y,s[1].x,s[1].y,{lineWidth:lw*0.85,dashed:true,dashPattern:[8,7],color:INK}));
+}
+
+/* ============================================================
+   ENUN-q03 -- mosaic de polígons regulars (exemple net, sense la
+   resposta: cap angle marcat, cap sanguina -- es el dibuix del
+   llibre, no una pista). Patch d'hexagons regulars. */
+(function(){
+  const ctx=mk('a1',560,460),hd=makeHandDraw(ctx,10001);ctx.translate(280,230);
+  const R=90;
+  // set de 7 hexagons (un central + 6 al voltant), nomes tinta
+  const centres=[{x:0,y:0}];
+  for(let i=0;i<6;i++){
+    const t=i*Math.PI/3;
+    centres.push({x:R*Math.sqrt(3)*Math.cos(t),y:R*Math.sqrt(3)*Math.sin(t)});
+  }
+  centres.forEach(c=>{
+    const pts=regularPoly(6,c.x,c.y,R,Math.PI/6);
+    for(let i=0;i<6;i++) hd.handSegment(pts[i].x,pts[i].y,pts[(i+1)%6].x,pts[(i+1)%6].y,{lineWidth:2.2,color:INK});
+  });
+  stampNum(ctx,420,'132');
+})();
+
+/* ============================================================
+   ENUN-q04 -- angle d'un n-gon regular (hexagon concret, UN angle
+   marcat -- neutre, sense el valor numeric). */
+(function(){
+  const ctx=mk('a2',480,440),hd=makeHandDraw(ctx,10002);ctx.translate(240,220);
+  const pts=regularPoly(6,0,0,160,Math.PI/6);
+  for(let i=0;i<6;i++) hd.handSegment(pts[i].x,pts[i].y,pts[(i+1)%6].x,pts[(i+1)%6].y,{lineWidth:2.6,color:INK});
+  angleMark(hd,pts[0].x,pts[0].y,pts[5].x,pts[5].y,pts[1].x,pts[1].y,30,1,INK);
+  stampNum(ctx,380,'133');
+})();
+
+/* ============================================================
+   ENUN-q07 -- estrella de 5 puntes (pentagrama), sense cap angle
+   marcat -- nomes la figura, com q05 ja fa. */
+(function(){
+  const ctx=mk('a3',480,460),hd=makeHandDraw(ctx,10003);ctx.translate(240,230);
+  const outer=regularPoly(5,0,0,180,-Math.PI/2);
+  const order=[0,2,4,1,3];
+  for(let i=0;i<5;i++){
+    const a=outer[order[i]], b=outer[order[(i+1)%5]];
+    hd.handSegment(a.x,a.y,b.x,b.y,{lineWidth:2.4,color:INK});
+  }
+  stampNum(ctx,400,'134');
+})();
+
+/* ============================================================
+   ENUN-q08a -- un poliedre generic amb simetria (cub, com a exemple
+   neutre -- "quins poliedres tenen simetria" no especifica cap). */
+(function(){
+  const ctx=mk('a4',480,460),hd=makeHandDraw(ctx,10004);ctx.translate(80,90);
+  const S=300,dx=0.32*S,dy=-0.22*S,V=cubeVerts(S,dx,dy);
+  drawCubeWire(hd,V,2.6);
+  stampNum(ctx,380,'135');
+})();
+
+/* ============================================================
+   ENUN-q08b -- els cinc solids platonics, esquematics (icona, no
+   projeccio 3D completa amb aresta oculta per als dos mes complexos
+   -- son il·lustratius, la guia real (fig-052) ja fa la feina
+   geometrica sobre nomes 2 d'ells). */
+(function(){
+  const ctx=mk('a5',1080,320),hd=makeHandDraw(ctx,10005);
+
+  // tetraedre
+  (function(){ctx.save();ctx.translate(100,220);
+    const b1={x:-60,y:0},b2={x:60,y:0},b3={x:0,y:-40},ap={x:0,y:-150};
+    hd.handSegment(b1.x,b1.y,b2.x,b2.y,{lineWidth:2.2,color:INK});
+    hd.handSegment(b2.x,b2.y,b3.x,b3.y,{lineWidth:2.2,dashed:true,dashPattern:[6,5],color:INK});
+    hd.handSegment(b3.x,b3.y,b1.x,b1.y,{lineWidth:2.2,color:INK});
+    hd.handSegment(ap.x,ap.y,b1.x,b1.y,{lineWidth:2.2,color:INK});
+    hd.handSegment(ap.x,ap.y,b2.x,b2.y,{lineWidth:2.2,color:INK});
+    hd.handSegment(ap.x,ap.y,b3.x,b3.y,{lineWidth:2.2,dashed:true,dashPattern:[6,5],color:INK});
+    ctx.restore();})();
+
+  // cub
+  (function(){ctx.save();ctx.translate(234,90);
+    const S=130,dx=0.32*S,dy=-0.22*S,V=cubeVerts(S,dx,dy);
+    drawCubeWire(hd,V,2.2);
+    ctx.restore();})();
+
+  // octaedre
+  (function(){ctx.save();ctx.translate(540,150);
+    const R=85,L={x:-R,y:0},Rt={x:R,y:0},F={x:0,y:R*0.42},B={x:0,y:-R*0.42},T={x:0,y:-R-70},Bo={x:0,y:R+70};
+    hd.handSegment(L.x,L.y,F.x,F.y,{lineWidth:2.2,color:INK});
+    hd.handSegment(F.x,F.y,Rt.x,Rt.y,{lineWidth:2.2,color:INK});
+    hd.handSegment(Rt.x,Rt.y,B.x,B.y,{lineWidth:2.2,dashed:true,dashPattern:[5,5],color:INK});
+    hd.handSegment(B.x,B.y,L.x,L.y,{lineWidth:2.2,dashed:true,dashPattern:[5,5],color:INK});
+    hd.handSegment(T.x,T.y,L.x,L.y,{lineWidth:2.2,color:INK});
+    hd.handSegment(T.x,T.y,F.x,F.y,{lineWidth:2.2,color:INK});
+    hd.handSegment(T.x,T.y,Rt.x,Rt.y,{lineWidth:2.2,color:INK});
+    hd.handSegment(T.x,T.y,B.x,B.y,{lineWidth:2.2,dashed:true,dashPattern:[5,5],color:INK});
+    hd.handSegment(Bo.x,Bo.y,L.x,L.y,{lineWidth:2.2,color:INK});
+    hd.handSegment(Bo.x,Bo.y,F.x,F.y,{lineWidth:2.2,color:INK});
+    hd.handSegment(Bo.x,Bo.y,Rt.x,Rt.y,{lineWidth:2.2,color:INK});
+    hd.handSegment(Bo.x,Bo.y,B.x,B.y,{lineWidth:2.2,dashed:true,dashPattern:[5,5],color:INK});
+    ctx.restore();})();
+
+  // dodecaedre -- icona esquematica (silueta pentagonal amb aristes internes suggerides)
+  (function(){ctx.save();ctx.translate(760,150);
+    const outer=regularPoly(10,0,0,95,-Math.PI/2);
+    for(let i=0;i<10;i++) hd.handSegment(outer[i].x,outer[i].y,outer[(i+1)%10].x,outer[(i+1)%10].y,{lineWidth:2.2,color:INK});
+    const inner=regularPoly(5,0,0,42,-Math.PI/2+Math.PI/5);
+    for(let i=0;i<5;i++) hd.handSegment(inner[i].x,inner[i].y,inner[(i+1)%5].x,inner[(i+1)%5].y,{lineWidth:1.8,color:INK});
+    for(let i=0;i<5;i++) hd.handSegment(outer[i*2].x,outer[i*2].y,inner[i].x,inner[i].y,{lineWidth:1.6,dashed:true,dashPattern:[5,4],color:INK});
+    ctx.restore();})();
+
+  // icosaedre -- icona esquematica (silueta hexagonal amb triangulacio interna suggerida)
+  (function(){ctx.save();ctx.translate(980,150);
+    const outer=regularPoly(6,0,0,95,-Math.PI/2);
+    for(let i=0;i<6;i++) hd.handSegment(outer[i].x,outer[i].y,outer[(i+1)%6].x,outer[(i+1)%6].y,{lineWidth:2.2,color:INK});
+    for(let i=0;i<6;i++) hd.handSegment(0,0,outer[i].x,outer[i].y,{lineWidth:1.6,dashed:true,dashPattern:[5,4],color:INK});
+    hd.handDot(0,0,3,INK);
+    ctx.restore();})();
+
+  stampNum(ctx,280,'136');
+})();
+
+/* ============================================================
+   ENUN-q08c -- dos triangles amb els mateixos angles marcats
+   (neutre: no diu si son semblants o no -- aixo es la pregunta). */
+(function(){
+  const ctx=mk('a6',620,380),hd=makeHandDraw(ctx,10006);ctx.translate(40,60);
+  function triAngles(ox,oy,scale){
+    const A={x:ox,y:oy+180*scale},B={x:ox+220*scale,y:oy+180*scale},C={x:ox+70*scale,y:oy};
+    hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.4,color:INK});
+    hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.4,color:INK});
+    hd.handSegment(C.x,C.y,A.x,A.y,{lineWidth:2.4,color:INK});
+    angleMark(hd,A.x,A.y,B.x,B.y,C.x,C.y,22*scale,1,INK);
+    angleMark(hd,B.x,B.y,A.x,A.y,C.x,C.y,22*scale,1,INK);
+    return {A,B,C};
+  }
+  triAngles(0,20,1.0);
+  triAngles(330,90,0.55);
+  stampNum(ctx,320,'137');
+})();
+
+/* ============================================================
+   ENUN-q17 -- un polígon irregular qualsevol (neutre, sense la
+   solucio de dissecció -- nomes el punt de partida). */
+(function(){
+  const ctx=mk('a7',480,420),hd=makeHandDraw(ctx,10007);ctx.translate(240,210);
+  const pts=[{x:-140,y:100},{x:-60,y:-120},{x:80,y:-150},{x:150,y:-20},{x:100,y:120},{x:-20,y:150}];
+  for(let i=0;i<pts.length;i++){
+    const a=pts[i],b=pts[(i+1)%pts.length];
+    hd.handSegment(a.x,a.y,b.x,b.y,{lineWidth:2.4,color:INK});
+  }
+  stampNum(ctx,380,'138');
+})();
+
+/* ============================================================
+   ENUN-q18a -- una capsa (prisma rectangle) amb 3 costats etiquetats. */
+(function(){
+  const ctx=mk('a8',540,420),hd=makeHandDraw(ctx,10008);ctx.translate(70,110);
+  const S=260,dx=0.34*220,dy=-0.22*220,a=1.0,b=0.62,c=0.75;
+  function P(x,y,z){return {x:x*S*a+z*dx*c, y:(1-y)*S*b+z*dy*c};}
+  const fBL=P(0,0,0),fBR=P(1,0,0),fTR=P(1,1,0),fTL=P(0,1,0),
+        bBL=P(0,0,1),bBR=P(1,0,1),bTR=P(1,1,1),bTL=P(0,1,1);
+  [[fTL,fTR],[fTR,fBR],[fBR,fBL],[fBL,fTL],[fTL,bTL],[fTR,bTR],[fBR,bBR],[bTL,bTR],[bTR,bBR]]
+    .forEach(s=>hd.handSegment(s[0].x,s[0].y,s[1].x,s[1].y,{lineWidth:2.6,color:INK}));
+  [[fBL,bBL],[bTL,bBL],[bBL,bBR]]
+    .forEach(s=>hd.handSegment(s[0].x,s[0].y,s[1].x,s[1].y,{lineWidth:2.2,dashed:true,dashPattern:[7,6],color:INK}));
+  lbl(ctx,'a',(fBL.x+fBR.x)/2-6,fBL.y+28,INK,20);
+  lbl(ctx,'b',fBL.x-30,(fBL.y+fTL.y)/2,INK,20);
+  lbl(ctx,'c',(fBR.x+bBR.x)/2+16,(fBR.y+bBR.y)/2+18,INK,20);
+  stampNum(ctx,340,'139');
+})();
+
+/* ============================================================
+   ENUN-q18b -- la mateixa capsa que q18a, amb un factor k suggerit
+   (una segona capsa mes gran superposada en tinta mes clara conceptual
+   -- pero mantenim NOMES tinta: la distincio es fa amb mida, no color). */
+(function(){
+  const ctx=mk('a9',680,420),hd=makeHandDraw(ctx,10009);ctx.translate(60,120);
+  function box(ox,oy,S){
+    const dx=0.34*S*0.85,dy=-0.22*S*0.85;
+    function P(x,y,z){return {x:ox+x*S+z*dx, y:oy+(1-y)*S+z*dy};}
+    const fBL=P(0,0,0),fBR=P(1,0,0),fTR=P(1,1,0),fTL=P(0,1,0),
+          bBL=P(0,0,1),bBR=P(1,0,1),bTR=P(1,1,1),bTL=P(0,1,1);
+    [[fTL,fTR],[fTR,fBR],[fBR,fBL],[fBL,fTL],[fTL,bTL],[fTR,bTR],[fBR,bBR],[bTL,bTR],[bTR,bBR]]
+      .forEach(s=>hd.handSegment(s[0].x,s[0].y,s[1].x,s[1].y,{lineWidth:2.4,color:INK}));
+    [[fBL,bBL],[bTL,bBL],[bBL,bBR]]
+      .forEach(s=>hd.handSegment(s[0].x,s[0].y,s[1].x,s[1].y,{lineWidth:2,dashed:true,dashPattern:[6,5],color:INK}));
+  }
+  box(0,60,140);
+  box(190,0,230);
+  lbl(ctx,'s',60,260,INK,20);
+  lbl(ctx,'k·s',300,260,INK,20);
+  stampNum(ctx,340,'140');
+})();
+
+/* ============================================================
+   ENUN-q19 -- graella de punts, dos factors senars (files/columnes
+   senars), sense cap comptatge fet -- nomes la graella. */
+(function(){
+  const ctx=mk('a10',480,360),hd=makeHandDraw(ctx,10010);ctx.translate(80,60);
+  const rows=5, cols=3, step=36;
+  for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){
+    const jx=(hd.rand()-0.5)*3, jy=(hd.rand()-0.5)*3;
+    hd.handDot(c*step+jx, r*step+jy, 5, INK);
+  }
+  lbl(ctx,'5',cols*step/2-6,-24,INK,20);
+  lbl(ctx,'3',-40,rows*step/2-10,INK,20);
+  stampNum(ctx,300,'141');
+})();
+
+/* ============================================================
+   ENUN-q20 -- graella de punts, dos factors parells. */
+(function(){
+  const ctx=mk('a11',480,380),hd=makeHandDraw(ctx,10011);ctx.translate(80,60);
+  const rows=4, cols=6, step=34;
+  for(let r=0;r<rows;r++)for(let c=0;c<cols;c++){
+    const jx=(hd.rand()-0.5)*3, jy=(hd.rand()-0.5)*3;
+    hd.handDot(c*step+jx, r*step+jy, 5, INK);
+  }
+  lbl(ctx,'6',cols*step/2-6,-24,INK,20);
+  lbl(ctx,'4',-40,rows*step/2-6,INK,20);
+  stampNum(ctx,320,'142');
+})();
+
+/* ============================================================
+   ENUN-q24 -- un rectangle amb costats i diagonal etiquetats a,b,c. */
+(function(){
+  const ctx=mk('a12',480,360),hd=makeHandDraw(ctx,10012);ctx.translate(60,60);
+  const A={x:0,y:220},B={x:340,y:220},C={x:340,y:0},D={x:0,y:0};
+  hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(C.x,C.y,D.x,D.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(D.x,D.y,A.x,A.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.2,dashed:true,dashPattern:[7,6],color:INK});
+  lbl(ctx,'a',(A.x+B.x)/2-6,A.y+28,INK,20);
+  lbl(ctx,'b',B.x+16,(B.y+C.y)/2,INK,20);
+  lbl(ctx,'c',(A.x+C.x)/2-30,(A.y+C.y)/2-10,INK,20);
+  stampNum(ctx,300,'143');
+})();
+
+/* ============================================================
+   ENUN-q26 -- triangle equilater amb l'altura marcada en discontinu
+   (donada com a element de l'enunciat -- encara sense la marca de
+   qué val, aixo es la pregunta). */
+(function(){
+  const ctx=mk('a13',460,420),hd=makeHandDraw(ctx,10013);ctx.translate(40,40);
+  const Sd=280,h0=Sd*Math.sqrt(3)/2;
+  const A={x:Sd/2,y:0},B={x:0,y:h0},C={x:Sd,y:h0},M={x:Sd/2,y:h0};
+  hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(A.x,A.y,M.x,M.y,{lineWidth:2,dashed:true,dashPattern:[7,6],color:INK});
+  rightAngle(hd,M.x,M.y,A.x,A.y,C.x,C.y,14,INK);
+  stampNum(ctx,380,'144');
+})();
+
+/* ============================================================
+   ENUN-q28 -- mateix triangle equilater que q26, sense l'altura
+   (nomes el costat -- l'area es el que es demana, cap pista visual). */
+(function(){
+  const ctx=mk('a14',460,420),hd=makeHandDraw(ctx,10014);ctx.translate(40,40);
+  const Sd=280,h0=Sd*Math.sqrt(3)/2;
+  const A={x:Sd/2,y:0},B={x:0,y:h0},C={x:Sd,y:h0};
+  hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.6,color:INK});
+  lbl(ctx,'s',(B.x+C.x)/2-6,h0+30,INK,20);
+  stampNum(ctx,380,'145');
+})();
+
+/* ============================================================
+   ENUN-q34 -- mosaic per a (x+y)^2: quadrat gran, sense particions
+   marcades (neutre -- la particio es la resposta). */
+(function(){
+  const ctx=mk('a15',460,420),hd=makeHandDraw(ctx,10015);ctx.translate(60,40);
+  const x=140,y=200;
+  quad(hd,0,0,x+y,x+y,x+y,{lineWidth:2.6,color:INK});
+  lbl(ctx,'x+y',(x+y)/2-24,-14,INK,20);
+  lbl(ctx,'x+y',-46,(x+y)/2,INK,20);
+  stampNum(ctx,340,'146');
+})();
+
+/* ============================================================
+   ENUN-q36 -- dos rectangles de perimetre igual, formes diferents
+   (neutre: cap area marcada, nomes les formes -- suggereix la
+   pregunta "quin te mes area"). */
+(function(){
+  const ctx=mk('a16',560,320),hd=makeHandDraw(ctx,10016);ctx.translate(40,60);
+  // perimetre 40: (a) 6x14 (b) 10x10
+  quad(hd,0,60,140,60,60,{lineWidth:2.4,color:INK});
+  quad(hd,220,0,100,100,100,{lineWidth:2.4,color:INK});
+  stampNum(ctx,260,'147');
+})();
+</script>
+</body></html>
