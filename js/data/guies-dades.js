@@ -205,7 +205,7 @@ window.GUIES = {
           "ca": "Tres hexàgons regulars es toquen en un vèrtex. Cada angle val 120° (q04 amb n=6). Suma'ls. I amb dos hexàgons i un quadrat?",
           "en": null
         },
-        "figura": null
+        "figura": "fig-179.png"
       },
       {
         "nivell": 2,
@@ -535,7 +535,7 @@ window.GUIES = {
           "ca": "El cub és l'exemple més familiar: sis cares quadrades, tres arestes a cada vèrtex. Té, entre altres simetries, eixos que passen per parells de vèrtexs oposats (la diagonal principal), eixos pel centre de cares oposades, i eixos pel punt mitjà d'arestes oposades. Identificar-los tots en un sol sòlid conegut et dona el vocabulari per parlar-ne en general.",
           "en": null
         },
-        "figura": null
+        "figura": "fig-180.png"
       },
       {
         "nivell": 2,
@@ -796,7 +796,7 @@ window.GUIES = {
           "ca": "Si retallessis el rombe i el doblegues per una diagonal, què passa amb els dos triangles que queden a banda i banda? (Els quatre costats són iguals, així que...)",
           "en": null
         },
-        "figura": null
+        "figura": "fig-181.png"
       },
       {
         "nivell": 2,
@@ -1111,7 +1111,7 @@ window.GUIES = {
           "ca": "Imagina't dret entre dues vies de tren paral·leles, mirant cap on s'allunyen. Encara que són paral·leles de veritat, com les veus a l'horitzó?",
           "en": null
         },
-        "figura": null
+        "figura": "fig-204.png"
       },
       {
         "nivell": 2,
@@ -2083,7 +2083,7 @@ window.GUIES = {
           "ca": "Un punt P de la paràbola és exactament tan lluny del focus F com de la directriu — és a dir, de D, el peu de la perpendicular des de P a la directriu. Si PF=PD, quin triangle isòsceles se't dibuixa tot sol?",
           "en": null
         },
-        "figura": null
+        "figura": "fig-205.png"
       },
       {
         "nivell": 2,
@@ -2149,7 +2149,7 @@ window.GUIES = {
           "ca": "Cada recta és tangent a una certa corba (la seva envolupant): la corba que \"toca\" cada recta del feix sense travessar-ne cap. Amb n+1 punts a cada eix, numerats 0..n, la recta i uneix el punt i d'un eix amb el punt n−i de l'altre. Quina relació hi ha entre els dos números que etiqueten els extrems d'una mateixa recta?",
           "en": null
         },
-        "figura": null
+        "figura": "fig-206.png"
       },
       {
         "nivell": 2,
@@ -2347,7 +2347,7 @@ window.GUIES = {
           "ca": "Divideix la base de la caixa (d'un costat a l'altre del vèrtex) en n franges verticals iguals. A cada franja, la paràbola hi talla un rectangle petit. Suma les àrees d'aquests n rectangles petits (la que queda per SOTA de la corba, dins la meitat de la caixa) — és una suma coneguda de quadrats consecutius.",
           "en": null
         },
-        "figura": null
+        "figura": "fig-207.png"
       },
       {
         "nivell": 2,
@@ -2479,7 +2479,7 @@ window.GUIES = {
           "ca": "Imagina el cilindre com un full de paper enrotllat. Si el desenrotlles (el retalles per una línia vertical i l'estires pla), l'hèlix dibuixada a sobre es converteix en... quina mena de línia, sobre el rectangle pla resultant?",
           "en": null
         },
-        "figura": null
+        "figura": "fig-208.png"
       },
       {
         "nivell": 2,
@@ -2677,7 +2677,7 @@ window.GUIES = {
           "ca": "Un punt sobre un tor es pot descriure per dos angles: quina posició té al voltant del forat central (com les hores d'un rellotge vist des de dalt), i quina posició té al voltant del \"tub\" prim (com les hores d'un rellotge vist de costat, girant al voltant del propi tub). Una hèlix sobre un cilindre avançava a velocitat constant en gir I en alçada alhora: quin seria l'anàleg amb aquests dos angles?",
           "en": null
         },
-        "figura": null
+        "figura": "fig-209.png"
       },
       {
         "nivell": 2,
@@ -2872,7 +2872,7 @@ window.GUIES = {
           "ca": "Hi ha alguna posició de la punta per a la qual la resposta sigui evident? Prova de posar-la just damunt d'un dels dos vèrtexs de baix.",
           "en": null
         },
-        "figura": null
+        "figura": "fig-182.png"
       },
       {
         "nivell": 2,
@@ -3064,7 +3064,7 @@ window.GUIES = {
           "ca": "Un rectangle de costats a i b té la mateixa àrea que un quadrat de costat s=√(ab) —la mitjana geomètrica de a i b. Coneixes ja una manera de construir aquesta longitud amb regla i compàs?",
           "en": null
         },
-        "figura": null
+        "figura": "fig-183.png"
       },
       {
         "nivell": 2,
@@ -3130,7 +3130,7 @@ window.GUIES = {
           "ca": "Si la capsa fa 3×2×2, quants cubs d'aresta 1 hi caben? Compta'ls per capes: una capa horitzontal té l×w cubs. Quantes capes n'hi ha?",
           "en": null
         },
-        "figura": null
+        "figura": "fig-184.png"
       },
       {
         "nivell": 2,
@@ -3460,7 +3460,7 @@ window.GUIES = {
           "ca": "Dibuixa a part dos cercles que es toquin, de radis diferents. Què saps de la distància entre els seus centres? És el fet que et falta, i no és a l'enunciat.",
           "en": null
         },
-        "figura": null
+        "figura": "fig-185.png"
       },
       {
         "nivell": 2,
@@ -3652,7 +3652,7 @@ window.GUIES = {
           "ca": "La diagonal d'un rectangle ja la saps calcular. Hi ha algun rectangle amagat dins d'aquesta caixa que et deixi a mig camí de la diagonal llarga?",
           "en": null
         },
-        "figura": null
+        "figura": "fig-186.png"
       },
       {
         "nivell": 2,
@@ -3772,7 +3772,7 @@ window.GUIES = {
           "ca": "A q22 vas unir el centre del quadrat amb el centre d'un cercle petit i vas obtenir un triangle rectangle. Aquí, uneix el centre de gravetat del triangle equilàter amb el centre d'un dels tres cercles iguals, i també amb el vèrtex més proper. Els dos segments són fàcils de mesurar per raons diferents — aquí hi ha la teva \"dues maneres\".",
           "en": null
         },
-        "figura": null
+        "figura": "fig-187.png"
       },
       {
         "nivell": 2,
@@ -3895,7 +3895,7 @@ window.GUIES = {
           "ca": "Mira el dibuix de l'hexàgon. Des del vèrtex de dalt, compta les diagonals una per una. Compta els triangles un per un. Comprova que els dos comptatges coincideixen amb n−3 i n−2 per a n=6 abans de confiar-hi cegament per a n=8.",
           "en": null
         },
-        "figura": null
+        "figura": "fig-188.png"
       },
       {
         "nivell": 2,
@@ -4027,7 +4027,7 @@ window.GUIES = {
           "ca": "El triangle A (de dalt) té dos costats iguals (dos costats del pentàgon) — és isòsceles. El seu angle superior és l'angle interior del pentàgon (108°); els altres dos, iguals entre ells, què han de valer perquè sumin 180° amb el de dalt?",
           "en": null
         },
-        "figura": null
+        "figura": "fig-189.png"
       },
       {
         "nivell": 2,
@@ -4159,7 +4159,7 @@ window.GUIES = {
           "ca": "Dos pentàgons regulars de costat 1 comparteixen una aresta sencera. Des dels dos extrems d'aquesta aresta compartida surt una diagonal cap a un mateix vèrtex llunyà d'un dels dos pentàgons. Quant fan, en termes de d i 1, els tres costats del triangle que això forma?",
           "en": null
         },
-        "figura": null
+        "figura": "fig-190.png"
       },
       {
         "nivell": 2,
@@ -4618,7 +4618,7 @@ window.GUIES = {
           "ca": "Al segon panell (dos cercles i un quadrat en fila dins un cercle gran): si el quadrat té costat 2r (igual que el diàmetre comú dels cercles), i tot plegat travessa el diàmetre del cercle gran, quina equació relaciona R (el radi gran) amb r?",
           "en": null
         },
-        "figura": null
+        "figura": "fig-191.png"
       },
       {
         "nivell": 2,
@@ -4936,7 +4936,7 @@ window.GUIES = {
           "ca": "Si talles l'etiqueta de paper d'una llauna de sopa en vertical i l'estires plana, quina forma té? Amb radi 3 i alçada 10: l'amplada de l'etiqueta és la longitud de la circumferència, 2π×3 ≈ 18,85; l'alçada és 10, la mateixa del cilindre. Ja tens un rectangle.",
           "en": null
         },
-        "figura": null
+        "figura": "fig-192.png"
       },
       {
         "nivell": 2,
@@ -5299,7 +5299,7 @@ window.GUIES = {
           "ca": "A q45 vas desenrotllar un cilindre i et va sortir un rectangle. Prova de fer el mateix amb un con: talla'l des de la punta fins a la vora de la base, en línia recta, i estira'l pla. Ja no surt un rectangle — surt un tros de cercle. Quin radi té aquest tros de cercle? I quina llargada d'arc?",
           "en": null
         },
-        "figura": null
+        "figura": "fig-193.png"
       },
       {
         "nivell": 2,
@@ -5413,7 +5413,7 @@ window.GUIES = {
           "ca": "A cada alçada, el tall horitzontal dels dos cilindres és un cercle idèntic (mateix radi) — per Cavalieri, doncs, tenen el mateix volum. Però un és \"recte\" i l'altre \"s'inclina\": mira la superfície lateral de cadascun. Quina creus que serà més gran, i per què?",
           "en": null
         },
-        "figura": null
+        "figura": "fig-194.png"
       },
       {
         "nivell": 2,
@@ -5470,7 +5470,7 @@ window.GUIES = {
           "ca": "A cada alçada, quina longitud té el tall horitzontal del paral·lelogram? Compara-la amb la longitud del tall del rectangle a la mateixa alçada.",
           "en": null
         },
-        "figura": null
+        "figura": "fig-195.png"
       },
       {
         "nivell": 2,
@@ -5527,7 +5527,7 @@ window.GUIES = {
           "ca": "Suma tots els trams horitzontals de l'escala (sense els verticals): quant val la suma, sigui quin sigui el nombre de graons? Fes el mateix amb els verticals. Ara suma-ho tot: aquesta és la longitud total del camí en escala.",
           "en": null
         },
-        "figura": null
+        "figura": "fig-196.png"
       },
       {
         "nivell": 2,
@@ -6034,7 +6034,7 @@ window.GUIES = {
           "ca": "Una manera: quina forma plana, desplaçada en línia recta, deixa un cilindre al seu pas? Una altra manera, molt diferent: quina forma plana, girada al voltant d'un eix, en traça la superfície?",
           "en": null
         },
-        "figura": null
+        "figura": "fig-197.png"
       },
       {
         "nivell": 2,
@@ -6412,7 +6412,7 @@ window.GUIES = {
           "ca": "Si gires el semicercle (la regió) al voltant del seu diàmetre, quin sòlid en surt? I si gires només l'arc (sense la regió)?",
           "en": null
         },
-        "figura": null
+        "figura": "fig-198.png"
       },
       {
         "nivell": 2,
@@ -6475,7 +6475,7 @@ window.GUIES = {
           "ca": "Un quadrilàter (n=4): traça'n una diagonal. Queda partit en dos triangles. Suma: 2 × 180° = 360°. Ara fes el mateix amb un pentàgon (n=5) triant totes les diagonals des d'un sol vèrtex. Quants triangles surten?",
           "en": null
         },
-        "figura": null
+        "figura": "fig-199.png"
       },
       {
         "nivell": 2,
@@ -6607,7 +6607,7 @@ window.GUIES = {
           "ca": "Cada tram de la teva llista (una longitud, en una direcció determinada pels girs acumulats fins aquell moment) es pot descompondre en un avanç horitzontal i un de vertical — exactament sinus i cosinus de l'angle acumulat, aplicats a la longitud del tram.",
           "en": null
         },
-        "figura": null
+        "figura": "fig-200.png"
       },
       {
         "nivell": 2,
@@ -6670,7 +6670,7 @@ window.GUIES = {
           "ca": "Si tens els tres punts mitjans M_AB, M_BC, M_CA, el triangle que formen (el \"triangle medial\") és semblant al triangle original, a escala 1/2 i girat 180°. Si coneixes el triangle medial, coneixes la seva orientació i la seva mida — et falta només \"desfer\" l'escala i el gir. Hi ha una única manera de fer-ho?",
           "en": null
         },
-        "figura": null
+        "figura": "fig-201.png"
       },
       {
         "nivell": 2,
@@ -7504,7 +7504,7 @@ window.GUIES = {
           "ca": "Fixa un angle a un vèrtex A, i un dels costats donats sortint d'A cap a un punt B (això fixa A i B del tot). L'altre costat donat té una longitud fixa, però només saps que l'altre extrem (diguem-li C) és en algun lloc del segon costat de l'angle — no saps on. Si claves un compàs a B amb aquella longitud fixa, quantes vegades pot tallar el segon costat de l'angle?",
           "en": null
         },
-        "figura": null
+        "figura": "fig-202.png"
       },
       {
         "nivell": 2,
@@ -8083,7 +8083,7 @@ window.GUIES = {
           "ca": "Suposa que t'equivoques i que el radi no és perpendicular. Dibuixa-ho ben exagerat, ben tort. Dibuixar deliberadament el cas impossible és una tècnica, no una pèrdua de temps.",
           "en": null
         },
-        "figura": null
+        "figura": "fig-203.png"
       },
       {
         "nivell": 2,
