@@ -13,7 +13,16 @@ function mid(a,b){return {x:(a.x+b.x)/2,y:(a.y+b.y)/2};}
 (function(){
   const ctx=mk('e1',620,340),hd=makeHandDraw(ctx,21001);ctx.translate(60,60);
   const w=180,h=220,shear=70;
-  quad(hd,0,0,w,h,h,{lineWidth:2.4,color:INK});
+  // NO fem servir quad() aqui: aquell helper jitea cada vertex per
+  // separat a proposit ("cap angle exactament 90", v. comu.js) -- correcte
+  // per a formes que no han de ser-ho, pero aquest RECTANGLE ha de
+  // llegir-se com a rectangle real (es la meitat de l'argument de
+  // Cavalieri). Segments directes amb wobble baix, angles genuinament
+  // propers a 90 per construccio, no per coincidencia.
+  hd.handSegment(0,0,w,0,{lineWidth:2.4,wobble:0.6,color:INK});
+  hd.handSegment(w,0,w,h,{lineWidth:2.4,wobble:0.6,color:INK});
+  hd.handSegment(w,h,0,h,{lineWidth:2.4,wobble:0.6,color:INK});
+  hd.handSegment(0,h,0,0,{lineWidth:2.4,wobble:0.6,color:INK});
   hd.handSegment(0,h*0.4,w,h*0.4,{lineWidth:2,dashed:true,dashPattern:[6,5],color:SANG});
   const ox=300;
   hd.handSegment(ox,h,ox+w,h,{lineWidth:2.4,color:INK});
@@ -65,10 +74,13 @@ function mid(a,b){return {x:(a.x+b.x)/2,y:(a.y+b.y)/2};}
   const ctx=mk('e4',420,340),hd=makeHandDraw(ctx,21004);ctx.translate(210,240);
   const r=160;
   hd.handSegment(-r,0,r,0,{lineWidth:2.4,color:INK});
-  hd.handEllipse(0,0,r,r,{startAngle:Math.PI,endAngle:2*Math.PI,lineWidth:2.4,irregularity:0.03,color:INK});
+  // irregularity mes baixa que el 0.03 per defecte: aquests arcs han de
+  // compartir centre exacte i llegir-se com a concentrics, no com a
+  // arcs independents que casualment s'assemblen.
+  hd.handEllipse(0,0,r,r,{startAngle:Math.PI,endAngle:2*Math.PI,lineWidth:2.4,irregularity:0.012,color:INK});
   for(let i=1;i<6;i++){
     const rr=r*i/6.5;
-    hd.handEllipse(0,0,rr,rr,{startAngle:Math.PI,endAngle:2*Math.PI,lineWidth:1,irregularity:0.03,color:SANG});
+    hd.handEllipse(0,0,rr,rr,{startAngle:Math.PI,endAngle:2*Math.PI,lineWidth:1,irregularity:0.012,color:SANG});
   }
   hd.handSegment(-r-20,0,r+20,0,{lineWidth:1.8,wobble:0.6,dashed:true,dashPattern:[6,5],color:SANG});
   stampNum(ctx,300,'198');
@@ -98,7 +110,7 @@ function mid(a,b){return {x:(a.x+b.x)/2,y:(a.y+b.y)/2};}
   lbl(ctx,'L·cos θ',ex.x/2-30,22,SANG,17);
   lbl(ctx,'L·sin θ',ex.x+10,ex.y/2,SANG,17);
   angleMark(hd,0,0,ex.x,0,ex.x,ex.y,30,1,INK);
-  lbl(ctx,'θ',34,-14,INK,18);
+  lbl(ctx,'θ',49,-14,INK,18);
   stampNum(ctx,320,'200');
 })();
 
@@ -207,15 +219,20 @@ function mid(a,b){return {x:(a.x+b.x)/2,y:(a.y+b.y)/2};}
 (function(){
   const ctx=mk('e12',480,480),hd=makeHandDraw(ctx,21012);ctx.translate(60,400);
   const n=6, step=56;
-  hd.handSegment(0,0,0,-n*step,{lineWidth:2.2,color:INK});
-  hd.handSegment(0,0,n*step,0,{lineWidth:2.2,color:INK});
+  // wobble explicit baix (els eixos son rectes de referencia, no traços
+  // lliures) + punts llegits del traç REAL de cada eix amb pointAtT,
+  // no de la coordenada ideal -- garanteix que tots cauen sobre l'eix.
+  const eixV=hd.handSegment(0,0,0,-n*step,{lineWidth:2.2,wobble:0.6,color:INK});
+  const eixH=hd.handSegment(0,0,n*step,0,{lineWidth:2.2,wobble:0.6,color:INK});
   for(let i=0;i<=n;i++){
-    hd.handDot(0,-i*step,3.5,INK);
-    hd.handDot(i*step,0,3.5,INK);
+    const pv=eixV.pointAtT(i/n), ph=eixH.pointAtT(i/n);
+    hd.handDot(pv.x,pv.y,3.5,INK);
+    hd.handDot(ph.x,ph.y,3.5,INK);
   }
   [1,3,5].forEach(i=>{
     const j=n-i;
-    hd.handSegment(0,-i*step,j*step,0,{lineWidth:1.8,wobble:0.7,color:SANG});
+    const pv=eixV.pointAtT(i/n), ph=eixH.pointAtT(j/n);
+    hd.handSegment(pv.x,pv.y,ph.x,ph.y,{lineWidth:1.8,wobble:0.7,color:SANG});
   });
   lbl(ctx,'0',-18,4,INK,15);
   lbl(ctx,'n',-18,-n*step-6,INK,15);
@@ -261,20 +278,36 @@ function mid(a,b){return {x:(a.x+b.x)/2,y:(a.y+b.y)/2};}
 /* P2-q126 (fig-209) -- tor amb dos angles marcats (voltant del forat
    central, voltant del tub). */
 (function(){
-  const ctx=mk('e15',480,420),hd=makeHandDraw(ctx,21015);ctx.translate(240,180);
+  const ctx=mk('e15',560,460),hd=makeHandDraw(ctx,21015);ctx.translate(260,200);
   const Ro=170, ri=70;
   hd.handEllipse(0,0,Ro,Ro*0.42,{lineWidth:2.2,irregularity:0.03,color:INK});
   hd.handEllipse(0,0,ri,ri*0.42,{lineWidth:2,irregularity:0.03,color:INK});
   hd.handEllipse(-(Ro+ri)/2,0,(Ro-ri)/2,(Ro-ri)/2*0.9,{startAngle:0,endAngle:Math.PI,lineWidth:2,irregularity:0.03,color:INK});
   hd.handEllipse((Ro+ri)/2,0,(Ro-ri)/2,(Ro-ri)/2*0.9,{startAngle:0,endAngle:Math.PI,lineWidth:2,irregularity:0.03,color:INK});
-  hd.handSegment(0,0,Ro*0.7,0,{lineWidth:1.8,wobble:0.6,color:SANG});
-  hd.handSegment(0,0,Ro*0.7*Math.cos(-0.7),Ro*0.42*0.7*Math.sin(-0.7),{lineWidth:1.8,wobble:0.6,color:SANG});
-  lbl(ctx,'u',Ro*0.4,-24,SANG,18);
+
+  // u = angle al voltant del FORAT CENTRAL: dos rajos des del centre del
+  // tor (0,0), amb un arc real que els connecta (angleMark) -- sense
+  // aixo, "u" nomes eren dos segments solts, facils de confondre amb
+  // una longitud en lloc d'un angle. Etiqueta enfora del tor, no per sobre.
+  const u1={x:Ro*0.75,y:0};
+  const u2={x:Ro*0.75*Math.cos(-0.6),y:Ro*0.42*0.75*Math.sin(-0.6)};
+  hd.handSegment(0,0,u1.x,u1.y,{lineWidth:1.8,wobble:0.6,color:SANG});
+  hd.handSegment(0,0,u2.x,u2.y,{lineWidth:1.8,wobble:0.6,color:SANG});
+  angleMark(hd,0,0,u1.x,u1.y,u2.x,u2.y,40,1,SANG);
+  lbl(ctx,'u',30,-90,SANG,18);
+
+  // v = angle al voltant del TUB: dos rajos des del centre de la seccio
+  // dreta, amb el seu propi arc -- angle diferent, en un pla diferent
+  // de la figura (per aixo la seccio circular propia, no l'ellipse gran).
   const cx2=(Ro+ri)/2, ry2=(Ro-ri)/2;
-  hd.handSegment(cx2,0,cx2+ry2*0.8,0,{lineWidth:1.8,wobble:0.6,dashed:true,dashPattern:[5,4],color:SANG});
-  hd.handSegment(cx2,0,cx2+ry2*0.8*Math.cos(-0.9),ry2*0.8*Math.sin(-0.9)*0.9,{lineWidth:1.8,wobble:0.6,dashed:true,dashPattern:[5,4],color:SANG});
-  lbl(ctx,'v',cx2+18,-14,SANG,18);
-  stampNum(ctx,380,'209');
+  const v1={x:cx2+ry2*0.75,y:0};
+  const v2={x:cx2+ry2*0.75*Math.cos(-0.9),y:ry2*0.75*Math.sin(-0.9)*0.9};
+  hd.handSegment(cx2,0,v1.x,v1.y,{lineWidth:1.8,wobble:0.6,dashed:true,dashPattern:[5,4],color:SANG});
+  hd.handSegment(cx2,0,v2.x,v2.y,{lineWidth:1.8,wobble:0.6,dashed:true,dashPattern:[5,4],color:SANG});
+  angleMark(hd,cx2,0,v1.x,v1.y,v2.x,v2.y,26,1,SANG);
+  lbl(ctx,'v',cx2+58,-30,SANG,18);
+
+  stampNum(ctx,420,'209');
 })();
 </script>
 </body></html>

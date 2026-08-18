@@ -98,7 +98,7 @@ function cubeVerts(S,dx,dy){
   hd.handDot(A.x,A.y,4,INK);hd.handDot(M.x,M.y,4,INK);hd.handDot(B.x,B.y,4,INK);
   lbl(ctx,'a',a/2-6,20,INK,18);
   lbl(ctx,'b',a+b/2-6,20,INK,18);
-  lbl(ctx,'s=√(ab)',M.x+10,-h/2,SANG,18);
+  lbl(ctx,'√(ab)',M.x+10,-h/2,SANG,18);
   stampNum(ctx,300,'183');
 })();
 
@@ -276,7 +276,7 @@ function cubeVerts(S,dx,dy){
   hd.handSegment(apex.x,apex.y,baseL.x,baseL.y,{lineWidth:2.2,color:INK});
   hd.handSegment(apex.x,apex.y,baseR.x,baseR.y,{lineWidth:2.2,wobble:0.8,color:SANG});
   hd.handEllipse(r,hgt,r,r*0.28,{lineWidth:2.2,irregularity:0.03,color:INK});
-  lbl(ctx,'L',apex.x+30,hgt/2,SANG,18);
+  lbl(ctx,'L',apex.x+50,hgt/2,SANG,18);
 
   const cx2=430, cy2=hgt-40, Rsec=L*0.85;
   const ang0=-Math.PI/2-0.75, ang1=-Math.PI/2+0.75;
@@ -285,7 +285,7 @@ function cubeVerts(S,dx,dy){
   for(let i=0;i<arcPts.length-1;i++) hd.handSegment(arcPts[i].x,arcPts[i].y,arcPts[i+1].x,arcPts[i+1].y,{lineWidth:2.2,color:SANG});
   hd.handSegment(cx2,cy2,arcPts[0].x,arcPts[0].y,{lineWidth:2,wobble:0.8,dashed:true,dashPattern:[6,5],color:SANG});
   hd.handSegment(cx2,cy2,arcPts[arcPts.length-1].x,arcPts[arcPts.length-1].y,{lineWidth:2,wobble:0.8,dashed:true,dashPattern:[6,5],color:SANG});
-  lbl(ctx,'L',cx2-40,cy2-40,SANG,18);
+  lbl(ctx,'L',cx2-60,cy2-40,SANG,18);
   stampNum(ctx,300,'193');
 })();
 
