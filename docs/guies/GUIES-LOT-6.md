@@ -67,7 +67,7 @@ quadern, comptant cubs unitat.
 No et demanen que recitis V=l·w·h: et demanen la raó. Si ja saps la
 fórmula, aquesta pregunta és per què és certa.
 
-**Pista 1 — comença amb costats enters.**
+**Pista 1 — comença amb costats enters.** → `fig-184.png`
 Si la capsa fa 3×2×2, quants cubs d'aresta 1 hi caben? Compta'ls per
 capes: una capa horitzontal té l×w cubs. Quantes capes n'hi ha?
 
@@ -161,7 +161,7 @@ fet que ja saps què cal fer-hi: **trobar la mida del cercle petit en
 funció de la mida gran**, a cadascuna. És el mateix tipus de pregunta que
 q22, tres vegades.
 
-**Pista 1 — el mateix truc de q22, reaplicat.**
+**Pista 1 — el mateix truc de q22, reaplicat.** → `fig-187.png`
 A q22 vas unir el centre del quadrat amb el centre d'un cercle petit i vas
 obtenir un triangle rectangle. Aquí, uneix el centre de gravetat del
 triangle equilàter amb el centre d'un dels tres cercles iguals, i
@@ -201,7 +201,7 @@ estàndard —els 4 vèrtexs sobre el cercle— perquè l'escaneig original
 sembla tenir un detall addicional a dalt que no he pogut resoldre amb
 confiança; v. `NOTA-LOT-6.md`.)*
 
-**Pista 1 — quantes incògnites, quantes condicions.**
+**Pista 1 — quantes incògnites, quantes condicions.** → `fig-191.png`
 Al segon panell (dos cercles i un quadrat en fila dins un cercle gran):
 si el quadrat té costat 2r (igual que el diàmetre comú dels cercles), i
 tot plegat travessa el diàmetre del cercle gran, quina equació relaciona
@@ -232,7 +232,7 @@ els altres dos triangles, més grans, són idèntics entre ells) es
 demostren de maneres diferents: la primera per angles repetits, la segona
 per simetria de mirall.
 
-**Pista 1 — marca els angles, no mesuris els costats.**
+**Pista 1 — marca els angles, no mesuris els costats.** → `fig-189.png`
 El triangle A (de dalt) té dos costats iguals (dos costats del pentàgon) —
 és isòsceles. El seu angle superior és l'angle interior del pentàgon
 (108°); els altres dos, iguals entre ells, què han de valer perquè sumin
@@ -306,7 +306,7 @@ Ja saps (o pots saber, per q31/q32) que d/s=φ compleix φ²=φ+1 per
 trigonometria. Aquí et demanen la MATEIXA identitat, però llegida
 directament d'un dibuix, sense cap sinus ni cosinus.
 
-**Pista 1 — identifica els costats "1" i "d" al dibuix.**
+**Pista 1 — identifica els costats "1" i "d" al dibuix.** → `fig-190.png`
 Dos pentàgons regulars de costat 1 comparteixen una aresta sencera. Des
 dels dos extrems d'aquesta aresta compartida surt una diagonal cap a un
 mateix vèrtex llunyà d'un dels dos pentàgons. Quant fan, en termes de d i
@@ -380,7 +380,7 @@ cas general (surt d'abast d'una pista puntual); et dona la primera peça
 del mètode, que és constructiva: **trobar la longitud exacta del costat
 del quadrat abans de retallar res**.
 
-**Pista 1 — quina longitud busques.**
+**Pista 1 — quina longitud busques.** → `fig-183.png`
 Un rectangle de costats a i b té la mateixa àrea que un quadrat de costat
 s=√(ab) —la mitjana geomètrica de a i b. Coneixes ja una manera de
 construir aquesta longitud amb regla i compàs?
@@ -570,7 +570,7 @@ sobreposarien). La pregunta es converteix en: quines combinacions de
 polígons regulars, sumant els seus angles (que ja saps calcular des de
 q04), donen exactament 360°?
 
-**Pista 1 — prova-ho amb el cas més senzill.**
+**Pista 1 — prova-ho amb el cas més senzill.** → `fig-179.png`
 Tres hexàgons regulars es toquen en un vèrtex. Cada angle val 120° (q04
 amb n=6). Suma'ls. I amb dos hexàgons i un quadrat?
 

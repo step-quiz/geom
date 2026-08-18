@@ -437,7 +437,7 @@ Una descripció qualitativa concreta: tres rectes que, un cop
 projectades, ja NO són paral·leles entre si, sinó que tenen alguna
 altra relació geomètrica exacta —quina?
 
-**Pista 1 — pensa en les vies del tren.**
+**Pista 1 — pensa en les vies del tren.** → `fig-204.png`
 Imagina't dret entre dues vies de tren paral·leles, mirant cap on
 s'allunyen. Encara que són paral·leles de veritat, com les veus a
 l'horitzó?

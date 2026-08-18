@@ -157,7 +157,7 @@ L'únic polígon del qual ja saps la suma d'angles amb certesa és el triangle:
 en un cert nombre de triangles, sense deixar-ne cap forat ni superposar-ne
 cap.
 
-**Pista 1 — un cas petit primer.**
+**Pista 1 — un cas petit primer.** → `fig-199.png`
 Un quadrilàter (n=4): traça'n una diagonal. Queda partit en dos triangles.
 Suma: 2 × 180° = 360°. Ara fes el mateix amb un pentàgon (n=5) triant totes
 les diagonals des d'**un sol vèrtex**. Quants triangles surten?
@@ -193,7 +193,7 @@ Ja tens la fórmula: un polígon de n costats, triangulat des d'un vèrtex, dona
 n−3 diagonals i n−2 triangles. Aquesta pregunta no et demana redemostrar-ho,
 et demana **fer-lo servir** amb valors concrets de n.
 
-**Pista 1 — compta amb els dits abans de fer servir la fórmula.**
+**Pista 1 — compta amb els dits abans de fer servir la fórmula.** → `fig-188.png`
 Mira el dibuix de l'hexàgon. Des del vèrtex de dalt, compta les diagonals una
 per una. Compta els triangles un per un. Comprova que els dos comptatges
 coincideixen amb n−3 i n−2 per a n=6 abans de confiar-hi cegament per a n=8.
@@ -350,7 +350,7 @@ Fixa't que en realitat són dues preguntes independents amb, molt
 probablement, respostes diferents: una pel triangle, una altra pel
 quadrilàter general. No donis per fet que la resposta és la mateixa.
 
-**Pista 1 — comença pel triangle.**
+**Pista 1 — comença pel triangle.** → `fig-201.png`
 Si tens els tres punts mitjans M_AB, M_BC, M_CA, el triangle que formen
 (el "triangle medial") és semblant al triangle original, a escala 1/2 i
 girat 180°. Si coneixes el triangle medial, coneixes la seva orientació i
@@ -793,7 +793,7 @@ polígon regular i **tots** els vèrtexs tenen el mateix aspecte al seu
 voltant. Val la pena que fixis aquesta definició abans de continuar,
 perquè si la relaxes surten moltes més figures.
 
-**Pista 1 — comença pel cas que ja coneixes bé.**
+**Pista 1 — comença pel cas que ja coneixes bé.** → `fig-180.png`
 El cub és l'exemple més familiar: sis cares quadrades, tres arestes a cada
 vèrtex. Té, entre altres simetries, eixos que passen per parells de
 vèrtexs oposats (la diagonal principal), eixos pel centre de cares oposades,

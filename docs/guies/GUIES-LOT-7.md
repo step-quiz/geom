@@ -148,7 +148,7 @@ perspectiva.
 Dues descripcions del cilindre com "una forma plana que s'ha mogut",
 genuïnament diferents — no la mateixa idea dita amb altres paraules.
 
-**Pista 1 — pensa en QUÈ es mou i QUIN moviment fa.**
+**Pista 1 — pensa en QUÈ es mou i QUIN moviment fa.** → `fig-197.png`
 Una manera: quina forma plana, desplaçada en línia recta, deixa un
 cilindre al seu pas? Una altra manera, molt diferent: quina forma plana,
 girada al voltant d'un eix, en traça la superfície?

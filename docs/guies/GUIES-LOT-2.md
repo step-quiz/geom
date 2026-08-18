@@ -132,7 +132,7 @@ els dos costats donats (si ho fos, seria el cas SAS de q08c-recíproc, i
 aquell sí que determina el triangle). Aquesta distinció és tota la dificultat
 de la pregunta.
 
-**Pista 1 — mou-ho amb un compàs, mentalment.**
+**Pista 1 — mou-ho amb un compàs, mentalment.** → `fig-202.png`
 Fixa un angle a un vèrtex A, i un dels costats donats sortint d'A cap a un
 punt B (això fixa A i B del tot). L'altre costat donat té una longitud fixa,
 però només saps que l'altre extrem (diguem-li C) és **en algun lloc** del
@@ -210,7 +210,7 @@ Depèn de q36.
 Són dues afirmacions independents. Un rombe té els quatre costats iguals —
 i aquesta única propietat, ben mirada, respon totes dues alhora.
 
-**Pista 1 — pensa-ho com un plec de paper.**
+**Pista 1 — pensa-ho com un plec de paper.** → `fig-181.png`
 Si retallessis el rombe i el doblegues per una diagonal, què passa amb els
 dos triangles que queden a banda i banda? *(Els quatre costats són iguals,
 així que...)*
@@ -330,7 +330,7 @@ En un dibuix en perspectiva les circumferències de dalt i de baix del
 cilindre no semblen cercles — surten aixafades, com el·lipses. Fia't de
 l'objecte, no del dibuix: són cercles de veritat.
 
-**Pista 1 — pensa en l'etiqueta d'una llauna.**
+**Pista 1 — pensa en l'etiqueta d'una llauna.** → `fig-192.png`
 Si talles l'etiqueta de paper d'una llauna de sopa en vertical i l'estires
 plana, quina forma té? Amb radi 3 i alçada 10: l'amplada de l'etiqueta és la
 longitud de la circumferència, 2π×3 ≈ 18,85; l'alçada és 10, la mateixa del

@@ -299,7 +299,7 @@ petits tetràedres iguals, un a cada vèrtex retallat — comprova que
 **Pista 0 — un avís abans de començar.** Com sempre en un dibuix en
 perspectiva, la base del con no sembla un cercle. És un cercle de veritat.
 
-**Pista 1.** A q45 vas desenrotllar un cilindre i et va sortir un
+**Pista 1.** → `fig-193.png` A q45 vas desenrotllar un cilindre i et va sortir un
 rectangle. Prova de fer el mateix amb un con: talla'l des de la punta fins
 a la vora de la base, en línia recta, i estira'l pla. Ja no surt un
 rectangle — surt un tros de cercle. Quin radi té aquest tros de cercle?
@@ -337,7 +337,7 @@ DEPÈN de q08c i q86.
 cilindre "inclinat" (com una pila de monedes que s'ha desplaçat de costat
 sense girar cap moneda) — mateixa base, mateixa alçada.
 
-**Pista 1.** A cada alçada, el tall horitzontal dels dos cilindres és un
+**Pista 1.** → `fig-194.png` A cada alçada, el tall horitzontal dels dos cilindres és un
 cercle idèntic (mateix radi) — per Cavalieri, doncs, tenen el mateix
 volum. Però un és "recte" i l'altre "s'inclina": mira la superfície
 lateral de cadascun. Quina creus que serà més gran, i per què?
@@ -373,7 +373,7 @@ que semblin.
 dalt i la desplaces cap al costat, mantenint l'alçada, fins que el
 rectangle es converteix en un paral·lelogram inclinat. Ha canviat l'àrea?
 
-**Pista 1.** A cada alçada, quina longitud té el tall horitzontal del
+**Pista 1.** → `fig-195.png` A cada alçada, quina longitud té el tall horitzontal del
 paral·lelogram? Compara-la amb la longitud del tall del rectangle a la
 mateixa alçada.
 
@@ -412,7 +412,7 @@ esglaons més petits i més nombrosos, l'escala s'assembla més i més a la
 diagonal, a ull. Això vol dir que la seva **longitud** s'acosta a la
 longitud de la diagonal?
 
-**Pista 1.** Suma tots els trams horitzontals de l'escala (sense els
+**Pista 1.** → `fig-196.png` Suma tots els trams horitzontals de l'escala (sense els
 verticals): quant val la suma, sigui quin sigui el nombre de graons? Fes el
 mateix amb els verticals. Ara suma-ho tot: aquesta és la longitud total del
 camí en escala.

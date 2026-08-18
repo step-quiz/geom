@@ -63,7 +63,7 @@ semicircular (l'àrea) i la del centroide del seu arc (el perímetre, sense
 comptar el diàmetre) — cadascuna respecte del centre del cercle, sobre el
 diàmetre.
 
-**Pista 1 — gira-ho, com a q68.**
+**Pista 1 — gira-ho, com a q68.** → `fig-198.png`
 Si gires el semicercle (la regió) al voltant del seu diàmetre, quin sòlid
 en surt? I si gires només l'arc (sense la regió)?
 
@@ -369,7 +369,7 @@ No un polígon concret: la LLISTA dels problemes que caldria resoldre, en
 general, per saber si una successió de "avança tant, gira tant" torna
 mai al punt de partida.
 
-**Pista 1 — descompon cada tram en dues direccions.**
+**Pista 1 — descompon cada tram en dues direccions.** → `fig-200.png`
 Cada tram de la teva llista (una longitud, en una direcció determinada
 pels girs acumulats fins aquell moment) es pot descompondre en un
 avanç horitzontal i un de vertical — exactament sinus i cosinus de

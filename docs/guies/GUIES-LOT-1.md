@@ -86,7 +86,7 @@ raó, no una xifra.
 *(Si penses "però si ja sé que l'àrea és base × altura / 2": aquesta fórmula és
 exactament el que estàs demostrant. La pregunta és per què és certa.)*
 
-**Pista 1 — resol primer el cas fàcil.**
+**Pista 1 — resol primer el cas fàcil.** → `fig-182.png`
 Hi ha alguna posició de la punta per a la qual la resposta sigui evident?
 Prova de posar-la just damunt d'un dels dos vèrtexs de baix.
 
@@ -275,7 +275,7 @@ només després d'haver fet la part geomètrica.
 Aquí sí que has de trobar una fórmula. Però no la trobaràs mirant el cercle
 petit: la trobaràs mirant els **centres**.
 
-**Pista 1 — la palanca amagada.**
+**Pista 1 — la palanca amagada.** → `fig-185.png`
 Dibuixa a part dos cercles que es toquin, de radis diferents. Què saps de la
 distància entre els seus centres? És el fet que et falta, i no és a l'enunciat.
 
@@ -309,7 +309,7 @@ Escriu amb les teves paraules què vol dir exactament que una recta sigui tangen
 a un cercle. No continuïs fins que ho tinguis escrit. Tota la demostració viu
 en aquesta frase, i és per això que costa: la hipòtesi no sembla una hipòtesi.
 
-**Pista 1 — dibuixa una cosa falsa a posta.**
+**Pista 1 — dibuixa una cosa falsa a posta.** → `fig-203.png`
 Suposa que t'equivoques i que el radi **no** és perpendicular. Dibuixa-ho ben
 exagerat, ben tort. Dibuixar deliberadament el cas impossible és una tècnica,
 no una pèrdua de temps.
@@ -533,7 +533,7 @@ davant i la de la profunditat formen un angle que sembla obert, i tanmateix a la
 caixa de veritat fan 90°. Fia't de l'objecte, no del dibuix. Aquesta és la
 primera cosa que cal desaprendre en passar del pla a l'espai.
 
-**Pista 1 — ja en saps la meitat.**
+**Pista 1 — ja en saps la meitat.** → `fig-186.png`
 La diagonal d'un *rectangle* ja la saps calcular. Hi ha algun rectangle amagat
 dins d'aquesta caixa que et deixi a mig camí de la diagonal llarga?
 

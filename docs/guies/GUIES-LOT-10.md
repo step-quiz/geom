@@ -277,7 +277,7 @@ la paràbola rebota exactament cap al focus — sense fer servir cap
 argument de "límit" ni de rectes que es toquen "a l'infinit". Només
 construcció i triangles.
 
-**Pista 1 — la definició per punts, com a q98.**
+**Pista 1 — la definició per punts, com a q98.** → `fig-205.png`
 Un punt P de la paràbola és exactament tan lluny del focus F com de la
 directriu — és a dir, de D, el peu de la perpendicular des de P a la
 directriu. Si PF=PD, quin triangle isòsceles se't dibuixa tot sol?
@@ -321,7 +321,7 @@ Una explicació de per què la "corba" que sembla aparèixer entre les
 rectes —que en realitat no n'hi ha cap de dibuixada— és exactament una
 paràbola, i no una altra corba qualsevol.
 
-**Pista 1 — cap recta és corba; és l'ull qui hi veu una corba.**
+**Pista 1 — cap recta és corba; és l'ull qui hi veu una corba.** → `fig-206.png`
 Cada recta és tangent a una certa corba (la seva envolupant): la corba
 que "toca" cada recta del feix sense travessar-ne cap. Amb n+1 punts a
 cada eix, numerats 0..n, la recta i uneix el punt i d'un eix amb el
@@ -409,7 +409,7 @@ tancada entre l'arc de paràbola i els dos costats superiors de la seva
 caixa circumscrita és exactament 2/3 de l'àrea total de la caixa —ni
 una mica més, ni una mica menys.
 
-**Pista 1 — parteix la caixa en franges, no en un sol tros.**
+**Pista 1 — parteix la caixa en franges, no en un sol tros.** → `fig-207.png`
 Divideix la base de la caixa (d'un costat a l'altre del vèrtex) en n
 franges verticals iguals. A cada franja, la paràbola hi talla un
 rectangle petit. Suma les àrees d'aquests n rectangles petits (la que
@@ -494,7 +494,7 @@ Una fórmula per a la longitud d'una hèlix que fa n voltes senceres al
 voltant d'un cilindre de radi R, mentre puja una alçada total H —sense
 haver de sumar infinits trossets de corba.
 
-**Pista 1 — "desenrotlla" el cilindre.**
+**Pista 1 — "desenrotlla" el cilindre.** → `fig-208.png`
 Imagina el cilindre com un full de paper enrotllat. Si el desenrotlles
 (el retalles per una línia vertical i l'estires pla), l'hèlix dibuixada
 a sobre es converteix en... quina mena de línia, sobre el rectangle pla
@@ -535,7 +535,7 @@ Una manera de descriure un moviment sobre la superfície d'un tor (un
 donut) que sigui l'anàloga natural de l'hèlix sobre un cilindre —no fa
 falta cap equació, només una descripció clara del moviment.
 
-**Pista 1 — un tor té DOS cercles, no un.**
+**Pista 1 — un tor té DOS cercles, no un.** → `fig-209.png`
 Un punt sobre un tor es pot descriure per dos angles: quina posició té
 al voltant del forat central (com les hores d'un rellotge vist des de
 dalt), i quina posició té al voltant del "tub" prim (com les hores d'un
