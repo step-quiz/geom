@@ -1,4 +1,4 @@
-# Geometria — preguntes del llibre
+# Geometria sintètica
 
 Un lloc web per explorar 130 preguntes obertes de geometria sintètica extretes d'un
 llibre real ("*On Problems...*"), p. 1–193. No és un banc d'exercicis per corregir-se:
@@ -9,11 +9,10 @@ gamificació.
 ## Com obrir-ho
 
 Fes doble clic a `index.html`. No cal cap servidor, cap `npm install`, cap build.
-Funciona directament des del sistema de fitxers (`file://`) perquè les dades de les
-preguntes viuen en un fitxer JavaScript (`js/data/preguntes-dades.js`, que assigna a
-`window.PREGUNTES`), no en un `.json` carregat amb `fetch()` — el navegador bloqueja
-aquestes peticions sota `file://`, i aquesta lliçó ve directament del projecte germà
-`cangurcat`.
+Funciona directament des del sistema de fitxers (`file://`) perquè totes les dades
+viuen en fitxers JavaScript (`js/data/*.js`, que assignen a variables globals com
+`window.PREGUNTES`), no en `.json` carregats amb `fetch()` — el navegador bloqueja
+aquestes peticions sota `file://`.
 
 Si prefereixes servir-ho amb un servidor local (per exemple per provar-ho des d'un
 mòbil a la mateixa xarxa), qualsevol servidor estàtic funciona igual de bé:
@@ -22,21 +21,23 @@ mòbil a la mateixa xarxa), qualsevol servidor estàtic funciona igual de bé:
 ## Què hi ha, i què no
 
 **Hi ha:** 130 preguntes amb el seu enunciat original en anglès (el text del llibre)
-**i en català** (traduït), totes 130 amb la seva figura de guia corresponent, navegació
-entre preguntes, un marcador personal "explorat" que es desa al navegador, un
-itinerari amb suggeriments personalitzats, un glossari de 53 termes amb detecció
-automàtica dins dels enunciats, una intro "què és una demostració" per a qui arriba per
-primer cop, i una interfície completa en anglès i català.
+**i en català** (traduït); **114 de 130 amb una imatge d'enunciat** (67 escanejades
+del llibre original + 47 dibuixades a mà amb el mateix conveni); **les 130 amb la
+seva guia de demostració completa**; navegació entre preguntes; un marcador personal
+"explorat" que es desa al navegador; un itinerari amb suggeriments personalitzats; un
+glossari de 53 termes (26 amb figura pròpia) amb detecció automàtica de termes dins
+dels enunciats **i dins del text de cada pista**; una intro "què és una demostració"
+amb tres exemples resolts pas a pas; **un filtre 2D/3D i un filtre de 5 categories
+temàtiques** (amb icones dibuixades a mà) a la llista de preguntes; **11 preguntes
+amagades de la llista** (encara existents, mai esborrades — v. secció pròpia); i una
+interfície completa en anglès i català, mostrada només en català per defecte.
 
-**Les 130 de 130 preguntes tenen ja una GUIA DE DEMOSTRACIÓ — el llibre sencer.**
-Els lliuraments 9 (projecció i còniques) i 10 (corbes i el final del llibre) es van fer
-en paral·lel, cadascun encarregat a un agent diferent (`HANDOFF-LLIURAMENT-9.md`,
-`HANDOFF-LLIURAMENT-10.md`), i integrats després en un sol pas — v.
-`docs/guies/NOTA-FUSIO-LOT-9-10.md` per als detalls d'aquesta fusió, incloent-hi una
-col·lisió real de numeració de figures que calia resoldre abans d'ajuntar-los.
-És una escala de quatre pistes que es revelen d'una en una, pensada per a qui sap
-resoldre equacions però no ha fet mai geometria sintètica. Els quatre nivells
-difereixen en *espècie*, no en quantitat:
+### Guies de demostració
+
+Botó "Què és una demostració?" a la capçalera introdueix el format abans que
+l'alumne obri cap pregunta real. Cada guia és una escala de quatre pistes que es
+revelen d'una en una, pensada per a qui sap resoldre equacions però no ha fet mai
+geometria sintètica. Els quatre nivells difereixen en *espècie*, no en quantitat:
 
 | Nivell | Què fa |
 |---|---|
@@ -53,23 +54,67 @@ no un oblit.
 A les figures de guia, **el negre és la figura del llibre i la sanguina és el que
 hi afegeixes tu**. La distinció visual és la distinció conceptual que tot plegat
 existeix per ensenyar: la figura del llibre és un enunciat; la línia que hi
-afegeixes és una decisió teva. (Als glossari i a la intro "què és una demostració",
-aquesta mateixa paleta hi és, però amb un significat diferent — v. més avall.)
+afegeixes és una decisió teva.
+
+31 de les 130 guies tenen, a més, una segona imatge a Pista 2 (nivell 1) — un
+moment visual propi, diferent del que la imatge de Pista 3 acaba mostrant, no una
+repetició.
 
 A la llista, les preguntes que tenen guia porten la marca ◆.
+
+### Filtres a la llista de preguntes
+
+Dos filtres independents, tots dos com a botons tipus toggle a la capçalera de la
+llista, cadascun amb el seu propi estat persistit a `localStorage` (recorden la
+tria entre sessions, en aquell navegador):
+
+- **2D / 3D** — filtra per la dimensió de la pregunta (88 preguntes en 2D, 42 en
+  3D). Mai els dos toggles poden quedar apagats alhora: si es desactiva l'últim
+  actiu, es reactiven tots dos.
+- **Categories temàtiques** — 5 botons amb icona (triangle, pentàgon, cercle,
+  el·lipse, tres punts per a "Altres"), selecció múltiple. **Cap seleccionada es
+  tracta com "totes"** — invariant diferent del filtre 2D/3D a propòsit. Dades a
+  `js/data/categories-tematiques-dades.js`. La sisena categoria del fitxer de
+  dades ("Propietats d'aritmètica o d'àlgebra") mai es mostra al menú perquè
+  totes les seves preguntes són a la llista d'amagades (v. més avall) — oferir
+  un filtre que sempre donaria 0 resultats no aporta res.
+
+**Per defecte, la primera vegada que s'obre el lloc en un navegador** (abans que
+hi hagi res desat a `localStorage`): només "2D" i només "Triangles" actius — no
+"tots dos" ni "totes", a petició explícita de l'última revisió de disseny.
+
+### Exercicis amagats de la llista
+
+11 preguntes no apareixen a la llista de preguntes, per una decisió de contingut de
+l'owner — **mai esborrades del codi**, només excloses en pintar la llista
+(`EXERCICIS_AMAGATS`, hardcoded a `js/ui/llista.js`, sempre la font de veritat).
+Segueixen accessibles amb normalitat per enllaç directe (`#q19`, etc.) i amb la
+seva guia completa.
+
+```
+q18a, q18b, q19, q20, q21, q24, q34, q35, q83, q84, q88
+```
+
+(les 11 preguntes de la categoria "Propietats d'aritmètica o d'àlgebra" senceres —
+per això aquesta categoria no apareix al menú de filtres, v. més amunt).
+
+Per tornar a fer visible una pregunta, treu-ne l'id d'`EXERCICIS_AMAGATS` — res més
+cal tocar.
 
 ### Glossari
 
 Botó "📖 Glossari" a la capçalera: un panell de cerca i navegació per categoria amb
 53 termes (triangles, angles, cercles, polígons, sòlids, còniques...), més la
-detecció automàtica de qualsevol d'aquests termes dins l'enunciat d'una pregunta —
-apareix subratllat i, en clicar-lo, un popover hi mostra la definició al mateix lloc.
-Dades a `js/data/glossari-dades.js`; només 1 dels 53 termes té figura pròpia encara
-(la resta, ampliada recentment per un altre agent en paral·lel, espera il·lustracions
-— v. `docs/guies/NOTA-GLOSSARI-AMPLIACIO.md`). Les figures que sí n'hi ha són **tinta
-sola, sense sanguina**: aquí no hi ha "figura del llibre" vs "afegit de l'alumne",
-només un sol diagrama — un accent (`--pencil`, el mateix que ja fa servir la interfície
-fora del canvas) marca els noms de terme.
+detecció automàtica de qualsevol d'aquests termes **dins l'enunciat d'una pregunta
+i dins del text de cada Pista (1-4) d'una guia** — mai a la comprovació ni a
+l'"i després", per decisió explícita. El terme apareix subratllat i, en clicar-lo,
+un popover hi mostra la definició al mateix lloc.
+
+Dades a `js/data/glossari-dades.js`. **26 dels 53 termes tenen figura pròpia**
+(la resta espera il·lustracions — v. `docs/guies/NOTA-GLOSSARI-MILLORES.md`). Les
+figures són **tinta sola, sense sanguina**: aquí no hi ha "figura del llibre" vs
+"afegit de l'alumne", només un sol diagrama — un accent (`--pencil`) marca els noms
+de terme.
 
 ### Itinerari
 
@@ -81,11 +126,22 @@ Estat a `localStorage`, motor a `js/nucli/itinerari.js`.
 
 ### "Què és una demostració?"
 
-Enllaç "Què és una demostració?" a la capçalera (`#demo`): tres demostracions curtes,
-completes, SEMPRE visibles senceres —l'única excepció deliberada a la regla "cap
-nivell dona la solució" que sí regeix les guies reals. Un alumne que arriba per
-primer cop (sense cap pregunta feta encara) hi és enviat un únic cop; qui hi torna,
-mai més. Dades a `js/data/demos-dades.js`.
+Enllaç "Què és una demostració?" a la capçalera (`#demo`): tres demostracions
+completes, cadascuna reestructurada en **6 passos revelats d'un en un** amb el
+mateix mecanisme que les guies reals (`pintaGuia`/`revela` a `detall.js`) — canvi
+deliberat respecte del disseny original ("sempre visible sencer"), a petició
+explícita de l'owner per forçar un bucle real llegir → provar al paper → comparar
+→ comprovar. Pas 0 = context (sempre visible); passos 1-4 = un per panell de la
+figura, cadascun amb "Try it on paper first" (abans de mirar la resta del pas) +
+l'argument + la figura d'aquell panell + "Check yourself"; pas 5 = tancament +
+enllaç a una pregunta real relacionada. Després de les tres demos, un bloc de
+tancament compartit (`window.DEMOS_TANCAMENT`) les anomena explícitament com a
+tres famílies d'estratègia (afegir el que falta / reconèixer la simetria /
+reduir a allò conegut).
+
+Un alumne que arriba per primer cop (sense cap pregunta feta encara) hi és enviat
+un únic cop; qui hi torna, mai més. Dades a `js/data/demos-dades.js`, figures a
+`assets/img/demo/demo-0N-pM.png` (5 panells independents × 3 demos = 15 fitxers).
 
 ### Ordre de presentació
 
@@ -113,40 +169,43 @@ sent, sempre, l'ordre real del llibre.
 
 **No hi ha, i per què:**
 
-
 | Element | Per què no hi és |
 |---|---|
 | Correcció o puntuació | El llibre no en té — cada pregunta és un punt de partida per pensar-hi, no un test |
 | Pistes curtes (`pista`) | `pista.en`/`pista.ca` continuen sent `null` a totes 130. NO les substitueixen les guies: són coses diferents (una pista curta seria una frase; una guia és una escala completa). El botó 💡 simplement no apareix quan no n'hi ha |
-| Figures per a 52 dels 53 termes del glossari | Contingut escrit; il·lustracions pendents — és literalment la pròxima tasca (v. `docs/guies/NOTA-GLOSSARI-AMPLIACIO.md`) |
+| Figures per a 27 dels 53 termes del glossari | Contingut escrit; il·lustracions pendents — v. `docs/guies/NOTA-GLOSSARI-MILLORES.md` |
+| 16 preguntes sense gràfic d'enunciat | De les 63 originals sense imatge, se'n van triar 47; les altres 16 es van descartar explícitament — v. `ANALISI-GRAFICS-NOUS.md` |
 | Assignació per curs (`#curs=2ESO` i similars) | El camp `curs` existeix a l'esquema de dades però és `null` arreu — decisió de contingut ajornada conscientment, no una limitació tècnica. El filtre ja funciona (prova-ho a la barra d'adreces); simplement no hi ha encara cap valor assignat |
-| Mode d'interacció (resposta oberta, dibuix, etc.) | Ídem: `interaccio` és `null` a tot arreu, estructura preparada, contingut pendent. No és només contingut per assignar: la interactivitat real (punts arrossegables, recàlcul en viu) exigiria una capa de renderitzat completament diferent de la que hi ha ara (`docs/render.js` genera PNG estàtics per disseny, no SVG/canvas en viu al navegador) — és a dir, un canvi d'arquitectura real, no una dada per omplir. Es deixa aquí explícitament perquè un futur contribuïdor no ho confongui amb un descuit i el comenci sense haver-ho decidit (v. `docs/guies/REFERENTS-PEDAGOGICS.md`, secció Castelnuovo) |
+| Mode d'interacció (resposta oberta, dibuix, etc.) | Ídem: `interaccio` és `null` a tot arreu, estructura preparada, contingut pendent. La interactivitat real (punts arrossegables, recàlcul en viu) exigiria una capa de renderitzat completament diferent de la que hi ha ara (`docs/render.js` genera PNG estàtics per disseny, no SVG/canvas en viu al navegador) — un canvi d'arquitectura real, no una dada per omplir |
+| Selector d'idioma visible | Amagat de la interfície a petició explícita ("mostra només la capa del català"). La capacitat multilingüe NO s'ha eliminat: `ui-strings.js` conserva les dues capes senceres, i `window.geoI18n.setLang("en")` (o `?lang=en` a la URL) segueix funcionant |
 
 ## Estructura
 
 ```
 index.html                    — única pàgina real de l'app
-assets/img/pistes/            — 131 figures de guia (fig-001…fig-131)
-assets/img/glossari/          — figures del glossari (1 de 53 termes, ampliant-se)
-assets/img/demo/              — 3 figures de la intro "què és una demostració"
+assets/img/                   — 114 imatges d'enunciat (67 escanejades + 47 dibuixades a mà)
+assets/img/pistes/            — 162 figures de guia (131 originals + 31 de Pista 2)
+assets/img/glossari/          — 26 figures del glossari (de 53 termes)
+assets/img/demo/               — 15 figures de la intro "què és una demostració" (5 panells × 3)
+assets/img/icones/            — 5 icones del filtre de categories temàtiques
 css/
   tokens.css                  — variables de disseny (color, tipografia, espai)
   base.css                    — ritme de lectura, layout "llibre obert"
-  components.css              — elements interactius (botons, glossari, itinerari, demo...)
+  components.css              — elements interactius (botons, glossari, itinerari, demo, filtres...)
 js/
   data/
     preguntes-dades.js        — les 130 preguntes, en/ca (generat, no editar a mà — v. més avall)
-    ordre-preguntes.js        — ordre de PRESENTACIÓ (llista + anterior/següent), separat de
-                                 l'ordre del llibre — s'edita a mà, v. secció pròpia més avall
+    ordre-preguntes.js        — ordre de PRESENTACIÓ, separat de l'ordre del llibre — s'edita a mà
     guies-dades.js             — les 130 guies — el llibre sencer (generat per parse_guies.py, no editar a mà)
+    categories-tematiques-dades.js — classificació temàtica de les 130 preguntes en 6 categories (s'edita a mà)
     glossari-dades.js         — els 53 termes del glossari (s'edita a mà)
-    demos-dades.js             — les 3 demostracions fixes (s'edita a mà)
+    demos-dades.js             — les 3 demostracions fixes, model de passos (s'edita a mà)
   i18n/
     ui-strings.js             — textos d'interfície en/ca
     i18n-core.js              — resolució d'idioma i lookup de textos
   nucli/
     contingut.js              — fallback de contingut (enunciat.ca → en quan falta)
-    ordre.js                    — resol ordre-preguntes.js de manera segura (v. secció pròpia)
+    ordre.js                    — resol ordre-preguntes.js de manera segura
     progres.js                — marcador "explorat", desat a localStorage
     guies.js                   — unió guia↔pregunta per id
     glossari.js                — accés al glossari + detecció de termes dins de text
@@ -154,13 +213,15 @@ js/
     demos.js                    — estat de la intro "què és una demostració"
     router.js                 — hash-routing (#q01, #curs=2ESO, #demo...)
   ui/
-    llista.js                 — vista "totes les preguntes"
+    llista.js                 — vista "totes les preguntes" (filtres, exercicis amagats)
     detall.js                 — vista d'una pregunta
     glossari.js                — panell overlay + popovers inline
-    demo.js                     — vista "què és una demostració"
-    main.js                   — connecta el router a les vistes
-assets/img/                   — les 115 imatges d'enunciat (67 escanejades del llibre original +
-                                 47 dibuixades a mà pel mateix conveni + q40_implicit amb dues)
+    demo.js                     — vista "què és una demostració" (mecanisme de passos)
+    main.js                   — connecta el router a les vistes, força l'idioma català
+docs/
+  guies/                      — .md font de les guies, notes de lliurament, HTML de figures
+  *.html                      — fonts de figures (render.js les converteix a PNG)
+  manifest-figures.tsv        — registre de les 162 figures de guia
 ```
 
 Per a detalls tècnics de cada decisió de disseny (per què cada fitxer és com és, quins
@@ -170,61 +231,15 @@ patrons dels projectes germans es reutilitzen i quins es descarten, i per què),
 ## Regenerar les dades
 
 `js/data/preguntes-dades.js` **no s'edita a mà** — es genera amb
-`build_preguntes_dades.py` a partir del JSON d'extracció original
-(`geometry_questions_full_book/questions_full_book.json`). Si el text d'una pregunta
-canvia a la font, o s'hi afegeixen preguntes noves d'un lot futur, torna a executar
-l'script en lloc d'editar el `.js` directament.
+`build_preguntes_dades.py` a partir del JSON d'extracció original. Si el text
+d'una pregunta canvia a la font, torna a executar l'script en lloc d'editar el
+`.js` directament. **Excepció**: un cop generat, `enunciat.ca`, `pista.*`,
+`notaEditorial.*` i el camp `imatge` de la Part 1 sí que s'editen a mà
+directament al `.js` — regenerar-lo sense fusionar aquest contingut el perdria.
 
-**Nota important:** `build_preguntes_dades.py` porta paths absoluts (`SRC`, `IMG_DIR`,
-`OUT`) apuntant a l'entorn on es va desenvolupar aquest projecte
-(`/home/claude/geo-full/...`). No funcionarà tal qual clonat a una altra màquina —
-ajusta aquestes tres constants al principi del fitxer perquè apuntin: `SRC` al JSON
-font, `IMG_DIR` a la carpeta d'imatges font (no `assets/img/`, que és la còpia ja
-processada), i `OUT` a `js/data/preguntes-dades.js` d'aquest repositori. S'ha deixat
-així (en lloc de fer-los relatius) perquè el fitxer és, sobretot, documentació viva de
-com es van transformar les dades — la seva funció principal en aquest repositori és
-explicar el mapeig, no ser un botó d'un sol clic.
-
-**El JSON font (`questions_full_book.json`) i les imatges font originals no s'inclouen
-en aquest repositori** — només `assets/img/` (les 115 imatges ja processades i llestes
-per a l'app) i el `preguntes-dades.js` ja generat, que és tot el que el lloc necessita
-per funcionar. `build_preguntes_dades.py` s'inclou com a documentació de la
-transformació i per si algú té accés al JSON font i vol regenerar-lo, però executar-lo
-sense aquell JSON al costat fallarà amb un error de fitxer no trobat — esperat, no un
-bug d'aquest lliurament.
-
-**Excepció:** un cop generat, `enunciat.ca`, `pista.*` i `notaEditorial.*` (les
-traduccions i notes que no venen del JSON font) sí que s'editen a mà directament al
-`.js`. Si regeneres el fitxer després d'haver-hi escrit contingut d'aquest tipus,
-guarda'l abans — la versió actual de l'script sobreescriu net i no fusiona traduccions
-existents (documentat també al capçalera del propi script).
-
-## Estat i propers passos
-
-Els sis passos de l'arquitectura original estan complets i provats de cap a cap
-(inclosa una càrrega real via `file://` sense servidor, amb clics reals a cada element
-interactiu). **Les 130 guies del llibre estan fetes** (lliuraments 9 i 10 integrats —
-v. `docs/guies/NOTA-FUSIO-LOT-9-10.md`). **114 de 130 preguntes tenen ja gràfic
-d'enunciat** (67 escanejats del llibre + 47 dibuixats a mà — v.
-`docs/guies/NOTA-PART1-ENUNCIATS.md`), i **31 guies tenen un segon gràfic a Pista 2**,
-a més del que ja tenien a Pista 3 (v. `docs/guies/NOTA-PART2-PISTA2.md`). Pendents
-coneguts, cap dels quals bloqueja l'ús actual del lloc:
-
-- **Figures del glossari**: 52 dels 53 termes encara no en tenen (v.
-  `docs/guies/NOTA-GLOSSARI-AMPLIACIO.md`) — la pròxima tasca prevista.
-- **16 preguntes sense gràfic d'enunciat** (de les 63 originals, se'n van triar 47;
-  les altres 16 es van descartar explícitament — v. `ANALISI-GRAFICS-NOUS.md`).
-- Assignació de `curs` i mode d'`interaccio` per pregunta.
-
-Ja fets, per si es cerca aquí per costum: totes les 130 preguntes tenen ja
-`enunciat.ca` (traduït i revisat — v. `js/data/preguntes-dades.js`); el glossari,
-l'itinerari, la intro "què és una demostració", i l'ordre de presentació configurable
-(v. seccions de dalt) hi són sencers i provats.
-
-### Guies de demostració — com funciona el circuit
-
-Les guies NO es toquen a mà dins de `js/data/guies-dades.js`. Aquest fitxer és
-generat. El circuit és:
+`js/data/guies-dades.js` **tampoc s'edita a mà** — es genera amb
+`python3 parse_guies.py` a partir dels `.md` a `docs/guies/GUIES-LOT-N.md`.
+Circuit:
 
 ```
 docs/guies/GUIES-LOT-N.md   ← s'escriu i es revisa AQUÍ
@@ -234,29 +249,13 @@ docs/guies/GUIES-LOT-N.md   ← s'escriu i es revisa AQUÍ
 js/data/guies-dades.js      ← generat; no editar
 ```
 
-Fitxers nous que aquest sistema afegeix al projecte:
-
-```
-js/data/guies-dades.js      — les 130 guies (generat per parse_guies.py)
-js/nucli/guies.js           — unió guia↔pregunta per id + fallback d'idioma
-assets/img/pistes/          — 131 figures publicades
-parse_guies.py              — .md → guies-dades.js
-docs/guies/                 — els .md font, les notes de lliurament i les
-                              fonts HTML que regeneren cada figura
-docs/manifest-figures.tsv   — registre numerat de les 131 figures
-docs/comu.js, docs/render.js, docs/hand-draw.js — eines de dibuix
-```
-
-`js/ui/detall.js`, `js/ui/llista.js`, `js/i18n/ui-strings.js`,
-`css/components.css` i `index.html` s'han ampliat; cap comportament previ
-s'ha modificat.
-
-Les figures es generen amb `docs/guies/figures-NN.html`, que carreguen
+Les figures es generen amb `docs/guies/figures-NN.html` (o
+`docs/glossari-figures.html`, `docs/demo-figures.html`,
+`docs/icones-categories.html`, `docs/guies/figures-enunciats-*.html` per a la
+Part 1, `docs/guies/figures-part2-*.html` per a la Part 2), que carreguen
 `docs/hand-draw.js` + `docs/comu.js` i es capturen amb `node docs/render.js`.
 La tècnica de dibuix (per què una mà encerta la tangència però no els 90°, etc.)
-està documentada a `docs/HAND_DRAWN_GEOMETRY_TECHNIQUE.md`; llegeix-ne §1.4, §1.5
-i §2.3b abans de tocar cap figura, perquè totes tres van néixer de revisions
-humanes que van contradir la intuïció inicial.
+està documentada a `docs/HAND_DRAWN_GEOMETRY_TECHNIQUE.md`.
 
 Abans i després de tocar res, executa des de l'arrel:
 
@@ -264,22 +263,42 @@ Abans i després de tocar res, executa des de l'arrel:
 python3 verifica_projecte.py
 ```
 
-Comprova dades, figures, guies i cablejat: presència de fitxers, els invariants
-130 / 88-42 / 28-70-32, integritat guia↔pregunta, acord figura↔manifest,
-convenció de noms, ordre dels `<script>`, paritat d'i18n i absència de
-castellanismes. Ha de dir `Tot correcte.`
+Ha de dir `Tot correcte.`
 
-Per continuar la producció de guies hi ha un document de traspàs complet:
-`HANDOFF-COMPLETAR-GUIES.md` (en anglès, pensat per a un agent que arriba en
-fred), amb el full de ruta de les 78 preguntes que queden.
-
-`docs/manifest-figures.tsv` és el registre de les 131 figures: número, pregunta,
-nivell, moviment, lot i revisió. **Un número de figura és permanent**: si una
-figura es redibuixa, conserva el número i puja el camp `rev`.
+`docs/manifest-figures.tsv` és el registre de les figures de guia (162: 131
+originals + 31 de Pista 2). **Un número de figura és permanent**: si una figura
+es redibuixa, conserva el número.
 
 Les figures publicades a `assets/img/pistes/` són les de treball amb dues
-modificacions automàtiques: se'ls ha esborrat el número de producció (un
-artefacte del circuit de revisió, que no ha de veure l'alumne) i se'ls ha posat
-el fons a blanc pur, perquè `mix-blend-mode: multiply` el faci desaparèixer sobre
-el crema de la pàgina — els escanejos del llibre ja hi arriben en blanc i per
-això no ho necessiten.
+modificacions automàtiques: se'ls ha esborrat el número de producció i se'ls ha
+posat el fons a blanc pur, perquè `mix-blend-mode: multiply` el faci desaparèixer
+sobre el crema de la pàgina.
+
+## Estat i propers passos
+
+**Les 130 de 130 preguntes tenen guia de demostració completa.** **114 de 130
+tenen imatge d'enunciat.** **26 de 53 termes del glossari tenen figura.**
+**11 preguntes estan amagades de la llista** per decisió de contingut (mai
+esborrades). Filtres 2D/3D i de 5 categories temàtiques funcionant, amb icones
+pròpies i persistència de la tria a `localStorage`. Les tres demos
+d'introducció reestructurades en passos revelats amb el mateix mecanisme que
+les guies reals.
+
+Pendents coneguts, cap dels quals bloqueja l'ús actual del lloc:
+
+- **27 dels 53 termes del glossari encara no tenen figura** — v.
+  `docs/guies/NOTA-GLOSSARI-MILLORES.md`.
+- **16 preguntes sense gràfic d'enunciat** — descartades explícitament, no un
+  oblit — v. `ANALISI-GRAFICS-NOUS.md`.
+- Assignació de `curs` i mode d'`interaccio` per pregunta.
+
+Historial complet de lliuraments (ordre cronològic, cada un amb la seva pròpia
+nota tècnica a `docs/guies/NOTA-*.md`): les 130 guies del llibre (lots 1-10,
+fusionats), l'ordre de presentació configurable, la Part 1 (47 imatges
+d'enunciat), la Part 2 (31 imatges de Pista 2), l'anàlisi de contingut de Pista
+3, el redisseny de les tres demos en cinc panells, les millores del glossari
+(espaiat, imatge trencada, termes clicables a les pistes, 7 figures noves), el
+redisseny de les demos en passos revelats, la neteja de capçalera (eyebrow i
+selector d'idioma fora, títol nou), el filtre de categories temàtiques amb
+exercicis amagats, les icones de categoria, i el polit final de focus/border
+dels filtres.
