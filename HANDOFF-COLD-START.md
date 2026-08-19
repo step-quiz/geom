@@ -1,15 +1,14 @@
 # HANDOFF — cold-start briefing for the next Claude session
 
-**To:** a cold-start Claude agent, given this file plus the `geom` repository
-(either the ZIP delivered at the end of the previous session, or the owner's
-GitHub repo **after** applying `lliurament-sync-github-diff.zip` — see §1,
-this distinction matters and is the first thing to resolve).
+**To:** a cold-start Claude agent, given this file plus the `geom`
+repository — the owner's GitHub repo, confirmed in sync as of this
+revision (§1).
 
 **From:** the agent that completed Part 1, Part 2, the three intro demos
 (twice — first a 5-panel static redesign, then a full step-by-step
 mechanism), the glossary expansion, the thematic category filter, the
-2D/3D filter, and a series of UI/UX polish rounds. That agent is now out of
-context (66 artifacts in the conversation) and cannot continue.
+2D/3D filter, and a series of UI/UX polish rounds. That agent is now out
+of context (66+ artifacts across two conversations) and cannot continue.
 
 **Read this whole file before touching anything.** It is long because the
 project has accumulated real subtlety — skipping sections has caused real
@@ -29,43 +28,46 @@ guessing why will waste more time than asking.
 
 ---
 
-## 1. CRITICAL: the owner's GitHub repo may be out of sync
+## 1. Repo sync status: confirmed clean as of this handoff
 
-This is the most important thing in this document. During the previous
-session, the owner uploaded their live GitHub repo as a ZIP for review, and
-a systematic audit (not an assumption) found it was **missing two entire
-deliveries**:
+Earlier revisions of this document warned that the owner's GitHub repo
+might be missing entire deliveries (Part 1's 47 images, several CSS
+fixes). **That gap has since been closed and verified closed** — a
+`diff -rq` between the owner's live repo and this working copy, run at
+the moment of writing this revision, shows zero meaningful differences
+(only files the owner deliberately removed on their own: two archival
+`.py` scripts no longer needed at the repo root, and three long-obsolete
+`HANDOFF-LLIURAMENT-9/10.md` / `HANDOFF-COMPLETAR-GUIES.md` files,
+correctly retired once this document superseded them).
 
-- **Part 1** (47 hand-drawn enunciat images) — `preguntes-dades.js` in the
-  uploaded repo still had only 67 of 130 questions with an `imatge` field,
-  not 114. 35 of the 47 PNG files were also absent from `assets/img/`.
-- The **circumference icon fix** (`irregularity` lowered from 0.025 to
-  0.006 so it reads as a clean circle at menu size instead of "some
-  strange conic").
-- The **focus-ring fix** on the two filter toggles (border-color was
-  already fixed to `transparent`, but `:focus-visible` still used a brown
-  `box-shadow` that looked like the same border after a mouse click in
-  some browsers — fixed to an `outline` with `offset` instead).
+One real bug did surface and get fixed after the sync: `index.html` had
+`<link rel="stylesheet" href="css/components.css"?v=2>` — the `?v=2`
+cache-buster landed **outside** the `href` attribute's quotes, which is
+invalid HTML. The browser silently ignored it and kept requesting the
+exact same `components.css` URL as always, so no cache-busting ever
+actually happened despite the owner adding the parameter — worth
+knowing about as a class of bug (see §5.3, which now documents the full
+arc of this exact issue), not because it's still open. It's fixed
+(`href="css/components.css?v=3"`).
 
-**Before you write a single line of code**, run this diff between whatever
-repo state you've been given and confirm it matches what this document
-describes as "current" (§2). If it doesn't:
+A second, unrelated issue surfaced right after: the owner kept seeing a
+brown color on the active category-filter button and reported it again
+even after the above fix shipped. This was **not a leftover bug** — it
+was the `.cat-filtre__toggle[aria-pressed="true"]` background color
+itself, `var(--pencil)` (brown), a deliberate design choice from the
+category-filter's original build that was never explicitly confirmed
+with the owner. Fixed by changing it to `var(--ink)` (black), matching
+the 2D/3D toggle's active-state color exactly — see §5.8 for the lesson
+this points to.
+
+**Still, don't take "clean at the time of writing" on faith.** Run this
+before doing anything, exactly as before — it costs nothing and this
+project has been out of sync in the past for reasons worth catching
+early:
 
 ```bash
 # from the repo root, assuming you have both directories available
 diff -rq /path/to/given-repo /path/to/this-repo --exclude=.git
-```
-
-A file named `lliurament-sync-github-diff.zip` (41 files) was delivered to
-the owner specifically to close this gap — if you're starting from the raw
-GitHub repo and that ZIP hasn't been applied yet, apply it first, then
-also delete these three obsolete files manually (a diff ZIP can never
-delete files, this has come up repeatedly across deliveries):
-
-```
-assets/img/demo/demo-01-angle-sum.png
-assets/img/demo/demo-02-isosceles.png
-assets/img/demo/demo-03-four-triangles.png
 ```
 
 **Do not assume the repo you're given is complete just because
@@ -73,8 +75,9 @@ assets/img/demo/demo-03-four-triangles.png
 (does every question with an `imatge` field have a real file on disk,
 etc.) — it does NOT check "does this repo have every delivery the owner
 has ever received." A repo frozen at an earlier point in time, with
-internally-consistent-but-outdated data, will pass it cleanly. Cross-check
-the numbers in §2 against what you actually see in the data files.
+internally-consistent-but-outdated data, would still pass it cleanly.
+Cross-check the numbers in §2 against what you actually see in the data
+files if anything looks off.
 
 ---
 
@@ -126,9 +129,12 @@ NOTA-CATEGORIA-ARITMETICA-ICONES                        (whole category hidden, 
 NOTA-TOGGLE-DEFECTES                                    (border fix, new defaults: 2D-only, Triangles-only)
 ```
 
-There is no note yet for the focus-ring fix or the README rewrite (this
-session, done directly, small enough not to need one — mention it in your
-own delivery note if you ship alongside other work).
+The focus-ring fix, the `index.html` cache-buster fix, the
+category-filter brown→black color fix, the README rewrite, and the
+removal of the three obsolete handoffs (this session and the two
+before it) were small enough not to warrant their own `NOTA-*.md` —
+they're documented here and in this document's own revision history
+instead.
 
 ---
 
@@ -177,13 +183,19 @@ scripting an edit to these files — anchor on the literal, exact key text
 instead (`grep` the real file first).
 
 **Generated files, never hand-edited directly:**
-- `js/data/preguntes-dades.js` ← `build_preguntes_dades.py` (needs a
-  source JSON not included in the repo; won't run as-is on a fresh clone
-  — see its own header). Exception: `enunciat.ca`, `pista.*`,
-  `notaEditorial.*`, and the Part-1 `imatge` fields ARE hand-edited after
-  generation — regenerating without merging these back would lose them.
+- `js/data/preguntes-dades.js` ← originally `build_preguntes_dades.py`
+  (needed a source JSON not included in the repo; the owner has since
+  removed this script from the repo root as archival clutter — the
+  transformation it documents is done and not being redone. If
+  `preguntes-dades.js` ever needs full regeneration from scratch, this
+  script's logic is only preserved in past session history, not in the
+  repo). Regardless of the script's presence, the same rule holds:
+  `enunciat.ca`, `pista.*`, `notaEditorial.*`, and the Part-1 `imatge`
+  fields are hand-edited directly in the `.js` after generation — never
+  regenerate and overwrite without merging these back first.
 - `js/data/guies-dades.js` ← `python3 parse_guies.py`, reading
   `docs/guies/GUIES-LOT-N.md`. Edit the `.md`, never the generated `.js`.
+  This script IS still at the repo root and in active use.
 
 **Figure pipeline**, used identically for every image on the site
 (enunciat images, guide hints, glossary figures, demo panels, category
@@ -290,6 +302,20 @@ visible after a mouse click in some browsers — Safari shows
 this kind of bug can be invisible in your own testing browser and real
 for the owner).
 
+**The full arc of this bug is worth knowing, because the final act was a
+different bug entirely.** After the CSS fix shipped, the owner still saw
+the brown ring and added a `?v=2` cache-buster to `index.html` to force a
+refresh — it didn't help, and they reported the bug again. The actual
+cause: `<link rel="stylesheet" href="css/components.css"?v=2>` — the
+`?v=2` landed **outside** the `href` attribute's quotes, invalid HTML
+that the browser silently ignores. The exact same stylesheet URL was
+requested every time, cache-buster or not, so the fix genuinely never
+reached the browser. Lesson: when an owner says "I tried refreshing /
+adding a cache-buster and it's still broken," check the mechanics of how
+they did it before re-investigating the original bug — the fix may have
+been correct all along and something else is preventing it from loading
+at all.
+
 ### 5.4 — A diff ZIP can never delete a file
 
 Every delivery this project ships is a ZIP of new/changed files, applied
@@ -337,6 +363,31 @@ deliberate given the `file://`-only constraint (no dev server to point a
 real test runner at easily) — don't try to introduce a different testing
 approach without discussing it with the owner first, it would be a real
 architecture change.
+
+### 5.8 — A deliberate design choice, never confirmed, is a bug waiting to be reported
+
+The category-filter toggle's active state used brown (`var(--pencil)`)
+as its background — a real, intentional choice made to visually
+distinguish it from the 2D/3D toggle (black, `var(--ink)`), so the two
+filters wouldn't be confused with each other. It was never explicitly
+run past the owner as a choice ("I'm making this one brown so it reads
+as a different filter — okay?"). Two deliveries later, the owner
+reported "that brown color, I don't want it" — accompanied by a
+screenshot with hand-drawn arrows pointing at the fill itself, not at
+any edge or ring, which is what made the actual target unambiguous
+(earlier reports without that kind of visual pointer had been chased as
+CSS `border`/`box-shadow` bugs instead, wasting a round). Fixed by
+making it match the 2D/3D toggle exactly (`var(--ink)`).
+
+**The lesson isn't "the color was ugly."** It's that any styling
+decision made unilaterally — a color, a size, an animation — that
+wasn't explicitly asked for is a latent revision request, not a closed
+decision, even if it's never been complained about yet. When you make
+this kind of call while building something new, say so plainly in your
+delivery note ("I picked brown here to distinguish it from X; happy to
+change it") rather than presenting it as self-evidently correct — it
+gives the owner one clean shot at redirecting it instead of a
+back-and-forth chasing the wrong kind of bug.
 
 ---
 
