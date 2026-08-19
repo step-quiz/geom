@@ -45,27 +45,41 @@
   margin: 0;
 }
 
-.site-header__lang {
+/* .site-header__lang: eliminat (selector d'idioma amagat de la UI,
+   §UI-UX -- v. js/ui/main.js forcaIdiomaCatala(). Cap altra classe
+   d'aquest fitxer en depenia). */
+
+/* ---------- Filtre 2D/3D (toggle tipus iPad, dins de #app -- v.
+   js/ui/llista.js) ---------- */
+
+.dim-filtre {
   display: flex;
-  align-items: center;
   gap: var(--space-2);
-  white-space: nowrap;
+  margin: var(--space-4) 0;
 }
 
-.site-header__lang select {
+.dim-filtre__toggle {
   font-family: var(--font-mono);
   font-size: var(--fs-metadata);
-  color: var(--ink);
-  background-color: var(--paper-raised);
+  letter-spacing: var(--tracking-mono);
+  color: var(--ink-soft);
+  background: var(--paper-raised);
   border: var(--stroke-hairline) solid var(--rule-strong);
-  border-radius: var(--radius-sm);
-  padding: var(--space-1) var(--space-2);
+  border-radius: 999px;
+  padding: var(--space-2) var(--space-4);
+  cursor: pointer;
+  transition: background-color 0.12s ease, color 0.12s ease, border-color 0.12s ease;
 }
 
-.site-header__lang select:focus-visible {
-  outline: none;
-  box-shadow: var(--focus-ring);
+.dim-filtre__toggle[aria-pressed="true"] {
+  background: var(--ink);
+  border-color: var(--ink);
+  color: var(--paper);
 }
+
+.dim-filtre__toggle:hover { border-color: var(--pencil); }
+.dim-filtre__toggle[aria-pressed="true"]:hover { border-color: var(--ink); }
+.dim-filtre__toggle:focus-visible { outline: none; box-shadow: var(--focus-ring); }
 
 /* ---------- Enllaç que cobreix tota l'entrada de la llista ---------- */
 /*
