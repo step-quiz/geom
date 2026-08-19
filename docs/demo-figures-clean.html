@@ -6,22 +6,24 @@
 <script src="comu.js"></script>
 <script>
 function stampNum(ctx,h,num){ /* no-op */ }
-function panelLabel(ctx,x,y,text){
-  lbl(ctx,text,x,y,'#8B5E3C',16);
-}
 
 /* ============================================================
-   Conveni de color d'aquestes figures (DEMO-PROOF-INTRO-DESIGN-NOTES.md
-   §4): TINTA = el que ja hi havia en aquell panell; SANGUINA = el que
-   s'acaba de CONSTRUIR en aquest mateix panell -- s'acumula d'esquerra
-   a dreta. Explícitament NO el conveni llibre/alumne de les guies (aquí
-   no hi ha "el llibre" ni "l'alumne", és una sola autoria contínua) --
-   la sanguina és només una marca de seqüència.
+   REDISSENY: cada panell es ara el seu propi canvas independent
+   (15 en total, 5 per demo), no una tira compartida amb translate
+   -- calia per poder referenciar-los un a un des de demos-dades.js
+   (window.DEMOS[i].passos[n].figuraPanell), ara que cada pas es
+   revela per separat (v. capçalera de demos-dades.js per que).
+   panelLabel() ja NO s'usa: el text de cada pas viu nomes a les
+   dades, mai incrustat a la imatge -- evita duplicar-lo en dos
+   llocs que es podrien desincronitzar.
+
+   Conveni de color (sense canvis): TINTA = el que ja hi havia en
+   aquell panell; SANGUINA = el que s'acaba de CONSTRUIR en aquest
+   mateix panell -- s'acumula panell a panell.
    ============================================================ */
 
 /* ---------- demo-01: angle-sum ---------- */
 (function(){
-  const ctx=mk('d1',1900,420),hd=makeHandDraw(ctx,7001);
   const A={x:150,y:0}, B={x:0,y:260}, C={x:340,y:220};
   function triangle(hd,P,Q,R){
     hd.handSegment(P.x,P.y,Q.x,Q.y,{lineWidth:2.6,color:INK});
@@ -30,39 +32,48 @@ function panelLabel(ctx,x,y,text){
   }
   const dx=C.x-B.x, dy=C.y-B.y, norm=Math.hypot(dx,dy), ux=dx/norm, uy=dy/norm;
   const Lp={x:A.x-ux*130,y:A.y-uy*130}, Rp={x:A.x+ux*130,y:A.y+uy*130};
-
-  // panell 0 (nou): dos triangles que no s'assemblen gens -- la
-  // contradiccio abans de la resposta, no nomes en el text.
   const T1a={x:30,y:0}, T1b={x:0,y:320}, T1c={x:55,y:330}; // molt prim
   const T2a={x:260,y:40}, T2b={x:160,y:320}, T2c={x:420,y:320}; // gairebe equilater
-  (function(){ ctx.save();ctx.translate(20,50);
+
+  // panell 0: dos triangles que no s'assemblen gens
+  (function(){
+    const ctx=mk('d1p0',460,420),hd=makeHandDraw(ctx,7001);ctx.translate(20,50);
     triangle(hd,T1a,T1b,T1c);
     triangle(hd,T2a,T2b,T2c);
-    panelLabel(ctx,60,360,"0. dos triangles que no s'assemblen gens..."); ctx.restore(); })();
+    stampNum(ctx,380,'demo-01-p0');
+  })();
 
   // panell 1: nomes el triangle
-  (function(){ ctx.save();ctx.translate(480,60); triangle(hd,A,B,C);
-    panelLabel(ctx,80,300,'1. ...pero tots dos sumaran el mateix. el triangle'); ctx.restore(); })();
+  (function(){
+    const ctx=mk('d1p1',420,380),hd=makeHandDraw(ctx,7002);ctx.translate(40,60);
+    triangle(hd,A,B,C);
+    stampNum(ctx,340,'demo-01-p1');
+  })();
 
   // panell 2: + la linia auxiliar (sanguina -- acabada d'afegir)
-  (function(){ ctx.save();ctx.translate(850,60); triangle(hd,A,B,C);
+  (function(){
+    const ctx=mk('d1p2',420,380),hd=makeHandDraw(ctx,7003);ctx.translate(40,60);
+    triangle(hd,A,B,C);
     hd.handSegment(Lp.x,Lp.y,Rp.x,Rp.y,{lineWidth:2,color:SANG});
-    panelLabel(ctx,60,300,'2. una línia paral·lela a BC, per A'); ctx.restore(); })();
+    stampNum(ctx,340,'demo-01-p2');
+  })();
 
   // panell 3: + els angles (sanguina)
-  (function(){ ctx.save();ctx.translate(1220,60); triangle(hd,A,B,C);
+  (function(){
+    const ctx=mk('d1p3',420,380),hd=makeHandDraw(ctx,7004);ctx.translate(40,60);
+    triangle(hd,A,B,C);
     hd.handSegment(Lp.x,Lp.y,Rp.x,Rp.y,{lineWidth:2,color:SANG});
     angleMark(hd,A.x,A.y,Lp.x,Lp.y,B.x,B.y,30,2,SANG);
     angleMark(hd,B.x,B.y,A.x,A.y,C.x,C.y,26,2,SANG);
     angleMark(hd,A.x,A.y,B.x,B.y,C.x,C.y,20,1,SANG);
     angleMark(hd,A.x,A.y,C.x,C.y,Rp.x,Rp.y,30,3,SANG);
     angleMark(hd,C.x,C.y,B.x,B.y,A.x,A.y,26,3,SANG);
-    panelLabel(ctx,50,300,'3. angles alterns iguals: 180° en línia recta'); ctx.restore(); })();
+    stampNum(ctx,340,'demo-01-p3');
+  })();
 
-  // panell 4 (nou): el MATEIX argument, sobre el triangle MOLT PRIM del
-  // panell 0 (les mateixes coordenades T1, no un altre de nou) --
-  // tanca el cercle: aixo era el que et prometiem que funcionaria.
-  (function(){ ctx.save();ctx.translate(1590,50);
+  // panell 4: el MATEIX argument, sobre el triangle MOLT PRIM del panell 0
+  (function(){
+    const ctx=mk('d1p4',380,420),hd=makeHandDraw(ctx,7005);ctx.translate(30,50);
     triangle(hd,T1a,T1b,T1c);
     const pdx=T1c.x-T1b.x, pdy=T1c.y-T1b.y, pn=Math.hypot(pdx,pdy), pux=pdx/pn, puy=pdy/pn;
     const PLp={x:T1a.x-pux*100,y:T1a.y-puy*100}, PRp={x:T1a.x+pux*100,y:T1a.y+puy*100};
@@ -70,14 +81,12 @@ function panelLabel(ctx,x,y,text){
     angleMark(hd,T1a.x,T1a.y,PLp.x,PLp.y,T1b.x,T1b.y,26,2,SANG);
     angleMark(hd,T1b.x,T1b.y,T1a.x,T1a.y,T1c.x,T1c.y,14,1,SANG);
     angleMark(hd,T1a.x,T1a.y,T1c.x,T1c.y,PRp.x,PRp.y,26,3,SANG);
-    panelLabel(ctx,-20,360,'4. el mateix argument, sense canviar-ne res'); ctx.restore(); })();
-
-  stampNum(ctx,400,'demo-01');
+    stampNum(ctx,380,'demo-01-p4');
+  })();
 })();
 
 /* ---------- demo-02: isosceles median=altitude ---------- */
 (function(){
-  const ctx=mk('d2',1900,440),hd=makeHandDraw(ctx,7002);
   const A={x:150,y:0}, B={x:0,y:280}, C={x:300,y:280};
   const M={x:150,y:280};
   function triangle(hd,P,Q,R){
@@ -85,49 +94,60 @@ function panelLabel(ctx,x,y,text){
     hd.handSegment(P.x,P.y,R.x,R.y,{lineWidth:2.6,color:INK});
     hd.handSegment(Q.x,Q.y,R.x,R.y,{lineWidth:2.6,color:INK});
   }
-
-  // panell 0 (nou): un isosceles molt agut (alt i estret) i un molt obtus
-  // (baix i ample) -- la contradiccio abans de la resposta.
   const Sa={x:70,y:0}, Sb={x:0,y:340}, Sc={x:140,y:340}; // agut
   const Oa={x:220,y:230}, Ob={x:60,y:340}, Oc={x:380,y:340}; // obtus, baix
-  (function(){ ctx.save();ctx.translate(20,50);
+
+  // panell 0: isosceles agut, isosceles obtus
+  (function(){
+    const ctx=mk('d2p0',460,420),hd=makeHandDraw(ctx,7011);ctx.translate(20,50);
     triangle(hd,Sa,Sb,Sc); tick(hd,Sa.x,Sa.y,Sb.x,Sb.y,INK); tick(hd,Sa.x,Sa.y,Sc.x,Sc.y,INK);
     triangle(hd,Oa,Ob,Oc); tick(hd,Oa.x,Oa.y,Ob.x,Ob.y,INK); tick(hd,Oa.x,Oa.y,Oc.x,Oc.y,INK);
-    panelLabel(ctx,40,380,"0. isosceles agut, isosceles obtus..."); ctx.restore(); })();
+    stampNum(ctx,380,'demo-02-p0');
+  })();
 
-  (function(){ ctx.save();ctx.translate(500,60); triangle(hd,A,B,C);
+  // panell 1: el triangle isosceles, tics marcats
+  (function(){
+    const ctx=mk('d2p1',420,380),hd=makeHandDraw(ctx,7012);ctx.translate(40,60);
+    triangle(hd,A,B,C);
     tick(hd,A.x,A.y,B.x,B.y,INK); tick(hd,A.x,A.y,C.x,C.y,INK);
-    panelLabel(ctx,90,330,'1. ...pero AM sempre és ⊥. AB = AC'); ctx.restore(); })();
+    stampNum(ctx,340,'demo-02-p1');
+  })();
 
-  (function(){ ctx.save();ctx.translate(860,60); triangle(hd,A,B,C);
+  // panell 2: + M i el segment AM
+  (function(){
+    const ctx=mk('d2p2',420,380),hd=makeHandDraw(ctx,7013);ctx.translate(40,60);
+    triangle(hd,A,B,C);
     tick(hd,A.x,A.y,B.x,B.y,INK); tick(hd,A.x,A.y,C.x,C.y,INK);
     hd.handSegment(A.x,A.y,M.x,M.y,{lineWidth:2,color:SANG});
     hd.handDot(M.x,M.y,4,SANG);
-    panelLabel(ctx,20,330,'2. M = punt mitjà de BC; traça AM'); ctx.restore(); })();
+    stampNum(ctx,340,'demo-02-p2');
+  })();
 
-  (function(){ ctx.save();ctx.translate(1220,60); triangle(hd,A,B,C);
+  // panell 3: + l'angle recte a M
+  (function(){
+    const ctx=mk('d2p3',420,380),hd=makeHandDraw(ctx,7014);ctx.translate(40,60);
+    triangle(hd,A,B,C);
     tick(hd,A.x,A.y,B.x,B.y,INK); tick(hd,A.x,A.y,C.x,C.y,INK);
     hd.handSegment(A.x,A.y,M.x,M.y,{lineWidth:2,color:SANG});
     hd.handDot(M.x,M.y,4,SANG);
     rightAngle(hd,M.x,M.y,A.x,A.y,C.x,C.y,16,SANG);
-    panelLabel(ctx,-30,330,'3. pel plec, els angles a M'); panelLabel(ctx,-30,350,'   són iguals i sumen 180° → 90°'); ctx.restore(); })();
+    stampNum(ctx,340,'demo-02-p3');
+  })();
 
-  // panell 4 (nou): el mateix argument sobre l'isosceles molt agut del
-  // panell 0 -- tanca el cercle amb el mateix triangle promes.
-  (function(){ ctx.save();ctx.translate(1590,60);
+  // panell 4: el mateix argument sobre l'isosceles molt agut del panell 0
+  (function(){
+    const ctx=mk('d2p4',420,420),hd=makeHandDraw(ctx,7015);ctx.translate(40,60);
     const Sm={x:(Sb.x+Sc.x)/2, y:(Sb.y+Sc.y)/2};
     triangle(hd,Sa,Sb,Sc); tick(hd,Sa.x,Sa.y,Sb.x,Sb.y,INK); tick(hd,Sa.x,Sa.y,Sc.x,Sc.y,INK);
     hd.handSegment(Sa.x,Sa.y,Sm.x,Sm.y,{lineWidth:2,color:SANG});
     hd.handDot(Sm.x,Sm.y,4,SANG);
     rightAngle(hd,Sm.x,Sm.y,Sa.x,Sa.y,Sc.x,Sc.y,14,SANG);
-    panelLabel(ctx,-10,380,'4. el mateix argument, sense canviar-ne res'); ctx.restore(); })();
-
-  stampNum(ctx,410,'demo-02');
+    stampNum(ctx,380,'demo-02-p4');
+  })();
 })();
 
 /* ---------- demo-03: four triangles from midpoints ---------- */
 (function(){
-  const ctx=mk('d3',2000,440),hd=makeHandDraw(ctx,7003);
   const A={x:150,y:0}, B={x:0,y:260}, C={x:300,y:260};
   function triangle(hd,P,Q,R,opts){
     hd.handSegment(P.x,P.y,Q.x,Q.y,opts||{lineWidth:2.6,color:INK});
@@ -138,34 +158,45 @@ function panelLabel(ctx,x,y,text){
   const E={x:(B.x+C.x)/2,y:(B.y+C.y)/2};
   const F={x:(C.x+A.x)/2,y:(C.y+A.y)/2};
 
-  // panell 0 (nou): els quatre triangles resultants, ja separats i UN
-  // capgirat -- abans de saber que encaixen, no s'assemblen a ull.
-  (function(){ ctx.save();ctx.translate(20,50);
+  // panell 0: els quatre triangles resultants, ja separats i UN capgirat
+  (function(){
+    const ctx=mk('d3p0',460,420),hd=makeHandDraw(ctx,7021);ctx.translate(20,50);
     const s=95;
-    // tres "de peu" (com les cantonades)
     triangle(hd,{x:0,y:s},{x:s,y:s},{x:s/2,y:0},{lineWidth:2.2,color:SANG});
     triangle(hd,{x:150,y:s},{x:150+s,y:s},{x:150+s/2,y:0},{lineWidth:2.2,color:SANG});
-    // un "cap per avall" (com el del mig)
     triangle(hd,{x:75,y:s+30},{x:75+s,y:s+30},{x:75+s/2,y:2*s+30},{lineWidth:2.2,color:SANG});
-    panelLabel(ctx,10,2*s+70,"0. quatre triangles que no s'assemblen a ull..."); ctx.restore(); })();
+    stampNum(ctx,380,'demo-03-p0');
+  })();
 
-  (function(){ ctx.save();ctx.translate(500,60); triangle(hd,A,B,C);
-    panelLabel(ctx,60,300,'1. ...pero son identics. el triangle'); ctx.restore(); })();
+  // panell 1: nomes el triangle
+  (function(){
+    const ctx=mk('d3p1',420,380),hd=makeHandDraw(ctx,7022);ctx.translate(40,60);
+    triangle(hd,A,B,C);
+    stampNum(ctx,340,'demo-03-p1');
+  })();
 
-  (function(){ ctx.save();ctx.translate(860,60); triangle(hd,A,B,C);
+  // panell 2: + D, E, F
+  (function(){
+    const ctx=mk('d3p2',420,380),hd=makeHandDraw(ctx,7023);ctx.translate(40,60);
+    triangle(hd,A,B,C);
     [D,E,F].forEach(p=>hd.handDot(p.x,p.y,4,INK));
-    panelLabel(ctx,10,300,'2. D, E, F: punts mitjans'); ctx.restore(); })();
+    stampNum(ctx,340,'demo-03-p2');
+  })();
 
-  (function(){ ctx.save();ctx.translate(1220,60); triangle(hd,A,B,C);
+  // panell 3: + els tres segments (sanguina)
+  (function(){
+    const ctx=mk('d3p3',420,380),hd=makeHandDraw(ctx,7024);ctx.translate(40,60);
+    triangle(hd,A,B,C);
     [D,E,F].forEach(p=>hd.handDot(p.x,p.y,4,INK));
     hd.handSegment(D.x,D.y,E.x,E.y,{lineWidth:2,color:SANG});
     hd.handSegment(E.x,E.y,F.x,F.y,{lineWidth:2,color:SANG});
     hd.handSegment(F.x,F.y,D.x,D.y,{lineWidth:2,color:SANG});
-    panelLabel(ctx,-30,300,'3. quatre triangles congruents'); ctx.restore(); })();
+    stampNum(ctx,340,'demo-03-p3');
+  })();
 
-  // panell 4 (nou): el mateix argument sobre un triangle de forma clarament
-  // diferent (molt obtus/aixafat) -- universalitat vista, no nomes afirmada.
-  (function(){ ctx.save();ctx.translate(1590,60);
+  // panell 4: el mateix argument sobre un triangle molt obtus/aixafat
+  (function(){
+    const ctx=mk('d3p4',420,380),hd=makeHandDraw(ctx,7025);ctx.translate(40,60);
     const Qa={x:120,y:60}, Qb={x:0,y:280}, Qc={x:340,y:280};
     const QD={x:(Qa.x+Qb.x)/2,y:(Qa.y+Qb.y)/2};
     const QE={x:(Qb.x+Qc.x)/2,y:(Qb.y+Qc.y)/2};
@@ -175,9 +206,8 @@ function panelLabel(ctx,x,y,text){
     hd.handSegment(QD.x,QD.y,QE.x,QE.y,{lineWidth:2,color:SANG});
     hd.handSegment(QE.x,QE.y,QF.x,QF.y,{lineWidth:2,color:SANG});
     hd.handSegment(QF.x,QF.y,QD.x,QD.y,{lineWidth:2,color:SANG});
-    panelLabel(ctx,-40,320,'4. el mateix argument, sense canviar-ne res'); ctx.restore(); })();
-
-  stampNum(ctx,410,'demo-03');
+    stampNum(ctx,340,'demo-03-p4');
+  })();
 })();
 </script>
 </body></html>
