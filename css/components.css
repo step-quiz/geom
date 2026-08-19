@@ -79,7 +79,11 @@
 
 .dim-filtre__toggle:hover { border-color: var(--pencil); }
 .dim-filtre__toggle[aria-pressed="true"]:hover { border-color: var(--ink); }
-.dim-filtre__toggle:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.dim-filtre__toggle:focus-visible {
+  outline: 2px solid var(--pencil);
+  outline-offset: 2px;
+  box-shadow: none;
+}
 
 /* ---------- Filtre de categories tematiques (menu de seleccio multiple,
    js/ui/llista.js) ---------- */
@@ -127,7 +131,11 @@
 
 .cat-filtre__toggle:hover { border-color: var(--pencil); }
 .cat-filtre__toggle[aria-pressed="true"]:hover { border-color: transparent; }
-.cat-filtre__toggle:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.cat-filtre__toggle:focus-visible {
+  outline: 2px solid var(--pencil);
+  outline-offset: 2px;
+  box-shadow: none;
+}
 
 /* ---------- Enllaç que cobreix tota l'entrada de la llista ---------- */
 /*
