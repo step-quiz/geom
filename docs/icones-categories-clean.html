@@ -37,10 +37,15 @@ function regularPoly(n,cx,cy,R,a0){
   stampNum(ctx,90,'icona-poligons');
 })();
 
-/* icona-circumferencia.png */
+/* icona-circumferencia.png -- irregularity molt baixa a proposit: a
+   36px de radi (mida real d'icona de menu), el mateix % de soroll que
+   es fa servir a figures grans (0.02-0.03) es tradueix en pocs pixels
+   absoluts pero suficients per trencar la simetria circular a ull i
+   llegir-se com una forma estranya, no com un cercle net -- reportat
+   per l'owner ("sembla una conica estranya"). Baixat a 0.006. */
 (function(){
   const ctx=mk('i3',96,96),hd=makeHandDraw(ctx,30003);ctx.translate(48,48);
-  hd.handEllipse(0,0,36,36,{lineWidth:4,irregularity:0.025,color:INK});
+  hd.handEllipse(0,0,36,36,{lineWidth:4,irregularity:0.006,color:INK});
   stampNum(ctx,90,'icona-circumferencia');
 })();
 
