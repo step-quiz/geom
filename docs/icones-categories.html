@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+ body{margin:0;background:#fff}canvas{display:block;margin:0 0 24px 0}
+</style></head><body>
+<script src="hand-draw.js"></script>
+<script src="comu.js"></script>
+<script>
+function stampNum(ctx,h,num){
+  ctx.save();ctx.setTransform(1,0,0,1,0,0);
+  ctx.font='14px Georgia';ctx.fillStyle='#8a8580';
+  ctx.fillText(num, 6, h-6);ctx.restore();
+}
+function regularPoly(n,cx,cy,R,a0){
+  const pts=[];
+  for(let i=0;i<n;i++){const t=a0+i*2*Math.PI/n;pts.push({x:cx+R*Math.cos(t),y:cy+R*Math.sin(t)});}
+  return pts;
+}
+
+/* ============================================================
+   Icones del menu de categories tematiques (js/ui/llista.js,
+   .cat-filtre__icon). Mateix motor hand-draw.js que tota la resta
+   del projecte -- NOMES TINTA (son element d'interfície, no contingut
+   amb conveni donat/afegit). Quadrats petits (96x96), un sol traç
+   simple per categoria, prou gruixut per llegir-se be a mida reduida
+   (~20-24px reals al menu).
+   ============================================================ */
+
+/* icona-triangles.png */
+(function(){
+  const ctx=mk('i1',96,96),hd=makeHandDraw(ctx,30001);ctx.translate(48,50);
+  const pts=regularPoly(3,0,0,36,-Math.PI/2);
+  for(let i=0;i<3;i++) hd.handSegment(pts[i].x,pts[i].y,pts[(i+1)%3].x,pts[(i+1)%3].y,{lineWidth:4,color:INK});
+  stampNum(ctx,90,'icona-triangles');
+})();
+
+/* icona-poligons.png -- pentagon, per no confondre's amb el triangle */
+(function(){
+  const ctx=mk('i2',96,96),hd=makeHandDraw(ctx,30002);ctx.translate(48,50);
+  const pts=regularPoly(5,0,0,36,-Math.PI/2);
+  for(let i=0;i<5;i++) hd.handSegment(pts[i].x,pts[i].y,pts[(i+1)%5].x,pts[(i+1)%5].y,{lineWidth:4,color:INK});
+  stampNum(ctx,90,'icona-poligons');
+})();
+
+/* icona-circumferencia.png */
+(function(){
+  const ctx=mk('i3',96,96),hd=makeHandDraw(ctx,30003);ctx.translate(48,48);
+  hd.handEllipse(0,0,36,36,{lineWidth:4,irregularity:0.025,color:INK});
+  stampNum(ctx,90,'icona-circumferencia');
+})();
+
+/* icona-coniques.png -- el·lipse, mateix conveni que gloss-ellipse.png */
+(function(){
+  const ctx=mk('i4',96,96),hd=makeHandDraw(ctx,30004);ctx.translate(48,48);
+  hd.handEllipse(0,0,38,25,{lineWidth:4,irregularity:0.025,color:INK});
+  stampNum(ctx,90,'icona-coniques');
+})();
+
+/* icona-altres.png -- tres punts fets a ma (no un caracter tipografic
+   "..." -- dibuixats amb handDot per mantenir el mateix "look" que la
+   resta d'icones, punts lleugerament irregulars com tot el projecte). */
+(function(){
+  const ctx=mk('i5',96,96),hd=makeHandDraw(ctx,30005);ctx.translate(48,50);
+  [-26,0,26].forEach(dx => hd.handDot(dx,0,6,INK));
+  stampNum(ctx,90,'icona-altres');
+})();
+</script>
+</body></html>
