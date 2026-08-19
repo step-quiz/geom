@@ -129,6 +129,11 @@ window.UI_LANGS = {
       figure_alt: "The construction, drawn step by step",
       open_question: "Open {id} →",
       back_to_list: "← All 130 questions",
+      start: "Start",
+      next_step: "Step {n} of {total} →",
+      step_label: "Step {n} of {total}",
+      try_label: "Try it on paper first",
+      check_label: "Check yourself",
     },
   },
 
@@ -226,6 +231,11 @@ window.UI_LANGS = {
       figure_alt: "La construcció, pas a pas",
       open_question: "Obre {id} →",
       back_to_list: "← Totes les 130 preguntes",
+      start: "Comença",
+      next_step: "Pas {n} de {total} →",
+      step_label: "Pas {n} de {total}",
+      try_label: "Prova-ho al paper abans de continuar",
+      check_label: "Comprova-ho",
     },
   },
 };
