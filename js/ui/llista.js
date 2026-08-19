@@ -73,18 +73,24 @@
    */
   const DIM_STORAGE_KEY = "geo:dim-filtre";
   const DIMS = ["2D", "3D"];
+  // Per-defecte real la primera vegada que s'obre el lloc en aquest
+  // navegador (localStorage encara buit, mai s'ha desat res) -- a
+  // petició explícita de l'owner, ara nomes "2D", no totes dues.
+  const DIMS_PER_DEFECTE = ["2D"];
 
   function llegeixDimsActives() {
     try {
-      const desat = JSON.parse(localStorage.getItem(DIM_STORAGE_KEY));
+      const cru = localStorage.getItem(DIM_STORAGE_KEY);
+      if (cru === null) return DIMS_PER_DEFECTE.slice(); // mai desat -- primer cop
+      const desat = JSON.parse(cru);
       if (Array.isArray(desat) && desat.every((d) => DIMS.includes(d)) && desat.length) {
         return desat;
       }
     } catch (e) {
       // localStorage bloquejat o valor corrupte -- es degrada al
-      // per-defecte (totes dues actives), sense petar.
+      // per-defecte, sense petar.
     }
-    return DIMS.slice();
+    return DIMS_PER_DEFECTE.slice();
   }
 
   function desaDimsActives(actives) {
@@ -136,6 +142,14 @@
    * desactivar l'última -- el buit ja És l'estat "totes".
    */
   const CAT_STORAGE_KEY = "geo:categoria-filtre";
+  // Per-defecte real la primera vegada que s'obre el lloc en aquest
+  // navegador -- a petició explícita de l'owner, ara nomes "triangles",
+  // no totes. Diferent del concepte "buit == totes" que ja regeix un
+  // cop l'usuari HA triat activament reactivar-les totes (v. mes avall,
+  // al listener de clic): "mai desat" i "desat explícitament com a
+  // buit" son dues coses diferents, distingides aqui amb
+  // localStorage.getItem() === null (mai) vs. "[]" (triat).
+  const CATS_PER_DEFECTE = ["triangles"];
 
   // Mateixa exclusió que el menú visible (v. render(): "aritmetica_algebra"
   // no es mostra perquè tots els seus exercicis són a EXERCICIS_AMAGATS) --
@@ -164,16 +178,18 @@
 
   function llegeixCatsActives() {
     try {
-      const desat = JSON.parse(localStorage.getItem(CAT_STORAGE_KEY));
+      const cru = localStorage.getItem(CAT_STORAGE_KEY);
+      if (cru === null) return CATS_PER_DEFECTE.slice(); // mai desat -- primer cop
+      const desat = JSON.parse(cru);
       const totes = categoriesDisponibles();
       if (Array.isArray(desat) && desat.every((c) => totes.includes(c))) {
-        return desat;
+        return desat; // inclou el cas [] explícit: l'usuari ha triat "totes"
       }
     } catch (e) {
       // localStorage bloquejat o valor corrupte -- es degrada al
-      // per-defecte (cap seleccionada = totes), sense petar.
+      // per-defecte, sense petar.
     }
-    return [];
+    return CATS_PER_DEFECTE.slice();
   }
 
   function desaCatsActives(actives) {
@@ -403,10 +419,11 @@
         btn.setAttribute("aria-pressed", String(actiu));
         btn.addEventListener("click", () => {
           const totesClaus = categoriesDisponibles();
-          // Estat lògic actual: si catsActives és buit, es tracta com si
-          // TOTES hi fossin (v. invariant documentat més amunt) -- cal
-          // materialitzar-ho abans de treure'n una, si no "treure la
-          // primera d'un buit" no fa res.
+          // catsActives buit NOMÉS pot arribar aquí si l'usuari ja ha
+          // triat explícitament "totes" (v. llegeixCatsActives(): el
+          // per-defecte real de "mai desat" ja no és buit, és
+          // CATS_PER_DEFECTE). Es tracta igualment com "totes hi són",
+          // per materialitzar-ho abans de treure'n una.
           const actuals = catsActives.length ? catsActives.slice() : totesClaus.slice();
           let noves;
           if (actuals.includes(cat.clau)) {
