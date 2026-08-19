@@ -116,7 +116,7 @@
 
 .cat-filtre__toggle[aria-pressed="true"] {
   background: var(--pencil);
-  border-color: var(--pencil);
+  border-color: transparent;
 }
 .cat-filtre__toggle[aria-pressed="true"] .cat-filtre__icon {
   /* icona negra -> blanca sobre el fons fosc del boto actiu; les icones
@@ -126,7 +126,7 @@
 }
 
 .cat-filtre__toggle:hover { border-color: var(--pencil); }
-.cat-filtre__toggle[aria-pressed="true"]:hover { border-color: var(--ink); }
+.cat-filtre__toggle[aria-pressed="true"]:hover { border-color: transparent; }
 .cat-filtre__toggle:focus-visible { outline: none; box-shadow: var(--focus-ring); }
 
 /* ---------- Enllaç que cobreix tota l'entrada de la llista ---------- */
