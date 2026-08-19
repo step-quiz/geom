@@ -83,7 +83,6 @@
         btn.textContent = (rt.termes[lang] && rt.termes[lang][0]) || rt.termes.ca[0];
         btn.addEventListener("click", () => onRelacionatClick && onRelacionatClick(rt.id));
         rel.appendChild(btn);
-        if (i < relacionats.length - 1) rel.appendChild(document.createTextNode(" "));
       });
       article.appendChild(rel);
     }

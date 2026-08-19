@@ -292,7 +292,7 @@
       li.appendChild(etiqueta);
 
       const text = r(pista.text);
-      if (text) afegeixParagrafs(li, text);
+      if (text) afegeixParagrafs(li, text, lang, true);
 
       if (pista.figura) {
         const fig = document.createElement("figure");
@@ -321,11 +321,20 @@
    * lloc d'ajuntar-ho tot: a les pistes llargues, el segon paràgraf sol ser
    * l'aclariment entre parèntesis, i ha de poder-se saltar amb la vista.
    */
-  function afegeixParagrafs(destinacio, text) {
+  // ambGlossari + lang son opcionals: nomes el text de cada Pista (P1-P4)
+  // els fa servir (revela(), mes avall) -- la comprovacio i l'"i despres"
+  // criden aquesta mateixa funcio SENSE aquests dos parametres, a
+  // proposit, i per tant mai marquen termes (decisio explicita de
+  // l'owner: nomes les 4 pistes, no el peu de la guia).
+  function afegeixParagrafs(destinacio, text, lang, ambGlossari) {
     String(text).split("\n\n").forEach((tros) => {
       const p = document.createElement("p");
       p.className = "guia__text";
-      p.textContent = tros;
+      if (ambGlossari && lang) {
+        marcaTermesGlossari(p, tros, lang);
+      } else {
+        p.textContent = tros;
+      }
       destinacio.appendChild(p);
     });
   }
@@ -517,15 +526,16 @@
    * textContent pla d'abans -- mai trenca la pàgina per l'absència
    * d'aquesta funcionalitat opcional.
    */
-  function pintaEnunciatAmbGlossari(text, lang, contenidor) {
-    const p = document.createElement("p");
-    p.className = "question-entry__prompt";
-
+  // Nucli reutilitzable: omple un <p> ja creat amb una barreja de text pla
+  // i botons de terme de glossari clicables. Compartit entre l'enunciat
+  // (pintaEnunciatAmbGlossari) i el text de cada Pista (afegeixParagrafs,
+  // nomes quan se li demana explicitament -- mai la comprovacio ni
+  // l'"i despres", a proposit).
+  function marcaTermesGlossari(p, text, lang) {
     const trobats = window.geoGlossari ? window.geoGlossari.trobaTermes(text, lang) : [];
     if (!trobats.length) {
       p.textContent = text;
-      contenidor.appendChild(p);
-      return p;
+      return;
     }
 
     function tancaAltres(exceptBtn) {
@@ -576,7 +586,12 @@
     if (cursor < text.length) {
       p.appendChild(document.createTextNode(text.slice(cursor)));
     }
+  }
 
+  function pintaEnunciatAmbGlossari(text, lang, contenidor) {
+    const p = document.createElement("p");
+    p.className = "question-entry__prompt";
+    marcaTermesGlossari(p, text, lang);
     contenidor.appendChild(p);
     return p;
   }
