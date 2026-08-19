@@ -1,9 +1,7 @@
 # Geometria sintètica
 
-Un lloc web per explorar 130 preguntes obertes de geometria sintètica extretes d'un
-llibre real ("*On Problems...*"), p. 1–193. No és un banc d'exercicis per corregir-se:
-cada pregunta és una porta d'entrada a una demostració o un descobriment, tal com
-apareix al llibre — sense puntuació, sense respostes correctes marcades, sense
+Un lloc web per explorar 130 preguntes obertes de geometria sintètica. No és un banc d'exercicis per corregir-se:
+cada pregunta és una porta d'entrada a una demostració o un descobriment — sense puntuació, sense respostes correctes marcades, sense
 gamificació.
 
 ## Com obrir-ho
@@ -20,9 +18,7 @@ mòbil a la mateixa xarxa), qualsevol servidor estàtic funciona igual de bé:
 
 ## Què hi ha, i què no
 
-**Hi ha:** 130 preguntes amb el seu enunciat original en anglès (el text del llibre)
-**i en català** (traduït); **114 de 130 amb una imatge d'enunciat** (67 escanejades
-del llibre original + 47 dibuixades a mà amb el mateix conveni); **les 130 amb la
+**Hi ha:** 130 preguntes amb el seu enunciat original en anglès **i en català** (traduït); **114 de 130 amb una imatge d'enunciat**; **les 130 amb la
 seva guia de demostració completa**; navegació entre preguntes; un marcador personal
 "explorat" que es desa al navegador; un itinerari amb suggeriments personalitzats; un
 glossari de 53 termes (26 amb figura pròpia) amb detecció automàtica de termes dins
@@ -47,13 +43,12 @@ geometria sintètica. Els quatre nivells difereixen en *espècie*, no en quantit
 | 3 · tanca | Diu què cal mirar, sense dir la conclusió |
 
 Després venen una **comprovació** (una predicció numèrica per contrastar amb la
-pròpia resposta — mai la solució) i un **i després** (on retorna aquest moviment
-més endavant al llibre). **Cap nivell dona la solució**: és una decisió de disseny,
+pròpia resposta — mai la solució) i un **i després**. **Cap nivell dona la solució**: és una decisió de disseny,
 no un oblit.
 
-A les figures de guia, **el negre és la figura del llibre i la sanguina és el que
+A les figures de guia, **el negre és la figura original i la sanguina és el que
 hi afegeixes tu**. La distinció visual és la distinció conceptual que tot plegat
-existeix per ensenyar: la figura del llibre és un enunciat; la línia que hi
+existeix per ensenyar: la figura original és un enunciat; la línia que hi
 afegeixes és una decisió teva.
 
 31 de les 130 guies tenen, a més, una segona imatge a Pista 2 (nivell 1) — un
@@ -146,8 +141,7 @@ un únic cop; qui hi torna, mai més. Dades a `js/data/demos-dades.js`, figures 
 ### Ordre de presentació
 
 L'ordre en què es veuen les 130 preguntes (a la llista, i a "anterior/
-següent" dins d'una pregunta) **és independent de l'ordre del llibre**
-i viu tot sol a `js/data/ordre-preguntes.js` — un array pla d'ids,
+següent" dins d'una pregunta) viu tot sol a `js/data/ordre-preguntes.js` — un array pla d'ids,
 editable directament, sense tocar cap altre fitxer. Per defecte:
 agrupat primer per dificultat i després per dimensió —
 
@@ -161,11 +155,10 @@ dificultat 3 + 2D → dificultat 3 + 3D
 preguntes emparentades (per tècnica o per dependència real ja
 documentada a les guies) quedin juntes. No sempre és possible —
 algunes cadenes de dependència reals travessen la frontera de
-dificultat o de dimensió— i on no ho és, es respecta l'ordre del llibre
-com a criteri de reserva. `js/nucli/ordre.js` és qui ho resol en temps
+dificultat o de dimensió— i on no ho és, es respecta l'ordre de disseny original. `js/nucli/ordre.js` és qui ho resol en temps
 d'execució (amb degradació segura si l'array queda incomplet o
 desapareix); `js/data/preguntes-dades.js` mai canvia d'ordre — segueix
-sent, sempre, l'ordre real del llibre.
+sent, sempre, l'ordre de disseny original.
 
 **No hi ha, i per què:**
 
@@ -196,7 +189,7 @@ js/
   data/
     preguntes-dades.js        — les 130 preguntes, en/ca (generat, no editar a mà — v. més avall)
     ordre-preguntes.js        — ordre de PRESENTACIÓ, separat de l'ordre del llibre — s'edita a mà
-    guies-dades.js             — les 130 guies — el llibre sencer (generat per parse_guies.py, no editar a mà)
+    guies-dades.js             — les 130 guies — (generat per parse_guies.py, no editar a mà)
     categories-tematiques-dades.js — classificació temàtica de les 130 preguntes en 6 categories (s'edita a mà)
     glossari-dades.js         — els 53 termes del glossari (s'edita a mà)
     demos-dades.js             — les 3 demostracions fixes, model de passos (s'edita a mà)
