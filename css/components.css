@@ -73,12 +73,12 @@
 
 .dim-filtre__toggle[aria-pressed="true"] {
   background: var(--ink);
-  border-color: var(--ink);
+  border-color: transparent;
   color: var(--paper);
 }
 
 .dim-filtre__toggle:hover { border-color: var(--pencil); }
-.dim-filtre__toggle[aria-pressed="true"]:hover { border-color: var(--ink); }
+.dim-filtre__toggle[aria-pressed="true"]:hover { border-color: transparent; }
 .dim-filtre__toggle:focus-visible {
   outline: 2px solid var(--pencil);
   outline-offset: 2px;
@@ -119,7 +119,7 @@
 }
 
 .cat-filtre__toggle[aria-pressed="true"] {
-  background: var(--pencil);
+  background: var(--ink);
   border-color: transparent;
 }
 .cat-filtre__toggle[aria-pressed="true"] .cat-filtre__icon {
