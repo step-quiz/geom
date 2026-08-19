@@ -16,6 +16,10 @@
                 actual mostrar en cada moment (llista.js i detall.js
                 comparteixen el mateix punt de muntatge al DOM).
   DEPENDÈNCIES: js/data/preguntes-dades.js (window.PREGUNTES),
+                js/data/categories-tematiques-dades.js (window.CATEGORIES_TEMATIQUES,
+                window.CLASSIFICACIO_TEMATICA — es degrada bé si no hi és:
+                categories() retorna [] i el menú de categories simplement
+                no es pinta),
                 js/nucli/ordre.js (ordre de presentació — v. la seva
                 pròpia capçalera; es degrada bé si no hi és)
                 js/i18n/i18n-core.js (t/tf per a textos d'interfície)
@@ -89,6 +93,74 @@
     } catch (e) {
       // best-effort, com la resta de l'estat persistit del projecte.
     }
+  }
+
+  /**
+   * Llista d'exercicis amagats de la vista de llista, a petició explícita
+   * de l'owner ("vull que desapareguin de les opcions de visualització
+   * perquè ara mateix no vull veure'ls"). DELIBERADAMENT hardcoded aquí
+   * i NOMÉS aquí -- mai a preguntes-dades.js ni a cap altra font de
+   * dades: l'owner ha estat explícit que no vol que s'esborrin del
+   * codi, només que no apareguin a la llista. Per això és un filtre
+   * d'exclusió aplicat en pintar, no una eliminació de window.PREGUNTES
+   * -- qualsevol altra vista (detall.js via enllaç directe #q19, per
+   * exemple) continua funcionant amb normalitat, perquè la pregunta
+   * segueix existint sencera a les dades.
+   *
+   * Per treure un exercici d'aquesta llista (tornar-lo a fer visible),
+   * elimina'n l'id d'aquest array -- res més cal tocar.
+   */
+  const EXERCICIS_AMAGATS = ["q19", "q20", "q34", "q35", "q84", "q88"];
+
+  /**
+   * Filtre de categories temàtiques (menú de selecció múltiple, 6
+   * categories de js/data/categories-tematiques-dades.js). Mateix patró
+   * que el filtre 2D/3D (estat propi de la vista, persistit a
+   * localStorage, separat de view.filtres) -- però amb una diferència
+   * deliberada en l'invariant: aquí "cap categoria seleccionada" es
+   * tracta com "totes" (v. petició de l'owner: "totes seleccionades,
+   * per defecte, quan no en precisem cap"), no com una llista buida.
+   * Per això, a diferència de DIMS, no cal reactivar-les totes en
+   * desactivar l'última -- el buit ja És l'estat "totes".
+   */
+  const CAT_STORAGE_KEY = "geo:categoria-filtre";
+
+  function categoriesDisponibles() {
+    return (window.CATEGORIES_TEMATIQUES || []).map((c) => c.clau);
+  }
+
+  function llegeixCatsActives() {
+    try {
+      const desat = JSON.parse(localStorage.getItem(CAT_STORAGE_KEY));
+      const totes = categoriesDisponibles();
+      if (Array.isArray(desat) && desat.every((c) => totes.includes(c))) {
+        return desat;
+      }
+    } catch (e) {
+      // localStorage bloquejat o valor corrupte -- es degrada al
+      // per-defecte (cap seleccionada = totes), sense petar.
+    }
+    return [];
+  }
+
+  function desaCatsActives(actives) {
+    try {
+      localStorage.setItem(CAT_STORAGE_KEY, JSON.stringify(actives));
+    } catch (e) {
+      // best-effort, com la resta de l'estat persistit del projecte.
+    }
+  }
+
+  // id -> clau de categoria, per a filtratge O(1) en pintar la llista.
+  let mapaCategoriaPerId = null;
+  function categoriaDe(id) {
+    if (!mapaCategoriaPerId) {
+      mapaCategoriaPerId = {};
+      (window.CLASSIFICACIO_TEMATICA || []).forEach((c) => {
+        mapaCategoriaPerId[c.id] = c.categoriaTematica;
+      });
+    }
+    return mapaCategoriaPerId[id];
   }
 
   function aplicaFiltres(preguntes, filtres) {
@@ -196,9 +268,14 @@
 
     const lang = window.geoI18n.getLang();
     const totes = window.geoOrdre ? window.geoOrdre.preguntesOrdenades() : (window.PREGUNTES || []);
-    const filtradesPerUrl = aplicaFiltres(totes, view.filtres);
+    const visibles = totes.filter((p) => !EXERCICIS_AMAGATS.includes(p.id));
+    const filtradesPerUrl = aplicaFiltres(visibles, view.filtres);
     const dimsActives = llegeixDimsActives();
-    const filtrades = filtradesPerUrl.filter((p) => dimsActives.includes(p.dimensio));
+    const catsActives = llegeixCatsActives(); // buit == totes
+    const filtradesPerDim = filtradesPerUrl.filter((p) => dimsActives.includes(p.dimensio));
+    const filtrades = catsActives.length
+      ? filtradesPerDim.filter((p) => catsActives.includes(categoriaDe(p.id)))
+      : filtradesPerDim;
 
     const header = document.createElement("header");
 
@@ -254,6 +331,46 @@
       dimFiltre.appendChild(btn);
     });
     header.appendChild(dimFiltre);
+
+    // Menú de categories temàtiques (selecció múltiple; cap seleccionada
+    // == totes, v. comentari de llegeixCatsActives()). Mateix patró
+    // d'interacció que dim-filtre: clic sobre un botó, es repinta tota
+    // la llista.
+    const categories = window.CATEGORIES_TEMATIQUES || [];
+    if (categories.length) {
+      const catFiltre = document.createElement("div");
+      catFiltre.className = "cat-filtre";
+      categories.forEach((cat) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "cat-filtre__toggle";
+        btn.textContent = cat.etiqueta;
+        const actiu = catsActives.length === 0 || catsActives.includes(cat.clau);
+        btn.setAttribute("aria-pressed", String(actiu));
+        btn.addEventListener("click", () => {
+          const totesClaus = categoriesDisponibles();
+          // Estat lògic actual: si catsActives és buit, es tracta com si
+          // TOTES hi fossin (v. invariant documentat més amunt) -- cal
+          // materialitzar-ho abans de treure'n una, si no "treure la
+          // primera d'un buit" no fa res.
+          const actuals = catsActives.length ? catsActives.slice() : totesClaus.slice();
+          let noves;
+          if (actuals.includes(cat.clau)) {
+            noves = actuals.filter((c) => c !== cat.clau);
+          } else {
+            noves = actuals.concat(cat.clau);
+          }
+          // Si after el clic totes hi tornen a ser, es torna a l'estat
+          // "buit" canònic (== totes), per coherència amb el que es
+          // desa/llegeix de localStorage.
+          if (noves.length === totesClaus.length) noves = [];
+          desaCatsActives(noves);
+          render(view, root);
+        });
+        catFiltre.appendChild(btn);
+      });
+      header.appendChild(catFiltre);
+    }
 
     contenidorEl.appendChild(header);
 
