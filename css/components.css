@@ -502,7 +502,8 @@
   text-decoration: underline;
   text-underline-offset: 2px;
   cursor: pointer;
-  padding: 0;
+  padding: var(--space-1) var(--space-2) var(--space-1) 0;
+  margin-right: var(--space-2);
 }
 .glossari-entry__relacionat:hover { color: var(--ink); }
 
