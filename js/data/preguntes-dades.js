@@ -192,7 +192,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 3,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-132.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 25
+    },
     "enunciat": {
       "en": "What are all the different ways to make symmetrical mosaic designs using regular polygons?",
       "ca": "Quantes maneres diferents hi ha de fer dissenys de mosaic simètrics amb polígons regulars?"
@@ -216,7 +221,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 1,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-133.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 25
+    },
     "enunciat": {
       "en": "What are the angles of a regular n-sided polygon?",
       "ca": "Quins són els angles d'un polígon regular de n costats?"
@@ -298,7 +308,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-134.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 27
+    },
     "enunciat": {
       "en": "What happens if the angle sum is more than a full turn?",
       "ca": "Què passa si la suma dels angles és més d'una volta sencera?"
@@ -322,7 +337,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "3D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-135.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 27
+    },
     "enunciat": {
       "en": "What are all the symmetrical polyhedra?",
       "ca": "Quins són tots els poliedres simètrics?"
@@ -346,7 +366,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "3D",
     "dificultat": 3,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-136.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 27
+    },
     "enunciat": {
       "en": "What are the five regular polyhedra?",
       "ca": "Quins són els cinc poliedres regulars?"
@@ -370,7 +395,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-137.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 30
+    },
     "enunciat": {
       "en": "If two triangles have the same angles, are they necessarily similar? How about four-sided shapes?",
       "ca": "Si dos triangles tenen els mateixos angles, són necessàriament semblants? I les figures de quatre costats?"
@@ -626,7 +656,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 3,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-138.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 37
+    },
     "enunciat": {
       "en": "Can a polygon always be chopped into pieces and reassembled to form a square?",
       "ca": "Es pot sempre retallar un polígon en peces i recompondre'l com un quadrat?"
@@ -650,7 +685,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "3D",
     "dificultat": 1,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-139.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 37
+    },
     "enunciat": {
       "en": "How does the volume of a box depend on the lengths of its sides?",
       "ca": "Com depèn el volum d'una caixa de les longituds dels seus costats?"
@@ -674,7 +714,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "3D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-140.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 37
+    },
     "enunciat": {
       "en": "What is the effect of scaling on volume?",
       "ca": "Quin és l'efecte de l'escalat sobre el volum?"
@@ -698,7 +743,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 1,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-141.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 39
+    },
     "enunciat": {
       "en": "Why is the product of two odd numbers always odd?",
       "ca": "Per què el producte de dos nombres senars és sempre senar?"
@@ -722,7 +772,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 1,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-142.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 40
+    },
     "enunciat": {
       "en": "Why is the product of two even numbers always divisible by 4?",
       "ca": "Per què el producte de dos nombres parells sempre és divisible per 4?"
@@ -828,7 +883,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-143.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 44
+    },
     "enunciat": {
       "en": "Which rectangles have whole number sides and diagonals?",
       "ca": "Quins rectangles tenen els costats i les diagonals de nombre enter?"
@@ -881,7 +941,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 1,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-144.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 45
+    },
     "enunciat": {
       "en": "Show that the height of an equilateral triangle is (1/2)√3 times as long as its side.",
       "ca": "Demostra que l'altura d'un triangle equilàter és (1/2)√3 vegades el seu costat."
@@ -934,7 +999,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 1,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-145.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 48
+    },
     "enunciat": {
       "en": "What is the area of an equilateral triangle?",
       "ca": "Quina és l'àrea d'un triangle equilàter?"
@@ -1103,7 +1173,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 1,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-146.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 53
+    },
     "enunciat": {
       "en": "Construct a mosaic design that demonstrates the algebraic relation (x + y)² = x² + 2xy + y².",
       "ca": "Construeix un disseny de mosaic que demostri la relació algebraica (x + y)² = x² + 2xy + y²."
@@ -1151,7 +1226,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-147.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 55
+    },
     "enunciat": {
       "en": "Show that among all rectangles of a fixed perimeter, the square has the largest area.",
       "ca": "Demostra que, entre tots els rectangles de perímetre fix, el quadrat és el que té l'àrea més gran."
@@ -1175,7 +1255,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-148.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 55
+    },
     "enunciat": {
       "en": "Find a rectangle with the same area and perimeter as a given equilateral triangle.",
       "ca": "Troba un rectangle amb la mateixa àrea i el mateix perímetre que un triangle equilàter donat."
@@ -1228,7 +1313,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-149.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 58
+    },
     "enunciat": {
       "en": "What is the area of a regular pentagon?",
       "ca": "Quina és l'àrea d'un pentàgon regular?"
@@ -1406,7 +1496,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "3D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-150.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 69
+    },
     "enunciat": {
       "en": "How can we measure the surface area of a (generalized) cylinder?",
       "ca": "Com podem mesurar l'àrea de la superfície d'un cilindre (generalitzat)?"
@@ -1430,7 +1525,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-151.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 71
+    },
     "enunciat": {
       "en": "What is the area of an ellipse?",
       "ca": "Quina és l'àrea d'una el·lipse?"
@@ -1599,7 +1699,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "3D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-152.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 78
+    },
     "enunciat": {
       "en": "Can you find a cross-section of a cube that is a regular hexagon?",
       "ca": "Pots trobar una secció transversal d'un cub que sigui un hexàgon regular?"
@@ -1734,7 +1839,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "3D",
     "dificultat": 3,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-153.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 82
+    },
     "enunciat": {
       "en": "What are the volumes of the Platonic solids? How about the other symmetrical polyhedra?",
       "ca": "Quins són els volums dels sòlids platònics? I els d'altres poliedres simètrics?"
@@ -1845,7 +1955,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "3D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-154.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 88
+    },
     "enunciat": {
       "en": "Show that the surface area of a sphere is exactly two-thirds that of its (closed) cylinder.",
       "ca": "Demostra que l'àrea de la superfície d'una esfera és exactament dos terços de la del seu cilindre (tancat)."
@@ -1922,7 +2037,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-155.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 97
+    },
     "enunciat": {
       "en": "What is the perimeter of a region formed by a moving stick?",
       "ca": "Quin és el perímetre d'una regió formada per un bastó en moviment?"
@@ -2052,7 +2172,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-156.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 103
+    },
     "enunciat": {
       "en": "Can you find the centroid of a semicircle? How about its centroid of perimeter?",
       "ca": "Pots trobar el centroide d'un semicercle? I el seu centroide de perímetre?"
@@ -2076,7 +2201,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 1,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-157.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 105
+    },
     "enunciat": {
       "en": "What do the inside angles of a polygon add up to?",
       "ca": "Quant sumen els angles interns d'un polígon?"
@@ -2100,7 +2230,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-158.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 106
+    },
     "enunciat": {
       "en": "If all the angles of a simple closed four-sided polygon are right angles, what condition must the side lengths satisfy?",
       "ca": "Si tots els angles d'un polígon simple tancat de quatre costats són rectes, quina condició han de complir les longituds dels costats?"
@@ -2124,7 +2259,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-159.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 106
+    },
     "enunciat": {
       "en": "Make a short list of lengths and turns. What triangle problems do you need to solve in order to determine if your polygon is closed?",
       "ca": "Fes una llista curta de longituds i girs. Quins problemes de triangles cal resoldre per determinar si el teu polígon és tancat?"
@@ -2148,7 +2288,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-160.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 107
+    },
     "enunciat": {
       "en": "Are the midpoints of the sides of a triangle enough information to reconstruct the triangle? How about for four-sided polygons?",
       "ca": "Els punts mitjans dels costats d'un triangle són prou informació per reconstruir el triangle? I per als polígons de quatre costats?"
@@ -2172,7 +2317,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 1,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-161.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 107
+    },
     "enunciat": {
       "en": "Do any three lengths form a triangle?",
       "ca": "Qualsevol tria de tres longituds forma un triangle?"
@@ -2331,7 +2481,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-162.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 124
+    },
     "enunciat": {
       "en": "Show that if a triangle has sides a and b meeting at an angle C, then its area is (1/2)ab sin C.",
       "ca": "Demostra que, si un triangle té els costats a i b que es troben formant un angle C, la seva àrea és (1/2)ab sin C."
@@ -2355,7 +2510,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "3D",
     "dificultat": 3,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-163.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 124
+    },
     "enunciat": {
       "en": "What is the angle between the faces of a regular tetrahedron? How about for the other regular polyhedra?",
       "ca": "Quin és l'angle entre les cares d'un tetraedre regular? I per als altres poliedres regulars?"
@@ -2379,7 +2539,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "3D",
     "dificultat": 3,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-164.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 124
+    },
     "enunciat": {
       "en": "Show that you can fill space completely using regular octahedrons and tetrahedrons. Can you find any other ways to tile three-dimensional space with symmetrical polyhedra?",
       "ca": "Demostra que es pot omplir l'espai completament fent servir octaedres i tetraedres regulars. Pots trobar altres maneres d'enrajolar l'espai tridimensional amb poliedres simètrics?"
@@ -2403,7 +2568,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 1,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-165.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 125
+    },
     "enunciat": {
       "en": "What are the sine and cosine of one-sixth of a turn?",
       "ca": "Quins són el sinus i el cosinus d'un sisè de volta?"
@@ -2451,7 +2621,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 3,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-166.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 128
+    },
     "enunciat": {
       "en": "Can you use a regular pentagon to find the sine and cosine of one-fifth of a turn?",
       "ca": "Es pot fer servir un pentàgon regular per trobar el sinus i el cosinus d'un cinquè de volta?"
@@ -2475,7 +2650,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-167.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 129
+    },
     "enunciat": {
       "en": "Why are two sides and an angle insufficient in general to specify a triangle?",
       "ca": "Per què dos costats i un angle no basten, en general, per determinar un triangle?"
@@ -2547,7 +2727,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 3,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-168.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 132
+    },
     "enunciat": {
       "en": "Prove that if two angle bisectors of a triangle are equal, then the triangle must be isosceles.",
       "ca": "Demostra que, si dues bisectrius d'un triangle són iguals, el triangle ha de ser isòsceles."
@@ -2571,7 +2756,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 3,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-169.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 132
+    },
     "enunciat": {
       "en": "Show that if a four-sided shape with sides a, b, c, and d is inscribed in a circle, then its area is given by Brahmagupta's formula: A = sqrt[(s-a)(s-b)(s-c)(s-d)], where s = (1/2)(a+b+c+d).",
       "ca": "Demostra que, si una figura de quatre costats amb costats a, b, c i d està inscrita en un cercle, la seva àrea ve donada per la fórmula de Brahmagupta: A = √[(s-a)(s-b)(s-c)(s-d)], on s = (1/2)(a+b+c+d)."
@@ -2793,7 +2983,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 1,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-170.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 154
+    },
     "enunciat": {
       "en": "Can you see how to make a rough model of an ellipse using a pencil, two thumbtacks, and a piece of string?",
       "ca": "Se t'acut com fer un model aproximat d'una el·lipse fent servir un llapis, dues xinxetes i un tros de fil?"
@@ -2841,7 +3036,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "3D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-171.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 159
+    },
     "enunciat": {
       "en": "What is the effect of central projection when the planes are parallel? What if the projection point lies between the planes?",
       "ca": "Quin és l'efecte de la projecció central quan els plans són paral·lels? Què passa si el punt de projecció es troba entre els plans?"
@@ -2865,7 +3065,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "3D",
     "dificultat": 3,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-172.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 160
+    },
     "enunciat": {
       "en": "Can any three points on a line be projected to any other three collinear points? How about four points?",
       "ca": "Es poden projectar tres punts qualssevol d'una línia sobre qualsevol altra tria de tres punts col·lineals? I quatre punts?"
@@ -2942,7 +3147,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "3D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-173.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 163
+    },
     "enunciat": {
       "en": "What does a projection of three parallel lines look like?",
       "ca": "Quin aspecte té la projecció de tres línies paral·leles?"
@@ -3048,7 +3258,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "3D",
     "dificultat": 1,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-174.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 171
+    },
     "enunciat": {
       "en": "Shine a flashlight on the wall at various angles. Can you see all three types of conic section?",
       "ca": "Il·lumina la paret amb una llanterna en diversos angles. Pots veure els tres tipus de secció cònica?"
@@ -3188,7 +3403,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-175.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 178
+    },
     "enunciat": {
       "en": "If an ellipse has long radius a and short radius b, where are its focal points?",
       "ca": "Si una el·lipse té radi llarg a i radi curt b, on són els seus focus?"
@@ -3265,7 +3485,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 3,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-176.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 179
+    },
     "enunciat": {
       "en": "Can you discover the tangent property of a hyperbola?",
       "ca": "Pots descobrir la propietat de la tangent d'una hipèrbola?"
@@ -3550,7 +3775,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "3D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-177.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 193
+    },
     "enunciat": {
       "en": "Can you think of a way to describe a helix on a torus?",
       "ca": "Se t'acut alguna manera de descriure una hèlix sobre un tor?"
@@ -3574,7 +3804,12 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 3,
-    "imatge": null,
+    "imatge": {
+      "fitxer": "fig-178.png",
+      "esCrop": false,
+      "esInvertida": false,
+      "paginaFont": 193
+    },
     "enunciat": {
       "en": "A ladder slips down the wall until it hits the floor. What curve does its midpoint describe?",
       "ca": "Una escala llisca per la paret fins que toca el terra. Quina corba descriu el seu punt mitjà?"
