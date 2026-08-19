@@ -444,7 +444,7 @@ window.GLOSSARI = {
       ca: "La porció d'un cercle compresa entre dos radis i l'arc que els uneix — com un «tros de pastís» tallat des del centre.",
       en: null
     },
-    figura: null,
+    figura: "gloss-sector-circular.png",
     relacionats: ["circumferencia-cercle", "arc"],
     categoria: "cercles"
   },
@@ -643,7 +643,7 @@ window.GLOSSARI = {
       ca: "Un cos geomètric la superfície del qual està formada per un nombre finit de polígons plans (les cares). Les cares es tallen en arestes, i les arestes es tallen en vèrtexs. Prismes, piràmides i tetràedres en són exemples.",
       en: null
     },
-    figura: null,
+    figura: "gloss-poliedre.png",
     relacionats: ["prisma", "piramide", "tetraedre"],
     categoria: "cossos-geometrics"
   },
@@ -685,7 +685,7 @@ window.GLOSSARI = {
       ca: "Una piràmide de base triangular — el poliedre més senzill possible, amb quatre cares triangulars, quatre vèrtexs i sis arestes.",
       en: null
     },
-    figura: null,
+    figura: "gloss-tetraedre.png",
     relacionats: ["piramide", "poliedre"],
     categoria: "cossos-geometrics"
   },
@@ -699,7 +699,7 @@ window.GLOSSARI = {
       ca: "Un cos de revolució generat en fer girar un rectangle al voltant d'un dels seus costats. Té dues bases circulars iguals i paral·leles, unides per una superfície lateral corba.",
       en: null
     },
-    figura: null,
+    figura: "gloss-cilindre.png",
     relacionats: ["con", "esfera", "teorema-de-pappus"],
     categoria: "cossos-geometrics"
   },
@@ -727,7 +727,7 @@ window.GLOSSARI = {
       ca: "El conjunt de tots els punts de l'espai que es troben a la mateixa distància (el radi) d'un punt fix (el centre). És l'anàleg tridimensional de la circumferència.",
       en: null
     },
-    figura: null,
+    figura: "gloss-esfera.png",
     relacionats: ["radi", "cilindre", "con", "teorema-de-pappus"],
     categoria: "cossos-geometrics"
   },
@@ -741,7 +741,7 @@ window.GLOSSARI = {
       ca: "Si dos cossos, en tallar-los amb qualsevol pla paral·lel a dos plans de referència fixats, donen sempre seccions de la mateixa àrea, aleshores els dos cossos tenen el mateix volum. Permet comparar volums sense haver de calcular-los per separat — per exemple, per veure que un prisma oblic té el mateix volum que el prisma recte de la mateixa base i alçada.",
       en: null
     },
-    figura: null,
+    figura: "gloss-cavalieri.png",
     relacionats: ["prisma", "piramide"],
     categoria: "cossos-geometrics"
   },
@@ -784,7 +784,7 @@ window.GLOSSARI = {
       ca: "El lloc geomètric dels punts del pla per als quals la suma de les distàncies a dos punts fixos, els focus, és constant. S'obté en tallar un con amb un pla oblic que no arriba a ser paral·lel a cap generatriu.",
       en: null
     },
-    figura: null,
+    figura: "gloss-ellipse.png",
     relacionats: ["conica", "focus", "hiperbola"],
     categoria: "coniques"
   },
