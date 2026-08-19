@@ -42,6 +42,7 @@ window.UI_LANGS = {
 
     list: {
       question_count: "{n} questions",
+      no_results: "No questions match this filter.",
       no_image_badge: "no figure",
       guide_badge: "◆ guide",
       page_label: "p. {page}",
@@ -141,7 +142,7 @@ window.UI_LANGS = {
     _name: "Català",
 
     nav: {
-      title: "Geometria — preguntes del llibre",
+      title: "Geometria sintètica",
       back: "← Torna a totes les preguntes",
       filter_all: "Totes",
       source_note: "Preguntes extretes d'un llibre de geometria sintètica.",
@@ -149,6 +150,7 @@ window.UI_LANGS = {
 
     list: {
       question_count: "{n} preguntes",
+      no_results: "Cap pregunta coincideix amb aquest filtre.",
       no_image_badge: "sense figura",
       guide_badge: "◆ guia",
       page_label: "pàg. {page}",
