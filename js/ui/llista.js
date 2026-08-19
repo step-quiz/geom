@@ -53,6 +53,44 @@
     return contenidorEl;
   }
 
+  /**
+   * Filtre 2D/3D (§UI-UX, toggle tipus iPad): estat propi d'aquesta
+   * vista, DELIBERADAMENT separat de view.filtres (que ve del router i
+   * governa navegació per URL amb #clau=valor, v. capçalera d'aquest
+   * fitxer). Aquest filtre és pur estat d'interfície -- mai s'hi navega
+   * per enllaç, es desa a localStorage perquè no es perdi en tornar a
+   * carregar la pàgina (mateix patró que window.geoI18n ja fa servir
+   * per a l'idioma).
+   *
+   * INVARIANT: mai els dos toggles apagats alhora -- una llista buida
+   * per "cap dimensió seleccionada" no aporta res a l'alumne (a
+   * diferència d'un filtre real com #curs=2ESO, on "cap resultat" és
+   * informatiu). Si es desactiva l'últim actiu, es reactiven tots dos.
+   */
+  const DIM_STORAGE_KEY = "geo:dim-filtre";
+  const DIMS = ["2D", "3D"];
+
+  function llegeixDimsActives() {
+    try {
+      const desat = JSON.parse(localStorage.getItem(DIM_STORAGE_KEY));
+      if (Array.isArray(desat) && desat.every((d) => DIMS.includes(d)) && desat.length) {
+        return desat;
+      }
+    } catch (e) {
+      // localStorage bloquejat o valor corrupte -- es degrada al
+      // per-defecte (totes dues actives), sense petar.
+    }
+    return DIMS.slice();
+  }
+
+  function desaDimsActives(actives) {
+    try {
+      localStorage.setItem(DIM_STORAGE_KEY, JSON.stringify(actives));
+    } catch (e) {
+      // best-effort, com la resta de l'estat persistit del projecte.
+    }
+  }
+
   function aplicaFiltres(preguntes, filtres) {
     const claus = Object.keys(filtres || {});
     if (claus.length === 0) return preguntes;
@@ -158,7 +196,9 @@
 
     const lang = window.geoI18n.getLang();
     const totes = window.geoOrdre ? window.geoOrdre.preguntesOrdenades() : (window.PREGUNTES || []);
-    const filtrades = aplicaFiltres(totes, view.filtres);
+    const filtradesPerUrl = aplicaFiltres(totes, view.filtres);
+    const dimsActives = llegeixDimsActives();
+    const filtrades = filtradesPerUrl.filter((p) => dimsActives.includes(p.dimensio));
 
     const header = document.createElement("header");
 
@@ -188,17 +228,42 @@
       (etiqueta ? " · " + etiqueta : "");
     header.appendChild(count);
 
+    // Toggles 2D/3D (tipus iPad -- aria-pressed, mai els dos apagats
+    // alhora, v. comentari de llegeixDimsActives()). Es repinta tota la
+    // llista en clicar, mateix patró que qualsevol altre canvi de vista.
+    const dimFiltre = document.createElement("div");
+    dimFiltre.className = "dim-filtre";
+    DIMS.forEach((dim) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "dim-filtre__toggle";
+      btn.textContent = dim;
+      btn.setAttribute("aria-pressed", String(dimsActives.includes(dim)));
+      btn.addEventListener("click", () => {
+        const actuals = llegeixDimsActives();
+        let noves;
+        if (actuals.includes(dim)) {
+          noves = actuals.filter((d) => d !== dim);
+          if (noves.length === 0) noves = DIMS.slice(); // mai els dos apagats
+        } else {
+          noves = actuals.concat(dim);
+        }
+        desaDimsActives(noves);
+        render(view, root);
+      });
+      dimFiltre.appendChild(btn);
+    });
+    header.appendChild(dimFiltre);
+
     contenidorEl.appendChild(header);
 
     if (filtrades.length === 0) {
       const buit = document.createElement("p");
       buit.className = "question-entry__body";
       buit.style.marginTop = "var(--space-5)";
-      // No hi ha cap clau de UI_LANGS dedicada a "cap resultat" encara
-      // (fora d'abast d'aquest pas); es reutilitza source_note com a
-      // text de contingut segur en lloc d'introduir contingut nou fora
-      // de ui-strings.js sense que main.js/§6 ho hagi decidit.
-      buit.textContent = window.t("nav.source_note");
+      // Clau dedicada (list.no_results) -- ja no reaprofita nav.source_note,
+      // que ha desaparegut de la capçalera (§UI-UX: eyebrow suprimit).
+      buit.textContent = window.t("list.no_results");
       contenidorEl.appendChild(buit);
       return;
     }

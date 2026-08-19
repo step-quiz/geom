@@ -109,21 +109,19 @@
   }
 
   /**
-   * Munta el <select id="lang-select"> (ha d'existir a index.html) amb
-   * les opcions reals de UI_LANGS i hi connecta el canvi. Si l'element
-   * no existeix (p. ex. algú l'ha tret de l'HTML), initSelector() ja
-   * retorna false sense petar — aquí simplement no s'hi afegeix el
-   * listener en aquest cas.
+   * Amaga el selector d'idioma de la interfície (a petició explícita de
+   * l'owner: "mostra només la capa del català") sense esborrar cap
+   * capacitat multilingüe del projecte — ui-strings.js conserva les
+   * dues capes senceres (en/ca), i window.geoI18n.setLang() segueix
+   * funcionant per a qui vulgui reactivar el selector en el futur (o
+   * cridar-lo des de la consola, o afegir ?lang=en a la URL, que
+   * resolLang() ja reconeix). Aquesta funció NOMÉS fixa quin idioma es
+   * mostra per defecte, no com si "ca" fos l'únic que existeix.
    */
-  function muntaSelectorIdioma() {
-    const ok = window.geoI18n.initSelector("lang-select");
-    if (!ok) return;
-
-    const sel = document.getElementById("lang-select");
-    sel.addEventListener("change", () => {
-      window.geoI18n.setLang(sel.value);
-      if (vistaActual) pinta(vistaActual);
-    });
+  function forcaIdiomaCatala() {
+    if (window.geoI18n && window.geoI18n.getLang() !== "ca") {
+      window.geoI18n.setLang("ca");
+    }
   }
 
   function muntaEnllacDemo() {
@@ -146,7 +144,7 @@
       return;
     }
 
-    muntaSelectorIdioma();
+    forcaIdiomaCatala();
 
     if (window.geoGlossariUI) {
       const header = document.querySelector(".site-header__row");
