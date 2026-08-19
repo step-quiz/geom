@@ -109,8 +109,20 @@
    *
    * Per treure un exercici d'aquesta llista (tornar-lo a fer visible),
    * elimina'n l'id d'aquest array -- res més cal tocar.
+   *
+   * Dues tandes acumulades:
+   *  - q19, q20, q34, q35, q84, q88: petició original, sense relació
+   *    amb cap categoria concreta.
+   *  - q18a, q18b, q21, q24, q83: la resta de la categoria
+   *    "aritmetica_algebra" (11 preguntes en total -- les altres 6 ja hi
+   *    eren de la tanda anterior), a petició explícita d'amagar TOTA
+   *    la categoria sencera. V. window.CLASSIFICACIO_TEMATICA per
+   *    confirmar la llista completa si mai cal regenerar-la.
    */
-  const EXERCICIS_AMAGATS = ["q19", "q20", "q34", "q35", "q84", "q88"];
+  const EXERCICIS_AMAGATS = [
+    "q19", "q20", "q34", "q35", "q84", "q88",
+    "q18a", "q18b", "q21", "q24", "q83",
+  ];
 
   /**
    * Filtre de categories temàtiques (menú de selecció múltiple, 6
@@ -125,8 +137,29 @@
    */
   const CAT_STORAGE_KEY = "geo:categoria-filtre";
 
+  // Mateixa exclusió que el menú visible (v. render(): "aritmetica_algebra"
+  // no es mostra perquè tots els seus exercicis són a EXERCICIS_AMAGATS) --
+  // calia sincronitzar-la aquí també, perquè aquesta és la funció que
+  // defineix què vol dir "totes" per a l'invariant de cap-seleccionada.
+  // Si no coincidissin, sortir i tornar a entrar a una categoria "totes"
+  // real (5) podria comparar-se contra un total vell (6) i quedar mig
+  // activada per error.
+  // clau de categoria -> fitxer d'icona (docs/icones-categories.html és
+  // la font; SVG hand-drawn amb el mateix motor que tota la resta del
+  // projecte, publicades a assets/img/icones/). "aritmetica_algebra" no
+  // hi és perquè mai es mostra (v. filtre de categories() a render()).
+  const ICONA_PER_CATEGORIA = {
+    triangles: "icona-triangles.png",
+    poligons: "icona-poligons.png",
+    circumferencia: "icona-circumferencia.png",
+    coniques: "icona-coniques.png",
+    altres: "icona-altres.png",
+  };
+
   function categoriesDisponibles() {
-    return (window.CATEGORIES_TEMATIQUES || []).map((c) => c.clau);
+    return (window.CATEGORIES_TEMATIQUES || [])
+      .filter((c) => c.clau !== "aritmetica_algebra")
+      .map((c) => c.clau);
   }
 
   function llegeixCatsActives() {
@@ -336,7 +369,14 @@
     // == totes, v. comentari de llegeixCatsActives()). Mateix patró
     // d'interacció que dim-filtre: clic sobre un botó, es repinta tota
     // la llista.
-    const categories = window.CATEGORIES_TEMATIQUES || [];
+    // "aritmetica_algebra" no es mostra al menu: TOTS els seus exercicis
+    // son a EXERCICIS_AMAGATS (petició explícita de l'owner), per tant
+    // un boto per a aquesta categoria sempre donaria 0 resultats -- no
+    // te sentit oferir-lo. Si mai es torna a fer visible algun exercici
+    // d'aquesta categoria, cal treure aquest filtre a ma tambe.
+    const categories = (window.CATEGORIES_TEMATIQUES || []).filter(
+      (c) => c.clau !== "aritmetica_algebra"
+    );
     if (categories.length) {
       const catFiltre = document.createElement("div");
       catFiltre.className = "cat-filtre";
@@ -344,7 +384,21 @@
         const btn = document.createElement("button");
         btn.type = "button";
         btn.className = "cat-filtre__toggle";
-        btn.textContent = cat.etiqueta;
+        btn.title = cat.etiqueta;
+        btn.setAttribute("aria-label", cat.etiqueta);
+        const fitxerIcona = ICONA_PER_CATEGORIA[cat.clau];
+        if (fitxerIcona) {
+          const img = document.createElement("img");
+          img.src = "assets/img/icones/" + fitxerIcona;
+          img.alt = "";
+          img.className = "cat-filtre__icon";
+          btn.appendChild(img);
+        } else {
+          // Degradacio segura: si mai s'afegeix una categoria nova sense
+          // icona assignada a ICONA_PER_CATEGORIA, es mostra el text en
+          // lloc de deixar el boto buit.
+          btn.textContent = cat.etiqueta;
+        }
         const actiu = catsActives.length === 0 || catsActives.includes(cat.clau);
         btn.setAttribute("aria-pressed", String(actiu));
         btn.addEventListener("click", () => {
