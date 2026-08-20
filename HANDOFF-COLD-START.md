@@ -102,7 +102,7 @@ inspection, not memory, at the moment of writing:
 | Glossary terms | 53, of which 26 have a figure |
 | Glossary terms detected inline | inside enunciat text AND inside Pista 1-4 text (never comprovació, never i-després) |
 | Thematic categories | 6 defined, 5 shown in the filter menu (aritmetica_algebra excluded, see §3) |
-| Hidden questions (excluded from the list view, not deleted) | 11: `q18a q18b q19 q20 q21 q24 q34 q35 q83 q84 q88` |
+| Hidden questions (excluded from list view, "Anterior/Següent", and itinerary suggestions — not deleted) | 12: `q18a q18b q19 q20 q21 q24 q34 q35 q83 q84 q87 q88` |
 | 2D / 3D split | 88 / 42 |
 | Intro demos | 3, each now a 6-step reveal-one-at-a-time flow (not the old "always visible" design) |
 

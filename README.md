@@ -24,7 +24,7 @@ seva guia de demostració completa**; navegació entre preguntes; un marcador pe
 glossari de 53 termes (26 amb figura pròpia) amb detecció automàtica de termes dins
 dels enunciats **i dins del text de cada pista**; una intro "què és una demostració"
 amb tres exemples resolts pas a pas; **un filtre 2D/3D i un filtre de 5 categories
-temàtiques** (amb icones dibuixades a mà) a la llista de preguntes; **11 preguntes
+temàtiques** (amb icones dibuixades a mà) a la llista de preguntes; **12 preguntes
 amagades de la llista** (encara existents, mai esborrades — v. secció pròpia); i una
 interfície completa en anglès i català, mostrada només en català per defecte.
 
@@ -80,18 +80,23 @@ hi hagi res desat a `localStorage`): només "2D" i només "Triangles" actius —
 
 ### Exercicis amagats de la llista
 
-11 preguntes no apareixen a la llista de preguntes, per una decisió de contingut de
-l'owner — **mai esborrades del codi**, només excloses en pintar la llista
-(`EXERCICIS_AMAGATS`, hardcoded a `js/ui/llista.js`, sempre la font de veritat).
-Segueixen accessibles amb normalitat per enllaç directe (`#q19`, etc.) i amb la
-seva guia completa.
+12 preguntes no apareixen a la llista de preguntes, ni a "Anterior/Següent" ni
+als suggeriments de l'itinerari, per una decisió de contingut de l'owner — **mai
+esborrades del codi**, només excloses en pintar/suggerir (`EXERCICIS_AMAGATS`,
+hardcoded a `js/ui/llista.js`, sempre la font de veritat; exposada com a
+`window.geoLlista.esAmagada(id)` perquè `detall.js` i `itinerari.js` la
+consultin sense duplicar-la). Segueixen accessibles amb normalitat per enllaç
+directe (`#q19`, etc.) i amb la seva guia completa.
 
 ```
-q18a, q18b, q19, q20, q21, q24, q34, q35, q83, q84, q88
+q18a, q18b, q19, q20, q21, q24, q34, q35, q83, q84, q87, q88
 ```
 
-(les 11 preguntes de la categoria "Propietats d'aritmètica o d'àlgebra" senceres —
-per això aquesta categoria no apareix al menú de filtres, v. més amunt).
+(11 d'aquestes són exactament les 11 preguntes de la categoria "Propietats
+d'aritmètica o d'àlgebra" senceres — per això aquesta categoria no apareix al
+menú de filtres, v. més amunt; `q87` s'hi va afegir en una tanda posterior i
+independent, i és "triangles" temàticament, no aritmètica/àlgebra — la llista
+ja no coincideix 1:1 amb cap categoria sencera des d'aleshores).
 
 Per tornar a fer visible una pregunta, treu-ne l'id d'`EXERCICIS_AMAGATS` — res més
 cal tocar.
@@ -271,7 +276,8 @@ sobre el crema de la pàgina.
 
 **Les 130 de 130 preguntes tenen guia de demostració completa.** **114 de 130
 tenen imatge d'enunciat.** **26 de 53 termes del glossari tenen figura.**
-**11 preguntes estan amagades de la llista** per decisió de contingut (mai
+**12 preguntes estan amagades de la llista** (i de "Anterior/Següent" i dels
+suggeriments de l'itinerari) per decisió de contingut (mai
 esborrades). Filtres 2D/3D i de 5 categories temàtiques funcionant, amb icones
 pròpies i persistència de la tria a `localStorage`. Les tres demos
 d'introducció reestructurades en passos revelats amb el mateix mecanisme que
