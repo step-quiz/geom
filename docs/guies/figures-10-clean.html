@@ -198,7 +198,7 @@ function paramPoints(fx, fy, t0, t1, nPts, closed=false) {
   lbl(ctx,'b',10,-B/2-6,SANG,20);
   lbl(ctx,'c',c/2-10,-10,SANG,20);
   lbl(ctx,'a',-c/2-24,-B/2-6,SANG,20);
-  stampNum(ctx,460,'101');
+  stampNum(ctx,460,'118');
 })();
 
 /* fig-119 -- q115: constant focal = diametre, comprovat al vertex mateix,
@@ -260,7 +260,7 @@ function paramPoints(fx, fy, t0, t1, nPts, closed=false) {
   angleMark(hd,P.x,P.y,c,0,P.x+dx,P.y+dy,30,1,SANG);
   angleMark(hd,P.x,P.y,-c,0,P.x-dx,P.y-dy,30,1,SANG);
   lblC(ctx,'P',P.x+19,P.y-2,INK,20);
-  stampNum(ctx,520,'103');
+  stampNum(ctx,520,'120');
 })();
 
 /* fig-121 -- q117: dues paraboles amb el mateix vertex/directriu, focus a
@@ -290,7 +290,7 @@ function paramPoints(fx, fy, t0, t1, nPts, closed=false) {
   lbl(ctx,'focus 1',14,-p1-6,SANG,17);
   lbl(ctx,'focus 2',14,-p2-6,SANG,17);
   lblC(ctx,'mateixa directriu, dilatació uniforme',0,40,INK,17);
-  stampNum(ctx,420,'104');
+  stampNum(ctx,420,'121');
 })();
 
 /* fig-122 -- q118: demostracio directa (sense infinit) de la propietat de
@@ -333,7 +333,7 @@ function paramPoints(fx, fy, t0, t1, nPts, closed=false) {
   const ux=dirx/dl, uy=diry/dl;
   hd.handSegment(P.x-ux*260,P.y-uy*260,P.x+ux*260,P.y+uy*260,{lineWidth:2.2,wobble:0.15,passSpread:0.1,color:SANG});
   rightAngle(hd,M.x,M.y,F.x,F.y,P.x,P.y,14,SANG);
-  stampNum(ctx,520,'105');
+  stampNum(ctx,520,'122');
 })();
 
 /* fig-123 -- q119: envolupant d'un feix de rectes (dos eixos, punts
@@ -451,7 +451,7 @@ function paramPoints(fx, fy, t0, t1, nPts, closed=false) {
     lblC(ctx,'suma de rectangles → 1/3',0,-380,SANG,17);
     ctx.restore();
   })();
-  stampNum(ctx,460,'108');
+  stampNum(ctx,460,'125');
 })();
 
 /* fig-126 -- q122: espiral d'Arquimedes amb un punt marcat i la direccio
@@ -476,7 +476,7 @@ function paramPoints(fx, fy, t0, t1, nPts, closed=false) {
   hd.handSegment(ax,ay,ax-14*Math.cos(ang-0.4),ay-14*Math.sin(ang-0.4),{lineWidth:2,color:SANG});
   hd.handSegment(ax,ay,ax-14*Math.cos(ang+0.4),ay-14*Math.sin(ang+0.4),{lineWidth:2,color:SANG});
   hd.handDot(0,0,3.5,INK);
-  stampNum(ctx,560,'109');
+  stampNum(ctx,560,'126');
 })();
 
 /* fig-127 -- q123: cilindre amb helix (com al llibre), i al costat, en

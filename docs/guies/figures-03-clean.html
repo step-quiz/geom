@@ -130,19 +130,6 @@ function avg(pts){let x=0,y=0;pts.forEach(p=>{x+=p.x;y+=p.y});return {x:x/pts.le
  hd.handDot(center.x,center.y,5,SANG);
  stampNum(ctx,460,'027');})();
 
-/* fig-028 -- q52: el tall hexagonal del cub */
-(function(){const ctx=mk('g7',560,480),hd=makeHandDraw(ctx,5252);ctx.translate(100,140);
- const S=240,dx=0.3*S,dy=-0.2*S, V=cubeVerts(S,dx,dy);
- drawCubeWire(hd,V,2.4);
- function P(x,y,z){return {x:x*S+z*dx, y:(1-y)*S+z*dy};}
- const Mp=[[1,0.5,0],[0.5,1,0],[0,1,0.5],[0,0.5,1],[0.5,0,1],[1,0,0.5]].map(p=>P(...p));
- for(let i=0;i<6;i++){
-   const a=Mp[i], b=Mp[(i+1)%6];
-   hd.handSegment(a.x,a.y,b.x,b.y,{lineWidth:2.4,color:SANG});
- }
- tick(hd,Mp[0].x,Mp[0].y,Mp[1].x,Mp[1].y);tick(hd,Mp[2].x,Mp[2].y,Mp[3].x,Mp[3].y);
- Mp.forEach(p=>hd.handDot(p.x,p.y,4,SANG));
- stampNum(ctx,480,'028');})();
 
 /* fig-029 -- q56: el tetraedre inscrit per les diagonals de cara */
 (function(){const ctx=mk('g8',500,380),hd=makeHandDraw(ctx,5656);ctx.translate(70,90);
