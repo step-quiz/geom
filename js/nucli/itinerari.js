@@ -19,6 +19,15 @@
                 reserva — v. totesPreguntes() més avall — segueix l'ordre
                 de presentació configurable, no l'ordre del llibre; es
                 degrada bé si no hi és), window.PREGUNTES.
+                js/ui/llista.js (window.geoLlista.esAmagada — cap regla
+                ha de suggerir mai una pregunta d'EXERCICIS_AMAGATS; es
+                degrada a "cap amagada" si no hi és, mai bloqueja un
+                suggeriment per un mòdul absent). Encara que llista.js es
+                carrega DESPRÉS d'aquest fitxer a index.html, no hi ha
+                problema real: aquí només es CRIDA suggereix() (mai al
+                carregar el script, sempre en resposta a una interacció
+                posterior), moment en què tots els scripts ja han
+                acabat d'executar-se.
 
   QUÈ ES DIFEREIX DEL DOCUMENT DE DISSENY, EXPLÍCITAMENT
   §5 del document proposa un camp opcional `hintLevelsOpened` per pregunta,
@@ -159,6 +168,27 @@
     return window.geoOrdre ? window.geoOrdre.preguntesOrdenades() : (window.PREGUNTES || []);
   }
 
+  /** True si l'id és a EXERCICIS_AMAGATS (js/ui/llista.js) -- cap regla
+   *  d'aquest fitxer ha de suggerir mai una pregunta amagada (mateix
+   *  principi que veins() a detall.js: "Anterior/Següent" no hi tornava
+   *  a caure des que es va corregir; els suggeriments no en són una
+   *  excepció). Es degrada a `false` si geoLlista no està carregat
+   *  (mai bloqueja un suggeriment per un motiu extern), mateixa
+   *  disciplina de "no trenca la pàgina" que la resta del fitxer.
+   */
+  function esAmagada(id) {
+    return !!(window.geoLlista && window.geoLlista.esAmagada(id));
+  }
+
+  /** Igual que totesPreguntes(), amb les amagades excloses -- el que
+   *  ha de fer servir tota regla que TRIA un candidat nou (regla2,
+   *  regla3, regla5). trobaPregunta() es queda amb la llista completa
+   *  perquè encara ha de poder resoldre l'id d'una pregunta ja visitada
+   *  (regla1), amagada o no. */
+  function totesPreguntesVisibles() {
+    return totesPreguntes().filter((p) => !esAmagada(p.id));
+  }
+
   function trobaPregunta(id) {
     return totesPreguntes().find((p) => p.id === id) || null;
   }
@@ -195,7 +225,7 @@
     if (!ref) return null;
 
     const visitades = new Set(Object.keys(estat.questions));
-    const candidates = totesPreguntes().filter((p) => !visitades.has(p.id));
+    const candidates = totesPreguntesVisibles().filter((p) => !visitades.has(p.id));
     if (!candidates.length) return null;
 
     // puntuació senzilla i llegible, no una funció de pesos opaca:
@@ -236,7 +266,7 @@
     if (!mov) return null;
 
     const visitades = new Set(Object.keys(estat.questions));
-    const candidates = totesPreguntes().filter(
+    const candidates = totesPreguntesVisibles().filter(
       (p) => !visitades.has(p.id) && movimentDe(p.id) === mov
     );
     if (!candidates.length) return null;
@@ -249,13 +279,22 @@
   }
 
   /** Regla 5: fallback -- comportament posicional d'avui (veins()), quan
-   *  cap altra regla proposa res (p. ex. un alumne nou amb estat buit). */
+   *  cap altra regla proposa res (p. ex. un alumne nou amb estat buit).
+   *  Salta EXERCICIS_AMAGATS igual que veins() a detall.js: mai la
+   *  primera pregunta "buida" (idActual null, banner de la llista) ni
+   *  la següent en ordre (idActual conegut) poden caure en una amagada. */
   function regla5_fallback(idActual) {
+    if (!idActual) {
+      const totesVis = totesPreguntesVisibles();
+      return totesVis.length ? { pregunta: totesVis[0], reason: "fallback", via: "manual" } : null;
+    }
     const totes = totesPreguntes();
-    if (!idActual) return totes.length ? { pregunta: totes[0], reason: "fallback", via: "manual" } : null;
     const idx = totes.findIndex((p) => p.id === idActual);
-    if (idx === -1 || idx >= totes.length - 1) return null;
-    return { pregunta: totes[idx + 1], reason: "fallback", via: "manual" };
+    if (idx === -1) return null;
+    for (let i = idx + 1; i < totes.length; i++) {
+      if (!esAmagada(totes[i].id)) return { pregunta: totes[i], reason: "fallback", via: "manual" };
+    }
+    return null;
   }
 
   /**
@@ -268,7 +307,14 @@
     const estat = llegeix();
     const candidats = [regla1_continua(estat), regla2_rampa(estat), regla3_repas(estat)]
       .filter(Boolean)
-      .filter((c) => c.pregunta.id !== idActual);
+      .filter((c) => c.pregunta.id !== idActual)
+      // Xarxa de seguretat: regla2/3 ja parteixen de totesPreguntesVisibles(),
+      // però regla1 resol via trobaPregunta() (la llista SENCERA, a
+      // propòsit -- ha de poder trobar qualsevol id ja "seen"). Si algú
+      // va acabar visitant una amagada abans que aquest arranjament
+      // (o per enllaç directe), no ha de tornar a aparèixer com a
+      // suggeriment ara.
+      .filter((c) => !esAmagada(c.pregunta.id));
 
     const vistos = new Set();
     const unics = [];
