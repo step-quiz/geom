@@ -21,7 +21,7 @@ mòbil a la mateixa xarxa), qualsevol servidor estàtic funciona igual de bé:
 **Hi ha:** 130 preguntes amb el seu enunciat original en anglès **i en català** (traduït); **122 de 130 amb una imatge d'enunciat**; **les 130 amb la
 seva guia de demostració completa**; navegació entre preguntes; un marcador personal
 "explorat" que es desa al navegador; un itinerari amb suggeriments personalitzats; un
-glossari de 53 termes (26 amb figura pròpia) amb detecció automàtica de termes dins
+glossari de 53 termes (**tots 53 amb figura pròpia**) amb detecció automàtica de termes dins
 dels enunciats **i dins del text de cada pista**; una intro "què és una demostració"
 amb tres exemples resolts pas a pas; **un filtre 2D/3D i un filtre de 5 categories
 temàtiques** (amb icones dibuixades a mà) a la llista de preguntes; **15 preguntes
@@ -116,8 +116,10 @@ i dins del text de cada Pista (1-4) d'una guia** — mai a la comprovació ni a
 l'"i després", per decisió explícita. El terme apareix subratllat i, en clicar-lo,
 un popover hi mostra la definició al mateix lloc.
 
-Dades a `js/data/glossari-dades.js`. **26 dels 53 termes tenen figura pròpia**
-(la resta espera il·lustracions — v. `docs/guies/NOTA-GLOSSARI-MILLORES.md`). Les
+Dades a `js/data/glossari-dades.js`. **Els 53 termes tenen figura pròpia**
+(v. `docs/guies/NOTA-GLOSSARI-27-FIGURES.md` per a les 27 figures més
+recents, que completen les 26 anteriors — v. també
+`docs/guies/NOTA-GLOSSARI-MILLORES.md`). Les
 figures són **tinta sola, sense sanguina**: aquí no hi ha "figura del llibre" vs
 "afegit de l'alumne", només un sol diagrama — un accent (`--pencil`) marca els noms
 de terme.
@@ -177,7 +179,6 @@ sent, sempre, l'ordre de disseny original.
 |---|---|
 | Correcció o puntuació | El llibre no en té — cada pregunta és un punt de partida per pensar-hi, no un test |
 | Pistes curtes (`pista`) | `pista.en`/`pista.ca` continuen sent `null` a totes 130. NO les substitueixen les guies: són coses diferents (una pista curta seria una frase; una guia és una escala completa). El botó 💡 simplement no apareix quan no n'hi ha |
-| Figures per a 27 dels 53 termes del glossari | Contingut escrit; il·lustracions pendents — v. `docs/guies/NOTA-GLOSSARI-MILLORES.md` |
 | 8 preguntes sense gràfic d'enunciat | Són exactament les 8 preguntes d'`EXERCICIS_AMAGATS` que no tenen imatge (v. secció pròpia) — cap pregunta VISIBLE a la llista es queda mai sense imatge des de la ronda `docs/guies/figures-enunciats-D.html` (v. `docs/guies/NOTA-ENUNCIATS-D.md`) |
 | Assignació per curs (`#curs=2ESO` i similars) | El camp `curs` existeix a l'esquema de dades però és `null` arreu — decisió de contingut ajornada conscientment, no una limitació tècnica. El filtre ja funciona (prova-ho a la barra d'adreces); simplement no hi ha encara cap valor assignat |
 | Mode d'interacció (resposta oberta, dibuix, etc.) | Ídem: `interaccio` és `null` a tot arreu, estructura preparada, contingut pendent. La interactivitat real (punts arrossegables, recàlcul en viu) exigiria una capa de renderitzat completament diferent de la que hi ha ara (`docs/render.js` genera PNG estàtics per disseny, no SVG/canvas en viu al navegador) — un canvi d'arquitectura real, no una dada per omplir |
@@ -189,7 +190,7 @@ sent, sempre, l'ordre de disseny original.
 index.html                    — única pàgina real de l'app
 assets/img/                   — 122 imatges d'enunciat (67 escanejades + 55 dibuixades a mà)
 assets/img/pistes/            — 162 figures de guia (131 originals + 31 de Pista 2)
-assets/img/glossari/          — 26 figures del glossari (de 53 termes)
+assets/img/glossari/           — 53 figures del glossari (de 53 termes — tots)
 assets/img/demo/               — 15 figures de la intro "què és una demostració" (5 panells × 3)
 assets/img/icones/            — 5 icones del filtre de categories temàtiques
 css/
@@ -297,7 +298,7 @@ sobre el crema de la pàgina.
 **Les 130 de 130 preguntes tenen guia de demostració completa.** **122 de 130
 tenen imatge d'enunciat — les 8 restants són exactament les 8 preguntes
 d'`EXERCICIS_AMAGATS` sense imatge; cap pregunta visible es queda sense.**
-**26 de 53 termes del glossari tenen figura.**
+**Els 53 de 53 termes del glossari tenen figura.**
 **15 preguntes estan amagades de la llista** (i de "Anterior/Següent" i dels
 suggeriments de l'itinerari) per decisió de contingut (mai
 esborrades). Filtres 2D/3D i de 5 categories temàtiques funcionant, amb icones
@@ -307,8 +308,6 @@ les guies reals.
 
 Pendents coneguts, cap dels quals bloqueja l'ús actual del lloc:
 
-- **27 dels 53 termes del glossari encara no tenen figura** — v.
-  `docs/guies/NOTA-GLOSSARI-MILLORES.md`.
 - Assignació de `curs` i mode d'`interaccio` per pregunta.
 
 Historial complet de lliuraments (ordre cronològic, cada un amb la seva pròpia
@@ -322,4 +321,6 @@ selector d'idioma fora, títol nou), el filtre de categories temàtiques amb
 exercicis amagats, les icones de categoria, el polit final de focus/border
 dels filtres, l'etiqueta "Qüestió N" i altres polits de capçalera/llista, i el
 lot D d'imatges d'enunciat (8 preguntes noves il·lustrades, 3 amagades en lloc
-d'il·lustrar-les — v. `docs/guies/NOTA-ENUNCIATS-D.md`).
+d'il·lustrar-les — v. `docs/guies/NOTA-ENUNCIATS-D.md`); i les 27 figures
+noves del glossari, que el completen a 53/53 (v.
+`docs/guies/NOTA-GLOSSARI-27-FIGURES.md`).
