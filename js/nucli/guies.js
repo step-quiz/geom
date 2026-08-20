@@ -67,7 +67,10 @@
     return "assets/img/pistes/" + fitxer;
   }
 
-  /** Nombre de guies disponibles — l'usa main.js per a la nota de peu. */
+  /** Nombre de guies disponibles. NOTA: cap consumidor la crida avui
+   *  (el comentari anterior deia que l'usava main.js per a una nota de
+   *  peu que ja no existeix). Es manté exposada perquè és una consulta
+   *  natural sobre window.GUIES i no costa res, no perquè s'usi. */
   function totalGuies() {
     return window.GUIES ? Object.keys(window.GUIES).length : 0;
   }
