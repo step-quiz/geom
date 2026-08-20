@@ -863,17 +863,32 @@ hexàgons (120°) ja 3 sols en fan 360°, cap combinació funciona. Amb
 polígons de més costats, l'angle és encara més gran i la situació només
 empitjora. Compta quantes combinacions vàlides has trobat en total.
 
+Ara fixa't bé en QUÈ acabes de demostrar, perquè no és tota la pregunta.
+Has demostrat que no n'hi pot haver cap altre: la llista no pot ser més
+llarga. Però no has demostrat que cadascuna d'aquestes cinc combinacions
+es pugui construir de debò —que els polígons acabin tancant una figura,
+en comptes de quedar-se oberts per l'altra banda. Això, aquí, ho sabem
+per una altra via molt més simple: els cinc sòlids existeixen, els pots
+tenir a la mà i comptar-los les cares. Són dues meitats diferents d'una
+mateixa resposta, i val la pena no confondre-les.
+
 **Comprovació.** Hauries d'arribar a exactament cinc combinacions vàlides:
 3 triangles/vèrtex (tetraedre), 4 triangles/vèrtex (octaedre), 5
 triangles/vèrtex (icosaedre), 3 quadrats/vèrtex (cub), 3 pentàgons/vèrtex
 (dodecaedre). Si en trobes més o menys de cinc, revisa el càlcul de l'angle
-d'algun dels polígons.
+d'algun dels polígons. I comprova també que sabries dir, si algú t'ho
+preguntés, quina de les dues meitats prova el teu comptatge: la de "no
+n'hi ha més de cinc" o la de "n'hi ha aquests cinc".
 
 **I després.** Aquest argument —comptar quantes configuracions locals a un
 vèrtex són geomètricament possibles— és un dels primers exemples que
 segurament veuràs d'una demostració que combina geometria amb un
 argument purament combinatori de comptatge finit, un estil de raonament
-que reapareix constantment més endavant en matemàtiques.
+que reapareix constantment més endavant en matemàtiques. I també és el
+teu primer exemple d'una parella que retrobaràs molt: descartar tots els
+casos impossibles no és el mateix que construir els possibles. Gairebé
+sempre calen totes dues coses, i sovint la fàcil de les dues és la que
+ningú s'adona que ha fet servir.
 
 ---
 
