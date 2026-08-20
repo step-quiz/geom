@@ -261,11 +261,17 @@ la mateixa raó?
 
 **Pista 3 — tanca-ho.**
 Amb A′ (reflex d'A respecte de la recta de dalt) i B′ (reflex de B respecte
-de la recta de baix), el segment recte A′B′ creua totes dues rectes. Aquests
-dos punts de creuament **són** els punts de contacte que buscaves: el camí
-A → (creuament de dalt) → (creuament de baix) → B fa exactament la mateixa
-longitud que el segment recte A′B′, per a qualsevol elecció dels punts de
-contacte — i un segment recte és el camí més curt entre els seus extrems.
+de la recta de baix), tries dos punts de contacte qualssevol P (a dalt) i
+Q (a baix). Per la reflexió, AP fa el mateix que A′P, i QB fa el mateix
+que QB′: el camí A→P→Q→B fa **sempre** la mateixa longitud que el camí
+A′→P→Q→B′, triïs on triïs P i Q. Aquesta és la part que val per a
+qualsevol elecció.
+
+Ara mira el camí A′→P→Q→B′: va d'A′ a B′ passant per dos punts pel mig.
+Cap camí així pot ser més curt que el segment recte A′B′, i només fa
+exactament A′B′ quan P i Q cauen damunt d'aquest segment. Per tant els
+punts de contacte que busques són **els dos punts on el segment A′B′
+creua les dues rectes**, i la longitud mínima és exactament A′B′.
 
 **Comprovació.** Rectes y=6 (dalt) i y=0 (baix). A=(1,4), B=(9,1). Reflectint:
 A′=(1,8), B′=(9,−1). La distància A′B′ (i per tant la longitud del camí

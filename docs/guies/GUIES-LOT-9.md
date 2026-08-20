@@ -333,51 +333,63 @@ demana un altre exemple.
 ## 8. q102 — *Are all triangles the same projectively? How about all four-sided polygons?*
 > Tots els triangles són el mateix projectivament? I tots els polígons de quatre costats?
 
-**Moviment: dues maneres.** DEPÈN de q101 (aquest mateix lot).
+**Moviment: invariant.** DEPÈN de q101 (aquest mateix lot).
 
 **Avís 3D.** Un angle recte no es veu recte en una projecció en
 perspectiva.
 
 **Pista 0 — què has de produir.**
-El mateix contrast de q101, ara amb figures planes en lloc de punts
-sobre una recta: SÍ per a triangles (tots equivalents projectivament),
-NO en general per a quadrilàters.
+DUES respostes. Segurament esperes un contrast, perquè q101 te'n va
+donar un (tres punts sobre una recta, sí; quatre, no). Aquí no n'hi ha:
+la resposta és **SÍ totes dues vegades**. Tots els triangles són el
+mateix projectivament, i tots els quadrilàters també. La pregunta
+interessant, doncs, canvia: si a la recta la llibertat s'acabava al
+quart punt, per què al pla encara no s'ha acabat?
 
-**Pista 1 — compta vèrtexs, no costats.**
-Un triangle té tres vèrtexs; cap parell de costats d'un triangle és
-"paral·lel" en un sentit que la projecció hagi de respectar
-—recorda q101: tres punts sempre es poden portar on vulguis. Un
-quadrilàter en té quatre. Quina relació hi ha entre "quatre vèrtexs" i
-el que ja vas veure amb "quatre punts sobre una recta"?
+**Pista 1 — compta la llibertat que tens, no els vèrtexs.**
+Una projecció central del pla no la tries a l'atzar: la tries posant el
+punt de projecció en algun lloc i el pla d'arribada en algun altre. Cada
+tria és un grapat de números que pots moure lliurement. D'altra banda,
+cada punt que vols enviar a un lloc concret et gasta llibertat: fixar on
+va a parar un punt del pla són dues condicions (la seva x i la seva y).
+Compta-ho a la recta i al pla per separat: quants punts pots col·locar
+on vulguis abans de quedar-te sense llibertat, en cada cas?
 
 **Pista 2 — la construcció.** → `fig-106.png`
 
-**Pista 3 — tanca-ho.**
-Projecta els quatre vèrtexs d'un quadrilàter des d'un punt exterior al
-seu pla, cap a un altre pla: talla les rectes que uneixen el punt de
-projecció amb cada vèrtex per una recta auxiliar que passi per quatre
-d'aquestes projeccions —la raó doble d'aquests quatre punts alineats
-(q101) és un invariant real del quadrilàter que la projecció NO pot
-canviar. Un quadrilàter "aixafat" (gairebé un triangle) i un de ben
-proporcionat tenen raons doubles diferents, així que no poden ser
-imatges projectives l'un de l'altre.
+**Pista 3 — tanca-ho amb un terra enrajolat.**
+Mira una foto d'un terra de rajoles quadrades, feta de gairebé qualsevol
+lloc. Cada rajola és un quadrat de veritat, i a la foto n'hi ha de totes
+les formes: més amples, més estretes, més aixafades com més lluny són.
+Aquella foto és, literalment, una projecció central. Ja tens la resposta
+davant dels ulls: un quadrat es pot projectar sobre tota mena de
+quadrilàters, i per tant qualsevol quadrilàter es pot portar a qualsevol
+altre (passant pel quadrat, si cal, en dos passos).
 
-**Comprovació.** Un quadrat i un rectangle molt allargat tenen quatre
-vèrtexs cadascun, però la raó doble que resulta de tallar les seves
-diagonals prolongades amb una recta auxiliar dona valors diferents
-—cap projecció central pot portar l'un a l'altre. En canvi, qualsevol
-triangle es pot portar a qualsevol altre (comprova-ho triant tres
-vèrtexs origen i tres destí qualssevol i trobant el punt de projecció
-que ho fa).
+On s'acaba, doncs, la llibertat? Al **cinquè** punt. Amb quatre punts al
+pla encara pots decidir on van tots quatre; el cinquè ja no el pots
+moure, queda determinat pels altres quatre i per la projecció que has
+triat. Exactament el mateix fenomen de q101, però un punt més tard,
+perquè el pla té una dimensió més que la recta.
 
-**I després.** Aquesta asimetria —tots els triangles projectivament
-iguals, no tots els quadrilàters— és la raó per la qual la geometria
-projectiva clàssica es construeix quasi tota amb configuracions de
-quatre punts (com la raó doble): és el primer nombre de punts on
-comencen a distingir-se figures que la geometria projectiva, d'entrada,
-no podria distingir amb menys.
+**Comprovació.** No numèrica, i val la pena fer-la de veritat: fes una
+foto d'un terra de rajoles o d'un tauler d'escacs des de molt de costat.
+Tria'n quatre rajoles ben separades i mira'n la forma a la foto: has
+d'acabar amb quatre quadrilàters ben diferents entre ells que, tots
+quatre, són la imatge del mateix quadrat. Si algun t'ha sortit amb tres
+vèrtexs gairebé alineats, encara millor: ensenya que fins i tot un
+quadrilàter "aixafat" hi és a l'abast. L'única cosa que no podràs fer
+és que una rajola surti amb els vèrtexs en un altre ordre.
 
----
+**I després.** Que la llibertat s'acabi al quart punt sobre una recta i
+al cinquè sobre un pla no és una coincidència: és la mateixa
+comptabilitat feta en una dimensió i en dues. Cada dimensió que
+afegeixes et regala exactament un punt més de llibertat abans que
+apareguin els invariants —les quantitats que la projecció ja no pot
+tocar, com la raó doble de q106. Recorda també que aquest "sí" és sobre
+quadrilàters mirats com a quatre punts en posició general (cap tres
+alineats): la projecció respecta quins punts hi ha, no si la figura et
+sembla ben proporcionada.
 
 ## 9. q103 — *Is a projection of a polygon always a polygon?*
 > La projecció d'un polígon és sempre un polígon?
@@ -504,11 +516,25 @@ a l'infinit associat a la direcció de pendent 3 —comprova que és
 l'ÚNIC punt a l'infinit que comparteixen amb qualsevol tercera recta de
 pendent diferent (que arriba a un punt a l'infinit distint).
 
-**I després.** Aquesta és la idea que fa que q107 funcioni: una
-hipèrbola —que sembla tenir dues branques separades i quatre "extrems"
-que s'allunyen cap enfora— es pot entendre com un cercle normal un cop
-dos dels seus punts es couen enviats a l'infinit d'aquesta mateixa
-manera.
+**I després.** Primer, la lletra petita d'aquest "sempre", que val la pena
+saber ara i no d'aquí a dos anys. Tot el que has fet aquí passa DINS D'UN
+PLA: has agafat el pla de sempre i li has afegit un punt per cada
+direcció. En aquest pla ampliat sí que és cert, sense cap excepció, que
+dues rectes qualssevol es tallen.
+
+A l'espai de tres dimensions, fent-hi el mateix, el "sempre" es trenca.
+Dues rectes que no són al mateix pla —una que va pel terra i una altra que
+travessa el sostre en una altra direcció, sense passar mai l'una per sobre
+de l'altra— continuen sense trobar-se enlloc. Ni són paral·leles ni es
+tallen: se'n diu que s'encreuen. Afegir-hi els punts de l'infinit no les
+salva, perquè cadascuna se'n va cap a un punt de l'infinit diferent.
+Comprova-ho amb dos llapis: n'hi ha prou de no poder-los posar tots dos
+damunt d'una mateixa taula imaginària.
+
+Fet l'avís: aquesta és la idea que fa que q107 funcioni. Una hipèrbola
+—que sembla tenir dues branques separades i quatre "extrems" que
+s'allunyen cap enfora— es pot entendre com un cercle normal un cop dos
+dels seus punts se'n van a l'infinit d'aquesta mateixa manera.
 
 ---
 
@@ -587,7 +613,7 @@ del con (les rectes rectes que el formen). Dues d'aquestes generatrius
 al pla de tall— no arriben MAI al pla de tall (com dues rectes
 paral·leles que no es tallen, en el sentit ordinari). Els dos punts del
 cercle per on passen aquestes dues generatrius són exactament els que
-es couen "a l'infinit" —i per això la hipèrbola té dues branques que
+se'n van "a l'infinit" —i per això la hipèrbola té dues branques que
 s'obren cap enfora sense parar: són la imatge d'un cercle sencer, menys
 aquests dos punts que han fugit a l'infinit.
 
@@ -680,7 +706,7 @@ tangent?
 
 **Pista 3 — tanca-ho.**
 Dues maneres de mesurar la mateixa distància: (a) PF₁ és una tangent
-des de P a l'esfera 1 —i totes les tangents des d'un mateix punet a una
+des de P a l'esfera 1 —i totes les tangents des d'un mateix punt a una
 esfera tenen la mateixa longitud (q93, aquest mateix lot). (b) El
 segment de la generatriu del con des de P fins al cercle de tangència
 amb l'esfera 1 és TAMBÉ una tangent des de P a aquesta mateixa esfera
@@ -704,7 +730,7 @@ q94 partia de la definició (dos focus, suma constant) i en deduïa que
 un cercle és el cas amb els dos focus fosos; aquí, en canvi, comences
 del con i DEMOSTRES que la corba resultant compleix la definició amb
 focus concrets. Quan el pla de tall és perpendicular a l'eix del con,
-les dues esferes de Dandelin es couen igual de grans i tangents al
+les dues esferes de Dandelin queden igual de grans i tangents al
 mateix cercle —els dos focus col·lapsen en un de sol, exactament el cas
 límit de q94.
 
@@ -735,8 +761,7 @@ l'eix horitzontal. I la combinació de dues reflexions perpendiculars
 és una rotació de 180° al voltant del centre —una tercera simetria,
 de franc.
 
-**Comprovació.** Amb a=3, b=4: el punt (5,4/3·√(25−9))... més senzill:
-comprova que si (x₀,y₀) satisfà x₀²/9−y₀²/16=1, aleshores (−x₀,y₀),
+**Comprovació.** Amb a=3, b=4: comprova que si (x₀,y₀) satisfà x₀²/9−y₀²/16=1, aleshores (−x₀,y₀),
 (x₀,−y₀) i (−x₀,−y₀) també ho satisfan —substitueix-los directament a
 l'equació i comprova que dona el mateix resultat en els quatre casos.
 
@@ -766,7 +791,9 @@ cada focus.
 Amb els vèrtexs de la hipèrbola a distància a del centre (sobre un
 eix) i les seves tangents tallant les asímptotes a distància b del
 mateix centre (sobre l'altre eix), el "diamant" és el quadrilàter amb
-aquests quatre punts com a vèrtexs: (0,a), (b,0), (0,−a), (−b,0). Quin
+aquests quatre punts com a vèrtexs. Amb l'orientació de sempre —la de
+x²/a² − y²/b² = 1, amb els vèrtexs sobre l'eix horitzontal— són (a,0),
+(0,b), (−a,0), (0,−b). Quin
 tipus de quadrilàter és, exactament, si les seves diagonals es tallen
 en angle recte i es reparteixen per la meitat?
 

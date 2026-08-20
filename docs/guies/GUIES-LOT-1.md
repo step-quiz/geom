@@ -231,7 +231,7 @@ diagonals per res. L'alumne se l'ha d'inventar.
 No cal comprovar els quatre costats. Per demostrar que una figura de quatre
 costats és un paral·lelogram n'hi ha prou amb **dos costats oposats que siguin
 alhora paral·lels i iguals de llargs**. Convèncer-te d'això abans de començar
-et estalviarà la meitat de la feina.
+t'estalviarà la meitat de la feina.
 
 **Pista 1 — per què costa.**
 El quadrilàter de fora et fa nosa perquè no en saps absolutament res: no és cap
@@ -417,11 +417,13 @@ I poden tenir respostes diferents. No donis per fet que la segona segueix la
 primera; de fet el llibre les posa juntes precisament perquè no la segueix.
 
 **Pista 1 — quina feina et toca fer.**
-Abans de contestar, decideix quina mena de feina et caldrà en cada cas:
-- Si creus que la resposta és **sí**, has de convèncer per a *tots* els triangles
-  del món. Un dibuix no serveix de res.
-- Si creus que és **no**, quantes figures et calen? Pensa-ho bé: la resposta és
-  un número molt petit.
+Abans de contestar, decideix quina mena de feina et caldrà en cada cas.
+
+Si creus que la resposta és **sí**, has de convèncer per a *tots* els
+triangles del món: un dibuix no serveix de res.
+
+Si creus que és **no**, quantes figures et calen? Pensa-ho bé, perquè la
+resposta és un número molt petit.
 
 Aquesta asimetria no és un truc: és com funciona tota la matemàtica.
 

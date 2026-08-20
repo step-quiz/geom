@@ -138,8 +138,12 @@ costats té?
 
 **Pista 3 — tanca-ho.**
 El triangle rectangle té hipotenusa 2, un catet 1 (la meitat del costat
-que has partit), i l'altre catet per Pitàgores. L'angle de 60° és el que
-queda al vèrtex original —quin catet hi és oposat, quin hi és contigu?
+que has partit), i l'altre catet per Pitàgores. Que aquest triangle sigui
+rectangle de veritat —és a dir, que la línia que has traçat caigui
+perpendicular al costat oposat— no és cosa del dibuix: és el que es
+demostra a q01 (pista 1), amb dos triangles congruents pels tres costats.
+L'angle de 60° és el que queda al vèrtex original —quin catet hi és
+oposat, quin hi és contigu?
 
 **Comprovació.** Catets 1 i √3, hipotenusa 2: sin60°=√3/2≈0,866,
 cos60°=1/2. Comprova amb Pitàgores: 1²+(√3)²=1+3=4=2² ✓.
@@ -391,7 +395,7 @@ suma horitzontal i la vertical donen totes dues zero amb l'angle
 adequat.
 
 **I després.** Aquesta mateixa descomposició en dues sumes independents
-(horitzontal i vertical) és el nucli de com es couen coordenades i
+(horitzontal i vertical) és el nucli de com queden coordenades i
 vectors a partir de la trigonometria — una idea que reapareixerà si mai
 treballes amb navegació, robòtica, o qualsevol cosa que impliqui sumar
 moviments en direccions diferents.
@@ -529,9 +533,12 @@ no decorativa.
 **Pista 1 — parteix el quadrilàter en dos triangles per una diagonal.**
 Els dos triangles comparteixen la diagonal i tenen angles oposats en
 aquell vèrtex del quadrilàter que, per estar inscrit en un cercle, sumen
-180° (angles oposats d'un quadrilàter cíclic — recorda q90 mateix ho
-demana com a hipòtesi, i el fet ja el vas veure encunyat, sense el nom,
-en algun quadrilàter cíclic anterior).
+180°. Aquest fet —els angles oposats d'un quadrilàter cíclic sumen
+sempre 180°— és la hipòtesi "inscrit en un cercle" convertida en una
+dada sobre angles, i és tota la feina que fa aquí la circumferència. Si
+no l'has vist mai demostrat, surt en dues línies de l'angle inscrit de
+q42: cada angle del quadrilàter val la meitat de l'arc oposat, i els dos
+arcs oposats fan junts la circumferència sencera.
 
 **Pista 2 — la construcció.** → `fig-098.png`
 Els dos angles marcats (a banda i banda de la diagonal): quina relació

@@ -85,6 +85,15 @@ triat són iguals), parteix l'angle del vèrtex en dos d'iguals **i** el costat
 oposat en dos d'iguals alhora. Cap altre triangle té aquesta propietat de
 franc amb una sola línia.
 
+I encara en fa una tercera, que faràs servir molt: hi cau **perpendicular**.
+Val la pena veure per què, perquè és un argument de tres línies que
+reapareixerà a q26, a q83 i cada cop que partis un isòsceles per la meitat.
+Els dos triangles en què queda partit tenen els tres costats iguals dos a
+dos (els dos costats del triangle, que són iguals; la meitat de la base,
+compartida en mida; i la línia nova, compartida de debò), o sigui que són
+congruents. Per tant els dos angles que fan amb la base són iguals. I dos
+angles iguals que junts fan una recta —180°— han de fer 90° cadascun.
+
 **Pista 2 — la construcció.** → `034_centre_triangle.png`
 Fixa't que les tres medianes semblen tallar-se en un sol punt. No és un
 accident del dibuix.
@@ -92,14 +101,36 @@ accident del dibuix.
 **Pista 3 — tanca-ho.**
 Per simetria, si repeteixes l'argument de la pista 1 amb els altres dos
 vèrtexs, obtens tres línies, cadascuna alhora bisectriu d'angle, mediana i
-altura del seu vèrtex. Que les tres coincideixin en un punt és el que fa que,
-en aquest cas (i només en aquest), "el centre" tingui sentit sense
-ambigüitat: bisectrius, medianes i altures hi són totes tres alhora.
+altura del seu vèrtex.
+
+Falta encara la part que el dibuix et suggereix però que no has demostrat:
+que les tres es tallin totes en un MATEIX punt. Tres rectes qualssevol es
+tallen, normalment, en tres punts diferents. Aquí la simetria també ho
+resol, i amb una sola frase: agafa una de les tres línies i fes-ne un
+mirall. Doblegant per aquest mirall, el triangle cau exactament damunt
+d'ell mateix i les altres dues línies s'intercanvien. Per tant el punt on
+aquelles dues es creuen ha de quedar-se on és —i l'únic lloc que no es
+mou en aquest plec és el mirall mateix. O sigui que la tercera línia hi
+passa. I com que pots fer aquest raonament amb qualsevol de les tres, les
+tres passen pel mateix punt.
+
+Això és el que fa que, en aquest cas (i només en aquest), "el centre"
+tingui sentit sense ambigüitat: bisectrius, medianes i altures hi són
+totes tres alhora.
 
 **Comprovació.** Un triangle equilàter de costat 12. La mediana des d'un
-vèrtex fa 6√3 ≈ 10,39. El centre hi és a 2/3 d'aquesta distància des del
-vèrtex: 2/3 × 10,39 ≈ 6,93. Si el teu raonament dona una altra proporció,
-revisa-la.
+vèrtex fa 6√3 ≈ 10,39 (surt de Pitàgores: 12² − 6² = 108). Comprova
+primer el que sí que has demostrat: pren un punt qualsevol d'una mediana
+i mesura'n la distància als dos vèrtexs de l'altra banda —han de sortir
+iguals, perquè la mediana és el mirall. I comprova que les tres medianes
+que dibuixis es creuen totes en un sol punt, no en tres.
+
+A quina distància del vèrtex cau aquest punt, en canvi, és una pregunta
+que aquesta guia NO respon: la simetria et diu que el punt existeix, no
+on és exactament. Si vols saber-ho, mesura-ho al teu dibuix; hauria de
+sortir-te ≈6,93, és a dir 2/3 de la mediana. Que aquesta proporció sigui
+sempre 2/3 —i per a qualsevol triangle, no només l'equilàter— és un
+resultat de debò, i necessita un argument propi que aquí no hem fet.
 
 **I després.** Aquest "punt on coincideixen tres rectes que en un triangle
 general són tres punts diferents" és un patró que reapareixerà cada vegada
@@ -164,7 +195,8 @@ les diagonals des d'**un sol vèrtex**. Quants triangles surten?
 
 **Pista 2 — la construcció.** → `036_pentagon_triangulat.png`
 Fixa't que el polígon del dibuix **no és regular**. És a posta: l'argument no
-pot dependre de cap simetria, ha de valer per a qualsevol polígon simple.
+pot dependre de cap simetria, ha de valer per a qualsevol polígon **convex**
+(un polígon sense cap "entrant", on totes les diagonals queden per dins).
 
 **Pista 3 — tanca-ho.**
 Des d'un vèrtex d'un polígon de n costats, quantes diagonals hi caben (sense
@@ -180,6 +212,18 @@ de donar (n−2) × 180°.
 exactament el que reutilitzaràs a q29 per calcular diagonals concretes d'un
 hexàgon i un octàgon, i a q06 per mirar els angles que es formen en aquest
 ventall de triangles, no només comptar-los.
+
+Val la pena que sàpigues on s'atura aquest argument, perquè és un exemple
+net d'una cosa que passa sovint: el resultat és més general que la
+demostració. Dibuixa un polígon amb un entrant ben marcat, com una fletxa,
+i tria el vèrtex de la punta de dins: veuràs que algunes de les diagonals
+que hi voldries traçar se'n van FORA de la figura, i el ventall ja no
+parteix el polígon en triangles. La fórmula (n−2)×180° continua sent certa
+per a aquests polígons —pots comprovar-ho mesurant—, però aquesta
+demostració concreta ja no la prova. Per a aquell cas cal un argument
+diferent: sempre existeix ALGUNA diagonal interior que parteix el polígon
+en dos de més petits, i es va repetint. Que un argument no arribi a tot
+arreu no el fa dolent; el que seria dolent és no saber fins on arriba.
 
 ---
 
@@ -211,6 +255,20 @@ correctes en casos concrets.
 
 **Comprovació.** Hexàgon (n=6): 3 diagonals, 4 triangles, suma d'angles 720°.
 Octàgon (n=8): 5 diagonals, 6 triangles, suma d'angles 1080°.
+
+I ara la part de MESURAR, que és el que l'enunciat del llibre demana de
+debò. Hexàgon regular de costat s: la diagonal curta (la que salta un
+vèrtex) fa s√3 ≈ 1,732s, i la llarga (la que va al vèrtex oposat, passant
+pel centre) fa exactament 2s. Amb s=1: 1,732 i 2. Comprova la curta amb el
+mètode de q26 —és la base d'un triangle isòsceles de costats s i angle
+120°, o dues alçades d'equilàter posades seguides— i la llarga sense cap
+càlcul: l'hexàgon regular són sis triangles equilàters al voltant del
+centre, així que dos radis seguits fan 2s. Àrea de l'hexàgon: sis
+equilàters de costat s, és a dir 6 × (√3/4)s² = (3√3/2)s² ≈ 2,598s².
+
+L'octàgon es fa exactament igual, però amb tres llargades de diagonal en
+lloc de dues (salta 1, salta 2, salta 3), i el mètode és el mateix: cada
+diagonal és la base d'un triangle isòsceles amb dos radis del polígon.
 
 **I després.** Aquest patró —demostrar-ho en abstracte una vegada (q70) i
 després aplicar-ho repetidament sense repetir l'argument (q29, i també q06,
@@ -244,14 +302,21 @@ a simple vista.
 En un polígon regular inscrit en una circumferència, l'angle que es veu des
 d'un vèrtex entre dos vèrtexs consecutius depèn només de **quants costats
 del polígon separen aquests dos vèrtexs** — no de quins vèrtexs concrets
-siguin. Com que els quatre angles del dibuix separen sempre un vèrtex del
-següent (mai en salten dos de cop), els quatre subtendeixen el mateix arc de
-circumferència, i per tant són el mateix angle.
+siguin. Com que aquests angles separen sempre un vèrtex del
+següent (mai en salten dos de cop), tots subtendeixen el mateix arc de
+circumferència, i per tant són el mateix angle. Compta bé quants n'hi ha:
+des d'un vèrtex d'un heptàgon surten 4 diagonals, i 4 diagonals parteixen
+l'angle d'aquell vèrtex en 5 trossos, no en 4. Els dos trossos dels
+extrems (entre un costat del polígon i la diagonal veïna) són del mateix
+tipus que els altres tres —també separen un vèrtex del següent.
 
-**Comprovació.** Amb la fórmula de l'angle inscrit, cadascun d'aquests
-quatre angles val 180°/7 ≈ 25,71°. Multiplicat pels quatre: 102,86°, que
-sumat als dos angles dels extrems del ventall (que no són d'aquest tipus)
-hauria de completar la suma total que ja coneixes de q70 per a n=7: 900°.
+**Comprovació.** Amb la fórmula de l'angle inscrit, cadascun dels cinc
+trossos val 180°/7 ≈ 25,71°. Els cinc junts han de reconstruir l'angle
+interior d'UN vèrtex de l'heptàgon: 5 × 180/7 = 900/7 ≈ 128,57°. I això
+és exactament el que q70 prediu per a un heptàgon regular, (7−2)×180/7.
+Compte amb un error fàcil: 900° és la suma dels SET angles interiors de
+l'heptàgon sencer. Un ventall d'un sol vèrtex no pot arribar-hi mai —
+només pot completar el seu propi angle, que és set vegades més petit.
 
 **I després.** Aquest és un cas particular d'un fet més general que
 segurament ja coneixes amb un altre nom: angles inscrits que subtendeixen el
@@ -511,7 +576,7 @@ natural a la llei del sinus i del cosinus si mai hi treballes.
 **Pista 0 — aposta abans de raonar.**
 Aquest és un dels resultats clàssics de la geometria elemental que costa més
 de demostrar del que sembla a primer cop d'ull (es coneix com el teorema de
-Steiner–Lehmus). Antic de saber-ho: la teva intuïció probablement et diu que
+Steiner–Lehmus). Abans de saber-ho: la teva intuïció probablement et diu que
 sí, és isòsceles. Aquesta vegada la intuïció encerta —però val la pena que
 notis que **no és evident per què**, i que un argument ràpid del tipus "és
 simètric, doncs..." no n'és una demostració vàlida.
@@ -815,8 +880,10 @@ pregunta següent (q08b) et demana llistar exhaustivament.
 **Comprovació.** Compta, per al cub, quants eixos de simetria de cada tipus
 té: 4 eixos vèrtex-a-vèrtex, 3 eixos cara-a-cara, 6 eixos aresta-a-aresta —
 13 eixos en total (sense comptar el centre com a eix). Aquest recompte,
-combinat amb els girs que cada eix permet, dona el grup de simetries
-complet del cub, d'ordre 24.
+combinat amb els girs que cada eix permet, dona les 24 maneres de GIRAR el
+cub deixant-lo exactament on era. Compte amb dir-ne "totes les simetries":
+si a més hi comptes les de mirall (reflexions), en surten 48. Les 24 són
+les que pots fer sense aixecar el cub de la taula.
 
 **I després.** La pregunta natural que ve després de "quins són els
 poliedres amb aquest grau de simetria" és "quants n'hi ha, en total, en tot

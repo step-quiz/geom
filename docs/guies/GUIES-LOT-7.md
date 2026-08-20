@@ -123,8 +123,18 @@ casquet de qualsevol alçada h, no només a la semiesfera sencera.
 **Pista 3 — tanca-ho.**
 A cada alçada dins del casquet, la secció del casquet (un cercle) i la
 secció del cilindre-menys-con auxiliar tenen la mateixa àrea — exactament
-el mateix argument de q60, aplicat entre 0 i h en lloc d'entre 0 i R.
-Integra (suma) aquestes àrees iguals fins a h, no fins a R.
+el mateix argument de q60, aplicat entre 0 i h en lloc d'entre 0 i R. Per
+Cavalieri, doncs, el casquet té el mateix volum que aquell tros de
+cilindre-menys-con, que sí que saps calcular: un cilindre de radi R i
+alçada h, menys el tronc de con que hi queda a dins (i el volum d'un
+tronc ja el vas fer a q48). Fes la resta i simplifica.
+
+Un avís d'honestedat: aquesta guia et porta fins aquí i s'atura. Que
+"sumar" àrees de seccions infinitament primes doni exactament un volum és
+el pas que el càlcul integral formalitza, i és fora d'aquest quadern —el
+mateix tipus de frontera que ja et vas trobar a q64 amb la longitud de
+l'astroide. El que sí que és teu del tot és l'argument de Cavalieri: dues
+figures amb la mateixa secció a cada alçada tenen el mateix volum.
 
 **Comprovació.** R=2, h=1: V=(πh²/3)(3R−h)=(π/3)(6−1)=5π/3≈5,24.
 Comprova que quan h=R=2 recuperes el volum de la semiesfera de q60
@@ -442,18 +452,22 @@ El punt marcat "centroide": quina distància a l'eix, multiplicada per
 2π, hauria de reproduir el volum del cilindre que ja saps calcular?
 
 **Pista 3 — tanca-ho.**
-Per al rectangle, el punt que fa funcionar el teorema resulta ser el punt
-mitjà del costat oposat a l'eix —el centre de gravetat "de tota la vida"
-del rectangle. Defineix el centroide, en general, com el punt de la
-figura la distància del qual a l'eix, multiplicada per l'àrea i per 2π,
-reprodueix el volum de la figura girada, sigui quina sigui la figura.
+Per al rectangle, el punt que fa funcionar el teorema resulta ser el seu
+CENTRE —el centre de gravetat "de tota la vida", allà on es creuen les
+dues diagonals—, que és a mitja amplada de l'eix. Compte amb la
+temptació d'agafar el costat oposat a l'eix: aquell és el punt més LLUNY
+de l'eix, no el punt mitjà, i et donaria el doble del volum real.
+Defineix el centroide, en general, com el punt de la figura la distància
+del qual a l'eix, multiplicada per l'àrea i per 2π, reprodueix el volum
+de la figura girada, sigui quina sigui la figura.
 
 **Comprovació.** Rectangle de costats 2 i 3, girat al voltant del costat
-de llargada 3 (a distància 2 del centre): volum = àrea(6) × 2π ×
-distància(2) = 24π. Compara amb el volum directe del cilindre que en
-resulta (radi 2, alçada 3): π(2²)(3)=12π... si no coincideixen, revisa
-quina distància hi has posat (la de l'EIX al CENTRE, no al costat
-oposat).
+de llargada 3. El costat perpendicular a l'eix fa 2, així que el centre
+del rectangle és a distància 1 de l'eix. Pappus dona àrea(6) × 2π ×
+distància(1) = 12π; el cilindre que en surt de veritat té radi 2 i alçada
+3, és a dir π(2²)(3) = 12π. Coincideixen exactament. Si t'ha sortit 24π,
+hi has posat la distància al costat de més enllà (2) en lloc de la
+distància al centre (1) —és l'error que la Pista 3 t'avisava.
 
 **I després.** Aquesta definició (el punt que fa que Pappus funcioni) és
 el que fa possible q66, q67 i q68, tots en aquest mateix lot: un cop

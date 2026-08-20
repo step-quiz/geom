@@ -209,10 +209,14 @@ Els dos angles marcats són iguals: la tangent és la bisectriu de
 l'angle QUE FORMEN els dos radis focals entre ells (la bisectriu
 interior), no la de l'angle exterior com a l'el·lipse.
 
-**Comprovació.** Amb a=4,b=3,c=5, al punt (5, 9/4) de la hipèrbola,
-els angles entre la tangent i cadascun dels dos radis focals valen
-els dos exactament 138,75° (calculats amb el vector gradient de la
-corba) — iguals entre si, com prediu la bisectriu.
+**Comprovació.** Amb a=4, b=3, c=5, al punt P=(5, 9/4) de la hipèrbola
+(comprova primer que hi és: 25/16 − (81/16)/9 = 1 ✓). La tangent en P té
+pendent 9x/(16y) = 45/36 = 1,25. Mesura ara l'angle que fa la tangent
+amb PF₁ (cap a (5,0), és a dir recta avall) i amb PF₂ (cap a (−5,0)):
+tots dos surten ≈141,3°, iguals entre si —o ≈38,7° tots dos, si prens la
+tangent en l'altre sentit. El que has de comprovar és que **coincideixen
+entre ells**, no quin dels dos números et surt: el sentit que triïs per a
+la tangent canvia els dos angles alhora, i els deixa iguals igualment.
 
 **I després.** Aquesta bisectriu interior —en lloc de l'exterior— és
 exactament el que fa que un mirall amb forma d'hipèrbola, orientat cap
@@ -250,10 +254,14 @@ vèrtex, y=x²/(4p) es converteix en y=x²/(4·k·p): totes les paràboles
 són dilatacions uniformes les unes de les altres, a diferència de les
 hipèrboles, que en necessiten dues de diferents.
 
-**Comprovació.** p=1 (y=x²/4) dilatada per factor 2 uniforme:
-(2y)=(2x)²/4 → y=x², és a dir p=1/4. Comprova que el focus (a
-alçada p) també s'ha mogut de (0,1) a (0,1/4), coherent amb la
-dilatació.
+**Comprovació.** p=1 (y=x²/4) dilatada per factor 2 uniforme des del
+vèrtex. Fes-ho seguint un punt: (x, x²/4) va a parar a (2x, x²/2). Si
+n'anomenes X=2x la coordenada nova, aleshores x=X/2 i l'alçada nova és
+(X/2)²/2 = X²/8. La paràbola dilatada és, doncs, y = x²/8, és a dir
+p=2 — exactament el k·p de la Pista 3, amb k=2. El focus, que és a
+alçada p, es mou de (0,1) a (0,2): s'allunya el mateix factor 2 que tota
+la resta, com ha de fer qualsevol punt en una dilatació uniforme. Si
+t'ha sortit p més PETIT en dilatar, has aplicat la dilatació al revés.
 
 **I després.** Que calgui només UN factor de dilatació —en lloc de dos,
 com a la hipèrbola— és el primer indici que totes les paràboles són
@@ -289,17 +297,24 @@ sanguina el triangle isòsceles PFD amb la seva bisectriu des de P.
 **Pista 3 — tanca-ho.**
 Demostra que la bisectriu de l'angle en P del triangle isòsceles PFD
 —que també n'és la mediatriu del costat FD, per ser isòsceles— és
-precisament la tangent a la paràbola en P. Com que FD és vertical (D
-és el peu vertical de P a la directriu horitzontal)... espera, FD no
-cal que sigui vertical: la mediatriu de FD bisecta l'angle entre PF i
-PD; i PD és vertical (perpendicular a la directriu horitzontal), que
-és la direcció del raig entrant. Per tant aquesta mateixa recta
-reflecteix el raig vertical cap a F.
+precisament la tangent a la paràbola en P.
 
-**Comprovació.** p=2, punt P=(3, 9/4) de la paràbola y=x²/8... (amb
-focus a (0,2)): el peu D=(3,−2). El punt mitjà de FD és (3,0); la
-recta de P a aquest punt mitjà té la mateixa direcció que la tangent
-calculada per derivada (pendent 3/4) — coincideixen exactament.
+Un cop ho tinguis, el rebot surt sol. Aquesta recta bisecta l'angle
+entre PF i PD. I PD és vertical, perquè D és el peu de la perpendicular
+de P a la directriu, que és horitzontal —o sigui que PD és exactament la
+direcció del raig que arriba. Un raig que arriba per PD i rebota en una
+recta que bisecta l'angle PD–PF se'n va, doncs, per PF: cap al focus.
+(Compte: FD, en canvi, NO és vertical, tret del cas del vèrtex. És PD la
+que ho és sempre, i és aquesta la que fa la feina.)
+
+**Comprovació.** Paràbola y=x²/8 (p=2, focus F=(0,2), directriu y=−2).
+Pren x=3: el punt de la corba és P=(3, 9/8), i el seu peu a la directriu
+és D=(3, −2). Comprova primer que P és realment equidistant: PD = 9/8 +
+2 = 25/8, i PF = √(3² + (9/8 − 2)²) = √(9 + 49/64) = 25/8 ✓ —el triangle
+PFD és isòsceles, com havia de ser. El punt mitjà de F=(0,2) i D=(3,−2)
+és (1,5, 0). La recta de P a aquest punt mitjà té pendent (9/8 − 0) /
+(3 − 1,5) = 3/4, que és exactament el pendent de la tangent en aquell
+punt. Coincideixen.
 
 **I després.** Aquesta construcció —la mediatriu d'un segment entre el
 focus i el peu a la directriu— és el mètode clàssic (sense càlcul) amb
@@ -378,7 +393,17 @@ mitjà de VN— i el triangle TNP ombrejat.
 
 **Pista 3 — tanca-ho.**
 Amb y=x² i P=(p,p²), la tangent en P té pendent 2p i talla y=0 a
-x=p/2 — el punt mitjà exacte entre el vèrtex (x=0) i N (x=p). El
+x=p/2 — el punt mitjà exacte entre el vèrtex (x=0) i N (x=p).
+
+D'on surt aquest pendent 2p, si encara no has fet derivades? Es pot
+treure sense càlcul, i val la pena fer-ho un cop. Una recta que passi per
+P amb pendent m és y = p² + m(x−p). Iguala-la a y = x² i et queda
+x² − mx + (mp − p²) = 0. La tangent és, precisament, la recta que toca la
+paràbola en UN sol punt en lloc de tallar-la en dos: la que fa que aquesta
+equació de segon grau tingui una arrel doble, és a dir discriminant zero.
+m² − 4(mp − p²) = 0 es reordena com (m − 2p)² = 0, i per tant m = 2p.
+Aquesta és la definició antiga de tangent —la recta que toca sense
+travessar— i es resol amb l'àlgebra que ja saps. El
 triangle VNP (la diagonal del rectangle vèrtex-a-P) té sempre àrea
 igual a la meitat del rectangle; i com que T és el punt mitjà de VN,
 el triangle TNP —el "sector" tallat per la tangent— té la mateixa
@@ -424,9 +449,21 @@ amb els petits rectangles ombrejats sota la corba.
 **Pista 3 — tanca-ho.**
 Amb n franges d'amplada 1/n cadascuna sobre l'interval [0,1], la suma
 de les àrees dels rectangles per sota de y=x² és (1/n)·Σ(k/n)² per
-a k=1..n, que val (1/n³)·[n(n+1)(2n+1)/6]. Quan n creix molt,
-aquesta suma s'acosta a 1/3 (comprova-ho substituint valors grans de
-n): l'àrea SOTA la corba és 1/3 de la caixa, i per tant l'àrea ENTRE
+a k=1..n, que val (1/n³)·[n(n+1)(2n+1)/6].
+
+Ara mira per què això compleix la promesa de la Pista 0. No estem dient
+"quan n és infinit passa una cosa màgica": tenim una fórmula EXACTA per
+a cada n, i la podem desenvolupar. Surt 1/3 + 1/(2n) + 1/(6n²). O sigui
+que la suma no val mai 1/3 exacte —sempre s'hi passa una mica— però el
+que s'hi passa és 1/(2n) + 1/(6n²), i això es pot fer més petit que
+qualsevol número que et diguin, només triant n prou gran. Si algú et diu
+que l'àrea val 0,34, li pots ensenyar un n concret que ho desmenteix; si
+et diu 0,33, també. L'únic número que no es pot desmentir així és 1/3.
+Aquesta és la diferència entre un pas al límit i un infinitèsim: aquí no
+et demanem que et creguis res, et donem la fórmula i pots exigir el
+número.
+
+L'àrea SOTA la corba és, doncs, 1/3 de la caixa, i per tant l'àrea ENTRE
 la corba i la part de dalt —la "secció"— n'és els 2/3 restants.
 
 **Comprovació.** n=100: suma ≈ 0,33835 (ja molt a prop d'1/3=0,3333).
@@ -554,8 +591,13 @@ velocitats és irracional).
 Fes que els dos angles creixin cadascun a velocitat constant però
 DIFERENT: mentre un avança una volta sencera, l'altre n'avança p/q
 (una fracció). Si p/q és racional, la corba es tanca després de q
-voltes del primer angle; si és irracional, la corba mai es tanca i
-acaba omplint tota la superfície del tor.
+voltes del primer angle; si és irracional, la corba no es tanca mai.
+Compte amb com ho dius, aquest últim cas: la corba no "omple" el tor
+—una corba no pot arribar a ser una superfície, per molt que doni voltes—
+sinó que hi passa tan a prop com vulguis de qualsevol punt. Digues-li un
+punt del tor i una distància, per petita que sigui, i la corba hi acabarà
+passant més a prop que aquella distància. No és el mateix, i la diferència
+et tornarà a sortir sovint.
 
 **Comprovació.** Amb p/q=2/3: la corba fa 2 voltes completes al
 voltant del forat central pel mateix temps que en fa 3 al voltant del

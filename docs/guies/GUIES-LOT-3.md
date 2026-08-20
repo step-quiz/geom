@@ -41,6 +41,13 @@ quin tipus de triangle és cadascun?
 del triangle (s) i un catet la meitat de la base (s/2). Pitàgores et dona
 directament l'altre catet — que és, precisament, l'alçada.
 
+Dues coses que aquí es donen per bones i que has de saber d'on surten: que
+l'alçada caigui just al PUNT MITJÀ de la base, i que hi caigui
+perpendicular. Totes dues venen del mateix argument, fet a q01 (pista 1):
+els dos trossos són triangles congruents pels tres costats, i d'aquí surten
+alhora la meitat exacta i els 90°. Si no l'has vist, val la pena fer-hi un
+tomb abans de seguir: és la peça que fa que aquesta guia funcioni.
+
 **Pista 2 — la construcció.** → `fig-022.png`
 
 **Pista 3 — tanca-ho.** h² = s² − (s/2)² = s² − s²/4 = (3/4)s². Arrel
@@ -279,9 +286,23 @@ parelles, tens un tetràedre regular.
 
 **Pista 2 — la construcció.** → `fig-029.png`
 
-**Pista 3 — tanca-ho.** El volum del tetràedre es pot calcular amb el
-producte mixt: (1/6)|det[B−A, C−A, D−A]|. Calcula'l amb les coordenades de
-la Pista 1 i compara amb el volum del cub (que és 1, amb costat 1).
+**Pista 3 — tanca-ho.** Hi ha dos camins, i val la pena que sàpigues que
+n'hi ha dos.
+
+El curt fa servir una eina que segurament encara no has vist: el volum
+d'un tetràedre és (1/6)|det[B−A, C−A, D−A]|, un determinant 3×3. Si la
+coneixes, calcula'l amb les coordenades de la Pista 1. Si no, no és el
+lloc d'aprendre-la ara.
+
+El llarg no necessita res que no tinguis, i de fet ensenya més. Mira què
+queda del cub quan en treus el tetràedre: quatre trossos, un a cada
+cantonada que no has fet servir. Cadascun és una piràmide amb una cara del
+cub per base (àrea 1) i una aresta del cub per alçada (1), o sigui volum
+(1/3)(1)(1) = 1/3... que és massa. Fixa-t'hi millor: la base de cada tros
+no és una cara sencera del cub, és mig cara —un triangle rectangle d'àrea
+1/2— i l'alçada és 1. Volum de cada tros: (1/3)(1/2)(1) = 1/6. Quatre
+trossos fan 4/6 = 2/3. El tetràedre és, doncs, 1 − 2/3 del cub. Compara
+aquest resultat amb el del camí curt.
 
 **Comprovació.** Amb A=(0,0,0), B=(1,1,0), C=(1,0,1), D=(0,1,1):
 det[(1,1,0),(1,0,1),(0,1,1)] = 1(0−1)−1(1−0)+0(1−0) = −1−1+0=−2. Volum =

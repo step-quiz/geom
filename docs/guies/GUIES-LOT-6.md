@@ -129,9 +129,9 @@ Aquí et demanen més: per què sempre en sobra prou per arribar a 4, no
 només a 2?
 
 **Pista 1 — un parell és "2 × alguna cosa".**
-Escriu els dos nombres com 2a i 2b. El producte és 4ab directament —
-Per què la graella de punts ho fa evident sense necessitat de desenvolupar
-res?
+Escriu els dos nombres com 2a i 2b. El producte és 4ab directament. Però
+per què la graella de punts ho fa evident, sense necessitat de
+desenvolupar res?
 
 **Pista 2 — la construcció.** → `fig-057.png`
 La graella sencera es parteix, en sanguina, en blocs idèntics de 2×2.
@@ -496,10 +496,10 @@ tipus DIFERENTS de diagonals hi ha (diagonals que salten 1 vèrtex, 2
 vèrtexs, 3...)?
 
 **Pista 2 — la construcció.** → `fig-067.png`
-Un dels dotze triangles del ventall, marcat en sanguina: si en saps
-l'àrea, la resta del dodecàgon és aquest mateix triangle repetit (encara
-que no tots els triangles del ventall siguin idèntics entre si, com sí ho
-eren a un polígon triangulat des del CENTRE).
+Un dels triangles del ventall, marcat en sanguina. Compte amb dos
+recomptes que és fàcil de barrejar: des d'un VÈRTEX surten 10 triangles
+(n−2), i no són tots iguals; des del CENTRE en surten 12, i aquests sí que
+són tots idèntics. La figura marca un del ventall des del vèrtex.
 
 **Pista 3 — tanca-ho.**
 A diferència de q39 (pentàgon, triangulat des del centre, deu triangles
@@ -512,6 +512,16 @@ del CENTRE, com q39, i aprofita que el dodecàgon és regular.
 apotema a=1/(2 tan15°)≈1,866. Àrea d'un dels 12 triangles: (1/2)(1)(1,866)
 ≈0,933. Àrea total: 12×0,933≈11,196 —coincideix amb la fórmula estàndard
 3(2+√3)s²≈11,196.
+
+I les diagonals, que la Pista 1 et demanava comptar per tipus: n'hi ha
+**cinc** de llargades diferents, segons quants vèrtexs salten (1, 2, 3, 4 o
+5); la que en saltaria 6 és el diàmetre, i les que en salten més són les
+mateixes repetides des de l'altra banda. Cadascuna és la base d'un triangle
+isòsceles format per dos radis R del dodecàgon amb un angle central de
+k×30° entremig, així que totes surten de la mateixa fórmula: diagonal =
+2R·sin(k×15°), amb k=1..6. Amb R=1: 0,518 / 1 / 1,414 / 1,732 / 1,932 / 2.
+Fixa't que la tercera fa exactament √2 i la sisena exactament 2 (el
+diàmetre) —bones per comprovar que no t'has equivocat.
 
 **I després.** El mateix parany (triangular des d'un vèrtex dona triangles
 DESIGUALS; triangular des del centre en un polígon regular els dona tots
@@ -585,12 +595,32 @@ Amb triangles (60°) pots ajuntar-ne 3, 4, 5 o 6 a un vèrtex (180°, 240°,
 Amb hexàgons (120°)? Per a cada polígon regular, quantes còpies calen per
 arribar (o no) a 360° exactes?
 
+Un cop les tinguis totes, atura't a mirar què has demostrat exactament,
+perquè no és tot el que sembla. La condició dels 360° és una condició per
+a UN vèrtex sol. Diu quines rosetes de polígons poden existir al voltant
+d'un punt —i, sobretot, quines no poden existir de cap manera. El que no
+diu és si aquella roseta es pot anar repetint fins a cobrir tot el pla
+sense encallar-se en algun lloc més enllà. N'hi ha que quadren
+perfectament en un vèrtex i, quan intentes continuar el mosaic, arriba un
+moment que ja no encaixen. Prova-ho al paper amb alguna de les
+combinacions barrejades que hagis trobat: dibuixa el primer vèrtex, i
+després el veí, i el següent.
+
 **Comprovació.** Sis triangles: 6×60°=360° ✓. Quatre quadrats: 4×90°=360°
 ✓. Tres hexàgons: 3×120°=360° ✓. Tres pentàgons: 3×108°=324°, no arriba.
 Compta quantes combinacions VÀLIDES (no necessàriament d'un sol tipus de
-polígon) trobes en total.
+polígon) trobes en total. I comprova que sabries dir quina de les dues
+coses has provat de cada una: que la roseta és possible en un vèrtex, o
+que el mosaic sencer existeix. Són dues afirmacions diferents, i el
+comptatge d'angles només et dona la primera.
 
 **I després.** Aquest mateix recompte, aplicat als poliedres en lloc dels
 mosaics del pla (angle **menor** que 360°, no igual, perquè la figura
 s'aixequi cap a la tercera dimensió en lloc de quedar plana), és
-exactament el que ja vas fer a q08b.
+exactament el que ja vas fer a q08b — i allà hi trobaràs la mateixa
+distinció, dita amb altres paraules: descartar tots els casos impossibles
+no és el mateix que construir els possibles. Aquí la separació és encara
+més gran que allà: al cas dels poliedres, cadascuna de les cinc rosetes
+que sobreviuen al comptatge dona efectivament un sòlid; al cas dels
+mosaics, unes quantes de les rosetes que sobreviuen no arriben a donar
+cap mosaic.
