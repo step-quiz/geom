@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+ body{margin:0;background:#fff}canvas{display:block;margin:0 0 24px 0}
+</style></head><body>
+<script src="../hand-draw.js"></script>
+<script src="../comu.js"></script>
+<script>
+function stampNum(ctx,h,num){ /* no-op */ }
+function regularPoly(n,cx,cy,R,a0){
+  const pts=[];
+  for(let i=0;i<n;i++){const t=a0+i*2*Math.PI/n;pts.push({x:cx+R*Math.cos(t),y:cy+R*Math.sin(t)});}
+  return pts;
+}
+
+/* ============================================================
+   ENUN-q63 -- un cilindre, sol, neutre. Mateixa construccio EXACTA
+   que la meitat dreta de fig-154 (ENUN-q61, docs/guies/figures-
+   enunciats-B.html) -- "aprofita un cilindre d'un altre exercici",
+   a peticio explicita. CORRECCIO respecte l'original: les verticals
+   ara llegeixen el punt REAL de cada el.lipse amb pointAtAngle(0)/
+   pointAtAngle(PI) en lloc de la coordenada ideal (2*r2,0)/(2*r2,2*r2)
+   -- amb irregularity:0.03 el traç real de l'el.lipse no passa
+   exactament per alla, i la vertical dreta no hi tancava be (reportat
+   explicitament, v. NOTA-ENUNCIATS-D.md §4). */
+(function(){
+  const ctx=mk('d1',400,400),hd=makeHandDraw(ctx,13001);ctx.translate(60,70);
+  const r2=140;
+  const top=hd.handEllipse(r2,0,r2,r2*0.28,{lineWidth:2.2,irregularity:0.03,color:INK});
+  const bot=hd.handEllipse(r2,2*r2,r2,r2*0.28,{lineWidth:2.2,irregularity:0.03,color:INK});
+  const topL=top.pointAtAngle(Math.PI), topR=top.pointAtAngle(0);
+  const botL=bot.pointAtAngle(Math.PI), botR=bot.pointAtAngle(0);
+  hd.handSegment(topL.x,topL.y,botL.x,botL.y,{lineWidth:2.4,color:INK});
+  hd.handSegment(topR.x,topR.y,botR.x,botR.y,{lineWidth:2.4,color:INK});
+  stampNum(ctx,340,'210');
+})();
+
+/* ============================================================
+   ENUN-q65 -- una figura qualsevol (triangle escale, cap relacio
+   amb el rectangle de la pista real) amb el seu centroide marcat
+   amb un punt. Neutre: no suggereix la construccio de Pappus. */
+(function(){
+  const ctx=mk('d2',360,320),hd=makeHandDraw(ctx,13002);ctx.translate(40,40);
+  const A={x:0,y:0},B={x:260,y:20},C={x:60,y:220};
+  hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.4,color:INK});
+  hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.4,color:INK});
+  hd.handSegment(C.x,C.y,A.x,A.y,{lineWidth:2.4,color:INK});
+  const cent={x:(A.x+B.x+C.x)/3,y:(A.y+B.y+C.y)/3};
+  hd.handDot(cent.x,cent.y,4,INK);
+  lbl(ctx,'centroide',cent.x+14,cent.y+6,INK,16);
+  stampNum(ctx,280,'211');
+})();
+
+/* ============================================================
+   ENUN-q75 -- dos triangles clarament diferents, sense cap relacio
+   d'area/perimetre suggerida (les mides reals que resolen la
+   pregunta no hi son -- neutre, punt de partida nomes). */
+(function(){
+  const ctx=mk('d3',700,320),hd=makeHandDraw(ctx,13003);
+
+  (function(){
+    ctx.save();ctx.translate(60,40);
+    const A={x:60,y:0},B={x:0,y:220},C={x:180,y:190};
+    hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.4,color:INK});
+    hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.4,color:INK});
+    hd.handSegment(C.x,C.y,A.x,A.y,{lineWidth:2.4,color:INK});
+    ctx.restore();
+  })();
+
+  (function(){
+    ctx.save();ctx.translate(400,50);
+    const A={x:20,y:0},B={x:0,y:210},C={x:260,y:130};
+    hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.4,color:INK});
+    hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.4,color:INK});
+    hd.handSegment(C.x,C.y,A.x,A.y,{lineWidth:2.4,color:INK});
+    ctx.restore();
+  })();
+
+  stampNum(ctx,280,'212');
+})();
+
+/* ============================================================
+   ENUN-q77 -- pentagon regular ABCDE amb UNA sola diagonal (AC),
+   neutre -- NO el pentagrama sencer de fig-061 (q32), que ja marca
+   en sanguina el pentagon petit que resol aquella altra pregunta. */
+(function(){
+  const ctx=mk('d4',420,420),hd=makeHandDraw(ctx,13004);ctx.translate(210,220);
+  const R=170;
+  const P=regularPoly(5,0,0,R,-Math.PI/2);
+  const noms=['A','B','C','D','E'];
+  for(let i=0;i<5;i++){
+    hd.handSegment(P[i].x,P[i].y,P[(i+1)%5].x,P[(i+1)%5].y,{lineWidth:2.4,color:INK});
+  }
+  hd.handSegment(P[0].x,P[0].y,P[2].x,P[2].y,{lineWidth:2.2,color:INK});
+  for(let i=0;i<5;i++){
+    lbl(ctx,noms[i],P[i].x*1.13-6,P[i].y*1.13+6,INK,20);
+  }
+  stampNum(ctx,380,'213');
+})();
+
+/* ============================================================
+   ENUN-q94 -- un cercle SENSE el seu centre marcat, i al seu
+   costat una el.lipse AMB els seus dos focus marcats (sense
+   etiqueta) -- mostrar els focus d'una el.lipse qualsevol es
+   vocabulari general, no la resposta; el que SI es la resposta es
+   "on cauen els focus D'UN CERCLE", per aixo nomes el centre del
+   cercle es queda sense marcar. */
+(function(){
+  const ctx=mk('d5',680,320),hd=makeHandDraw(ctx,13005);
+
+  (function(){
+    ctx.save();ctx.translate(150,160);
+    const R=130;
+    hd.handEllipse(0,0,R,R,{lineWidth:2.4,irregularity:0.03,color:INK});
+    ctx.restore();
+  })();
+
+  (function(){
+    ctx.save();ctx.translate(480,160);
+    const A=150,B=95;
+    const c=Math.sqrt(A*A-B*B);
+    const ell=[];
+    for(let i=0;i<=200;i++){const t=i/200*2*Math.PI; ell.push({x:A*Math.cos(t),y:B*Math.sin(t)});}
+    for(let i=0;i<ell.length-1;i++) hd.handSegment(ell[i].x,ell[i].y,ell[i+1].x,ell[i+1].y,{lineWidth:2.4,color:INK});
+    hd.handDot(-c,0,3.5,INK);
+    hd.handDot(c,0,3.5,INK);
+    ctx.restore();
+  })();
+
+  stampNum(ctx,300,'214');
+})();
+
+/* ============================================================
+   ENUN-q99 -- projeccio central de quatre punts A,B,C,D d'una
+   recta, des d'un punt O, sobre una segona recta (A',B',C',D').
+   Neutre: cap formula, cap sanguina -- nomes la construccio que
+   "aquesta demostracio" demana auditar (v. Pista 0 de la guia:
+   "que la rao doble de quatre punts... es exactament la mateixa
+   que la dels quatre punts projectats des d'un mateix punt O").
+   Coordenades pensades perque punt i projeccio quedin collineals
+   amb O de veritat (es calcula la interseccio real, no a ull).
+   CORRECCIO respecte la primera versio: (1) la recta inferior
+   portava el wobble per defecte (massa ondulada per una recta que
+   ha de llegir-se neta) -- reduida explicitament; (2) els punts
+   A,B,C,D i A',B',C',D' es llegien a la coordenada IDEAL de cada
+   recta, que amb wobble no coincideix exactament amb el traç real
+   dibuixat -- ara es llegeixen amb pointAtT() sobre el segment
+   real de cada recta (mateixa tecnica que NOTA-PART1-ENUNCIATS.md
+   §3 ja documenta per a q98/q100/q101), aixi que cada punt cau
+   literalment SOBRE la recta que es veu, no a on la formula diu
+   que "hauria" de caure. */
+(function(){
+  const ctx=mk('d6',640,420),hd=makeHandDraw(ctx,13006);ctx.translate(40,50);
+  const O={x:300,y:20};
+  const y1=150, y2=320;
+  const x1a=150, x1b=430;
+  const x2a=10, x2b=560;
+
+  const seg1=hd.handSegment(x1a,y1,x1b,y1,{lineWidth:2.2,wobble:1.2,color:INK});
+  const seg2=hd.handSegment(x2a,y2,x2b,y2,{lineWidth:2.2,wobble:0.5,color:INK});
+
+  const nomsA=['A','B','C','D'];
+  const xsIdeals1=[200,240,300,380];
+  const linia1=xsIdeals1.map((x,i)=>{
+    const real=seg1.pointAtT((x-x1a)/(x1b-x1a));
+    return {x:real.x,y:real.y,n:nomsA[i]};
+  });
+
+  const t=(y2-O.y)/(y1-O.y);
+  const linia2=xsIdeals1.map((x,i)=>{
+    const xIdeal2=O.x+t*(x-O.x);
+    const real=seg2.pointAtT((xIdeal2-x2a)/(x2b-x2a));
+    return {x:real.x,y:real.y,n:nomsA[i]+"'"};
+  });
+
+  linia2.forEach(p2=>{
+    hd.handSegment(O.x,O.y,p2.x,p2.y,{lineWidth:1.6,dashed:true,dashPattern:[6,5],color:INK});
+  });
+  hd.handDot(O.x,O.y,4,INK);
+  lbl(ctx,'O',O.x-6,O.y-14,INK,20);
+  linia1.forEach(p=>{
+    hd.handDot(p.x,p.y,3.5,INK);
+    lbl(ctx,p.n,p.x-5,p.y-12,INK,19);
+  });
+  linia2.forEach(p=>{
+    hd.handDot(p.x,p.y,3.5,INK);
+    lbl(ctx,p.n,p.x-8,p.y+26,INK,19);
+  });
+  stampNum(ctx,380,'215');
+})();
+
+/* ============================================================
+   ENUN-q115 -- el.lipse i hiperbola una al costat de l'altra,
+   cadascuna amb el seu diametre (segment vertex-a-vertex) marcat --
+   NO els focus ni les distancies (aixo es la Pista 2, fig-119, que
+   ja resol mig problema). La hiperbola reutilitza EXACTAMENT els
+   parametres (a=110,b=130) de ENUN-q116 (fig-176, docs/guies/
+   figures-enunciats-C.html), sense la tangent en sanguina d'aquella
+   figura. */
+(function(){
+  const ctx=mk('d7',940,620),hd=makeHandDraw(ctx,13007);
+
+  (function(){
+    ctx.save();ctx.translate(230,310);
+    const A=170,B=100;
+    const ell=[];
+    for(let i=0;i<=200;i++){const t=i/200*2*Math.PI; ell.push({x:A*Math.cos(t),y:B*Math.sin(t)});}
+    for(let i=0;i<ell.length-1;i++) hd.handSegment(ell[i].x,ell[i].y,ell[i+1].x,ell[i+1].y,{lineWidth:2.4,color:INK});
+    hd.handSegment(-A,0,A,0,{lineWidth:2.6,color:INK});
+    hd.handDot(-A,0,3.5,INK);
+    hd.handDot(A,0,3.5,INK);
+    lblC(ctx,'diàmetre',0,32,INK,16);
+    ctx.restore();
+  })();
+
+  (function(){
+    ctx.save();ctx.translate(680,310);
+    const a=110,b=130;
+    function branch(sign){
+      const pts=[];
+      for(let i=-38;i<=38;i++){const t=i/30; pts.push({x:sign*a*Math.cosh(t),y:b*Math.sinh(t)});}
+      return pts;
+    }
+    [branch(1),branch(-1)].forEach(pts=>{
+      for(let i=0;i<pts.length-1;i++) hd.handSegment(pts[i].x,pts[i].y,pts[i+1].x,pts[i+1].y,{lineWidth:2.4,color:INK});
+    });
+    hd.handSegment(-230,-230*b/a,230,230*b/a,{lineWidth:1.6,dashed:true,dashPattern:[6,5],color:INK});
+    hd.handSegment(-230,230*b/a,230,-230*b/a,{lineWidth:1.6,dashed:true,dashPattern:[6,5],color:INK});
+    hd.handSegment(-a,0,a,0,{lineWidth:2.6,color:INK});
+    hd.handDot(-a,0,3.5,INK);
+    hd.handDot(a,0,3.5,INK);
+    lblC(ctx,'diàmetre',0,32,INK,16);
+    ctx.restore();
+  })();
+
+  stampNum(ctx,580,'216');
+})();
+</script>
+</body></html>
