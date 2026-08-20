@@ -1206,7 +1206,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Primer, la lletra petita d'aquest \"sempre\", que val la pena saber ara i no d'aquí a dos anys. Tot el que has fet aquí passa DINS D'UN PLA: has agafat el pla de sempre i li has afegit un punt per cada direcció. En aquest pla ampliat sí que és cert, sense cap excepció, que dues rectes qualssevol es tallen.\n\nA l'espai de tres dimensions, fent-hi el mateix, el \"sempre\" es trenca. Dues rectes que no són al mateix pla —una que va pel terra i una altra que travessa el sostre en una altra direcció, sense passar mai l'una per sobre de l'altra— continuen sense trobar-se enlloc. Ni són paral·leles ni es tallen: se'n diu que s'encreuen. Afegir-hi els punts de l'infinit no les salva, perquè cadascuna se'n va cap a un punt de l'infinit diferent. Comprova-ho amb dos llapis: n'hi ha prou de no poder-los posar tots dos damunt d'una mateixa taula imaginària.\n\nFet l'avís: aquesta és la idea que fa que q107 funcioni. Una hipèrbola —que sembla tenir dues branques separades i quatre \"extrems\" que s'allunyen cap enfora— es pot entendre com un cercle normal un cop dos dels seus punts se'n van a l'infinit d'aquesta mateixa manera.",
+      "ca": "Primer, la lletra petita d'aquest \"sempre\", que val la pena saber ara i no d'aquí a dos anys. Tot el que has fet aquí passa DINS D'UN PLA: has agafat el pla de sempre i li has afegit un punt per cada direcció. En aquest pla ampliat sí que és cert, sense cap excepció, que dues rectes qualssevol es tallen.\n\nA l'espai de tres dimensions, fent-hi el mateix, el \"sempre\" es trenca. Dues rectes que no són al mateix pla —una que va pel terra i una altra que travessa el sostre en una altra direcció, sense passar mai l'una per sobre de l'altra— continuen sense trobar-se enlloc. Ni són paral·leles ni es tallen: se'n diu que s'encreuen. Afegir-hi els punts de l'infinit no les salva, perquè cadascuna se'n va cap a un punt de l'infinit diferent. Comprova-ho amb dos llapis: n'hi ha prou de no poder-los posar tots dos damunt d'una mateixa taula imaginària.\n\nFet l'avís: aquesta és la idea que fa que q107 funcioni. Una hipèrbola —que sembla tenir dues branques separades i quatre \"extrems\" que s'allunyen cap enfora— es pot entendre com una circumferència normal un cop dos dels seus punts se'n van a l'infinit d'aquesta mateixa manera.",
       "en": null
     }
   },
@@ -1269,7 +1269,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Trobar aquest invariant és el pas que fa possible demostrar coses sobre projeccions sense haver de repetir un càlcul de triangles cada vegada —q107 el fa servir (implícitament, via el mecanisme de q105) per identificar amb precisió quins dos punts d'un cercle es projecten a l'infinit quan es forma una hipèrbola.",
+      "ca": "Trobar aquest invariant és el pas que fa possible demostrar coses sobre projeccions sense haver de repetir un càlcul de triangles cada vegada —q107 el fa servir (implícitament, via el mecanisme de q105) per identificar amb precisió quins dos punts d'una circumferència es projecten a l'infinit quan es forma una hipèrbola.",
       "en": null
     }
   },
@@ -1288,7 +1288,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "La identificació exacta de dos punts concrets d'un cercle base del con —no \"en general\", sinó els dos punts precisos que, en projectar el cercle des del vèrtex del con cap al pla de tall, se'n van a l'infinit.",
+          "ca": "La identificació exacta de dos punts concrets d'una circumferència base del con —no \"en general\", sinó els dos punts precisos que, en projectar la circumferència des del vèrtex del con cap al pla de tall, se'n van a l'infinit.",
           "en": null
         },
         "figura": null
@@ -1321,7 +1321,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Les \"rectes de projecció\" des del vèrtex són exactament les generatrius del con (les rectes rectes que el formen). Dues d'aquestes generatrius —les que passen pels dos punts del cercle base on el con és paral·lel al pla de tall— no arriben MAI al pla de tall (com dues rectes paral·leles que no es tallen, en el sentit ordinari). Els dos punts del cercle per on passen aquestes dues generatrius són exactament els que se'n van \"a l'infinit\" —i per això la hipèrbola té dues branques que s'obren cap enfora sense parar: són la imatge d'un cercle sencer, menys aquests dos punts que han fugit a l'infinit.",
+          "ca": "Les \"rectes de projecció\" des del vèrtex són exactament les generatrius del con (les rectes rectes que el formen). Dues d'aquestes generatrius —les que passen pels dos punts de la circumferència base on el con és paral·lel al pla de tall— no arriben MAI al pla de tall (com dues rectes paral·leles que no es tallen, en el sentit ordinari). Els dos punts de la circumferència per on passen aquestes dues generatrius són exactament els que se'n van \"a l'infinit\" —i per això la hipèrbola té dues branques que s'obren cap enfora sense parar: són la imatge d'una circumferència sencera, menys aquests dos punts que han fugit a l'infinit.",
           "en": null
         },
         "figura": null
@@ -1332,7 +1332,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Aquesta identificació és exactament el que fa falta per a q109: les esferes de Dandelin es col·loquen tocant el con al llarg d'aquests mateixos cercles base, i el seu argument depèn de saber exactament on i com el pla de tall es relaciona amb el con.",
+      "ca": "Aquesta identificació és exactament el que fa falta per a q109: les esferes de Dandelin es col·loquen tocant el con al llarg d'aquestes mateixes circumferències base, i el seu argument depèn de saber exactament on i com el pla de tall es relaciona amb el con.",
       "en": null
     }
   },
@@ -1351,7 +1351,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Una descripció de tres orientacions diferents de la llanterna (o de la paret) que produeixin, respectivament, una el·lipse (o cercle), una paràbola, i una hipèrbola —el con de llum és el con, la paret és el pla de tall.",
+          "ca": "Una descripció de tres orientacions diferents de la llanterna (o de la paret) que produeixin, respectivament, una el·lipse (o circumferència), una paràbola, i una hipèrbola —el con de llum és el con, la paret és el pla de tall.",
           "en": null
         },
         "figura": null
@@ -1387,7 +1387,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Perpendicular a l'eix: cercle. Inclinant la paret fins que quedi paral·lela a UNA generatriu del con de llum (la vora del feix): la taca es converteix en una paràbola, oberta per un sol costat. Inclinant encara més (com q107 ja et va fer descobrir): dues generatrius es tornen paral·leles a la paret alhora, i encara que aquí només hi ha un con (no un con doble com a q107/q109), la vora del feix de llum es veu \"obrir-se\" cap als dos costats de manera característica d'una branca de hipèrbola.",
+          "ca": "Perpendicular a l'eix: circumferència. Inclinant la paret fins que quedi paral·lela a UNA generatriu del con de llum (la vora del feix): la taca es converteix en una paràbola, oberta per un sol costat. Inclinant encara més (com q107 ja et va fer descobrir): dues generatrius es tornen paral·leles a la paret alhora, i encara que aquí només hi ha un con (no un con doble com a q107/q109), la vora del feix de llum es veu \"obrir-se\" cap als dos costats de manera característica d'una branca de hipèrbola.",
           "en": null
         },
         "figura": null
@@ -1429,7 +1429,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Dins de cada nappa del con (per damunt i per sota del pla de tall) hi cap exactament una esfera tangent tant a la superfície del con com al pla de tall. Anomena F₁ i F₂ els dos punts on cada esfera toca el pla —aquests seran els focus. Per a un punt P qualsevol de la corba de tall, quina relació hi ha entre PF₁ i la distància, MESURADA SOBRE LA SUPERFÍCIE DEL CON, entre P i el cercle on la primera esfera hi és tangent?",
+          "ca": "Dins de cada nappa del con (per damunt i per sota del pla de tall) hi cap exactament una esfera tangent tant a la superfície del con com al pla de tall. Anomena F₁ i F₂ els dos punts on cada esfera toca el pla —aquests seran els focus. Per a un punt P qualsevol de la corba de tall, quina relació hi ha entre PF₁ i la distància, MESURADA SOBRE LA SUPERFÍCIE DEL CON, entre P i la circumferència on la primera esfera hi és tangent?",
           "en": null
         },
         "figura": null
@@ -1450,7 +1450,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Dues maneres de mesurar la mateixa distància: (a) PF₁ és una tangent des de P a l'esfera 1 —i totes les tangents des d'un mateix punt a una esfera tenen la mateixa longitud (q93, aquest mateix lot). (b) El segment de la generatriu del con des de P fins al cercle de tangència amb l'esfera 1 és TAMBÉ una tangent des de P a aquesta mateixa esfera (la generatriu és tangent a l'esfera al llarg de tot el con). Per tant PF₁ = aquest tros de generatriu. Igual per PF₂ amb l'esfera 2, cap a l'altre cercle de tangència. Suma PF₁+PF₂: és exactament la longitud del tros de generatriu ENTRE els dos cercles de tangència —la mateixa per a QUALSEVOL generatriu, perquè els dos cercles de tangència són fixos (no depenen de P). Constant trobada.",
+          "ca": "Dues maneres de mesurar la mateixa distància: (a) PF₁ és una tangent des de P a l'esfera 1 —i totes les tangents des d'un mateix punt a una esfera tenen la mateixa longitud (q93, aquest mateix lot). (b) El segment de la generatriu del con des de P fins a la circumferència de tangència amb l'esfera 1 és TAMBÉ una tangent des de P a aquesta mateixa esfera (la generatriu és tangent a l'esfera al llarg de tot el con). Per tant PF₁ = aquest tros de generatriu. Igual per PF₂ amb l'esfera 2, cap a l'altra circumferència de tangència. Suma PF₁+PF₂: és exactament la longitud del tros de generatriu ENTRE les dues circumferències de tangència —la mateixa per a QUALSEVOL generatriu, perquè les dues circumferències de tangència són fixes (no depenen de P). Constant trobada.",
           "en": null
         },
         "figura": null
@@ -1461,7 +1461,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Aquest argument —el mateix tram de recta, mesurat de dues maneres, forçat a ser igual (q93 per a la tangència, geometria del con per a la longitud sobre la superfície)— torna a q94, però al REVÉS: q94 partia de la definició (dos focus, suma constant) i en deduïa que un cercle és el cas amb els dos focus fosos; aquí, en canvi, comences del con i DEMOSTRES que la corba resultant compleix la definició amb focus concrets. Quan el pla de tall és perpendicular a l'eix del con, les dues esferes de Dandelin queden igual de grans i tangents al mateix cercle —els dos focus col·lapsen en un de sol, exactament el cas límit de q94.",
+      "ca": "Aquest argument —el mateix tram de recta, mesurat de dues maneres, forçat a ser igual (q93 per a la tangència, geometria del con per a la longitud sobre la superfície)— torna a q94, però al REVÉS: q94 partia de la definició (dos focus, suma constant) i en deduïa que una circumferència és el cas amb els dos focus fosos; aquí, en canvi, comences del con i DEMOSTRES que la corba resultant compleix la definició amb focus concrets. Quan el pla de tall és perpendicular a l'eix del con, les dues esferes de Dandelin queden igual de grans i tangents a la mateixa circumferència —els dos focus col·lapsen en un de sol, exactament el cas límit de q94.",
       "en": null
     }
   },
@@ -2410,7 +2410,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Un cercle és el resultat d'un punt que gira a distància CONSTANT d'un centre. Una espiral és quasi el mateix moviment, amb un únic canvi: què li hauries de deixar créixer, a mesura que el punt gira, perquè cada volta quedi més enfora que l'anterior?",
+          "ca": "Una circumferència és el resultat d'un punt que gira a distància CONSTANT d'un centre. Una espiral és quasi el mateix moviment, amb un únic canvi: què li hauries de deixar créixer, a mesura que el punt gira, perquè cada volta quedi més enfora que l'anterior?",
           "en": null
         },
         "figura": null
@@ -2445,7 +2445,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Descriure una corba com el resultat d'un moviment —en lloc de com una equació o una construcció estàtica— és exactament la mateixa idea que faràs servir a q123 amb l'hèlix (gir uniforme, ara combinat amb pujada uniforme en lloc d'allunyament) i a q124 amb les cicloides (un cercle que rodola sobre un altre).",
+      "ca": "Descriure una corba com el resultat d'un moviment —en lloc de com una equació o una construcció estàtica— és exactament la mateixa idea que faràs servir a q123 amb l'hèlix (gir uniforme, ara combinat amb pujada uniforme en lloc d'allunyament) i a q124 amb les cicloides (una circumferència que rodola sobre una altra).",
       "en": null
     }
   },
@@ -2530,7 +2530,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Una fórmula (o una regla senzilla) que digui, a partir dels dos radis —el del cercle gran R i el del petit r—, quants pics (cúspides) té la corba que dibuixa un punt del cercle petit quan aquest rodola per dins (hipocicloide) o per fora (epicicloide) del cercle gran.",
+          "ca": "Una fórmula (o una regla senzilla) que digui, a partir dels dos radis —el de la circumferència gran R i el de la petita r—, quants pics (cúspides) té la corba que dibuixa un punt de la circumferència petita quan aquesta rodola per dins (hipocicloide) o per fora (epicicloide) de la circumferència gran.",
           "en": null
         },
         "figura": null
@@ -2542,7 +2542,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Un pic passa exactament quan el punt marcat toca el cercle gran (per dins o per fora): en aquell instant, el punt de contacte no es mou (és el centre instantani de gir), així que el punt marcat, que hi és a sobre, tampoc s'hi mou en aquell instant. Quantes vegades toca el punt marcat el cercle gran en una volta completa del cercle petit al voltant seu?",
+          "ca": "Un pic passa exactament quan el punt marcat toca la circumferència gran (per dins o per fora): en aquell instant, el punt de contacte no es mou (és el centre instantani de gir), així que el punt marcat, que hi és a sobre, tampoc s'hi mou en aquell instant. Quantes vegades toca el punt marcat la circumferència gran en una volta completa de la circumferència petita al voltant seu?",
           "en": null
         },
         "figura": null
@@ -2554,7 +2554,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Els dos casos del llibre: el cercle petit rodolant per dins (tres pics, deltoide) i per fora (dos cercles enganxats, cardioide) del cercle gran, cadascun amb el punt de contacte marcat en sanguina.",
+          "ca": "Els dos casos del llibre: la circumferència petita rodolant per dins (tres pics, deltoide) i per fora (dues circumferències enganxades, cardioide) de la circumferència gran, cadascun amb el punt de contacte marcat en sanguina.",
           "en": null
         },
         "figura": "fig-129.png"
@@ -2566,7 +2566,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "El nombre de pics és R/r (quan aquesta raó és un nombre enter): per cada volta completa del cercle gran, el cercle petit hi ha \"rodat\" R/r vegades, i cada rodolada completa produeix exactament un pic. Val el mateix argument tant si el cercle petit rodola per dins com per fora.",
+          "ca": "El nombre de pics és R/r (quan aquesta raó és un nombre enter): per cada volta completa de la circumferència gran, la circumferència petita hi ha \"rodat\" R/r vegades, i cada rodolada completa produeix exactament un pic. Val el mateix argument tant si la circumferència petita rodola per dins com per fora.",
           "en": null
         },
         "figura": null
@@ -2596,7 +2596,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Una descripció de la corba degenerada (molt més senzilla que l'espirògraf general) que resulta quan el punt que traces no és sobre la vora del cercle petit, sinó exactament al seu centre.",
+          "ca": "Una descripció de la corba degenerada (molt més senzilla que l'espirògraf general) que resulta quan el punt que traces no és sobre la vora de la circumferència petita, sinó exactament al seu centre.",
           "en": null
         },
         "figura": null
@@ -2608,7 +2608,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "A l'espirògraf normal, el punt marcat gira al voltant del CENTRE del cercle petit, i aquest centre alhora es mou al voltant del centre del cercle gran. Si el punt marcat ÉS el centre del cercle petit, quin d'aquests dos moviments desapareix?",
+          "ca": "A l'espirògraf normal, el punt marcat gira al voltant del CENTRE de la circumferència petita, i aquest centre alhora es mou al voltant del centre de la circumferència gran. Si el punt marcat ÉS el centre de la circumferència petita, quin d'aquests dos moviments desapareix?",
           "en": null
         },
         "figura": null
@@ -2620,7 +2620,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "El patró habitual de l'espirògraf (traç negre, moltes espires), i al costat, en sanguina, el cas degenerat: només el cercle que traça el centre del cercle petit.",
+          "ca": "El patró habitual de l'espirògraf (traç negre, moltes espires), i al costat, en sanguina, el cas degenerat: només la circumferència que traça el centre de la circumferència petita.",
           "en": null
         },
         "figura": "fig-130.png"
@@ -2632,18 +2632,18 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Sense el gir addicional del punt sobre el cercle petit, el que queda és només el moviment del CENTRE del cercle petit, que —com que rodola per dins del cercle gran mantenint sempre la mateixa distància R−r del centre comú— descriu simplement un cercle de radi R−r.",
+          "ca": "Sense el gir addicional del punt sobre la circumferència petita, el que queda és només el moviment del CENTRE de la circumferència petita, que —com que rodola per dins de la circumferència gran mantenint sempre la mateixa distància R−r del centre comú— descriu simplement una circumferència de radi R−r.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "R=5, r=2: el centre del cercle petit es manté sempre a distància 5−2=3 del centre, per a qualsevol angle de gir — es pot comprovar calculant-ho a diversos instants i veient que el radi no canvia mai.",
+      "ca": "R=5, r=2: el centre de la circumferència petita es manté sempre a distància 5−2=3 del centre, per a qualsevol angle de gir — es pot comprovar calculant-ho a diversos instants i veient que el radi no canvia mai.",
       "en": null
     },
     "iDespres": {
-      "ca": "Aquest cas degenerat —tota la complexitat de l'espirògraf reduïda a un simple cercle— és el mateix tipus de simplificació que ja vas veure a q74 amb el triangle \"aixafat\": posar un paràmetre a un valor extrem (aquí, distància zero al centre) converteix una figura complicada en la més senzilla possible.",
+      "ca": "Aquest cas degenerat —tota la complexitat de l'espirògraf reduïda a una simple circumferència— és el mateix tipus de simplificació que ja vas veure a q74 amb el triangle \"aixafat\": posar un paràmetre a un valor extrem (aquí, distància zero al centre) converteix una figura complicada en la més senzilla possible.",
       "en": null
     }
   },
@@ -2670,7 +2670,7 @@ window.GUIES = {
       {
         "nivell": 1,
         "titol": {
-          "ca": "un tor té DOS cercles, no un",
+          "ca": "un tor té DUES circumferències, no una",
           "en": null
         },
         "text": {
@@ -2752,7 +2752,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Dos instants diferents del mateix bastó lliscant (el mateix bastó de q64, ara sense l'envolupant), amb el punt mitjà marcat en sanguina a cada instant i, en discontinu, el quart de cercle que uneixen.",
+          "ca": "Dos instants diferents del mateix bastó lliscant (el mateix bastó de q64, ara sense l'envolupant), amb el punt mitjà marcat en sanguina a cada instant i, en discontinu, el quart de circumferència que uneixen.",
           "en": null
         },
         "figura": "fig-131.png"
@@ -2764,7 +2764,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "En un triangle rectangle, la distància del vèrtex de l'angle recte al punt mitjà de la hipotenusa és sempre la MEITAT de la hipotenusa — independentment de com es \"obri\" o \"tanqui\" l'angle. Com que la hipotenusa (el bastó) té sempre la mateixa longitud L, aquesta distància és sempre L/2: el punt mitjà es manté sempre a la mateixa distància L/2 de la cantonada, i per tant descriu un quart de cercle de radi L/2 centrat a la cantonada.",
+          "ca": "En un triangle rectangle, la distància del vèrtex de l'angle recte al punt mitjà de la hipotenusa és sempre la MEITAT de la hipotenusa — independentment de com es \"obri\" o \"tanqui\" l'angle. Com que la hipotenusa (el bastó) té sempre la mateixa longitud L, aquesta distància és sempre L/2: el punt mitjà es manté sempre a la mateixa distància L/2 de la cantonada, i per tant descriu un quart de circumferència de radi L/2 centrat a la cantonada.",
           "en": null
         },
         "figura": null
@@ -3073,7 +3073,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Un semicercle de diàmetre a+b, amb un triangle rectangle inscrit tocant el diàmetre al punt que el parteix en a i b. L'alçada des d'aquest punt fins al semicercle és exactament √(ab) —el teorema de l'altura sobre la hipotenusa (el mateix que fas servir per trobar l'apotema o qualsevol alçada relativa).",
+          "ca": "Un semicercle de diàmetre a+b, amb un triangle rectangle inscrit tocant el diàmetre al punt que el parteix en a i b. L'alçada des d'aquest punt fins a la semicircumferència és exactament √(ab) —el teorema de l'altura sobre la hipotenusa (el mateix que fas servir per trobar l'apotema o qualsevol alçada relativa).",
           "en": null
         },
         "figura": "fig-064.png"
@@ -3445,7 +3445,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Aquí sí que has de trobar una fórmula. Però no la trobaràs mirant el cercle petit: la trobaràs mirant els centres.",
+          "ca": "Aquí sí que has de trobar una fórmula. Però no la trobaràs mirant la circumferència petita: la trobaràs mirant els centres.",
           "en": null
         },
         "figura": null
@@ -3457,7 +3457,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Dibuixa a part dos cercles que es toquin, de radis diferents. Què saps de la distància entre els seus centres? És el fet que et falta, i no és a l'enunciat.",
+          "ca": "Dibuixa a part dues circumferències que es toquin, de radis diferents. Què saps de la distància entre els seus centres? És el fet que et falta, i no és a l'enunciat.",
           "en": null
         },
         "figura": "fig-185.png"
@@ -3485,7 +3485,7 @@ window.GUIES = {
       }
     ],
     "comprovacio": {
-      "ca": "Amb R = 1 t'ha de sortir un valor entre 0'4 i 0'42. Comprova també que R + r és exactament √2, que és la distància del centre del quadrat al centre d'un cercle gran.",
+      "ca": "Amb R = 1 t'ha de sortir un valor entre 0'4 i 0'42. Comprova també que R + r és exactament √2, que és la distància del centre del quadrat al centre d'una circumferència gran.",
       "en": null
     },
     "iDespres": {
@@ -3508,7 +3508,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "El llibre et planteja tres puzles de cop. Fes primer el de l'esquerra (un cercle gran tallat pels seus dos diàmetres, amb un cercle petit encaixat en un dels quatre racons). Els altres dos es resolen amb la mateixa idea — te'ls deixo per a després.",
+          "ca": "El llibre et planteja tres puzles de cop. Fes primer el de l'esquerra (una circumferència gran tallada pels seus dos diàmetres, amb una circumferència petita encaixada en un dels quatre racons). Els altres dos es resolen amb la mateixa idea — te'ls deixo per a després.",
           "en": null
         },
         "figura": null
@@ -3520,7 +3520,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "A q22 la distància entre els centres de dos cercles tangents es podia dir de dues maneres: per Pitàgores (amb els catets que calguessin) i per la tangència (suma o resta de radis). Aquí els \"dos costats\" que fan de catets ja no són dos radis R — són què, exactament? Mira on toca el cercle petit.",
+          "ca": "A q22 la distància entre els centres de dues circumferències tangents es podia dir de dues maneres: per Pitàgores (amb els catets que calguessin) i per la tangència (suma o resta de radis). Aquí els \"dos costats\" que fan de catets ja no són dos radis R — són què, exactament? Mira on toca la circumferència petita.",
           "en": null
         },
         "figura": null
@@ -3541,7 +3541,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "El cercle petit toca els dos diàmetres, així que el seu centre és a distància r de cadascun — aquests són els dos catets, i tots dos fan r (no R). La hipotenusa (el segment \"?\") la pots dir per Pitàgores, r√2, i també per la tangència amb el cercle gran, R−r. Iguala-les.",
+          "ca": "La circumferència petita toca els dos diàmetres, així que el seu centre és a distància r de cadascun — aquests són els dos catets, i tots dos fan r (no R). La hipotenusa (el segment \"?\") la pots dir per Pitàgores, r√2, i també per la tangència amb la circumferència gran, R−r. Iguala-les.",
           "en": null
         },
         "figura": null
@@ -3552,7 +3552,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Ara fes els altres dos puzles de q23 amb la mateixa palanca (en un, la \"tangència\" és amb una diagonal en lloc d'un altre cercle — la distància d'un punt a una recta hi fa d'hipotenusa). I quan vulguis una versió amb encara més incògnites, q44 t'hi espera.",
+      "ca": "Ara fes els altres dos puzles de q23 amb la mateixa palanca (en un, la \"tangència\" és amb una diagonal en lloc d'una altra circumferència — la distància d'un punt a una recta hi fa d'hipotenusa). I quan vulguis una versió amb encara més incògnites, q44 t'hi espera.",
       "en": null
     }
   },
@@ -3757,7 +3757,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Aquesta pregunta no té enunciat: el llibre et dona només tres imatges (un triangle, un quadrat, un cercle, cadascun amb cercles tangents) i dona per fet que ja saps què cal fer-hi: trobar la mida del cercle petit en funció de la mida gran, a cadascuna. És el mateix tipus de pregunta que q22, tres vegades.",
+          "ca": "Aquesta pregunta no té enunciat: el llibre et dona només tres imatges (un triangle, un quadrat, una circumferència, cadascun amb circumferències tangents) i dona per fet que ja saps què cal fer-hi: trobar la mida de la circumferència petita en funció de la mida gran, a cadascuna. És el mateix tipus de pregunta que q22, tres vegades.",
           "en": null
         },
         "figura": null
@@ -3769,7 +3769,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "A q22 vas unir el centre del quadrat amb el centre d'un cercle petit i vas obtenir un triangle rectangle. Aquí, uneix el centre de gravetat del triangle equilàter amb el centre d'un dels tres cercles iguals, i també amb el vèrtex més proper. Els dos segments són fàcils de mesurar per raons diferents — aquí hi ha la teva \"dues maneres\".",
+          "ca": "A q22 vas unir el centre del quadrat amb el centre d'una circumferència petita i vas obtenir un triangle rectangle. Aquí, uneix el centre de gravetat del triangle equilàter amb el centre d'una de les tres circumferències iguals, i també amb el vèrtex més proper. Els dos segments són fàcils de mesurar per raons diferents — aquí hi ha la teva \"dues maneres\".",
           "en": null
         },
         "figura": "fig-187.png"
@@ -3781,7 +3781,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Només s'anota el primer panell (el triangle) i el segon (el quadrat amb el seu cercle circumscrit, on la diagonal marcada et dona directament la relació R = s√2/2). El tercer panell (quatre cercles dins un cercle gran) és la mateixa família de puzle però amb més peces — no cal resoldre'l aquí.",
+          "ca": "Només s'anota el primer panell (el triangle) i el segon (el quadrat amb la seva circumferència circumscrita, on la diagonal marcada et dona directament la relació R = s√2/2). El tercer panell (quatre circumferències dins una circumferència gran) és la mateixa família de puzle però amb més peces — no cal resoldre'l aquí.",
           "en": null
         },
         "figura": "fig-058.png"
@@ -3793,7 +3793,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Al triangle: la distància del centroide a un vèrtex és L/√3. La distància del centroide al centre d'un cercle és 2r menys que això, però també és 2r/√3 (perquè els tres centres formen un triangle equilàter petit, semblant al gran). Iguala-les.",
+          "ca": "Al triangle: la distància del centroide a un vèrtex és L/√3. La distància del centroide al centre d'una circumferència és 2r menys que això, però també és 2r/√3 (perquè els tres centres formen un triangle equilàter petit, semblant al gran). Iguala-les.",
           "en": null
         },
         "figura": null
@@ -3804,7 +3804,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "q40_implicit hi torna amb una cadena més llarga de cercles tangents — el mateix moviment, un pas més complicat.",
+      "ca": "q40_implicit hi torna amb una cadena més llarga de circumferències tangents — el mateix moviment, un pas més complicat.",
       "en": null
     }
   },
@@ -4603,7 +4603,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Dues imatges més sense enunciat. Totes dues amaguen la mateixa pregunta que q27_implicit: mesura el radi petit en funció del gran. (Nota d'aquesta figura: el primer panell es dibuixa com el quadrat inscrit estàndard —els 4 vèrtexs sobre el cercle— perquè l'escaneig original sembla tenir un detall addicional a dalt que no he pogut resoldre amb confiança; v. NOTA-LOT-6.md.)",
+          "ca": "Dues imatges més sense enunciat. Totes dues amaguen la mateixa pregunta que q27_implicit: mesura el radi petit en funció del gran. (Nota d'aquesta figura: el primer panell es dibuixa com el quadrat inscrit estàndard —els 4 vèrtexs sobre la circumferència— perquè l'escaneig original sembla tenir un detall addicional a dalt que no he pogut resoldre amb confiança; v. NOTA-LOT-6.md.)",
           "en": null
         },
         "figura": null
@@ -4615,7 +4615,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Al segon panell (dos cercles i un quadrat en fila dins un cercle gran): si el quadrat té costat 2r (igual que el diàmetre comú dels cercles), i tot plegat travessa el diàmetre del cercle gran, quina equació relaciona R (el radi gran) amb r?",
+          "ca": "Al segon panell (dues circumferències i un quadrat en fila dins una circumferència gran): si el quadrat té costat 2r (igual que el diàmetre comú de les circumferències), i tot plegat travessa el diàmetre de la circumferència gran, quina equació relaciona R (el radi gran) amb r?",
           "en": null
         },
         "figura": "fig-191.png"
@@ -4636,7 +4636,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Al primer panell: la diagonal del quadrat és el diàmetre del cercle, 2R. Si el costat del quadrat és s, quina relació de Pitàgores lliga s amb R?",
+          "ca": "Al primer panell: la diagonal del quadrat és el diàmetre de la circumferència, 2R. Si el costat del quadrat és s, quina relació de Pitàgores lliga s amb R?",
           "en": null
         },
         "figura": null
@@ -4647,7 +4647,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Aquesta família de puzles de cercles tangents (q22, q27, q40) comparteix sempre el mateix moviment: connecta centres, troba un triangle rectangle amagat, aplica Pitàgores.",
+      "ca": "Aquesta família de puzles de circumferències tangents (q22, q27, q40) comparteix sempre el mateix moviment: connecta centres, troba un triangle rectangle amagat, aplica Pitàgores.",
       "en": null
     }
   },
@@ -4732,7 +4732,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Una corda AB parteix el cercle en dos arcs. \"El mateix arc\" vol dir que els dos punts que connectes (P i Q) són tots dos a la banda gran, o tots dos a la banda petita — no un a cada banda. L'angle \"resultant\" és l'angle que es veu des d'aquell punt mirant cap a A i cap a B.",
+          "ca": "Una corda AB parteix la circumferència en dos arcs. \"El mateix arc\" vol dir que els dos punts que connectes (P i Q) són tots dos a la banda gran, o tots dos a la banda petita — no un a cada banda. L'angle \"resultant\" és l'angle que es veu des d'aquell punt mirant cap a A i cap a B.",
           "en": null
         },
         "figura": null
@@ -4744,7 +4744,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "A q41 ja vas resoldre el cas particular en què AB és un diàmetre: l'angle sempre és recte, on sigui que posis el punt. Aquí AB ja no és un diàmetre — és una corda qualsevol. Prova-ho amb xifres: posa un cercle de radi 10, la corda AB fixa, i calcula l'angle des de dues posicions diferents del mateix arc. (Si tens ganes de comprovar-ho abans de llegir més avall: 200° i 340° per a A i B, 80° i 140° per als dos punts, amb el centre a l'origen — et sortirà el mateix angle als dos.)",
+          "ca": "A q41 ja vas resoldre el cas particular en què AB és un diàmetre: l'angle sempre és recte, on sigui que posis el punt. Aquí AB ja no és un diàmetre — és una corda qualsevol. Prova-ho amb xifres: posa una circumferència de radi 10, la corda AB fixa, i calcula l'angle des de dues posicions diferents del mateix arc. (Si tens ganes de comprovar-ho abans de llegir més avall: 200° i 340° per a A i B, 80° i 140° per als dos punts, amb el centre a l'origen — et sortirà el mateix angle als dos.)",
           "en": null
         },
         "figura": null
@@ -4775,11 +4775,11 @@ window.GUIES = {
       }
     ],
     "comprovacio": {
-      "ca": "Cercle de radi 10, centre a l'origen. A i B als angles 200° i 340°; P a 80°, Q a 140°. L'angle central AOB val 140°. Calcula (amb coordenades, o amb un transportador sobre el teu propi dibuix) l'angle APB i l'angle AQB: tots dos han de sortir 70°, exactament la meitat de l'angle central.",
+      "ca": "Circumferència de radi 10, centre a l'origen. A i B als angles 200° i 340°; P a 80°, Q a 140°. L'angle central AOB val 140°. Calcula (amb coordenades, o amb un transportador sobre el teu propi dibuix) l'angle APB i l'angle AQB: tots dos han de sortir 70°, exactament la meitat de l'angle central.",
       "en": null
     },
     "iDespres": {
-      "ca": "Aquest resultat (\"angle inscrit = meitat de l'angle central\") el faràs servir moltes vegades més sense que el llibre t'ho recordi — sempre que quatre punts estiguin sobre un mateix cercle, per exemple. I nota una cosa: aquesta és la segona vegada que un argument es parteix en casos que tot i així arriben a la mateixa fórmula — la primera va ser q15.",
+      "ca": "Aquest resultat (\"angle inscrit = meitat de l'angle central\") el faràs servir moltes vegades més sense que el llibre t'ho recordi — sempre que quatre punts estiguin sobre una mateixa circumferència, per exemple. I nota una cosa: aquesta és la segona vegada que un argument es parteix en casos que tot i així arriben a la mateixa fórmula — la primera va ser q15.",
       "en": null
     }
   },
@@ -4798,7 +4798,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Dues xifres (àrea i perímetre) per al cas de dos cercles, i després la mateixa pregunta per a tres. Cap dels dos casos et demana un nombre aproximat: totes dues respostes surten exactes.",
+          "ca": "Dues xifres (àrea i perímetre) per al cas de dues circumferències, i després la mateixa pregunta per a tres. Cap dels dos casos et demana un nombre aproximat: totes dues respostes surten exactes.",
           "en": null
         },
         "figura": null
@@ -4810,7 +4810,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Uneix els dos centres, i un dels dos punts on els cercles es tallen. Els tres costats d'aquest triangle: dos són radis (iguals a r), i el tercer és la distància entre els dos centres — que també val r, perquè cada cercle passa pel centre de l'altre. Quin tipus de triangle és?",
+          "ca": "Uneix els dos centres, i un dels dos punts on les circumferències es tallen. Els tres costats d'aquest triangle: dos són radis (iguals a r), i el tercer és la distància entre els dos centres — que també val r, perquè cada circumferència passa pel centre de l'altra. Quin tipus de triangle és?",
           "en": null
         },
         "figura": null
@@ -4834,7 +4834,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Aquest angle (al centre d'un cercle, entre els dos radis que van als punts de tall) és el doble de l'angle del triangle equilàter: 120°. La zona solapada (l'ull, o vesica) és la suma de dos \"segments circulars\" — cadascun, un sector de 120° menys el triangle equilàter que ja hi has trobat. El perímetre és la suma dels dos arcs de 120°, un de cada cercle.",
+          "ca": "Aquest angle (al centre d'una circumferència, entre els dos radis que van als punts de tall) és el doble de l'angle del triangle equilàter: 120°. La zona solapada (l'ull, o vesica) és la suma de dos \"segments circulars\" — cadascun, un sector de 120° menys el triangle equilàter que ja hi has trobat. El perímetre és la suma dels dos arcs de 120°, un de cada circumferència.",
           "en": null
         },
         "figura": null
@@ -4845,7 +4845,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Per a tres cercles (cadascun pel centre dels altres dos, formant un triangle equilàter de costat r entre els tres centres), la mateixa idea —sectors menys triangles— es repeteix, però ara cal decidir quines regions es compten un cop, quines dos, i quina exactament tres vegades: el mateix reflex del comptatge amb cura que ja vas fer servir a q03.",
+      "ca": "Per a tres circumferències (cadascuna pel centre de les altres dues, formant un triangle equilàter de costat r entre els tres centres), la mateixa idea —sectors menys triangles— es repeteix, però ara cal decidir quines regions es compten un cop, quines dos, i quina exactament tres vegades: el mateix reflex del comptatge amb cura que ja vas fer servir a q03.",
       "en": null
     }
   },
@@ -4861,7 +4861,7 @@ window.GUIES = {
         "nivell": 0,
         "titol": null,
         "text": {
-          "ca": "Ja saps dir, de dues maneres, la distància entre els centres de dos cercles tangents a la mateixa recta (q23). Aquí en tens tres parelles de cercles tangents (gran-petit esquerre, gran-petit dret, petit-gran esquerre amb gran dret) — i les tres relacions han de ser certes alhora.",
+          "ca": "Ja saps dir, de dues maneres, la distància entre els centres de dues circumferències tangents a la mateixa recta (q23). Aquí en tens tres parelles de circumferències tangents (gran-petit esquerre, gran-petit dret, petit-gran esquerre amb gran dret) — i les tres relacions han de ser certes alhora.",
           "en": null
         },
         "figura": null
@@ -4870,7 +4870,7 @@ window.GUIES = {
         "nivell": 1,
         "titol": null,
         "text": {
-          "ca": "Per a dos cercles de radis a i b, tots dos tangents a la mateixa recta i tangents entre ells, la distància horitzontal entre els peus (on toquen la recta) és 2√(ab) — és el mateix triangle rectangle de q23, amb catets (a−b) i 2√(ab), hipotenusa (a+b). Aplica'l a la parella (R₁, r).",
+          "ca": "Per a dues circumferències de radis a i b, totes dues tangents a la mateixa recta i tangents entre elles, la distància horitzontal entre els peus (on toquen la recta) és 2√(ab) — és el mateix triangle rectangle de q23, amb catets (a−b) i 2√(ab), hipotenusa (a+b). Aplica'l a la parella (R₁, r).",
           "en": null
         },
         "figura": null
@@ -4894,18 +4894,18 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "La mateixa relació val per a (R₂, r). Els peus dels tres cercles són tots sobre la mateixa recta, així que la distància entre el peu de R₁ i el peu de R₂ (que ja saps que és 2√(R₁R₂), directament de q23) ha de ser la suma de les altres dues distàncies parcials (peu de R₁ a peu de r, i peu de r a peu de R₂) — perquè r és, precisament, en algun punt entremig. Escriu aquesta equació amb els tres √( ) i aïlla r.",
+          "ca": "La mateixa relació val per a (R₂, r). Els peus de les tres circumferències són tots sobre la mateixa recta, així que la distància entre el peu de R₁ i el peu de R₂ (que ja saps que és 2√(R₁R₂), directament de q23) ha de ser la suma de les altres dues distàncies parcials (peu de R₁ a peu de r, i peu de r a peu de R₂) — perquè r és, precisament, en algun punt entremig. Escriu aquesta equació amb els tres √( ) i aïlla r.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "Amb R₁=1, R₂=1 (dos cercles iguals): hauria de sortir 1/√r = 1/√1+1/√1 = 2, r=1/4. Comprova-ho també geomètricament: per simetria, amb dos cercles iguals el petit ha de quedar centrat i el resultat 1/4 és fàcil de verificar per Pitàgores directe.",
+      "ca": "Amb R₁=1, R₂=1 (dues circumferències iguals): hauria de sortir 1/√r = 1/√1+1/√1 = 2, r=1/4. Comprova-ho també geomètricament: per simetria, amb dues circumferències iguals la petita ha de quedar centrada i el resultat 1/4 és fàcil de verificar per Pitàgores directe.",
       "en": null
     },
     "iDespres": {
-      "ca": "La relació que acabes de trobar (1/√r = 1/√R₁ + 1/√R₂) és un cas particular d'una fórmula més general (el teorema de Descartes per a cercles), que val per a qualsevol quatre cercles mútuament tangents, no només tres en línia.",
+      "ca": "La relació que acabes de trobar (1/√r = 1/√R₁ + 1/√R₂) és un cas particular d'una fórmula més general (el teorema de Descartes per a circumferències), que val per a qualsevol quatre circumferències mútuament tangents, no només tres en línia.",
       "en": null
     }
   },
@@ -4924,7 +4924,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "En un dibuix en perspectiva les circumferències de dalt i de baix del cilindre no semblen cercles — surten aixafades, com el·lipses. Fia't de l'objecte, no del dibuix: són cercles de veritat.",
+          "ca": "En un dibuix en perspectiva les circumferències de dalt i de baix del cilindre no semblen circumferències — surten aixafades, com el·lipses. Fia't de l'objecte, no del dibuix: són circumferències de veritat.",
           "en": null
         },
         "figura": null
@@ -5722,7 +5722,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Talla la intersecció amb un pla horitzontal, a una alçada y qualsevol per sobre del centre. Aquest pla talla CADA cilindre en una franja rectangular d'amplada 2√(r²−y²) (el mateix Pitàgores que ja fas servir per a la corda d'un cercle). La intersecció dels dos cilindres, en aquest pla, és on totes dues franges es superposen.",
+          "ca": "Talla la intersecció amb un pla horitzontal, a una alçada y qualsevol per sobre del centre. Aquest pla talla CADA cilindre en una franja rectangular d'amplada 2√(r²−y²) (el mateix Pitàgores que ja fas servir per a la corda d'una circumferència). La intersecció dels dos cilindres, en aquest pla, és on totes dues franges es superposen.",
           "en": null
         },
         "figura": null
@@ -6130,7 +6130,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "La vora de la regió té tres trossos: el tram de paret des de la cantonada fins on arriba el bastó vertical (llargada L), el tram de terra simètric (llargada L), i una corba —no una línia recta ni un arc de cercle— tangent a totes les posicions que has dibuixat: la seva envolupant. Aquesta corba es diu astroide. La seva llargada exacta (un quart d'astroide) resulta ser 1,5×L —un fet que es demostra amb eines de fora d'aquest quadern (càlcul infinitesimal); aquí la guia arriba fins a RECONÈIXER i CONSTRUIR l'envolupant, no fins a demostrar-ne la llargada.",
+          "ca": "La vora de la regió té tres trossos: el tram de paret des de la cantonada fins on arriba el bastó vertical (llargada L), el tram de terra simètric (llargada L), i una corba —no una línia recta ni un arc de circumferència— tangent a totes les posicions que has dibuixat: la seva envolupant. Aquesta corba es diu astroide. La seva llargada exacta (un quart d'astroide) resulta ser 1,5×L —un fet que es demostra amb eines de fora d'aquest quadern (càlcul infinitesimal); aquí la guia arriba fins a RECONÈIXER i CONSTRUIR l'envolupant, no fins a demostrar-ne la llargada.",
           "en": null
         },
         "figura": null
@@ -6141,7 +6141,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Aquesta mateixa família de posicions —un segment que llisca mantenint els extrems sobre dues rectes fixes— reapareix a la geometria projectiva amb un altre nom i un altre objectiu; aquí en n'hi ha prou amb haver reconegut que \"la vora d'una regió escombrada\" no sempre és una línia recta ni un arc de cercle.",
+      "ca": "Aquesta mateixa família de posicions —un segment que llisca mantenint els extrems sobre dues rectes fixes— reapareix a la geometria projectiva amb un altre nom i un altre objectiu; aquí en n'hi ha prou amb haver reconegut que \"la vora d'una regió escombrada\" no sempre és una línia recta ni un arc de circumferència.",
       "en": null
     }
   },
@@ -6415,7 +6415,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "DUES distàncies diferents (no una): la del centroide de la regió semicircular (l'àrea) i la del centroide del seu arc (el perímetre, sense comptar el diàmetre) — cadascuna respecte del centre del cercle, sobre el diàmetre.",
+          "ca": "DUES distàncies diferents (no una): la del centroide de la regió semicircular (l'àrea) i la del centroide del seu arc (el perímetre, sense comptar el diàmetre) — cadascuna respecte del centre de la circumferència, sobre el diàmetre.",
           "en": null
         },
         "figura": null
@@ -6864,11 +6864,11 @@ window.GUIES = {
       {
         "nivell": 0,
         "titol": {
-          "ca": "el cercle no és la peça útil, el centre sí",
+          "ca": "la circumferència no és la peça útil, el centre sí",
           "en": null
         },
         "text": {
-          "ca": "Oblida't del cercle un moment. La peça de la construcció que fa tota la feina no és la circumferència: és el punt del seu centre, i el fet que aquest punt és a la mateixa distància (el radi r) de cadascun dels tres costats.",
+          "ca": "Oblida't de la circumferència un moment. La peça de la construcció que fa tota la feina no és la circumferència: és el punt del seu centre, i el fet que aquest punt és a la mateixa distància (el radi r) de cadascun dels tres costats.",
           "en": null
         },
         "figura": null
@@ -6880,7 +6880,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Si uneixes el centre del cercle inscrit amb els tres vèrtexs del triangle, el triangle gran queda partit en tres triangles més petits. Què tenen en comú, com a mesura, aquests tres triangles petits, encara que tinguin bases diferents (a, b i c)?",
+          "ca": "Si uneixes el centre de la circumferència inscrita amb els tres vèrtexs del triangle, el triangle gran queda partit en tres triangles més petits. Què tenen en comú, com a mesura, aquests tres triangles petits, encara que tinguin bases diferents (a, b i c)?",
           "en": null
         },
         "figura": null
@@ -6892,7 +6892,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Els tres segments discontinus curts (els radis cap a cada costat) tenen tots la mateixa marca — i, a diferència d'altres figures d'aquest lot, aquí sí és literalment cert que els tres fan la mateixa longitud, perquè tots tres són el radi del mateix cercle inscrit.",
+          "ca": "Els tres segments discontinus curts (els radis cap a cada costat) tenen tots la mateixa marca — i, a diferència d'altres figures d'aquest lot, aquí sí és literalment cert que els tres fan la mateixa longitud, perquè tots tres són el radi de la mateixa circumferència inscrita.",
           "en": null
         },
         "figura": "fig-043.png"
@@ -6911,7 +6911,7 @@ window.GUIES = {
       }
     ],
     "comprovacio": {
-      "ca": "Un triangle de costats 3, 4, 5 (rectangle, àrea = 6). Amb la fórmula que n'has tret, r = 2×Àrea/(a+b+c) = 12/12 = 1. Comprova-ho: el radi del cercle inscrit d'un 3-4-5 és, efectivament, 1.",
+      "ca": "Un triangle de costats 3, 4, 5 (rectangle, àrea = 6). Amb la fórmula que n'has tret, r = 2×Àrea/(a+b+c) = 12/12 = 1. Comprova-ho: el radi de la circumferència inscrita d'un 3-4-5 és, efectivament, 1.",
       "en": null
     },
     "iDespres": {
@@ -7431,7 +7431,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Aquesta identitat (sin²+cos²=1) és la que fa possible definir sinus i cosinus com les coordenades d'un punt que es mou sobre un cercle de radi 1 —una manera diferent de pensar-hi que reapareixerà si continues estudiant trigonometria més enllà d'aquest quadern.",
+      "ca": "Aquesta identitat (sin²+cos²=1) és la que fa possible definir sinus i cosinus com les coordenades d'un punt que es mou sobre una circumferència de radi 1 —una manera diferent de pensar-hi que reapareixerà si continues estudiant trigonometria més enllà d'aquest quadern.",
       "en": null
     }
   },
@@ -7771,7 +7771,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Una fórmula que generalitza la de Heron (àrea d'un triangle a partir només dels seus costats) a un quadrilàter —però només quan els quatre vèrtexs són sobre un mateix cercle: aquesta condició és imprescindible, no decorativa.",
+          "ca": "Una fórmula que generalitza la de Heron (àrea d'un triangle a partir només dels seus costats) a un quadrilàter —però només quan els quatre vèrtexs són sobre una mateixa circumferència: aquesta condició és imprescindible, no decorativa.",
           "en": null
         },
         "figura": null
@@ -7783,7 +7783,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Els dos triangles comparteixen la diagonal i tenen angles oposats en aquell vèrtex del quadrilàter que, per estar inscrit en un cercle, sumen 180°. Aquest fet —els angles oposats d'un quadrilàter cíclic sumen sempre 180°— és la hipòtesi \"inscrit en un cercle\" convertida en una dada sobre angles, i és tota la feina que fa aquí la circumferència. Si no l'has vist mai demostrat, surt en dues línies de l'angle inscrit de q42: cada angle del quadrilàter val la meitat de l'arc oposat, i els dos arcs oposats fan junts la circumferència sencera.",
+          "ca": "Els dos triangles comparteixen la diagonal i tenen angles oposats en aquell vèrtex del quadrilàter que, per estar inscrit en una circumferència, sumen 180°. Aquest fet —els angles oposats d'un quadrilàter cíclic sumen sempre 180°— és la hipòtesi \"inscrit en una circumferència\" convertida en una dada sobre angles, i és tota la feina que fa aquí la circumferència. Si no l'has vist mai demostrat, surt en dues línies de l'angle inscrit de q42: cada angle del quadrilàter val la meitat de l'arc oposat, i els dos arcs oposats fan junts la circumferència sencera.",
           "en": null
         },
         "figura": null
@@ -7795,7 +7795,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Els dos angles marcats (a banda i banda de la diagonal): quina relació ja saps que els lliga, per estar inscrits en el mateix cercle?",
+          "ca": "Els dos angles marcats (a banda i banda de la diagonal): quina relació ja saps que els lliga, per estar inscrits en la mateixa circumferència?",
           "en": null
         },
         "figura": "fig-098.png"
@@ -7981,7 +7981,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Igual que en un cercle, el radi que va del centre al punt de tangència és perpendicular a la recta tangent en aquell punt (encara que ara estiguis en tres dimensions). Amb el centre O, el punt exterior P, i un punt de tangència T qualsevol: quin angle té el triangle OPT al vèrtex T?",
+          "ca": "Igual que en una circumferència, el radi que va del centre al punt de tangència és perpendicular a la recta tangent en aquell punt (encara que ara estiguis en tres dimensions). Amb el centre O, el punt exterior P, i un punt de tangència T qualsevol: quin angle té el triangle OPT al vèrtex T?",
           "en": null
         },
         "figura": null
@@ -8013,7 +8013,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "El mateix argument, amb el mateix triangle rectangle, és el que ja vas fer servir per a tangents des d'un punt a un cercle en 2D —aquí no canvia res essencial en passar a tres dimensions, només cal comprovar que el pla que conté O, P i T sempre existeix (tres punts no alineats determinen un pla).",
+      "ca": "El mateix argument, amb el mateix triangle rectangle, és el que ja vas fer servir per a tangents des d'un punt a una circumferència en 2D —aquí no canvia res essencial en passar a tres dimensions, només cal comprovar que el pla que conté O, P i T sempre existeix (tres punts no alineats determinen un pla).",
       "en": null
     }
   },
@@ -8032,7 +8032,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Un únic punt (no dos) —la posició exacta on han d'anar a parar els dos focus d'una el·lipse perquè aquella el·lipse esdevingui un cercle.",
+          "ca": "Un únic punt (no dos) —la posició exacta on han d'anar a parar els dos focus d'una el·lipse perquè aquella el·lipse esdevingui una circumferència.",
           "en": null
         },
         "figura": null
@@ -8056,7 +8056,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Els dos focus d'una el·lipse allargada, ben separats, al costat d'un cercle amb els dos focus superposats en un sol punt marcat al centre.",
+          "ca": "Els dos focus d'una el·lipse allargada, ben separats, al costat d'una circumferència amb els dos focus superposats en un sol punt marcat al centre.",
           "en": null
         },
         "figura": "fig-102.png"
@@ -8068,18 +8068,18 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Si F₁=F₂=O, aleshores PF₁+PF₂ = 2·PO = 2a, és a dir PO = a: TOTS els punts P estan a la mateixa distància a d'O. Això és, per definició, un cercle de radi a centrat a O.",
+          "ca": "Si F₁=F₂=O, aleshores PF₁+PF₂ = 2·PO = 2a, és a dir PO = a: TOTS els punts P estan a la mateixa distància a d'O. Això és, per definició, una circumferència de radi a centrada a O.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "Amb 2a=14 (la suma constant), si els dos focus coincideixen, PO=7 per a tot punt P de la corba —un cercle de radi 7.",
+      "ca": "Amb 2a=14 (la suma constant), si els dos focus coincideixen, PO=7 per a tot punt P de la corba —una circumferència de radi 7.",
       "en": null
     },
     "iDespres": {
-      "ca": "Aquest cas límit —dos punts que es fonen en un— torna a q109, on veuràs la demostració completa (amb esferes de Dandelin) que tallar un con amb un pla dona sempre una el·lipse amb dos focus concrets; quan el pla de tall és perpendicular a l'eix del con, aquells dos focus col·lapsen exactament com aquí, i la secció resultant és un cercle. No és la mateixa pregunta: aquí n'hi ha prou amb la definició; a q109 cal demostrar-ho des de la geometria del con.",
+      "ca": "Aquest cas límit —dos punts que es fonen en un— torna a q109, on veuràs la demostració completa (amb esferes de Dandelin) que tallar un con amb un pla dona sempre una el·lipse amb dos focus concrets; quan el pla de tall és perpendicular a l'eix del con, aquells dos focus col·lapsen exactament com aquí, i la secció resultant és una circumferència. No és la mateixa pregunta: aquí n'hi ha prou amb la definició; a q109 cal demostrar-ho des de la geometria del con.",
       "en": null
     }
   },
@@ -8098,7 +8098,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Escriu amb les teves paraules què vol dir exactament que una recta sigui tangent a un cercle. No continuïs fins que ho tinguis escrit. Tota la demostració viu en aquesta frase, i és per això que costa: la hipòtesi no sembla una hipòtesi.",
+          "ca": "Escriu amb les teves paraules què vol dir exactament que una recta sigui tangent a una circumferència. No continuïs fins que ho tinguis escrit. Tota la demostració viu en aquesta frase, i és per això que costa: la hipòtesi no sembla una hipòtesi.",
           "en": null
         },
         "figura": null
@@ -8134,14 +8134,14 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Quant fa OP′? (Les marquetes t'ho diuen.) Per tant, P′ és al cercle? És a la recta? I què deia exactament la teva definició de tangent?",
+          "ca": "Quant fa OP′? (Les marquetes t'ho diuen.) Per tant, P′ és a la circumferència? És a la recta? I què deia exactament la teva definició de tangent?",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "Aquí no hi ha números. La comprovació és una altra: repassa la teva demostració i assenyala on fa servir que la recta toca el cercle només una vegada. Si no ho fa servir enlloc, tens un forat, perquè sense aquesta condició l'enunciat és fals.",
+      "ca": "Aquí no hi ha números. La comprovació és una altra: repassa la teva demostració i assenyala on fa servir que la recta toca la circumferència només una vegada. Si no ho fa servir enlloc, tens un forat, perquè sense aquesta condició l'enunciat és fals.",
       "en": null
     },
     "iDespres": {
