@@ -69,14 +69,17 @@ tots = manifest_nums | fitxer_nums_set
 nomes_manifest = manifest_nums - fitxer_nums_set
 nomes_fitxers = fitxer_nums_set - manifest_nums
 if nomes_manifest:
+    figures01_sense_stamp = {n for n in nomes_manifest if 1 <= n <= 13}
+    altres = sorted(nomes_manifest - figures01_sense_stamp)
     print("Nota: al manifest però sense stampNum trobat en cap fitxer font "
-          "escanejat (%d números): %s -- 13 d'aquests (rang 1-13) "
-          "s'expliquen perquè figures-01.html no té CAP stampNum (0 "
-          "crides, comprovat) -- es va dibuixar abans que existís la "
-          "convenció. La resta (118,120-122,125,126) no s'han pogut "
-          "explicar amb aquest escaneig; no bloquegen res (el manifest ja "
-          "els cobreix igualment) però convé que algú ho revisi algun dia."
-          % (len(nomes_manifest), sorted(nomes_manifest)))
+          "escanejat (%d números): %s -- %d d'aquests s'expliquen perquè "
+          "figures-01.html no té CAP stampNum (0 crides, comprovat) -- "
+          "es va dibuixar abans que existís la convenció (rang 1-13)."
+          % (len(nomes_manifest), sorted(nomes_manifest), len(figures01_sense_stamp)))
+    if altres:
+        print("  La resta (%s) no s'han pogut explicar amb aquest escaneig; "
+              "no bloquegen res (el manifest ja els cobreix igualment) però "
+              "convé que algú ho revisi algun dia." % altres)
 if nomes_fitxers:
     print("Nota: trobats en fitxers font però no al manifest (normal per a "
           "figures d'ENUNCIAT -- el manifest només registra figures de "
