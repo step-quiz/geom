@@ -253,11 +253,11 @@ p {
   Els PNG font són escala de grisos amb fons blanc pur (no transparent) —
   mix-blend-mode: multiply fa desaparèixer aquest blanc contra --paper i deixa
   només el traç fosc, de manera que la il·lustració es fon amb la pàgina en
-  lloc de llegir-se com una caixa retallada. Funciona per a les 22 imatges
-  sense haver de post-processar-les una per una.
+  lloc de llegir-se com una caixa retallada. Funciona per a les 122 imatges
+  d'enunciat sense haver de post-processar-les una per una.
 
-  ALÇADA RESERVADA FIXA (--figure-slot-h, tokens.css): la ràtio h/w real de
-  les 68 imatges del dataset va de 0.25 (q117, panoràmica) a 1.80 (q123,
+  ALÇADA RESERVADA (--figure-slot-h, tokens.css): la ràtio h/w real de
+  les imatges del dataset va de 0.25 (q117, panoràmica) a 1.80 (q123,
   gairebé vertical) — un ventall de gairebé 7x. Deixar que l'alçada flueixi
   lliure (com abans, amb width:100%/height:auto) feia que "Anterior/Següent"
   saltés fins a ~500px de posició entre preguntes consecutives, depenent
@@ -266,10 +266,13 @@ p {
   la geometria o deixar bandes buides enormes), es reserva sempre la
   MATEIXA ALÇADA DE CONTENIDOR i la imatge s'hi ajusta sencera i sense
   distorsionar amb object-fit: contain — mai retallada, mai estirada.
-  480px cobreix folgadament la mediana real (≈311px als 416px d'ample
-  actuals) i deixa que només un grapat d'imatges excepcionalment altes
-  (q123, q109, q10, q66, q02, q68) es vegin una mica més petites que abans;
-  cap imatge es veu mai retallada.
+  Des de l'auditoria d'ago. 2026 aquesta alçada ja no és un 480px
+  absolut sinó un clamp(300px, 52vh, 480px) — el raonament sencer és a
+  tokens.css. El que importa AQUÍ és que la propietat que fa funcionar
+  tot això no ha canviat: sigui quin sigui el valor resolt, és el MATEIX
+  per a totes les preguntes de la mateixa finestra, que és l'única cosa
+  que necessita "Anterior/Següent" per no ballar. Cap imatge es veu mai
+  retallada; en finestres baixes, unes quantes es veuen més petites.
 
   IMPORTANT: --figure-slot-h s'aplica al <figure> SENCER, no només a la
   imatge — herència d'un temps en què hi havia figcaption (suprimit a
@@ -315,7 +318,9 @@ p {
 }
 
 /*
-  Espai reservat quan la pregunta NO té imatge (63 de les 130) — buit a
+  Espai reservat quan la pregunta NO té imatge (8 de les 130, totes elles
+  dins d'EXERCICIS_AMAGATS: cap pregunta VISIBLE arriba mai aquí, però
+  s'hi arriba per enllaç directe) — buit a
   propòsit, sense contingut ni vora ni text "sense figura" (l'eyebrow de
   metadades ja ho indica). La seva única funció és ocupar exactament la
   mateixa alçada total que .question-entry__figure (imatge + figcaption
