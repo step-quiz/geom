@@ -18,13 +18,13 @@ mòbil a la mateixa xarxa), qualsevol servidor estàtic funciona igual de bé:
 
 ## Què hi ha, i què no
 
-**Hi ha:** 130 preguntes amb el seu enunciat original en anglès **i en català** (traduït); **114 de 130 amb una imatge d'enunciat**; **les 130 amb la
+**Hi ha:** 130 preguntes amb el seu enunciat original en anglès **i en català** (traduït); **122 de 130 amb una imatge d'enunciat**; **les 130 amb la
 seva guia de demostració completa**; navegació entre preguntes; un marcador personal
 "explorat" que es desa al navegador; un itinerari amb suggeriments personalitzats; un
 glossari de 53 termes (26 amb figura pròpia) amb detecció automàtica de termes dins
 dels enunciats **i dins del text de cada pista**; una intro "què és una demostració"
 amb tres exemples resolts pas a pas; **un filtre 2D/3D i un filtre de 5 categories
-temàtiques** (amb icones dibuixades a mà) a la llista de preguntes; **12 preguntes
+temàtiques** (amb icones dibuixades a mà) a la llista de preguntes; **15 preguntes
 amagades de la llista** (encara existents, mai esborrades — v. secció pròpia); i una
 interfície completa en anglès i català, mostrada només en català per defecte.
 
@@ -80,7 +80,7 @@ hi hagi res desat a `localStorage`): només "2D" i només "Triangles" actius —
 
 ### Exercicis amagats de la llista
 
-12 preguntes no apareixen a la llista de preguntes, ni a "Anterior/Següent" ni
+15 preguntes no apareixen a la llista de preguntes, ni a "Anterior/Següent" ni
 als suggeriments de l'itinerari, per una decisió de contingut de l'owner — **mai
 esborrades del codi**, només excloses en pintar/suggerir (`EXERCICIS_AMAGATS`,
 hardcoded a `js/ui/llista.js`, sempre la font de veritat; exposada com a
@@ -89,14 +89,16 @@ consultin sense duplicar-la). Segueixen accessibles amb normalitat per enllaç
 directe (`#q19`, etc.) i amb la seva guia completa.
 
 ```
-q18a, q18b, q19, q20, q21, q24, q34, q35, q83, q84, q87, q88
+q18a, q18b, q19, q20, q21, q24, q34, q35, q67, q83, q84, q87, q88, q102, q106
 ```
 
 (11 d'aquestes són exactament les 11 preguntes de la categoria "Propietats
 d'aritmètica o d'àlgebra" senceres — per això aquesta categoria no apareix al
-menú de filtres, v. més amunt; `q87` s'hi va afegir en una tanda posterior i
-independent, i és "triangles" temàticament, no aritmètica/àlgebra — la llista
-ja no coincideix 1:1 amb cap categoria sencera des d'aleshores).
+menú de filtres, v. més amunt; `q87`, `q67`, `q102` i `q106` s'hi van afegir en
+tandes posteriors i independents — la llista ja no coincideix 1:1 amb cap
+categoria sencera des d'aleshores. `q67`, `q102` i `q106` es van amagar en
+comptes de dibuixar-los una imatge d'enunciat — v. §"Imatges d'enunciat noves"
+més avall).
 
 Per tornar a fer visible una pregunta, treu-ne l'id d'`EXERCICIS_AMAGATS` — res més
 cal tocar.
@@ -172,7 +174,7 @@ sent, sempre, l'ordre de disseny original.
 | Correcció o puntuació | El llibre no en té — cada pregunta és un punt de partida per pensar-hi, no un test |
 | Pistes curtes (`pista`) | `pista.en`/`pista.ca` continuen sent `null` a totes 130. NO les substitueixen les guies: són coses diferents (una pista curta seria una frase; una guia és una escala completa). El botó 💡 simplement no apareix quan no n'hi ha |
 | Figures per a 27 dels 53 termes del glossari | Contingut escrit; il·lustracions pendents — v. `docs/guies/NOTA-GLOSSARI-MILLORES.md` |
-| 16 preguntes sense gràfic d'enunciat | De les 63 originals sense imatge, se'n van triar 47; les altres 16 es van descartar explícitament — v. `ANALISI-GRAFICS-NOUS.md` |
+| 8 preguntes sense gràfic d'enunciat | Són exactament les 8 preguntes d'`EXERCICIS_AMAGATS` que no tenen imatge (v. secció pròpia) — cap pregunta VISIBLE a la llista es queda mai sense imatge des de la ronda `docs/guies/figures-enunciats-D.html` (v. `docs/guies/NOTA-ENUNCIATS-D.md`) |
 | Assignació per curs (`#curs=2ESO` i similars) | El camp `curs` existeix a l'esquema de dades però és `null` arreu — decisió de contingut ajornada conscientment, no una limitació tècnica. El filtre ja funciona (prova-ho a la barra d'adreces); simplement no hi ha encara cap valor assignat |
 | Mode d'interacció (resposta oberta, dibuix, etc.) | Ídem: `interaccio` és `null` a tot arreu, estructura preparada, contingut pendent. La interactivitat real (punts arrossegables, recàlcul en viu) exigiria una capa de renderitzat completament diferent de la que hi ha ara (`docs/render.js` genera PNG estàtics per disseny, no SVG/canvas en viu al navegador) — un canvi d'arquitectura real, no una dada per omplir |
 | Selector d'idioma visible | Amagat de la interfície a petició explícita ("mostra només la capa del català"). La capacitat multilingüe NO s'ha eliminat: `ui-strings.js` conserva les dues capes senceres, i `window.geoI18n.setLang("en")` (o `?lang=en` a la URL) segueix funcionant |
@@ -181,7 +183,7 @@ sent, sempre, l'ordre de disseny original.
 
 ```
 index.html                    — única pàgina real de l'app
-assets/img/                   — 114 imatges d'enunciat (67 escanejades + 47 dibuixades a mà)
+assets/img/                   — 122 imatges d'enunciat (67 escanejades + 55 dibuixades a mà)
 assets/img/pistes/            — 162 figures de guia (131 originals + 31 de Pista 2)
 assets/img/glossari/          — 26 figures del glossari (de 53 termes)
 assets/img/demo/               — 15 figures de la intro "què és una demostració" (5 panells × 3)
@@ -274,9 +276,11 @@ sobre el crema de la pàgina.
 
 ## Estat i propers passos
 
-**Les 130 de 130 preguntes tenen guia de demostració completa.** **114 de 130
-tenen imatge d'enunciat.** **26 de 53 termes del glossari tenen figura.**
-**12 preguntes estan amagades de la llista** (i de "Anterior/Següent" i dels
+**Les 130 de 130 preguntes tenen guia de demostració completa.** **122 de 130
+tenen imatge d'enunciat — les 8 restants són exactament les 8 preguntes
+d'`EXERCICIS_AMAGATS` sense imatge; cap pregunta visible es queda sense.**
+**26 de 53 termes del glossari tenen figura.**
+**15 preguntes estan amagades de la llista** (i de "Anterior/Següent" i dels
 suggeriments de l'itinerari) per decisió de contingut (mai
 esborrades). Filtres 2D/3D i de 5 categories temàtiques funcionant, amb icones
 pròpies i persistència de la tria a `localStorage`. Les tres demos
@@ -287,8 +291,6 @@ Pendents coneguts, cap dels quals bloqueja l'ús actual del lloc:
 
 - **27 dels 53 termes del glossari encara no tenen figura** — v.
   `docs/guies/NOTA-GLOSSARI-MILLORES.md`.
-- **16 preguntes sense gràfic d'enunciat** — descartades explícitament, no un
-  oblit — v. `ANALISI-GRAFICS-NOUS.md`.
 - Assignació de `curs` i mode d'`interaccio` per pregunta.
 
 Historial complet de lliuraments (ordre cronològic, cada un amb la seva pròpia
@@ -299,5 +301,7 @@ d'enunciat), la Part 2 (31 imatges de Pista 2), l'anàlisi de contingut de Pista
 (espaiat, imatge trencada, termes clicables a les pistes, 7 figures noves), el
 redisseny de les demos en passos revelats, la neteja de capçalera (eyebrow i
 selector d'idioma fora, títol nou), el filtre de categories temàtiques amb
-exercicis amagats, les icones de categoria, i el polit final de focus/border
-dels filtres.
+exercicis amagats, les icones de categoria, el polit final de focus/border
+dels filtres, l'etiqueta "Qüestió N" i altres polits de capçalera/llista, i el
+lot D d'imatges d'enunciat (8 preguntes noves il·lustrades, 3 amagades en lloc
+d'il·lustrar-les — v. `docs/guies/NOTA-ENUNCIATS-D.md`).

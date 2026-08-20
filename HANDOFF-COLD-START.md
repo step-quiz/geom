@@ -96,13 +96,13 @@ inspection, not memory, at the moment of writing:
 | What | Value |
 |---|---|
 | Questions | 130 (fixed corpus, not growing) |
-| Questions with an enunciat image | 114 / 130 (67 scanned + 47 hand-drawn) |
+| Questions with an enunciat image | 122 / 130 (67 scanned + 55 hand-drawn) |
 | Questions with a full guide | 130 / 130 |
 | Guides with a second image at Pista 2 | 31 / 130 |
 | Glossary terms | 53, of which 26 have a figure |
 | Glossary terms detected inline | inside enunciat text AND inside Pista 1-4 text (never comprovació, never i-després) |
 | Thematic categories | 6 defined, 5 shown in the filter menu (aritmetica_algebra excluded, see §3) |
-| Hidden questions (excluded from list view, "Anterior/Següent", and itinerary suggestions — not deleted) | 12: `q18a q18b q19 q20 q21 q24 q34 q35 q83 q84 q87 q88` |
+| Hidden questions (excluded from list view, "Anterior/Següent", and itinerary suggestions — not deleted) | 15: `q18a q18b q19 q20 q21 q24 q34 q35 q67 q83 q84 q87 q88 q102 q106` |
 | 2D / 3D split | 88 / 42 |
 | Intro demos | 3, each now a 6-step reveal-one-at-a-time flow (not the old "always visible" design) |
 
@@ -127,6 +127,7 @@ NOTA-UIUX-CAPCALERA                                     (eyebrow/lang-selector o
 NOTA-CATEGORIES-FILTRE                                  (6-category filter, uploaded data file integrated)
 NOTA-CATEGORIA-ARITMETICA-ICONES                        (whole category hidden, 5 hand-drawn icons)
 NOTA-TOGGLE-DEFECTES                                    (border fix, new defaults: 2D-only, Triangles-only)
+NOTA-ENUNCIATS-D                                        (8 new enunciat images, 3 more hidden instead)
 ```
 
 The focus-ring fix, the `index.html` cache-buster fix, the
@@ -149,11 +150,16 @@ gaps:
    convention — never copy-pasted). The remaining 27 need the same
    treatment: check `docs/glossari-figures.html` for the existing pattern
    (canvases g1-g15) before drawing anything new.
-2. **16 questions have no enunciat image**, out of the 63 that originally
-   lacked one — 47 were chosen, these 16 were explicitly rejected (pure
-   algebraic questions with no natural figure, or open questions where an
-   example image would half-answer them). See `ANALISI-GRAFICS-NOUS.md`
-   for the reasoning per question if this decision is ever revisited.
+2. **8 questions have no enunciat image** — down from 16 after
+   `docs/guies/NOTA-ENUNCIATS-D.md` (8 of the original 16 got a real
+   image; the other 3 that had no natural neutral figure — q67, q102,
+   q106 — were added to `EXERCICIS_AMAGATS` instead of forcing one).
+   The remaining 8 (`q21 q35 q67 q84 q87 q88 q102 q106`) are now
+   EXACTLY the imageless subset of `EXERCICIS_AMAGATS` — every question
+   actually reachable through the list, "Anterior/Següent", or the
+   itinerary has an image. If a hidden question is ever un-hidden,
+   check this table first: it may need an image before it can ship
+   visible.
 3. **`curs` and `interaccio` fields are `null` everywhere** — schema
    exists, no content assigned. `interaccio` in particular is not just
    "data to fill in": real interactivity (draggable points, live
