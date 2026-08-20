@@ -36,7 +36,7 @@ def llegeix_global(fitxer, variable):
 # ---------------------------------------------------------------- 1. fitxers
 ESSENCIALS = [
     "index.html", "README.md", "PROJECTES-TECHNICAL-REFERENCE.md",
-    "build_preguntes_dades.py", "parse_guies.py",
+    "parse_guies.py",
     "js/data/preguntes-dades.js", "js/data/guies-dades.js",
     "js/nucli/contingut.js", "js/nucli/progres.js", "js/nucli/router.js",
     "js/nucli/guies.js", "js/ui/llista.js", "js/ui/detall.js", "js/ui/main.js",
@@ -45,6 +45,11 @@ ESSENCIALS = [
     "docs/HAND_DRAWN_GEOMETRY_TECHNIQUE.md", "docs/manifest-figures.tsv",
     "docs/hand-draw.js", "docs/comu.js", "docs/render.js",
 ]
+# build_preguntes_dades.py NO hi és a proposit: l'owner el va arxivar
+# fora del repo fa diverses rondes (la transformacio que fa ja esta feta
+# i no es torna a fer -- v. HANDOFF-COLD-START.md §4). Exigir-ne la
+# presencia nomes produia un fals positiu permanent a cada execucio,
+# soroll que podia amagar un error nou de veritat.
 for f in ESSENCIALS:
     if os.path.exists(f): ok("hi és: %s" % f)
     else: err("FALTA: %s" % f)
@@ -76,6 +81,33 @@ if P is not None:
     else: err("distribució de dimensio inesperada: %s" % dims)
     if difs == {1: 28, 2: 70, 3: 32}: ok("dificultat 28/70/32")
     else: err("distribució de dificultat inesperada: %s" % difs)
+
+    # -------------------------------------------------- 3b. imatges d'enunciat
+    # Comprovacio que NO existia fins ara: verifica_projecte.py validava les
+    # 162 figures de guia contra el manifest, pero mai havia comprovat que
+    # imatge.fitxer de cada pregunta apunti a un fitxer real. Amb 122
+    # preguntes ja amb imatge, calia una comprovacio propia -- mateixa
+    # resolucio de ruta que fa detall.js en temps real: "assets/img/" +
+    # fitxer (fitxer pot incloure un subdirectori, p.ex. "pistes/fig-194.png").
+    # Normalitza singular/plural EXACTAMENT com contingut.js::nomsFitxer --
+    # algunes preguntes (p.ex. q40_implicit) fan servir "fitxers" (array) en
+    # lloc de "fitxer" (string sol); tractar-ho com a error real la primera
+    # vegada que es va escriure aquesta comprovacio va ser un fals positiu.
+    amb_imatge = [p for p in P if p.get("imatge")]
+    manquen = []
+    for p in amb_imatge:
+        img = p["imatge"]
+        fitxers = img["fitxers"] if "fitxers" in img else [img.get("fitxer")]
+        for fitxer in fitxers:
+            if not fitxer:
+                manquen.append("%s -> (fitxer buit)" % p["id"]); continue
+            ruta = os.path.join("assets", "img", fitxer)
+            if not os.path.exists(ruta):
+                manquen.append("%s -> %s" % (p["id"], ruta))
+            elif os.path.getsize(ruta) == 0:
+                manquen.append("%s -> %s (0 bytes)" % (p["id"], ruta))
+    if manquen: err("imatge.fitxer no existeix al disc: %s" % manquen)
+    else: ok("%d imatges d'enunciat existeixen totes al disc" % len(amb_imatge))
 
 # ------------------------------------------------------------------ 4. guies
 G = llegeix_global("js/data/guies-dades.js", "GUIES")

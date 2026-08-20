@@ -10,9 +10,11 @@ mechanism), the glossary expansion, the thematic category filter, the
 2D/3D filter, and a series of UI/UX polish rounds. That agent is now out
 of context (66+ artifacts across two conversations) and cannot continue.
 
-**Read this whole file before touching anything.** It is long because the
-project has accumulated real subtlety — skipping sections has caused real
-bugs in past sessions (documented below, in §5, so you don't repeat them).
+**Read this whole file before touching anything** — it's short on purpose
+now (§5 used to hold ~150 lines of prose lessons; those moved to
+`LESSONS.md`, consulted by topic instead of read wholesale every time).
+This file itself stays mandatory: current state, numbers, what's left,
+architecture reference.
 
 ---
 
@@ -46,7 +48,7 @@ cache-buster landed **outside** the `href` attribute's quotes, which is
 invalid HTML. The browser silently ignored it and kept requesting the
 exact same `components.css` URL as always, so no cache-busting ever
 actually happened despite the owner adding the parameter — worth
-knowing about as a class of bug (see §5.3, which now documents the full
+knowing about as a class of bug (see `LESSONS.md` §3, which now documents the full
 arc of this exact issue), not because it's still open. It's fixed
 (`href="css/components.css?v=3"`).
 
@@ -57,7 +59,7 @@ was the `.cat-filtre__toggle[aria-pressed="true"]` background color
 itself, `var(--pencil)` (brown), a deliberate design choice from the
 category-filter's original build that was never explicitly confirmed
 with the owner. Fixed by changing it to `var(--ink)` (black), matching
-the 2D/3D toggle's active-state color exactly — see §5.8 for the lesson
+the 2D/3D toggle's active-state color exactly — see `LESSONS.md` §8 for the lesson
 this points to.
 
 **Still, don't take "clean at the time of writing" on faith.** Run this
@@ -223,17 +225,13 @@ icons — same tools, same discipline, every time):
 4. Copy the published PNG to the right `assets/img/*` subfolder.
 5. **Always visually review the rendered PNG before publishing** — not
    just "did it render without a JS error." Real bugs this project has
-   repeatedly caught only by looking: incidence bugs (a point drawn at
-   the *ideal* formula position instead of the *actual* hand-jittered
-   trajectory — always read points off a real curve with `.pointAtT()` /
-   `.pointAtAngle()`, which `handSegment`/`handEllipse` both expose, never
-   recompute the ideal coordinate), "notation that lies" (a marked
-   right-angle or equal-length tick that isn't actually true — verify
-   numerically, e.g. dot product for perpendicularity, before trusting a
-   figure with a geometric claim), figures clipped by canvas margins,
-   labels colliding with geometry, wobble/irregularity values tuned for
-   large figures looking wrong at small icon scale (see §5.1 for the
-   concrete example).
+   repeatedly caught only by looking: incidence bugs (`LESSONS.md` §9),
+   "notation that lies" (a marked right-angle or equal-length tick that
+   isn't actually true — verify numerically, e.g. dot product for
+   perpendicularity, before trusting a figure with a geometric claim),
+   figures clipped by canvas margins, labels colliding with geometry,
+   wobble/irregularity values tuned for large figures looking wrong at
+   small icon scale (`LESSONS.md` §1).
 6. After publishing, **pixel-diff every figure you touched against what
    was already shipped**, and confirm every figure you did NOT mean to
    touch in the same source file is byte-identical to before. This has
@@ -261,141 +259,18 @@ the others.
 
 ---
 
-## 5. Hard-won lessons — read before drawing or coding anything
+## 5. Hard-won lessons — read `LESSONS.md` when relevant, not all of it every time
 
-### 5.1 — `irregularity` / `wobble` don't scale linearly with figure size
-
-`hand-draw.js`'s `irregularity` parameter (used by `handEllipse`) is a
-*percentage* of the shape's characteristic dimension. At the scale most
-guide figures are drawn (radius 150-300px), 0.02-0.03 reads as an
-imperceptible, pleasant hand-wobble. At icon scale (radius ~36px, meant
-to be viewed at ~40px on screen), the *same percentage* becomes enough
-*absolute* pixel deviation to break circular symmetry and read as "some
-odd non-circular shape" — this exact bug shipped once this session and
-had to be fixed reactively (`icona-circumferencia.png`, fixed by dropping
-to 0.006). **When drawing anything small** (icons, small glossary
-figures), test at the real display size before publishing, not just at
-the rendered canvas's native resolution — resize the PNG down and look at
-it, the same way a phone screen will.
-
-### 5.2 — Distinguish "never saved" from "user explicitly chose empty"
-
-Both `localStorage.getItem(key)` returning `null` (key never set) and a
-saved value that happens to be `"[]"` (user actively chose "none/all")
-can look the same if you naively do
-`JSON.parse(localStorage.getItem(key)) || defaultValue`. They are not the
-same thing, and conflating them caused a real bug risk this session: the
-category filter's own invariant treats an empty array as "all selected,"
-so a naive default-value fallback would have made a *first-time visitor*
-see "all categories" instead of the newly-requested "only Triangles"
-default. Fixed by checking `localStorage.getItem(key) === null` explicitly
-before parsing. Apply the same care anywhere a persisted default is
-introduced or changed.
-
-### 5.3 — CSS `border-color` and `box-shadow` can look identical to a user
-
-A visible ring around a button can come from `border`, `outline`, or
-`box-shadow` — three different properties that render almost identically
-depending on color and offset. When an owner reports "I fixed the border
-but I still see a brown ring," don't assume the fix didn't apply; check
-every rule that could paint a ring at that same location, including
-`:hover` and `:focus-visible` states, which are easy to forget when
-fixing the base/`:active` state. This happened for real this session
-(border fixed correctly two deliveries ago; the *focus ring*, a separate
-`box-shadow` in the project's `--focus-ring` token, was still brown and
-visible after a mouse click in some browsers — Safari shows
-`:focus-visible` after a mouse click more often than Chromium does, so
-this kind of bug can be invisible in your own testing browser and real
-for the owner).
-
-**The full arc of this bug is worth knowing, because the final act was a
-different bug entirely.** After the CSS fix shipped, the owner still saw
-the brown ring and added a `?v=2` cache-buster to `index.html` to force a
-refresh — it didn't help, and they reported the bug again. The actual
-cause: `<link rel="stylesheet" href="css/components.css"?v=2>` — the
-`?v=2` landed **outside** the `href` attribute's quotes, invalid HTML
-that the browser silently ignores. The exact same stylesheet URL was
-requested every time, cache-buster or not, so the fix genuinely never
-reached the browser. Lesson: when an owner says "I tried refreshing /
-adding a cache-buster and it's still broken," check the mechanics of how
-they did it before re-investigating the original bug — the fix may have
-been correct all along and something else is preventing it from loading
-at all.
-
-### 5.4 — A diff ZIP can never delete a file
-
-Every delivery this project ships is a ZIP of new/changed files, applied
-on top of the owner's existing repo. This mechanism **cannot express
-"delete this file."** Every time a delivery makes a file obsolete (e.g.
-replacing the old 3-strip demo images with 15 individual panel images),
-the delivery note must say explicitly, in its own section, exactly which
-files to delete manually — and you must remember this when verifying
-your own work end-to-end (a full "apply every ZIP in sequence" test will
-NOT match your working copy unless you also manually delete the files
-your own notes told the owner to delete).
-
-### 5.5 — Reuse the same interaction mechanism instead of inventing a new one
-
-Twice this session, a new feature turned out to be a variation on an
-existing, working mechanism rather than something new: the step-by-step
-demo rewrite reused `detall.js`'s exact reveal-one-at-a-time pattern
-(`pintaGuia`/`revela`) instead of inventing a new one; the category
-filter reused the 2D/3D toggle's persisted-state pattern but deliberately
-changed one invariant (empty = "all" instead of "never both off"). Before
-building new interactive UI, check whether `llista.js`, `detall.js`, or
-`demo.js` already solve a structurally similar problem — refactor and
-extend rather than duplicate.
-
-### 5.6 — Verify castellanisms and non-Catalan text before shipping
-
-`verifica_projecte.py` includes a castellanism check across guide/demo
-text. It has caught real mistakes (e.g. `después` typed instead of
-`després`). Any new Catalan prose — delivery notes included — should be
-grepped for `después` and similar before considering it done; the check
-in the script only covers guide/demo content fields, not every `.md`
-note, so don't rely on it alone for prose outside those fields.
-
-### 5.7 — This project has NO test framework beyond `verifica_projecte.py` and manual Playwright scripts
-
-There's no CI, no `npm test`. Verification, every single delivery, has
-meant: `python3 verifica_projecte.py` (structural/data checks) plus a
-hand-written Playwright script (using the pre-installed
-`/home/claude/.npm-global/lib/node_modules/playwright` package) exercising
-the actual rendered page — click through reveal buttons, check
-`img.naturalWidth > 0` on every visible image, count DOM elements,
-screenshot and visually inspect. Write these scripts fresh each time;
-none are checked into the repo as reusable test files. This is
-deliberate given the `file://`-only constraint (no dev server to point a
-real test runner at easily) — don't try to introduce a different testing
-approach without discussing it with the owner first, it would be a real
-architecture change.
-
-### 5.8 — A deliberate design choice, never confirmed, is a bug waiting to be reported
-
-The category-filter toggle's active state used brown (`var(--pencil)`)
-as its background — a real, intentional choice made to visually
-distinguish it from the 2D/3D toggle (black, `var(--ink)`), so the two
-filters wouldn't be confused with each other. It was never explicitly
-run past the owner as a choice ("I'm making this one brown so it reads
-as a different filter — okay?"). Two deliveries later, the owner
-reported "that brown color, I don't want it" — accompanied by a
-screenshot with hand-drawn arrows pointing at the fill itself, not at
-any edge or ring, which is what made the actual target unambiguous
-(earlier reports without that kind of visual pointer had been chased as
-CSS `border`/`box-shadow` bugs instead, wasting a round). Fixed by
-making it match the 2D/3D toggle exactly (`var(--ink)`).
-
-**The lesson isn't "the color was ugly."** It's that any styling
-decision made unilaterally — a color, a size, an animation — that
-wasn't explicitly asked for is a latent revision request, not a closed
-decision, even if it's never been complained about yet. When you make
-this kind of call while building something new, say so plainly in your
-delivery note ("I picked brown here to distinguish it from X; happy to
-change it") rather than presenting it as self-evidently correct — it
-gives the owner one clean shot at redirecting it instead of a
-back-and-forth chasing the wrong kind of bug.
-
----
+This section used to be ~150 lines of prose, all mandatory reading before
+touching anything. It's been extracted to `LESSONS.md` (repo root),
+organized by topic (drawing, `localStorage`, CSS specificity, delivery
+mechanics, UI reuse, Catalan prose, testing, unconfirmed design choices,
+hand-drawn incidence) — **read only the section that matches what you're
+about to do**, not the whole file, the same way you wouldn't re-read this
+entire HANDOFF before every single edit. If you're about to draw a new
+figure, read `LESSONS.md` §1 and §9. If you're touching `localStorage`,
+read §2. And so on — the section headers in `LESSONS.md` name exactly
+which situation each one applies to.
 
 ## 6. Before you ship anything
 
