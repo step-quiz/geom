@@ -1728,7 +1728,7 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "3D",
     "dificultat": 3,
-    "imatge": null,
+    "imatge": { "fitxer": "pistes/fig-194.png", "esCrop": false, "esInvertida": false, "paginaFont": 79 },
     "enunciat": {
       "en": "Can you find two objects with equal cross-sections and different surface areas?",
       "ca": "Pots trobar dos objectes amb seccions transversals iguals i àrees de superfície diferents?"
@@ -2013,7 +2013,7 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "3D",
     "dificultat": 1,
-    "imatge": null,
+    "imatge": { "fitxer": "fig-210.png", "esCrop": false, "esInvertida": false, "paginaFont": 91 },
     "enunciat": {
       "en": "Can you think of two different ways that a cylinder can be regarded as the result of a motion?",
       "ca": "Se t'acudeixen dues maneres diferents de considerar un cilindre com el resultat d'un moviment?"
@@ -2066,7 +2066,7 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "3D",
     "dificultat": 3,
-    "imatge": null,
+    "imatge": { "fitxer": "fig-211.png", "esCrop": false, "esInvertida": false, "paginaFont": 101 },
     "enunciat": {
       "en": "How should we define the centroid of a shape? Can we do it in such a way that Pappus's theorem holds?",
       "ca": "Com hauríem de definir el centroide d'una figura? Ho podem fer de manera que es compleixi el teorema de Pappus?"
@@ -2346,7 +2346,7 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": { "fitxer": "fig-212.png", "esCrop": false, "esInvertida": false, "paginaFont": 114 },
     "enunciat": {
       "en": "Can you find two different triangles with the same area and perimeter?",
       "ca": "Pots trobar dos triangles diferents amb la mateixa àrea i el mateix perímetre?"
@@ -2399,7 +2399,7 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": { "fitxer": "fig-213.png", "esCrop": false, "esInvertida": false, "paginaFont": 116 },
     "enunciat": {
       "en": "There is actually another technique for measuring lengths, which we used for the diagonal of a regular pentagon. What is it?",
       "ca": "En realitat hi ha una altra tècnica per mesurar longituds, que vam fer servir per a la diagonal d'un pentàgon regular. Quina és?"
@@ -2872,7 +2872,7 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 1,
-    "imatge": null,
+    "imatge": { "fitxer": "fig-214.png", "esCrop": false, "esInvertida": false, "paginaFont": 144 },
     "enunciat": {
       "en": "A circle is a special type of ellipse. Where are its focal points?",
       "ca": "Un cercle és un tipus especial d'el·lipse. On són els seus focus?"
@@ -3012,7 +3012,7 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 3,
-    "imatge": null,
+    "imatge": { "fitxer": "fig-215.png", "esCrop": false, "esInvertida": false, "paginaFont": 156 },
     "enunciat": {
       "en": "Can you work out the details of this proof?",
       "ca": "Pots treballar els detalls d'aquesta demostració?"
@@ -3461,7 +3461,7 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": { "fitxer": "fig-216.png", "esCrop": false, "esInvertida": false, "paginaFont": 179 },
     "enunciat": {
       "en": "Show that the focal constant of an ellipse or hyperbola is equal to its diameter.",
       "ca": "Demostra que la constant focal d'una el·lipse o d'una hipèrbola és igual al seu diàmetre."
