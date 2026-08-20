@@ -55,7 +55,11 @@ afegeixes és una decisió teva.
 moment visual propi, diferent del que la imatge de Pista 3 acaba mostrant, no una
 repetició.
 
-A la llista, les preguntes que tenen guia porten la marca ◆.
+A la llista no hi ha cap marca que distingeixi les preguntes amb guia: **les
+130 en tenen**, i una marca que surt sempre no informa de res. (Fins a
+l'auditoria d'ago. 2026 aquí hi deia que portaven la marca ◆ — el caràcter
+no és, ni ha estat mai, enlloc del codi; era la descripció d'un estat
+anterior, quan només algunes preguntes tenien guia.)
 
 ### Filtres a la llista de preguntes
 
@@ -224,18 +228,32 @@ docs/
   manifest-figures.tsv        — registre de les 162 figures de guia
 ```
 
+Els documents de disseny que les capçaleres del codi citen amb número de
+secció (`§4.2 de GLOSSARY-DESIGN-NOTES.md` i companyia) **no són en aquest
+repositori**: eren documents de treball externs. `docs/DOCUMENTS-DE-DISSENY.md`
+diu, un per un, quins són, què hi havia a cada secció citada i on ha anat a
+parar aquell contingut. `verifica_projecte.py` vigila que no n'apareguin de
+nous sense declarar.
+
 Per a detalls tècnics de cada decisió de disseny (per què cada fitxer és com és, quins
 patrons dels projectes germans es reutilitzen i quins es descarten, i per què), consulta
 `PROJECTES-TECHNICAL-REFERENCE.md`.
 
 ## Regenerar les dades
 
-`js/data/preguntes-dades.js` **no s'edita a mà** — es genera amb
-`build_preguntes_dades.py` a partir del JSON d'extracció original. Si el text
-d'una pregunta canvia a la font, torna a executar l'script en lloc d'editar el
-`.js` directament. **Excepció**: un cop generat, `enunciat.ca`, `pista.*`,
-`notaEditorial.*` i el camp `imatge` de la Part 1 sí que s'editen a mà
-directament al `.js` — regenerar-lo sense fusionar aquest contingut el perdria.
+`js/data/preguntes-dades.js` es va generar amb `build_preguntes_dades.py` a
+partir del JSON d'extracció original. **Avís operatiu: aquell script no és en
+aquest repositori** — l'owner el va arxivar a fora un cop feta la
+transformació, que no es torna a fer (v. `HANDOFF-COLD-START.md` §4 i
+`docs/DOCUMENTS-DE-DISSENY.md`). Conseqüència pràctica: **aquest fitxer no es
+pot regenerar avui**; és, de facto, la font de veritat, i s'edita a mà amb
+compte.
+
+Això no és tan greu com sona, perquè bona part del seu contingut ja s'editava
+a mà de tota manera: `enunciat.ca`, `pista.*`, `notaEditorial.*` i el camp
+`imatge` de la Part 1 no venien mai del JSON font. El que s'ha perdut és la
+capacitat de refer els camps que sí que en venien (`enunciat.en`, `pagina`,
+`_notaExtraccio`) si mai calgués tornar a passar el PDF.
 
 `js/data/guies-dades.js` **tampoc s'edita a mà** — es genera amb
 `python3 parse_guies.py` a partir dels `.md` a `docs/guies/GUIES-LOT-N.md`.

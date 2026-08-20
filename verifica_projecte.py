@@ -192,6 +192,88 @@ for f in sorted(os.listdir("docs/guies")) if os.path.isdir("docs/guies") else []
 if not any("después" in e for e in errors):
     ok("cap castellanisme 'después' als .md de guia")
 
+# ------------------------------------------- 10. referències a documents morts
+# Afegit a l'auditoria d'ago. 2026. Les capçaleres del codi citen documents
+# de disseny amb número de secció ("§4.2 de GLOSSARY-DESIGN-NOTES.md"). Cinc
+# d'aquests documents mai han estat al repo: eren de treball, externs. Es
+# permeten expressament (la citació és informació real: la decisió va ser
+# especificada abans d'implementar-se) però han d'estar declarats aquí i a
+# docs/DOCUMENTS-DE-DISSENY.md, que és qui explica on ha anat a parar cada un.
+# Qualsevol referència NOVA a un document inexistent i no declarat és un avís.
+DOCS_ABSENTS = {
+    "PROPOSTA-ARQUITECTURA.md",
+    "GLOSSARY-DESIGN-NOTES.md",
+    "ITINERARY-DESIGN-NOTES.md",
+    "DEMO-PROOF-INTRO-DESIGN-NOTES.md",
+    "HANDOFF-COMPLETAR-GUIES.md",
+    "pedagogical-assessment-geom.md",
+    "NOTA-GLOSSARI.md",          # mai va existir: v. NOTA-GLOSSARI-MILLORES.md
+    "build_preguntes_dades.py",  # arxivat fora del repo per l'owner
+    "HANDOFF-LLIURAMENT-9.md",   # full de ruta dels lots 9/10, ja executat
+    "i18n-spanish-guide.md",     # d'un projecte germà (karelcat), mai d'aquest
+}
+# Plantilles, rangs i noms genèrics que no són fitxers concrets:
+#   GUIES-LOT-N.md      plantilla
+#   GUIES-LOT-1..8.md   rang ("dels lots 1 al 8"), no un fitxer
+#   10.md               tros de "HANDOFF-LLIURAMENT-9.md/-10.md" que la
+#                       regex parteix en dos; el document real ja és a DOCS_ABSENTS
+DOCS_IGNORA = {"GUIES-LOT-N.md", "NOTES.md", "figures-NN.html", "10.md"}
+RANG_LOT = re.compile(r"^GUIES-LOT-\d+\.\.\d+\.md$")
+
+def existeix_doc(nom):
+    for arrel, dirs, fitxers in os.walk("."):
+        if ".git" in arrel: continue
+        if nom in fitxers: return True
+    return False
+
+REF_DOC = re.compile(r"\b([A-Za-z0-9_][A-Za-z0-9_.-]*\.(?:md|py))\b")
+morts, revisats = [], set()
+for arrel, dirs, fitxers in os.walk("."):
+    if ".git" in arrel or arrel.startswith("./docs"): continue
+    for n in fitxers:
+        if not n.endswith((".js", ".css", ".html")): continue
+        cami = os.path.join(arrel, n)
+        for num, linia in enumerate(open(cami, encoding="utf-8"), 1):
+            for ref in REF_DOC.findall(linia):
+                if ref in DOCS_ABSENTS or ref in DOCS_IGNORA: continue
+                if RANG_LOT.match(ref): continue
+                if ref in revisats: continue
+                revisats.add(ref)
+                if not existeix_doc(ref):
+                    morts.append("%s:%d cita %s, que no existeix" % (cami, num, ref))
+for m in morts: avis(m)
+if not morts:
+    ok("cap referència a un document inexistent no declarat")
+if not os.path.exists("docs/DOCUMENTS-DE-DISSENY.md"):
+    err("FALTA docs/DOCUMENTS-DE-DISSENY.md (explica els documents de DOCS_ABSENTS)")
+else:
+    s = open("docs/DOCUMENTS-DE-DISSENY.md", encoding="utf-8").read()
+    nodecl = [d for d in DOCS_ABSENTS if d not in s]
+    if nodecl:
+        err("DOCS_ABSENTS conté %s, que docs/DOCUMENTS-DE-DISSENY.md no explica"
+            % ", ".join(sorted(nodecl)))
+    else:
+        ok("tots els documents absents declarats estan explicats")
+
+# ------------------------------------- 11. paraules partides pel wrap del .md
+# Origen de tres errates reals ("calcular- ne", "semi- esfera", "parteix- lo"):
+# un guionet a final de línia al .md que neteja() de parse_guies.py convertia
+# en "guionet + espai". Arreglat a l'arrel allà; aquí es vigila la sortida.
+G = llegeix_global("js/data/guies-dades.js", "GUIES")
+if G is not None:
+    partides = []
+    for qid, g in G.items():
+        textos = [(p.get("text") or {}).get("ca") or "" for p in g.get("pistes", [])]
+        textos += [(g.get("comprovacio") or {}).get("ca") or "",
+                   (g.get("iDespres") or {}).get("ca") or ""]
+        for t in textos:
+            for m in re.findall(r"\w+- \w+", t):
+                partides.append("%s: %r" % (qid, m))
+    if partides:
+        err("paraules partides a guies-dades.js: %s" % ", ".join(partides[:10]))
+    else:
+        ok("cap paraula partida pel wrap a guies-dades.js")
+
 # ------------------------------------------------------------------ informe
 print("\n%d comprovacions passades" % len(oks))
 if avisos:

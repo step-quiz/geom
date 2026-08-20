@@ -73,6 +73,17 @@ def neteja(t):
     t = re.sub(r"`([^`]*)`", r"\1", t)
     t = re.sub(r"\*\*([^*]*)\*\*", r"\1", t)
     t = re.sub(r"\*([^*]*)\*", r"\1", t)
+    # Paraula partida pel wrap del .md ("calcular-\nne"): es reuneix SENSE
+    # espai, abans que la regla general de sota converteixi el salt de línia
+    # en un espai. Sense això sortien "calcular- ne", "semi- esfera" i
+    # "parteix- lo" a guies-dades.js — tres errates reals detectades a
+    # l'auditoria d'ago. 2026, totes amb el mateix origen.
+    # Segur per construcció en aquest corpus: un guionet a final de línia
+    # sempre és un pronom enclític o un mot compost partit; els incisos hi
+    # van sempre amb — (guió llarg), mai amb -. La condició exigeix lletra
+    # abans i lletra just després, així que un final de línia amb "-" seguit
+    # de línia en blanc (o de xifra) no s'hi toca.
+    t = re.sub(r"(?<=[^\W\d_])-\n[ \t]*(?=[^\W\d_])", "-", t)
     # els salts de línia interns són de formatació del .md, no semàntics
     parts = [re.sub(r"\s*\n\s*", " ", p).strip() for p in re.split(r"\n\s*\n", t)]
     return "\n\n".join(p for p in parts if p)
