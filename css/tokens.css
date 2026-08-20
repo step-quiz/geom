@@ -57,6 +57,16 @@
   --space-6:  3.25rem;
   --space-7:  5rem;
 
+  /*
+    Ritme entre preguntes consecutives a .question-list — derivat de
+    --space-6 (3.25rem × 0.7 = 2.275rem) però com a token PROPI, no
+    reassignant --space-6 directament: aquell token el comparteixen
+    altres blocs sense relació (padding de .page, marges de .demo...)
+    que no han de canviar per aquesta petició, concreta de l'espai entre
+    preguntes. Reducció del 30% a petició explícita.
+  */
+  --question-gap: 2.275rem;
+
   --measure: 40rem;       /* amplada de línia de lectura còmoda per al cos */
   --measure-wide: 52rem;  /* amplada per a la llista completa / capçalera */
 

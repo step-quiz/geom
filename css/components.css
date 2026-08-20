@@ -397,14 +397,6 @@
 
 .guia__check { margin-bottom: var(--space-4); }
 
-/* La marca de la llista: una pregunta amb guia es distingeix d'una sense. */
-.guia-badge {
-  font-family: var(--font-mono);
-  font-size: var(--fs-metadata);
-  letter-spacing: var(--tracking-mono);
-  color: var(--pencil);
-}
-
 /* ==========================================================================
    Glossari (GLOSSARY-DESIGN-NOTES.md) — dues superfícies, un sol estil
    ========================================================================== */
