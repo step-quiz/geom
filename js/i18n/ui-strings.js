@@ -44,8 +44,6 @@ window.UI_LANGS = {
       question_count: "{n} questions",
       no_results: "No questions match this filter.",
       no_image_badge: "no figure",
-      guide_badge: "◆ guide",
-      page_label: "p. {page}",
       open: "Open",
     },
 
@@ -150,8 +148,6 @@ window.UI_LANGS = {
       question_count: "{n} preguntes",
       no_results: "Cap pregunta coincideix amb aquest filtre.",
       no_image_badge: "sense figura",
-      guide_badge: "◆ guia",
-      page_label: "pàg. {page}",
       open: "Obre",
     },
 
