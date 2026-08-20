@@ -95,6 +95,25 @@
     return [pregunta.imatge.esInvertida];
   }
 
+  /**
+   * Retorna l'etiqueta llegible d'una pregunta ("Qüestió 8a") a partir
+   * del seu id intern ("q08a") — substitueix arreu del lloc l'antiga
+   * etiqueta curta (l'id en majúscules, "Q08A", via CSS uppercase).
+   * Un sufix de lletra sola (q08a/b/c, q18a/b) es conserva -- distingeix
+   * preguntes reals diferents que comparteixen número de llibre. Un
+   * sufix no alfabètic (p. ex. "_implicit" a q27_implicit) es descarta:
+   * és una distinció interna de dades, no rellevant per a qui llegeix
+   * la pantalla. Usada per totes les vistes que mostraven l'id cru
+   * (llista, detall, itinerari, demo) perquè no calgui repetir aquest
+   * parsing a cadascuna.
+   */
+  function etiquetaQuestio(id) {
+    const m = /^q(\d+)([a-z]?)/.exec(id || "");
+    if (!m) return id || "";
+    const n = String(parseInt(m[1], 10)) + m[2];
+    return window.tf("meta.question_label", { n: n });
+  }
+
   window.geoContingut = {
     resolCamp: resolCamp,
     teContingut: teContingut,
@@ -102,5 +121,6 @@
     nomsFitxer: nomsFitxer,
     esCropFitxer: esCropFitxer,
     esInvertidaFitxer: esInvertidaFitxer,
+    etiquetaQuestio: etiquetaQuestio,
   };
 })();
