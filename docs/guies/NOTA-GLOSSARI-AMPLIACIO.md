@@ -82,6 +82,11 @@ ull:
   de terme— i el patró de publicació —`docs/publish_figures.py`,
   esborrat per diferència de renders— ja hi són establerts, no cal
   redecidir-los).
+
+> **Actualització posterior:** d'aquestes 34, 7 es van resoldre a
+> `NOTA-GLOSSARI-MILLORES.md` i les 27 restants a
+> `NOTA-GLOSSARI-27-FIGURES.md` — el glossari és 53/53 des d'aquell
+> lliurament. Secció deixada tal qual com a registre històric.
 - Cap acció sobre els termes SENSE figura mentre no se n'escriguin: la
   interfície ja gestiona bé un terme sense `figura` (simplement no en
   pinta cap secció), així que no hi ha cap urgència tècnica, només de

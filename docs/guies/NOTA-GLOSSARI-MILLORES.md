@@ -109,6 +109,11 @@ reparteix entre uns quants més reaprofitables i una majoria que
 necessitarà dibuix nou — no revisat encara, a petició explícita de
 l'owner de limitar aquesta sessió al reaprofitament.
 
+> **Actualització posterior:** aquests 27 termes ja tenen figura —
+> v. `docs/guies/NOTA-GLOSSARI-27-FIGURES.md`. Aquesta secció es deixa
+> tal qual com a registre històric de l'estat en el moment d'aquest
+> lliurament.
+
 ## 7. Fitxers d'aquest lliurament
 
 ```
