@@ -129,22 +129,26 @@
    *    tracta el sinus d'un angle obtús, no una propietat aritmètica).
    *    Decisió de contingut independent de l'owner. Aquesta llista ja
    *    no coincideix 1:1 amb cap categoria sencera des d'aquesta tanda.
+   *  - q67, q102, q106: quarta tanda -- decidida en revisar quines
+   *    preguntes sense imatge d'enunciat calia il·lustrar; per a
+   *    aquestes tres, la decisió de contingut va ser amagar-les en lloc
+   *    de dibuixar-los una imatge (v. NOTA-ENUNCIATS-D.md).
    */
-  // Decisió de contingut de l'owner: aquestes 12 preguntes no es
+  // Decisió de contingut de l'owner: aquestes 15 preguntes no es
   // mostren enlloc que llisti o suggereixi preguntes (aquesta llista,
   // "Anterior/Següent" a detall.js, "Suggerit per a tu" a itinerari.js)
   // -- però SÍ són accessibles per enllaç directe (#q19, etc.), amb la
   // seva guia completa (v. README §"Exercicis amagats de la llista").
   // 11 d'aquestes són EXACTAMENT les 11 preguntes de la categoria
   // "aritmetica_algebra" (per això aquella categoria no apareix al menú
-  // de filtres, v. més avall); q87 s'hi va afegir després per una
-  // decisió de contingut independent (és "triangles" temàticament, no
-  // aritmètica/àlgebra) -- per tant aquesta llista ja NO coincideix 1:1
-  // amb cap categoria completa, i és normal que no ho faci.
+  // de filtres, v. més avall); q87, q67, q102 i q106 s'hi van afegir
+  // després per decisions de contingut independents -- per tant aquesta
+  // llista ja NO coincideix 1:1 amb cap categoria completa.
   const EXERCICIS_AMAGATS = [
     "q19", "q20", "q34", "q35", "q84", "q88",
     "q18a", "q18b", "q21", "q24", "q83",
     "q87",
+    "q67", "q102", "q106",
   ];
 
   /** True si l'id és a EXERCICIS_AMAGATS -- font única de veritat que
