@@ -124,11 +124,36 @@
    *    eren de la tanda anterior), a petició explícita d'amagar TOTA
    *    la categoria sencera. V. window.CLASSIFICACIO_TEMATICA per
    *    confirmar la llista completa si mai cal regenerar-la.
+   *  - q87: tercera tanda, sol, NO forma part de "aritmetica_algebra"
+   *    (categoritzada com "triangles" a window.CLASSIFICACIO_TEMATICA --
+   *    tracta el sinus d'un angle obtús, no una propietat aritmètica).
+   *    Decisió de contingut independent de l'owner. Aquesta llista ja
+   *    no coincideix 1:1 amb cap categoria sencera des d'aquesta tanda.
    */
+  // Decisió de contingut de l'owner: aquestes 12 preguntes no es
+  // mostren enlloc que llisti o suggereixi preguntes (aquesta llista,
+  // "Anterior/Següent" a detall.js, "Suggerit per a tu" a itinerari.js)
+  // -- però SÍ són accessibles per enllaç directe (#q19, etc.), amb la
+  // seva guia completa (v. README §"Exercicis amagats de la llista").
+  // 11 d'aquestes són EXACTAMENT les 11 preguntes de la categoria
+  // "aritmetica_algebra" (per això aquella categoria no apareix al menú
+  // de filtres, v. més avall); q87 s'hi va afegir després per una
+  // decisió de contingut independent (és "triangles" temàticament, no
+  // aritmètica/àlgebra) -- per tant aquesta llista ja NO coincideix 1:1
+  // amb cap categoria completa, i és normal que no ho faci.
   const EXERCICIS_AMAGATS = [
     "q19", "q20", "q34", "q35", "q84", "q88",
     "q18a", "q18b", "q21", "q24", "q83",
+    "q87",
   ];
+
+  /** True si l'id és a EXERCICIS_AMAGATS -- font única de veritat que
+   *  altres mòduls (detall.js per a Anterior/Següent, itinerari.js per
+   *  als suggeriments) consulten via window.geoLlista.esAmagada, en lloc
+   *  de duplicar aquest array. */
+  function esAmagada(id) {
+    return EXERCICIS_AMAGATS.includes(id);
+  }
 
   /**
    * Filtre de categories temàtiques (menú de selecció múltiple, 6
@@ -449,5 +474,6 @@
 
   window.geoLlista = {
     render: render,
+    esAmagada: esAmagada,
   };
 })();

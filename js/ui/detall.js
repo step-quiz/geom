@@ -60,15 +60,35 @@
    * "anterior/següent" segueix l'ordre de PRESENTACIÓ configurable
    * (js/data/ordre-preguntes.js), no l'ordre del llibre — són coses
    * diferents a propòsit (v. la capçalera d'aquell fitxer).
+   *
+   * Salta EXERCICIS_AMAGATS (js/ui/llista.js, window.geoLlista.esAmagada)
+   * en totes dues direccions: es camina des de l'índex actual fins
+   * trobar el primer veí NO amagat, en lloc d'agafar sempre l'entrada
+   * adjacent. Sense això, una pregunta amagada de la llista hi tornava
+   * a aparèixer per aquesta via — reportat explícitament per l'owner.
+   * Si la pregunta ACTUAL és ella mateixa amagada (s'hi ha arribat per
+   * enllaç directe, cosa permesa a propòsit), es comporta igual: els
+   * dos veïns es busquen saltant qualsevol altra amagada consecutiva
+   * (p. ex. q18a/q18b, adjacents i totes dues amagades).
    */
+  function esAmagada(id) {
+    return !!(window.geoLlista && window.geoLlista.esAmagada(id));
+  }
+
   function veins(id) {
     const totes = window.geoOrdre ? window.geoOrdre.preguntesOrdenades() : (window.PREGUNTES || []);
     const idx = totes.findIndex((p) => p.id === id);
     if (idx === -1) return { anterior: null, seguent: null };
-    return {
-      anterior: idx > 0 ? totes[idx - 1] : null,
-      seguent: idx < totes.length - 1 ? totes[idx + 1] : null,
-    };
+
+    let anterior = null;
+    for (let i = idx - 1; i >= 0; i--) {
+      if (!esAmagada(totes[i].id)) { anterior = totes[i]; break; }
+    }
+    let seguent = null;
+    for (let i = idx + 1; i < totes.length; i++) {
+      if (!esAmagada(totes[i].id)) { seguent = totes[i]; break; }
+    }
+    return { anterior: anterior, seguent: seguent };
   }
 
   /**
