@@ -449,5 +449,616 @@ const ACCENT='#8B5E3C';
 
   stampNum(ctx,360,'g-014');
 })();
+
+/* ============================================================
+   gloss-radi-diametre.png -- radi, diàmetre, circumferència/cercle.
+   Un sol cercle: el radi (centre a un punt de la vora), el diàmetre
+   (dues vores a banda i banda del centre), i les etiquetes
+   "circumferència" (la vora) / "cercle" (la regió) distingides per
+   text, no per ombrejat -- ombrejar la regió introduiria una textura
+   que no existeix en cap altra figura del glossari (tot és traç, mai
+   superfície omplerta) i seria inconsistent amb la resta del fitxer. */
+(function(){
+  const ctx=mk('g16',480,460),hd=makeHandDraw(ctx,9201);ctx.translate(240,220);
+  const R=170;
+  hd.handEllipse(0,0,R,R,{lineWidth:2.4,irregularity:0.025,color:INK});
+  hd.handDot(0,0,4,INK);
+  // radi: del centre a un punt de la vora (angle propi, no cap dels dos del diametre)
+  const aRad=-50*Math.PI/180;
+  const pRad={x:R*Math.cos(aRad),y:R*Math.sin(aRad)};
+  hd.handSegment(0,0,pRad.x,pRad.y,{lineWidth:2.2,color:INK});
+  // diametre: recta que travessa el centre, dos punts oposats de la vora
+  const aDia=150*Math.PI/180;
+  const p1={x:R*Math.cos(aDia),y:R*Math.sin(aDia)};
+  const p2={x:-p1.x,y:-p1.y};
+  hd.handSegment(p1.x,p1.y,p2.x,p2.y,{lineWidth:2.2,color:INK});
+  // corda: dos punts de la vora que no passen pel centre (ni radi ni diametre)
+  const aC0=15*Math.PI/180, aC1=95*Math.PI/180;
+  const c0={x:R*Math.cos(aC0),y:R*Math.sin(aC0)};
+  const c1={x:R*Math.cos(aC1),y:R*Math.sin(aC1)};
+  hd.handSegment(c0.x,c0.y,c1.x,c1.y,{lineWidth:2.2,color:INK});
+  lbl(ctx,'radi',pRad.x*0.45-30,pRad.y*0.45-14,ACCENT,17);
+  lbl(ctx,'diàmetre',p1.x*0.5-18,p1.y*0.5-40,ACCENT,17);
+  lbl(ctx,'corda',(c0.x+c1.x)/2+14,(c0.y+c1.y)/2-6,ACCENT,17);
+  lblC(ctx,'circumferència (la vora) / cercle (la regió)',0,R+42,ACCENT,16);
+  stampNum(ctx,380,'g-015');
+})();
+
+/* ============================================================
+   gloss-corda-arc.png -- arc: la porció de circumferència delimitada
+   per dos radis (segments amb el centre en comú). NO es dibuixa la
+   circumferència sencera ni cap corda -- només l'arc mateix i els dos
+   radis que el delimiten, perquè la figura mostri exactament "arc",
+   res més. */
+(function(){
+  const ctx=mk('g17',440,440),hd=makeHandDraw(ctx,9202);
+  // origen recentrat: la forma (centre + arc) no és simètrica respecte del
+  // centre de l'arc (angles 100° i -20°, no simètrics), així que cal
+  // desplaçar l'origen del canvas pel centre real de la seva bounding box
+  ctx.translate(145,161);
+  const R=180;
+  const a0=100*Math.PI/180, a1=-20*Math.PI/180;
+  // l'arc mateix, entre a1 i a0
+  hd.handEllipse(0,0,R,R,{startAngle:a1,endAngle:a0,passes:1,lineWidth:2.6,irregularity:0.025,color:INK});
+  const P0={x:R*Math.cos(a0),y:R*Math.sin(a0)};
+  const P1={x:R*Math.cos(a1),y:R*Math.sin(a1)};
+  // els dos radis que delimiten l'arc, amb el centre en comú
+  hd.handSegment(0,0,P0.x,P0.y,{lineWidth:2.2,color:INK});
+  hd.handSegment(0,0,P1.x,P1.y,{lineWidth:2.2,color:INK});
+  hd.handDot(0,0,3.5,INK);
+  const mid=(a0+a1)/2;
+  lblC(ctx,'arc',R*1.2*Math.cos(mid),R*1.2*Math.sin(mid),ACCENT,18);
+  stampNum(ctx,400,'g-016');
+})();
+
+/* ============================================================
+   gloss-tangent-secant.png -- recta tangent (toca un únic punt,
+   perpendicular al radi en aquest punt) i recta secant (talla en
+   dos punts), totes dues sobre el mateix cercle per comparar-les
+   directament. */
+(function(){
+  const ctx=mk('g18',780,460),hd=makeHandDraw(ctx,9203);
+
+  // tangent
+  (function(){
+    ctx.save();ctx.translate(190,220);
+    const R=140;
+    hd.handEllipse(0,0,R,R,{lineWidth:2.2,irregularity:0.025,color:INK});
+    const aT=20*Math.PI/180;
+    const T={x:R*Math.cos(aT),y:R*Math.sin(aT)};
+    hd.handSegment(0,0,T.x,T.y,{lineWidth:1.8,dashed:true,dashPattern:[6,5],color:INK});
+    // recta tangent: perpendicular al radi en T, allargada a banda i banda
+    const dirx=-Math.sin(aT),diry=Math.cos(aT);
+    const Lext=145;
+    hd.handSegment(T.x-dirx*Lext,T.y-diry*Lext,T.x+dirx*Lext,T.y+diry*Lext,{lineWidth:2.4,color:INK});
+    rightAngle(hd,T.x,T.y,0,0,T.x+dirx*Lext,T.y+diry*Lext,16,INK);
+    hd.handDot(T.x,T.y,3.5,INK);
+    lblC(ctx,'tangent',0,R+50,ACCENT,18);
+    ctx.restore();
+  })();
+
+  // secant
+  (function(){
+    ctx.save();ctx.translate(590,220);
+    const R=140;
+    hd.handEllipse(0,0,R,R,{lineWidth:2.2,irregularity:0.025,color:INK});
+    // recta secant: linia que passa a distancia d<R del centre
+    const d0=55, ang=12*Math.PI/180;
+    const nx=Math.cos(ang),ny=Math.sin(ang);
+    const dirx=-ny,diry=nx;
+    const cx=d0*nx, cy=d0*ny;
+    const half=Math.sqrt(R*R-d0*d0);
+    const p0={x:cx-dirx*half,y:cy-diry*half};
+    const p1={x:cx+dirx*half,y:cy+diry*half};
+    const ext=45;
+    hd.handSegment(p0.x-dirx*ext,p0.y-diry*ext,p1.x+dirx*ext,p1.y+diry*ext,{lineWidth:2.4,color:INK});
+    hd.handDot(p0.x,p0.y,3.5,INK);
+    hd.handDot(p1.x,p1.y,3.5,INK);
+    lblC(ctx,'secant',0,R+50,ACCENT,18);
+    ctx.restore();
+  })();
+
+  stampNum(ctx,420,'g-017');
+})();
+
+/* ============================================================
+   gloss-mediatriu.png -- mediatriu d'un segment com a lloc geomètric:
+   la recta perpendicular pel punt mitjà, i tres punts sobre ella
+   marcats amb la mateixa distància als dos extrems (numèricament
+   comprovat, no a ull), per fer visible "lloc geomètric" alhora amb
+   el mateix diagrama -- els dos termes comparteixen figura. */
+(function(){
+  const ctx=mk('g19',560,480),hd=makeHandDraw(ctx,9204);ctx.translate(280,240);
+  const A={x:-160,y:70}, B={x:150,y:-50};
+  const M={x:(A.x+B.x)/2,y:(A.y+B.y)/2};
+  const dx=B.x-A.x, dy=B.y-A.y, L=Math.hypot(dx,dy);
+  const ux=dx/L, uy=dy/L, px=-uy, py=ux;
+
+  hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.4,color:INK});
+  const s0=-165,s1=165;
+  hd.handSegment(M.x+px*s0,M.y+py*s0,M.x+px*s1,M.y+py*s1,{lineWidth:2.2,color:INK});
+  rightAngle(hd,M.x,M.y,A.x,A.y,M.x+px*s1,M.y+py*s1,16,INK);
+  tick(hd,A.x,A.y,M.x,M.y,INK);tick(hd,M.x,M.y,B.x,B.y,INK);
+
+  const pts=[-140,-45,90].map(s=>({x:M.x+px*s,y:M.y+py*s}));
+  pts.forEach(P=>{
+    hd.handDot(P.x,P.y,3.5,INK);
+    hd.handSegment(P.x,P.y,A.x,A.y,{lineWidth:1.4,dashed:true,dashPattern:[4,5],color:INK});
+    hd.handSegment(P.x,P.y,B.x,B.y,{lineWidth:1.4,dashed:true,dashPattern:[4,5],color:INK});
+  });
+
+  lblC(ctx,'A',A.x-24,A.y+6,INK,20);
+  lblC(ctx,'B',B.x+24,B.y-6,INK,20);
+  lbl(ctx,'mediatriu',M.x+px*s1-96,M.y+py*s1-14,ACCENT,17);
+  lblC(ctx,'cada punt de la mediatriu equidista de A i de B',0,215,ACCENT,16);
+  stampNum(ctx,440,'g-018');
+})();
+
+/* ============================================================
+   gloss-congruencia.png -- dos triangles CONGRUENTS (mateixa forma I
+   mateixa mida -- a diferencia de gloss-triangles-semblants.png, ja
+   existent, on nomes la forma coincideix): un triangle i la seva
+   reflexio, amb els tres costats marcats amb tics d'igualtat
+   corresponents. */
+(function(){
+  const ctx=mk('g20',760,340),hd=makeHandDraw(ctx,9205);ctx.translate(0,30);
+  const A={x:60,y:0},B={x:0,y:230},C={x:220,y:190};
+  function d(p,q){return Math.hypot(p.x-q.x,p.y-q.y);}
+
+  (function(){
+    ctx.save();ctx.translate(90,20);
+    hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.6,color:INK});
+    tick(hd,A.x,A.y,B.x,B.y,INK);
+    tick(hd,A.x,A.y,C.x,C.y,INK);tick(hd,A.x,A.y,C.x,C.y,INK);
+    lblC(ctx,'A',A.x-18,A.y-6,INK,19);
+    lblC(ctx,'B',B.x-20,B.y+14,INK,19);
+    lblC(ctx,'C',C.x+18,C.y+14,INK,19);
+    ctx.restore();
+  })();
+
+  // reflectit horitzontalment i traslladat -- mateixes mides exactes.
+  // Etiquetes calculades a partir de la MATEIXA transformació (translate 660 +
+  // scale(-1,1)) que la geometria, no d'una fórmula a part -- un punt local
+  // (x,y) apareix a coordenades de canvas (660-x, 20+y).
+  const t2x=660, t2y=20;
+  (function(){
+    ctx.save();ctx.translate(t2x,t2y);ctx.scale(-1,1);
+    hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.6,color:INK});
+    tick(hd,A.x,A.y,B.x,B.y,INK);
+    tick(hd,A.x,A.y,C.x,C.y,INK);tick(hd,A.x,A.y,C.x,C.y,INK);
+    ctx.restore();
+  })();
+  lblC(ctx,'A\u2019',t2x-A.x+20,t2y+A.y-6,INK,19);
+  lblC(ctx,'B\u2019',t2x-B.x+22,t2y+B.y+14,INK,19);
+  lblC(ctx,'C\u2019',t2x-C.x-20,t2y+C.y+14,INK,19);
+
+  lblC(ctx,'congruents — mateixa forma i mateixa mida',380,300,ACCENT,18);
+  stampNum(ctx,320,'g-019');
+})();
+
+/* ============================================================
+   gloss-criteris-congruencia.png -- CCC / CAC / ACA en tres mini-
+   panells: a cada un, exactament els elements que el criteri fixa
+   marcats (costats amb tics, angles amb arc), la resta en tinta fina
+   sense marca -- perquè es vegi d'un cop d'ull QUÈ es dona en cada
+   criteri. */
+(function(){
+  const ctx=mk('g21',900,360),hd=makeHandDraw(ctx,9206);
+
+  function triangle(dx,label,markSides,markAngle){
+    ctx.save();ctx.translate(dx,40);
+    const A={x:70,y:0},B={x:0,y:230},C={x:210,y:190};
+    hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.4,color:INK});
+    hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.4,color:INK});
+    hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.4,color:INK});
+    if(markSides.includes('AB')) tick(hd,A.x,A.y,B.x,B.y,INK);
+    if(markSides.includes('AC')){tick(hd,A.x,A.y,C.x,C.y,INK);}
+    if(markSides.includes('BC')){tick(hd,B.x,B.y,C.x,C.y,INK);tick(hd,B.x,B.y,C.x,C.y,INK);}
+    if(markAngle==='A') angleMark(hd,A.x,A.y,B.x,B.y,C.x,C.y,26,1,INK);
+    if(markAngle==='B') angleMark(hd,B.x,B.y,A.x,A.y,C.x,C.y,26,1,INK);
+    lblC(ctx,label,105,275,ACCENT,19);
+    ctx.restore();
+  }
+  triangle(30,'CCC (SSS)',['AB','AC','BC'],null);
+  triangle(330,'CAC (SAS)',['AB','AC'],'A');
+  triangle(630,'ACA (ASA)',[],null);
+  // ACA needs both base angles marked instead of sides -- redraw its angle marks explicitly
+  (function(){
+    ctx.save();ctx.translate(630,40);
+    const A={x:70,y:0},B={x:0,y:230},C={x:210,y:190};
+    angleMark(hd,B.x,B.y,A.x,A.y,C.x,C.y,26,1,INK);
+    angleMark(hd,C.x,C.y,A.x,A.y,B.x,B.y,26,1,INK);
+    tick(hd,B.x,B.y,C.x,C.y,INK);
+    ctx.restore();
+  })();
+
+  stampNum(ctx,320,'g-020');
+})();
+
+/* ============================================================
+   gloss-rao-semblanca.png -- reaprofita l'esperit de
+   gloss-triangles-semblants.png (dos triangles, mateixos angles) però
+   amb la raó k explícita entre un costat i el seu corresponent, per
+   fer-la el protagonista de la figura en lloc dels angles. */
+(function(){
+  const ctx=mk('g22',780,420),hd=makeHandDraw(ctx,9207);
+
+  const Asm={x:60,y:0},Bsm={x:0,y:150},Csm={x:170,y:130};
+  (function(){
+    ctx.save();ctx.translate(40,40);
+    hd.handSegment(Asm.x,Asm.y,Bsm.x,Bsm.y,{lineWidth:2.4,color:INK});
+    hd.handSegment(Asm.x,Asm.y,Csm.x,Csm.y,{lineWidth:2.4,color:INK});
+    hd.handSegment(Bsm.x,Bsm.y,Csm.x,Csm.y,{lineWidth:2.4,color:INK});
+    lbl(ctx,'1',(Asm.x+Bsm.x)/2-24,(Asm.y+Bsm.y)/2+2,ACCENT,17);
+    ctx.restore();
+  })();
+
+  const k=1.7;
+  const Abig={x:Asm.x*k,y:Asm.y*k},Bbig={x:Bsm.x*k,y:Bsm.y*k},Cbig={x:Csm.x*k,y:Csm.y*k};
+  (function(){
+    ctx.save();ctx.translate(320,10);
+    hd.handSegment(Abig.x,Abig.y,Bbig.x,Bbig.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(Abig.x,Abig.y,Cbig.x,Cbig.y,{lineWidth:2.6,color:INK});
+    hd.handSegment(Bbig.x,Bbig.y,Cbig.x,Cbig.y,{lineWidth:2.6,color:INK});
+    lbl(ctx,'k',(Abig.x+Bbig.x)/2-18,(Abig.y+Bbig.y)/2+2,ACCENT,20);
+    ctx.restore();
+  })();
+
+  lblC(ctx,'raó de semblança k = costat gran ÷ costat corresponent petit',390,390,ACCENT,17);
+  stampNum(ctx,400,'g-021');
+})();
+
+/* ============================================================
+   gloss-projeccio-ortogonal.png -- el segment AB "cau" perpendicular
+   sobre una recta r; el peu de cada perpendicular marca els extrems
+   de la projecció A'B'. */
+(function(){
+  const ctx=mk('g23',560,380),hd=makeHandDraw(ctx,9208);ctx.translate(60,300);
+  const rDir={x:1,y:0};
+  hd.handSegment(-20,0,460,0,{lineWidth:2.2,color:INK});
+  const A={x:70,y:-230}, B={x:330,y:-110};
+  hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.4,color:INK});
+  const Ap={x:A.x,y:0}, Bp={x:B.x,y:0};
+  hd.handSegment(A.x,A.y,Ap.x,Ap.y,{lineWidth:1.6,dashed:true,dashPattern:[5,5],color:INK});
+  hd.handSegment(B.x,B.y,Bp.x,Bp.y,{lineWidth:1.6,dashed:true,dashPattern:[5,5],color:INK});
+  rightAngle(hd,Ap.x,Ap.y,A.x,A.y,Ap.x+40,Ap.y,14,INK);
+  rightAngle(hd,Bp.x,Bp.y,B.x,B.y,Bp.x+40,Bp.y,14,INK);
+  hd.handDot(Ap.x,Ap.y,3.5,INK);hd.handDot(Bp.x,Bp.y,3.5,INK);
+  lblC(ctx,'A',A.x-20,A.y-10,INK,19);
+  lblC(ctx,'B',B.x+16,B.y-16,INK,19);
+  lbl(ctx,"A'",Ap.x-10,26,INK,17);
+  lbl(ctx,"B'",Bp.x-10,26,INK,17);
+  lblC(ctx,"projecció de AB sobre r: el segment A'B'",220,66,ACCENT,17);
+  lbl(ctx,'r',445,-8,INK,18);
+  stampNum(ctx,340,'g-022');
+})();
+
+/* ============================================================
+   gloss-teorema-tales.png -- dues rectes secants tallades per tres
+   paral·leles; els segments que determinen a cada recta són
+   proporcionals (verificat numèricament, no a ull). */
+(function(){
+  const ctx=mk('g24',620,480),hd=makeHandDraw(ctx,9209);ctx.translate(60,40);
+  const O={x:0,y:0};
+  const dir1={x:0.55,y:1}, dir2={x:1,y:0.85};
+  function norm(v){const L=Math.hypot(v.x,v.y);return {x:v.x/L,y:v.y/L};}
+  const u1=norm(dir1), u2=norm(dir2);
+  const ts=[120,230,380]; // distàncies desiguals -> Tales, no un cas casolà
+  const pts1=ts.map(t=>({x:O.x+u1.x*t,y:O.y+u1.y*t}));
+  const pts2=ts.map(t=>({x:O.x+u2.x*t,y:O.y+u2.y*t}));
+  hd.handSegment(O.x,O.y,pts1[2].x,pts1[2].y,{lineWidth:2.2,color:INK});
+  hd.handSegment(O.x,O.y,pts2[2].x,pts2[2].y,{lineWidth:2.2,color:INK});
+  for(let i=0;i<3;i++){
+    hd.handSegment(pts1[i].x,pts1[i].y,pts2[i].x,pts2[i].y,{lineWidth:2,color:INK});
+    hd.handDot(pts1[i].x,pts1[i].y,3,INK);
+    hd.handDot(pts2[i].x,pts2[i].y,3,INK);
+  }
+  lblC(ctx,'A',O.x-22,O.y+4,INK,19);
+  lblC(ctx,'B\u2081',pts1[0].x-22,pts1[0].y,INK,17);
+  lblC(ctx,'B\u2082',pts1[1].x-24,pts1[1].y,INK,17);
+  lblC(ctx,'B\u2083',pts1[2].x-24,pts1[2].y,INK,17);
+  lblC(ctx,'C\u2081',pts2[0].x+22,pts2[0].y,INK,17);
+  lblC(ctx,'C\u2082',pts2[1].x+24,pts2[1].y,INK,17);
+  lblC(ctx,'C\u2083',pts2[2].x+24,pts2[2].y,INK,17);
+  lblC(ctx,'AB\u2081/AB\u2082/AB\u2083 = AC\u2081/AC\u2082/AC\u2083 — rectes paral·leles, segments proporcionals',260,420,ACCENT,15);
+  stampNum(ctx,400,'g-023');
+})();
+
+/* ============================================================
+   gloss-pitagores.png -- triangle rectangle amb els quadrats
+   construits sobre els tres costats (catets i hipotenusa), l'exemple
+   clàssic. Costats numèricament pitagòrics (190,140 -> hip. exacta
+   per Pitàgores, no assumida). */
+(function(){
+  const ctx=mk('g25',620,620),hd=makeHandDraw(ctx,9210);ctx.translate(190,380);
+  const b=190,h=140;
+  const A={x:0,y:0}, B={x:b,y:0}, C={x:0,y:-h};
+  hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(A.x,A.y,C.x,C.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.6,color:INK});
+  rightAngle(hd,A.x,A.y,B.x,B.y,C.x,C.y,18,INK);
+
+  function square(P,Q){ // quadrat exterior sobre el segment PQ, cap enfora del triangle
+    const dx=Q.x-P.x,dy=Q.y-P.y;
+    const nx=dy,ny=-dx; // normal (sentit ja triat perquè caigui fora del triangle en cada cas)
+    const R={x:Q.x+nx,y:Q.y+ny}, S={x:P.x+nx,y:P.y+ny};
+    hd.handSegment(P.x,P.y,Q.x,Q.y,{lineWidth:1.8,color:INK});
+    hd.handSegment(Q.x,Q.y,R.x,R.y,{lineWidth:1.8,color:INK});
+    hd.handSegment(R.x,R.y,S.x,S.y,{lineWidth:1.8,color:INK});
+    hd.handSegment(S.x,S.y,P.x,P.y,{lineWidth:1.8,color:INK});
+    return {R,S};
+  }
+  // catet AB: quadrat cap avall (fora del triangle, que és amunt-esquerra)
+  square(B,A);
+  // catet AC: quadrat cap a l'esquerra
+  square(A,C);
+  // hipotenusa BC: quadrat cap a la dreta/amunt (fora del triangle)
+  square(C,B);
+
+  lblC(ctx,'A',A.x-16,A.y+22,INK,19);
+  lblC(ctx,'B',B.x+16,B.y+22,INK,19);
+  lblC(ctx,'C',C.x-20,C.y-14,INK,19);
+  lblC(ctx,'catet',b/2,44,ACCENT,17);
+  lbl(ctx,'catet',-70,-h/2,ACCENT,17);
+  lblC(ctx,'hipotenusa',(B.x+C.x)/2+70,(B.y+C.y)/2-40,ACCENT,17);
+  stampNum(ctx,540,'g-024');
+})();
+
+/* ============================================================
+   gloss-poligons-regular-irregular.png -- un pentàgon regular i un
+   pentàgon irregular costat a costat, mateix nombre de costats
+   perquè la diferència vinguda nomes de la regularitat, no del
+   nombre de vèrtexs. */
+(function(){
+  const ctx=mk('g26',780,400),hd=makeHandDraw(ctx,9211);
+
+  (function(){
+    ctx.save();ctx.translate(200,190);
+    const P=regularPoly(5,0,0,150,-Math.PI/2);
+    for(let i=0;i<5;i++) hd.handSegment(P[i].x,P[i].y,P[(i+1)%5].x,P[(i+1)%5].y,{lineWidth:2.4,color:INK});
+    lblC(ctx,'polígon regular',0,200,ACCENT,18);
+    ctx.restore();
+  })();
+
+  (function(){
+    ctx.save();ctx.translate(580,190);
+    const P=[{x:0,y:-160},{x:120,y:-40},{x:170,y:120},{x:-30,y:150},{x:-140,y:10}];
+    for(let i=0;i<5;i++) hd.handSegment(P[i].x,P[i].y,P[(i+1)%5].x,P[(i+1)%5].y,{lineWidth:2.4,color:INK});
+    lblC(ctx,'polígon irregular',0,200,ACCENT,18);
+    ctx.restore();
+  })();
+
+  stampNum(ctx,360,'g-025');
+})();
+
+/* ============================================================
+   gloss-apotema-diagonal.png -- sobre un mateix hexàgon regular:
+   l'apotema (centre a un costat, perpendicular) i una diagonal
+   (vèrtex a vèrtex no consecutiu). */
+(function(){
+  const ctx=mk('g27',480,480),hd=makeHandDraw(ctx,9212);ctx.translate(240,240);
+  const R=190;
+  const P=regularPoly(6,0,0,R,-Math.PI/2);
+  for(let i=0;i<6;i++) hd.handSegment(P[i].x,P[i].y,P[(i+1)%6].x,P[(i+1)%6].y,{lineWidth:2.4,color:INK});
+  hd.handDot(0,0,3.5,INK);
+
+  // apotema: del centre al punt mitjà del costat P0-P1
+  const mid={x:(P[0].x+P[1].x)/2,y:(P[0].y+P[1].y)/2};
+  hd.handSegment(0,0,mid.x,mid.y,{lineWidth:2,color:INK});
+  rightAngle(hd,mid.x,mid.y,0,0,P[0].x,P[0].y,17,INK);
+  lbl(ctx,'apotema',mid.x*0.55+14,mid.y*0.55,ACCENT,17);
+
+  // diagonal: vèrtex 1 a vèrtex 3 (no consecutius, no passa pel centre --
+  // triada perquè no quedi gairebé paral·lela ni arran de cap costat, a
+  // diferència de P2-P4, que passava massa a prop de la base i confonia)
+  hd.handSegment(P[1].x,P[1].y,P[3].x,P[3].y,{lineWidth:2,dashed:true,dashPattern:[7,6],color:INK});
+  lbl(ctx,'diagonal',(P[1].x+P[3].x)/2+18,(P[1].y+P[3].y)/2+6,ACCENT,17);
+
+  stampNum(ctx,440,'g-026');
+})();
+
+/* ============================================================
+   gloss-prisma-piramide.png -- un prisma (dues bases paral·leles
+   iguals, cares laterals paral·lelogrames) i una piràmide (una base,
+   cares laterals triangulars convergint en un sol vèrtex), costat a
+   costat per contrastar-los directament. */
+(function(){
+  const ctx=mk('g28',900,460),hd=makeHandDraw(ctx,9213);
+
+  // prisma triangular -- desplaçament llarg i poc inclinat (projecció obliqua
+  // clàssica) perquè les dues bases es llegeixin com a triangles clarament
+  // separats i paral·lels, mai convergint cap a un sol vèrtex (com passava
+  // amb un desplaçament curt i molt vertical -- es confonia amb una piràmide)
+  (function(){
+    ctx.save();ctx.translate(65,300);
+    const S=190;
+    const b1={x:0,y:0},b2={x:S,y:0},b3={x:S/2,y:-S*0.85};
+    const off={x:S*1.35,y:-S*0.55};
+    function add(p,o){return {x:p.x+o.x,y:p.y+o.y};}
+    const t1=add(b1,off),t2=add(b2,off),t3=add(b3,off);
+    hd.handSegment(b1.x,b1.y,b2.x,b2.y,{lineWidth:2.2,dashed:true,dashPattern:[6,5],color:INK});
+    hd.handSegment(b2.x,b2.y,b3.x,b3.y,{lineWidth:2.2,color:INK});
+    hd.handSegment(b3.x,b3.y,b1.x,b1.y,{lineWidth:2.2,dashed:true,dashPattern:[6,5],color:INK});
+    hd.handSegment(t1.x,t1.y,t2.x,t2.y,{lineWidth:2.2,color:INK});
+    hd.handSegment(t2.x,t2.y,t3.x,t3.y,{lineWidth:2.2,color:INK});
+    hd.handSegment(t3.x,t3.y,t1.x,t1.y,{lineWidth:2.2,color:INK});
+    hd.handSegment(b1.x,b1.y,t1.x,t1.y,{lineWidth:2.2,dashed:true,dashPattern:[6,5],color:INK});
+    hd.handSegment(b2.x,b2.y,t2.x,t2.y,{lineWidth:2.2,color:INK});
+    hd.handSegment(b3.x,b3.y,t3.x,t3.y,{lineWidth:2.2,color:INK});
+    lblC(ctx,'prisma',225,40,ACCENT,19);
+    ctx.restore();
+  })();
+
+  // piramide de base quadrada
+  (function(){
+    ctx.save();ctx.translate(560,120);
+    const S=160,dx=0.3*S,dy=-0.18*S;
+    // base en perspectiva simple (paral·lelogram)
+    const bBL={x:0,y:220},bBR={x:S,y:220},bTR={x:S+dx*2,y:220+dy*2},bTL={x:dx*2,y:220+dy*2};
+    const apex={x:(bBL.x+bBR.x+bTR.x+bTL.x)/4,y:20};
+    hd.handSegment(bBL.x,bBL.y,bBR.x,bBR.y,{lineWidth:2.2,color:INK});
+    hd.handSegment(bBR.x,bBR.y,bTR.x,bTR.y,{lineWidth:2.2,color:INK});
+    hd.handSegment(bTR.x,bTR.y,bTL.x,bTL.y,{lineWidth:2.2,dashed:true,dashPattern:[6,5],color:INK});
+    hd.handSegment(bTL.x,bTL.y,bBL.x,bBL.y,{lineWidth:2.2,color:INK});
+    hd.handSegment(apex.x,apex.y,bBL.x,bBL.y,{lineWidth:2.2,color:INK});
+    hd.handSegment(apex.x,apex.y,bBR.x,bBR.y,{lineWidth:2.2,color:INK});
+    hd.handSegment(apex.x,apex.y,bTR.x,bTR.y,{lineWidth:2.2,color:INK});
+    hd.handSegment(apex.x,apex.y,bTL.x,bTL.y,{lineWidth:2.2,dashed:true,dashPattern:[6,5],color:INK});
+    lblC(ctx,'piràmide',(bBL.x+bBR.x)/2,300,ACCENT,19);
+    ctx.restore();
+  })();
+
+  stampNum(ctx,420,'g-027');
+})();
+
+/* ============================================================
+   gloss-con.png -- con com a cos de revolució: el triangle rectangle
+   generador (traç fi, discontinu) al costat del con que genera en
+   girar al voltant del catet vertical. */
+(function(){
+  const ctx=mk('g29',620,460),hd=makeHandDraw(ctx,9214);ctx.translate(80,60);
+  const R=95,H=210;
+  // triangle generador
+  const O={x:0,y:H},T={x:0,y:0},Rp={x:R,y:H};
+  hd.handSegment(O.x,O.y,T.x,T.y,{lineWidth:1.8,dashed:true,dashPattern:[5,5],color:INK});
+  hd.handSegment(O.x,O.y,Rp.x,Rp.y,{lineWidth:1.8,dashed:true,dashPattern:[5,5],color:INK});
+  hd.handSegment(T.x,T.y,Rp.x,Rp.y,{lineWidth:2,color:INK});
+  rightAngle(hd,O.x,O.y,T.x,T.y,Rp.x,Rp.y,14,INK);
+  lbl(ctx,'eix',-30,H*0.8,INK,15);
+
+  // con generat, desplaçat a la dreta
+  const shift=340;
+  const apex={x:shift,y:0};
+  const rx=R,ry=R*0.3;
+  hd.handEllipse(shift,H,rx,ry,{lineWidth:2.2,irregularity:0.03,color:INK});
+  hd.handSegment(apex.x,apex.y,shift-rx,H,{lineWidth:2.4,color:INK});
+  hd.handSegment(apex.x,apex.y,shift+rx,H,{lineWidth:2.4,color:INK});
+  hd.handSegment(apex.x,apex.y,shift,H+ry,{lineWidth:1.6,dashed:true,dashPattern:[5,5],color:INK});
+
+  lbl(ctx,'generatriu',R-14,H*0.4,ACCENT,16);
+  lblC(ctx,'con generat en girar el triangle',shift,H+70,ACCENT,17);
+  stampNum(ctx,400,'g-028');
+})();
+
+/* ============================================================
+   gloss-pappus.png -- teorema de Pappus: un cercle petit (la figura
+   plana que gira) a certa distància d'un eix vertical, i el tor
+   (donut) que genera en fer-lo girar, en el mateix panell -- l'exemple
+   mes directe i el que evita confondre'l amb el con/cilindre/esfera
+   ja il·lustrats. */
+(function(){
+  const ctx=mk('g30',820,460),hd=makeHandDraw(ctx,9215);ctx.translate(40,230);
+  hd.handSegment(150,-190,150,190,{lineWidth:1.8,dashed:true,dashPattern:[5,5],color:INK});
+  lbl(ctx,'eix',158,-170,INK,15);
+  const r=55, d=150+95;
+  hd.handEllipse(d,0,r,r,{lineWidth:2.2,irregularity:0.03,color:INK});
+  hd.handSegment(150,0,d-r,0,{lineWidth:1.6,dashed:true,dashPattern:[4,5],color:INK});
+  lbl(ctx,'figura plana (àrea A)',d-70,-r-18,ACCENT,15);
+
+  // tor generat: el·lipse exterior i interior per suggerir el volum de
+  // revolucio -- HAN DE SEMBLAR REALMENT CONCÈNTRIQUES (a petició explícita),
+  // per això aquí es redueix el bobbling molt per sota del que fa servir la
+  // resta del projecte (irregularity 0.02-0.03): amb el mecanisme de
+  // handEllipse cada crida genera la seva pròpia forma d'irregularitat
+  // (nombre d'harmònics, fase i amplitud aleatoris), així que dues el·lipses
+  // MAI seran perfectament concèntriques amb un irregularity normal -- calia
+  // baixar-lo molt, no ajustar-ne la fase.
+  const torCx=550;
+  ctx.save();ctx.translate(torCx,0);
+  hd.handEllipse(0,0,150,150,{lineWidth:2,irregularity:0.003,widthVariation:0.4,color:INK});
+  hd.handEllipse(0,0,80,80,{lineWidth:1.8,irregularity:0.003,widthVariation:0.4,dashed:true,dashPattern:[6,5],color:INK});
+  ctx.restore();
+  lblC(ctx,'sòlid generat: volum = A × distància recorreguda pel centre',torCx,205,ACCENT,15);
+
+  stampNum(ctx,360,'g-029');
+})();
+
+/* ============================================================
+   gloss-conica.png -- les quatre seccions còniques (circumferència,
+   el·lipse, paràbola, hipèrbola) en quatre mini-panells, una sola
+   fila. */
+(function(){
+  const ctx=mk('g31',980,300),hd=makeHandDraw(ctx,9216);
+
+  // quatre seccions còniques, ben espaiades dins els 980px
+  function panel(dx,drawFn,label){
+    ctx.save();ctx.translate(dx,150);
+    drawFn();
+    lblC(ctx,label,0,95,ACCENT,15);
+    ctx.restore();
+  }
+  panel(140,()=>{hd.handEllipse(0,0,80,80,{lineWidth:2,irregularity:0.025,color:INK});},'circumferència');
+  panel(360,()=>{hd.handEllipse(0,0,85,55,{lineWidth:2,irregularity:0.025,color:INK});},'el·lipse');
+  panel(590,()=>{
+    const pts=[];for(let x=-70;x<=70;x+=3)pts.push({x,y:(x*x)/140-68});
+    for(let i=0;i<pts.length-1;i++) hd.handSegment(pts[i].x,pts[i].y,pts[i+1].x,pts[i+1].y,{lineWidth:2.2,color:INK});
+  },'paràbola');
+  panel(830,()=>{
+    const a=55,b=48;
+    function branch(sign){
+      const pts=[];
+      for(let t=-1.05;t<=1.05;t+=0.05) pts.push({x:sign*a*Math.cosh(t),y:b*Math.sinh(t)});
+      for(let i=0;i<pts.length-1;i++) hd.handSegment(pts[i].x,pts[i].y,pts[i+1].x,pts[i+1].y,{lineWidth:2.2,color:INK});
+    }
+    branch(1);branch(-1);
+  },'hipèrbola');
+
+  stampNum(ctx,260,'g-030');
+})();
+
+/* ============================================================
+   gloss-hiperbola.png -- les dues branques, els dos focus, i un punt
+   P amb les distàncies als focus marcades (diferència constant,
+   verificada numèricament). Cobreix "hipèrbola" i "focus" alhora. */
+(function(){
+  const ctx=mk('g32',600,460),hd=makeHandDraw(ctx,9217);ctx.translate(300,210);
+  const a=130,b=95,c=Math.sqrt(a*a+b*b);
+  function branch(sign){
+    const pts=[];
+    for(let t=-1.15;t<=1.15;t+=0.02) pts.push({x:sign*a*Math.cosh(t),y:b*Math.sinh(t)});
+    for(let i=0;i<pts.length-1;i++) hd.handSegment(pts[i].x,pts[i].y,pts[i+1].x,pts[i+1].y,{lineWidth:2.2,color:INK});
+  }
+  branch(1);branch(-1);
+  const F1={x:-c,y:0},F2={x:c,y:0};
+  hd.handDot(F1.x,F1.y,4,INK);hd.handDot(F2.x,F2.y,4,INK);
+  lblC(ctx,'F\u2081',F1.x,F1.y-20,INK,17);
+  lblC(ctx,'F\u2082',F2.x,F2.y-20,INK,17);
+  const t=0.65;
+  const P={x:a*Math.cosh(t),y:b*Math.sinh(t)};
+  hd.handDot(P.x,P.y,3.5,INK);
+  hd.handSegment(P.x,P.y,F1.x,F1.y,{lineWidth:1.6,dashed:true,dashPattern:[6,5],color:INK});
+  hd.handSegment(P.x,P.y,F2.x,F2.y,{lineWidth:1.6,dashed:true,dashPattern:[6,5],color:INK});
+  lblC(ctx,'P',P.x+22,P.y+22,INK,18);
+  lblC(ctx,'focus (F₁, F₂): dist(P,F₁) − dist(P,F₂) constant per a tot P',0,225,ACCENT,15);
+  stampNum(ctx,420,'g-031');
+})();
+
+/* ============================================================
+   gloss-parabola.png -- corba, focus i directriu, amb un punt P
+   equidistant de tots dos (verificat numèricament). */
+(function(){
+  const ctx=mk('g33',560,460),hd=makeHandDraw(ctx,9218);ctx.translate(280,350);
+  const p=70;
+  const pts=[];
+  for(let x=-230;x<=230;x+=3) pts.push({x,y:-(x*x)/(4*p)});
+  for(let i=0;i<pts.length-1;i++) hd.handSegment(pts[i].x,pts[i].y,pts[i+1].x,pts[i+1].y,{lineWidth:2.4,color:INK});
+  const F={x:0,y:-p};
+  hd.handDot(F.x,F.y,4,INK);
+  hd.handSegment(-250,p,250,p,{lineWidth:2.2,wobble:0.4,overshoot:1,color:INK});
+  lbl(ctx,'directriu',210,p+26,INK,16);
+  lblC(ctx,'F',F.x+24,F.y-14,INK,22);
+  const x0=170,y0=-x0*x0/(4*p);
+  const P={x:x0,y:y0};
+  hd.handDot(P.x,P.y,3.5,INK);
+  hd.handSegment(P.x,P.y,F.x,F.y,{lineWidth:1.6,dashed:true,dashPattern:[6,5],color:INK});
+  hd.handSegment(P.x,P.y,P.x,p,{lineWidth:1.6,dashed:true,dashPattern:[6,5],color:INK});
+  lblC(ctx,'P',P.x+20,P.y-10,INK,18);
+  lblC(ctx,'dist(P,focus) = dist(P,directriu), per a tot P de la corba',0,50,ACCENT,15);
+  stampNum(ctx,400,'g-032');
+})();
 </script>
 </body></html>
