@@ -57,8 +57,10 @@
   concreta que el document esmenta. v. js/nucli/glossari.js,
   resolCampGlossari() — mateixa forma exacta que resolCampGuia().
 
-  GENERAT/EDITAT a mà per ara (18 termes, primera passada — v.
-  NOTA-GLOSSARI.md). No hi ha encara cap script generador equivalent a
+  GENERAT/EDITAT a mà (53 termes, 26 amb figura pròpia — v.
+  docs/guies/NOTA-GLOSSARI-MILLORES.md i NOTA-GLOSSARI-AMPLIACIO.md; la
+  xifra de "18 termes, primera passada" que hi havia aquí era de la
+  primera tanda i feia anys que no era certa). No hi ha encara cap script generador equivalent a
   parse_guies.py: el volum és petit i el contingut prou estable que no
   calia, però si el glossari creix més enllà d'unes poques desenes
   d'entrades val la pena reconsiderar-ho amb el mateix criteri que
