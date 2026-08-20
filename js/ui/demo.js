@@ -149,7 +149,9 @@
           const a = document.createElement("a");
           a.href = "#" + pas.handoff.questionId;
           a.className = "demo__handoff-link";
-          a.textContent = window.tf("demo.open_question", { id: pas.handoff.questionId });
+          a.textContent = window.tf("demo.open_question", {
+            id: window.geoContingut.etiquetaQuestio(pas.handoff.questionId),
+          });
           if (demo.id === "demo-03-four-triangles" && window.geoDemos) {
             a.addEventListener("click", () => window.geoDemos.marcaHandoffQ02Seguit());
           }

@@ -77,18 +77,17 @@
    * true (v. contingut.js esInvertidaFitxer — únic cas conegut: q42).
    * Extret a part perquè tant el cas singular com el plural (graella de
    * dues imatges) el reutilitzin sense duplicar aquesta lògica.
+   * Sense figcaption (suprimida a petició explícita — v. nota de
+   * disseny): el frame ocupa tota l'alçada --figure-slot-h reservada,
+   * gràcies al flex:1 ja previst a css/base.css .question-entry__figure-frame.
    */
-  function creaFigura(pregunta, fitxer, esCrop, esInvertida, indexEtiqueta) {
+  function creaFigura(pregunta, fitxer, esCrop, esInvertida) {
     const figure = document.createElement("figure");
     let classe = "question-entry__figure";
     if (esCrop) classe += " question-entry__figure--scan";
     if (esInvertida) classe += " question-entry__figure--inverted";
     figure.className = classe;
 
-    // Embolcall d'alçada fixa (--figure-slot-h) i centrat flex — separat
-    // del <figure> perquè el figcaption (més avall) no hi quedi atrapat
-    // i es reparteixi en fila al costat de la imatge (v. comentari a
-    // css/base.css .question-entry__figure-frame).
     const frame = document.createElement("div");
     frame.className = "question-entry__figure-frame";
 
@@ -100,16 +99,6 @@
     img.loading = "lazy";
     frame.appendChild(img);
     figure.appendChild(frame);
-
-    const caption = document.createElement("figcaption");
-    caption.textContent = window.tf("detail.figure_source_label", {
-      id: pregunta.id + (indexEtiqueta ? " (" + indexEtiqueta + ")" : ""),
-      page: pregunta.imatge.paginaFont,
-    });
-    if (esCrop) {
-      caption.textContent += " · " + window.t("detail.figure_scan_note");
-    }
-    figure.appendChild(caption);
 
     return figure;
   }
@@ -142,7 +131,7 @@
 
     if (fitxers.length === 1) {
       contenidor.appendChild(
-        creaFigura(pregunta, fitxers[0], esCrops[0], esInvertides[0], null)
+        creaFigura(pregunta, fitxers[0], esCrops[0], esInvertides[0])
       );
       return;
     }
@@ -151,7 +140,7 @@
     grup.className = "question-entry__figure-group";
     fitxers.forEach((fitxer, i) => {
       grup.appendChild(
-        creaFigura(pregunta, fitxer, esCrops[i], esInvertides[i], i + 1)
+        creaFigura(pregunta, fitxer, esCrops[i], esInvertides[i])
       );
     });
     contenidor.appendChild(grup);
@@ -461,7 +450,7 @@
 
       const idSpan = document.createElement("span");
       idSpan.className = "suggerit__id";
-      idSpan.textContent = s.pregunta.id;
+      idSpan.textContent = window.geoContingut.etiquetaQuestio(s.pregunta.id);
       a.appendChild(idSpan);
       a.appendChild(document.createTextNode(" — " + raoText));
 
@@ -610,13 +599,8 @@
 
     const eyebrow = document.createElement("span");
     eyebrow.className = "eyebrow";
-    eyebrow.textContent = pregunta.id;
+    eyebrow.textContent = window.geoContingut.etiquetaQuestio(pregunta.id);
     meta.appendChild(eyebrow);
-
-    const pagina = document.createElement("span");
-    pagina.className = "meta meta--separated";
-    pagina.textContent = window.tf("detail.page_label", { page: pregunta.pagina });
-    meta.appendChild(pagina);
 
     contenidorEl.appendChild(meta);
 

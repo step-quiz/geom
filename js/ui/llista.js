@@ -247,7 +247,7 @@
 
     const eyebrow = document.createElement("span");
     eyebrow.className = "eyebrow";
-    eyebrow.textContent = pregunta.id;
+    eyebrow.textContent = window.geoContingut.etiquetaQuestio(pregunta.id);
     meta.appendChild(eyebrow);
 
     const paginaSpan = document.createElement("span");
@@ -340,7 +340,9 @@
         const a = document.createElement("a");
         a.href = "#" + s.pregunta.id;
         a.textContent =
-          window.t("itinerary.continue_banner") + " " + s.pregunta.id;
+          window.t("itinerary.continue_banner") +
+          " " +
+          window.geoContingut.etiquetaQuestio(s.pregunta.id);
         continua.appendChild(a);
         contenidorEl.appendChild(continua);
       }
