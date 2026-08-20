@@ -142,7 +142,11 @@ if os.path.exists("index.html"):
 # ------------------------------------------------------------------ 8. i18n
 if os.path.exists("js/i18n/ui-strings.js"):
     s = open("js/i18n/ui-strings.js", encoding="utf-8").read()
-    for clau in ["guide:", "level_0", "guide_badge", "next_hint"]:
+    # guide_badge (marca "◆ guia" a la llista) es va eliminar a petició
+    # explícita de l'owner -- ja no forma part de les claus essencials.
+    # "guide:" / level_0 / next_hint pertanyen a la secció DIFERENT de la
+    # guia de demostració (detall.js), que sí que segueix sent essencial.
+    for clau in ["guide:", "level_0", "next_hint"]:
         if clau not in s: err("ui-strings.js no té %s" % clau)
     if s.count("guide: {") == 2: ok("secció guide als dos idiomes")
     elif s.count("guide: {") < 2: err("la secció guide no és als dos idiomes")
