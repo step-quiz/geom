@@ -70,7 +70,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Tria un vèrtex i uneix-lo amb el punt mitjà del costat oposat. Aquesta línia, per simetria del triangle equilàter (els dos costats que surten del vèrtex triat són iguals), parteix l'angle del vèrtex en dos d'iguals i el costat oposat en dos d'iguals alhora. Cap altre triangle té aquesta propietat de franc amb una sola línia.",
+          "ca": "Tria un vèrtex i uneix-lo amb el punt mitjà del costat oposat. Aquesta línia, per simetria del triangle equilàter (els dos costats que surten del vèrtex triat són iguals), parteix l'angle del vèrtex en dos d'iguals i el costat oposat en dos d'iguals alhora. Cap altre triangle té aquesta propietat de franc amb una sola línia.\n\nI encara en fa una tercera, que faràs servir molt: hi cau perpendicular. Val la pena veure per què, perquè és un argument de tres línies que reapareixerà a q26, a q83 i cada cop que partis un isòsceles per la meitat. Els dos triangles en què queda partit tenen els tres costats iguals dos a dos (els dos costats del triangle, que són iguals; la meitat de la base, compartida en mida; i la línia nova, compartida de debò), o sigui que són congruents. Per tant els dos angles que fan amb la base són iguals. I dos angles iguals que junts fan una recta —180°— han de fer 90° cadascun.",
           "en": null
         },
         "figura": null
@@ -94,14 +94,14 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Per simetria, si repeteixes l'argument de la pista 1 amb els altres dos vèrtexs, obtens tres línies, cadascuna alhora bisectriu d'angle, mediana i altura del seu vèrtex. Que les tres coincideixin en un punt és el que fa que, en aquest cas (i només en aquest), \"el centre\" tingui sentit sense ambigüitat: bisectrius, medianes i altures hi són totes tres alhora.",
+          "ca": "Per simetria, si repeteixes l'argument de la pista 1 amb els altres dos vèrtexs, obtens tres línies, cadascuna alhora bisectriu d'angle, mediana i altura del seu vèrtex.\n\nFalta encara la part que el dibuix et suggereix però que no has demostrat: que les tres es tallin totes en un MATEIX punt. Tres rectes qualssevol es tallen, normalment, en tres punts diferents. Aquí la simetria també ho resol, i amb una sola frase: agafa una de les tres línies i fes-ne un mirall. Doblegant per aquest mirall, el triangle cau exactament damunt d'ell mateix i les altres dues línies s'intercanvien. Per tant el punt on aquelles dues es creuen ha de quedar-se on és —i l'únic lloc que no es mou en aquest plec és el mirall mateix. O sigui que la tercera línia hi passa. I com que pots fer aquest raonament amb qualsevol de les tres, les tres passen pel mateix punt.\n\nAixò és el que fa que, en aquest cas (i només en aquest), \"el centre\" tingui sentit sense ambigüitat: bisectrius, medianes i altures hi són totes tres alhora.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "Un triangle equilàter de costat 12. La mediana des d'un vèrtex fa 6√3 ≈ 10,39. El centre hi és a 2/3 d'aquesta distància des del vèrtex: 2/3 × 10,39 ≈ 6,93. Si el teu raonament dona una altra proporció, revisa-la.",
+      "ca": "Un triangle equilàter de costat 12. La mediana des d'un vèrtex fa 6√3 ≈ 10,39 (surt de Pitàgores: 12² − 6² = 108). Comprova primer el que sí que has demostrat: pren un punt qualsevol d'una mediana i mesura'n la distància als dos vèrtexs de l'altra banda —han de sortir iguals, perquè la mediana és el mirall. I comprova que les tres medianes que dibuixis es creuen totes en un sol punt, no en tres.\n\nA quina distància del vèrtex cau aquest punt, en canvi, és una pregunta que aquesta guia NO respon: la simetria et diu que el punt existeix, no on és exactament. Si vols saber-ho, mesura-ho al teu dibuix; hauria de sortir-te ≈6,93, és a dir 2/3 de la mediana. Que aquesta proporció sigui sempre 2/3 —i per a qualsevol triangle, no només l'equilàter— és un resultat de debò, i necessita un argument propi que aquí no hem fet.",
       "en": null
     },
     "iDespres": {
@@ -226,18 +226,18 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Amb triangles (60°) pots ajuntar-ne 3, 4, 5 o 6 a un vèrtex (180°, 240°, 300°, 360° exactes). Amb quadrats (90°), quants? Amb pentàgons (108°)? Amb hexàgons (120°)? Per a cada polígon regular, quantes còpies calen per arribar (o no) a 360° exactes?",
+          "ca": "Amb triangles (60°) pots ajuntar-ne 3, 4, 5 o 6 a un vèrtex (180°, 240°, 300°, 360° exactes). Amb quadrats (90°), quants? Amb pentàgons (108°)? Amb hexàgons (120°)? Per a cada polígon regular, quantes còpies calen per arribar (o no) a 360° exactes?\n\nUn cop les tinguis totes, atura't a mirar què has demostrat exactament, perquè no és tot el que sembla. La condició dels 360° és una condició per a UN vèrtex sol. Diu quines rosetes de polígons poden existir al voltant d'un punt —i, sobretot, quines no poden existir de cap manera. El que no diu és si aquella roseta es pot anar repetint fins a cobrir tot el pla sense encallar-se en algun lloc més enllà. N'hi ha que quadren perfectament en un vèrtex i, quan intentes continuar el mosaic, arriba un moment que ja no encaixen. Prova-ho al paper amb alguna de les combinacions barrejades que hagis trobat: dibuixa el primer vèrtex, i després el veí, i el següent.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "Sis triangles: 6×60°=360° ✓. Quatre quadrats: 4×90°=360° ✓. Tres hexàgons: 3×120°=360° ✓. Tres pentàgons: 3×108°=324°, no arriba. Compta quantes combinacions VÀLIDES (no necessàriament d'un sol tipus de polígon) trobes en total.",
+      "ca": "Sis triangles: 6×60°=360° ✓. Quatre quadrats: 4×90°=360° ✓. Tres hexàgons: 3×120°=360° ✓. Tres pentàgons: 3×108°=324°, no arriba. Compta quantes combinacions VÀLIDES (no necessàriament d'un sol tipus de polígon) trobes en total. I comprova que sabries dir quina de les dues coses has provat de cada una: que la roseta és possible en un vèrtex, o que el mosaic sencer existeix. Són dues afirmacions diferents, i el comptatge d'angles només et dona la primera.",
       "en": null
     },
     "iDespres": {
-      "ca": "Aquest mateix recompte, aplicat als poliedres en lloc dels mosaics del pla (angle menor que 360°, no igual, perquè la figura s'aixequi cap a la tercera dimensió en lloc de quedar plana), és exactament el que ja vas fer a q08b.",
+      "ca": "Aquest mateix recompte, aplicat als poliedres en lloc dels mosaics del pla (angle menor que 360°, no igual, perquè la figura s'aixequi cap a la tercera dimensió en lloc de quedar plana), és exactament el que ja vas fer a q08b — i allà hi trobaràs la mateixa distinció, dita amb altres paraules: descartar tots els casos impossibles no és el mateix que construir els possibles. Aquí la separació és encara més gran que allà: al cas dels poliedres, cadascuna de les cinc rosetes que sobreviuen al comptatge dona efectivament un sòlid; al cas dels mosaics, unes quantes de les rosetes que sobreviuen no arriben a donar cap mosaic.",
       "en": null
     }
   },
@@ -424,14 +424,14 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "En un polígon regular inscrit en una circumferència, l'angle que es veu des d'un vèrtex entre dos vèrtexs consecutius depèn només de quants costats del polígon separen aquests dos vèrtexs — no de quins vèrtexs concrets siguin. Com que els quatre angles del dibuix separen sempre un vèrtex del següent (mai en salten dos de cop), els quatre subtendeixen el mateix arc de circumferència, i per tant són el mateix angle.",
+          "ca": "En un polígon regular inscrit en una circumferència, l'angle que es veu des d'un vèrtex entre dos vèrtexs consecutius depèn només de quants costats del polígon separen aquests dos vèrtexs — no de quins vèrtexs concrets siguin. Com que aquests angles separen sempre un vèrtex del següent (mai en salten dos de cop), tots subtendeixen el mateix arc de circumferència, i per tant són el mateix angle. Compta bé quants n'hi ha: des d'un vèrtex d'un heptàgon surten 4 diagonals, i 4 diagonals parteixen l'angle d'aquell vèrtex en 5 trossos, no en 4. Els dos trossos dels extrems (entre un costat del polígon i la diagonal veïna) són del mateix tipus que els altres tres —també separen un vèrtex del següent.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "Amb la fórmula de l'angle inscrit, cadascun d'aquests quatre angles val 180°/7 ≈ 25,71°. Multiplicat pels quatre: 102,86°, que sumat als dos angles dels extrems del ventall (que no són d'aquest tipus) hauria de completar la suma total que ja coneixes de q70 per a n=7: 900°.",
+      "ca": "Amb la fórmula de l'angle inscrit, cadascun dels cinc trossos val 180°/7 ≈ 25,71°. Els cinc junts han de reconstruir l'angle interior d'UN vèrtex de l'heptàgon: 5 × 180/7 = 900/7 ≈ 128,57°. I això és exactament el que q70 prediu per a un heptàgon regular, (7−2)×180/7. Compte amb un error fàcil: 900° és la suma dels SET angles interiors de l'heptàgon sencer. Un ventall d'un sol vèrtex no pot arribar-hi mai — només pot completar el seu propi angle, que és set vegades més petit.",
       "en": null
     },
     "iDespres": {
@@ -563,7 +563,7 @@ window.GUIES = {
       }
     ],
     "comprovacio": {
-      "ca": "Compta, per al cub, quants eixos de simetria de cada tipus té: 4 eixos vèrtex-a-vèrtex, 3 eixos cara-a-cara, 6 eixos aresta-a-aresta — 13 eixos en total (sense comptar el centre com a eix). Aquest recompte, combinat amb els girs que cada eix permet, dona el grup de simetries complet del cub, d'ordre 24.",
+      "ca": "Compta, per al cub, quants eixos de simetria de cada tipus té: 4 eixos vèrtex-a-vèrtex, 3 eixos cara-a-cara, 6 eixos aresta-a-aresta — 13 eixos en total (sense comptar el centre com a eix). Aquest recompte, combinat amb els girs que cada eix permet, dona les 24 maneres de GIRAR el cub deixant-lo exactament on era. Compte amb dir-ne \"totes les simetries\": si a més hi comptes les de mirall (reflexions), en surten 48. Les 24 són les que pots fer sense aixecar el cub de la taula.",
       "en": null
     },
     "iDespres": {
@@ -664,7 +664,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Abans de contestar, decideix quina mena de feina et caldrà en cada cas: - Si creus que la resposta és sí, has de convèncer per a tots els triangles del món. Un dibuix no serveix de res. - Si creus que és no, quantes figures et calen? Pensa-ho bé: la resposta és un número molt petit.\n\nAquesta asimetria no és un truc: és com funciona tota la matemàtica.",
+          "ca": "Abans de contestar, decideix quina mena de feina et caldrà en cada cas.\n\nSi creus que la resposta és sí, has de convèncer per a tots els triangles del món: un dibuix no serveix de res.\n\nSi creus que és no, quantes figures et calen? Pensa-ho bé, perquè la resposta és un número molt petit.\n\nAquesta asimetria no és un truc: és com funciona tota la matemàtica.",
           "en": null
         },
         "figura": null
@@ -956,9 +956,9 @@ window.GUIES = {
     }
   },
   "q102": {
-    "moviment": "dues-maneres",
+    "moviment": "invariant",
     "movimentTitol": {
-      "ca": "dues maneres",
+      "ca": "invariant",
       "en": null
     },
     "lot": 9,
@@ -970,7 +970,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "El mateix contrast de q101, ara amb figures planes en lloc de punts sobre una recta: SÍ per a triangles (tots equivalents projectivament), NO en general per a quadrilàters.",
+          "ca": "DUES respostes. Segurament esperes un contrast, perquè q101 te'n va donar un (tres punts sobre una recta, sí; quatre, no). Aquí no n'hi ha: la resposta és SÍ totes dues vegades. Tots els triangles són el mateix projectivament, i tots els quadrilàters també. La pregunta interessant, doncs, canvia: si a la recta la llibertat s'acabava al quart punt, per què al pla encara no s'ha acabat?",
           "en": null
         },
         "figura": null
@@ -978,11 +978,11 @@ window.GUIES = {
       {
         "nivell": 1,
         "titol": {
-          "ca": "compta vèrtexs, no costats",
+          "ca": "compta la llibertat que tens, no els vèrtexs",
           "en": null
         },
         "text": {
-          "ca": "Un triangle té tres vèrtexs; cap parell de costats d'un triangle és \"paral·lel\" en un sentit que la projecció hagi de respectar —recorda q101: tres punts sempre es poden portar on vulguis. Un quadrilàter en té quatre. Quina relació hi ha entre \"quatre vèrtexs\" i el que ja vas veure amb \"quatre punts sobre una recta\"?",
+          "ca": "Una projecció central del pla no la tries a l'atzar: la tries posant el punt de projecció en algun lloc i el pla d'arribada en algun altre. Cada tria és un grapat de números que pots moure lliurement. D'altra banda, cada punt que vols enviar a un lloc concret et gasta llibertat: fixar on va a parar un punt del pla són dues condicions (la seva x i la seva y). Compta-ho a la recta i al pla per separat: quants punts pots col·locar on vulguis abans de quedar-te sense llibertat, en cada cas?",
           "en": null
         },
         "figura": null
@@ -999,22 +999,22 @@ window.GUIES = {
       {
         "nivell": 3,
         "titol": {
-          "ca": "tanca-ho",
+          "ca": "tanca-ho amb un terra enrajolat",
           "en": null
         },
         "text": {
-          "ca": "Projecta els quatre vèrtexs d'un quadrilàter des d'un punt exterior al seu pla, cap a un altre pla: talla les rectes que uneixen el punt de projecció amb cada vèrtex per una recta auxiliar que passi per quatre d'aquestes projeccions —la raó doble d'aquests quatre punts alineats (q101) és un invariant real del quadrilàter que la projecció NO pot canviar. Un quadrilàter \"aixafat\" (gairebé un triangle) i un de ben proporcionat tenen raons doubles diferents, així que no poden ser imatges projectives l'un de l'altre.",
+          "ca": "Mira una foto d'un terra de rajoles quadrades, feta de gairebé qualsevol lloc. Cada rajola és un quadrat de veritat, i a la foto n'hi ha de totes les formes: més amples, més estretes, més aixafades com més lluny són. Aquella foto és, literalment, una projecció central. Ja tens la resposta davant dels ulls: un quadrat es pot projectar sobre tota mena de quadrilàters, i per tant qualsevol quadrilàter es pot portar a qualsevol altre (passant pel quadrat, si cal, en dos passos).\n\nOn s'acaba, doncs, la llibertat? Al cinquè punt. Amb quatre punts al pla encara pots decidir on van tots quatre; el cinquè ja no el pots moure, queda determinat pels altres quatre i per la projecció que has triat. Exactament el mateix fenomen de q101, però un punt més tard, perquè el pla té una dimensió més que la recta.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "Un quadrat i un rectangle molt allargat tenen quatre vèrtexs cadascun, però la raó doble que resulta de tallar les seves diagonals prolongades amb una recta auxiliar dona valors diferents —cap projecció central pot portar l'un a l'altre. En canvi, qualsevol triangle es pot portar a qualsevol altre (comprova-ho triant tres vèrtexs origen i tres destí qualssevol i trobant el punt de projecció que ho fa).",
+      "ca": "No numèrica, i val la pena fer-la de veritat: fes una foto d'un terra de rajoles o d'un tauler d'escacs des de molt de costat. Tria'n quatre rajoles ben separades i mira'n la forma a la foto: has d'acabar amb quatre quadrilàters ben diferents entre ells que, tots quatre, són la imatge del mateix quadrat. Si algun t'ha sortit amb tres vèrtexs gairebé alineats, encara millor: ensenya que fins i tot un quadrilàter \"aixafat\" hi és a l'abast. L'única cosa que no podràs fer és que una rajola surti amb els vèrtexs en un altre ordre.",
       "en": null
     },
     "iDespres": {
-      "ca": "Aquesta asimetria —tots els triangles projectivament iguals, no tots els quadrilàters— és la raó per la qual la geometria projectiva clàssica es construeix quasi tota amb configuracions de quatre punts (com la raó doble): és el primer nombre de punts on comencen a distingir-se figures que la geometria projectiva, d'entrada, no podria distingir amb menys.",
+      "ca": "Que la llibertat s'acabi al quart punt sobre una recta i al cinquè sobre un pla no és una coincidència: és la mateixa comptabilitat feta en una dimensió i en dues. Cada dimensió que afegeixes et regala exactament un punt més de llibertat abans que apareguin els invariants —les quantitats que la projecció ja no pot tocar, com la raó doble de q106. Recorda també que aquest \"sí\" és sobre quadrilàters mirats com a quatre punts en posició general (cap tres alineats): la projecció respecta quins punts hi ha, no si la figura et sembla ben proporcionada.",
       "en": null
     }
   },
@@ -1206,7 +1206,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Aquesta és la idea que fa que q107 funcioni: una hipèrbola —que sembla tenir dues branques separades i quatre \"extrems\" que s'allunyen cap enfora— es pot entendre com un cercle normal un cop dos dels seus punts es couen enviats a l'infinit d'aquesta mateixa manera.",
+      "ca": "Primer, la lletra petita d'aquest \"sempre\", que val la pena saber ara i no d'aquí a dos anys. Tot el que has fet aquí passa DINS D'UN PLA: has agafat el pla de sempre i li has afegit un punt per cada direcció. En aquest pla ampliat sí que és cert, sense cap excepció, que dues rectes qualssevol es tallen.\n\nA l'espai de tres dimensions, fent-hi el mateix, el \"sempre\" es trenca. Dues rectes que no són al mateix pla —una que va pel terra i una altra que travessa el sostre en una altra direcció, sense passar mai l'una per sobre de l'altra— continuen sense trobar-se enlloc. Ni són paral·leles ni es tallen: se'n diu que s'encreuen. Afegir-hi els punts de l'infinit no les salva, perquè cadascuna se'n va cap a un punt de l'infinit diferent. Comprova-ho amb dos llapis: n'hi ha prou de no poder-los posar tots dos damunt d'una mateixa taula imaginària.\n\nFet l'avís: aquesta és la idea que fa que q107 funcioni. Una hipèrbola —que sembla tenir dues branques separades i quatre \"extrems\" que s'allunyen cap enfora— es pot entendre com un cercle normal un cop dos dels seus punts se'n van a l'infinit d'aquesta mateixa manera.",
       "en": null
     }
   },
@@ -1321,7 +1321,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Les \"rectes de projecció\" des del vèrtex són exactament les generatrius del con (les rectes rectes que el formen). Dues d'aquestes generatrius —les que passen pels dos punts del cercle base on el con és paral·lel al pla de tall— no arriben MAI al pla de tall (com dues rectes paral·leles que no es tallen, en el sentit ordinari). Els dos punts del cercle per on passen aquestes dues generatrius són exactament els que es couen \"a l'infinit\" —i per això la hipèrbola té dues branques que s'obren cap enfora sense parar: són la imatge d'un cercle sencer, menys aquests dos punts que han fugit a l'infinit.",
+          "ca": "Les \"rectes de projecció\" des del vèrtex són exactament les generatrius del con (les rectes rectes que el formen). Dues d'aquestes generatrius —les que passen pels dos punts del cercle base on el con és paral·lel al pla de tall— no arriben MAI al pla de tall (com dues rectes paral·leles que no es tallen, en el sentit ordinari). Els dos punts del cercle per on passen aquestes dues generatrius són exactament els que se'n van \"a l'infinit\" —i per això la hipèrbola té dues branques que s'obren cap enfora sense parar: són la imatge d'un cercle sencer, menys aquests dos punts que han fugit a l'infinit.",
           "en": null
         },
         "figura": null
@@ -1450,7 +1450,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Dues maneres de mesurar la mateixa distància: (a) PF₁ és una tangent des de P a l'esfera 1 —i totes les tangents des d'un mateix punet a una esfera tenen la mateixa longitud (q93, aquest mateix lot). (b) El segment de la generatriu del con des de P fins al cercle de tangència amb l'esfera 1 és TAMBÉ una tangent des de P a aquesta mateixa esfera (la generatriu és tangent a l'esfera al llarg de tot el con). Per tant PF₁ = aquest tros de generatriu. Igual per PF₂ amb l'esfera 2, cap a l'altre cercle de tangència. Suma PF₁+PF₂: és exactament la longitud del tros de generatriu ENTRE els dos cercles de tangència —la mateixa per a QUALSEVOL generatriu, perquè els dos cercles de tangència són fixos (no depenen de P). Constant trobada.",
+          "ca": "Dues maneres de mesurar la mateixa distància: (a) PF₁ és una tangent des de P a l'esfera 1 —i totes les tangents des d'un mateix punt a una esfera tenen la mateixa longitud (q93, aquest mateix lot). (b) El segment de la generatriu del con des de P fins al cercle de tangència amb l'esfera 1 és TAMBÉ una tangent des de P a aquesta mateixa esfera (la generatriu és tangent a l'esfera al llarg de tot el con). Per tant PF₁ = aquest tros de generatriu. Igual per PF₂ amb l'esfera 2, cap a l'altre cercle de tangència. Suma PF₁+PF₂: és exactament la longitud del tros de generatriu ENTRE els dos cercles de tangència —la mateixa per a QUALSEVOL generatriu, perquè els dos cercles de tangència són fixos (no depenen de P). Constant trobada.",
           "en": null
         },
         "figura": null
@@ -1461,7 +1461,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Aquest argument —el mateix tram de recta, mesurat de dues maneres, forçat a ser igual (q93 per a la tangència, geometria del con per a la longitud sobre la superfície)— torna a q94, però al REVÉS: q94 partia de la definició (dos focus, suma constant) i en deduïa que un cercle és el cas amb els dos focus fosos; aquí, en canvi, comences del con i DEMOSTRES que la corba resultant compleix la definició amb focus concrets. Quan el pla de tall és perpendicular a l'eix del con, les dues esferes de Dandelin es couen igual de grans i tangents al mateix cercle —els dos focus col·lapsen en un de sol, exactament el cas límit de q94.",
+      "ca": "Aquest argument —el mateix tram de recta, mesurat de dues maneres, forçat a ser igual (q93 per a la tangència, geometria del con per a la longitud sobre la superfície)— torna a q94, però al REVÉS: q94 partia de la definició (dos focus, suma constant) i en deduïa que un cercle és el cas amb els dos focus fosos; aquí, en canvi, comences del con i DEMOSTRES que la corba resultant compleix la definició amb focus concrets. Quan el pla de tall és perpendicular a l'eix del con, les dues esferes de Dandelin queden igual de grans i tangents al mateix cercle —els dos focus col·lapsen en un de sol, exactament el cas límit de q94.",
       "en": null
     }
   },
@@ -1586,7 +1586,7 @@ window.GUIES = {
       }
     ],
     "comprovacio": {
-      "ca": "Amb a=3, b=4: el punt (5,4/3·√(25−9))... més senzill: comprova que si (x₀,y₀) satisfà x₀²/9−y₀²/16=1, aleshores (−x₀,y₀), (x₀,−y₀) i (−x₀,−y₀) també ho satisfan —substitueix-los directament a l'equació i comprova que dona el mateix resultat en els quatre casos.",
+      "ca": "Amb a=3, b=4: comprova que si (x₀,y₀) satisfà x₀²/9−y₀²/16=1, aleshores (−x₀,y₀), (x₀,−y₀) i (−x₀,−y₀) també ho satisfan —substitueix-los directament a l'equació i comprova que dona el mateix resultat en els quatre casos.",
       "en": null
     },
     "iDespres": {
@@ -1621,7 +1621,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Amb els vèrtexs de la hipèrbola a distància a del centre (sobre un eix) i les seves tangents tallant les asímptotes a distància b del mateix centre (sobre l'altre eix), el \"diamant\" és el quadrilàter amb aquests quatre punts com a vèrtexs: (0,a), (b,0), (0,−a), (−b,0). Quin tipus de quadrilàter és, exactament, si les seves diagonals es tallen en angle recte i es reparteixen per la meitat?",
+          "ca": "Amb els vèrtexs de la hipèrbola a distància a del centre (sobre un eix) i les seves tangents tallant les asímptotes a distància b del mateix centre (sobre l'altre eix), el \"diamant\" és el quadrilàter amb aquests quatre punts com a vèrtexs. Amb l'orientació de sempre —la de x²/a² − y²/b² = 1, amb els vèrtexs sobre l'eix horitzontal— són (a,0), (0,b), (−a,0), (0,−b). Quin tipus de quadrilàter és, exactament, si les seves diagonals es tallen en angle recte i es reparteixen per la meitat?",
           "en": null
         },
         "figura": null
@@ -1979,7 +1979,7 @@ window.GUIES = {
       }
     ],
     "comprovacio": {
-      "ca": "Amb a=4,b=3,c=5, al punt (5, 9/4) de la hipèrbola, els angles entre la tangent i cadascun dels dos radis focals valen els dos exactament 138,75° (calculats amb el vector gradient de la corba) — iguals entre si, com prediu la bisectriu.",
+      "ca": "Amb a=4, b=3, c=5, al punt P=(5, 9/4) de la hipèrbola (comprova primer que hi és: 25/16 − (81/16)/9 = 1 ✓). La tangent en P té pendent 9x/(16y) = 45/36 = 1,25. Mesura ara l'angle que fa la tangent amb PF₁ (cap a (5,0), és a dir recta avall) i amb PF₂ (cap a (−5,0)): tots dos surten ≈141,3°, iguals entre si —o ≈38,7° tots dos, si prens la tangent en l'altre sentit. El que has de comprovar és que coincideixen entre ells, no quin dels dos números et surt: el sentit que triïs per a la tangent canvia els dos angles alhora, i els deixa iguals igualment.",
       "en": null
     },
     "iDespres": {
@@ -2045,7 +2045,7 @@ window.GUIES = {
       }
     ],
     "comprovacio": {
-      "ca": "p=1 (y=x²/4) dilatada per factor 2 uniforme: (2y)=(2x)²/4 → y=x², és a dir p=1/4. Comprova que el focus (a alçada p) també s'ha mogut de (0,1) a (0,1/4), coherent amb la dilatació.",
+      "ca": "p=1 (y=x²/4) dilatada per factor 2 uniforme des del vèrtex. Fes-ho seguint un punt: (x, x²/4) va a parar a (2x, x²/2). Si n'anomenes X=2x la coordenada nova, aleshores x=X/2 i l'alçada nova és (X/2)²/2 = X²/8. La paràbola dilatada és, doncs, y = x²/8, és a dir p=2 — exactament el k·p de la Pista 3, amb k=2. El focus, que és a alçada p, es mou de (0,1) a (0,2): s'allunya el mateix factor 2 que tota la resta, com ha de fer qualsevol punt en una dilatació uniforme. Si t'ha sortit p més PETIT en dilatar, has aplicat la dilatació al revés.",
       "en": null
     },
     "iDespres": {
@@ -2104,14 +2104,14 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Demostra que la bisectriu de l'angle en P del triangle isòsceles PFD —que també n'és la mediatriu del costat FD, per ser isòsceles— és precisament la tangent a la paràbola en P. Com que FD és vertical (D és el peu vertical de P a la directriu horitzontal)... espera, FD no cal que sigui vertical: la mediatriu de FD bisecta l'angle entre PF i PD; i PD és vertical (perpendicular a la directriu horitzontal), que és la direcció del raig entrant. Per tant aquesta mateixa recta reflecteix el raig vertical cap a F.",
+          "ca": "Demostra que la bisectriu de l'angle en P del triangle isòsceles PFD —que també n'és la mediatriu del costat FD, per ser isòsceles— és precisament la tangent a la paràbola en P.\n\nUn cop ho tinguis, el rebot surt sol. Aquesta recta bisecta l'angle entre PF i PD. I PD és vertical, perquè D és el peu de la perpendicular de P a la directriu, que és horitzontal —o sigui que PD és exactament la direcció del raig que arriba. Un raig que arriba per PD i rebota en una recta que bisecta l'angle PD–PF se'n va, doncs, per PF: cap al focus. (Compte: FD, en canvi, NO és vertical, tret del cas del vèrtex. És PD la que ho és sempre, i és aquesta la que fa la feina.)",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "p=2, punt P=(3, 9/4) de la paràbola y=x²/8... (amb focus a (0,2)): el peu D=(3,−2). El punt mitjà de FD és (3,0); la recta de P a aquest punt mitjà té la mateixa direcció que la tangent calculada per derivada (pendent 3/4) — coincideixen exactament.",
+      "ca": "Paràbola y=x²/8 (p=2, focus F=(0,2), directriu y=−2). Pren x=3: el punt de la corba és P=(3, 9/8), i el seu peu a la directriu és D=(3, −2). Comprova primer que P és realment equidistant: PD = 9/8 + 2 = 25/8, i PF = √(3² + (9/8 − 2)²) = √(9 + 49/64) = 25/8 ✓ —el triangle PFD és isòsceles, com havia de ser. El punt mitjà de F=(0,2) i D=(3,−2) és (1,5, 0). La recta de P a aquest punt mitjà té pendent (9/8 − 0) / (3 − 1,5) = 3/4, que és exactament el pendent de la tangent en aquell punt. Coincideixen.",
       "en": null
     },
     "iDespres": {
@@ -2186,7 +2186,7 @@ window.GUIES = {
     }
   },
   "q12": {
-    "moviment": "contraexemple",
+    "moviment": "redueix-al-conegut",
     "movimentTitol": {
       "ca": "contraexemple i demostració — quan una condició extra ho canvia tot",
       "en": null
@@ -2302,7 +2302,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Amb y=x² i P=(p,p²), la tangent en P té pendent 2p i talla y=0 a x=p/2 — el punt mitjà exacte entre el vèrtex (x=0) i N (x=p). El triangle VNP (la diagonal del rectangle vèrtex-a-P) té sempre àrea igual a la meitat del rectangle; i com que T és el punt mitjà de VN, el triangle TNP —el \"sector\" tallat per la tangent— té la mateixa altura que VNP però la meitat de la base, així que la seva àrea és la meitat de la de VNP.",
+          "ca": "Amb y=x² i P=(p,p²), la tangent en P té pendent 2p i talla y=0 a x=p/2 — el punt mitjà exacte entre el vèrtex (x=0) i N (x=p).\n\nD'on surt aquest pendent 2p, si encara no has fet derivades? Es pot treure sense càlcul, i val la pena fer-ho un cop. Una recta que passi per P amb pendent m és y = p² + m(x−p). Iguala-la a y = x² i et queda x² − mx + (mp − p²) = 0. La tangent és, precisament, la recta que toca la paràbola en UN sol punt en lloc de tallar-la en dos: la que fa que aquesta equació de segon grau tingui una arrel doble, és a dir discriminant zero. m² − 4(mp − p²) = 0 es reordena com (m − 2p)² = 0, i per tant m = 2p. Aquesta és la definició antiga de tangent —la recta que toca sense travessar— i es resol amb l'àlgebra que ja saps. El triangle VNP (la diagonal del rectangle vèrtex-a-P) té sempre àrea igual a la meitat del rectangle; i com que T és el punt mitjà de VN, el triangle TNP —el \"sector\" tallat per la tangent— té la mateixa altura que VNP però la meitat de la base, així que la seva àrea és la meitat de la de VNP.",
           "en": null
         },
         "figura": null
@@ -2368,7 +2368,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Amb n franges d'amplada 1/n cadascuna sobre l'interval [0,1], la suma de les àrees dels rectangles per sota de y=x² és (1/n)·Σ(k/n)² per a k=1..n, que val (1/n³)·[n(n+1)(2n+1)/6]. Quan n creix molt, aquesta suma s'acosta a 1/3 (comprova-ho substituint valors grans de n): l'àrea SOTA la corba és 1/3 de la caixa, i per tant l'àrea ENTRE la corba i la part de dalt —la \"secció\"— n'és els 2/3 restants.",
+          "ca": "Amb n franges d'amplada 1/n cadascuna sobre l'interval [0,1], la suma de les àrees dels rectangles per sota de y=x² és (1/n)·Σ(k/n)² per a k=1..n, que val (1/n³)·[n(n+1)(2n+1)/6].\n\nAra mira per què això compleix la promesa de la Pista 0. No estem dient \"quan n és infinit passa una cosa màgica\": tenim una fórmula EXACTA per a cada n, i la podem desenvolupar. Surt 1/3 + 1/(2n) + 1/(6n²). O sigui que la suma no val mai 1/3 exacte —sempre s'hi passa una mica— però el que s'hi passa és 1/(2n) + 1/(6n²), i això es pot fer més petit que qualsevol número que et diguin, només triant n prou gran. Si algú et diu que l'àrea val 0,34, li pots ensenyar un n concret que ho desmenteix; si et diu 0,33, també. L'únic número que no es pot desmentir així és 1/3. Aquesta és la diferència entre un pas al límit i un infinitèsim: aquí no et demanem que et creguis res, et donem la fórmula i pots exigir el número.\n\nL'àrea SOTA la corba és, doncs, 1/3 de la caixa, i per tant l'àrea ENTRE la corba i la part de dalt —la \"secció\"— n'és els 2/3 restants.",
           "en": null
         },
         "figura": null
@@ -2698,7 +2698,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Fes que els dos angles creixin cadascun a velocitat constant però DIFERENT: mentre un avança una volta sencera, l'altre n'avança p/q (una fracció). Si p/q és racional, la corba es tanca després de q voltes del primer angle; si és irracional, la corba mai es tanca i acaba omplint tota la superfície del tor.",
+          "ca": "Fes que els dos angles creixin cadascun a velocitat constant però DIFERENT: mentre un avança una volta sencera, l'altre n'avança p/q (una fracció). Si p/q és racional, la corba es tanca després de q voltes del primer angle; si és irracional, la corba no es tanca mai. Compte amb com ho dius, aquest últim cas: la corba no \"omple\" el tor —una corba no pot arribar a ser una superfície, per molt que doni voltes— sinó que hi passa tan a prop com vulguis de qualsevol punt. Digues-li un punt del tor i una distància, per petita que sigui, i la corba hi acabarà passant més a prop que aquella distància. No és el mateix, i la diferència et tornarà a sortir sovint.",
           "en": null
         },
         "figura": null
@@ -2986,7 +2986,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "No cal comprovar els quatre costats. Per demostrar que una figura de quatre costats és un paral·lelogram n'hi ha prou amb dos costats oposats que siguin alhora paral·lels i iguals de llargs. Convèncer-te d'això abans de començar et estalviarà la meitat de la feina.",
+          "ca": "No cal comprovar els quatre costats. Per demostrar que una figura de quatre costats és un paral·lelogram n'hi ha prou amb dos costats oposats que siguin alhora paral·lels i iguals de llargs. Convèncer-te d'això abans de començar t'estalviarà la meitat de la feina.",
           "en": null
         },
         "figura": null
@@ -3325,7 +3325,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Escriu els dos nombres com 2a i 2b. El producte és 4ab directament — Per què la graella de punts ho fa evident sense necessitat de desenvolupar res?",
+          "ca": "Escriu els dos nombres com 2a i 2b. El producte és 4ab directament. Però per què la graella de punts ho fa evident, sense necessitat de desenvolupar res?",
           "en": null
         },
         "figura": null
@@ -3706,7 +3706,7 @@ window.GUIES = {
         "nivell": 1,
         "titol": null,
         "text": {
-          "ca": "Cada meitat és un triangle rectangle amb hipotenusa el costat del triangle (s) i un catet la meitat de la base (s/2). Pitàgores et dona directament l'altre catet — que és, precisament, l'alçada.",
+          "ca": "Cada meitat és un triangle rectangle amb hipotenusa el costat del triangle (s) i un catet la meitat de la base (s/2). Pitàgores et dona directament l'altre catet — que és, precisament, l'alçada.\n\nDues coses que aquí es donen per bones i que has de saber d'on surten: que l'alçada caigui just al PUNT MITJÀ de la base, i que hi caigui perpendicular. Totes dues venen del mateix argument, fet a q01 (pista 1): els dos trossos són triangles congruents pels tres costats, i d'aquí surten alhora la meitat exacta i els 90°. Si no l'has vist, val la pena fer-hi un tomb abans de seguir: és la peça que fa que aquesta guia funcioni.",
           "en": null
         },
         "figura": null
@@ -3923,7 +3923,7 @@ window.GUIES = {
       }
     ],
     "comprovacio": {
-      "ca": "Hexàgon (n=6): 3 diagonals, 4 triangles, suma d'angles 720°. Octàgon (n=8): 5 diagonals, 6 triangles, suma d'angles 1080°.",
+      "ca": "Hexàgon (n=6): 3 diagonals, 4 triangles, suma d'angles 720°. Octàgon (n=8): 5 diagonals, 6 triangles, suma d'angles 1080°.\n\nI ara la part de MESURAR, que és el que l'enunciat del llibre demana de debò. Hexàgon regular de costat s: la diagonal curta (la que salta un vèrtex) fa s√3 ≈ 1,732s, i la llarga (la que va al vèrtex oposat, passant pel centre) fa exactament 2s. Amb s=1: 1,732 i 2. Comprova la curta amb el mètode de q26 —és la base d'un triangle isòsceles de costats s i angle 120°, o dues alçades d'equilàter posades seguides— i la llarga sense cap càlcul: l'hexàgon regular són sis triangles equilàters al voltant del centre, així que dos radis seguits fan 2s. Àrea de l'hexàgon: sis equilàters de costat s, és a dir 6 × (√3/4)s² = (3√3/2)s² ≈ 2,598s².\n\nL'octàgon es fa exactament igual, però amb tres llargades de diagonal en lloc de dues (salta 1, salta 2, salta 3), i el mètode és el mateix: cada diagonal és la base d'un triangle isòsceles amb dos radis del polígon.",
       "en": null
     },
     "iDespres": {
@@ -3970,7 +3970,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Un dels dotze triangles del ventall, marcat en sanguina: si en saps l'àrea, la resta del dodecàgon és aquest mateix triangle repetit (encara que no tots els triangles del ventall siguin idèntics entre si, com sí ho eren a un polígon triangulat des del CENTRE).",
+          "ca": "Un dels triangles del ventall, marcat en sanguina. Compte amb dos recomptes que és fàcil de barrejar: des d'un VÈRTEX surten 10 triangles (n−2), i no són tots iguals; des del CENTRE en surten 12, i aquests sí que són tots idèntics. La figura marca un del ventall des del vèrtex.",
           "en": null
         },
         "figura": "fig-067.png"
@@ -3989,7 +3989,7 @@ window.GUIES = {
       }
     ],
     "comprovacio": {
-      "ca": "Dodecàgon de costat s=1, triangulat des del centre: apotema a=1/(2 tan15°)≈1,866. Àrea d'un dels 12 triangles: (1/2)(1)(1,866) ≈0,933. Àrea total: 12×0,933≈11,196 —coincideix amb la fórmula estàndard 3(2+√3)s²≈11,196.",
+      "ca": "Dodecàgon de costat s=1, triangulat des del centre: apotema a=1/(2 tan15°)≈1,866. Àrea d'un dels 12 triangles: (1/2)(1)(1,866) ≈0,933. Àrea total: 12×0,933≈11,196 —coincideix amb la fórmula estàndard 3(2+√3)s²≈11,196.\n\nI les diagonals, que la Pista 1 et demanava comptar per tipus: n'hi ha cinc de llargades diferents, segons quants vèrtexs salten (1, 2, 3, 4 o 5); la que en saltaria 6 és el diàmetre, i les que en salten més són les mateixes repetides des de l'altra banda. Cadascuna és la base d'un triangle isòsceles format per dos radis R del dodecàgon amb un angle central de k×30° entremig, així que totes surten de la mateixa fórmula: diagonal = 2R·sin(k×15°), amb k=1..6. Amb R=1: 0,518 / 1 / 1,414 / 1,732 / 1,932 / 2. Fixa't que la tercera fa exactament √2 i la sisena exactament 2 (el diàmetre) —bones per comprovar que no t'has equivocat.",
       "en": null
     },
     "iDespres": {
@@ -5614,7 +5614,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "El volum del tetràedre es pot calcular amb el producte mixt: (1/6)|det[B−A, C−A, D−A]|. Calcula'l amb les coordenades de la Pista 1 i compara amb el volum del cub (que és 1, amb costat 1).",
+          "ca": "Hi ha dos camins, i val la pena que sàpigues que n'hi ha dos.\n\nEl curt fa servir una eina que segurament encara no has vist: el volum d'un tetràedre és (1/6)|det[B−A, C−A, D−A]|, un determinant 3×3. Si la coneixes, calcula'l amb les coordenades de la Pista 1. Si no, no és el lloc d'aprendre-la ara.\n\nEl llarg no necessita res que no tinguis, i de fet ensenya més. Mira què queda del cub quan en treus el tetràedre: quatre trossos, un a cada cantonada que no has fet servir. Cadascun és una piràmide amb una cara del cub per base (àrea 1) i una aresta del cub per alçada (1), o sigui volum (1/3)(1)(1) = 1/3... que és massa. Fixa-t'hi millor: la base de cada tros no és una cara sencera del cub, és mig cara —un triangle rectangle d'àrea 1/2— i l'alçada és 1. Volum de cada tros: (1/3)(1/2)(1) = 1/6. Quatre trossos fan 4/6 = 2/3. El tetràedre és, doncs, 1 − 2/3 del cub. Compara aquest resultat amb el del camí curt.",
           "en": null
         },
         "figura": null
@@ -6004,7 +6004,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "A cada alçada dins del casquet, la secció del casquet (un cercle) i la secció del cilindre-menys-con auxiliar tenen la mateixa àrea — exactament el mateix argument de q60, aplicat entre 0 i h en lloc d'entre 0 i R. Integra (suma) aquestes àrees iguals fins a h, no fins a R.",
+          "ca": "A cada alçada dins del casquet, la secció del casquet (un cercle) i la secció del cilindre-menys-con auxiliar tenen la mateixa àrea — exactament el mateix argument de q60, aplicat entre 0 i h en lloc d'entre 0 i R. Per Cavalieri, doncs, el casquet té el mateix volum que aquell tros de cilindre-menys-con, que sí que saps calcular: un cilindre de radi R i alçada h, menys el tronc de con que hi queda a dins (i el volum d'un tronc ja el vas fer a q48). Fes la resta i simplifica.\n\nUn avís d'honestedat: aquesta guia et porta fins aquí i s'atura. Que \"sumar\" àrees de seccions infinitament primes doni exactament un volum és el pas que el càlcul integral formalitza, i és fora d'aquest quadern —el mateix tipus de frontera que ja et vas trobar a q64 amb la longitud de l'astroide. El que sí que és teu del tot és l'argument de Cavalieri: dues figures amb la mateixa secció a cada alçada tenen el mateix volum.",
           "en": null
         },
         "figura": null
@@ -6196,14 +6196,14 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Per al rectangle, el punt que fa funcionar el teorema resulta ser el punt mitjà del costat oposat a l'eix —el centre de gravetat \"de tota la vida\" del rectangle. Defineix el centroide, en general, com el punt de la figura la distància del qual a l'eix, multiplicada per l'àrea i per 2π, reprodueix el volum de la figura girada, sigui quina sigui la figura.",
+          "ca": "Per al rectangle, el punt que fa funcionar el teorema resulta ser el seu CENTRE —el centre de gravetat \"de tota la vida\", allà on es creuen les dues diagonals—, que és a mitja amplada de l'eix. Compte amb la temptació d'agafar el costat oposat a l'eix: aquell és el punt més LLUNY de l'eix, no el punt mitjà, i et donaria el doble del volum real. Defineix el centroide, en general, com el punt de la figura la distància del qual a l'eix, multiplicada per l'àrea i per 2π, reprodueix el volum de la figura girada, sigui quina sigui la figura.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "Rectangle de costats 2 i 3, girat al voltant del costat de llargada 3 (a distància 2 del centre): volum = àrea(6) × 2π × distància(2) = 24π. Compara amb el volum directe del cilindre que en resulta (radi 2, alçada 3): π(2²)(3)=12π... si no coincideixen, revisa quina distància hi has posat (la de l'EIX al CENTRE, no al costat oposat).",
+      "ca": "Rectangle de costats 2 i 3, girat al voltant del costat de llargada 3. El costat perpendicular a l'eix fa 2, així que el centre del rectangle és a distància 1 de l'eix. Pappus dona àrea(6) × 2π × distància(1) = 12π; el cilindre que en surt de veritat té radi 2 i alçada 3, és a dir π(2²)(3) = 12π. Coincideixen exactament. Si t'ha sortit 24π, hi has posat la distància al costat de més enllà (2) en lloc de la distància al centre (1) —és l'error que la Pista 3 t'avisava.",
       "en": null
     },
     "iDespres": {
@@ -6502,7 +6502,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Fixa't que el polígon del dibuix no és regular. És a posta: l'argument no pot dependre de cap simetria, ha de valer per a qualsevol polígon simple.",
+          "ca": "Fixa't que el polígon del dibuix no és regular. És a posta: l'argument no pot dependre de cap simetria, ha de valer per a qualsevol polígon convex (un polígon sense cap \"entrant\", on totes les diagonals queden per dins).",
           "en": null
         },
         "figura": "fig-036.png"
@@ -6525,7 +6525,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Aquest mateix moviment —triangular des d'un sol vèrtex— és exactament el que reutilitzaràs a q29 per calcular diagonals concretes d'un hexàgon i un octàgon, i a q06 per mirar els angles que es formen en aquest ventall de triangles, no només comptar-los.",
+      "ca": "Aquest mateix moviment —triangular des d'un sol vèrtex— és exactament el que reutilitzaràs a q29 per calcular diagonals concretes d'un hexàgon i un octàgon, i a q06 per mirar els angles que es formen en aquest ventall de triangles, no només comptar-los.\n\nVal la pena que sàpigues on s'atura aquest argument, perquè és un exemple net d'una cosa que passa sovint: el resultat és més general que la demostració. Dibuixa un polígon amb un entrant ben marcat, com una fletxa, i tria el vèrtex de la punta de dins: veuràs que algunes de les diagonals que hi voldries traçar se'n van FORA de la figura, i el ventall ja no parteix el polígon en triangles. La fórmula (n−2)×180° continua sent certa per a aquests polígons —pots comprovar-ho mesurant—, però aquesta demostració concreta ja no la prova. Per a aquell cas cal un argument diferent: sempre existeix ALGUNA diagonal interior que parteix el polígon en dos de més petits, i es va repetint. Que un argument no arribi a tot arreu no el fa dolent; el que seria dolent és no saber fins on arriba.",
       "en": null
     }
   },
@@ -6654,7 +6654,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Aquesta mateixa descomposició en dues sumes independents (horitzontal i vertical) és el nucli de com es couen coordenades i vectors a partir de la trigonometria — una idea que reapareixerà si mai treballes amb navegació, robòtica, o qualsevol cosa que impliqui sumar moviments en direccions diferents.",
+      "ca": "Aquesta mateixa descomposició en dues sumes independents (horitzontal i vertical) és el nucli de com queden coordenades i vectors a partir de la trigonometria — una idea que reapareixerà si mai treballes amb navegació, robòtica, o qualsevol cosa que impliqui sumar moviments en direccions diferents.",
       "en": null
     }
   },
@@ -7357,7 +7357,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "El triangle rectangle té hipotenusa 2, un catet 1 (la meitat del costat que has partit), i l'altre catet per Pitàgores. L'angle de 60° és el que queda al vèrtex original —quin catet hi és oposat, quin hi és contigu?",
+          "ca": "El triangle rectangle té hipotenusa 2, un catet 1 (la meitat del costat que has partit), i l'altre catet per Pitàgores. Que aquest triangle sigui rectangle de veritat —és a dir, que la línia que has traçat caigui perpendicular al costat oposat— no és cosa del dibuix: és el que es demostra a q01 (pista 1), amb dos triangles congruents pels tres costats. L'angle de 60° és el que queda al vèrtex original —quin catet hi és oposat, quin hi és contigu?",
           "en": null
         },
         "figura": null
@@ -7705,7 +7705,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Aquest és un dels resultats clàssics de la geometria elemental que costa més de demostrar del que sembla a primer cop d'ull (es coneix com el teorema de Steiner–Lehmus). Antic de saber-ho: la teva intuïció probablement et diu que sí, és isòsceles. Aquesta vegada la intuïció encerta —però val la pena que notis que no és evident per què, i que un argument ràpid del tipus \"és simètric, doncs...\" no n'és una demostració vàlida.",
+          "ca": "Aquest és un dels resultats clàssics de la geometria elemental que costa més de demostrar del que sembla a primer cop d'ull (es coneix com el teorema de Steiner–Lehmus). Abans de saber-ho: la teva intuïció probablement et diu que sí, és isòsceles. Aquesta vegada la intuïció encerta —però val la pena que notis que no és evident per què, i que un argument ràpid del tipus \"és simètric, doncs...\" no n'és una demostració vàlida.",
           "en": null
         },
         "figura": null
@@ -7783,7 +7783,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Els dos triangles comparteixen la diagonal i tenen angles oposats en aquell vèrtex del quadrilàter que, per estar inscrit en un cercle, sumen 180° (angles oposats d'un quadrilàter cíclic — recorda q90 mateix ho demana com a hipòtesi, i el fet ja el vas veure encunyat, sense el nom, en algun quadrilàter cíclic anterior).",
+          "ca": "Els dos triangles comparteixen la diagonal i tenen angles oposats en aquell vèrtex del quadrilàter que, per estar inscrit en un cercle, sumen 180°. Aquest fet —els angles oposats d'un quadrilàter cíclic sumen sempre 180°— és la hipòtesi \"inscrit en un cercle\" convertida en una dada sobre angles, i és tota la feina que fa aquí la circumferència. Si no l'has vist mai demostrat, surt en dues línies de l'angle inscrit de q42: cada angle del quadrilàter val la meitat de l'arc oposat, i els dos arcs oposats fan junts la circumferència sencera.",
           "en": null
         },
         "figura": null
@@ -8260,7 +8260,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Amb A′ (reflex d'A respecte de la recta de dalt) i B′ (reflex de B respecte de la recta de baix), el segment recte A′B′ creua totes dues rectes. Aquests dos punts de creuament són els punts de contacte que buscaves: el camí A → (creuament de dalt) → (creuament de baix) → B fa exactament la mateixa longitud que el segment recte A′B′, per a qualsevol elecció dels punts de contacte — i un segment recte és el camí més curt entre els seus extrems.",
+          "ca": "Amb A′ (reflex d'A respecte de la recta de dalt) i B′ (reflex de B respecte de la recta de baix), tries dos punts de contacte qualssevol P (a dalt) i Q (a baix). Per la reflexió, AP fa el mateix que A′P, i QB fa el mateix que QB′: el camí A→P→Q→B fa sempre la mateixa longitud que el camí A′→P→Q→B′, triïs on triïs P i Q. Aquesta és la part que val per a qualsevol elecció.\n\nAra mira el camí A′→P→Q→B′: va d'A′ a B′ passant per dos punts pel mig. Cap camí així pot ser més curt que el segment recte A′B′, i només fa exactament A′B′ quan P i Q cauen damunt d'aquest segment. Per tant els punts de contacte que busques són els dos punts on el segment A′B′ creua les dues rectes, i la longitud mínima és exactament A′B′.",
           "en": null
         },
         "figura": null
