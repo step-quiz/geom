@@ -111,7 +111,7 @@
       passa per l'espai encara que el resultat final sigui una figura
       plana (p.ex. una el·lipse com a secció d'un con és "3D"). Dos casos
       on el criteri no és evident només amb l'enunciat i s'ha decidit per
-      la posició al llibre: q94 (focus d'un cercle com a el·lipse
+      la posició al llibre: q94 (focus d'una circumferència com a el·lipse
       degenerada, classificat 2D tot i venir just després del lema de
       tangents a l'esfera) i q65/q67 (definir el centroide "perquè Pappus
       funcioni", classificat 3D pel motiu — el volum de revolució — encara
@@ -833,7 +833,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "The big circles are clearly half as wide as the square. How about the small circle?",
-      "ca": "Els cercles grans clarament tenen la meitat d'amplada que el quadrat. I el cercle petit?"
+      "ca": "Les circumferències grans clarament tenen la meitat d'amplada que el quadrat. I la circumferència petita?"
     },
     "pista": {
       "en": null,
@@ -862,7 +862,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "How big are these circles?",
-      "ca": "Quant fan aquests cercles?"
+      "ca": "Quant fan aquestes circumferències?"
     },
     "pista": {
       "en": null,
@@ -989,7 +989,7 @@ window.PREGUNTES = [
       "ca": null
     },
     "_notaExtraccio": "Special case: three diagrams (triangle, square, circle, each with inscribed circles) with only a one-line caption and no question sentence. The image IS the question.",
-    "_notaClassificacio": "tres configuracions de cercles inscrits, àlgebra moderada"
+    "_notaClassificacio": "tres configuracions de circumferències inscrites, àlgebra moderada"
   },
   {
     "id": "q28",
@@ -1369,8 +1369,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "cercle+quadrat-notxa, cercle+2cercles+quadrat",
-    "_notaClassificacio": "dues configuracions cercle-quadrat, moderat"
+    "_notaExtraccio": "circumferència+quadrat-notxa, circumferència+2circumferències+quadrat",
+    "_notaClassificacio": "dues configuracions circumferència-quadrat, moderat"
   },
   {
     "id": "q41",
@@ -1388,7 +1388,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "When a point on a circle is connected to both ends of a diameter it always makes a right angle. Why?",
-      "ca": "Quan un punt d'un cercle es connecta amb els dos extrems d'un diàmetre, sempre forma un angle recte. Per què?"
+      "ca": "Quan un punt d'una circumferència es connecta amb els dos extrems d'un diàmetre, sempre forma un angle recte. Per què?"
     },
     "pista": {
       "en": null,
@@ -1427,7 +1427,7 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "cercle, dos punts, angles marcats",
+    "_notaExtraccio": "circumferència, dos punts, angles marcats",
     "_notaClassificacio": "teorema de l'angle inscrit, argument clàssic"
   },
   {
@@ -1446,7 +1446,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "If two circles are arranged so that each passes through the center of the other, what are the area and perimeter of the overlap? What about for three overlapping circles?",
-      "ca": "Si dos cercles es disposen de manera que cadascun passa pel centre de l'altre, quina és l'àrea i el perímetre de la intersecció? I per a tres cercles superposats?"
+      "ca": "Si dues circumferències es disposen de manera que cadascuna passa pel centre de l'altra, quina és l'àrea i el perímetre de la intersecció? I per a tres circumferències superposades?"
     },
     "pista": {
       "en": null,
@@ -1456,8 +1456,8 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "dos cercles superposats",
-    "_notaClassificacio": "generalitza de 2 a 3 cercles, segments circulars"
+    "_notaExtraccio": "dues circumferències superposades",
+    "_notaClassificacio": "generalitza de 2 a 3 circumferències, segments circulars"
   },
   {
     "id": "q44",
@@ -1475,7 +1475,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Two circles lie on a line, touching each other at a point. A small circle is inscribed in the space between. How does its radius depend on the radii of the two larger circles?",
-      "ca": "Dos cercles es troben sobre una línia i es toquen en un punt. S'inscriu un cercle petit a l'espai entre tots dos. Com depèn el seu radi dels radis dels dos cercles grans?"
+      "ca": "Dues circumferències es troben sobre una línia i es toquen en un punt. S'inscriu una circumferència petita a l'espai entre totes dues. Com depèn el seu radi dels radis de les dues circumferències grans?"
     },
     "pista": {
       "en": null,
@@ -1485,7 +1485,7 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "dos cercles tangents + cercle petit",
+    "_notaExtraccio": "dues circumferències tangents + circumferència petita",
     "_notaClassificacio": "àlgebra amb diverses incògnites, tipus Descartes"
   },
   {
@@ -2378,7 +2378,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "If a triangle has sides a, b, and c, what is the radius of the inscribed circle?",
-      "ca": "Si un triangle té costats a, b i c, quin és el radi del cercle inscrit?"
+      "ca": "Si un triangle té costats a, b i c, quin és el radi de la circumferència inscrita?"
     },
     "pista": {
       "en": null,
@@ -2388,7 +2388,7 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "triangle amb cercle inscrit, a/b/c marcats",
+    "_notaExtraccio": "triangle amb circumferència inscrita, a/b/c marcats",
     "_notaClassificacio": "relació A=rs, derivació moderada"
   },
   {
@@ -2764,7 +2764,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Show that if a four-sided shape with sides a, b, c, and d is inscribed in a circle, then its area is given by Brahmagupta's formula: A = sqrt[(s-a)(s-b)(s-c)(s-d)], where s = (1/2)(a+b+c+d).",
-      "ca": "Demostra que, si una figura de quatre costats amb costats a, b, c i d està inscrita en un cercle, la seva àrea ve donada per la fórmula de Brahmagupta: A = √[(s-a)(s-b)(s-c)(s-d)], on s = (1/2)(a+b+c+d)."
+      "ca": "Demostra que, si una figura de quatre costats amb costats a, b, c i d està inscrita en una circumferència, la seva àrea ve donada per la fórmula de Brahmagupta: A = √[(s-a)(s-b)(s-c)(s-d)], on s = (1/2)(a+b+c+d)."
     },
     "pista": {
       "en": null,
@@ -2875,7 +2875,7 @@ window.PREGUNTES = [
     "imatge": { "fitxer": "fig-214.png", "esCrop": false, "esInvertida": false, "paginaFont": 144 },
     "enunciat": {
       "en": "A circle is a special type of ellipse. Where are its focal points?",
-      "ca": "Un cercle és un tipus especial d'el·lipse. On són els seus focus?"
+      "ca": "Una circumferència és un tipus especial d'el·lipse. On són els seus focus?"
     },
     "pista": {
       "en": null,
@@ -2904,7 +2904,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Why is the tangent to a circle perpendicular to the radius?",
-      "ca": "Per què la tangent a un cercle és perpendicular al radi?"
+      "ca": "Per què la tangent a una circumferència és perpendicular al radi?"
     },
     "pista": {
       "en": null,
@@ -2914,7 +2914,7 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "cercle amb radi i tangent",
+    "_notaExtraccio": "circumferència amb radi i tangent",
     "_notaClassificacio": "prova clàssica senzilla"
   },
   {
@@ -3237,7 +3237,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "When a cone is sliced by a plane to form a hyperbola, which two points on the circle are projected to infinity?",
-      "ca": "Quan un con es talla amb un pla per formar una hipèrbola, quins dos punts del cercle es projecten a l'infinit?"
+      "ca": "Quan un con es talla amb un pla per formar una hipèrbola, quins dos punts de la circumferència es projecten a l'infinit?"
     },
     "pista": {
       "en": null,
@@ -3247,7 +3247,7 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "hipèrbola=cercle amb ∞, corbes amb fletxes",
+    "_notaExtraccio": "hipèrbola=circumferència amb ∞, corbes amb fletxes",
     "_notaClassificacio": "combina geometria del con amb idea projectiva"
   },
   {
@@ -3725,7 +3725,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "How does the number of cusps of a hypocycloid depend on the radii of the two circles? What about for an epicycloid?",
-      "ca": "Com depèn el nombre de cúspides d'una hipocicloide dels radis dels dos cercles? I en el cas d'una epicicloide?"
+      "ca": "Com depèn el nombre de cúspides d'una hipocicloide dels radis de les dues circumferències? I en el cas d'una epicicloide?"
     },
     "pista": {
       "en": null,
@@ -3765,7 +3765,7 @@ window.PREGUNTES = [
       "ca": null
     },
     "_notaExtraccio": "figura d'espirògraf",
-    "_notaClassificacio": "cas degenerat directe (es converteix en cercle)"
+    "_notaClassificacio": "cas degenerat directe (es converteix en circumferència)"
   },
   {
     "id": "q126",
