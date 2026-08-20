@@ -120,8 +120,8 @@
 
   /**
    * tf(key, vars): com t(), amb interpolació {placeholder} substituïda
-   * pels valors de vars. p. ex. tf('detail.page_label', {page: 10})
-   * amb "Page {page} of the source" → "Page 10 of the source".
+   * pels valors de vars. p. ex. tf('meta.question_label', {n: 10})
+   * amb "Question {n}" → "Question 10".
    */
   function tf(key, vars) {
     let s = t(key);

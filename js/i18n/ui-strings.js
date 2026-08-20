@@ -50,9 +50,6 @@ window.UI_LANGS = {
     },
 
     detail: {
-      page_label: "Page {page} of the source",
-      figure_source_label: "fig. {id} — p. {page}",
-      figure_scan_note: "page scan",
       hint_show: "💡 Show hint",
       hint_hide: "💡 Hide hint",
       no_hint: "No hint for this one — sit with it a while.",
@@ -91,6 +88,7 @@ window.UI_LANGS = {
 
     meta: {
       untranslated_notice: "This question hasn't been translated yet — showing the original English.",
+      question_label: "Question {n}",
     },
 
     glossary: {
@@ -158,9 +156,6 @@ window.UI_LANGS = {
     },
 
     detail: {
-      page_label: "Pàgina {page} de la font",
-      figure_source_label: "fig. {id} — pàg. {page}",
-      figure_scan_note: "captura de pàgina",
       hint_show: "💡 Mostra la pista",
       hint_hide: "💡 Amaga la pista",
       no_hint: "Aquesta no té pista — pensa-t'ho amb calma.",
@@ -194,6 +189,7 @@ window.UI_LANGS = {
 
     meta: {
       untranslated_notice: "Aquesta pregunta encara no s'ha traduït — es mostra l'original en anglès.",
+      question_label: "Qüestió {n}",
     },
 
     glossary: {
