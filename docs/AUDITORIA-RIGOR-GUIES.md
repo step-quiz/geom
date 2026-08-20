@@ -1,293 +1,213 @@
 # Auditoria de rigor matemàtic — les 130 guies
 
 Ago. 2026. S'han llegit senceres les 130 guies (4 pistes + comprovació +
-"i després" cadascuna) i s'ha recalculat **cada número de cada
-comprovació**. Aquest fitxer és el resultat.
+"i després") i s'ha **recalculat cada número de cada comprovació**.
+Aquest fitxer és alhora el resultat de l'auditoria i el registre del que
+se n'ha corregit: la columna que importa és *estat*.
 
 **Criteri aplicat.** El llistó no és "rigor de facultat": és el que el
 projecte ja s'exigeix a si mateix als seus millors moments. `q64` diu
 literalment que la longitud de l'astroide "es demostra amb eines de fora
 d'aquest quadern; aquí la guia arriba fins a RECONÈIXER i CONSTRUIR
 l'envolupant, no fins a demostrar-ne la llargada". `q89` avisa que un
-argument ràpid "és simètric, doncs..." no és una demostració vàlida.
-`q95` demana a l'alumne que assenyali on la seva demostració fa servir la
-hipòtesi. **Aquest és el llistó.** Tot el que segueix són llocs on el
-projecte no s'hi arriba ell mateix.
+argument ràpid del tipus "és simètric, doncs..." no és una demostració
+vàlida. `q95` demana a l'alumne que assenyali on la seva demostració fa
+servir la hipòtesi. **Aquest és el llistó**, i és bo.
 
-**El que NO és un defecte.** Cap correcció d'aquest fitxer demana afegir
-formalisme. Un alumne de 15 anys no necessita èpsilons; necessita frases
-certes. Gairebé totes les correccions proposades són **una o dues frases
-en llenguatge planer**, i la majoria fan la guia *més* interessant, no
-més àrida: dir "això no ho hem demostrat, i mira per què costa" és més
-motivador que amagar-ho.
+**Cap correcció ha afegit formalisme.** Un alumne de 15 anys no necessita
+èpsilons; necessita frases certes. Totes les correccions són prosa
+planera, i la majoria fan la guia *més* interessant: dir "això no ho hem
+demostrat, i mira per què costa" motiva més que amagar-ho.
 
-**Balanç general.** De 130 guies, **112 són matemàticament correctes tal
-com estan**. La qualitat mitjana és alta: els arguments de `q95`
-(tangent per absurd), `q55` (l'escala que mai s'acosta a la diagonal),
-`q75` (Heron amb dues ternes), `q109` (esferes de Dandelin), `q99`
-(invariància de la raó doble) i `q15` (auditar la pròpia demostració de
-q14) són bons de veritat. Els problemes es concentren, i tenen forma
-reconeixible.
+**Balanç.** De 130 guies, 112 eren correctes tal com estaven. Els
+arguments de `q95` (tangent per absurd), `q55` (l'escala que mai s'acosta
+a la diagonal), `q75` (Heron amb dues ternes), `q109` (esferes de
+Dandelin), `q99` (invariància de la raó doble) i `q15` (auditar la pròpia
+demostració de q14) són bons de veritat.
 
 ---
 
-## A · Afirmacions falses (8) — cal corregir-les
+## Rectificació — quatre acusacions retirades
 
-Aquestes no són matisos. Un alumne que se les cregui, aprèn una cosa que
-no és certa, o segueix una comprovació que no li quadrarà mai.
+La primera versió d'aquest fitxer deia que `q21`, `q43`, `q58` i `q24`
+deixaven la segona meitat del seu enunciat sense resposta. **Era fals**,
+i l'error era de mètode: el volcat amb què es van llegir les guies
+imprimia les pistes i la comprovació però **no l'"i després"**, que és
+precisament on aquestes quatre responen.
 
-### A1 · `q102` — la resposta és la contrària de la correcta
+| | On respon la segona meitat |
+|---|---|
+| `q21` | "I després": √2+√3 racional ⟹ (√2+√3)²=5+2√6 racional ⟹ √6 racional, contradicció pel mateix argument |
+| `q43` | "I després": tres cercles, mateixa idea (sectors menys triangles) amb el comptatge d'inclusió-exclusió esbossat |
+| `q58` | "I després": declara explícitament que tres cilindres queden fora d'aquest quadern |
+| `q24` | "I després": dona la parametrització (m²−n², 2mn, m²+n²), declarada com a més enllà del que demana el quadern |
 
-La guia respon **NO** a "tots els quadrilàters són iguals projectivament?".
-La resposta correcta és **SÍ**: quatre punts en posició general es poden
-portar a qualssevol altres quatre en posició general (és el teorema
-fonamental de la geometria projectiva). Un quadrat *sí* que es pot
-projectar sobre un rectangle allargat — de fet, sobre qualsevol
-quadrilàter convex. La primera raó doble no apareix fins a **cinc** punts.
-
-L'argument de la Pista 3 tampoc se sosté pel seu compte: els quatre
-vèrtexs d'un quadrilàter no estan alineats, així que no en tenen raó
-doble; la raó doble del feix de quatre rectes des del punt de projecció
-depèn d'on posis aquell punt, no del quadrilàter.
-
-**Abans de reescriure-la, cal comprovar què demanava el llibre font.**
-Si demanava el que sembla, la guia s'ha de refer sencera i el contrast
-correcte és triangles/quadrilàters *sí* ↔ cinc punts *no*.
-
-### A2 · `q65` — el centroide està mal situat, i la comprovació no tanca
-
-Pista 3: *"el punt que fa funcionar el teorema resulta ser el punt mitjà
-del costat oposat a l'eix — el centre de gravetat de tota la vida del
-rectangle"*. Les dues meitats de la frase es contradiuen: el centre del
-rectangle és a distància 1 de l'eix, el punt mitjà del costat oposat és a
-distància 2. **El correcte és el centre.**
-
-La comprovació escriu `àrea(6) × 2π × distància(2) = 24π` i tot seguit
-diu que cal comparar-ho amb `12π`. Amb la distància correcta (1) surt
-`6 × 2π × 1 = 12π`, que coincideix exactament amb el cilindre.
-
-### A3 · `q06` — la comprovació compara peres amb pomes
-
-Diu que els quatre angles del ventall (≈25,71° cadascun, 102,86° en
-total) *"sumat als dos angles dels extrems del ventall hauria de
-completar la suma total que ja coneixes de q70 per a n=7: 900°"*.
-
-Tres coses malament alhora:
-- 900° és la suma de **tots els set** angles interiors de l'heptàgon. El
-  ventall d'un sol vèrtex només pot completar **un** angle interior:
-  900/7 ≈ 128,57°.
-- Des d'un vèrtex d'un heptàgon surten 4 diagonals, que parteixen l'angle
-  interior en **5** sectors, no 4.
-- Els dos sectors dels extrems **són del mateix tipus** que els altres
-  (cadascun subtendeix un arc entre dos vèrtexs consecutius); la
-  comprovació diu que "no són d'aquest tipus".
-
-Amb 5 sectors iguals de 180/7 cadascun: 5 × 180/7 = 900/7 = 128,57° = angle
-interior ✓. La comprovació correcta és aquesta, i és més bonica que la
-que hi ha.
-
-### A4 · `q117` — la comprovació contradiu la seva pròpia pista
-
-Pista 3 estableix que una dilatació uniforme de factor *k* porta *p* a
-*k·p*. La comprovació dilata `y=x²/4` (p=1) per factor 2 i conclou
-"p=1/4". Amb la fórmula de la pròpia pista hauria de sortir **p=2**
-(`y=x²/8`). A més, l'àlgebra intermèdia també falla pel seu compte:
-`(2y)=(2x)²/4` dona `y=x²/2`, no `y=x²`. I el focus, en dilatar per 2,
-va de (0,1) a **(0,2)**, no a (0,1/4).
-
-### A5 · `q97` — la frase que tanca l'argument el destrueix
-
-Pista 3: *"el camí A → (creuament de dalt) → (creuament de baix) → B fa
-exactament la mateixa longitud que el segment recte A′B′, **per a
-qualsevol elecció dels punts de contacte**"*.
-
-Si tots els camins fessin el mateix, no hi hauria cap mínim a trobar. El
-que és cert per a qualsevol elecció és que el camí `A→P→Q→B` fa el mateix
-que la **poligonal** `A′→P→Q→B′`; i una poligonal és sempre ≥ que el
-segment recte `A′B′`, amb igualtat només quan P i Q hi cauen a sobre.
-Canviar "el segment recte A′B′" per "el camí A′→P→Q→B′" ho arregla.
-
-### A6 · `q116` — el número de la comprovació no és el que surt
-
-Diu que els dos angles valen "exactament 138,75°". Recalculat amb
-a=4, b=3, P=(5, 9/4): la tangent té pendent 45/36 = 1,25, i els dos angles
-surten **≈141,3°** (o ≈38,7° segons el sentit que triïs per a la tangent).
-Iguals entre si ✓ —la propietat és certa— però el número és un altre.
-
-### A7 · `q118` — hi ha quedat una correcció en veu alta, i dos números mal calculats
-
-Pista 3, text publicat: *"Com que FD és vertical (D és el peu vertical de
-P a la directriu horitzontal)... **espera**, FD no cal que sigui
-vertical: la mediatriu de FD bisecta l'angle..."*. Un pensament a mig
-corregir, servit a l'alumne. Cal deixar-hi només la versió bona.
-
-La comprovació, a més: amb `y=x²/8`, el punt de x=3 és **(3, 9/8)**, no
-(3, 9/4); i el punt mitjà de F=(0,2) i D=(3,−2) és **(1,5, 0)**, no (3,0).
-Amb els valors corregits el pendent surt 3/4 i quadra amb la tangent ✓ —
-la geometria és bona, els números no.
-
-### A8 · `q70` — el resultat és cert, l'argument no val per al que diu que val
-
-Pista 2 diu explícitament que l'argument *"ha de valer per a qualsevol
-polígon simple"*. El ventall de diagonals des d'un sol vèrtex **no
-funciona en un polígon còncau**: hi ha vèrtexs des dels quals algunes
-diagonals se'n van fora de la figura. La fórmula (n−2)×180° sí que val per
-a qualsevol polígon simple, però per una altra via.
-
-Correcció mínima i honesta: dir "qualsevol polígon **convex**" a la Pista
-2, i afegir a l'"i després" que el cas còncau és cert però necessita un
-argument diferent —una frase que converteix un error en una porta oberta.
+Cap de les quatre s'ha tocat. **Lliçó de procés:** qualsevol revisió de
+contingut d'aquest projecte ha de llegir els sis blocs d'una guia, no
+quatre. Una guia aquí no acaba a la comprovació.
 
 ---
 
-## B · Condició necessària presentada com a demostració completa (3)
+## A · Afirmacions falses — 8 trobades, 8 corregides
 
-És el patró d'error més interessant del projecte, perquè és **exactament
-el que les guies existeixen per ensenyar**: la diferència entre descartar
-i construir.
-
-### B1 · `q03` — mosaics: 360° al vèrtex és necessari, no suficient
-
-La guia acaba amb "compta quantes combinacions vàlides trobes en total".
-Però hi ha 17 configuracions de vèrtex que sumen 360° i només **11**
-mosaics uniformes: algunes configuracions quadren en un vèrtex i després
-no es poden estendre a tot el pla. Sense dir-ho, un alumne conclou que ha
-enumerat els mosaics quan només n'ha enumerat els vèrtexs possibles.
-
-### B2 · `q08b` — poliedres regulars — **ja corregit en aquest lliurament**
-
-Mateix patró: el recompte d'angles demostra "no n'hi ha més de cinc", no
-"n'hi ha aquests cinc". La Pista 3 i la comprovació ara ho distingeixen
-explícitament, i l'"i després" en fa un patró amb nom. Serveixi de model
-per a B1.
-
-### B3 · `q01` — la concurrència de les tres medianes s'afirma, no es demostra
-
-Pista 2: *"les tres medianes semblen tallar-se en un sol punt. No és un
-accident del dibuix"* — i la Pista 3 no dona cap raó, només repeteix
-l'argument per a cada vèrtex per separat. Tres rectes que existeixen no
-són tres rectes concurrents.
-
-Hi ha una demostració d'una línia, i és preciosa per a aquest nivell:
-*"Reflecteix la figura pel mirall que passa per una de les medianes: les
-altres dues s'intercanvien, així que el punt on es tallen ha de quedar
-sobre el mirall. I això val per a les tres."*
-
-**Bonus del mateix problema:** la comprovació de `q01` demana verificar
-la proporció 2/3, que cap pista no dedueix mai. Una comprovació ha de ser
-verificable amb el que l'alumne acaba de fer, no amb un fet nou.
-
-**Relacionat:** "la mediana des del vèrtex d'un triangle isòsceles també
-n'és l'altura" es fa servir sense demostrar a `q01`, `q26` i `q83`. Es
-demostra en una línia (dos triangles congruents per SSS, angles adjacents
-iguals que sumen 180°). Val la pena fer-ho **un cop**, on primer
-aparegui, i que les altres dues hi remetin.
+| | Deia | Diu ara | Estat |
+|---|---|---|---|
+| `q102` | NO, no tots els quadrilàters són iguals projectivament | **Reescrita sencera.** SÍ totes dues vegades: quatre punts en posició general es porten a qualssevol altres quatre. La llibertat s'acaba al **cinquè** punt, no al quart — el contrast bo amb q101, que la versió anterior tenia invertit. Ancorada en una foto d'un terra de rajoles, que *és* una projecció central | fet |
+| `q65` | El centroide és "el punt mitjà del costat oposat a l'eix"; comprovació 24π ≠ 12π | És el **centre** del rectangle. Pappus 12π = cilindre 12π. El 24π hi és ara com l'error que s'avisa | fet |
+| `q06` | 4 angles; comparats amb els 900° de l'heptàgon sencer | **5** trossos (4 diagonals en fan 5), que reconstrueixen **un** angle interior: 5×180/7 = 900/7 ≈ 128,57° | fet |
+| `q117` | Dilatar y=x²/4 per 2 dona p=1/4, focus a (0,1/4) | p=**2** (y=x²/8), focus a **(0,2)** — coherent amb la fórmula p′=k·p de la seva pròpia Pista 3 | fet |
+| `q97` | El camí fa A′B′ "per a qualsevol elecció dels punts de contacte" | El camí fa el mateix que la **poligonal** A′→P→Q→B′ per a qualsevol elecció; i només val A′B′ quan P i Q cauen damunt del segment. Sense això no hi havia res a minimitzar | fet |
+| `q116` | Els dos angles valen "exactament 138,75°" | **≈141,3°** (o 38,7° segons el sentit de la tangent), amb el pendent 9x/(16y)=1,25 recalculat i la comprovació que P és a la corba | fet |
+| `q118` | "...**espera**, FD no cal que sigui vertical"; P=(3, 9/4); punt mitjà de FD = (3,0) | Correcció en veu alta eliminada; P=(3, **9/8**); punt mitjà (**1,5**, 0). S'hi afegeix la comprovació que PF=PD=25/8 | fet |
+| `q70` | El ventall des d'un vèrtex val "per a qualsevol polígon simple" | **Convex**. I un "i després" nou que converteix el forat en lliçó: dibuixa un polígon en forma de fletxa, mira les diagonals fugir a fora, i entén que el resultat pot ser més general que la demostració | fet |
 
 ---
 
-## C · La guia respon una pregunta més petita que la que fa l'enunciat (6)
+## B · Condició necessària presentada com a demostració completa — 3 trobades, 3 corregides
 
-Cap d'aquestes és falsa. Totes deixen l'alumne amb la meitat de
-l'enunciat sense tocar i **sense avisar-lo**, que és el problema: no sap
-si li falta a ell o a la guia.
+És el patró més interessant, perquè és **exactament el que les guies
+existeixen per ensenyar**: la diferència entre descartar i construir.
 
-| | Enunciat | Què queda sense resposta |
-|---|---|---|
-| `q21` | "És irracional √3? **I √2 + √3?**" | La segona meitat, sencera |
-| `q43` | "...**I per a tres cercles superposats?**" | La segona meitat, sencera |
-| `q58` | "...**I per a tres cilindres mútuament perpendiculars?**" | La segona meitat, sencera |
-| `q29` | "Es poden **mesurar** les diagonals i les àrees..." | Només compta diagonals i triangles; no en mesura cap ni calcula àrees |
-| `q30` | "...diagonals i l'àrea del dodecàgon" | Dona l'àrea ✓; els tipus de diagonal es pregunten a la Pista 1 i no es responen mai |
-| `q24` | "Quins rectangles tenen costats i diagonal enters?" — Pista 0 promet "la condició general" | S'atura a "mira si segueixen algun patró". La parametrització d'Euclides no hi surt |
+- **`q08b`** (poliedres regulars). El recompte d'angles prova "no n'hi ha
+  més de cinc", no "n'hi ha aquests cinc". La Pista 3 ho distingeix ara
+  explícitament i l'"i després" en fa un patró amb nom: *descartar tots
+  els casos impossibles no és el mateix que construir els possibles.*
+- **`q03`** (mosaics). Mateix cas i més sever: hi ha configuracions de
+  vèrtex que sumen 360° i que després no s'estenen a tot el pla. La guia
+  separa ara "la roseta és possible en un vèrtex" de "el mosaic sencer
+  existeix", i l'"i després" remet a q08b marcant que allà les cinc
+  supervivents sí que donen sòlid i aquí no totes donen mosaic.
+- **`q01`** (centre de l'equilàter). La concurrència de les tres medianes
+  s'afirmava ("no és un accident del dibuix") i no es demostrava enlloc.
+  Ara s'hi demostra amb l'argument del mirall: *doblega pel plec d'una
+  mediana, les altres dues s'intercanvien, el punt on es creuen ha de
+  quedar-se sobre el plec.* A més, la comprovació ja no exigia una
+  proporció 2/3 que cap pista dedueix — ara demana comprovar el que sí
+  s'ha demostrat, i declara que la posició exacta del punt és una altra
+  pregunta.
 
-La solució no és allargar-les totes. **En diverses, la solució correcta és
-una frase a l'"i després"**: "aquesta guia només ataca la primera meitat;
-la segona es fa amb la mateixa idea i te la deixo". Això és honest i
-manté l'escala curta.
-
-**Cas a part, `q105`:** l'enunciat diu "espai projectiu" i la guia respon
-per al **pla** projectiu. En l'espai projectiu de dimensió 3, dues rectes
-que s'encreuen segueixen sense tallar-se. La resposta "SÍ, sempre" només
-és certa en el pla. Una frase ho arregla i evita un malentès que li
-explotarà a l'alumne dos anys més tard.
-
----
-
-## D · Eines fora d'abast usades en silenci (4)
-
-El projecte sap fer-ho bé: `q64` i `q17` diuen explícitament què queda
-fora del quadern, i `q89` fins i tot explica per què el teorema de
-Steiner–Lehmus és més dur del que sembla. Aquestes quatre no ho fan.
-
-- **`q120`** i **`q118`** — "la tangent en P té pendent 2p" és una
-  derivada, sense dir-ho. A la paràbola es pot obtenir sense càlcul (la
-  recta que la talla en un punt doble); si no es vol, cal dir-ho.
-- **`q56`** — producte mixt i determinant 3×3, presentats com si fossin
-  d'ús corrent.
-- **`q62`** — "integra (suma) aquestes àrees".
-- **`q121`** — la Pista 0 promet explícitament *"sense retòrica
-  d'infinitèsims"* i la Pista 3 fa un pas al límit. Aquí la solució és
-  fàcil i millora la guia: el que salva `q121` és que la suma **té forma
-  tancada exacta** (`n(n+1)(2n+1)/6`), i per això el límit no és
-  retòrica. Dir-ho és complir la promesa, no trencar-la.
+**Derivada de B3:** "la mediana des del vèrtex d'un isòsceles també n'és
+l'altura" es feia servir sense demostrar a `q01`, `q26` i `q83`. Es
+demostra ara **un sol cop** (q01, Pista 1: dos triangles congruents pels
+tres costats, dos angles iguals que sumen 180°), i q26 i q83 hi remeten.
 
 ---
 
-## E · Vocabulari, etiquetes i errates (menor, però amb efectes)
+## C · La guia responia menys del que pregunta l'enunciat — 3 reals, 3 corregides
 
-**"Dilatació" vol dir dues coses diferents.** A `q77` i `q117` és
-escalat uniforme; a `q112` i `q91` és escalat diferent en cada eix. Com
-que `moviment` és una taxonomia real —l'usa el motor de
-`js/nucli/itinerari.js` per suggerir repassos— aquesta ambigüitat no és
-només d'estil: fa que dues coses diferents es recomanin com si fossin la
-mateixa. Convindria un terme per a cada cosa.
+*(Eren 7 a la primera versió; quatre eren error meu — v. la rectificació
+de més amunt.)*
 
-**`moviment` mal assignat:** `q12` està etiquetada `contraexemple` i és
-una demostració directa (paral·lelogram amb diagonals iguals ⟹ rectangle).
-Mateix efecte sobre les recomanacions.
-
-**Imprecisions d'una paraula:**
-- `q126` — una hèlix irracional sobre el tor **no "omple"** la superfície:
-  s'hi acosta tant com vulguis (és densa). Per a un alumne de 15 anys,
-  "passa tan a prop com vulguis de qualsevol punt" és igual d'entenedor i
-  és cert.
-- `q08a` — "el grup de simetries complet del cub, d'ordre 24": 24 és el
-  grup de **rotacions**; amb reflexions són 48.
-- `q111` — el rombe s'escriu amb vèrtexs (0,a),(b,0),(0,−a),(−b,0), amb
-  els eixos intercanviats respecte de l'orientació estàndard de
-  x²/a²−y²/b²=1. El resultat √(a²+b²) no en queda afectat.
-
-**Restes d'edició visibles a l'alumne:**
-- `q110` — comprovació: "el punt (5,4/3·√(25−9))... més senzill:" — un
-  començament abandonat.
-- `q90` — Pista 1 remet a "q90 mateix", que és la pregunta que s'està
-  llegint.
-- `q08c` — Pista 1 té una llista de guions que `neteja()` aplana en una
-  sola línia il·legible.
-
-**Errates de llengua:** `q89` "Antic de saber-ho" (→ "Abans"); `q107` "es
-couen a l'infinit"; `q109` "un mateix punet"; `q16` "et estalviarà" (→
-"t'estalviarà"); `q102` "raons doubles"; `q20` majúscula perduda enmig de
-frase després d'un guió.
-
-*(Les tres errates de paraula partida —"calcular- ne", "semi- esfera",
-"parteix- lo"— ja no hi són: eren un bug de `neteja()` a `parse_guies.py`,
-arreglat a l'arrel en aquest mateix lliurament.)*
+- **`q29`** — l'enunciat del llibre demana **mesurar** diagonals i àrees;
+  la guia només comptava diagonals i triangles. Ara dona la diagonal
+  curta de l'hexàgon (s√3), la llarga (2s), l'àrea ((3√3/2)s² ≈ 2,598s²)
+  i el mètode per a l'octàgon.
+- **`q30`** — la Pista 1 preguntava quants tipus de diagonal hi ha i no
+  es responia mai. Ara: **cinc**, totes de la mateixa fórmula
+  2R·sin(k×15°) amb k=1..6 → 0,518 / 1 / 1,414 / 1,732 / 1,932 / 2 amb
+  R=1 (la tercera és exactament √2 i la sisena el diàmetre — bones per
+  comprovar). També s'hi corregeix la Pista 2, que deia "un dels dotze
+  triangles del ventall" quan des d'un vèrtex en surten deu.
+- **`q105`** — l'enunciat diu "espai projectiu" i la guia responia pel
+  **pla**. Ara avisa que a l'espai de tres dimensions dues rectes que
+  s'encreuen segueixen sense trobar-se, amb la comprovació de dos llapis
+  que no es poden posar damunt d'una mateixa taula imaginària.
 
 ---
 
-## Ordre suggerit de treball
+## D · Eines fora d'abast usades en silenci — 4 trobades, 4 corregides
 
-1. **A1 (`q102`)** — primer, perquè pot exigir refer la guia sencera i
-   cal consultar el llibre font.
-2. **A2–A7** — sis correccions numèriques o d'una frase. Cap toca
-   l'estructura. Mig matí.
-3. **A8, B1, B3** — les tres del mateix tipus intel·lectual que `q08b`.
-   Són les que més aporten: cadascuna converteix un forat en una lliçó
-   sobre què és demostrar.
-4. **C** — decidir, guia per guia, entre completar-la o declarar-ho a
-   l'"i després". Recomanació: declarar-ho, en gairebé totes.
-5. **D i E** — polit.
+El projecte ja sabia fer-ho bé (`q64`, `q17`, `q89`). Aquestes quatre no
+ho feien:
 
-Res d'això afecta cap fitxer de `js/`, `css/` o `index.html`: tot viu a
-`docs/guies/GUIES-LOT-*.md`, i es publica amb `python3 parse_guies.py`.
+- **`q120`** — "la tangent té pendent 2p" era una derivada sense dir-ho.
+  Ara s'obté **sense càlcul**: la tangent és la recta que talla en un sol
+  punt, o sigui la que fa que x²−mx+(mp−p²)=0 tingui arrel doble;
+  discriminant zero dona (m−2p)²=0. Àlgebra de segon d'ESO.
+- **`q56`** — el producte mixt es presentava com d'ús corrent. S'hi afegeix
+  un segon camí que no necessita res: les quatre cantonades que sobren
+  són piràmides de volum 1/6 cadascuna, 4/6 en total, i el tetràedre és
+  1 − 2/3 = 1/3 del cub.
+- **`q62`** — "integra (suma) aquestes àrees" sense marcar la frontera.
+  Ara redueix el casquet a cilindre menys tronc de con (q48) i declara
+  explícitament que la formalització del pas és fora del quadern, com a
+  `q64`.
+- **`q121`** — la Pista 0 prometia "sense retòrica d'infinitèsims" i la
+  Pista 3 feia un pas al límit sense justificar-lo. Ara compleix la
+  promesa amb la fórmula exacta: la suma val 1/3 + 1/(2n) + 1/(6n²) per a
+  cada n, i *"si algú et diu que l'àrea val 0,34, li pots ensenyar un n
+  concret que ho desmenteix; l'únic número que no es pot desmentir així
+  és 1/3"*.
+
+---
+
+## E · Precisió i etiquetes — corregides
+
+- **`q126`** — una hèlix irracional sobre el tor **no "omple"** la
+  superfície: hi passa tan a prop com vulguis de qualsevol punt. Una
+  corba no pot arribar a ser una superfície, per molt que doni voltes.
+- **`q08a`** — "el grup de simetries complet del cub, d'ordre 24": 24 són
+  les **rotacions**; amb reflexions són 48.
+- **`q111`** — el rombe s'escrivia amb els eixos intercanviats respecte de
+  l'orientació estàndard de x²/a²−y²/b²=1. Ara (a,0), (0,b), (−a,0),
+  (0,−b). El resultat √(a²+b²) no en quedava afectat.
+- **`q12`** — `moviment` era `contraexemple` en una **demostració
+  directa** (paral·lelogram amb diagonals iguals ⟹ rectangle). Corregit a
+  `redueix-al-conegut` a `manifest-figures.tsv`. No és cosmètic: el motor
+  de `js/nucli/itinerari.js` fa servir `moviment` per suggerir repassos,
+  i una etiqueta falsa fa que dues coses diferents es recomanin com si
+  fossin la mateixa.
+
+**Restes d'edició que arribaven a l'alumne, netejades:** `q110`
+(comprovació que començava "el punt (5,4/3·√(25−9))... més senzill:"),
+`q90` (Pista 1 que remetia a "q90 mateix", la pregunta que s'està
+llegint — substituït per la demostració en dues línies del quadrilàter
+cíclic des de l'angle inscrit de q42), `q08c` (llista de guions que
+`neteja()` aplanava en una sola línia il·legible, reescrita com a
+paràgrafs), `q20` (majúscula perduda enmig de frase).
+
+**Errates de llengua:** `es couen` (3 ocurrències, cap de les quals volia
+dir "coure"), `punet`, `raons doubles`, `et estalviarà`, `Antic de
+saber-ho`. I les tres paraules partides pel wrap del `.md` —"calcular-
+ne", "semi- esfera", "parteix- lo"— arreglades a l'arrel: eren un bug de
+`neteja()` a `parse_guies.py`, no tres errates independents.
+
+---
+
+## Queda obert
+
+Res d'això és fals; són decisions de contingut que val la pena prendre
+conscientment.
+
+- **`q102` s'hauria de contrastar amb el llibre font.** La guia nova és
+  matemàticament correcta, però la pregunta original pot voler dir una
+  altra cosa. Si el llibre demanava el que sembla, la guia nova hi
+  respon; si no, cal ajustar-la.
+- **"Dilatació" vol dir dues coses.** A `q77` i `q117` és escalat
+  uniforme; a `q112` i `q91` és escalat diferent a cada eix. Com que
+  `moviment` és una taxonomia que mou recomanacions, convindria un terme
+  per a cada cosa.
+- **`q45`** parla de "cilindre (generalitzat)" i només tracta el cilindre
+  recte de base circular.
+- **`q80`** dedueix àrea = (1/2)ab·sin C amb l'altura caient dins del
+  triangle; el cas obtús es resol a `q87` i no s'hi remet.
+- **`q37`** dona per fet que el sistema perímetre/àrea té solució real.
+  La té sempre (el discriminant surt positiu per a qualsevol s), però la
+  guia no ho comprova ni ho diu.
+- **`q18a`** dedueix V=l·w·h comptant cubs unitat, cosa que només val
+  directament per a costats enters.
+- **`q16`** escriu decimals amb apòstrof ("8'5") mentre la resta del
+  corpus fa servir la coma.
+
+---
+
+## Com es publica
+
+Tot el que s'ha tocat viu a `docs/guies/GUIES-LOT-*.md` i a
+`docs/manifest-figures.tsv`. Res de `js/`, `css/` o `index.html` no ha
+canviat per aquesta auditoria. Per publicar:
+
+```bash
+python3 parse_guies.py      # docs/guies/*.md -> js/data/guies-dades.js
+python3 verifica_projecte.py # ha de dir "Tot correcte."
+```

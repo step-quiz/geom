@@ -38,7 +38,7 @@ num	id	nivell	moviment	lot	rev	descripcio
 037	q29	2	redueix-al-conegut	4	0	hexàgon i octàgon triangulats, diagonals i triangles
 038	q06	2	redueix-al-conegut	4	0	heptàgon, angles iguals al vèrtex per angle inscrit
 039	q11	1	dues-maneres	4	1	angles oposats paral·lelogram, diagonal auxiliar
-040	q12	2	contraexemple	4	1	diagonals iguals en paral·lelogram força rectangle
+040	q12	2	redueix-al-conegut	4	2	diagonals iguals en paral·lelogram força rectangle
 041	q73	2	informacio-no-usada	4	0	triangle medial, reconstrucció des de punts mitjans
 042	q38	2	identitat-com-a-figura	4	1	rectangle auri, quadrat retallat semblant
 043	q76	2	separa-i-reorienta	4	0	cercle inscrit, suma de tres triangles amb l'incentre
@@ -104,7 +104,7 @@ num	id	nivell	moviment	lot	rev	descripcio
 103	q99	2	audita-la-demostracio	9	0	triangles des d'un punt de projeccio, area de dues maneres
 104	q100	2	distingeix-casos	9	1	punt de projeccio fora o entre dos plans paral·lels
 105	q101	2	invariant	9	1	tres punts lliures, quart punt determinat per la rao doble
-106	q102	2	dues-maneres	9	0	quadrilater projectat, rao doble sobre recta auxiliar
+106	q102	2	invariant	9	1	quadrilater projectat des d'un punt cap a un altre pla
 107	q103	2	distingeix-casos	9	1	costat pel punt de projeccio, vertex fuig a l'infinit
 108	q104	2	construeix-per-definir	9	0	tres rectes paral·leles projectades, concurrents al punt de fuga
 109	q105	2	redueix-al-conegut	9	1	rectes convergint a un punt marcat infinit
