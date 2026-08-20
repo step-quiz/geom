@@ -113,9 +113,28 @@
 
     const img = document.createElement("img");
     img.src = "assets/img/" + fitxer;
-    img.alt = ""; // decoratiu per defecte: l'enunciat ja porta el contingut;
-    // v. nota d'accessibilitat més avall sobre per què no es genera
-    // un alt automàtic a partir de l'enunciat.
+    img.alt = "";
+    // NOTA D'ACCESSIBILITAT — decisió coneguda i NO resolta.
+    // (Fins a l'auditoria d'ago. 2026 aquí hi deia "v. nota d'accessibilitat
+    // més avall" i aquella nota no existia enlloc del fitxer. És aquesta.)
+    //
+    // alt="" declara la imatge com a DECORATIVA, i un lector de pantalla
+    // se la salta sencera. Per a la majoria de llocs seria correcte quan
+    // el text del costat ja porta el contingut. AQUÍ NO HO ÉS: en una
+    // pregunta com "Aquests quatre triangles, són idèntics?" la figura no
+    // il·lustra l'enunciat, la figura ÉS l'enunciat, i qui no la veu no
+    // rep la pregunta.
+    //
+    // Per què segueix així, tot i això: un alt generat automàticament a
+    // partir de l'enunciat seria pitjor que res (repetiria en veu alta un
+    // text que el lector acaba de llegir, i faria semblar que la figura
+    // està descrita quan no ho està). Una descripció real de cada figura
+    // és contingut nou a escriure a mà, 122 vegades, amb el mateix nivell
+    // d'exigència que les guies — feina de contingut, no de codi.
+    //
+    // El lloc correcte per a aquest text quan s'escrigui: un camp
+    // imatge.descripcio {ca,en} a preguntes-dades.js, llegit aquí. Mentre
+    // no hi sigui, alt="" és preferible a un alt fals.
     img.loading = "lazy";
     frame.appendChild(img);
     figure.appendChild(frame);
