@@ -348,7 +348,7 @@ window.GLOSSARI = {
       ca: "El segment que va des del centre d'un cercle (o d'una esfera) a qualsevol punt de la circumferència (o de la superfície esfèrica). També, per extensió, la longitud d'aquest segment. El radi és la meitat del diàmetre.",
       en: null
     },
-    figura: null,
+    figura: "gloss-radi-diametre.png",
     relacionats: ["diametre", "corda", "circumferencia-cercle", "esfera"],
     categoria: "cercles"
   },
@@ -362,7 +362,7 @@ window.GLOSSARI = {
       ca: "Una corda que passa pel centre d'un cercle, unint dos punts de la circumferència a banda i banda del centre. La seva longitud és sempre el doble de la del radi.",
       en: null
     },
-    figura: null,
+    figura: "gloss-radi-diametre.png",
     relacionats: ["radi", "corda", "circumferencia-cercle"],
     categoria: "cercles"
   },
@@ -376,7 +376,7 @@ window.GLOSSARI = {
       ca: "Un segment amb els dos extrems sobre una circumferència. Un diàmetre és el cas particular d'una corda que passa pel centre — i és, de totes, la més llarga.",
       en: null
     },
-    figura: null,
+    figura: "gloss-corda-arc.png",
     relacionats: ["diametre", "arc", "angle-inscrit", "radi", "recta-secant"],
     categoria: "cercles"
   },
@@ -390,7 +390,7 @@ window.GLOSSARI = {
       ca: "Cadascuna de les dues porcions en què dos punts divideixen una circumferència. Els extrems d'una corda determinen sempre un arc a cada banda.",
       en: null
     },
-    figura: null,
+    figura: "gloss-corda-arc.png",
     relacionats: ["corda", "angle-inscrit", "arc-capac", "sector-circular"],
     categoria: "cercles"
   },
@@ -404,7 +404,7 @@ window.GLOSSARI = {
       ca: "La circumferència és la línia corba i tancada formada per tots els punts d'un pla que es troben a la mateixa distància (el radi) d'un punt fix (el centre). El cercle és la superfície plana que aquesta línia envolta. En el llenguatge de cada dia sovint es diuen indistintament, però la circumferència és la vora i el cercle és la regió.",
       en: null
     },
-    figura: null,
+    figura: "gloss-radi-diametre.png",
     relacionats: ["radi", "diametre", "sector-circular"],
     categoria: "cercles"
   },
@@ -418,7 +418,7 @@ window.GLOSSARI = {
       ca: "Una recta que toca una circumferència en un únic punt, sense travessar-la. En aquest punt de tangència, la tangent és sempre perpendicular al radi.",
       en: null
     },
-    figura: null,
+    figura: "gloss-tangent-secant.png",
     relacionats: ["recta-secant", "cercle-inscrit"],
     categoria: "cercles"
   },
@@ -432,7 +432,7 @@ window.GLOSSARI = {
       ca: "Una recta que talla una circumferència en dos punts. La recta que conté una corda n'és sempre un exemple.",
       en: null
     },
-    figura: null,
+    figura: "gloss-tangent-secant.png",
     relacionats: ["recta-tangent", "corda"],
     categoria: "cercles"
   },
@@ -461,7 +461,7 @@ window.GLOSSARI = {
       ca: "La recta perpendicular a un segment que passa pel seu punt mitjà. Equivalentment, el lloc geomètric dels punts del pla que equidisten dels dos extrems del segment. En un triangle, les tres mediatrius dels costats es tallen sempre en un mateix punt: el circumcentre.",
       en: null
     },
-    figura: null,
+    figura: "gloss-mediatriu.png",
     relacionats: ["bisectriu", "cercle-circumscrit", "lloc-geometric"],
     categoria: "triangles-punts-notables"
   },
@@ -475,7 +475,7 @@ window.GLOSSARI = {
       ca: "El conjunt de tots els punts del pla (o de l'espai) que compleixen una determinada propietat, i només aquests. La mediatriu (equidistar de dos punts) i l'arc capaç (veure un segment amb un angle fix) en són dos exemples habituals.",
       en: null
     },
-    figura: null,
+    figura: "gloss-mediatriu.png",
     relacionats: ["mediatriu", "arc-capac"],
     categoria: "conceptes-generals"
   },
@@ -489,7 +489,7 @@ window.GLOSSARI = {
       ca: "Dues figures són congruents quan tenen exactament la mateixa forma i la mateixa mida — es pot fer coincidir una amb l'altra desplaçant-la, girant-la o girant-la del revés (reflectint-la), sense estirar-la ni encongir-la. És el que en el llenguatge de cada dia se sol dir que dues figures són «iguals».",
       en: null
     },
-    figura: null,
+    figura: "gloss-congruencia.png",
     relacionats: ["criteris-congruencia-triangles", "triangles-semblants"],
     categoria: "triangles"
   },
@@ -503,7 +503,7 @@ window.GLOSSARI = {
       ca: "Les condicions mínimes que garanteixen que dos triangles són congruents, sense haver de comprovar els sis elements (tres costats i tres angles) un per un. Les tres més habituals: costat-costat-costat (CCC, si es coneix sovint per les sigles angleses SSS) — els tres costats iguals; costat-angle-costat (CAC / SAS) — dos costats i l'angle que formen; angle-costat-angle (ACA / ASA) — dos angles i el costat entre ells.",
       en: null
     },
-    figura: null,
+    figura: "gloss-criteris-congruencia.png",
     relacionats: ["congruencia", "criteris-semblanca-triangles"],
     categoria: "triangles"
   },
@@ -531,7 +531,7 @@ window.GLOSSARI = {
       ca: "El factor pel qual cal multiplicar cada longitud d'una figura per obtenir la longitud corresponent d'una altra figura semblant. Si la raó és k, les àrees canvien per k² i els volums per k³.",
       en: null
     },
-    figura: null,
+    figura: "gloss-rao-semblanca.png",
     relacionats: ["triangles-semblants", "criteris-semblanca-triangles"],
     categoria: "triangles"
   },
@@ -545,7 +545,7 @@ window.GLOSSARI = {
       ca: "El segment que resulta de deixar caure, perpendicularment, els dos extrems d'un segment sobre una recta (o sobre un altre segment allargat en recta). Dit d'una altra manera: l'«ombra» que fa el segment si la llum hi arriba perpendicular a la recta. Apareix sobretot en el teorema del catet, on el quadrat d'un catet és igual al producte de la hipotenusa per la projecció d'aquest catet sobre la hipotenusa.",
       en: null
     },
-    figura: null,
+    figura: "gloss-projeccio-ortogonal.png",
     relacionats: ["teorema-de-tales", "triangle-rectangle", "teorema-de-pitagores"],
     categoria: "conceptes-generals"
   },
@@ -559,7 +559,7 @@ window.GLOSSARI = {
       ca: "Si un conjunt de rectes paral·leles talla dues rectes secants, els segments que hi determinen són proporcionals. És l'eina bàsica per calcular longituds desconegudes a partir d'una proporció, i la base de per què una paral·lela a un costat d'un triangle en genera un altre de semblant.",
       en: null
     },
-    figura: null,
+    figura: "gloss-teorema-tales.png",
     relacionats: ["triangles-semblants", "criteris-semblanca-triangles", "projeccio-ortogonal"],
     categoria: "conceptes-generals"
   },
@@ -573,7 +573,7 @@ window.GLOSSARI = {
       ca: "En tot triangle rectangle, el quadrat de la hipotenusa és igual a la suma dels quadrats dels dos catets. Dit en àrees: l'àrea del quadrat construït sobre la hipotenusa és igual a la suma de les àrees dels quadrats construïts sobre els catets.",
       en: null
     },
-    figura: null,
+    figura: "gloss-pitagores.png",
     relacionats: ["triangle-rectangle", "projeccio-ortogonal"],
     categoria: "conceptes-generals"
   },
@@ -588,7 +588,7 @@ window.GLOSSARI = {
       ca: "Un polígon amb tots els costats iguals i tots els angles iguals. Té un centre únic, equidistant de tots els vèrtexs (el radi) i de tots els costats (l'apotema).",
       en: null
     },
-    figura: null,
+    figura: "gloss-poligons-regular-irregular.png",
     relacionats: ["apotema", "poligon-irregular", "diagonal"],
     categoria: "poligons"
   },
@@ -602,7 +602,7 @@ window.GLOSSARI = {
       ca: "Un polígon que no té tots els costats iguals, tots els angles iguals, o cap de les dues coses.",
       en: null
     },
-    figura: null,
+    figura: "gloss-poligons-regular-irregular.png",
     relacionats: ["poligon-regular", "diagonal"],
     categoria: "poligons"
   },
@@ -616,7 +616,7 @@ window.GLOSSARI = {
       ca: "El segment de la perpendicular traçada des del centre d'un polígon regular a un dels seus costats — i, per extensió, la longitud d'aquest segment. Coincideix amb el radi de la circumferència inscrita al polígon.",
       en: null
     },
-    figura: null,
+    figura: "gloss-apotema-diagonal.png",
     relacionats: ["poligon-regular", "cercle-inscrit"],
     categoria: "poligons"
   },
@@ -630,7 +630,7 @@ window.GLOSSARI = {
       ca: "El segment que uneix dos vèrtexs no consecutius d'un polígon (és a dir, que no comparteixen un costat).",
       en: null
     },
-    figura: null,
+    figura: "gloss-apotema-diagonal.png",
     relacionats: ["poligon-regular", "poligon-irregular"],
     categoria: "poligons"
   },
@@ -659,7 +659,7 @@ window.GLOSSARI = {
       ca: "Un poliedre amb dues cares iguals i paral·leles (les bases) unides per cares laterals que són paral·lelograms.",
       en: null
     },
-    figura: null,
+    figura: "gloss-prisma-piramide.png",
     relacionats: ["poliedre", "piramide", "principi-de-cavalieri"],
     categoria: "cossos-geometrics"
   },
@@ -673,7 +673,7 @@ window.GLOSSARI = {
       ca: "Un poliedre format per una base poligonal i cares laterals triangulars que comparteixen totes un mateix vèrtex, el vèrtex de la piràmide.",
       en: null
     },
-    figura: null,
+    figura: "gloss-prisma-piramide.png",
     relacionats: ["poliedre", "tetraedre", "prisma", "principi-de-cavalieri"],
     categoria: "cossos-geometrics"
   },
@@ -715,7 +715,7 @@ window.GLOSSARI = {
       ca: "Un cos de revolució generat en fer girar un triangle rectangle al voltant d'un dels seus catets. Té una base circular i es tanca en un únic vèrtex, el punt més amunt.",
       en: null
     },
-    figura: null,
+    figura: "gloss-con.png",
     relacionats: ["cilindre", "esfera", "conica", "teorema-de-pappus"],
     categoria: "cossos-geometrics"
   },
@@ -757,7 +757,7 @@ window.GLOSSARI = {
       ca: "El volum del cos que es genera en fer girar una figura plana al voltant d'un eix (que no la travessa) és igual a l'àrea de la figura multiplicada per la distància que recorre el seu centre en aquesta volta.",
       en: null
     },
-    figura: null,
+    figura: "gloss-pappus.png",
     relacionats: ["cilindre", "con", "esfera"],
     categoria: "cossos-geometrics"
   },
@@ -772,7 +772,7 @@ window.GLOSSARI = {
       ca: "Cadascuna de les corbes que s'obtenen en tallar la superfície d'un con amb un pla: circumferència, el·lipse, paràbola o hipèrbola, segons com s'orienti el pla respecte de l'eix del con.",
       en: null
     },
-    figura: null,
+    figura: "gloss-conica.png",
     relacionats: ["ellipse", "hiperbola", "parabola", "con"],
     categoria: "coniques"
   },
@@ -800,7 +800,7 @@ window.GLOSSARI = {
       ca: "El lloc geomètric dels punts del pla per als quals la diferència de les distàncies a dos punts fixos, els focus, és constant. Té dues branques obertes i simètriques. S'obté en tallar les dues fulles d'una superfície cònica amb un mateix pla.",
       en: null
     },
-    figura: null,
+    figura: "gloss-hiperbola.png",
     relacionats: ["conica", "focus", "ellipse"],
     categoria: "coniques"
   },
@@ -814,7 +814,7 @@ window.GLOSSARI = {
       ca: "El lloc geomètric dels punts del pla que equidisten d'un punt fix (el focus) i d'una recta fixa (la directriu). S'obté en tallar un con amb un pla paral·lel a una generatriu.",
       en: null
     },
-    figura: null,
+    figura: "gloss-parabola.png",
     relacionats: ["conica", "focus"],
     categoria: "coniques"
   },
@@ -828,7 +828,7 @@ window.GLOSSARI = {
       ca: "Cadascun dels punts fixos que defineixen una secció cònica a partir de distàncies: l'el·lipse en té dos (suma de distàncies constant), la hipèrbola en té dos (diferència constant) i la paràbola en té un (equidistant d'ell i d'una recta directriu).",
       en: null
     },
-    figura: null,
+    figura: "gloss-hiperbola.png",
     relacionats: ["ellipse", "hiperbola", "parabola"],
     categoria: "coniques"
   }
