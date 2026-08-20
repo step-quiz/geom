@@ -271,16 +271,19 @@ p {
   (q123, q109, q10, q66, q02, q68) es vegin una mica més petites que abans;
   cap imatge es veu mai retallada.
 
-  IMPORTANT: --figure-slot-h s'aplica al <figure> SENCER (imatge +
-  figcaption), no només a la imatge. Un primer intent el va aplicar només
-  al "frame" intern de la imatge, deixant que el figcaption se sumés a
-  sobre — es va detectar mesurant en viu que una pregunta AMB imatge
-  acabava fent ~26px més d'alçada total que una SENSE imatge (el
-  figcaption no hi és), desplaçant "Anterior/Següent" igualment, encara
-  que molt menys que abans del canvi. Ara el <figure> és flex-column:
-  el frame de la imatge creix (flex:1) per omplir tot l'espai que el
-  figcaption no ocupa, així la suma total és sempre exactament
-  --figure-slot-h, amb o sense caption.
+  IMPORTANT: --figure-slot-h s'aplica al <figure> SENCER, no només a la
+  imatge — herència d'un temps en què hi havia figcaption (suprimit a
+  petició explícita; v. js/ui/detall.js creaFigura). Un primer intent
+  reservava l'alçada només al "frame" intern de la imatge, deixant que
+  el figcaption se sumés a sobre — es va detectar mesurant en viu que
+  una pregunta AMB imatge acabava fent ~26px més d'alçada total que una
+  SENSE imatge, desplaçant "Anterior/Següent" igualment. Es va resoldre
+  fent el <figure> flex-column amb el frame a flex:1, així la suma total
+  és sempre exactament --figure-slot-h. Ara que no hi ha figcaption el
+  frame simplement omple tot l'espai — el mecanisme flex:1 ja no calia
+  per aquest motiu concret, però es manté perquè segueix sent la manera
+  més robusta de garantir l'alçada exacta si mai torna a haver-hi
+  contingut sota la imatge.
 
   El mateix --figure-slot-h s'aplica a .question-entry__figure-empty (la
   pregunta NO té imatge) perquè "Anterior/Següent" caigui a la mateixa
@@ -344,13 +347,6 @@ p {
 */
 .question-entry__figure--inverted img {
   filter: invert(1);
-}
-
-.question-entry__figure figcaption {
-  margin-top: var(--space-2);
-  font-family: var(--font-mono);
-  font-size: var(--fs-metadata);
-  color: var(--ink-faint);
 }
 
 /*

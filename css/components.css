@@ -583,19 +583,30 @@
   position: relative;
 }
 
+/* Subratllat de terme clicable: guionets petits, no punts. Un
+   border-bottom:dotted a --stroke-rule (1.5px) es renderitza com a punts
+   massa fins per llegir-se com "aquí hi ha alguna cosa clicable" —
+   reportat explícitament per l'usuari. Un background-image amb
+   repeating-linear-gradient dona control exacte sobre la mida del
+   guionet i el buit (a diferència de border-style:dashed, que cada
+   navegador interpreta de manera diferent i a 1.5px sol quedar igual de
+   subtil que dotted). */
 .glossari-term {
-  background: transparent;
+  background-color: transparent;
+  background-image: linear-gradient(to right, var(--pencil-soft) 0 60%, transparent 60% 100%);
+  background-position: 0 100%;
+  background-repeat: repeat-x;
+  background-size: 6px var(--stroke-rule);
   border: none;
-  border-bottom: var(--stroke-rule) dotted var(--pencil-soft);
   color: inherit;
   font: inherit;
   font-weight: inherit;
   cursor: pointer;
-  padding: 0;
+  padding: 0 0 2px;
 }
 .glossari-term:hover,
 .glossari-term[aria-expanded="true"] {
-  border-bottom-color: var(--pencil);
+  background-image: linear-gradient(to right, var(--pencil) 0 60%, transparent 60% 100%);
   color: var(--pencil);
 }
 .glossari-term:focus-visible { outline: none; box-shadow: var(--focus-ring); }
