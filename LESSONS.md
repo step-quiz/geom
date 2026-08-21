@@ -80,6 +80,32 @@ they did it before re-investigating the original bug — the fix may have
 been correct all along and something else is preventing it from loading
 at all.
 
+**Third act (ago. 2026), same symptom, no syntax error this time.** A
+mobile-spacing fix shipped, touching only `components.css` and
+`base.css`. The owner deployed to GitHub Pages and screenshotted the
+live page: none of the three changes were visible. The HTML was valid
+this time — `href="css/components.css?v=3"`, correctly quoted. The bug
+was simpler and, in hindsight, obvious: `?v=3` had been sitting there
+since an earlier delivery, and the new CSS content shipped under that
+same unchanged query string. From the browser's (or an intermediate
+CDN's) point of view, it was the exact same URL it had already cached —
+nothing about "the syntax is correct" tells a cache that the *content*
+behind that URL changed. Compounding it, `tokens.css` and `base.css` had
+never carried a version string at all, so any future change to either of
+those two was silently exposed to this same failure mode waiting to
+happen. Fixed by bumping all three stylesheet links together to `?v=4`
+and adding a comment instructing that all three be bumped on every CSS
+deploy, regardless of which file actually changed — remembering "did I
+change the version number" per file, per delivery, is exactly the kind
+of manual bookkeeping that reliably gets forgotten. **General lesson,
+now confirmed three times over two unrelated bugs in this exact
+project:** a cache-buster only does its job if (a) the markup is valid
+*and* (b) the value actually changes on every deploy that ships CSS. If
+an owner ever reports "I refreshed / redeployed and still don't see the
+change" after a CSS-only fix, check both of those before touching the
+CSS logic again — the fix is very often already correct and sitting on
+disk, unreachable.
+
 ## 4 — Un ZIP diff mai pot esborrar un fitxer
 
 Every delivery this project ships is a ZIP of new/changed files, applied

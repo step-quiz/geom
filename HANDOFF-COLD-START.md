@@ -58,6 +58,22 @@ even after the above fix shipped. This was **not a leftover bug** — it
 was the `.cat-filtre__toggle[aria-pressed="true"]` background color
 itself, `var(--pencil)` (brown), a deliberate design choice from the
 category-filter's original build that was never explicitly confirmed
+
+> **Follow-up (ago. 2026, same class of bug, different mechanism):**
+> the `?v=N` cache-buster struck a third time. `components.css` had
+> been at `?v=3` for a while; a mobile-spacing fix shipped that only
+> touched `components.css` and `base.css`, and the owner screenshotted
+> the live (GitHub-hosted) page and saw none of the changes. This time
+> the HTML syntax was valid — the bug wasn't malformed markup, it was
+> simpler: `?v=3` was already the cached value from an earlier deploy,
+> so bumping the CSS content without bumping the query string changed
+> nothing from the CDN/browser's point of view. Fixed by bumping all
+> three stylesheet links to `?v=4` together (`tokens.css` and
+> `base.css` had never carried a version string at all, which was
+> itself a latent version of this same bug waiting to happen) and
+> adding a comment in `index.html` instructing future edits to bump
+> all three every time CSS ships, not just the file that changed. See
+> `LESSONS.md` §3, now updated with this second act.
 with the owner. Fixed by changing it to `var(--ink)` (black), matching
 the 2D/3D toggle's active-state color exactly — see `LESSONS.md` §8 for the lesson
 this points to.
