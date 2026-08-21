@@ -212,6 +212,16 @@
 
 /* ---------- Navegació anterior/següent i tornada a la llista (detall) ---------- */
 
+.detail-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--space-4);
+  margin-top: var(--space-7);
+  padding-top: var(--space-4);
+  border-top: var(--stroke-hairline) solid var(--rule);
+}
+
 /*
   NAV DE DALT (--top), afegida ago. 2026. Mateix contingut que .detail-nav
   de baix (reutilitza pintaNavegacio), però:
@@ -255,6 +265,28 @@
       de dalt), perquè hi hagi un respir clar abans de "QÜESTIÓ N" —
       petició amb valor exacte en px, no en un token de --space-*,
       perquè és una mida puntual d'aquesta transició concreta.
+
+  BUG REAL TROBAT I CORREGIT (no era caché — v. LESSONS.md, quart acte
+  de la mateixa saga de "?v=N"): aquest bloc es va escriure originalment
+  ABANS de .detail-nav en aquest mateix fitxer. L'element porta totes
+  dues classes alhora (class="detail-nav detail-nav--top"), i amb la
+  MATEIXA especificitat (una sola classe cada regla), quan dues regles
+  toquen la mateixa propietat guanya la que apareix DESPRÉS al full —
+  no la classe més "específica" semànticament, l'ordre físic del text.
+  Amb .detail-nav--top abans, les seves pròpies declaracions de
+  margin-top, padding-top i border-top quedaven silenciosament
+  sobreescrites per les de .detail-nav, que venia després. border-top
+  coincidia per casualitat en valor final (per això semblava que
+  "una part sí funcionava"), però margin-top i padding-top no — d'aquí
+  que els punts 1 i 2 de dalt mai arribessin a aplicar-se al navegador,
+  mentre que margin-bottom (que .detail-nav no defineix, així que no hi
+  havia res per sobreescriure-la) sí. Solució: aquest bloc ara viu
+  DESPRÉS de .detail-nav al full, així que la cascada normal ja fa la
+  feina sense necessitat de cap !important ni d'inflar l'especificitat
+  del selector. Si mai cal tornar a tocar aquesta parella de regles:
+  la variant (--top) SEMPRE ha d'anar després de la regla base al
+  full font, no abans — independentment de quin ordre sembli més
+  "lògic" de llegir.
 */
 .detail-nav--top {
   position: sticky;
@@ -273,16 +305,6 @@
   .detail-nav--top {
     margin-top: calc(-0.8 * var(--space-5));
   }
-}
-
-.detail-nav {
-  display: flex;
-  justify-content: space-between;
-  align-items: baseline;
-  gap: var(--space-4);
-  margin-top: var(--space-7);
-  padding-top: var(--space-4);
-  border-top: var(--stroke-hairline) solid var(--rule);
 }
 
 .detail-nav__back {
