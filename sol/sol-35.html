@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dues configuracions, el mateix moviment: connectar centres — Solució — Geometria</title>
+<meta name="description" content="Dos dibuixos sense enunciat que amaguen la mateixa família de problemes que q22 i q27: cercles tangents i un triangle rectangle amagat.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 40 · pàg. 58 del llibre · solució</span>
+  <h1 class="sol-header__title">Dues configuracions, el mateix moviment: connectar centres</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Dues de les meves preferides.</p>
+  <div class="sol-enunciat__figures"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q40_page58_favorite_circle_square.png" alt="Figura de l'enunciat de la Qüestió 40" loading="lazy"></div></figure><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q40_page58_favorite_circles_square.png" alt="Figura de l'enunciat de la Qüestió 40" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Què demanen aquests dos dibuixos</p><p class="solucio__text">Cap dels dos panells porta enunciat escrit: cal llegir la pregunta directament del dibuix. Totes dues figures amaguen la mateixa pregunta de fons que q27: <em>mesurar el radi petit en funció del gran</em>. El primer panell mostra un quadrat inscrit en una circumferència (els 4 vèrtexs sobre el cercle); el segon, un quadrat i dos cercles petits en fila, tots tres dins d'una circumferència gran més gran que els engloba.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Panell 1 — el quadrat inscrit</p><p class="solucio__text">La clau és que la <strong>diagonal del quadrat és el diàmetre del cercle</strong>: els quatre vèrtexs toquen la circumferència, i la diagonal —que passa pel centre— hi arriba de banda a banda. Si el costat del quadrat és <em>s</em> i el radi del cercle és <em>R</em>, la diagonal fa <em>s√2</em> (Pitàgores sobre mig quadrat: dos costats <em>s</em> formant un angle recte) i, alhora, val <em>2R</em>. D'aquí surt directament la relació entre els dos: <strong>2R = s√2</strong>, és a dir, <strong>R = s√2⁄2</strong>.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Panell 2 — quadrat i dos cercles en fila</p><p class="solucio__text">Aquí les incògnites són <em>R</em> (el radi del cercle gran) i <em>r</em> (el radi comú dels dos cercles petits), i necessitem una equació que les lligui. El quadrat té costat <em>2r</em> —igual que el diàmetre comú dels dos cercles petits, ja que hi encaixa exactament entre ells— i tot el conjunt (cercle + quadrat + cercle) travessa el diàmetre del cercle gran d'una banda a l'altra.</p><p class="solucio__text">Comptant al llarg d'aquest diàmetre: un radi <em>r</em> de marge (del cercle petit de l'esquerra), el costat del quadrat <em>2r</em>, i un altre radi <em>r</em> de marge (del cercle petit de la dreta) —en total <em>r + 2r + r = 4r</em>— ha de fer exactament <em>2R</em>, el diàmetre del cercle gran. La relació queda <strong>2R = 4r</strong>, és a dir, <strong>R = 2r</strong>: el radi gran és sempre el doble del radi petit, independentment de la mida concreta.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-191.png" alt="Figura de la construcció — Panell 2 — quadrat i dos cercles en fila" loading="lazy"><figcaption class="solucio__figura-nota">El quadrat central i els dos cercles tangents, tots alineats sobre el mateix diàmetre del cercle gran.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">El mateix moviment en totes dues</p><p class="solucio__text">Els dos panells —i tota aquesta família de puzles de cercles tangents que inclou també q22 i q27— es resolen sempre amb el mateix moviment: connectar centres, trobar-hi un triangle rectangle amagat (o, com al panell 1, una diagonal que fa de diàmetre) i aplicar el teorema de Pitàgores o una simple suma de longituds sobre una línia recta.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-059.png" alt="Figura de la construcció — El mateix moviment en totes dues" loading="lazy"><figcaption class="solucio__figura-nota">La construcció que fa visible el triangle —o la línia recta— amagat darrere de cada configuració de cercles tangents.</figcaption></figure></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Panell 1: R = s√2⁄2 (la diagonal del quadrat inscrit és el diàmetre). Panell 2: R = 2r (el radi gran és sempre el doble del petit). Totes dues surten de connectar centres i mesurar sobre una línia recta, el mateix moviment que a q22 i q27.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Amb un quadrat de costat s=4 al primer panell: la diagonal val 4√2, per tant R=2√2≈2,83 —una xifra que es pot verificar mesurant directament sobre el dibuix.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

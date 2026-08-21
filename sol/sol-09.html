@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Per què només hi ha cinc poliedres regulars — Solució — Geometria</title>
+<meta name="description" content="L'argument de l'angle al vèrtex que talla la llista de poliedres regulars exactament a cinc.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 08b · pàg. 27 del llibre · solució</span>
+  <h1 class="sol-header__title">Per què només hi ha cinc poliedres regulars</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Quins són els cinc poliedres regulars?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/fig-136.png" alt="Figura de l'enunciat de la Qüestió 08b" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">La pregunta no és "quins", és "per què només aquests"</p><p class="solucio__text">Els cinc noms —tetraedre, cub, octaedre, dodecaedre, icosaedre— es memoritzen fàcilment. El que cal explicar és per què la llista s'acaba exactament aquí: per què no existeix, per exemple, un poliedre regular fet de set triangles equilàters ajuntats a cada vèrtex.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">La condició que ha de complir un vèrtex</p><p class="solucio__text">Perquè un vèrtex "tanqui" en tres dimensions —perquè les cares que hi conflueixen puguin doblegar-se cap amunt i formar un cim en comptes de quedar-se planes— calen almenys tres cares en aquell vèrtex, i la suma dels seus angles hi ha de ser <strong>estrictament menor que 360°</strong>. Si sumessin exactament 360°, les cares quedarien esteses en un pla, sense cap doblec possible; si sumessin més, ni tan sols es podrien col·locar totes al voltant del vèrtex sense superposar-se.</p><p class="solucio__text">Aquesta única condició —tres cares o més, angles per sota de 360°— aplicada a cada polígon regular possible és la que retalla la llista de candidats a una mida finita.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Comptar totes les combinacions vàlides</p><p class="solucio__text">Recorrem els polígons regulars de menys costats a més, comprovant quantes còpies en caben en un vèrtex sense arribar a 360°:</p><p class="solucio__text">Amb <strong>triangles equilàters</strong> (60° cadascun): 3 en fan 180°, 4 en fan 240°, 5 en fan 300° — les tres combinacions són vàlides, perquè totes queden per sota de 360°. Amb 6 s'arriba exactament a 360°: la figura queda plana, ja no tanca cap sòlid.</p><p class="solucio__text">Amb <strong>quadrats</strong> (90°): només 3 caben (270°); amb 4 ja s'arriba a 360° exactes.</p><p class="solucio__text">Amb <strong>pentàgons regulars</strong> (108°): només 3 caben (324°); amb 4 ja se superarien els 360°.</p><p class="solucio__text">Amb <strong>hexàgons</strong> (120°): 3 sols ja en fan 360° exactes — cap combinació funciona. I com més costats té el polígon, més gran és el seu angle intern, de manera que la situació només empitjora: cap polígon de sis costats o més pot donar-hi cap combinació vàlida.</p><p class="solucio__text">En total, doncs, exactament <strong>cinc</strong> combinacions (angle, nombre de cares per vèrtex) superen la prova: 3, 4 i 5 triangles; 3 quadrats; 3 pentàgons. Cadascuna es correspon amb un dels cinc sòlids: el tetraedre (3 triangles per vèrtex), l'octaedre (4 triangles), l'icosaedre (5 triangles), el cub (3 quadrats) i el dodecaedre (3 pentàgons).</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-052.png" alt="Figura de la construcció — Comptar totes les combinacions vàlides" loading="lazy"><figcaption class="solucio__figura-nota">Als arcs marcats en vermell, l'angle que s'acumula a un vèrtex: 3×60°=180° al tetraedre, 4×60°=240° a l'octaedre — tots dos per sota del límit de 360°.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Una llista completa, però amb dues meitats</p><p class="solucio__text">Val la pena no confondre dues coses que semblen la mateixa afirmació però no ho són. El comptatge anterior demostra que <em>no pot haver-hi cap sisè poliedre regular</em>: qualsevol altra combinació de polígon regular i nombre de cares per vèrtex arriba o supera els 360° i, per tant, no tanca cap figura tridimensional. Això acota la llista per dalt.</p><p class="solucio__text">Però acotar la llista per dalt no demostra per si sol que les cinc combinacions es puguin construir de debò —que els polígons, un cop plegats, arribin realment a tancar-se en un sòlid complet, en comptes de quedar oberts per l'altra banda per molt que cada vèrtex individual sigui vàlid. Aquesta segona meitat de l'argument, aquí, la donem per resolta per la via més directa possible: els cinc sòlids existeixen —es poden construir, tenir a la mà, i comptar-los les cares una per una— cosa que en confirma la realitzabilitat sense necessitat d'un argument geomètric addicional.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Hi ha exactament cinc poliedres regulars perquè només cinc combinacions (polígon regular, nombre de cares per vèrtex) mantenen la suma d'angles en un vèrtex per sota de 360° —i les cinc, a més, es poden construir realment: tetraedre, octaedre i icosaedre (triangles), cub (quadrats) i dodecaedre (pentàgons).</p>
+    </div>
+    
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>
