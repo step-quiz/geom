@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>L'angle d'un polígon regular de n costats — Solució — Geometria</title>
+<meta name="description" content="La fórmula (n−2)×180°/n per a l'angle interior d'un polígon regular, a partir de dividir-lo en triangles des d'un sol vèrtex.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 04 · pàg. 25 del llibre · solució</span>
+  <h1 class="sol-header__title">L'angle d'un polígon regular de n costats</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Quins són els angles d'un polígon regular de n costats?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/fig-133.png" alt="Figura de l'enunciat de la Qüestió 04" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Un angle sol, no la suma de tots</p><p class="solucio__text">Cal distingir bé què es demana: no la suma de tots els angles interiors del polígon, sinó <strong>un angle sol</strong> —el d'un vèrtex qualsevol. Com que el polígon és regular, tots els vèrtexs tenen el mateix angle, de manera que calcular-ne un és calcular-los tots.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Primer, la suma de tots els angles</p><p class="solucio__text">Des d'un sol vèrtex d'un polígon de <em>n</em> costats es poden traçar diagonals cap a tots els altres vèrtexs excepte els dos veïns (que ja hi són units per un costat) i cap a ell mateix. Això divideix el polígon en un ventall de <strong>n−2 triangles</strong> —per exemple, un hexàgon (n=6) es divideix en 4 triangles, un enneàgon (n=9) en 7. Com que la suma dels angles interns de qualsevol triangle és 180°, la suma de tots els angles interiors del polígon és <strong>(n−2)×180°</strong>.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Repartir aquesta suma entre els n vèrtexs</p><p class="solucio__text">Aquesta suma (n−2)×180° és el total dels <em>n</em> angles del polígon junts. Com que el polígon és regular i tots els angles valen exactament el mateix, per trobar l'angle d'un sol vèrtex només cal <strong>dividir la suma entre n</strong>.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-054.png" alt="Figura de la construcció — Repartir aquesta suma entre els n vèrtexs" loading="lazy"><figcaption class="solucio__figura-nota">El ventall de diagonals des d'un sol vèrtex divideix el polígon en n−2 triangles; l'arc en vermell marca l'angle complet d'aquell vèrtex, suma dels angles de tots els triangles que hi conflueixen.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">La fórmula, i la comprovació amb els casos coneguts</p><p class="solucio__text">L'angle d'un vèrtex d'un polígon regular de <em>n</em> costats és:</p><p class="solucio__text"><strong>angle = (n−2) × 180° / n</strong></p><p class="solucio__text">Comprovant-ho amb els dos casos que ja es coneixen de memòria: per n=3 (triangle equilàter), (3−2)×180°/3 = 60°; per n=4 (quadrat), (4−2)×180°/4 = 90°. Tots dos coincideixen amb el valor conegut, confirmant la fórmula.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">L'angle d'un polígon regular de n costats és (n−2)×180°/n: es divideix el polígon en n−2 triangles des d'un sol vèrtex, se sumen els seus angles per obtenir la suma total, i es reparteix entre els n vèrtexs iguals.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Hexàgon (n=6): (6−2)×180°/6 = 120°. Octàgon (n=8): (8−2)×180°/8 = 135°.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>
