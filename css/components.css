@@ -1107,8 +1107,21 @@
   margin: 0;
 }
 
-/* Bloc "abans convé haver fet: qXX" dins d'una entrada de #itinerari-<clau> */
+/* Bloc "abans convé haver fet: qXX" dins d'una entrada de #itinerari-<clau>.
+   BUG CORREGIT: cada .itinerari-entry és una .question-entry (base.css),
+   que porta un .question-entry__link-cover a inset:0 amb z-index:1 per
+   fer clicable tota l'entrada (v. capçalera d'aquella regla,
+   components.css:151) -- l'enllaç a qXX d'aquí sota queda just per sota
+   d'aquell cover en l'ordre normal de pintat, així que el clic sempre
+   queia sobre el cover i portava a LA PRÒPIA entrada, mai a qXX. Calen
+   position:relative + z-index per damunt del cover (2 > 1) al contenidor
+   .itinerari-entry__requereix sencer, no només a l'enllaç <a>: un z-index
+   sense position no té cap efecte, i si només es posa a <a> (elements
+   inline) alguns navegadors el continuen posant per sota del cover en
+   calcular l'stacking context del pare no posicionat. */
 .itinerari-entry__requereix {
+  position: relative;
+  z-index: 2;
   margin: var(--space-2) 0 0;
   font-family: var(--font-mono);
   font-size: var(--fs-metadata);
