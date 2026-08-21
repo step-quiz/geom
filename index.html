@@ -45,9 +45,9 @@
   que recordar quin tocava cada vegada. Sota file:// (obrint el
   fitxer amb doble clic) açò no fa cap falta, però no fa cap mal.
 -->
-<link rel="stylesheet" href="css/tokens.css?v=5">
-<link rel="stylesheet" href="css/base.css?v=5">
-<link rel="stylesheet" href="css/components.css?v=5">
+<link rel="stylesheet" href="css/tokens.css?v=6">
+<link rel="stylesheet" href="css/base.css?v=6">
+<link rel="stylesheet" href="css/components.css?v=6">
 </head>
 <body>
 
@@ -72,6 +72,11 @@
   Ordre de càrrega: exactament el que confirma la capçalera de
   js/ui/main.js (que és qui en depèn, tot plegat). Cap altre ordre és
   vàlid — alterar-lo trenca dependències documentades a cada fitxer.
+  js/nucli/itineraris-tematics.js i js/ui/itineraris.js (v. handoff
+  d'itineraris temàtics) segueixen el mateix criteri: cada mòdul de
+  nucli abans
+  del router (que no en depèn però tampoc l'hi fa mal), cada mòdul de ui
+  just abans de main.js (que és qui reparteix view.kind cap a cadascun).
 -->
 <script src="js/data/preguntes-dades.js"></script>
 <script src="js/data/categories-tematiques-dades.js"></script>
@@ -89,11 +94,13 @@
 <script src="js/nucli/glossari.js"></script>
 <script src="js/nucli/itinerari.js"></script>
 <script src="js/nucli/demos.js"></script>
+<script src="js/nucli/itineraris-tematics.js"></script>
 <script src="js/nucli/router.js"></script>
 <script src="js/ui/glossari.js"></script>
 <script src="js/ui/llista.js"></script>
 <script src="js/ui/detall.js"></script>
 <script src="js/ui/demo.js"></script>
+<script src="js/ui/itineraris.js"></script>
 <script src="js/ui/main.js"></script>
 
 <script>

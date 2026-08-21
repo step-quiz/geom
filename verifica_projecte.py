@@ -221,6 +221,7 @@ DOCS_ABSENTS = {
     "build_preguntes_dades.py",  # arxivat fora del repo per l'owner
     "HANDOFF-LLIURAMENT-9.md",   # full de ruta dels lots 9/10, ja executat
     "i18n-spanish-guide.md",     # d'un projecte germà (karelcat), mai d'aquest
+    "HANDOFF-ITINERARIS.md",     # handoff dels itineraris temàtics, de treball, mai al repo
 }
 # Plantilles, rangs i noms genèrics que no són fitxers concrets:
 #   GUIES-LOT-N.md      plantilla
