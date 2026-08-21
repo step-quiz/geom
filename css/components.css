@@ -227,17 +227,52 @@
      tenint l'enunciat, no la navegació.
    - mateixos --detail-nav__back i --detail-nav__adjacent (definits més
      avall), sense duplicar-ne l'estil.
+
+  AJUST D'ESPAIS (petició ago. 2026, amb captura de mòbil):
+   1. .page reserva --space-6 (52px desktop) / --space-5 (32px mòbil) de
+      buit per damunt del primer fill — pensat per a la resta de vistes
+      (llista, etc.), no per a aquesta nav sticky, que queda amb massa
+      aire per sobre. margin-top negatiu de -80% d'aquell valor: deixa
+      el 20% original i "estalvia" la resta pujant la nav cap amunt dins
+      del seu propi flux. No es toca .page (l'usen totes les vistes);
+      l'ajust viu només aquí, i per això es fa amb calc() sobre els
+      mateixos tokens en lloc d'un valor fix — es manté correcte tant a
+      desktop com al breakpoint de 640px sense duplicar la regla.
+   2. border-top afegit (abans no n'hi havia — només border-bottom): la
+      persona ho descriu com "el menú... amb les dues línies fines",
+      és a dir que ha de quedar tancat per amunt i per avall igual, no
+      només per avall.
+   3. padding-top i padding-bottom passen de --space-2 (8px) tots dos a
+      un parell explícitament calibrat: el text d'un enllaç no queda
+      centrat de debò amb padding simètric perquè align-items:baseline
+      (a .detail-nav) alinea per la línia de base tipogràfica, no per
+      la caixa completa del glif — la lletra "porta" un pèl més d'aire
+      visual per sota (el descendent invisible) que per sobre. Es
+      compensa amb un padding-top lleugerament més gran que el
+      padding-bottom perquè el resultat es vegi centrat a ull, no
+      perquè ho sigui numèricament.
+   4. margin-bottom: 20px afegit sota la nav (a més del padding-bottom
+      de dalt), perquè hi hagi un respir clar abans de "QÜESTIÓ N" —
+      petició amb valor exacte en px, no en un token de --space-*,
+      perquè és una mida puntual d'aquesta transició concreta.
 */
 .detail-nav--top {
   position: sticky;
   top: 0;
   z-index: 5;
   background: var(--paper);
-  margin-top: 0;
-  padding-top: var(--space-2);
+  margin-top: calc(-0.8 * var(--space-6));
+  margin-bottom: 20px;
+  padding-top: var(--space-3);
   padding-bottom: var(--space-2);
-  border-top: none;
+  border-top: var(--stroke-hairline) solid var(--rule);
   border-bottom: var(--stroke-hairline) solid var(--rule);
+}
+
+@media (max-width: 640px) {
+  .detail-nav--top {
+    margin-top: calc(-0.8 * var(--space-5));
+  }
 }
 
 .detail-nav {

@@ -133,6 +133,14 @@ p {
 
 /* ---------- Contenidor de lectura ---------- */
 
+/*
+  ACOBLAMENT A TENIR EN COMPTE: .detail-nav--top (components.css) fa
+  servir un margin-top negatiu calculat sobre --space-6/--space-5 per
+  "menjar-se" el 80% d'aquest padding-top just per a la nav sticky de la
+  vista de detall (sense tocar aquesta regla, que la comparteixen totes
+  les vistes). Si mai canvies --space-5 o --space-6, revisa que
+  l'espai per damunt de "← Totes les preguntes" segueixi sent petit.
+*/
 .page {
   max-width: var(--measure-wide);
   margin-inline: auto;
