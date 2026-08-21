@@ -193,3 +193,39 @@ the line in places). Always read points off a real curve/segment with
 `.pointAtT()` / `.pointAtAngle()` when a point must sit exactly on
 something hand-drawn — never recompute the ideal coordinate and hope the
 wobble is small enough not to matter.
+
+## 10 — Dues regles de la mateixa especificitat: guanya l'ordre físic al full, no la "lògica" del nom
+
+Un ajust de tres canvis a `.detail-nav--top` va sortir amb dos dels tres
+sense efecte (`margin-top`, `padding-top`), i el tercer (`margin-bottom`)
+funcionant perfectament — el propietari ho va reportar dues vegades, un
+cop assumint que era caché (i tenia raó de sospitar-ho: el projecte ja
+havia tingut bugs de `?v=N` abans, §3), i un segon cop després de
+confirmar-ho en incògnit que no ho era. La causa real: `.detail-nav--top`
+s'havia escrit **abans** de `.detail-nav` al mateix full, tot i que
+l'element porta totes dues classes alhora. Amb la mateixa especificitat
+(una classe sola cada selector), quan dues regles toquen la mateixa
+propietat guanya la que apareix **després** al text del fitxer — no la
+que "sona" més específica pel seu nom, ni la que es va escriure més
+tard cronològicament si va acabar situada abans al full. `border-top`
+coincidia per casualitat en valor final entre les dues regles, així que
+semblava que "una part sí funcionava" i confonia encara més el
+diagnòstic; `margin-top` i `padding-top` no coincidien, i les de
+`.detail-nav--top` quedaven silenciosament sobreescrites sense cap avís,
+cap error de consola, cap indicació que alguna cosa s'hagués perdut.
+
+Com es va trobar: no assumint que "el CSS que hi ha al fitxer és el CSS
+que s'aplica" i, en comptes d'això, resolent la cascada a mà —extreure
+totes les regles amb el selector en qüestió, en l'ordre real del fitxer,
+i veure quina guanya cada propietat una per una— abans de tornar a
+tocar cap valor. El fix va ser reordenar (moure la regla `--top` després
+de la base), no canviar cap número.
+
+**Regla pràctica per a variants d'aquest tipus (`.base` + `.base--variant`
+aplicades juntes al mateix element):** la variant sempre ha d'anar
+**després** de la base al full font, sense excepció, independentment de
+quin ordre sembli més natural de llegir (sovint és més intuïtiu posar la
+nota especial "de dalt" físicament a dalt del fitxer, però és precisament
+el que ho trenca). Si mai una propietat d'una variant sembla no aplicar-se
+i no hi ha cap error visible enlloc, el primer sospitós no és el
+navegador ni la caché — és l'ordre de les regles al mateix fitxer.

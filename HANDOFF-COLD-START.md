@@ -74,6 +74,23 @@ category-filter's original build that was never explicitly confirmed
 > adding a comment in `index.html` instructing future edits to bump
 > all three every time CSS ships, not just the file that changed. See
 > `LESSONS.md` §3, now updated with this second act.
+>
+> **Second follow-up, same day, genuinely different bug this time:**
+> after the cache fix above, the owner tested again in an incognito
+> window (ruling out caching entirely, correctly) and still saw two of
+> three spacing changes missing on `.detail-nav--top`. The real cause
+> had nothing to do with caching: `.detail-nav--top` had been written
+> *before* `.detail-nav` in `components.css`, and the element carries
+> both classes at once. Same specificity, so the rule appearing later
+> in the file wins per property — `.detail-nav`'s `margin-top` and
+> `padding-top` were silently overwriting `.detail-nav--top`'s values,
+> while `margin-bottom` (only defined on `--top`) came through fine,
+> which is exactly the "1 and 2 broken, 3 working" pattern the owner
+> reported. Found by resolving the cascade by hand (list every rule
+> touching that selector pair in file order, see which one wins each
+> property) rather than re-guessing at values. Fixed by moving
+> `.detail-nav--top` to *after* `.detail-nav` in source order — no
+> value changed, only position. See `LESSONS.md` §10.
 with the owner. Fixed by changing it to `var(--ink)` (black), matching
 the 2D/3D toggle's active-state color exactly — see `LESSONS.md` §8 for the lesson
 this points to.
