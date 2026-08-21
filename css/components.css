@@ -212,6 +212,34 @@
 
 /* ---------- Navegació anterior/següent i tornada a la llista (detall) ---------- */
 
+/*
+  NAV DE DALT (--top), afegida ago. 2026. Mateix contingut que .detail-nav
+  de baix (reutilitza pintaNavegacio), però:
+   - position: sticky, no fixed. S'enganxa a dalt en fer scroll SENSE
+     sortir del flux del document ni necessitar z-index ni padding-top
+     de compensació a la resta de la pàgina — un fixed exigiria totes
+     dues coses i, en un Chromebook amb barra d'eines mòbil que apareix
+     i desapareix, un fixed calculat amb vh és precisament el tipus de
+     salt de layout que --figure-slot-h (tokens.css) ja evita en un
+     altre lloc; sticky no té aquest problema perquè no depèn de vh.
+   - to de --paper amb --rule per sota (no --rule-strong): és una barra
+     utilitària de pas, no un títol; el pes visual l'ha de continuar
+     tenint l'enunciat, no la navegació.
+   - mateixos --detail-nav__back i --detail-nav__adjacent (definits més
+     avall), sense duplicar-ne l'estil.
+*/
+.detail-nav--top {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  background: var(--paper);
+  margin-top: 0;
+  padding-top: var(--space-2);
+  padding-bottom: var(--space-2);
+  border-top: none;
+  border-bottom: var(--stroke-hairline) solid var(--rule);
+}
+
 .detail-nav {
   display: flex;
   justify-content: space-between;
@@ -317,7 +345,13 @@
   margin: 0;
 }
 
+/* OCULT A PROPÒSIT (petició ago. 2026): el nom del moviment ("El moviment:
+   posa a prova la teva pròpia demostració") es continua generant a
+   detall.js i llegint de guies-dades.js — no s'ha tocat res d'això — però
+   de moment no es mostra a l'alumne. Reactivar-ho és treure aquesta regla;
+   no cal tocar cap altre fitxer. */
 .guia__move {
+  display: none;
   font-family: var(--font-serif);
   font-size: var(--fs-body);
   font-style: italic;
@@ -369,9 +403,20 @@
 .guia__reveal {
   font-family: var(--font-serif);
   font-size: var(--fs-body);
+  font-weight: 600;
   color: var(--ink);
-  background: var(--paper-raised);
-  border: 1px solid var(--rule-strong);
+  /* Un pas més fosc que --paper-raised, perquè el botó destaqui més
+     (petició ago. 2026). No hi ha cap token per a "un pas més fosc que
+     paper-raised", així que es deriva d'--ink en lloc d'inventar un color
+     nou: color-mix() barreja un 12% d'--ink dins --paper-raised, i com que
+     tots dos ja canvien junts amb el mode fosc, el resultat s'hi adapta
+     sol. Fallback --rule-strong per a navegadors sense color-mix()
+     (Chromebooks més antics inclosos) — és més fosc que paper-raised però
+     no tant com el resultat final, així que mai queda pitjor, només menys
+     marcat. */
+  background: var(--rule-strong);
+  background: color-mix(in srgb, var(--paper-raised) 88%, var(--ink) 12%);
+  border: 2px solid var(--rule-strong);
   border-radius: 2px;
   padding: var(--space-2) var(--space-4);
   cursor: pointer;
@@ -827,7 +872,11 @@
 .demo__reveal:focus-visible { outline: 2px solid var(--pencil); outline-offset: 2px; }
 
 .demo__text { margin: 0 0 var(--space-3); }
+/* OCULT A PROPÒSIT (petició ago. 2026), igual que .guia__move a dalt: es
+   continua generant a demo.js — no s'ha tocat res d'això — però de moment
+   no es mostra. Reactivar-ho és treure aquesta regla. */
 .demo__move {
+  display: none;
   font-style: italic;
   color: var(--pencil);
   margin: 0 0 var(--space-2);

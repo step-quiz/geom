@@ -71,42 +71,39 @@
   --measure-wide: 52rem;  /* amplada per a la llista completa / capçalera */
 
   /*
-    Alçada reservada per a la zona de figura a la vista de detall (tant
-    si la pregunta té imatge com si no — v. base.css
-    .question-entry__figure / __figure-empty). Valor únic centralitzat
-    aquí perquè __figure i __figure-empty el comparteixin exactament —
-    no es pot desincronitzar entre els dos.
+    Alçada de la zona de figura a la vista de detall (tant si la pregunta
+    té imatge com si no — v. base.css .question-entry__figure /
+    __figure-empty). Dos tokens relacionats:
 
-    PER QUÈ JA NO ÉS UN 480px FIX (auditoria, ago. 2026)
-    480px cobreix folgadament la mediana real de les imatges del dataset
-    (~311px als 416px d'ample de la ranura) i era el valor correcte
-    mesurat en un monitor gran. Però és una alçada ABSOLUTA en un slot
-    que no fa scroll propi: en un Chromebook escolar de 1366×768 el
-    viewport útil ronda els 625px, de manera que la figura sola se
-    n'enduia el 77% i el botó "Comença la guia" —que és tota la raó de
-    ser de la pàgina— queia SEMPRE sota el plec, sense cap senyal que
-    hi hagués res més avall.
+      --figure-slot-h-max  el SOSTRE, mai superat per cap figura.
+      --figure-slot-h      el valor efectiu: per defecte, igual al sostre
+                            (perquè __figure-empty i la ranura ABANS que
+                            la imatge hagi carregat no facin cap salt de
+                            layout inesperat); detall.js el sobreescriu
+                            per figura concreta un cop coneix el ratio
+                            real de la imatge (clamp(120px, alçada real,
+                            --figure-slot-h-max)) — v. la nota a
+                            creaFigura() a detall.js.
 
-    clamp() manté els tres casos alhora, sense cap media query nova:
-      · sostre 480px  — en pantalles altes no creix mai més enllà del
-                        valor mesurat originalment; el disseny de
-                        monitor gran queda EXACTAMENT igual que abans.
-      · 52vh          — en un portàtil de 768px de pantalla dona ~325px,
-                        prou perquè el botó de guia entri en pantalla
-                        junt amb l'enunciat i la figura.
-      · terra 300px   — per sota d'això una figura de geometria deixa de
-                        ser llegible; en una finestra molt baixa val més
-                        que la pàgina faci scroll que no pas mostrar un
-                        diagrama que no s'entén.
+    HISTÒRIA (per si cal desfer-ho): --figure-slot-h va ser durant un
+    temps un valor ÚNIC i FIX per a les 130 preguntes (clamp(300px,
+    52vh, 480px)), amb un terra de 300px expressament perquè
+    "Anterior/Següent" caigués sempre al mateix lloc absolut de la
+    pantalla, independentment de si la pregunta tenia figura i de la
+    seva forma. Aquell terra tenia un efecte secundari real: una figura
+    panoràmica (p. ex. q23, ràtio h/w ≈ 0,34) ocupava ~110px dins d'una
+    ranura de com a mínim 300px, deixant ~190px de buit repartits a dalt
+    i a baix (centrat vertical de .question-entry__figure-frame).
 
-    vh (no dvh) a propòsit: el que ha de decidir aquesta mida és
-    l'ALÇADA ESTABLE de la finestra, no la que queda mentre una barra
-    d'eines de mòbil apareix i desapareix — si no, la ranura canviaria
-    de mida amb el scroll i tornaríem al salt de layout que aquest
-    token existeix per eliminar. El cas mòbil ja té el seu propi
-    tractament al breakpoint de 640px.
+    Es va resoldre traient la garantia de posició de la figura: ara
+    "Anterior/Següent" també viu a dalt de tot (detail-nav--top,
+    sticky), així que ja no cal cap terra fix perquè quedi sempre al
+    mateix lloc. El sostre de 480px/52vh es manté igual que abans —
+    encara evita que una figura molt alta ocupi tota la pantalla i
+    empenyi el botó "Comença la guia" fora de vista.
   */
-  --figure-slot-h: clamp(300px, 52vh, 480px);
+  --figure-slot-h-max: clamp(300px, 52vh, 480px);
+  --figure-slot-h: var(--figure-slot-h-max);
 
   /* ---- Traç i forma: gairebé sense radi — els dibuixos són a mà, la UI no necessita imitar software ---- */
   --radius-sm: 3px;

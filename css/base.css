@@ -256,23 +256,27 @@ p {
   lloc de llegir-se com una caixa retallada. Funciona per a les 122 imatges
   d'enunciat sense haver de post-processar-les una per una.
 
-  ALÇADA RESERVADA (--figure-slot-h, tokens.css): la ràtio h/w real de
-  les imatges del dataset va de 0.25 (q117, panoràmica) a 1.80 (q123,
-  gairebé vertical) — un ventall de gairebé 7x. Deixar que l'alçada flueixi
-  lliure (com abans, amb width:100%/height:auto) feia que "Anterior/Següent"
-  saltés fins a ~500px de posició entre preguntes consecutives, depenent
-  només de la forma de la imatge. En comptes de forçar totes les imatges a
-  la MATEIXA mida (que amb aquest ventall de ràtios exigiria distorsionar
-  la geometria o deixar bandes buides enormes), es reserva sempre la
-  MATEIXA ALÇADA DE CONTENIDOR i la imatge s'hi ajusta sencera i sense
-  distorsionar amb object-fit: contain — mai retallada, mai estirada.
-  Des de l'auditoria d'ago. 2026 aquesta alçada ja no és un 480px
-  absolut sinó un clamp(300px, 52vh, 480px) — el raonament sencer és a
-  tokens.css. El que importa AQUÍ és que la propietat que fa funcionar
-  tot això no ha canviat: sigui quin sigui el valor resolt, és el MATEIX
-  per a totes les preguntes de la mateixa finestra, que és l'única cosa
-  que necessita "Anterior/Següent" per no ballar. Cap imatge es veu mai
-  retallada; en finestres baixes, unes quantes es veuen més petites.
+  ALÇADA DE LA RANURA (--figure-slot-h, tokens.css) — HISTÒRIA:
+  la ràtio h/w real de les imatges del dataset va de 0.25 (q117,
+  panoràmica) a 1.80 (q123, gairebé vertical), un ventall de gairebé 7x.
+  Fins ago. 2026, --figure-slot-h era un valor ÚNIC per a les 130
+  preguntes (clamp(300px, 52vh, 480px)) perquè "Anterior/Següent" —que
+  aleshores només vivia al peu de la pàgina— caigués sempre a la mateixa
+  alçada absoluta. Efecte secundari real: una figura panoràmica com la
+  de q23 (ràtio ≈0.34) ocupava una fracció petita d'una ranura pensada
+  per a la mediana, deixant una franja buida grossa a dalt i a baix
+  (per `justify-content: center` a .question-entry__figure-frame).
+
+  Des que "Anterior/Següent" també viu a dalt de tot (.detail-nav--top,
+  sticky, v. components.css i detall.js pintaNavegacio), aquella garantia
+  de posició ja no depèn de la figura, i --figure-slot-h es fixa PER
+  FIGURA segons el seu propi ratio un cop la imatge ha carregat (v.
+  creaFigura a detall.js) — amb el mateix sostre --figure-slot-h-max
+  d'abans (480px/52vh) perquè una figura molt alta no envaeixi la
+  pantalla i amagui el botó "Comença la guia". Mentre la imatge encara
+  carrega, la ranura pren el sostre com a valor per defecte (evita salt
+  de layout brusc). Cap imatge es veu mai retallada ni estirada
+  (object-fit: contain).
 
   IMPORTANT: --figure-slot-h s'aplica al <figure> SENCER, no només a la
   imatge — herència d'un temps en què hi havia figcaption (suprimit a
@@ -280,17 +284,16 @@ p {
   reservava l'alçada només al "frame" intern de la imatge, deixant que
   el figcaption se sumés a sobre — es va detectar mesurant en viu que
   una pregunta AMB imatge acabava fent ~26px més d'alçada total que una
-  SENSE imatge, desplaçant "Anterior/Següent" igualment. Es va resoldre
-  fent el <figure> flex-column amb el frame a flex:1, així la suma total
-  és sempre exactament --figure-slot-h. Ara que no hi ha figcaption el
-  frame simplement omple tot l'espai — el mecanisme flex:1 ja no calia
-  per aquest motiu concret, però es manté perquè segueix sent la manera
-  més robusta de garantir l'alçada exacta si mai torna a haver-hi
-  contingut sota la imatge.
+  SENSE imatge. Es va resoldre fent el <figure> flex-column amb el frame
+  a flex:1, així la suma total és sempre exactament --figure-slot-h. Ara
+  que no hi ha figcaption el frame simplement omple tot l'espai — el
+  mecanisme flex:1 ja no calia per aquest motiu concret, però es manté
+  perquè segueix sent la manera més robusta de garantir l'alçada exacta
+  si mai torna a haver-hi contingut sota la imatge.
 
-  El mateix --figure-slot-h s'aplica a .question-entry__figure-empty (la
-  pregunta NO té imatge) perquè "Anterior/Següent" caigui a la mateixa
-  alçada absoluta a les 130 preguntes, no només entre les que sí en tenen.
+  .question-entry__figure-empty (la pregunta NO té imatge) es queda amb
+  el sostre --figure-slot-h-max com a alçada — ja no cal que coincideixi
+  amb la de cap figura concreta, perquè "Anterior/Següent" ja no en depèn.
 */
 .question-entry__figure {
   margin-top: var(--space-4);
@@ -320,16 +323,23 @@ p {
 /*
   Espai reservat quan la pregunta NO té imatge (8 de les 130, totes elles
   dins d'EXERCICIS_AMAGATS: cap pregunta VISIBLE arriba mai aquí, però
-  s'hi arriba per enllaç directe) — buit a
-  propòsit, sense contingut ni vora ni text "sense figura" (l'eyebrow de
-  metadades ja ho indica). La seva única funció és ocupar exactament la
-  mateixa alçada total que .question-entry__figure (imatge + figcaption
-  inclosos) perquè els botons de navegació caiguin sempre al mateix lloc,
-  tinguis o no imatge la pregunta.
+  s'hi arriba per enllaç directe) — buit a propòsit, sense contingut ni
+  vora ni text "sense figura" (l'eyebrow de metadades ja ho indica).
+
+  Fa servir --figure-slot-h-max directament (no --figure-slot-h): des
+  d'ago. 2026 aquest segon token es fixa per figura concreta segons el
+  seu ratio real (v. base.css .question-entry__figure), i com que aquí
+  no hi ha cap imatge que doni un ratio, el que pertoca és el sostre fix
+  de sempre — abans, quan --figure-slot-h encara era un valor únic per a
+  totes les preguntes, els dos tokens eren el mateix i no calia
+  distingir-los; ara sí. La mida concreta ja no és crítica per a
+  "Anterior/Següent" (v. .detail-nav--top), però es manté perquè la
+  pàgina no faci un salt visible en passar d'una pregunta amb figura a
+  una sense.
 */
 .question-entry__figure-empty {
   margin-top: var(--space-4);
-  height: var(--figure-slot-h);
+  height: var(--figure-slot-h-max);
 }
 
 /* El crop de pàgina (q31 i similars) ja porta el seu propi fons --paper-raised:
