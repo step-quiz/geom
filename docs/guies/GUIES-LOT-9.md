@@ -391,6 +391,8 @@ quadrilàters mirats com a quatre punts en posició general (cap tres
 alineats): la projecció respecta quins punts hi ha, no si la figura et
 sembla ben proporcionada.
 
+---
+
 ## 9. q103 — *Is a projection of a polygon always a polygon?*
 > La projecció d'un polígon és sempre un polígon?
 

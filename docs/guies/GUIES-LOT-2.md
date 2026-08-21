@@ -354,6 +354,16 @@ literalment base × alçada. El parany habitual: l'amplada del rectangle és la
 afegeixes les dues tapes circulars (2×πr² = 18π), la superfície total surt
 78π ≈ 245,0.
 
+Una nota sobre el «generalitzat» del títol, que aquesta guia treballa
+sempre amb un cilindre de base circular. Un cilindre «generalitzat» és
+qualsevol sòlid fet lliscant una corba plana tancada qualsevol (no cal
+que sigui un cercle) perpendicularment, sense girar-la ni canviar-ne la
+mida. El mètode de l'etiqueta desenrotllada hi val exactament igual: si
+la base té perímetre P, l'àrea lateral és P × h, sigui quina sigui la
+forma de la base —el rectangle que en surt en desenrotllar-lo és sempre
+«perímetre per alçada», i 2πr és només el perímetre en el cas particular
+que la base sigui un cercle.
+
 **I després.** El mateix truc no funciona igual de net per a un con (q51):
 un con desenrotllat no dona un rectangle sinó un sector de cercle, perquè el
 "radi" de l'etiqueta ja no és constant. I quan vulguis mesurar la longitud

@@ -86,6 +86,22 @@ total?
 retrobaràs, molt més enllà, a q54/q55/q60 (el principi de Cavalieri) — allà
 les capes ja no seran cubs sinó seccions de qualsevol forma.
 
+Una cosa que aquesta guia s'ha saltat, a posta ("comença amb costats
+enters"): què passa si un costat no és enter? Amb fraccions encara es pot
+comptar, només que amb cubs més petits. Una capsa de costats 3/2 × 2 × 2:
+parteix-la en cubs d'aresta 1/2 en lloc d'aresta 1 —n'hi caben 3×4×4=48,
+i cada cubet val (1/2)³=1/8 del cub gran, així que el volum és 48/8=6,
+exactament (3/2)×2×2. Sempre que els tres costats siguin fraccions, es
+pot trobar una mida de cubet prou petita perquè hi càpiguen un nombre
+enter de vegades en cada direcció, i l'argument torna a funcionar sencer.
+Per a costats irracionals (per exemple √2) el mateix argument ja no es
+pot repetir amb cubets d'una mida fixa —cap mida de cubet hi cap un
+nombre enter exacte de vegades—, però la fórmula segueix sent certa: la
+demostres aproximant el costat irracional per fraccions cada cop més
+precises, i comprovant que el volum s'hi acosta tant com vulguis. És la
+mateixa idea que a q121, quan una suma finita s'acosta a 1/3 sense
+arribar-hi mai exactament.
+
 ---
 
 ## 3. q19 — *Why is the product of two odd numbers always odd?*

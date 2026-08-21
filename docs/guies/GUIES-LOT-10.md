@@ -32,8 +32,9 @@ construcció auxiliar es dibuixa en sanguina, mai en negre.
 ## 1. q112 — *Why is every hyperbola a dilation of a right hyperbola?*
 > Per què tota hipèrbola és una dilatació d'una hipèrbola recta?
 
-**Moviment: dilatació** (reaplica q32/q77). DEPÈN de q111 (ja fet: el
-focus i la diagonal del diamant).
+**Moviment: dilatació anisòtropa** (parenta de q32/q77, però no la
+mateixa: allà el factor era el mateix en totes direccions; aquí no).
+DEPÈN de q111 (ja fet: el focus i la diagonal del diamant).
 
 **Pista 0 — què has de produir.**
 Una hipèrbola qualsevol té dues asímptotes que es tallen amb un angle
@@ -45,8 +46,11 @@ segona.
 **Pista 1 — separa les dues direccions.**
 Una hipèrbola es descriu amb dos números, a (semieix) i b (el que marca
 el pendent de les asímptotes). Si dilates l'eix horitzontal per un
-factor i el vertical per un altre —factors diferents, no una dilatació
-uniforme—, què li passa al pendent de les asímptotes?
+factor i el vertical per un altre —diferent de l'anterior—, què li passa
+al pendent de les asímptotes? Aquesta és la diferència amb q32/q77: allà
+el mateix factor valia per a totes les direccions (una FIGURA sencera
+escalada igual pertot); aquí cada eix té el seu propi factor, i és
+justament perquè són diferents que l'angle de les asímptotes canvia.
 
 **Pista 2 — la construcció.** → `fig-116.png`
 Una hipèrbola amb asímptotes inclinades (traç negre), i al costat, en
@@ -74,7 +78,9 @@ enllà a q117 amb la paràbola.
 ## 2. q114 — *Where are the focal points of a unit hyperbola? What if we dilate it by factors a and b?*
 > On són els focus d'una hipèrbola unitat? I si la dilatem per factors a i b?
 
-**Moviment: dilatació.** DEPÈN de q112.
+**Moviment: dilatació anisòtropa** (el mateix parell d'eixos amb factors
+diferents que a q112, ara aplicat a la hipèrbola unitat com a patró de
+referència). DEPÈN de q112.
 
 **Pista 0 — què has de produir.**
 Dues coses: (1) la posició dels focus de x²−y²=1 (la hipèrbola recta

@@ -563,7 +563,13 @@ petit, i l'angle C hi és l'angle conegut), substitueix-ho a la fórmula
 
 **I després.** Aquesta fórmula no necessita que el triangle sigui rectangle
 ni que en sàpigues l'altura per endavant — funciona amb qualsevol triangle
-del qual coneguis dos costats i l'angle que formen, i és la porta d'entrada
+del qual coneguis dos costats i l'angle que formen, **inclòs el cas en què
+C és obtús**. Aquí la Pista 1 s'ha de llegir amb compte: si C és obtús, el
+peu de l'altura cau FORA del triangle, no dins. Que la fórmula h = b·sin(C)
+continuï valent en aquest cas no és casualitat — és precisament la raó per
+la qual q87 defineix el sinus d'un angle obtús com sin(180°−C) en lloc de
+deixar-lo sense definir: la definició es tria expressament perquè fórmules
+com aquesta no s'hagin de partir en dos casos. És la porta d'entrada
 natural a la llei del sinus i del cosinus si mai hi treballes.
 
 ---
@@ -652,7 +658,17 @@ sistema, has de trobar dues solucions per a (x, y) que, multiplicades,
 donin ≈ 6,93, i sumades (×2) donin 12. Comprova que la teva parella de
 solucions compleix totes dues coses alhora, no només una.
 
-**I després.** Fixa't que el sistema té, en general, dues solucions
+**I després.** Un sistema com aquest —dues incògnites que has de trobar a
+partir de la seva suma i el seu producte— no sempre té solució real: si
+la condició d'àrea fos massa exigent per al perímetre donat, l'equació de
+segon grau de la Pista 3 podria tenir discriminant negatiu, i cap
+rectangle real la compliria. Aquí no passa —val la pena saber per què, en
+lloc de donar-ho per fet. El discriminant surt s²(9/4 − √3), i com que
+√3 ≈ 1,73 és més petit que 9/4 = 2,25, aquest número és positiu per a
+QUALSEVOL costat s > 0: sempre hi ha un rectangle, encara que —com
+acabes de veure amb s=4— pugui sortir molt allargat.
+
+I encara una cosa més sobre aquest sistema: en general té dues solucions
 diferents per a (x, y) (els papers de x i y es poden intercanviar, i a més
 n'hi pot haver una altra parella no trivial): "mateixa àrea i mateix
 perímetre" no determina un únic rectangle. És un recordatori útil que dues

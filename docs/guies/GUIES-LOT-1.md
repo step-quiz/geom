@@ -250,7 +250,7 @@ té dos costats que fan just la meitat i el mateix angle entremig, o sigui que �
 semblant al gran amb raó ½.)*
 
 **Comprovació.** Amb coordenades: A(0,0), B(8,2), C(9,7), D(1,6). Els punts
-mitjans surten (4,1), (8'5,4'5), (5,6'5) i (0'5,3). Comprova que el vector del
+mitjans surten (4,1), (8,5; 4,5), (5; 6,5) i (0,5; 3). Comprova que el vector del
 primer al segon és idèntic al del quart al tercer.
 *Nota honesta:* aquesta comprovació amb coordenades és **una demostració
 vàlida**, i amb la teva àlgebra la pots fer sencera per a un quadrilàter
@@ -286,7 +286,7 @@ Aquell segment marcat amb "?" el pots dir de dues maneres:
 per Pitàgores, amb els dos catets R; i per la tangència, amb R i r.
 Iguala les dues expressions i aïlla r.
 
-**Comprovació.** Amb R = 1 t'ha de sortir un valor entre 0'4 i 0'42. Comprova
+**Comprovació.** Amb R = 1 t'ha de sortir un valor entre 0,4 i 0,42. Comprova
 també que R + r és exactament √2, que és la distància del centre del quadrat al
 centre d'un cercle gran.
 
