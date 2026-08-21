@@ -24,6 +24,21 @@
                                    DEMO-PROOF-INTRO-DESIGN-NOTES.md §5) —
                                    ruta reservada i literal, afegida com a
                                    un cas més abans de la cerca d'id.
+    index.html#itineraris       → llista dels 6 itineraris temàtics (v.
+                                   HANDOFF-ITINERARIS.md, punt (a)) —
+                                   mateix tractament que #demo: ruta
+                                   reservada i literal, comprovada abans
+                                   que la forma clau=valor i abans de la
+                                   cerca d'id de pregunta.
+    index.html#itinerari-<clau> → vista d'un itinerari concret (les seves
+                                   preguntes en ordre). <clau> és el camp
+                                   `clau` de window.ITINERARIS_TEMATICS
+                                   (p. ex. #itinerari-triangles). Prefix
+                                   literal "itinerari-" (singular, sense
+                                   la 's' de la ruta de dalt) perquè mai
+                                   pugui confondre's amb un id de pregunta
+                                   real (cap id de PREGUNTES comença per
+                                   "itinerari").
 
   ORIGEN DEL PATRÓ I ON DIVERGEIX DE sol/tasca.html
   El mecanisme show(id) + classList.toggle('active') de sol/tasca.html es
@@ -81,6 +96,28 @@
     // més a la mateixa cadena de casos.
     if (hash === "demo") {
       return { kind: "demo" };
+    }
+
+    // Ruta reservada i literal per a la llista dels 6 itineraris temàtics
+    // (HANDOFF-ITINERARIS.md, punt (a)) -- mateix tractament que "demo"
+    // just a dalt.
+    if (hash === "itineraris") {
+      return { kind: "itineraris" };
+    }
+
+    // Vista d'un itinerari concret: prefix literal "itinerari-" (v. nota
+    // a la capçalera d'aquest fitxer sobre per què no col·lideix mai amb
+    // un id de pregunta). Es comprova ABANS de la cerca d'id perquè
+    // "itinerari-triangles" en cap cas és un id de PREGUNTES vàlid, però
+    // seguint el mateix ordre general de la cadena (reservades primer).
+    // Si <clau> no correspon a cap itinerari real, es retorna kind
+    // 'itinerari' igualment (amb clau: null) -- resoldre "no existeix"
+    // és responsabilitat de qui pinti la vista (v. js/ui/itineraris.js),
+    // no d'aquest router, seguint el mateix principi que "q99999" no es
+    // resol aquí sinó que cau a 'not-found' via trobaPregunta().
+    if (hash.indexOf("itinerari-") === 0) {
+      const clauItinerari = hash.slice("itinerari-".length) || null;
+      return { kind: "itinerari", clau: clauItinerari };
     }
 
     // Forma clau=valor: reservat per a filtres (curs, i en el futur
