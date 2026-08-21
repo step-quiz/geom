@@ -132,6 +132,29 @@ window.UI_LANGS = {
       try_label: "Try it on paper first",
       check_label: "Check yourself",
     },
+
+    // Itineraris TEMÀTICS (window.ITINERARIS_TEMATICS, HANDOFF-ITINERARIS.md)
+    // -- els 6 camins fixos i editorials. Secció separada de "itinerary"
+    // (a dalt), que és el motor REACTIU individual per alumne: noms
+    // diferents a propòsit perquè no es confonguin ni al codi ni aquí.
+    itineraris: {
+      header_link: "Themed paths",
+      list_card_title: "Follow a themed path",
+      list_card_body: "Six fixed sequences through the questions, grouped by topic instead of by page order.",
+      list_card_link: "See the 6 paths →",
+      eyebrow: "Six fixed sequences",
+      page_title: "Themed paths",
+      intro: "Each path reorganizes the book's questions by topic instead of page order. The same path for everyone — pick one and work through it top to bottom.",
+      count: "{n} questions",
+      open: "Start this path →",
+      back_to_itineraris: "← All paths",
+      back_to_list: "← All questions",
+      progress: "Question {n} of {total}",
+      requires_label: "Before this one, it helps to have done:",
+      next_in_path: "Next in this path",
+      path_done: "That's the last question in this path.",
+      bessones_title: "Also worth seeing",
+    },
   },
 
   ca: {
@@ -230,6 +253,25 @@ window.UI_LANGS = {
       step_label: "Pas {n} de {total}",
       try_label: "Prova-ho al paper abans de continuar",
       check_label: "Comprova-ho",
+    },
+
+    itineraris: {
+      header_link: "Itineraris temàtics",
+      list_card_title: "Segueix un itinerari temàtic",
+      list_card_body: "Sis seqüències fixes per les preguntes, agrupades per tema en lloc de per ordre de pàgina.",
+      list_card_link: "Veure els 6 itineraris →",
+      eyebrow: "Sis seqüències fixes",
+      page_title: "Itineraris temàtics",
+      intro: "Cada itinerari reorganitza les preguntes del llibre per tema en lloc de per ordre de pàgina. El mateix itinerari per a tothom — tria'n un i segueix-lo de dalt a baix.",
+      count: "{n} preguntes",
+      open: "Comença aquest itinerari →",
+      back_to_itineraris: "← Tots els itineraris",
+      back_to_list: "← Totes les preguntes",
+      progress: "Pregunta {n} de {total}",
+      requires_label: "Abans d'aquesta, convé haver fet:",
+      next_in_path: "Següent en aquest itinerari",
+      path_done: "Aquesta és l'última pregunta de l'itinerari.",
+      bessones_title: "Val la pena veure també",
     },
   },
 };
