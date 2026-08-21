@@ -458,6 +458,33 @@
 
     contenidorEl.appendChild(header);
 
+    // Targeta "Segueix un itinerari temàtic" (HANDOFF-ITINERARIS.md,
+    // punt (a)): un únic enllaç d'entrada cap a #itineraris, sota la
+    // capçalera i abans de la llista mateixa -- mai substitueix la
+    // llista general (§7 de DEMO-PROOF-INTRO-DESIGN-NOTES.md aplica el
+    // mateix principi aquí: la llista sempre és l'estat per defecte,
+    // els itineraris són una porta opcional, no obligatòria). Es
+    // degrada bé (bloc simplement no es pinta) si geoItinerarisTematics
+    // no s'ha carregat.
+    if (window.geoItinerarisTematics && window.geoItinerarisTematics.itineraris().length) {
+      const targeta = document.createElement("a");
+      targeta.href = "#itineraris";
+      targeta.className = "itineraris-entrada";
+      const titol = document.createElement("span");
+      titol.className = "itineraris-entrada__title";
+      titol.textContent = window.t("itineraris.list_card_title");
+      targeta.appendChild(titol);
+      const cos = document.createElement("span");
+      cos.className = "itineraris-entrada__body";
+      cos.textContent = window.t("itineraris.list_card_body");
+      targeta.appendChild(cos);
+      const link = document.createElement("span");
+      link.className = "itineraris-entrada__link";
+      link.textContent = window.t("itineraris.list_card_link");
+      targeta.appendChild(link);
+      contenidorEl.appendChild(targeta);
+    }
+
     if (filtrades.length === 0) {
       const buit = document.createElement("p");
       buit.className = "question-entry__body";

@@ -96,6 +96,22 @@
       return;
     }
 
+    // Itineraris temàtics (HANDOFF-ITINERARIS.md, punts (a) i (b)): dues
+    // vistes noves, mateix repartiment kind->render que 'detall'/'demo'
+    // just a dalt. window.geoItineraris es degrada bé si mai falta (v.
+    // la seva pròpia capçalera): aquí no cal comprovar-ho perquè main.js
+    // ja depèn incondicionalment de tots els mòduls de ui/ (v. llista de
+    // dependències a la capçalera d'aquest fitxer).
+    if (view.kind === "itineraris") {
+      window.geoItineraris.renderLlista(view, appEl);
+      return;
+    }
+
+    if (view.kind === "itinerari") {
+      window.geoItineraris.renderUn(view, appEl);
+      return;
+    }
+
     if (view.kind === "not-found") {
       // Sense vista dedicada encara (fora d'abast d'aquest pas): es
       // tracta com una llista sense filtre, la mateixa degradació que
@@ -134,6 +150,19 @@
     header.appendChild(a);
   }
 
+  // Enllaç del header cap a #itineraris (HANDOFF-ITINERARIS.md, punt (a)):
+  // mateix patró literal que muntaEnllacDemo just a dalt -- un enllaç
+  // més al mateix .site-header__row, cap contenidor nou.
+  function muntaEnllacItineraris() {
+    const header = document.querySelector(".site-header__row");
+    if (!header) return;
+    const a = document.createElement("a");
+    a.href = "#itineraris";
+    a.className = "itineraris-obre";
+    a.textContent = window.t("itineraris.header_link");
+    header.appendChild(a);
+  }
+
   function arrenca() {
     appEl = document.getElementById("app");
     if (!appEl) {
@@ -152,6 +181,7 @@
     }
 
     muntaEnllacDemo();
+    muntaEnllacItineraris();
 
     // Primer visitant genuí (§5 de DEMO-PROOF-INTRO-DESIGN-NOTES.md):
     // envia'l un cop a #demo, mai com a porta obligatòria per a qui ja

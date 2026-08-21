@@ -525,6 +525,122 @@
       // (v. registraProperaNavegacio/render més avall).
       a.addEventListener("click", () => {
         properaNavegacioVia = "recommended";
+        // Aquesta recomanació ve del motor reactiu individual, no de
+        // l'itinerari temàtic actiu: es neteja el context en sortir per
+        // aquí, mateix motiu que a pintaBessones/pintaNavegacio.
+        if (window.geoItinerarisTematics) {
+          window.geoItinerarisTematics.netejaContextActiu();
+        }
+      });
+
+      li.appendChild(a);
+      ul.appendChild(li);
+    });
+    bloc.appendChild(ul);
+    slotEl.appendChild(bloc);
+  }
+
+  /**
+   * "Següent en aquest itinerari" (HANDOFF-ITINERARIS.md, punt (b)):
+   * només es pinta quan hi ha context de sessió actiu per a AQUESTA
+   * pregunta (v. contextActiuPer -- ja inclou la xarxa de seguretat de
+   * "l'itinerari marcat és realment el de la pregunta actual"). No
+   * substitueix pintaNavegacio (Anterior/Següent posicional de sempre,
+   * que segueix window.ORDRE_PREGUNTES): les dues coexisteixen, aquesta
+   * es pinta per damunt perquè és la que té sentit seguir si s'ha
+   * arribat aquí des d'un itinerari.
+   */
+  function pintaItinerariActiu(pregunta, contenidor) {
+    if (!window.geoItinerarisTematics) return;
+    const context = window.geoItinerarisTematics.contextActiuPer(pregunta.id);
+    if (!context) return;
+
+    const seguent = window.geoItinerarisTematics.seguentDinsItinerari(pregunta.id);
+
+    const bloc = document.createElement("div");
+    bloc.className = "itinerari-actiu";
+
+    const titol = document.createElement("p");
+    titol.className = "itinerari-actiu__title eyebrow";
+    titol.textContent = context.itinerari.etiqueta;
+    bloc.appendChild(titol);
+
+    if (seguent) {
+      const a = document.createElement("a");
+      a.href = "#" + seguent.entrada.id;
+      a.className = "itinerari-actiu__link";
+      a.textContent =
+        window.t("itineraris.next_in_path") +
+        ": " +
+        window.geoContingut.etiquetaQuestio(seguent.entrada.id);
+      // Es manté el mateix itinerari com a context actiu en seguir
+      // "següent" -- per això es torna a marcar aquí (v. capçalera de
+      // itineraris-tematics.js), en lloc de deixar que el context
+      // caduqui després d'un sol pas.
+      a.addEventListener("click", () => {
+        window.geoItinerarisTematics.marcaContextActiu(context.itinerari.clau);
+      });
+      bloc.appendChild(a);
+    } else {
+      const fi = document.createElement("p");
+      fi.className = "itinerari-actiu__done";
+      fi.textContent = window.t("itineraris.path_done");
+      bloc.appendChild(fi);
+      // Última pregunta de l'itinerari: es neteja el context actiu, no
+      // té sentit que "sobrevisqui" un cop l'itinerari ja s'ha acabat.
+      window.geoItinerarisTematics.netejaContextActiu();
+    }
+
+    contenidor.appendChild(bloc);
+  }
+
+  /**
+   * "Val la pena veure també" (HANDOFF-ITINERARIS.md, punt (c)): les
+   * bessones d'aquesta pregunta dins dels 8 grups entrellaçats (v.
+   * capçalera de itineraris-tematics-dades.js -- preguntes que
+   * comparteixen figura o dada entre itineraris diferents). Mateix
+   * bloc visual .suggerit que pintaSuggerit just a dalt (reaprofitat
+   * amb una classe pròpia .bessones per poder distingir-los si mai cal
+   * un estil lleugerament diferent), perquè totes dues coses són
+   * "enllaços relacionats amb l'entrada actual" i ja hi havia un patró
+   * per a exactament això -- no calia inventar-ne un de nou (v. LESSONS
+   * §5).
+   */
+  function pintaBessones(pregunta, slotEl) {
+    slotEl.innerHTML = "";
+    if (!window.geoItinerarisTematics) return;
+    const trobat = window.geoItinerarisTematics.trobaPerId(pregunta.id);
+    if (!trobat || !trobat.entrada.bessones.length) return;
+    const bessones = window.geoItinerarisTematics.resolIds(trobat.entrada.bessones);
+    if (!bessones.length) return;
+
+    const bloc = document.createElement("div");
+    bloc.className = "suggerit bessones";
+
+    const titol = document.createElement("h3");
+    titol.className = "suggerit__title";
+    titol.textContent = window.t("itineraris.bessones_title");
+    bloc.appendChild(titol);
+
+    const ul = document.createElement("ul");
+    ul.className = "suggerit__items";
+    bessones.forEach((b) => {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = "#" + b.entrada.id;
+      a.className = "suggerit__link";
+
+      const idSpan = document.createElement("span");
+      idSpan.className = "suggerit__id";
+      idSpan.textContent = window.geoContingut.etiquetaQuestio(b.entrada.id);
+      a.appendChild(idSpan);
+      a.appendChild(document.createTextNode(" — " + b.itinerari.etiqueta));
+
+      // Una bessona pot ser d'un itinerari diferent del que s'estigui
+      // seguint ara mateix: es neteja el context en sortir per aquí,
+      // mateix motiu que a pintaNavegacio just a sota.
+      a.addEventListener("click", () => {
+        window.geoItinerarisTematics.netejaContextActiu();
       });
 
       li.appendChild(a);
@@ -541,10 +657,23 @@
     const nav = document.createElement("nav");
     nav.className = classeExtra ? "detail-nav " + classeExtra : "detail-nav";
 
+    // Aquests tres enllaços surten de l'itinerari (van a "Totes les
+    // preguntes" o segueixen l'ordre posicional general, no el de
+    // l'itinerari): es neteja el context de sessió (v. capçalera de
+    // itineraris-tematics.js) perquè "següent en aquest itinerari" no
+    // continuï apareixent fantasma a la pregunta següent si l'alumne
+    // ja n'ha sortit per aquí.
+    const surtDeLItinerari = () => {
+      if (window.geoItinerarisTematics) {
+        window.geoItinerarisTematics.netejaContextActiu();
+      }
+    };
+
     const back = document.createElement("a");
     back.href = "#";
     back.className = "detail-nav__back";
     back.textContent = window.t("detail.back_to_list");
+    back.addEventListener("click", surtDeLItinerari);
     nav.appendChild(back);
 
     const adjacent = document.createElement("div");
@@ -554,12 +683,14 @@
       const a = document.createElement("a");
       a.href = "#" + anterior.id;
       a.textContent = window.t("detail.prev");
+      a.addEventListener("click", surtDeLItinerari);
       adjacent.appendChild(a);
     }
     if (seguent) {
       const a = document.createElement("a");
       a.href = "#" + seguent.id;
       a.textContent = window.t("detail.next");
+      a.addEventListener("click", surtDeLItinerari);
       adjacent.appendChild(a);
     }
 
@@ -705,6 +836,17 @@
     pintaValoracio(pregunta, contenidorEl, () => pintaSuggerit(pregunta, suggeritSlot));
     contenidorEl.appendChild(suggeritSlot);
     pintaSuggerit(pregunta, suggeritSlot);
+
+    // Bessones dels grups entrellaçats (punt (c)) i "següent en aquest
+    // itinerari" (punt (b)) -- v. capçaleres de pintaBessones/
+    // pintaItinerariActiu just a dalt. Es pinten just abans de la nav
+    // Anterior/Següent de peu de pàgina perquè, com pintaSuggerit,
+    // apareixen quan ja s'ha llegit tota la pregunta -- "on vaig ara"
+    // és l'última cosa, no la primera.
+    const bessonesSlot = document.createElement("div");
+    contenidorEl.appendChild(bessonesSlot);
+    pintaBessones(pregunta, bessonesSlot);
+    pintaItinerariActiu(pregunta, contenidorEl);
 
     pintaNavegacio(pregunta, contenidorEl);
 
