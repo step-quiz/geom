@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagonal d'una caixa: doble Pitàgores — Solució — Geometria</title>
+<meta name="description" content="Com depèn la diagonal d'una caixa dels seus tres costats: dos triangles rectangles en dos plans diferents.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 25 · pàg. 44 del llibre · solució</span>
+  <h1 class="sol-header__title">Diagonal d'una caixa: doble Pitàgores</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Com depèn la diagonal d'una caixa dels seus tres costats?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q25_page44_box_diagonals.png" alt="Figura de l'enunciat de la Qüestió 25" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Una advertència abans de començar</p><p class="solucio__text">En un dibuix en perspectiva com el de l'enunciat, els angles rectes de la caixa no semblen rectes: la vora del davant i la de la profunditat formen, sobre el paper, un angle que sembla obert. A la caixa de veritat, però, fan 90°. Cal fiar-se de l'objecte, no del dibuix — és el primer que cal desaprendre en passar de les figures planes a les de l'espai.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Amagar un rectangle dins la caixa</p><p class="solucio__text">La diagonal d'un rectangle ja se sap calcular amb Pitàgores. La clau és trobar-ne un d'amagat dins la caixa que deixi a mig camí de la diagonal llarga que es vol mesurar. Anomenem <em>a</em>, <em>b</em> i <em>c</em> els tres costats de la caixa (llargada, amplada i alçada). La diagonal de la base —el rectangle de costats <em>a</em> i <em>b</em>— val <strong>√(a²+b²)</strong> per Pitàgores directe.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-186.png" alt="Figura de la construcció — el rectangle amagat dins la caixa" loading="lazy"><figcaption class="solucio__figura-nota">La diagonal de la base (traç continu) i la diagonal de la cara lateral (traç discontinu) comparteixen un vèrtex: junts formen el rectangle amagat que connecta els dos plans.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Un segon triangle, en un altre pla</p><p class="solucio__text">Ara hi ha dos triangles rectangles, i no són al mateix pla: el primer —el que acabem de resoldre— està estirat a terra, sobre la base de la caixa. El segon està dret, aixecant-se des d'aquesta mateixa base fins al vèrtex superior oposat. El moviment que ho resol és repetir el mateix argument que abans, però ara en aquest segon pla vertical.</p><p class="solucio__text">La hipotenusa del primer triangle —la diagonal de la base, √(a²+b²)— fa de <strong>catet</strong> del segon triangle; l'altre catet és l'alçada <em>c</em> de la caixa, i la hipotenusa d'aquest segon triangle és, precisament, la diagonal llarga que es vol trobar. Aplicant Pitàgores altra vegada: la diagonal de la caixa al quadrat és (√(a²+b²))² + c², és a dir, <strong>a²+b²+c²</strong>.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-012.png" alt="Figura de la construcció — els dos triangles rectangles en dos plans" loading="lazy"><figcaption class="solucio__figura-nota">Els costats a, b i c de la caixa, la diagonal de la base (discontínua) i la diagonal espacial que la tanca: dos Pitàgores encadenats, un per pla.</figcaption></figure></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">La diagonal d'una caixa de costats a, b i c val √(a²+b²+c²): dos Pitàgores encadenats, un sobre la base i un altre en el pla vertical que conté la diagonal de la base i l'aresta vertical.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Caixa de 3 × 4 × 12: la diagonal de la base fa √(3²+4²) = 5, i la diagonal de la caixa fa √(5²+12²) = 13. Un cub de costat 1 dona √(1+1+1) = √3 ≈ 1,732. Fixa't en la forma del resultat, a²+b²+c²: un quart costat en dimensions més altes hi afegiria un quart quadrat, i així indefinidament, encara que ja no es pugui dibuixar.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>
