@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Els angles entre diagonals consecutives d'un vèrtex — Solució — Geometria</title>
+<meta name="description" content="Per què totes les diagonals traçades des d'un mateix vèrtex d'un polígon regular formen angles iguals entre elles.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 06 · pàg. 26 del llibre · solució</span>
+  <h1 class="sol-header__title">Els angles entre diagonals consecutives d'un vèrtex</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Les diagonals traçades des d'un vèrtex d'un polígon regular, sempre formen angles iguals?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q06_page26_heptagon_diagonals.png" alt="Figura de l'enunciat de la Qüestió 06" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Aquí no es compten diagonals, es miren angles</p><p class="solucio__text">A l'exercici d'on surt la fórmula (n−2)×180°/n, l'interès era <em>quants</em> triangles sortien d'un ventall de diagonals. Aquí la pregunta és diferent: mirar la <strong>mida de cadascun</strong> dels angles que es formen al vèrtex entre diagonals (i costats) consecutius, i esbrinar quina relació hi ha entre ells.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Comptar bé els trossos, no només les diagonals</p><p class="solucio__text">És fàcil confondre's aquí: en un heptàgon (7 costats), des d'un vèrtex en surten 4 diagonals cap als 4 vèrtexs no adjacents —tal com es veu a la imatge de l'enunciat, a dalt. Però aquestes 4 diagonals no parteixen l'angle del vèrtex en 4 trossos, sinó en <strong>5</strong>: els dos costats del polígon que hi arriben al vèrtex també delimiten un tros cadascun (entre el costat i la diagonal veïna), a més dels 3 trossos entre diagonals consecutives. En total, 2 trossos d'extrem + 3 trossos interiors = 5.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Per què els cinc trossos són iguals</p><p class="solucio__text">En un polígon regular inscrit en una circumferència, l'angle que es veu des d'un vèrtex entre dos vèrtexs consecutius —és a dir, un <em>angle inscrit</em>— depèn només de <strong>quants costats del polígon separen aquests dos vèrtexs</strong>, no de quins vèrtexs concrets siguin. Cadascun dels 5 trossos —tant els 2 d'extrem (costat–diagonal) com els 3 interiors (diagonal–diagonal)— separa sempre un vèrtex del següent immediat, mai en salta cap. Com que tots subtendeixen exactament el mateix arc de circumferència (un setè de la volta sencera), tots cinc angles inscrits són iguals.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-038.png" alt="Figura de la construcció — Per què els cinc trossos són iguals" loading="lazy"><figcaption class="solucio__figura-nota">Els arcs es dibuixen a radis diferents només per poder-los distingir sense que se superposin al mateix vèrtex — el radi no aporta cap informació sobre la mida de l'angle.</figcaption></figure></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Sí, tots els angles són iguals. Des d'un vèrtex d'un polígon regular de n costats, els n−2 costats i diagonals restants parteixen l'angle en n−2 trossos iguals —en un heptàgon, 5 trossos, no 4 (el nombre de diagonals): cal comptar també els dos trossos d'extrem entre cada costat i la diagonal veïna. Tots són iguals perquè tots són angles inscrits que subtendeixen el mateix arc de circumferència.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Amb la fórmula de l'angle inscrit, cadascun dels cinc trossos val 180°/7≈25,71°. Els cinc junts han de reconstruir l'angle interior d'UN vèrtex de l'heptàgon: 5×180/7=900/7≈128,57°, exactament el que la fórmula (n−2)×180°/n prediu per a n=7. Compte amb un error fàcil: 900° és la suma dels SET angles interiors de l'heptàgon sencer —un ventall d'un sol vèrtex mai hi pot arribar, només pot completar el seu propi angle, que és set vegades més petit.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

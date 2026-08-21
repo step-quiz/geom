@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quan el camí es tanca després de més d'una volta — Solució — Geometria</title>
+<meta name="description" content="Per què el pentagrama fa dues voltes completes abans de tancar-se, i com aquest nombre de voltes és el mateix k del símbol {n/k}.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 07 · pàg. 27 del llibre · solució</span>
+  <h1 class="sol-header__title">Quan el camí es tanca després de més d'una volta</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Què passa si la suma dels angles és més d'una volta sencera?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/fig-134.png" alt="Figura de l'enunciat de la Qüestió 07" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Una volta sencera és el que ja es coneix</p><p class="solucio__text">Resseguint el contorn d'un polígon convex i tornant al punt de partida, s'ha girat exactament <strong>360°</strong> en total —una volta sencera, sumant a cada vèrtex l'angle que es gira cap enfora. La pregunta és què passa quan el camí es creua a si mateix, com al pentagrama de la Qüestió 5.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">L'angle de la punta no és el que es gira</p><p class="solucio__text">Cal distingir dues coses que semblen la mateixa però no ho són: a cada punta del pentagrama, l'angle interior és 36° (calculat a la Qüestió 5). Però el que es <strong>gira</strong> en recórrer el contorn a cada punta no és aquest angle interior, sinó el seu suplementari: <strong>180°−36°=144°</strong> —perquè el gir es fa cap enfora del traç, no cap endins, exactament igual que en resseguir un polígon convex normal.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Sumar els girs de totes les puntes</p><p class="solucio__text">Cada una de les cinc puntes aporta el mateix gir de 144°. La construcció marca aquest mateix angle a cadascuna: és literalment l'angle de 36° que ja s'havia trobat a la Qüestió 5, però mirat des de fora, com a suplementari.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-063.png" alt="Figura de la construcció — Sumar els girs de totes les puntes" loading="lazy"><figcaption class="solucio__figura-nota">Els cinc arcs marquen, a cada punta, l'angle de gir cap enfora del recorregut.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Quantes voltes fa el camí</p><p class="solucio__text">Multiplicant 144° pel nombre de puntes (5): <strong>5×144°=720°</strong>. Dividint pels 360° d'una volta sencera: <strong>720°/360°=2</strong>. El pentagrama no es tanca després d'una sola volta, com un polígon convex, sinó després de <strong>dues voltes completes</strong> del traç al voltant del seu centre abans de tornar al punt de partida.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">El pentagrama {5/2} fa dues voltes completes abans de tancar-se (5×144°=720°=2×360°), i l'estrella de vuit puntes {8/3} en fa tres (8×135°=1080°=3×360°). Aquest nombre de voltes és exactament el k del símbol {n/k} amb què es construeixen les estrelles: no és casualitat, és la mateixa idea —quants vèrtexs se salten en dibuixar-les— mirada des de dues bandes diferents.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">5×144°=720°=2×360° —el pentagrama {5/2} fa dues voltes completes. Amb l'estrella de vuit puntes {8/3} (Qüestió 5): cada gir és 3×360°/8=135°, i 8×135°=1080°=3×360°, tres voltes.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>
