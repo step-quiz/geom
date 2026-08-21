@@ -136,6 +136,33 @@
     // imatge.descripcio {ca,en} a preguntes-dades.js, llegit aquí. Mentre
     // no hi sigui, alt="" és preferible a un alt fals.
     img.loading = "lazy";
+
+    // ALÇADA PER RATIO REAL (ago. 2026). Abans, --figure-slot-h (mateix
+    // valor per a les 130 preguntes) era imprescindible perquè
+    // "Anterior/Següent" caigués sempre al mateix lloc absolut — v. la
+    // nota corresponent a tokens.css. Ara que aquesta nav també viu a
+    // dalt de tot (detail-nav--top, sticky, pintada abans que res més),
+    // aquella garantia ja no depèn de la figura, i cada figura pot
+    // reservar només l'alçada que li pertoca pel seu propi ratio.
+    //
+    // naturalWidth/naturalHeight només existeixen un cop la imatge ha
+    // carregat, així que es fixen aquí (onload), no abans: mentre
+    // carrega, la ranura es queda amb el --figure-slot-h per defecte de
+    // tokens.css (un valor raonable perquè no hi hagi salt de layout),
+    // i onload la substitueix per l'alçada real d'aquesta figura
+    // concreta, amb el mateix sostre de sempre (480px / 52vh) perquè
+    // una figura molt alta tampoc envaeixi tota la pantalla.
+    img.addEventListener("load", () => {
+      if (!img.naturalWidth || !img.naturalHeight) return; // salvaguarda: mai dividir per 0
+      const amplada = frame.clientWidth || figure.clientWidth;
+      if (!amplada) return;
+      const alcadaReal = amplada * (img.naturalHeight / img.naturalWidth);
+      figure.style.setProperty(
+        "--figure-slot-h",
+        "clamp(120px, " + Math.round(alcadaReal) + "px, var(--figure-slot-h-max))"
+      );
+    });
+
     frame.appendChild(img);
     figure.appendChild(frame);
 
@@ -509,10 +536,10 @@
 
   let properaNavegacioVia = "manual";
 
-  function pintaNavegacio(pregunta, contenidor) {
+  function pintaNavegacio(pregunta, contenidor, classeExtra) {
     const { anterior, seguent } = veins(pregunta.id);
     const nav = document.createElement("nav");
-    nav.className = "detail-nav";
+    nav.className = classeExtra ? "detail-nav " + classeExtra : "detail-nav";
 
     const back = document.createElement("a");
     back.href = "#";
@@ -632,6 +659,19 @@
 
     const pregunta = view.pregunta;
     const lang = window.geoI18n.getLang();
+
+    // NAV DE DALT (afegida ago. 2026, petició explícita): mateixa
+    // "Anterior/Següent" que ja hi havia al peu, ara també a dalt de tot.
+    // Abans, l'única manera de garantir que aquests enllaços caiguessin
+    // sempre al mateix lloc absolut de la pantalla —independentment de
+    // si la pregunta tenia figura, i de la forma d'aquesta figura— era
+    // que --figure-slot-h (tokens.css) reservés una alçada mínima fixa
+    // igual per a totes les preguntes. Amb la nav també a dalt, aquesta
+    // garantia ja no depèn de la figura: --figure-slot-h queda lliure
+    // per adaptar-se al ratio de cada imatge (v. la nota corresponent a
+    // tokens.css), i una figura panoràmica com la de q23 ja no arrossega
+    // una franja buida per poder tocar un terra que ara ja no fa falta.
+    pintaNavegacio(pregunta, contenidorEl, "detail-nav--top");
 
     const meta = document.createElement("div");
     meta.className = "question-entry__meta";
