@@ -62,6 +62,36 @@
                 revisar també l'anàlisi original (conversa/informe que
                 l'acompanya) — cada assignació és una decisió temàtica,
                 no un càlcul reproduïble automàticament.
+
+  §3. EXEMPLE D'ÚS (unió amb window.PREGUNTES per 'id'):
+
+    const categoriaPerId = new Map(
+      window.CLASSIFICACIO_TEMATICA.map(c => [c.id, c])
+    );
+    const preguntesAmbTema = window.PREGUNTES.map(p => ({
+      ...p,
+      tema: categoriaPerId.get(p.id) ?? null,
+    }));
+
+  Comprovació de cobertura (validarCobertura):
+
+    const idsPreguntes = new Set(window.PREGUNTES.map(p => p.id));
+    const idsClassificacio = new Set(window.CLASSIFICACIO_TEMATICA.map(c => c.id));
+    const faltenAClassificacio = [...idsPreguntes].filter(id => !idsClassificacio.has(id));
+    const sobrenAClassificacio = [...idsClassificacio].filter(id => !idsPreguntes.has(id));
+    // Ambdós arrays haurien d'estar buits.
+
+  NOTA TÈCNICA (ago. 2026): aquest exemple d'ús vivia originalment com un
+  comentari SOLT després del `];` de tancament de CLASSIFICACIO_TEMATICA,
+  no dins d'aquesta capçalera. Es va moure aquí en implementar
+  itineraris-tematics-dades.js: verifica_projecte.py necessitava llegir
+  CLASSIFICACIO_TEMATICA amb el mateix mètode senzill (`json.loads` de
+  tot el que hi ha després de `window.NOM = `) que ja usava per a altres
+  variables, i aquell comentari despistat n'era contingut no-JSON que
+  trencava la lectura — un bug preexistent, mai detectat fins ara perquè
+  cap comprovació anterior havia intentat llegir aquesta variable
+  concreta amb aquest mètode. Cap contingut d'aquest exemple s'ha
+  perdut ni modificat, només reubicat.
 */
 
 window.CATEGORIES_TEMATIQUES = [
@@ -1009,24 +1039,3 @@ window.CLASSIFICACIO_TEMATICA = [
     "categoriaTematicaCodi": 6
   }
 ];
-
-
-/*
-  §3. EXEMPLE D'ÚS (unió amb window.PREGUNTES per 'id'):
-
-    const categoriaPerId = new Map(
-      window.CLASSIFICACIO_TEMATICA.map(c => [c.id, c])
-    );
-    const preguntesAmbTema = window.PREGUNTES.map(p => ({
-      ...p,
-      tema: categoriaPerId.get(p.id) ?? null,
-    }));
-
-  Comprovació de cobertura (validarCobertura):
-
-    const idsPreguntes = new Set(window.PREGUNTES.map(p => p.id));
-    const idsClassificacio = new Set(window.CLASSIFICACIO_TEMATICA.map(c => c.id));
-    const faltenAClassificacio = [...idsPreguntes].filter(id => !idsClassificacio.has(id));
-    const sobrenAClassificacio = [...idsClassificacio].filter(id => !idsPreguntes.has(id));
-    // Ambdós arrays haurien d'estar buits.
-*/
