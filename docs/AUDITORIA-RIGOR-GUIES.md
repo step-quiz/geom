@@ -1,5 +1,18 @@
 # Auditoria de rigor matemàtic — les 130 guies
 
+> **Nota de fusió (ago. 2026).** Mentre aquesta auditoria estava en curs,
+> un altre agent va treballar en paral·lel sobre una còpia anterior
+> d'aquest projecte i hi va completar dues coses: les 27 figures que
+> faltaven al glossari (ara 53/53, v. `docs/guies/NOTA-GLOSSARI-27-
+> FIGURES.md`) i el pas de "cercle" a "circumferència" als enunciats de
+> `js/data/preguntes-dades.js`. Cap de les dues tocava el contingut de les
+> guies, així que s'han integrat sense conflicte de contingut: només
+> calia portar els seus dos canvis (glossari + terminologia dels
+> enunciats) sobre la base ja corregida d'aquest document, ja que ells
+> havien partit d'un punt anterior a la resolució dels "set punts que
+> quedaven oberts" de més avall. Res del que segueix ha canviat per la
+> fusió.
+
 Ago. 2026. S'han llegit senceres les 130 guies (4 pistes + comprovació +
 "i després") i s'ha **recalculat cada número de cada comprovació**.
 Aquest fitxer és alhora el resultat de l'auditoria i el registre del que
@@ -174,30 +187,72 @@ ne", "semi- esfera", "parteix- lo"— arreglades a l'arrel: eren un bug de
 
 ---
 
-## Queda obert
+## Bug trobat en el mateix procés: q102 i q103 fusionades
 
-Res d'això és fals; són decisions de contingut que val la pena prendre
-conscientment.
+Mentre es resolien els set punts de sota, una comprovació de fronteres de
+bloc a tot el corpus (que hi hagi exactament un separador `---` entre
+cada guia i la següent) ha trobat que **`q102` i `q103` no en tenien
+cap entremig**: la reescriptura sencera de `q102` de la sessió anterior
+va oblidar el `---` final, i el bloc de `q103` en quedava, de fet,
+enganxat al de `q102` en llegir el `.md`. El resultat publicat a
+`guies-dades.js` no es va arribar a corrompre perquè `parse_guies.py`
+localitza cada guia per la seva pròpia capçalera `##`, no pel separador;
+però qualsevol altra eina que llegís el fitxer bloc a bloc —com aquesta
+mateixa comprovació— hauria confós el contingut de l'una amb el de
+l'altra. Corregit afegint el separador que faltava.
 
-- **`q102` s'hauria de contrastar amb el llibre font.** La guia nova és
-  matemàticament correcta, però la pregunta original pot voler dir una
-  altra cosa. Si el llibre demanava el que sembla, la guia nova hi
-  respon; si no, cal ajustar-la.
-- **"Dilatació" vol dir dues coses.** A `q77` i `q117` és escalat
-  uniforme; a `q112` i `q91` és escalat diferent a cada eix. Com que
-  `moviment` és una taxonomia que mou recomanacions, convindria un terme
-  per a cada cosa.
-- **`q45`** parla de "cilindre (generalitzat)" i només tracta el cilindre
-  recte de base circular.
-- **`q80`** dedueix àrea = (1/2)ab·sin C amb l'altura caient dins del
-  triangle; el cas obtús es resol a `q87` i no s'hi remet.
-- **`q37`** dona per fet que el sistema perímetre/àrea té solució real.
-  La té sempre (el discriminant surt positiu per a qualsevol s), però la
-  guia no ho comprova ni ho diu.
-- **`q18a`** dedueix V=l·w·h comptant cubs unitat, cosa que només val
-  directament per a costats enters.
-- **`q16`** escriu decimals amb apòstrof ("8'5") mentre la resta del
-  corpus fa servir la coma.
+**Lliçó de procés, igual que la de la rectificació de dalt:** qualsevol
+reescriptura sencera d'una guia ha d'acabar comprovant que el `---` de
+tancament hi és, no donar-lo per fet.
+
+## Els set punts que quedaven oberts — resolts
+
+Tots set s'han aplicat. Cap era un error de la mateixa gravetat que els
+blocs A–E: eren decisions de contingut que es podien deixar tal com
+estaven sense que res fos fals. S'ha optat, en tots els casos, per
+resoldre'ls, perquè el cost de fer-ho era baix i el resultat és una guia
+més completa.
+
+- **`q102` contrastada amb l'enunciat canònic del projecte.** No hi ha
+  accés al llibre en paper des d'aquest entorn, però l'enunciat que
+  l'aplicació mostra de debò a l'alumne (`preguntes-dades.js`, camp
+  `enunciat`) i la capçalera en anglès conservada al `.md` diuen tots dos
+  el mateix, literalment: *"Are all triangles the same projectively? How
+  about all four-sided polygons?"* La guia reescrita respon exactament
+  aquestes dues preguntes, en aquest ordre, sense marge d'ambigüitat de
+  traducció que pugui invertir la resposta —el fet geomètric (4 punts en
+  posició general es porten a qualssevol altres 4) no depèn de com es
+  formuli la pregunta. Es dona per tancat.
+- **"Dilatació" ja no vol dir dues coses.** Separat en `dilatacio`
+  (escalat uniforme: `q46`, `q32`, `q77`, `q85`, `q117`) i
+  `dilatacio-anisotropa` (factors diferents per eix: `q112`, `q114`) al
+  `manifest-figures.tsv`, que és qui alimenta el camp `moviment` que fa
+  servir `js/nucli/itinerari.js` per recomanar repassos. `q112` i `q114`
+  ara diuen explícitament, en prosa, per què no són el mateix moviment
+  que `q32`/`q77`. (`q91` no portava mai l'etiqueta `dilatacio` — la
+  menció de la primera versió d'aquest document hi era per error.)
+- **`q45`** ("cilindre generalitzat") ara reconeix que treballa sempre amb
+  base circular, i tanca amb el cas general: per a qualsevol base de
+  perímetre P, l'àrea lateral desenrotllada és P×h — 2πr n'és només el
+  cas particular quan la base és un cercle.
+- **`q80`** ara connecta explícitament amb `q87`: quan C és obtús, el peu
+  de l'altura cau fora del triangle, i que h=b·sin(C) continuï valent en
+  aquest cas és precisament la raó per la qual `q87` defineix sin(C) com
+  sin(180°−C) —la definició es tria expressament perquè fórmules com
+  aquesta no s'hagin de partir en dos casos.
+- **`q37`** ara demostra que el sistema sempre té solució real: el
+  discriminant surt s²(9/4−√3), i com que √3≈1,73 < 9/4=2,25, aquest
+  número és positiu per a qualsevol costat s>0.
+- **`q18a`** ara estén el recompte de cubs unitat més enllà dels costats
+  enters: amb costats fraccionaris, subdividint en cubets prou petits
+  (exemple numèric verificat: capsa 3/2×2×2, cubets d'aresta 1/2, 48
+  cubets de volum 1/8 cadascun, total 6 = 1,5×2×2); amb costats
+  irracionals, per aproximació —la mateixa idea que el pas al límit
+  honest de `q121`.
+- **`q16`** ja no barreja l'apòstrof decimal amb la coma que fa servir la
+  resta del corpus (8,5; 4,5 en lloc de 8'5,4'5; i 0,4–0,42 en lloc de
+  0'4–0'42). Era exclusiu de `GUIES-LOT-1.md`; la resta del corpus ja
+  feia servir la coma de manera consistent.
 
 ---
 

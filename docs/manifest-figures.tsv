@@ -114,12 +114,12 @@ num	id	nivell	moviment	lot	rev	descripcio
 113	q109	2	dues-maneres	9	1	doble con amb esferes de Dandelin, tangents des d'un punt
 114	q110	2	identitat-com-a-figura	9	0	hiperbola, simetria respecte dels dos eixos
 115	q111	2	redueix-al-conegut	9	0	diamant format per asimptotes i tangents, rombe
-116	q112	2	dilatacio	10	0	hiperbola i la seva dilatacio a hiperbola recta
-117	q114	2	dilatacio	10	0	hiperbola unitat, focus a costat i costat
+116	q112	2	dilatacio-anisotropa	10	1	hiperbola i la seva dilatacio a hiperbola recta
+117	q114	2	dilatacio-anisotropa	10	1	hiperbola unitat, focus a costat i costat
 118	q113	2	redueix-al-conegut	10	1	triangle rectangle dels focus de l'el·lipse
 119	q115	2	dues-maneres	10	0	constant focal igual al diametre, el·lipse i hiperbola
 120	q116	3	redueix-al-conegut	10	1	bisectriu interior dels radis focals a la hiperbola
-121	q117	1	dilatacio	10	1	dues paraboles amb la mateixa directriu
+121	q117	1	dilatacio	10	2	dues paraboles amb la mateixa directriu
 122	q118	3	construeix-per-definir	10	1	mediatriu de FD, tangent a la parabola sense infinit
 123	q119	3	cas-limit	10	0	envolupant de rectes que formen una parabola
 124	q120	2	redueix-al-conegut	10	1	tangent que talla l'eix al punt mitjà, sector parabolic
