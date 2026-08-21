@@ -986,3 +986,169 @@
 }
 .demo__back a { color: var(--ink-soft); text-decoration: none; }
 .demo__back a:hover { color: var(--pencil); }
+
+/* ==========================================================================
+   Itineraris temàtics (v. docs/ITINERARIS-TEMATICS-DESIGN-NOTES.md).
+   Reaprofita el vocabulari visual ja existent:
+   .demo-obre per al botó del header, .suggerit per als blocs
+   "relacionat amb aquesta pregunta", .continua-banner com a base per a
+   .itinerari-actiu -- cap component nou de disseny, només nous noms de
+   classe sobre patrons que ja hi eren (v. LESSONS §5).
+   ========================================================================== */
+
+/* Enllaç del header, calcat de .demo-obre (v. main.js:
+   muntaEnllacItineraris) */
+.itineraris-obre {
+  border: var(--stroke-hairline) solid var(--rule-strong);
+  border-radius: var(--radius-md);
+  color: var(--ink-soft);
+  font-family: var(--font-serif);
+  font-size: var(--fs-metadata);
+  text-decoration: none;
+  padding: var(--space-1) var(--space-3);
+  white-space: nowrap;
+  transition: border-color var(--dur-fast) var(--ease-settle),
+    color var(--dur-fast) var(--ease-settle);
+}
+.itineraris-obre:hover { border-color: var(--pencil-soft); color: var(--ink); }
+.itineraris-obre:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+
+/* Targeta d'entrada a la llista general (llista.js, sota la capçalera
+   de filtres, abans de la llista de preguntes). Un únic bloc-enllaç,
+   mateix "llom" a l'esquerra que .suggerit fa servir per marcar-se com
+   a contingut relacionat però no principal. */
+.itineraris-entrada {
+  display: block;
+  margin: var(--space-5) 0;
+  padding: var(--space-4);
+  padding-left: var(--space-4);
+  border-left: var(--stroke-rule) solid var(--pencil-soft);
+  background: var(--paper-raised);
+  border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease-settle);
+}
+.itineraris-entrada:hover { background: var(--paper); }
+.itineraris-entrada:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.itineraris-entrada__title {
+  display: block;
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: var(--fs-question);
+  line-height: var(--lh-question);
+  color: var(--ink);
+}
+.itineraris-entrada__body {
+  display: block;
+  margin-top: var(--space-2);
+  color: var(--ink-soft);
+  max-width: var(--measure);
+}
+.itineraris-entrada__link {
+  display: inline-block;
+  margin-top: var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-metadata);
+  color: var(--pencil);
+}
+
+/* "← Totes les preguntes" / "← Tots els itineraris" -- calcat de
+   .demo__back */
+.itineraris-nav-back {
+  margin-bottom: var(--space-5);
+}
+.itineraris-nav-back a { color: var(--ink-soft); text-decoration: none; }
+.itineraris-nav-back a:hover { color: var(--pencil); }
+
+.itineraris__page-title {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: var(--fs-question);
+  line-height: var(--lh-question);
+  margin: var(--space-2) 0 var(--space-3);
+}
+.itineraris__intro {
+  max-width: var(--measure);
+  color: var(--ink-soft);
+  margin: 0 0 var(--space-6);
+}
+
+/* Llista de targetes a #itineraris -- mateix .question-list de base.css
+   com a base d'espaiat vertical (v. base.css), sense el numerador de
+   .question-entry perquè aquí cada fila és un itinerari sencer, no una
+   pregunta. */
+.itinerari-card-list {
+  list-style: none;
+  margin: var(--space-6) 0 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+.itinerari-card + .itinerari-card {
+  border-top: var(--stroke-hairline) solid var(--rule);
+}
+.itinerari-card__link {
+  display: block;
+  padding: var(--space-4) 0;
+  text-decoration: none;
+  transition: background var(--dur-fast) var(--ease-settle);
+}
+.itinerari-card__link:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.itinerari-card__title {
+  font-family: var(--font-serif);
+  font-weight: 700;
+  font-size: var(--fs-question);
+  line-height: var(--lh-question);
+  color: var(--ink);
+  margin: 0 0 var(--space-2);
+}
+.itinerari-card__link:hover .itinerari-card__title { color: var(--pencil); }
+.itinerari-card__meta {
+  margin: 0;
+}
+
+/* Bloc "abans convé haver fet: qXX" dins d'una entrada de #itinerari-<clau> */
+.itinerari-entry__requereix {
+  margin: var(--space-2) 0 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-metadata);
+  color: var(--ink-faint);
+}
+.itinerari-entry__requereix-label { color: var(--ink-soft); }
+.itinerari-entry__requereix a { color: var(--pencil); text-decoration: none; }
+.itinerari-entry__requereix a:hover { text-decoration: underline; }
+
+/* "Següent en aquest itinerari" a detall.js -- mateixa família visual
+   que .continua-banner (llista.js), reaprofitada aquí en lloc de crear
+   un tercer patró de "banner amb enllaç" al projecte. */
+.itinerari-actiu {
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  padding-left: var(--space-4);
+  border-top: var(--stroke-hairline) solid var(--rule);
+  border-left: var(--stroke-rule) solid var(--pencil-soft);
+}
+.itinerari-actiu__title {
+  font-family: var(--font-mono);
+  font-size: var(--fs-metadata);
+  letter-spacing: var(--tracking-mono);
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin: 0 0 var(--space-2);
+}
+.itinerari-actiu__link {
+  color: var(--pencil);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+.itinerari-actiu__link:hover { color: var(--ink); }
+.itinerari-actiu__link:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.itinerari-actiu__done {
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* .bessones reaprofita .suggerit sencer (v. detall.js: pintaBessones
+   afegeix "suggerit bessones" com a className) -- cap regla pròpia
+   necessària, aquest selector només queda de constància documental que
+   la classe existeix i és intencional, no un oblit. */
