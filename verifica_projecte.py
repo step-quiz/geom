@@ -19,14 +19,24 @@ def avis(m): avisos.append(m)
 def ok(m): oks.append(m)
 
 def llegeix_global(fitxer, variable):
-    """Llegeix una variable global d'un fitxer .js sense necessitar node."""
+    """Llegeix una variable global d'un fitxer .js sense necessitar node.
+    S'atura al proper 'window.' de nivell superior si n'hi ha un després
+    (per a fitxers amb més d'una declaració global, com
+    categories-tematiques-dades.js o itineraris-tematics-dades.js) --
+    abans només funcionava quan la variable demanada era la DARRERA
+    declaració del fitxer; ara funciona sigui quin sigui l'ordre."""
     if not os.path.exists(fitxer):
         err("FALTA el fitxer %s" % fitxer); return None
     s = open(fitxer, encoding="utf-8").read()
-    i = s.find("window.%s = " % variable)
+    capçalera = "window.%s = " % variable
+    i = s.find(capçalera)
     if i == -1:
         err("%s no defineix window.%s" % (fitxer, variable)); return None
-    cos = s[i + len("window.%s = " % variable):].rstrip()
+    resta = s[i + len(capçalera):]
+    # proper "window." a l'inici de línia (una altra declaració global) --
+    # si n'hi ha, el cos JSON s'acaba just abans.
+    m = re.search(r"\nwindow\.[A-Z_]+ = ", resta)
+    cos = (resta[:m.start()] if m else resta).rstrip()
     if cos.endswith(";"): cos = cos[:-1]
     try:
         return json.loads(cos)
@@ -273,6 +283,89 @@ if G is not None:
         err("paraules partides a guies-dades.js: %s" % ", ".join(partides[:10]))
     else:
         ok("cap paraula partida pel wrap a guies-dades.js")
+
+# --------------------------------------------------- 12. itineraris temàtics
+# Afegit ago. 2026 (js/data/itineraris-tematics-dades.js). Aquest fitxer és
+# una REORGANITZACIÓ de les 115 preguntes visibles en 6 camins fixos, no una
+# classificació nova -- ha de quedar perfectament coherent amb l'única font
+# real de "de quin tema és cada pregunta": CLASSIFICACIO_TEMATICA.
+IT = llegeix_global("js/data/itineraris-tematics-dades.js", "ITINERARIS_TEMATICS")
+GR = llegeix_global("js/data/itineraris-tematics-dades.js", "ITINERARIS_GRUPS_ENTRELLACATS")
+P = llegeix_global("js/data/preguntes-dades.js", "PREGUNTES")
+CLS = llegeix_global("js/data/categories-tematiques-dades.js", "CLASSIFICACIO_TEMATICA")
+
+if IT is not None and P is not None and CLS is not None:
+    idsReals = {p["id"] for p in P}
+    AMAGADES = {"q19", "q20", "q34", "q35", "q84", "q88", "q18a", "q18b",
+                "q21", "q24", "q83", "q87", "q67", "q102", "q106"}
+    visibles_esperades = idsReals - AMAGADES
+
+    totes_it = []
+    dupli = set()
+    for it in IT:
+        for p in it["preguntes"]:
+            if p["id"] in totes_it: dupli.add(p["id"])
+            totes_it.append(p["id"])
+    totes_it_set = set(totes_it)
+
+    if dupli:
+        err("ids duplicats entre itineraris temàtics: %s" % ", ".join(sorted(dupli)))
+    else:
+        ok("cap id duplicat entre els 6 itineraris temàtics")
+
+    falten = visibles_esperades - totes_it_set
+    sobren = totes_it_set - visibles_esperades
+    if falten:
+        err("preguntes visibles sense itinerari temàtic: %s" % ", ".join(sorted(falten)))
+    if sobren:
+        err("itinerari temàtic conté ids amagats o inexistents: %s" % ", ".join(sorted(sobren)))
+    if not falten and not sobren:
+        ok("els 6 itineraris temàtics cobreixen exactament les 115 preguntes visibles")
+
+    # Coherència amb CLASSIFICACIO_TEMATICA: cada itinerari 2D ha de
+    # coincidir amb la seva categoria oficial; "3d" amb dimensio=="3D".
+    cat_de = {c["id"]: c["categoriaTematica"] for c in CLS}
+    dim_de = {p["id"]: p.get("dimensio") for p in P}
+    mismatch = []
+    for it in IT:
+        clau = it["clau"]
+        for p in it["preguntes"]:
+            qid = p["id"]
+            if clau == "3d":
+                if dim_de.get(qid) != "3D":
+                    mismatch.append("%s a itinerari 3d però dimensio=%s" % (qid, dim_de.get(qid)))
+            else:
+                if cat_de.get(qid) != clau:
+                    mismatch.append("%s a itinerari %s però categoriaTematica=%s" % (qid, clau, cat_de.get(qid)))
+    if mismatch:
+        err("itinerari temàtic incoherent amb CLASSIFICACIO_TEMATICA: %s" % "; ".join(mismatch[:10]))
+    else:
+        ok("els 6 itineraris temàtics coincideixen amb CLASSIFICACIO_TEMATICA per a totes les 115")
+
+    # requereix / bessones: cap referència trencada.
+    reqTrencat, bessTrencat = [], []
+    for it in IT:
+        for p in it["preguntes"]:
+            for r in p.get("requereix", []):
+                if r not in idsReals: reqTrencat.append("%s->%s" % (p["id"], r))
+            for b in p.get("bessones", []):
+                if b not in totes_it_set: bessTrencat.append("%s->%s" % (p["id"], b))
+    if reqTrencat:
+        err("'requereix' apunta a id inexistent: %s" % ", ".join(reqTrencat[:10]))
+    else:
+        ok("tots els 'requereix' dels itineraris apunten a ids reals")
+    if bessTrencat:
+        err("'bessones' apunta a id fora dels itineraris: %s" % ", ".join(bessTrencat[:10]))
+    else:
+        ok("tots els 'bessones' dels itineraris apunten a ids vàlids")
+
+if GR is not None and P is not None:
+    idsReals = {p["id"] for p in P}
+    fora = [i for g in GR for i in g["ids"] if i not in idsReals]
+    if fora:
+        err("ITINERARIS_GRUPS_ENTRELLACATS conté ids inexistents: %s" % ", ".join(fora))
+    else:
+        ok("els 8 grups entrellaçats només contenen ids reals")
 
 # ------------------------------------------------------------------ informe
 print("\n%d comprovacions passades" % len(oks))
