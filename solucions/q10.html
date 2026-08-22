@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El rombe: costats paral·lels i diagonals perpendiculars — Solució — Geometria</title>
+<meta name="description" content="Per què en un rombe els costats oposats són sempre paral·lels i les dues diagonals sempre perpendiculars, totes dues coses a partir d'una sola propietat.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 10 · pàg. 32 del llibre · solució</span>
+  <h1 class="sol-header__title">El rombe: costats paral·lels i diagonals perpendiculars</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Els costats oposats d'un rombe, sempre són paral·lels? Les diagonals són perpendiculars?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q10_page31_rhombus.png" alt="Figura de l'enunciat de la Qüestió 10" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Dues preguntes, una sola propietat</p><p class="solucio__text">Encara que l'enunciat en faci dues, no calen dos arguments diferents: un rombe té els quatre costats iguals, i aquesta única propietat, ben mirada des de dos angles diferents, respon totes dues preguntes alhora.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">El plec de paper</p><p class="solucio__text">Imaginem el rombe com un paper que es doblega per una de les diagonals. Aquesta diagonal el divideix en dos triangles que comparteixen la diagonal com a costat comú; els altres dos costats de cada triangle són costats del rombe, i com que els quatre costats del rombe són iguals, <strong>els dos triangles tenen els tres costats iguals dos a dos</strong> —són congruents pel criteri costat-costat-costat (SSS).</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-181.png" alt="Figura de la construcció — El plec de paper" loading="lazy"><figcaption class="solucio__figura-nota">La diagonal (en vermell) divideix el rombe en dos triangles; les marquetes mostren els quatre costats iguals.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">El paral·lelisme, dels dos triangles congruents</p><p class="solucio__text">Com que els dos triangles són congruents, els angles que cadascun forma amb la diagonal —a banda i banda— són iguals. Aquesta igualtat d'angles alterns és exactament la condició que fa que dues rectes tallades per una transversal (aquí, la diagonal) siguin paral·leles: per tant, els dos costats del rombe que queden a banda i banda de la diagonal són paral·lels als seus respectius costats oposats.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">La perpendicularitat: el mateix plec, aplicat dues vegades</p><p class="solucio__text">Per a la perpendicularitat cal un pas més: en un triangle isòsceles (com cadascun dels dos que ha creat la primera diagonal, ja que dos dels seus costats són costats iguals del rombe), <strong>la bisectriu de l'angle format pels dos costats iguals és també perpendicular al tercer costat</strong> —aquest tercer costat és, precisament, l'altra diagonal del rombe. Aplicant aquest mateix fet als dos triangles isòsceles que la primera diagonal ha creat —un a cada banda—, la segona diagonal resulta perpendicular a la primera vista des de totes dues bandes alhora: perpendicular al rombe sencer.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-018.png" alt="Figura de la construcció — La perpendicularitat: el mateix plec, aplicat dues vegades" loading="lazy"><figcaption class="solucio__figura-nota">Cadascun dels dos triangles isòsceles que crea la diagonal (dos costats iguals, marcats) té la seva bisectriu —que resulta ser l'altra diagonal— perpendicular a la base.</figcaption></figure></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Sí a totes dues: els costats oposats d'un rombe són sempre paral·lels (dels angles alterns iguals que crea una diagonal en dos triangles congruents per SSS) i les diagonals són sempre perpendiculars (perquè cada diagonal és la bisectriu d'un triangle isòsceles format per l'altra, i en un isòsceles la bisectriu de l'angle del vèrtex és perpendicular a la base).</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Rombe amb diagonals de 6 i 8, vèrtexs a (±3,0) i (0,±4): els quatre costats fan √(3²+4²)=5 (el triangle 3-4-5), i el pendent d'un costat coincideix amb el del costat oposat —confirmant el paral·lelisme per càlcul directe.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Els angles oposats d'un paral·lelogram — Solució — Geometria</title>
+<meta name="description" content="Per què els angles oposats d'un paral·lelogram són sempre iguals, a partir de dividir-lo en dos triangles amb una sola diagonal.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 11 · pàg. 33 del llibre · solució</span>
+  <h1 class="sol-header__title">Els angles oposats d'un paral·lelogram</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Un paral·lelogram és un polígon de quatre costats amb els costats oposats paral·lels (és a dir, una caixa inclinada). Els angles oposats d'un paral·lelogram han de ser iguals?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q11_page33_parallelogram.png" alt="Figura de l'enunciat de la Qüestió 11" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Només la definició, res més</p><p class="solucio__text">Per definició, un paral·lelogram té els dos parells de costats oposats paral·lels. Això —i només això, cap mesura ni suposició addicional— és tot el que es pot fer servir com a punt de partida.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Una diagonal, dos triangles</p><p class="solucio__text">Traçant una diagonal, el paral·lelogram queda dividit en dos triangles que comparteixen aquesta diagonal com a costat comú. Com que els costats del paral·lelogram són paral·lels dos a dos i la diagonal fa de transversal comuna, es formen dos parells d'angles alterns interns iguals: un parell d'un costat de la diagonal, un altre parell de l'altre costat —dos parells <strong>diferents</strong>, no el mateix angle repetit.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Els dos triangles són congruents</p><p class="solucio__text">Amb els dos parells d'angles alterns iguals més la diagonal compartida entre els dos triangles (angle-costat-angle, ASA), els dos triangles resulten congruents. D'aquí, a més, el tercer parell d'angles —els que cauen exactament als dos vèrtexs que la diagonal travessa— també ha de ser igual, perquè en cada triangle els tres angles ja estan determinats un cop se'n coneixen dos.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-039.png" alt="Figura de la construcció — Els dos triangles són congruents" loading="lazy"><figcaption class="solucio__figura-nota">Els arcs marquen els dos parells diferents d'angles alterns interns que la diagonal crea amb els dos parells de costats paral·lels: un arc per a un parell, dos arcs per a l'altre.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Sumar els angles a cada vèrtex del paral·lelogram</p><p class="solucio__text">Cada vèrtex del paral·lelogram original queda format per un angle d'un dels dos triangles i un angle de l'altre. Als dos vèrtexs oposats que la diagonal <strong>no</strong> travessa, l'angle complet del paral·lelogram és, cadascun, un dels angles ja demostrats iguals entre els dos triangles —per tant, aquests dos vèrtexs oposats tenen angles iguals. El mateix raonament, aplicat a l'altra diagonal (que uneix els altres dos vèrtexs), demostra la igualtat per al segon parell de vèrtexs oposats.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Sí, sempre: una diagonal divideix el paral·lelogram en dos triangles congruents (ASA, a partir de dos parells d'angles alterns interns), i d'aquesta congruència se'n dedueix directament que els angles situats a vèrtexs oposats del paral·lelogram són iguals.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Si un angle del paral·lelogram fa 65°, el seu oposat també ha de fer 65°, i els altres dos (adjacents a aquest) han de fer 115° cadascun —perquè els quatre sumen 360° i els angles adjacents entre ells sumen sempre 180° (angles suplementaris entre paral·leles).</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>
