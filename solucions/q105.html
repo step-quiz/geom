@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dues rectes en l'espai projectiu — Solució — Geometria</title>
+<meta name="description" content="Per què, un cop afegit un punt a l'infinit per cada direcció, dues rectes qualssevol es tallen sempre.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 105 · pàg. 167 del llibre · solució</span>
+  <h1 class="sol-header__title">Dues rectes en l'espai projectiu</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Dues línies en l'espai projectiu s'intersequen necessàriament?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q105_page167_projective_lines_infinity.png" alt="Figura de l'enunciat de la Qüestió 105" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Què hem de produir</p><p class="solucio__text">Al pla ordinari, la resposta seria "no": dues rectes paral·leles en són l'única excepció, i mai es troben. La resposta aquí és <strong>sí</strong> —però cal explicar exactament quin punt "nou" fa que la vella excepció desaparegui.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">El que li falta al pla ordinari</p><p class="solucio__text">La qüestió 104 ja va donar a cada direcció del pla el seu propi punt de fuga: totes les rectes paral·leles entre si, mirades en perspectiva, convergeixen visualment cap a un mateix punt. L'espai projectiu pren aquesta idea i la fa literal —no només visual—: a <strong>cada</strong> direcció del pla se li afegeix un punt nou "a l'infinit", i totes les rectes d'aquella direcció el comparteixen.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">La construcció</p><p class="solucio__text">Diverses rectes gairebé paral·leles, convergint totes cap a un mateix punt marcat "∞" —exactament com el punt de fuga que ja apareixia a la qüestió 104, però ara tractat com un punt real del pla ampliat, no com un simple efecte de perspectiva.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-109.png" alt="Figura de la construcció — dues rectes secants convergint cap al punt marcat a l'infinit" loading="lazy"><figcaption class="solucio__figura-nota">Rectes secants: sempre es tallen, ordinàriament o a l'infinit.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho</p><p class="solucio__text">Dues rectes secants es tallen, com sempre, en un punt ordinari del pla. Dues rectes paral·leles comparteixen la mateixa direcció, i per tant comparteixen també el <strong>mateix</strong> punt a l'infinit —el d'aquella direcció— i es tallen allà. En l'espai projectiu, format pel pla ordinari més un punt a l'infinit per a cada direcció, literalment cap parella de rectes deixa mai de tallar-se.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Sí: en l'espai projectiu, dues rectes qualssevol es tallen sempre. Les secants ho fan en un punt ordinari; les paral·leles, en el punt a l'infinit que comparteixen per tenir la mateixa direcció.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Dues rectes de pendent 3, paral·leles entre si, no es tallen mai al pla ordinari —el sistema d'equacions que en descriu la intersecció no té cap solució real. En l'espai projectiu, totes dues "arriben" al mateix punt a l'infinit associat a la direcció de pendent 3: és l'únic punt a l'infinit que comparteixen amb qualsevol tercera recta de pendent diferent, que arriba al seu propi punt a l'infinit, distint.</p><p class="solucio__text">Val la pena, però, la lletra petita d'aquest "sempre": tot el que s'ha fet aquí passa dins d'un sol pla. A l'espai de tres dimensions, dues rectes poden no ser mai paral·leles ni tallar-se —una que va pel terra i una altra que travessa el sostre en una altra direcció, sense passar mai l'una per sobre de l'altra: se'n diu que <em>s'encreuen</em>. Afegir-hi punts a l'infinit no ho arregla, perquè cadascuna se'n va cap a un punt de l'infinit diferent.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>
