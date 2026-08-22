@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quan un paral·lelogram és, de fet, un rectangle — Solució — Geometria</title>
+<meta name="description" content="Per què un paral·lelogram amb les dues diagonals iguals ha de ser necessàriament un rectangle: el recíproc d'un fet conegut.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 12 · pàg. 33 del llibre · solució</span>
+  <h1 class="sol-header__title">Quan un paral·lelogram és, de fet, un rectangle</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Demostra que un paral·lelogram amb les diagonals iguals ha de ser un rectangle.</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q12_page33_parallelogram.png" alt="Figura de l'enunciat de la Qüestió 12" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Una dada extra respecte a q11</p><p class="solucio__text">Aquí es dona més informació que a la Qüestió 11: no només és un paral·lelogram, sinó que, a més, les seves dues diagonals fan exactament la mateixa llargada. La pregunta és què es pot concloure ara que no es podia concloure abans amb menys informació —i la resposta és el <strong>recíproc</strong> d'un fet ja conegut en l'altra direcció (que un rectangle té les diagonals iguals): aquí cal demostrar que, a l'inrevés, tenir-les iguals ja obliga a ser un rectangle.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Intuïció: "redreçant" el paral·lelogram</p><p class="solucio__text">Imaginem un paral·lelogram ben esbiaixat, com el de la figura, i les seves dues diagonals, de longituds diferents. Si s'anés "redreçant" el paral·lelogram —fent-lo cada cop menys inclinat— les dues diagonals s'anirien igualant progressivament, i alhora els seus angles s'anirien acostant a 90°. La igualtat de diagonals no és una propietat aïllada: apunta cap als angles rectes.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Dos triangles, ara amb una dada més</p><p class="solucio__text">Anomenem els vèrtexs A, B, C, D, en ordre, i considerem el triangle ABC i el triangle ABD, formats per un costat comú (AB) i cadascuna de les dues diagonals. Com que ABCD és un paral·lelogram, els costats AD i BC —costats oposats— ja són iguals entre si. I ara, per la dada nova de l'enunciat, les diagonals AC i BD també són iguals entre si. Amb el costat AB compartit pels dos triangles, els altres dos costats iguals dos a dos, <strong>els dos triangles ABC i ABD són congruents pel criteri costat-costat-costat (SSS)</strong>.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-040.png" alt="Figura de la construcció — Dos triangles, ara amb una dada més" loading="lazy"><figcaption class="solucio__figura-nota">Els vèrtexs A, B, C, D del paral·lelogram, i les dues diagonals AC i BD, marcades amb una sola marqueta cadascuna: iguals entre si.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">De la congruència als angles rectes</p><p class="solucio__text">De la congruència dels dos triangles surt que l'angle en A (dins del triangle ABD, és a dir, l'angle DAB del paral·lelogram) i l'angle en B (dins del triangle ABC, és a dir, l'angle ABC) són iguals entre si. Però aquests dos angles, DAB i ABC, són també angles <strong>adjacents</strong> del paral·lelogram —cauen al mateix costat AB— i els angles adjacents d'un paral·lelogram sempre sumen 180° (ja demostrat a la Qüestió 11, dels angles alterns interns d'una diagonal). Dos angles que són iguals entre si i que, a més, sumen 180° junts, només poden ser de <strong>90° cadascun</strong>. Un cop un angle del paral·lelogram és recte, els altres tres també ho són (angles oposats iguals, angles adjacents suplementaris): és un rectangle.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Sí: un paral·lelogram amb les dues diagonals iguals ha de ser un rectangle. La igualtat de diagonals, combinada amb els costats oposats ja iguals per definició, fa que dos triangles formats per una diagonal siguin congruents (SSS); d'aquí surt que dos angles adjacents del paral·lelogram són alhora iguals entre si i suplementaris, cosa que només és possible si cadascun fa 90°.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Paral·lelogram de costats 5 i 12: si les diagonals fan totes dues 13, ha de sortir un rectangle — i, de fet, 5-12-13 és el triangle rectangle conegut, no per casualitat: cada meitat del rectangle (tallat per una diagonal) és exactament aquest triangle.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>
