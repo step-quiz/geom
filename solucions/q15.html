@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quan la punta surt de la base: el forat de la demostració anterior — Solució — Geometria</title>
+<meta name="description" content="Per què l'argument de q14 deixa de funcionar quan el vèrtex del triangle es desplaça fora de la base, i com arreglar-lo amb una resta en lloc d'una suma.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 15 · pàg. 36 del llibre · solució</span>
+  <h1 class="sol-header__title">Quan la punta surt de la base: el forat de la demostració anterior</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Què li passa a l'àrea del triangle quan desplacem el vèrtex horitzontalment? Què passa si sobrepassa els costats de la caixa?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q15_page36_triangle_in_box.png" alt="Figura de l'enunciat de la Qüestió 15" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Una predicció abans de calcular</p><p class="solucio__text">Abans de tornar a fer cap càlcul, val la pena aturar-se a predir: si es desplaça horitzontalment el vèrtex superior d'un triangle, mantenint la mateixa base i la mateixa alçada, l'àrea creix, decreix, o es queda igual?</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Els tres casos, un al costat de l'altre</p><p class="solucio__text">Als tres triangles de la figura, la base i l'alçada són exactament les mateixes —les marquetes ho confirmen expressament. Només canvia la posició horitzontal del vèrtex superior. En el primer i el segon triangle, aquest vèrtex encara cau damunt d'algun punt de la base. En el tercer, en canvi, el vèrtex ja ha sortit per fora: el peu de l'altura (marcat en discontinu) queda fora del segment de la base, no sobre seu.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-003.png" alt="Figura de la construcció — Els tres casos, un al costat de l'altre" loading="lazy"><figcaption class="solucio__figura-nota">Mateixa base, mateixa alçada, tres posicions diferents del vèrtex. Al tercer triangle, el peu de l'altura ja no cau sobre la base.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">On falla exactament l'argument de q14</p><p class="solucio__text">Tornant a la demostració anterior pas per pas: allà es deia que "la vertical parteix la caixa en dos trossos, un a cada banda del triangle". Aquest pas donava per fet que el peu de la vertical queda <strong>entre</strong> els dos extrems de la base, per poder-la partir en dos trossos que sumar. Quan la punta surt per fora, el peu de la vertical ja no talla la base per dins: cau fora d'ella, i no hi ha dos trossos interiors per sumar. L'argument de q14, tal com estava escrit, <strong>no cobreix aquest cas</strong> —calia trobar-ne un altre.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">La mateixa idea, amb el signe canviat</p><p class="solucio__text">La solució és canviar una suma per una resta. S'estén imaginàriament la base fins sota del vèrtex desplaçat, formant una caixa més gran (i un triangle rectangle gran, que ja és el cas fàcil de q14). D'aquest triangle rectangle gran, cal <strong>treure</strong> el triangle rectangle petit —la peça ratllada— que sobresurt de la base original per la banda on el vèrtex s'ha desplaçat. El triangle que realment interessa és, doncs, un triangle gran menys un de petit, en comptes de dos de petits sumats: exactament la mateixa idea del cas fàcil, aplicada dues vegades, però ara restant en lloc de sumar.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-004.png" alt="Figura de la construcció — La mateixa idea, amb el signe canviat" loading="lazy"><figcaption class="solucio__figura-nota">El ratllat marca la peça que es treu: triangle rectangle gran (base estesa fins sota el vèrtex) menys triangle rectangle petit.</figcaption></figure></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">L'àrea no canvia mai, es desplaci on es desplaci el vèrtex, sempre que la base i l'altura es mantinguin fixes. Però l'argument que ho demostra sí que canvia de forma: quan el peu de l'altura cau dins de la base, es demostra sumant dues meitats (q14); quan cau fora, cal restar un triangle rectangle petit d'un de gran. Totes dues construccions són la mateixa idea de fons —"un triangle és la meitat de la seva caixa"— aplicada amb un signe diferent segons el cas.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Base 8, altura 5: amb la punta a distància 3, a 8 (just al cantó) i a 14 del cantó esquerre, les tres àrees surten 8×5/2=20 —la mateixa, fins i tot quan la punta ja ha sortit de la base i cal restar en lloc de sumar.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

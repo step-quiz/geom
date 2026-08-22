@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El cercle petit del mig: la mateixa distància, dita de dues maneres — Solució — Geometria</title>
+<meta name="description" content="Com trobar el radi del cercle central tangent a quatre cercles grans dins d'un quadrat, dient la mateixa distància entre centres de dues maneres diferents.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 22 · pàg. 41 del llibre · solució</span>
+  <h1 class="sol-header__title">El cercle petit del mig: la mateixa distància, dita de dues maneres</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Les circumferències grans clarament tenen la meitat d'amplada que el quadrat. I la circumferència petita?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q22_page41_circles_in_square.png" alt="Figura de l'enunciat de la Qüestió 22" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">On no és la resposta</p><p class="solucio__text">Aquí sí que cal trobar una fórmula concreta, no només explicar un fet. Però la resposta no s'amaga mirant directament el cercle petit: s'amaga mirant els <strong>centres</strong> dels cercles i les distàncies que hi ha entre ells.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">El fet que falta, i que no és a l'enunciat</p><p class="solucio__text">Quan dos cercles són tangents (es toquen en un sol punt, sense tallar-se), la distància entre els seus dos centres és exactament la suma dels seus radis: <strong>d=R+r</strong>. Aquest fet és geomètricament evident un cop es dibuixa —els dos centres i el punt de tangència són sempre alineats— però no apareix enlloc explícitament a l'enunciat del problema; cal recordar-lo pel seu compte.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-185.png" alt="Figura de la construcció — El fet que falta, i que no és a l'enunciat" loading="lazy"><figcaption class="solucio__figura-nota">Dos cercles tangents: la distància entre els seus centres és sempre R+r, la suma dels dos radis.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Un triangle rectangle amagat entre tres centres</p><p class="solucio__text">Al quadrat de l'enunciat, els quatre cercles grans tenen radi R (un quart del costat del quadrat cadascun) i es toquen entre si. Es pot dibuixar un triangle rectangle amb vèrtexs al centre del cercle petit, al punt on es toquen dos cercles grans veïns, i al centre d'un d'aquests cercles grans: els dos catets d'aquest triangle fan tots dos <strong>R</strong> (la meitat del costat del quadrat que separa dos centres de cercles grans veïns), i la hipotenusa és, precisament, la distància entre el centre del cercle petit i el centre d'un cercle gran.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-009.png" alt="Figura de la construcció — Un triangle rectangle amagat entre tres centres" loading="lazy"><figcaption class="solucio__figura-nota">El triangle rectangle de catets R i R; la hipotenusa marcada amb "?" és la distància entre el centre del cercle petit i el centre d'un cercle gran.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Dir la mateixa hipotenusa de dues maneres</p><p class="solucio__text">Aquesta hipotenusa es pot expressar de dues maneres diferents, i totes dues han de donar el mateix valor. Per Pitàgores, amb els dos catets R: <strong>hipotenusa = R√2</strong>. Per la tangència entre el cercle petit i el cercle gran: <strong>hipotenusa = R+r</strong>. Igualant les dues expressions: R√2 = R+r, d'on <strong>r = R(√2−1)</strong>.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">r = R(√2−1) ≈ 0,414R. Surt de dir la mateixa distància —del centre del cercle petit al centre d'un cercle gran— de dues maneres: per Pitàgores (R√2, d'un triangle rectangle de catets R) i per la tangència (R+r), i igualar-les.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Amb R=1: r=√2−1≈0,414, dins del rang 0,4–0,42 que demana la comprovació. I R+r=1+(√2−1)=√2, exactament la distància trobada entre el centre del cercle petit i el centre d'un cercle gran, confirmant la relació.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

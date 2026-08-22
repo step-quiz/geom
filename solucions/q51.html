@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>L'àrea d'un con: un sector, no un rectangle — Solució — Geometria</title>
+<meta name="description" content="Per què desenrotllar un con dona un sector de cercle, i com el radi i l'arc d'aquest sector porten a l'àrea lateral πrL.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 51 · pàg. 78 del llibre · solució</span>
+  <h1 class="sol-header__title">L'àrea d'un con: un sector, no un rectangle</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Com podem mesurar l'àrea de la superfície d'un con?</p>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Un avís abans de començar</p><p class="solucio__text">Com sempre en un dibuix en perspectiva, la base del con no sembla un cercle. És un cercle de veritat.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">El truc de q45 no funciona igual</p><p class="solucio__text">A la qüestió 45, en desenrotllar un cilindre en va sortir un rectangle. Provant el mateix amb un con —tallant-lo des de la punta fins a la vora de la base, en línia recta, i estirant-lo pla—, ja no en surt un rectangle: en surt un tros de cercle, un sector. Quin radi té aquest sector? I quina llargada d'arc?</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-193.png" alt="Figura de la construcció — el con amb la generatriu L marcada, i el sector de cercle que resulta en desenrotllar-lo" loading="lazy"><figcaption class="solucio__figura-nota">El con amb l'aresta inclinada L en vermell, i el sector resultant, també amb L marcada.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">La construcció</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-030.png" alt="Figura de la construcció — el con i el sector, amb els dos talls des del vèrtex marcats" loading="lazy"><figcaption class="solucio__figura-nota">Els dos talls des de la punta —tots dos de longitud L— i l'arc que abans era la vora de la base.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho</p><p class="solucio__text">El radi del sector és exactament la llargada de la línia tallada —l'aresta inclinada del con des de la punta fins a la vora, anomenada generatriu o alçada inclinada, <em>L</em>. L'arc del sector ha de fer, en longitud, exactament la circumferència de la base (2πr), ja que abans d'estirar-lo el con era la vora d'aquella base. Un sector de cercle de radi <em>L</em> amb arc de longitud 2πr té àrea (1/2)×L×(2πr) = <strong>πrL</strong> —la mateixa fórmula "base × alçada / 2" que serveix per a qualsevol sector.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">L'àrea lateral d'un con és πrL, on r és el radi de la base i L la generatriu (l'aresta inclinada): en desenrotllar el con surt un sector de cercle de radi L i arc de longitud 2πr.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Amb r=3, L=8: l'angle del sector és 2π(3)/8 = 3π/4 (135°). Àrea lateral = πrL = π×3×8 = 24π ≈ 75,4. Comprovant-ho també amb la fórmula del sector: (1/2)×8²×(3π/4) = (1/2)×64×2,356 = 75,4 ✓.</p><p class="solucio__text">A diferència del cilindre, aquí l'"amplada" de la superfície desenrotllada no és constant —és un arc, no un segment recte. Aquesta diferència és exactament el que fa que el con, a diferència del cilindre, no es pugui "desenrotllar" en un rectangle.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

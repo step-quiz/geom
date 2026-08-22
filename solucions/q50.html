@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El con aproximat per discs: cap on tendeix la suma — Solució — Geometria</title>
+<meta name="description" content="Com una pila de discs cada cop més prims s'acosta al volum real d'un con, i per què s'acosta exactament a un terç del cilindre que l'envolta.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 50 · pàg. 75 del llibre · solució</span>
+  <h1 class="sol-header__title">El con aproximat per discs: cap on tendeix la suma</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Pots endevinar el patró d'aquestes aproximacions?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q50_page75_cone_disks.png" alt="Figura de l'enunciat de la Qüestió 50" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Què hem de produir</p><p class="solucio__text">No un únic volum: una successió de valors —un per cada nombre de discs— i el reconeixement de cap a on tendeix aquesta successió a mesura que n'hi ha més.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Comença amb pocs discs</p><p class="solucio__text">Amb un sol disc —un cilindre curt dins del con— el volum aproximat es queda curt de veritat. Amb dos discs més prims, ja s'hi assembla més. Cada disc és un cilindre: el mateix objecte de volum conegut ja fet servir en una qüestió anterior sobre el volum d'una caixa, ara apilat en comptes de format per una sola capa.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">La construcció</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-075.png" alt="Figura de la construcció — el con amb els discs apilats, un d'ells ressaltat en vermell" loading="lazy"><figcaption class="solucio__figura-nota">Un dels discs apilats, ressaltat en vermell: cada un és un cilindre curt, calculable amb la fórmula ja coneguda.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho</p><p class="solucio__text">A mesura que n (el nombre de discs) creix, cada disc s'aprima i se n'ajusten més: la suma dels volums dels discs s'acosta cada cop més al volum real del con, sense arribar-hi mai amb un nombre finit de discs. El patró de la successió d'aproximacions és, doncs, que <strong>convergeix</strong> cap al volum del con —la fórmula ja coneguda, (1/3)πr²h— i no cap al volum d'un cilindre de la mateixa base i alçada.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">La successió de volums aproximats per discs cada cop més prims convergeix cap al volum real del con, (1/3)πr²h —un terç del cilindre que el circumscriu, mai el cilindre sencer.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Con de radi 3, alçada 6: volum = (1/3)π(9)(6) = 18π ≈ 56,5. El cilindre corresponent —mateixa base i alçada— fa 3 vegades més: 54π ≈ 169,6. La successió d'aproximacions per discs, per a n creixent, s'acosta a 18π, no a 54π.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Retallar un polígon i recompondre'l com un quadrat — Solució — Geometria</title>
+<meta name="description" content="El teorema de Bolyai–Gerwien i la peça constructiva central: com trobar amb regla i compàs el costat exacte del quadrat de la mateixa àrea que un rectangle.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 17 · pàg. 37 del llibre · solució</span>
+  <h1 class="sol-header__title">Retallar un polígon i recompondre'l com un quadrat</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Es pot sempre retallar un polígon en peces i recompondre'l com un quadrat?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/fig-138.png" alt="Figura de l'enunciat de la Qüestió 17" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">La resposta és sí — la pregunta interessant és com</p><p class="solucio__text">El resultat es coneix com el <strong>teorema de Bolyai–Gerwien</strong>: qualsevol polígon es pot retallar en un nombre finit de peces poligonals i recompondre, sense buits ni superposicions, com un quadrat de la mateixa àrea. La demostració completa del cas general —vàlida per a un polígon de qualsevol forma— és massa llarga per a una sola pista; el que sí es pot desenvolupar amb tot detall és el primer pas del mètode, imprescindible per a qualsevol cas: <strong>trobar la longitud exacta</strong> que ha de tenir el costat del quadrat abans de retallar res.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Del rectangle al quadrat: quina longitud es busca</p><p class="solucio__text">El pas de rectangle a quadrat és el cas més fàcil de visualitzar. Un rectangle de costats <em>a</em> i <em>b</em> té la mateixa àrea que un quadrat de costat <strong>s=√(ab)</strong> —la mitjana geomètrica de <em>a</em> i <em>b</em> (perquè s²=ab=àrea del rectangle, per definició de quadrat de la mateixa àrea). La pregunta es converteix, doncs, en: com es pot construir aquesta longitud concreta fent servir només regla i compàs?</p></div><div class="solucio__pas"><p class="solucio__pas-titol">La construcció: el mateix teorema de q09, aplicat a l'inrevés</p><p class="solucio__text">Es dibuixa un semicercle de diàmetre a+b, i s'hi col·loca un triangle amb el vèrtex superior tocant l'arc i la base sobre el diàmetre, partit en els trossos <em>a</em> i <em>b</em> pel peu de l'altura. Per un teorema clàssic, tot triangle inscrit en un semicercle amb la hipotenusa com a diàmetre és <strong>rectangle</strong>. I un cop es té un triangle rectangle amb l'altura sobre la hipotenusa partint-la en <em>a</em> i <em>b</em>, ja se sap —de la Qüestió 9— que aquesta altura val exactament <strong>√(ab)</strong>: és el mateix resultat a²=c·p / b²=c·q d'allà, aplicat aquí a l'inrevés per <em>fabricar</em> una arrel quadrada en lloc de demostrar un teorema.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-064.png" alt="Figura de la construcció — La construcció: el mateix teorema de q09, aplicat a l'inrevés" loading="lazy"><figcaption class="solucio__figura-nota">El triangle inscrit al semicercle, amb hipotenusa a+b: és rectangle per construcció, i la seva altura s sobre la hipotenusa val exactament √(ab).</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">De la longitud a les peces</p><p class="solucio__text">Un cop es té s=√(ab) construïda amb regla i compàs, es pot demostrar que —si el rectangle no és massa allargat (a<4b)— <strong>només calen dos talls</strong> per recompondre'l en un quadrat de costat s. Si el rectangle és més allargat que això, calen més peces, però el teorema de Bolyai–Gerwien en garanteix la possibilitat en qualsevol cas. I un cop es domina el pas de rectangle a quadrat, qualsevol polígon s'hi pot reduir triangulant-lo primer i convertint cada triangle en un rectangle de la mateixa àrea (base × mitja alçada).</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Sí, sempre: el teorema de Bolyai–Gerwien garanteix que qualsevol polígon es pot retallar en un nombre finit de peces i recompondre com un quadrat de la mateixa àrea. La peça constructiva central és trobar el costat exacte del quadrat, s=√(ab), fent servir un semicercle i el mateix teorema de l'altura sobre la hipotenusa de la Qüestió 9 —una eina que reapareix cada vegada que cal "fabricar" una arrel quadrada amb regla i compàs.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Rectangle 8×2: s=√16=4. Comprovant l'àrea: 8×2=16=4×4 ✓ —la mateixa àrea, tal com ha de passar en qualsevol dissecció, encara que la forma canviï del tot.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

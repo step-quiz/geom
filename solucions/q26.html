@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>L'altura d'un triangle equilàter — Solució — Geometria</title>
+<meta name="description" content="Per què l'altura d'un triangle equilàter de costat s val (√3/2)s, reduint-la a un triangle rectangle conegut.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 26 · pàg. 45 del llibre · solució</span>
+  <h1 class="sol-header__title">L'altura d'un triangle equilàter</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Demostra que l'altura d'un triangle equilàter és (1/2)√3 vegades el seu costat.</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/fig-144.png" alt="Figura de l'enunciat de la Qüestió 26" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Dos trossos, cadascun un cas conegut</p><p class="solucio__text">L'altura des del vèrtex superior parteix el triangle equilàter en dos trossos. Mirant-los per separat: cadascun és un <strong>triangle rectangle</strong>, amb hipotenusa el costat del triangle original (s) i un catet la meitat de la base (s/2). El problema es redueix, doncs, a aplicar Pitàgores a un triangle rectangle conegut.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Per què l'altura cau just al punt mitjà, perpendicular</p><p class="solucio__text">Aquí es donen per bones dues coses que cal saber d'on surten: que l'altura caigui exactament al punt mitjà de la base, i que hi caigui perpendicular. Totes dues vénen del mateix argument ja fet a la Qüestió 1: els dos trossos que crea l'altura són triangles congruents pels tres costats (els dos costats iguals del triangle equilàter, més l'altura compartida), i d'aquesta congruència en surten alhora la meitat exacta de la base i els 90°.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-022.png" alt="Figura de la construcció — Per què l'altura cau just al punt mitjà, perpendicular" loading="lazy"><figcaption class="solucio__figura-nota">L'altura h parteix el triangle equilàter en dos triangles rectangles, cadascun d'hipotenusa s i catet s/2.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Pitàgores, i arrel quadrada</p><p class="solucio__text">Amb hipotenusa s i un catet s/2, Pitàgores dona l'altre catet —que és, precisament, l'altura h: h² = s² − (s/2)² = s² − s²/4 = (3/4)s². Traient l'arrel quadrada: <strong>h = s·√3/2</strong>.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">h = (√3/2)s. Surt d'aplicar Pitàgores al triangle rectangle que crea l'altura (hipotenusa s, catet s/2), un cop se sap —de la Qüestió 1— que aquesta altura cau exactament al punt mitjà de la base i hi és perpendicular.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Amb s=10: h²=100−25=75, h=√75=5√3≈8,66 — i (1/2)√3×10≈8,66, coincidint.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

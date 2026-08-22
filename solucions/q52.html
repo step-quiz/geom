@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El tall hexagonal d'un cub — Solució — Geometria</title>
+<meta name="description" content="Per què el pla perpendicular a una diagonal principal del cub, pel seu centre, hi talla un hexàgon regular.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 52 · pàg. 78 del llibre · solució</span>
+  <h1 class="sol-header__title">El tall hexagonal d'un cub</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Pots trobar una secció transversal d'un cub que sigui un hexàgon regular?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/fig-152.png" alt="Figura de l'enunciat de la Qüestió 52" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">No qualsevol pla serveix</p><p class="solucio__text">Hi ha un pla de tall que funciona per raons de simetria. La diagonal principal del cub —la que va d'un vèrtex al vèrtex oposat, travessant l'interior— té una simetria de rotació de 120°: girant el cub al voltant d'aquesta diagonal, es veu igual tres cops per volta.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Hereta la simetria</p><p class="solucio__text">Un pla tallat perpendicularment a aquesta diagonal, pel centre del cub, hereta aquesta mateixa simetria de 120°. Quina figura, si té simetria de 120° i toca cada cara del cub un cop, en pot sortir?</p></div><div class="solucio__pas"><p class="solucio__pas-titol">La construcció</p><p class="solucio__text">Aquest cub es mira exactament al llarg de la diagonal principal —no en la projecció habitual del quadern— perquè és l'única direcció des de la qual el pla de tall es veu en veritable magnitud, sense aixafar-se. Vist així, el contorn del cub mateix ja dibuixa un hexàgon (negre): les sis arestes del cub que no toquen cap dels dos vèrtexs de la diagonal triada. L'hexàgon vermell —el pla de tall— hi apareix net al mig, tocant cadascuna d'aquelles sis arestes pel seu punt mitjà, sense creuar-se.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-028.png" alt="Figura de la construcció — el cub vist al llarg de la diagonal principal, amb l'hexàgon dels punts mitjans en vermell" loading="lazy"><figcaption class="solucio__figura-nota">El cub mirat exactament al llarg de la diagonal principal: el contorn extern (negre) i el pla de tall (vermell) surten, tots dos, hexàgons regulars.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho</p><p class="solucio__text">El pla talla exactament sis arestes del cub —les sis que no toquen cap dels dos vèrtexs de la diagonal triada— pel seu punt mitjà. Amb coordenades (cub de costat 1, diagonal de (0,0,0) a (1,1,1)), cal comprovar que els sis punts mitjans són tots a la mateixa distància del centre del cub, i que la distància entre dos punts mitjans consecutius és la mateixa arreu.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">El pla perpendicular a una diagonal principal del cub, pel seu centre, talla exactament els punts mitjans de sis arestes, i aquests sis punts formen un hexàgon regular.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Punts mitjans com (1, 0.5, 0) i (0.5, 1, 0): distància √((0.5)²+(0.5)²+0²) = √0,5 ≈ 0,707. Fent-ho amb un altre parell consecutiu, per exemple (0.5,1,0) i (0,1,0.5): √(0,25+0+0,25) = √0,5 ≈ 0,707 —igual.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

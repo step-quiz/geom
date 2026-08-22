@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cercles tangents dins d'un triangle i d'un quadrat — Solució — Geometria</title>
+<meta name="description" content="Dues imatges sense enunciat que amaguen la mateixa pregunta que q22: mesurar el cercle petit en funció de la figura que l'envolta, ara amb tres cercles dins d'un triangle equilàter.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 27 · pàg. 46 del llibre · solució</span>
+  <h1 class="sol-header__title">Cercles tangents dins d'un triangle i d'un quadrat</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Alguns problemes de geometria parlen per si sols.</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q27_page46_implicit_circles.png" alt="Figura de l'enunciat de la Qüestió 27" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Què demanen aquests dibuixos</p><p class="solucio__text">Aquesta pregunta no porta enunciat escrit: el llibre dona tres imatges —un triangle, un quadrat, un cercle, cadascun amb cercles tangents a dins— i dona per fet que cal trobar la mida del cercle petit en funció de la mida gran, a cadascuna. És el mateix tipus de pregunta que la Qüestió 22, tres vegades.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">El quadrat: la relació ja coneguda</p><p class="solucio__text">Al quadrat amb el seu cercle circumscrit, la diagonal marcada dona directament la relació: si el quadrat té costat s, la diagonal —que és el diàmetre del cercle— val s√2, i per tant el radi és <strong>R = s√2/2</strong>. És exactament el mateix argument del primer panell de la Qüestió 40: la diagonal del quadrat és el diàmetre de la circumferència que hi passa pels quatre vèrtexs.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">El triangle: el mateix truc de q22, reaplicat</p><p class="solucio__text">Per als tres cercles iguals dins d'un triangle equilàter, cal unir el centre de gravetat del triangle amb el centre d'un dels tres cercles, i també amb el vèrtex més proper. Aquests dos segments es poden mesurar de dues maneres diferents —la mateixa "dues maneres" de la Qüestió 22 i la Qüestió 23.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-187.png" alt="Figura de la construcció — El triangle: el mateix truc de q22, reaplicat" loading="lazy"><figcaption class="solucio__figura-nota">El centre de gravetat, unit amb el vèrtex superior i amb el centre del cercle més proper.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Dues expressions per a la mateixa distància</p><p class="solucio__text">Amb costat L, la distància del centre de gravetat a un vèrtex és <strong>L/√3</strong> (dos terços de la mediana, que fa L√3/2). La distància d'aquest mateix centre de gravetat al centre d'un cercle és aquesta xifra menys 2r —recorrent el mateix segment cap enrere, dos radis abans d'arribar al vèrtex. Però aquesta distància es pot mesurar també d'una altra manera: els tres centres dels cercles formen, per simetria, un triangle equilàter petit, concèntric amb el gran, de costat 2r (dos radis, per la tangència entre cercles veïns) —i per tant la distància del centre de gravetat comú a un d'aquests centres és, aplicant la mateixa fórmula que abans però al triangle petit, <strong>2r/√3</strong>.</p><p class="solucio__text">Igualant les dues expressions: L/√3 − 2r = 2r/√3. Resolent per r: <strong>r = L(√3−1)/4</strong>.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-058.png" alt="Figura de la construcció — Dues expressions per a la mateixa distància" loading="lazy"><figcaption class="solucio__figura-nota">Els panells del triangle i del quadrat, ja anotats. El tercer panell (quatre cercles dins d'un cercle gran) és la mateixa família de puzle amb més peces; no es resol aquí.</figcaption></figure></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Quadrat: R = s√2/2 (la diagonal és el diàmetre). Triangle: r = L(√3−1)/4, de dir la distància del centre de gravetat a un vèrtex de dues maneres —L/√3 directament, i també 2r/√3 pel triangle petit que formen els tres centres dels cercles, tenint en compte que aquesta distància és 2r menys curta que la primera. El tercer panell (cercles dins d'un cercle gran) segueix la mateixa família de puzle, sense resoldre aquí.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Triangle de costat L=4: r = 4(√3−1)/4 = √3−1 ≈ 0,732. Quadrat de costat s=4: R = 4×√2/2 = 2√2 ≈ 2,828.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

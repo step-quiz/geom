@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Per què un triangle és la meitat de la seva caixa — Solució — Geometria</title>
+<meta name="description" content="Per què l'àrea d'un triangle és sempre base × altura / 2, demostrat construint la caixa rectangular que l'envolta — amb un límit important que q15 revisarà.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 14 · pàg. 36 del llibre · solució</span>
+  <h1 class="sol-header__title">Per què un triangle és la meitat de la seva caixa</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Per què un triangle ocupa exactament la meitat de la seva caixa?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q14_page36_triangle_in_box.png" alt="Figura de l'enunciat de la Qüestió 14" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Una raó, no una xifra</p><p class="solucio__text">No es demana calcular cap àrea concreta: es demana explicar per què la fórmula que ja se sap de memòria —base × altura / 2— és certa per a <strong>qualsevol</strong> triangle. La "caixa" del títol és el rectangle més petit que envolta el triangle: la mateixa base, i d'alçada la distància del vèrtex superior a aquesta base.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">El cas fàcil primer</p><p class="solucio__text">Comencem pel cas més senzill possible: el vèrtex superior situat just damunt d'un dels dos vèrtexs de baix. Aquí el triangle ja és, ell mateix, un triangle rectangle, i la caixa que l'envolta queda partida per aquest mateix triangle en exactament dues meitats iguals —la diagonal d'un rectangle sempre el divideix en dos triangles congruents. En aquest cas particular, doncs, el triangle ja és <strong>la meitat</strong> de la caixa, sense necessitat de cap altre argument.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-182.png" alt="Figura de la construcció — El cas fàcil primer" loading="lazy"><figcaption class="solucio__figura-nota">El cas fàcil: el vèrtex A just damunt de B, amb angle recte. El triangle ABC és la meitat exacta del rectangle que el conté.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">El cas general: dues caixes petites</p><p class="solucio__text">Ara situem el vèrtex superior en qualsevol altre punt de la vora de dalt, sempre que quedi <strong>per damunt d'algun punt de la base</strong> (no encara desplaçat lateralment fora d'ella). La vertical que baixa des d'aquest vèrtex fins a la base parteix la caixa gran en dues caixes més petites, una a cada banda, i alhora parteix el triangle en dos triangles més petits.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho: cada tros ja és el cas fàcil</p><p class="solucio__text">I aquí està la clau: cadascun d'aquests dos triangles petits és, exactament, una còpia del cas fàcil que ja s'ha resolt —el vèrtex superior cau just damunt del peu de la vertical, que fa de "B" en cadascuna de les dues caixes petites. Per tant, cada triangle petit és la meitat de la seva pròpia caixa petita. Sumant les dues meitats: si cada peça per separat és la meitat de la seva caixa, <strong>la caixa sencera, sumada, també queda partida per la meitat</strong>.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-002.png" alt="Figura de la construcció — Tancar-ho: cada tros ja és el cas fàcil" loading="lazy"><figcaption class="solucio__figura-nota">La vertical (en vermell) parteix la caixa gran en dues caixes petites, i el triangle en dues meitats —una de cada caixa petita.</figcaption></figure></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Un triangle és sempre la meitat de la caixa rectangular que l'envolta: quan el vèrtex superior cau damunt d'un punt de la base, la vertical des d'aquest punt parteix tant la caixa com el triangle en dues peces, i cada peça per separat ja és el cas fàcil (mig rectangle). Aquest argument, però, dona per fet que el peu de la vertical cau dins de la base —un supòsit que la Qüestió 15 posa a prova.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Caixa de 10×6: amb la punta a distància 3 del cantó esquerre, el raonament dona àrea 10×6/2=30. Amb la punta a distància 7, també 30 —el resultat no depèn d'on caigui la punta, sempre que quedi dins de la base.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

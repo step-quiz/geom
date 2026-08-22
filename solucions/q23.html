@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El mateix truc, tres vegades disfressat — Solució — Geometria</title>
+<meta name="description" content="Com resoldre el primer dels tres puzles de cercles tangents amb la mateixa tècnica de q22: dir la mateixa distància de dues maneres.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 23 · pàg. 42 del llibre · solució</span>
+  <h1 class="sol-header__title">El mateix truc, tres vegades disfressat</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Quant fan aquestes circumferències?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q23_page42_three_circle_puzzles.png" alt="Figura de l'enunciat de la Qüestió 23" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Tres puzles, una sola idea</p><p class="solucio__text">L'enunciat en planteja tres de cop: un cercle gran tallat pels seus dos diàmetres amb un cercle petit encaixat en un dels quatre racons; un quadrat amb una diagonal i un cercle inscrit tocant-la; i un quadrat amb un cercle gran inscrit i un de petit encaixat en una cantonada. Tots tres es resolen amb la mateixa palanca de la Qüestió 22 —dir la mateixa distància de dues maneres—, encara que la posin en pràctica de manera lleugerament diferent cada vegada.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">El primer puzle: quins segments fan de catets, ara</p><p class="solucio__text">A q22, els dos catets del triangle rectangle eren tots dos R (radis del cercle gran). Aquí la situació canvia: el cercle petit toca <strong>els dos diàmetres</strong> del cercle gran, no un altre cercle. Com que el seu centre és tangent a totes dues rectes, aquest centre queda a distància r —el seu propi radi— de cadascun dels dos diàmetres. Els dos catets del triangle rectangle amagat ja no fan R: fan <strong>r</strong> tots dos.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-017.png" alt="Figura de la construcció — El primer puzle: quins segments fan de catets, ara" loading="lazy"><figcaption class="solucio__figura-nota">El triangle rectangle de catets r i r, entre el centre del cercle gran i el centre del cercle petit.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">La mateixa hipotenusa, dita de dues maneres</p><p class="solucio__text">La hipotenusa d'aquest triangle és la distància entre el centre del cercle gran i el centre del cercle petit. Per Pitàgores, amb els dos catets r: <strong>hipotenusa = r√2</strong>. Per la tangència —ara interior, un cercle petit dins d'un de gran, no dos cercles costat per costat— aquesta mateixa distància val <strong>R−r</strong> (el radi gran menys el radi petit, no la suma). Igualant-les: r√2 = R−r, d'on r(√2+1) = R, i per tant <strong>r = R/(√2+1) = R(√2−1)</strong>.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Els altres dos puzles: la mateixa tècnica, un altre tipus de tangència</p><p class="solucio__text">Els altres dos puzles del dibuix es resolen amb exactament la mateixa idea de fons —un triangle rectangle amagat entre centres, i la mateixa distància dita de dues maneres— però la "tangència" que fa de segona expressió no és sempre amb un altre cercle. En el puzle del quadrat amb la diagonal, la tangència és amb una <strong>recta</strong> (la diagonal), i llavors la distància d'un punt a una recta és la que fa d'hipotenusa —una eina diferent de la suma o resta de radis, però que juga exactament el mateix paper a l'equació final. Val la pena intentar-los amb aquesta mateixa palanca abans de continuar.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Pel primer puzle: r = R(√2−1), el mateix valor que a q22, obtingut amb la mateixa tècnica (Pitàgores contra tangència) però amb catets r en lloc de R, perquè aquí el cercle petit toca dues rectes (els diàmetres) en lloc d'un altre cercle. Els altres dos puzles reutilitzen la mateixa palanca, substituint la tangència entre cercles per la distància d'un punt a una recta quan calgui.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Amb R=1: r=√2−1≈0,414 —exactament el mateix valor numèric que a q22, encara que la figura sigui completament diferent. No és casualitat: r(√2+1)=R, mirada amb calma, és la mateixa equació que R√2=R+r de q22 (només cal dividir tots dos costats per R i reorganitzar).</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>
