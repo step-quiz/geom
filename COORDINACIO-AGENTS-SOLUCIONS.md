@@ -62,6 +62,29 @@ suggests a question should or shouldn't be hidden, that's a question for
 the project owner, not something to decide unilaterally while writing a
 solution.
 
+## Shared stylesheet — `solucions/sol.css`
+
+`solucions/sol.css` is **shared by both agents**, not owned by either
+one. Its own header says so explicitly ("Estil de les 115 pàgines de
+solució") — it was designed from the start to style every solution
+page, 2D and 3D alike. Every `.html` file in `solucions/`, from both
+agents, loads it with the same `<link rel="stylesheet" href="sol.css?v=1">`.
+It defines one thing neither `tokens.css`, `base.css`, nor
+`components.css` had: `--accent-sanguina`, a red sampled directly from
+the hand-drawn figures (`assets/img/pistes/fig-034.png`), used for the
+"Solució" eyebrow and the step border.
+
+Never create a second copy of this file, never assume it "belongs" to
+whichever agent's dimension happens to be nearby in the folder, and
+never treat it as missing just because your own agent didn't write it.
+If a fresh `solucions/` folder is ever missing `sol.css`, that's a
+packaging mistake to fix by restoring the existing file unchanged — not
+a cue to author a new one from scratch. (This exact mistake happened
+once already, when a folder migration copied all eleven `.html` files
+but left `sol.css` behind — every existing page rendered unstyled,
+`fetch("sol.css?v=1")` 404ing from inside `solucions/`, until it was
+copied back over. Check this first if pages suddenly look unstyled.)
+
 ## Naming convention
 
 **Filename = `<id>.html`, saved directly under `solucions/`. Nothing
