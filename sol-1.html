@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Solucions</title>
+<script src="js/data/preguntes-dades.js"></script>
+<style>
+  body { font-family: system-ui, sans-serif; max-width: 32rem; margin: 2rem auto; padding: 0 1rem; line-height: 1.5; }
+  li { margin-bottom: 0.6rem; }
+  h2 { margin-top: 2rem; font-size: 1.1rem; }
+  .nota { font-size: 0.85rem; color: #777; }
+  .compte { font-size: 0.85rem; color: #777; }
+
+  /* ---------- Secció afegida: descoberta en viu ---------- */
+
+  .descoberta {
+    margin-top: 2.5rem;
+    padding-top: 0.5rem;
+    border-top: 1px solid #ddd;
+  }
+
+  .descoberta__estat {
+    font-size: 0.85rem;
+    color: #777;
+  }
+
+  .descoberta__estat--error {
+    color: #a33;
+  }
+
+  .descoberta ul {
+    padding-left: 1.2rem;
+  }
+
+  .descoberta li a {
+    color: inherit;
+  }
+
+  .descoberta__titol-fallback {
+    color: #777;
+    font-style: italic;
+  }
+</style>
+</head>
+<body>
+<h1>Solucions</h1>
+
+<p class="nota">
+  Dos agents mantenen aquest índex en paral·lel, cadascun al seu bloc.
+  Cada fitxer viu a <code>solucions/</code> i es diu
+  <code>&lt;id&gt;.html</code>, on <code>&lt;id&gt;</code> és exactament
+  el camp <code>id</code> de la pregunta a
+  <code>js/data/preguntes-dades.js</code> (p. ex. <code>q25.html</code>
+  per a la pregunta d'id <code>q25</code>) — cap altre format, cap
+  excepció, cap fitxer antic a mantenir en paral·lel. Detall complet a
+  <a href="COORDINACIO-AGENTS-SOLUCIONS.md">COORDINACIO-AGENTS-SOLUCIONS.md</a>.
+</p>
+
+<h2>2D — Agent-sol-2D <span class="compte">(78 preguntes en total)</span></h2>
+<ul>
+  <li><a href="solucions/q01.html">q01</a> — el centre del triangle equilàter</li>
+  <li><a href="solucions/q02.html">q02</a> — quatre triangles, un sol argument</li>
+  <li><a href="solucions/q03.html">q03</a> — rosetes de polígons regulars</li>
+  <li><a href="solucions/q04.html">q04</a> — l'angle d'un polígon regular</li>
+  <li><a href="solucions/q05.html">q05</a> — l'angle a la punta d'una estrella</li>
+  <li><a href="solucions/q06.html">q06</a> — angles entre diagonals consecutives</li>
+  <li><a href="solucions/q07.html">q07</a> — quan el camí fa més d'una volta</li>
+  <li><a href="solucions/q08c.html">q08c</a> — mateixos angles: quan basta i quan no</li>
+  <li><a href="solucions/q09.html">q09</a> — l'altura sobre la hipotenusa i dos triangles semblants</li>
+  <li><a href="solucions/q40_implicit.html">q40_implicit</a> — dues configuracions, connectar centres</li>
+</ul>
+
+<h2>3D — Agent-sol-3D <span class="compte">(37 preguntes en total)</span></h2>
+<ul>
+  <li><a href="solucions/q08b.html">q08b</a> — per què només cinc poliedres regulars</li>
+  <li><a href="solucions/q25.html">q25</a> — diagonal d'una caixa, doble Pitàgores</li>
+  <li><a href="solucions/q63.html">q63</a> — dues maneres d'engendrar un cilindre</li>
+</ul>
+
+<div class="descoberta">
+  <h2>Totes les solucions trobades a <code>solucions/</code></h2>
+  <p class="nota">
+    Aquesta secció no és una llista fixa: en carregar la pàgina, comprova
+    quins fitxers de <code>solucions/&lt;id&gt;.html</code> existeixen
+    realment ara mateix, per a cada <code>id</code> de
+    <code>js/data/preguntes-dades.js</code>. Els que ja apareixen a dalt
+    (afegits a mà pels agents) no es repeteixen aquí baix.
+  </p>
+  <p id="descoberta-estat" class="descoberta__estat">Comprovant solucions…</p>
+  <div id="descoberta-2d"></div>
+  <div id="descoberta-3d"></div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var estatEl = document.getElementById("descoberta-estat");
+  var contenidor2D = document.getElementById("descoberta-2d");
+  var contenidor3D = document.getElementById("descoberta-3d");
+
+  // Ids ja llistats a mà a dalt (2D i 3D), perquè no es dupliquin a baix.
+  var idsJaLlistats = {};
+  document.querySelectorAll("body > ul a[href^='solucions/']").forEach(function (a) {
+    var id = a.getAttribute("href").replace("solucions/", "").replace(".html", "");
+    idsJaLlistats[id] = true;
+  });
+
+  if (typeof window.PREGUNTES === "undefined") {
+    estatEl.textContent =
+      "No s'ha pogut carregar js/data/preguntes-dades.js, així que aquesta secció no es pot completar.";
+    estatEl.className = "descoberta__estat descoberta__estat--error";
+    return;
+  }
+
+  var preguntes2D = window.PREGUNTES.filter(function (p) { return p.dimensio === "2D"; });
+  var preguntes3D = window.PREGUNTES.filter(function (p) { return p.dimensio === "3D"; });
+  var pendentsClassificar = window.PREGUNTES.filter(function (p) {
+    return p.dimensio !== "2D" && p.dimensio !== "3D";
+  });
+
+  function comprovaExistencia(pregunta) {
+    var url = "solucions/" + pregunta.id + ".html";
+    return fetch(url, { method: "GET" })
+      .then(function (resp) {
+        if (!resp.ok) return null;
+        return resp.text().then(function (html) {
+          return { pregunta: pregunta, url: url, titol: extreuTitol(html, pregunta) };
+        });
+      })
+      .catch(function () {
+        // Fetch bloquejat (p. ex. obrint el fitxer amb file:// per doble
+        // clic, sense servidor local): es tracta igual que "no trobat",
+        // l'avís general de sota ja explica la causa real.
+        return null;
+      });
+  }
+
+  function extreuTitol(html, pregunta) {
+    var match = html.match(/<title>([^<]*)<\/title>/i);
+    if (match && match[1]) {
+      // El <title> real és "Descripció — Solució — Geometria": ens
+      // quedem només amb el primer tros, que és la part llegible.
+      return match[1].split("—")[0].trim();
+    }
+    return null;
+  }
+
+  function renderaSeccio(contenidor, resultats, pendentsSenseSol) {
+    if (resultats.length === 0 && pendentsSenseSol.length === 0) return;
+
+    var ul = document.createElement("ul");
+    resultats
+      .sort(function (a, b) { return a.pregunta.id.localeCompare(b.pregunta.id); })
+      .forEach(function (r) {
+        var li = document.createElement("li");
+        var a = document.createElement("a");
+        a.href = r.url;
+        a.textContent = r.pregunta.id;
+        li.appendChild(a);
+        li.appendChild(document.createTextNode(" — "));
+        if (r.titol) {
+          li.appendChild(document.createTextNode(r.titol));
+        } else {
+          var span = document.createElement("span");
+          span.className = "descoberta__titol-fallback";
+          span.textContent = "(sense títol llegible al fitxer)";
+          li.appendChild(span);
+        }
+        ul.appendChild(li);
+      });
+    contenidor.appendChild(ul);
+  }
+
+  Promise.all([
+    Promise.all(
+      preguntes2D
+        .filter(function (p) { return !idsJaLlistats[p.id]; })
+        .map(comprovaExistencia)
+    ),
+    Promise.all(
+      preguntes3D
+        .filter(function (p) { return !idsJaLlistats[p.id]; })
+        .map(comprovaExistencia)
+    )
+  ])
+    .then(function (resultats) {
+      var trobades2D = resultats[0].filter(Boolean);
+      var trobades3D = resultats[1].filter(Boolean);
+      var totalTrobades = trobades2D.length + trobades3D.length + Object.keys(idsJaLlistats).length;
+
+      if (trobades2D.length > 0) {
+        var h3a = document.createElement("h3");
+        h3a.textContent = "2D — no llistades a mà (" + trobades2D.length + ")";
+        contenidor2D.appendChild(h3a);
+      }
+      renderaSeccio(contenidor2D, trobades2D, []);
+
+      if (trobades3D.length > 0) {
+        var h3b = document.createElement("h3");
+        h3b.textContent = "3D — no llistades a mà (" + trobades3D.length + ")";
+        contenidor3D.appendChild(h3b);
+      }
+      renderaSeccio(contenidor3D, trobades3D, []);
+
+      var pecesInfo = [
+        totalTrobades + " de " + window.PREGUNTES.length + " preguntes tenen solució ara mateix"
+      ];
+      if (pendentsClassificar.length > 0) {
+        pecesInfo.push(
+          pendentsClassificar.length +
+            " pregunta(es) sense dimensio 2D/3D assignada, no comprovades aquí"
+        );
+      }
+      estatEl.textContent = pecesInfo.join(" · ");
+
+      if (trobades2D.length === 0 && trobades3D.length === 0) {
+        estatEl.textContent +=
+          ". Si esperaves veure fitxers nous aquí i no hi apareixen, comprova que serveixes la pàgina des d'un servidor (no obrint-la per doble clic), ja que fetch() no funciona amb file://.";
+      }
+    })
+    .catch(function (err) {
+      estatEl.textContent =
+        "Hi ha hagut un error comprovant les solucions (" + err.message + "). Si obres aquesta pàgina per doble clic (file://) en lloc de servir-la, és l'origen més probable: fetch() hi queda bloquejat.";
+      estatEl.className = "descoberta__estat descoberta__estat--error";
+    });
+})();
+</script>
+
+</body>
+</html>
