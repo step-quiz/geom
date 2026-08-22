@@ -6,47 +6,43 @@
 <title>Solucions</title>
 <style>
   body { font-family: system-ui, sans-serif; max-width: 32rem; margin: 2rem auto; padding: 0 1rem; line-height: 1.5; }
-  li { margin-bottom: 0.75rem; }
+  li { margin-bottom: 0.6rem; }
   h2 { margin-top: 2rem; font-size: 1.1rem; }
   .nota { font-size: 0.85rem; color: #777; }
-  .fitxer { font-size: 0.85rem; color: #777; }
+  .compte { font-size: 0.85rem; color: #777; }
 </style>
 </head>
 <body>
 <h1>Solucions</h1>
 
 <p class="nota">
-  Dos agents mantenen aquest índex en paral·lel, cadascun al seu bloc:
-  <strong>Agent-sol-2D</strong> (2D) i <strong>Agent-sol-3D</strong>
-  (l'itinerari 3D). Cada agent només toca el seu bloc. Un únic nom de
-  fitxer per a tot, sense excepcions: <code>sol-&lt;id&gt;.html</code>,
-  on <code>&lt;id&gt;</code> és l'id real de la pregunta (p. ex.
-  <code>sol-q25.html</code> per a q25). Les entrades fetes abans
-  d'aquesta convenció mantenen el seu nom de fitxer antic tal qual
-  —es marca entre parèntesis— però no se n'han de crear més amb aquell
-  estil. <strong>No es resolen les preguntes de la llista amagada</strong>
-  (<code>EXERCICIS_AMAGATS</code> a <code>js/ui/llista.js</code>: q19,
-  q20, q34, q35, q84, q88, q18a, q18b, q21, q24, q83, q87, q67, q102,
-  q106 — totes 2D).
+  Dos agents mantenen aquest índex en paral·lel, cadascun al seu bloc.
+  Cada fitxer viu a <code>solucions/</code> i es diu
+  <code>&lt;id&gt;.html</code>, on <code>&lt;id&gt;</code> és exactament
+  el camp <code>id</code> de la pregunta a
+  <code>js/data/preguntes-dades.js</code> (p. ex. <code>q25.html</code>
+  per a la pregunta d'id <code>q25</code>) — cap altre format, cap
+  excepció, cap fitxer antic a mantenir en paral·lel. Detall complet a
+  <a href="COORDINACIO-AGENTS-SOLUCIONS.md">COORDINACIO-AGENTS-SOLUCIONS.md</a>.
 </p>
 
-<h2>2D — Agent-sol-2D</h2>
+<h2>2D — Agent-sol-2D <span class="compte">(78 preguntes en total)</span></h2>
 <ul>
-  <li><a href="sol/sol-01.html">Qüestió 1</a> — el centre del triangle equilàter <span class="fitxer">(sol-01.html)</span></li>
-  <li><a href="sol/sol-02.html">Qüestió 2</a> — quatre triangles, un sol argument <span class="fitxer">(sol-02.html)</span></li>
-  <li><a href="sol/sol-03.html">Qüestió 3</a> — rosetes de polígons regulars <span class="fitxer">(sol-03.html)</span></li>
-  <li><a href="sol/sol-04.html">Qüestió 4</a> — l'angle d'un polígon regular <span class="fitxer">(sol-04.html)</span></li>
-  <li><a href="sol/sol-05.html">Qüestió 5</a> — l'angle a la punta d'una estrella <span class="fitxer">(sol-05.html)</span></li>
-  <li><a href="sol/sol-06.html">Qüestió 6</a> — angles entre diagonals consecutives <span class="fitxer">(sol-06.html)</span></li>
-  <li><a href="sol/sol-07.html">Qüestió 7</a> — quan el camí fa més d'una volta <span class="fitxer">(sol-07.html)</span></li>
-  <li><a href="sol/sol-35.html">Qüestió 40</a> — dues configuracions, connectar centres <span class="fitxer">(sol-35.html)</span></li>
+  <li><a href="solucions/q01.html">q01</a> — el centre del triangle equilàter</li>
+  <li><a href="solucions/q02.html">q02</a> — quatre triangles, un sol argument</li>
+  <li><a href="solucions/q03.html">q03</a> — rosetes de polígons regulars</li>
+  <li><a href="solucions/q04.html">q04</a> — l'angle d'un polígon regular</li>
+  <li><a href="solucions/q05.html">q05</a> — l'angle a la punta d'una estrella</li>
+  <li><a href="solucions/q06.html">q06</a> — angles entre diagonals consecutives</li>
+  <li><a href="solucions/q07.html">q07</a> — quan el camí fa més d'una volta</li>
+  <li><a href="solucions/q40_implicit.html">q40_implicit</a> — dues configuracions, connectar centres</li>
 </ul>
 
-<h2>3D — Agent-sol-3D</h2>
+<h2>3D — Agent-sol-3D <span class="compte">(37 preguntes en total)</span></h2>
 <ul>
-  <li><a href="sol/sol-09.html">Qüestió 8b</a> — per què només cinc poliedres regulars <span class="fitxer">(sol-09.html)</span></li>
-  <li><a href="sol/sol-q25.html">Qüestió 25</a> — diagonal d'una caixa, doble Pitàgores <span class="fitxer">(sol-q25.html)</span></li>
-  <li><a href="sol/sol-q63.html">Qüestió 63</a> — dues maneres d'engendrar un cilindre <span class="fitxer">(sol-q63.html)</span></li>
+  <li><a href="solucions/q08b.html">q08b</a> — per què només cinc poliedres regulars</li>
+  <li><a href="solucions/q25.html">q25</a> — diagonal d'una caixa, doble Pitàgores</li>
+  <li><a href="solucions/q63.html">q63</a> — dues maneres d'engendrar un cilindre</li>
 </ul>
 </body>
 </html>
