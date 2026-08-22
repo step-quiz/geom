@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Els cinc triangles amagats dins d'un pentàgon — Solució — Geometria</title>
+<meta name="description" content="Per què els tres triangles marcats d'un pentàgon amb totes les diagonals traçades són semblants, i per què els dos que no es marquen són idèntics.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 31 · pàg. 49 del llibre · solució</span>
+  <h1 class="sol-header__title">Els cinc triangles amagats dins d'un pentàgon</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Per què els tres triangles són semblants? Per què els més grans són idèntics?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q31_page49_pentagon_ABC.png" alt="Figura de l'enunciat de la Qüestió 31" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Dues preguntes, dues eines diferents</p><p class="solucio__text">Igual que a la Qüestió 8c, aquí n'hi ha dues, i cadascuna es respon amb una eina diferent: que els tres triangles marcats (A, B, C) siguin semblants es demostra comparant angles; que els altres dos —els triangles laterals, més grans, sense etiquetar— siguin idèntics es demostra per simetria de mirall, no per angles.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">El triangle de dalt: isòsceles, i un angle ja conegut</p><p class="solucio__text">El triangle A —el de dalt, format pel vèrtex superior del pentàgon i els seus dos veïns— té dos costats que són costats del pentàgon: és isòsceles. El seu angle superior és, directament, un angle interior del pentàgon regular, que ja es pot calcular amb la fórmula (n−2)×180°/n de la Qüestió 4: amb n=5, val <strong>108°</strong>. Com que els altres dos angles del triangle isòsceles són iguals entre si i els tres han de sumar 180°: 2x+108°=180°, x=<strong>36°</strong> cadascun.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-189.png" alt="Figura de la construcció — El triangle de dalt: isòsceles, i un angle ja conegut" loading="lazy"><figcaption class="solucio__figura-nota">El triangle isòsceles de dalt: angle superior 108° (angle interior del pentàgon), dos angles de base de 36° cadascun.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">El mateix conjunt d'angles, tres vegades</p><p class="solucio__text">Marcant tots els angles amb aquest mateix criteri —108° on hi ha un angle interior del pentàgon o un angle format per dues diagonals que es creuen, 36° a la resta— es comprova que els tres triangles marcats (A, B, C) tenen exactament el mateix conjunt de tres angles: 108°, 36° i 36°. Amb els tres angles iguals, els tres triangles són semblants (criteri AAA), encara que no tinguin la mateixa mida.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-060.png" alt="Figura de la construcció — El mateix conjunt d'angles, tres vegades" loading="lazy"><figcaption class="solucio__figura-nota">Els arcs dobles marquen els 108° (a dalt de A, i on es creuen les diagonals); els arcs simples marquen els 36°, repetits a la base de A i de C.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Els dos triangles grans: no per angles, per simetria</p><p class="solucio__text">Per als dos triangles laterals més grans —els que no porten etiqueta— no cal repetir l'argument dels angles: n'hi ha prou d'observar que un <strong>pentàgon regular té un eix de simetria</strong> que passa pel vèrtex superior i pel punt mitjà del costat de baix. Aquest eix reflecteix el pentàgon sobre si mateix, i amb ell reflecteix el triangle lateral esquerre exactament sobre el triangle lateral dret. Dues figures que una simetria de mirall intercanvia sense alterar la figura de partida són, per força, <strong>idèntiques</strong> —no només semblants: exactament la mateixa mida i forma.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Els triangles A, B i C són semblants perquè tots tres comparteixen exactament el mateix conjunt d'angles (108°, 36°, 36°), que es dedueix marcant primer l'angle interior del pentàgon amb la fórmula de la Qüestió 4 i repartint la resta per la condició que sumin 180° a cada triangle isòsceles. Els dos triangles laterals més grans són idèntics (no només semblants) perquè l'eix de simetria del pentàgon els intercanvia exactament l'un per l'altre.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">En un pentàgon regular de costat 1, els triangles A, B i C tenen tots els mateixos dos angles (36° i 108°) comprovat per dibuix a escala o per coordenades —el mateix conjunt exacte per als tres, confirmant la semblança.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El pentàgon petit del pentagrama — Solució — Geometria</title>
+<meta name="description" content="Quantes vegades més petit és el pentàgon interior d'un pentagrama respecte al gran, en funció del nombre auri.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 32 · pàg. 51 del llibre · solució</span>
+  <h1 class="sol-header__title">El pentàgon petit del pentagrama</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Quant fa el pentàgon petit?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q32_page51_pentagram.png" alt="Figura de l'enunciat de la Qüestió 32" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Només cal una raó, no una mida</p><p class="solucio__text">La pregunta no demana cap mida en centímetres: demana un <strong>factor d'escala</strong> —quantes vegades més petit és el pentàgon que formen els cinc punts on es creuen les diagonals, comparat amb el pentàgon gran de partida.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">La peça que falta: la raó diagonal/costat</p><p class="solucio__text">A la Qüestió 33 es demostra, sense trigonometria, que la raó φ entre la diagonal i el costat d'un pentàgon regular compleix <strong>φ²=φ+1</strong>, i que aquesta raó val exactament <strong>φ=(1+√5)/2≈1,618</strong> —el nombre auri.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">El pentàgon petit, marcat en sanguina</p><p class="solucio__text">El pentàgon interior del pentagrama és, precisament, el que formen els cinc punts d'encreuament de les diagonals. Cada costat d'aquest pentàgon petit és, a la vegada, la base del petit triangle central que es forma allà on dues diagonals es tallen prop d'una punta.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-061.png" alt="Figura de la construcció — El pentàgon petit, marcat en sanguina" loading="lazy"><figcaption class="solucio__figura-nota">El pentàgon petit (en sanguina), format pels cinc punts on es creuen les diagonals del pentagrama.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">La raó s'aplica dues vegades</p><p class="solucio__text">Passar del costat del pentàgon gran a un tros de diagonal és multiplicar (o dividir) per φ una vegada. Però el costat del pentàgon petit no s'arriba a partir del costat gran amb un sol d'aquests passos: cal "entrar" cap a cada punta del pentagrama, la qual cosa aplica la mateixa raó <strong>dues vegades seguides</strong>. El costat del pentàgon petit és, per tant, el costat del pentàgon gran dividit per φ², no per φ.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">El pentàgon petit del pentagrama té costat 1/φ² respecte al gran (φ el nombre auri, ≈0,382 vegades més petit), perquè calen dues aplicacions consecutives de la raó diagonal/costat per "entrar" fins al pentàgon interior.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Amb costat del pentàgon gran = 1: costat del petit = 1/φ² ≈0,382. Comprovant amb la identitat φ²=φ+1: 1/φ² = 1/(φ+1) = 2−φ ≈ 2−1,618 = 0,382, coincidint.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

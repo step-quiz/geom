@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El factor de dilatació entre dos plans: un cosinus — Solució — Geometria</title>
+<meta name="description" content="Per què el factor pel qual s'escurça una longitud en projectar-la d'un pla a un altre és exactament el cosinus de l'angle entre els dos plans.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 91 · pàg. 138 del llibre · solució</span>
+  <h1 class="sol-header__title">El factor de dilatació entre dos plans: un cosinus</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Com depèn exactament el factor de dilatació de l'angle entre els plans?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q91_page138_dilation_planes.png" alt="Figura de l'enunciat de la Qüestió 91" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Què hem de produir</p><p class="solucio__text">Una fórmula: el factor pel qual s'allarga (o s'escurça) una longitud quan es projecta perpendicularment d'un pla a un altre, en termes d'un sol angle —l'angle entre els dos plans.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Prova-ho amb un cas fàcil</p><p class="solucio__text">Si els dos plans coincideixen (angle 0°), cap longitud canvia: factor 1. Si el pla girés fins quedar perpendicular a l'altre (angle 90°), un segment que hi fos perpendicular es projectaria a un sol punt: factor 0. Quina funció trigonomètrica val 1 a 0° i 0 a 90°?</p></div><div class="solucio__pas"><p class="solucio__pas-titol">La construcció</p><p class="solucio__text">Un segment sobre el pla inclinat, perpendicular a la línia on es tallen els dos plans, i la seva projecció (perpendicular) sobre el pla horitzontal.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-099.png" alt="Figura de la construcció — el segment L sobre el pla inclinat, l'angle θ entre els plans, i la projecció L·cosθ" loading="lazy"><figcaption class="solucio__figura-nota">El segment L, l'angle θ entre els dos plans, i la seva projecció L·cosθ sobre el pla horitzontal.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho</p><p class="solucio__text">El segment, la seva projecció i el tros de pla entre tots dos formen un triangle rectangle: la hipotenusa és el segment original, un catet és la projecció. L'angle entre els plans és exactament l'angle d'aquest triangle rectangle que toca el segment original. La raó entre el catet (projecció) i la hipotenusa (original) és el cosinus d'aquest angle.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">El factor de dilatació en projectar perpendicularment d'un pla a un altre és cos(θ), on θ és l'angle entre els dos plans: 1 quan coincideixen, 0 quan són perpendiculars.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Angle entre plans de 60°, segment de 8 unitats perpendicular a la línia de tall: projecció = 8×cos60° = 4 unitats. Angle de 0°: factor cos0° = 1, cap canvi.</p><p class="solucio__text">Aquest mateix factor cos(angle) és el que fa que una moneda circular, vista de gairebé de cantell, es vegi com una el·lipse molt aixafada —la relació entre els dos eixos de l'el·lipse aparent és exactament aquest cosinus.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

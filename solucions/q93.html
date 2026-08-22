@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les tangents a una esfera: totes iguals per un mateix argument — Solució — Geometria</title>
+<meta name="description" content="Per què totes les tangents d'un punt exterior a una esfera fan la mateixa longitud, via un triangle rectangle que no depèn de quin punt de tangència es triï.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 93 · pàg. 143 del llibre · solució</span>
+  <h1 class="sol-header__title">Les tangents a una esfera: totes iguals per un mateix argument</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Per què totes les tangents d'un punt donat a una esfera tenen la mateixa longitud?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q93_page143_sphere_tangents.png" alt="Figura de l'enunciat de la Qüestió 93" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Què hem de produir</p><p class="solucio__text">Un argument que valgui per a qualsevol de les infinites rectes tangents des d'un mateix punt exterior —no la comprovació d'un sol cas.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">El radi i la tangent són perpendiculars</p><p class="solucio__text">Igual que en un cercle, el radi que va del centre al punt de tangència és perpendicular a la recta tangent en aquell punt —encara que ara s'estigui en tres dimensions. Amb el centre O, el punt exterior P, i un punt de tangència T qualsevol: quin angle té el triangle OPT al vèrtex T?</p></div><div class="solucio__pas"><p class="solucio__pas-titol">La construcció</p><p class="solucio__text">Dos punts de tangència diferents, T₁ i T₂, cadascun formant el seu propi triangle amb O i P.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-101.png" alt="Figura de la construcció — el centre O, el punt exterior P, i dos punts de tangència T1 i T2 amb els seus triangles rectangles" loading="lazy"><figcaption class="solucio__figura-nota">Els triangles OPT₁ i OPT₂: tots dos rectangles en T, amb la mateixa hipotenusa OP i el mateix catet OT (el radi).</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho</p><p class="solucio__text">El triangle OPT és rectangle en T, amb hipotenusa OP —fixa, la distància del punt exterior al centre— i un catet OT —el radi, també fix. Pitàgores dona l'altre catet PT en termes només d'OP i del radi: PT = √(OP² − radi²) —cap referència a quin punt de tangència T és. Com que OP i el radi són els mateixos per a totes les tangents, PT també ho és.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Totes les tangents des d'un mateix punt exterior a una esfera tenen la mateixa longitud, √(OP² − radi²), perquè aquesta fórmula no depèn de quin punt de tangència es triï —només de la distància OP i del radi, que són els mateixos per a totes.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Distància del punt exterior al centre: 10. Radi de l'esfera: 6. Longitud de qualsevol tangent: √(10²−6²) = √64 = 8, la mateixa per a totes.</p><p class="solucio__text">El mateix argument, amb el mateix triangle rectangle, és el que ja serveix per a tangents des d'un punt a un cercle en 2D —aquí no canvia res essencial en passar a tres dimensions, només cal comprovar que el pla que conté O, P i T sempre existeix (tres punts no alineats determinen un pla).</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

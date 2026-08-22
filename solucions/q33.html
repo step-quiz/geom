@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>d²=d+1, demostrat sense trigonometria — Solució — Geometria</title>
+<meta name="description" content="Una demostració alternativa, purament geomètrica, que la raó entre la diagonal i el costat d'un pentàgon compleix d²=d+1 — sense sinus ni cosinus.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 33 · pàg. 52 del llibre · solució</span>
+  <h1 class="sol-header__title">d²=d+1, demostrat sense trigonometria</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Fes servir aquesta configuració de dos pentàgons per donar una demostració alternativa que la diagonal compleix d² = d + 1.</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q33_page52_two_pentagons.png" alt="Figura de l'enunciat de la Qüestió 33" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">La mateixa identitat, un altre camí</p><p class="solucio__text">La identitat d²=d+1 (amb d=φ, la raó diagonal/costat d'un pentàgon regular) es pot demostrar per trigonometria. Aquí es demana una via <strong>alternativa</strong>: arribar-hi directament d'un dibuix, sense cap sinus ni cosinus, només amb semblança de triangles.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">El triangle que amaguen dos pentàgons units</p><p class="solucio__text">Dos pentàgons regulars de costat 1 comparteixen una aresta sencera. Des dels dos extrems d'aquesta aresta compartida surt una diagonal cap a un mateix vèrtex llunyà d'un dels dos pentàgons. Aquestes dues diagonals, més l'aresta compartida, formen un triangle isòsceles: base <strong>1</strong> (l'aresta), i els altres dos costats <strong>d</strong> (dues diagonals de pentàgon).</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-062.png" alt="Figura de la construcció — El triangle que amaguen dos pentàgons units" loading="lazy"><figcaption class="solucio__figura-nota">El triangle isòsceles de base 1 i costats d, format per l'aresta compartida i les dues diagonals cap al vèrtex llunyà.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Els angles d'aquest triangle: 72°, 72°, 36°</p><p class="solucio__text">Aquest triangle —dos vèrtexs adjacents d'un pentàgon (units per un costat) i el vèrtex oposat (unit a cadascun per una diagonal)— és exactament el mateix tipus de triangle que ja va aparèixer a la Qüestió 31: allà es va demostrar que els dos triangles laterals grans del pentagrama, no etiquetats, són idèntics per simetria de mirall. Aplicant el mateix recompte d'angles que allà (marcant sistemàticament els 108° i 36° que es repeteixen per tot el pentagrama), aquest triangle resulta tenir <strong>72°</strong> a cada extrem de la base i <strong>36°</strong> al vèrtex llunyà.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">El triangle partit per la seva pròpia bisectriu</p><p class="solucio__text">Tracem ara la bisectriu d'un dels angles de 72° (a un extrem de l'aresta). Aquesta bisectriu talla el costat oposat —una de les diagonals, de llargada d— en un punt intern, creant un triangle petit nou. Aquest triangle petit resulta ser isòsceles ell mateix, amb dos costats iguals a la base original (1), i deixa un tros del costat gran igual a exactament <strong>1</strong> —de manera que l'altre tros, el que queda entre el punt de tall i el vèrtex llunyà, val <strong>d−1</strong>.</p><p class="solucio__text">El triangle petit té els mateixos tres angles que el gran (72°, 72°, 36°), només que "girats" de posició: són <strong>semblants</strong>. Comparant els costats que es corresponen als mateixos angles: el costat oposat a l'angle de 36° al triangle gran és la base (1); al petit, és el tros (d−1). El costat oposat a un angle de 72° al gran és d; al petit, és 1. La proporció de semblança dona, doncs: <strong>d/1 = 1/(d−1)</strong>.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Desenvolupant la relació</p><p class="solucio__text">d/1 = 1/(d−1) → d(d−1)=1 → d²−d=1 → <strong>d²=d+1</strong>. Exactament la identitat que es volia demostrar, arribada-hi sense cap trigonometria: només angles, bisectrius i semblança de triangles.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">d²=d+1, demostrat sense trigonometria: el triangle isòsceles que formen dos pentàgons units (base 1, costats d, angles 72°-72°-36°) es parteix amb la seva pròpia bisectriu en un triangle petit semblant al gran, i la proporció de semblança —d/1=1/(d−1)— desenvolupada dona directament la identitat.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">d/1=1/(d−1) → d(d−1)=1 → d²−d=1 → d²=d+1. Amb d=φ≈1,618: φ²≈2,618, i φ+1≈2,618, coincidint.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

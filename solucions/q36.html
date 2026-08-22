@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El quadrat maximitza l'àrea a perímetre fix — Solució — Geometria</title>
+<meta name="description" content="Una demostració purament algebraica, sense derivades, que entre tots els rectangles de perímetre fix el quadrat té sempre l'àrea més gran.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 36 · pàg. 55 del llibre · solució</span>
+  <h1 class="sol-header__title">El quadrat maximitza l'àrea a perímetre fix</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Demostra que, entre tots els rectangles de perímetre fix, el quadrat és el que té l'àrea més gran.</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/fig-147.png" alt="Figura de l'enunciat de la Qüestió 36" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Demostrar, no descobrir</p><p class="solucio__text">L'enunciat ja dona la resposta: el quadrat. La feina no és endevinar-la —és construir un argument que la faci certa per a <strong>tots</strong> els rectangles possibles amb aquell perímetre, no només per als que es puguin dibuixar i comparar un per un.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Reduir dues variables a una</p><p class="solucio__text">Amb perímetre fix P, triar l'amplada x ja determina l'alçada: 2x+2y=P, per tant y=P/2−x. Anomenant s=P/2 (la meitat del perímetre), l'alçada queda y=s−x. Tot el problema depèn ara d'una sola lletra, x.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-010.png" alt="Figura de la construcció — Reduir dues variables a una" loading="lazy"><figcaption class="solucio__figura-nota">Tots els rectangles amb el mateix perímetre tenen el vèrtex oposat sobre la mateixa recta: aquesta és, dibuixada, la condició "perímetre fix".</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">L'àrea en funció d'una sola variable</p><p class="solucio__text">L'àrea és àrea(x) = x·y = x(s−x). Es tracta de trobar per a quin valor de x aquesta expressió és més gran, sense necessitat de calcular-ne la derivada: n'hi ha prou amb un truc purament algebraic.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Completar el quadrat</p><p class="solucio__text">x(s−x) es pot reescriure com <strong>s²/4 − (x−s/2)²</strong> —es pot comprovar desenvolupant el quadrat de la dreta i simplificant. El primer terme, s²/4, és una constant que no depèn de x. El segon terme, (x−s/2)², és un quadrat: <strong>mai pot ser negatiu</strong>, i val exactament zero només quan x=s/2. Per tant, l'expressió sencera —l'àrea— és més gran precisament quan es resta el mínim possible, és a dir, quan (x−s/2)²=0, és a dir, <strong>x=s/2</strong>.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Per què x=s/2 vol dir quadrat</p><p class="solucio__text">Amb x=s/2, l'alçada surt y=s−x=s−s/2=s/2: <strong>igual que l'amplada</strong>. Un rectangle amb amplada i alçada iguals és, per definició, un quadrat. Com que qualsevol altre valor de x fa que (x−s/2)² sigui estrictament positiu i, per tant, resti més de l'àrea, el quadrat és l'únic rectangle que arriba al màxim.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">El mateix truc, girat: mínim perímetre a àrea fixa</p><p class="solucio__text">La pregunta es pot girar: de tots els rectangles amb la <strong>mateixa àrea</strong> A, quin té el <strong>perímetre més petit</strong>? Amb y=A/x, el perímetre és P(x)=2x+2A/x. Aquí no cal completar cap quadrat nou: la desigualtat entre la mitjana aritmètica i la mitjana geomètrica (per a dos nombres positius a, b: a+b ≥ 2√(ab), amb igualtat només si a=b) aplicada a a=2x i b=2A/x dona directament 2x+2A/x ≥ 2√(4A) = 4√A, amb igualtat exactament quan 2x=2A/x, és a dir x²=A, x=√A —de nou, un quadrat. La resposta a totes dues preguntes —àrea màxima a perímetre fix, perímetre mínim a àrea fixa— és la mateixa figura.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">El quadrat (x=s/2, amb s=P/2) té sempre l'àrea més gran entre tots els rectangles de perímetre P fix. Surt d'escriure l'àrea com x(s−x)=s²/4−(x−s/2)², on el segon terme és un quadrat que mai pot ser negatiu i que només val zero quan x=s/2 —precisament quan el rectangle és un quadrat. La pregunta girada (mínim perímetre a àrea fixa) té la mateixa resposta, per la desigualtat entre mitjanes aritmètica i geomètrica.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">P=24 (s=12): àrees 1×11=11, 3×9=27, 5×7=35, 6×6=36 —creixent fins al quadrat. I la fórmula 36−(x−6)² dona: amb x=1, 36−25=11 ✓; amb x=5, 36−1=35 ✓; amb x=6, 36−0=36 ✓, el màxim.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

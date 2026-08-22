@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Diagonals i àrea del dodecàgon regular — Solució — Geometria</title>
+<meta name="description" content="Per què triangular des d'un vèrtex i triangular des del centre donen resultats diferents, i quin dels dos convé per calcular l'àrea.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 30 · pàg. 48 del llibre · solució</span>
+  <h1 class="sol-header__title">Diagonals i àrea del dodecàgon regular</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Es poden mesurar les diagonals i l'àrea del dodecàgon regular?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q30_page48_dodecagon.png" alt="Figura de l'enunciat de la Qüestió 30" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Dues preguntes, una sola construcció de partida</p><p class="solucio__text">"Diagonals" i "àrea" semblen dues preguntes independents, però totes dues comencen igual: triangulant el dodecàgon (n=12) des d'un sol vèrtex, exactament com a la Qüestió 29. Aquí n−2=10: el ventall de diagonals des d'un vèrtex crea 10 triangles.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Un parany que cal veure abans de calcular res</p><p class="solucio__text">Aquests 10 triangles del ventall <strong>no són tots iguals</strong> —es veu a simple vista comparant el primer, prim i llarg, amb els del mig, més amples. Això no és cap problema per comptar diagonals (encara funciona igual), però sí que ho és per calcular l'àrea: sumar 10 vegades l'àrea d'un d'aquests triangles donaria un resultat incorrecte, perquè no representen la mateixa porció del dodecàgon.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-067.png" alt="Figura de la construcció — Un parany que cal veure abans de calcular res" loading="lazy"><figcaption class="solucio__figura-nota">El ventall de 10 triangles des d'un vèrtex: es veu a simple vista que no tots fan la mateixa mida.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Dues fonts per triangular, dos resultats diferents</p><p class="solucio__text">Hi ha una segona manera de triangular el mateix dodecàgon: unint el <strong>centre</strong> amb els 12 vèrtexs, en lloc d'un vèrtex amb els altres 11. Aquesta segona triangulació dona 12 triangles, i com que el polígon és regular, aquests 12 triangles són <strong>tots idèntics</strong> entre si —cadascun amb dos costats iguals al radi del dodecàgon i l'angle entre ells sempre de 360°/12=30°. Per comptar diagonals, qualsevol de les dues triangulacions serveix; per calcular l'àrea, només la segona (des del centre) és neta, perquè permet multiplicar per 12 en lloc d'haver de sumar deu àrees diferents.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">L'àrea, triangulant des del centre</p><p class="solucio__text">Cada un dels 12 triangles té dos costats iguals al radi R i un angle de 30° entremig; la seva àrea és (1/2)R²sin(30°)=(1/4)R². Multiplicant pels 12 triangles: <strong>àrea = 3R²</strong>. En funció del costat s del dodecàgon (i no del radi), el resultat equivalent és àrea = 3(2+√3)s², que es pot arribar a calcular substituint R en funció de s amb el mateix mètode de la Qüestió 26.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Sí, es poden mesurar totes dues coses, però amb mètodes diferents segons el cas. Per l'àrea, triangular des del <strong>centre</strong> (12 triangles idèntics) és net: àrea=3R². Per les diagonals, n'hi ha cinc llargades diferents, cadascuna 2R·sin(k×15°) segons quants vèrtexs salti (k=1..5), més el diàmetre (k=6). Triangular des d'un vèrtex (10 triangles desiguals) també compta bé les diagonals, però complica innecessàriament l'àrea.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Dodecàgon de costat s=1: apotema a=1/(2·tan15°)≈1,866, àrea total 3(2+√3)≈11,196. Les diagonals tenen cinc llargades diferents (segons quants vèrtexs salten: 1 a 5, més el diàmetre que en salta 6): amb R=1, valen 2R·sin(k×15°) per k=1..6, és a dir 0,518 / 1 / 1,414 / 1,732 / 1,932 / 2 —la tercera dona exactament √2 i la sisena exactament 2 (el diàmetre), bones per confirmar que els càlculs no s'han equivocat.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>
