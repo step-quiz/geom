@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mateixos angles: quan basta i quan no — Solució — Geometria</title>
+<meta name="description" content="Per què tenir els mateixos angles garanteix que dos triangles siguin semblants, però no ho garanteix per a quadrilàters.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 08c · pàg. 30 del llibre · solució</span>
+  <h1 class="sol-header__title">Mateixos angles: quan basta i quan no</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Si dos triangles tenen els mateixos angles, són necessàriament semblants? I les figures de quatre costats?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/fig-137.png" alt="Figura de l'enunciat de la Qüestió 08c" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Dues preguntes, no una</p><p class="solucio__text">L'enunciat en fa dues, i cal no donar per fet que la segona hereta la resposta de la primera: per què <em>tenir els mateixos angles</em> garanteix la mateixa forma en un triangle, i per què això no s'ha d'esperar automàticament en una figura de quatre costats.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Feines diferents: demostrar no és refutar</p><p class="solucio__text">Les dues preguntes exigeixen tipus de feina oposats. Si la resposta és <em>sí, sempre</em> (com resultarà ser el cas dels triangles), cal un argument que valgui per a <strong>tots</strong> els triangles possibles del món —cap dibuix concret ho pot demostrar per si sol. Si la resposta és <em>no, no sempre</em> (com resultarà ser el cas dels quadrilàters), <strong>un sol exemple que falli n'hi ha prou</strong>: un contraexemple tanca la pregunta del tot, sense necessitat de res més.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Els triangles: per què els mateixos angles ja ho decideixen tot</p><p class="solucio__text">Aquí sí que cal l'argument general. Dos triangles amb els mateixos tres angles compleixen el criteri de semblança <strong>angle-angle-angle (AAA)</strong>: si els tres parells d'angles coincideixen, els costats corresponents queden forçosament en la mateixa proporció els uns amb els altres, encara que la mida global sigui diferent. No hi ha manera de "deformar" un triangle mantenint els tres angles fixos sense limitar-se a escalar-lo sencer: els angles ja determinen completament la forma.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Els quadrilàters: un sol contraexemple</p><p class="solucio__text">Aquí no cal cap argument general, només trobar un cas que falli. Un quadrat i un rectangle allargat tenen exactament els mateixos quatre angles —tots quatre rectes, 90° cadascun— i, tanmateix, no tenen la mateixa forma: un té els quatre costats iguals i l'altre no. Aquest sol exemple ja demostra que, per a figures de quatre costats, els mateixos angles <strong>no</strong> garanteixen la mateixa forma: cal alguna cosa més, com la proporció entre costats consecutius.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-007.png" alt="Figura de la construcció — Els quadrilàters: un sol contraexemple" loading="lazy"><figcaption class="solucio__figura-nota">Els dos triangles de dalt (mateixos angles, semblants) i els dos quadrilàters de baix (també mateixos angles, però no semblants: un és quadrat i l'altre, rectangle allargat).</figcaption></figure></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Sí per als triangles: el criteri AAA garanteix que els mateixos tres angles impliquen la mateixa forma. No per als quadrilàters: un quadrat i un rectangle allargat tenen els mateixos quatre angles (tots de 90°) i formes clarament diferents — un sol contraexemple n'hi ha prou per tancar la segona pregunta.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">La frase "dues figures amb els mateixos angles són semblants" es fa certa afegint-hi "...si són triangles": la propietat depèn essencialment del nombre de costats, no és general a totes les figures poligonals.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

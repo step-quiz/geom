@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Per què l'altura sobre la hipotenusa crea dos triangles semblants — Solució — Geometria</title>
+<meta name="description" content="Com dividir un triangle rectangle en dos de més petits, tots dos semblants a l'original — la base de la demostració clàssica del teorema de Pitàgores.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 09 · pàg. 30 del llibre · solució</span>
+  <h1 class="sol-header__title">Per què l'altura sobre la hipotenusa crea dos triangles semblants</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Demostra que si tallem un triangle rectangle en dos de més petits, tots dos han de ser semblants al triangle original.</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q09_page30_triangle_cevian.png" alt="Figura de l'enunciat de la Qüestió 09" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Semblant vol dir: mateixos angles</p><p class="solucio__text">Per demostrar que dues figures són semblants —mateixa forma, mida diferent— no cal mesurar cap costat: n'hi ha prou de comprovar que tenen els mateixos angles. En triangles, encara es pot simplificar més: <strong>en un triangle rectangle, conèixer un sol angle agut ja determina l'altre</strong> (els tres angles sumen 180° i un ja val 90°, així que els altres dos sumen 90°, i en queda un de determinat un cop es coneix l'altre). Per tant, per veure que dos triangles rectangles són semblants n'hi ha prou de trobar-los <strong>un</strong> angle agut en comú.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Separar les tres peces</p><p class="solucio__text">L'altura traçada des de l'angle recte del triangle gran fins a la hipotenusa el divideix en dos triangles més petits. Compte amb el detall clau de la figura: als tres triangles hi ha un angle marcat amb un arc i un altre amb dos arcs. Un arc i dos arcs són coses <strong>diferents</strong> —tots els angles marcats amb un arc valen igual entre ells, i tots els marcats amb dos arcs valen igual entre ells, però no cal que un arc i dos arcs coincideixin.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-006.png" alt="Figura de la construcció — Separar les tres peces" loading="lazy"><figcaption class="solucio__figura-nota">El triangle ① (el gran) i els dos petits ② i ③, separats i orientats tots de la mateixa manera: cadascun amb el seu angle recte (quadradet) i el seu angle agut compartit amb el gran (arc o doble arc).</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho: cada peça comparteix un angle amb el gran</p><p class="solucio__text">Cada un dels dos triangles petits té el seu propi angle recte —l'altura els n'ha creat un de nou a cadascun. I, a més, cadascun comparteix un dels angles aguts amb el triangle gran original: el triangle de sota comparteix l'angle agut de la dreta; el de dalt, l'angle agut de dalt. Amb l'angle recte (compartit pels tres) més un angle agut en comú amb el gran, cadascun dels dos triangles petits ja compleix la condició de semblança amb el triangle ①: <strong>tots tres triangles són semblants entre si</strong>.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Un resultat amb una segona vida</p><p class="solucio__text">Aquest fet no és només curiós per si mateix: és exactament la base d'una demostració clàssica del <strong>teorema de Pitàgores</strong>. De la semblança en surt que a²=c·p i b²=c·q, on <em>a</em> i <em>b</em> són els catets del triangle gran, <em>c</em> la seva hipotenusa, i <em>p</em>, <em>q</em> els dos trossos en què l'altura talla la hipotenusa. Sumant les dues igualtats: a²+b²=c·p+c·q=c·(p+q)=c·c=c².</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Sí: l'altura des de l'angle recte fins a la hipotenusa crea dos triangles que comparteixen, cadascun, l'angle recte i un angle agut amb el triangle original —condició suficient de semblança. Aquest fet és, a més, la base d'una demostració del teorema de Pitàgores: a²=c·p, b²=c·q, i sumant-les, a²+b²=c².</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Triangle 3-4-5: l'altura sobre la hipotenusa fa 2,4 i la talla en trossos de 1,8 i 3,2. Comprovant la proporció dels catets als tres triangles: 1,8/2,4 = 0,75 i 2,4/3,2 = 0,75, coincidint amb 3/4 = 0,75 del triangle gran.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>
