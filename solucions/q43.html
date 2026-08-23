@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>L'àrea de la intersecció de dos cercles — Solució — Geometria</title>
+<meta name="description" content="Calcular exactament l'àrea i el perímetre de la zona compartida per dos cercles, cadascun passant pel centre de l'altre.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 43 · pàg. 65 del llibre · solució</span>
+  <h1 class="sol-header__title">L'àrea de la intersecció de dos cercles</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Si dues circumferències es disposen de manera que cadascuna passa pel centre de l'altra, quina és l'àrea i el perímetre de la intersecció? I per a tres circumferències superposades?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q43_page65_overlapping_circles.png" alt="Figura de l'enunciat de la Qüestió 43" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Dues xifres exactes, no aproximades</p><p class="solucio__text">L'enunciat demana l'àrea i el perímetre de la zona compartida (la "vesica", o ull, que formen dos cercles que es tallen) quan cada cercle passa pel centre de l'altre —una condició molt concreta que fixa exactament la distància entre els dos centres: <strong>igual al radi</strong> r.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">El triangle equilàter amagat</p><p class="solucio__text">Unint els dos centres i un dels dos punts on els cercles es tallen, els tres costats d'aquest triangle fan tots tres <strong>r</strong>: dos perquè són radis (del centre a un punt de la seva pròpia circumferència), i el tercer perquè la distància entre els dos centres també val r (per la condició de l'enunciat). Un triangle amb els tres costats iguals és <strong>equilàter</strong>.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-070.png" alt="Figura de la construcció — El triangle equilàter amagat" loading="lazy"><figcaption class="solucio__figura-nota">El triangle equilàter (tres marquetes iguals) format pels dos centres i un dels dos punts d'intersecció.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">L'angle que "veu" cada centre</p><p class="solucio__text">El mateix triangle equilàter es repeteix, en mirall, cap a l'altre punt de tall. Junts, marquen l'angle que cada centre veu entre els dos punts d'intersecció: com que cada meitat és un angle de 60° (l'angle d'un triangle equilàter), l'angle complet és <strong>2×60°=120°</strong>.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Sector menys triangle, dues vegades</p><p class="solucio__text">La zona compartida és la suma de dos "segments circulars" idèntics —un de cada cercle. Cadascun és un sector de 120° (àrea = (120/360)·πr² = πr²/3) menys el triangle equilàter que ja s'ha trobat (àrea = (√3/4)r²). Sumant els dos segments: <strong>àrea = 2·(πr²/3 − √3r²/4) = r²(4π−3√3)/6</strong>. El perímetre és la suma dels dos arcs de 120°, un de cada cercle: <strong>2·(2πr/3) = 4πr/3</strong>.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Per a tres cercles: el mètode, no la xifra final</p><p class="solucio__text">Amb tres cercles, cadascun passant pel centre dels altres dos (els tres centres formen, també, un triangle equilàter de costat r), la mateixa idea —sectors menys triangles— es repeteix, però ara cal decidir amb cura quines regions del dibuix es compten un cop, quines dos, i quina exactament tres vegades. És el mateix repte de comptatge acurat que ja va aparèixer a la Qüestió 3, i que aquí no es desenvolupa fins al resultat numèric final.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Àrea = r²(4π−3√3)/6 ≈1,228r². Perímetre = 4πr/3 ≈4,189r. Surten de veure la zona compartida com dos segments circulars (sector de 120° menys triangle equilàter), on el 120° ve del fet que la distància entre centres i els radis formen sempre un triangle equilàter. Per a tres cercles, la mateixa idea es repeteix amb un comptatge de regions més acurat, connectat amb la Qüestió 3.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Amb r=1: sector 120°=π/3≈1,047; triangle equilàter=√3/4≈0,433; un segment≈0,614; àrea solapada≈1,228. Perímetre: 2 arcs de 120°=4π/3≈4,189.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El volum de qualsevol sòlid amb centre: superfície per apotema — Solució — Geometria</title>
+<meta name="description" content="Partint un poliedre regular en piràmides des del seu centre, el volum surt sempre un terç de la superfície total per l'apotema — i no cal que sigui un dels cinc platònics.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 57 · pàg. 82 del llibre · solució</span>
+  <h1 class="sol-header__title">El volum de qualsevol sòlid amb centre: superfície per apotema</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Quins són els volums dels sòlids platònics? I els d'altres poliedres simètrics?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/fig-153.png" alt="Figura de l'enunciat de la Qüestió 57" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Què hem de produir</p><p class="solucio__text">No cal trobar els volums dels cinc sòlids platònics un per un: n'hi ha prou de resoldre'n un (o dos) de manera que el mètode sigui evidentment el mateix per als altres tres.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Parteix-lo en peces que ja se sap mesurar</p><p class="solucio__text">S'uneix el centre del sòlid amb el centre de cadascuna de les seves cares. Quantes peces en surten, per a un tetràedre? I per a un octàedre?</p></div><div class="solucio__pas"><p class="solucio__pas-titol">La construcció</p><p class="solucio__text">El tetràedre i l'octàedre, cadascun partit en piràmides des del seu centre —el mateix nombre de piràmides que de cares.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-076.png" alt="Figura de la construcció — el tetràedre i l'octàedre, cadascun triangulat en piràmides des del centre" loading="lazy"><figcaption class="solucio__figura-nota">Segments (vermell) del centre a cada vèrtex: el tetràedre queda partit en 4 piràmides, l'octàedre en 8.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho</p><p class="solucio__text">Cada peça és una piràmide amb base una cara del sòlid i alçada l'apotema del sòlid —la distància del centre a una cara. El volum total és (nombre de cares) × (1/3) × (àrea d'una cara) × (apotema), que es pot reescriure com (1/3) × (àrea total de la superfície) × (apotema).</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">El volum de qualsevol poliedre regular (i, de fet, de qualsevol poliedre amb un punt equidistant de totes les cares) és (1/3) × àrea total de la superfície × apotema.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Tetràedre d'aresta 1: apotema ≈ 0,204, àrea total ≈ 1,732 (4 cares equilàters). Volum ≈ (1/3)(1,732)(0,204) ≈ 0,118 —coincideix amb la fórmula coneguda s³/(6√2).</p><p class="solucio__text">Aquesta fórmula "(1/3) × superfície × apotema" no fa servir enlloc que el sòlid sigui un dels cinc platònics: val per a qualsevol poliedre que tingui un punt equidistant de totes les cares —la mateixa generalització que ja funciona per a l'àrea d'un polígon regular via triangulació des del centre.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

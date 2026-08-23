@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La suma dels angles d'un polígon — Solució — Geometria</title>
+<meta name="description" content="Per què la suma dels angles interns d'un polígon convex de n costats és (n−2)×180° — i on deixa de valer aquesta demostració concreta.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 70 · pàg. 105 del llibre · solució</span>
+  <h1 class="sol-header__title">La suma dels angles d'un polígon</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Quant sumen els angles interns d'un polígon?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/fig-157.png" alt="Figura de l'enunciat de la Qüestió 70" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Convertir el desconegut en l'únic que ja se sap</p><p class="solucio__text">L'únic polígon del qual ja se'n sap la suma d'angles amb tota certesa és el triangle: 180°. Tota la demostració consisteix a convertir un polígon de n costats en un cert nombre de triangles, sense deixar-ne cap forat ni superposar-ne cap.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Casos petits, abans de generalitzar</p><p class="solucio__text">Un quadrilàter (n=4): una diagonal el parteix en 2 triangles, suma 2×180°=360°. Un pentàgon (n=5): triant totes les diagonals des d'un sol vèrtex, en surten 3 triangles, suma 3×180°=540°.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-199.png" alt="Figura de la construcció — Casos petits, abans de generalitzar" loading="lazy"><figcaption class="solucio__figura-nota">El quadrilàter (2 triangles) i el pentàgon (3 triangles), triangulats des d'un vèrtex.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Sense cap simetria de suport</p><p class="solucio__text">El polígon amb què es generalitza el patró no és regular, expressament: l'argument no es pot recolzar en cap simetria, ha de valer per a <strong>qualsevol</strong> polígon convex —un polígon sense cap racó "entrant", on totes les diagonals des d'un vèrtex es queden dins la figura.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-036.png" alt="Figura de la construcció — Sense cap simetria de suport" loading="lazy"><figcaption class="solucio__figura-nota">Un pentàgon irregular, triangulat des d'un vèrtex: el mateix recompte de triangles val encara que no hi hagi cap simetria.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Comptar triangles en funció de n</p><p class="solucio__text">Des d'un vèrtex d'un polígon de n costats hi caben n−3 diagonals (sense comptar els dos costats que ja hi surten). Cada diagonal afegeix un triangle més als dos que ja formen els costats adjacents al vèrtex: en total, <strong>n−2</strong> triangles. Multiplicant per 180°: <strong>suma = (n−2)×180°</strong>.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">On s'atura aquesta demostració concreta</p><p class="solucio__text">La fórmula (n−2)×180° és certa per a <strong>qualsevol</strong> polígon, convex o no —es pot comprovar mesurant. Però aquesta demostració concreta, la del ventall de diagonals des d'un sol vèrtex, <strong>només</strong> funciona per a polígons convexos: en un polígon amb un racó entrant, algunes de les diagonals que caldria traçar des del vèrtex de la punta interior se'n van fora de la figura, i el ventall ja no la parteix netament en triangles. Per a aquest cas cal un argument diferent (sempre hi ha alguna diagonal interior que el parteix en dos polígons més petits, repetint el procés). Que un argument no arribi a tot arreu no el fa dolent —el que seria dolent és no saber fins on arriba.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">La suma dels angles interns d'un polígon de n costats és (n−2)×180°, de triangular-lo des d'un sol vèrtex en n−2 triangles. Aquesta demostració concreta val per a polígons convexos; per a polígons amb racons entrants la fórmula continua sent certa, però cal un argument diferent (partir per alguna diagonal interior i repetir), perquè el ventall des d'un sol vèrtex ja no serveix.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Hexàgon (n=6): 4 triangles, 720°. Polígon de 10 costats: 8 triangles, 1.440°. Fórmula general: (n−2)×180°.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

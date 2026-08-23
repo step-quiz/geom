@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El tronc de piràmide: completa el que falta — Solució — Geometria</title>
+<meta name="description" content="El volum d'una piràmide truncada, trobat completant-la fins a la piràmide sencera i restant-ne el tros de dalt afegit imaginàriament.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 48 · pàg. 74 del llibre · solució</span>
+  <h1 class="sol-header__title">El tronc de piràmide: completa el que falta</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Un quadrat de costat a se situa a una altura h damunt d'un quadrat de costat b, formant una piràmide incompleta. Com depèn el seu volum de a, b i h?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q48_page74_frustum.png" alt="Figura de l'enunciat de la Qüestió 48" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Què hem de produir</p><p class="solucio__text">Una fórmula en a, b, h. "Incompleta" és la pista: el sòlid és un tros d'una piràmide, no una piràmide sencera.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Completa el que falta</p><p class="solucio__text">Es prolonguen els quatre costats inclinats del tronc fins que es tornin a trobar en un sol punt. Aquest punt existeix sempre —perquè els dos quadrats són paral·lels i concèntrics, un d'escala diferent—: és el vèrtex de la piràmide sencera de la qual el sòlid original n'és només un tros.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">La construcció</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-074.png" alt="Figura de la construcció — el tronc amb els costats prolongats en vermell fins al vèrtex comú" loading="lazy"><figcaption class="solucio__figura-nota">Els costats prolongats (vermell) fins al vèrtex comú —no formaven part de l'enunciat original—, amb a (dalt), b (baix) i h (l'alçada del tronc) marcats.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho</p><p class="solucio__text">El sòlid original és (piràmide gran, fins al vèrtex, base b) menys (piràmide petita, el tros de dalt afegit imaginàriament, base a). Per semblança de triangles, l'alçada H de la piràmide gran compleix a/b = (H−h)/H, d'on s'aïlla H en termes de a, b, h. El volum del tronc és (1/3)b²H − (1/3)a²(H−h).</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">El volum del tronc és la diferència entre el volum de la piràmide gran completada (base b, fins al vèrtex) i el de la piràmide petita afegida imaginàriament (base a), totes dues calculades amb l'alçada que dona la semblança de triangles.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">a=2, b=4, h=3: alçada de la piràmide gran H tal que a/b=(H−h)/H → H=6. Volum gran=(1/3)(16)(6)=32. Volum petit=(1/3)(4)(3)=4. Volum del tronc=32−4=28.</p><p class="solucio__text">Aquesta mateixa jugada —completar una figura incompleta fins a una de coneguda, i restar-ne el tros de més— torna a aparèixer en aproximar un casquet esfèric, i, en un altre embolcall, en aproximar un con per discs apilats.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

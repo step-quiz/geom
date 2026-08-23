@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quan es tanca un polígon fet de passos i girs — Solució — Geometria</title>
+<meta name="description" content="La condició perquè una successió de moviments (avança, gira) torni al punt de partida: dues sumes independents, horitzontal i vertical, que han de donar zero alhora.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 72 · pàg. 106 del llibre · solució</span>
+  <h1 class="sol-header__title">Quan es tanca un polígon fet de passos i girs</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Fes una llista curta de longituds i girs. Quins problemes de triangles cal resoldre per determinar si el teu polígon és tancat?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/fig-159.png" alt="Figura de l'enunciat de la Qüestió 72" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Una llista de problemes, no un polígon concret</p><p class="solucio__text">No es demana comprovar un polígon en particular: es demana la <strong>llista de problemes</strong> que caldria resoldre, en general, per saber si una successió del tipus "avança tant, gira tant" torna mai exactament al punt de partida.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Descompondre cada tram en dues direccions</p><p class="solucio__text">Cada tram de la llista —una longitud, en una direcció determinada pels girs acumulats fins aquell moment— es pot descompondre en un avanç horitzontal i un de vertical: exactament el cosinus i el sinus de l'angle acumulat, multiplicats per la longitud del tram. És, literalment, un triangle rectangle amb la longitud del tram com a hipotenusa.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-094.png" alt="Figura de la construcció — Descompondre cada tram en dues direccions" loading="lazy"><figcaption class="solucio__figura-nota">Un tram inclinat, descompost en el seu avanç horitzontal i el seu avanç vertical.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Dues sumes, no una</p><p class="solucio__text">El polígon es tanca si, i només si, <strong>dues sumes independents</strong> donen zero alhora: la suma de tots els avanços horitzontals de tots els trams, i la suma de tots els avanços verticals. Que una de les dues doni zero no és suficient —cal que totes dues ho facin a la vegada.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Cada tram, un problema de triangle rectangle</p><p class="solucio__text">La llista de problemes que calia produir és, doncs: per a cada tram, un problema de triangle rectangle (longitud coneguda, angle conegut, trobar els dos catets), i després sumar tots els catets horitzontals per una banda i tots els verticals per l'altra, comprovant que totes dues sumes donen zero.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Un polígon fet de trams "avança, gira" es tanca exactament quan dues sumes independents —la de tots els avanços horitzontals i la de tots els avanços verticals— donen zero alhora. Cada tram individual és un problema de triangle rectangle (longitud i angle coneguts, catets per trobar), i aquesta mateixa descomposició en dues sumes és el nucli de com es construeixen coordenades i vectors a partir de la trigonometria.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Tres trams: 3 unitats a 0°, 4 unitats a 90°, 5 unitats en la direcció que tanca el triangle (el 3-4-5 clàssic, amb el tercer tram a uns 233° respecte de l'eix horitzontal). Sumant els tres avanços horitzontals i els tres verticals per separat, totes dues sumes donen exactament zero.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Folrar l'espai: dos tetràedres per cada octàedre — Solució — Geometria</title>
+<meta name="description" content="Per què alternar tetràedres i octàedres regulars omple l'espai sense deixar buits: al voltant de cada aresta, els angles diedres sumen exactament 360°.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 82 · pàg. 124 del llibre · solució</span>
+  <h1 class="sol-header__title">Folrar l'espai: dos tetràedres per cada octàedre</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Demostra que es pot omplir l'espai completament fent servir octaedres i tetraedres regulars. Pots trobar altres maneres d'enrajolar l'espai tridimensional amb poliedres simètrics?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/fig-164.png" alt="Figura de l'enunciat de la Qüestió 82" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Què hem de produir</p><p class="solucio__text">Una comprovació que, al voltant de cada aresta compartida, els angles diedres dels sòlids que hi conflueixen sumen exactament 360° —el mateix test que ja funciona per als mosaics plans amb polígons regulars, ara en 3D i sobre arestes en lloc de vèrtexs.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Quants sòlids de cada mena, a cada aresta</p><p class="solucio__text">A cada aresta d'aquest folrat, hi conflueixen alguns tetràedres i alguns octàedres. Amb l'angle diedre de cadascun (ja trobat), quina combinació suma 360°?</p></div><div class="solucio__pas"><p class="solucio__pas-titol">La construcció</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-097.png" alt="Figura de la construcció — l'aresta compartida marcada a un tetràedre i a un octàedre" loading="lazy"><figcaption class="solucio__figura-nota">L'aresta compartida, marcada en vermell, tant al tetràedre com a l'octàedre.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho</p><p class="solucio__text">Dos angles diedres de tetràedre (2×70,53°) més dos d'octàedre (2×109,47°) sumen 360° exactes —perquè cada parella (un tetràedre, un octàedre) ja en suma 180°. Aquesta combinació concreta (2+2) és la que realment es fa servir en aquest folrat de l'espai.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Al voltant de cada aresta, dos tetràedres i dos octàedres regulars omplen exactament els 360°: aquesta combinació folra l'espai tridimensional sense deixar cap buit ni superposició.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">2×70,53°+2×109,47° = 141,06°+218,94° = 360° exacte.</p><p class="solucio__text">A diferència del mosaic pla, on un sol tipus de polígon regular (el triangle, el quadrat, l'hexàgon) ja pot folrar tot sol, aquí calen dos sòlids diferents junts —el tetràedre regular sol no pot omplir l'espai, perquè el seu angle diedre, 70,53°, no divideix 360° de manera exacta cap nombre de vegades.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El rectangle auri — Solució — Geometria</title>
+<meta name="description" content="Les proporcions d'un rectangle que, en treure-li un quadrat, deixa un rectangle semblant a l'original — la mateixa equació del nombre auri, en una figura completament diferent.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 38 · pàg. 55 del llibre · solució</span>
+  <h1 class="sol-header__title">El rectangle auri</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Un rectangle auri té la propietat que, en treure-li un quadrat, el rectangle que queda és semblant a l'original. Quines són les proporcions d'un rectangle auri?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q38_page55_golden_rectangle.png" alt="Figura de l'enunciat de la Qüestió 38" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">"Semblant" és tota la informació que hi ha</p><p class="solucio__text">L'enunciat no dona cap altra condició més enllà d'aquesta: el rectangle que queda després de treure el quadrat ha de tenir <strong>la mateixa proporció</strong> entre costats que el rectangle original. No hi ha cap mida fixa a l'enunciat —la resposta ha de ser una raó, no una llargada concreta.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Noms per als costats</p><p class="solucio__text">Amb el costat curt igual a 1 i el llarg igual a x (x>1): en treure'n el quadrat de costat 1, el que queda és un rectangle de costats 1 i (x−1) —el tram del costat llarg que sobra un cop retallat el quadrat.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-042.png" alt="Figura de la construcció — Noms per als costats" loading="lazy"><figcaption class="solucio__figura-nota">El costat llarg, partit en el tram del quadrat (1) i el tram que sobra (x−1) per la línia sanguina.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">La mateixa proporció, dues vegades</p><p class="solucio__text">Que el rectangle petit sigui semblant a l'original vol dir que la raó costat llarg / costat curt ha de ser <strong>la mateixa</strong> als dos rectangles: al gran, x/1; al petit, 1/(x−1) (el seu costat llarg és 1, el curt és x−1). Igualant-les: <strong>x/1 = 1/(x−1)</strong>.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Resoldre-la: exactament la mateixa equació de q33</p><p class="solucio__text">Desenvolupant: x(x−1)=1 → x²−x=1 → <strong>x²=x+1</strong>. És exactament la mateixa equació —lletra per lletra, només canviant el nom de la incògnita— que ja va aparèixer a la Qüestió 33 amb la diagonal del pentàgon (allà, d²=d+1). La solució positiva és <strong>x=(1+√5)/2=φ≈1,618</strong>, el nombre auri.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Un rectangle auri té costats en la proporció 1 : φ, amb φ=(1+√5)/2≈1,618 el nombre auri. Surt de traduir "el rectangle petit és semblant al gran" en una equació de proporcions (x/1=1/(x−1)) que, un cop desenvolupada, dona exactament la mateixa identitat x²=x+1 que ja havia aparegut —amb un altre nom, d, i en una figura completament diferent— amb la diagonal del pentàgon a la Qüestió 33.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Amb x=φ≈1,618: x/1=1,618, i 1/(x−1)=1/0,618≈1,618 —coincideixen, confirmant la proporció.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

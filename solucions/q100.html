@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dilatada o capgirada: on és el punt de projecció — Solució — Geometria</title>
+<meta name="description" content="Entre dos plans paral·lels, el signe d'un sol factor decideix si la projecció central surt dilatada normal o capgirada com en una cambra fosca.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 100 · pàg. 159 del llibre · solució</span>
+  <h1 class="sol-header__title">Dilatada o capgirada: on és el punt de projecció</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Quin és l'efecte de la projecció central quan els plans són paral·lels? Què passa si el punt de projecció es troba entre els plans?</p>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Què hem de produir</p><p class="solucio__text">Dues respostes, una per cada subcas de l'enunciat —no una de sola. Primer: què li passa a una figura quan es projecta centralment entre dos plans paral·lels amb el punt de projecció fora d'entremig. Segon: què canvia si el punt de projecció queda entre els dos plans.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Segueix un sol punt amb un paràmetre</p><p class="solucio__text">Es posa el punt de projecció a alçada p, un pla a alçada 0 i l'altre a alçada h. Un punt a distància x₀ de l'eix, al pla 0, es projecta a distància x₀·(p−h)/p al pla h —surt de resoldre on la recta des del punt de projecció talla el segon pla. Provant-ho amb p més gran que h (fora d'entremig) i després amb p entre 0 i h.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">La construcció</p><p class="solucio__text">Els dos subcasos, un al costat de l'altre: amb O fora dels dos plans, i amb O entremig.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-104.png" alt="Figura de la construcció — dos diagrames comparant O fora dels plans (dilatació) amb O entremig (capgirada)" loading="lazy"><figcaption class="solucio__figura-nota">Esquerra: O fora, P' i Q' mantenen el mateix ordre —dilatació. Dreta: O entremig, P' i Q' surten intercanviats —capgirada.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho</p><p class="solucio__text">Quan p és fora de l'interval [0,h], el factor (p−h)/p és positiu: la figura es projecta ampliada o reduïda però sense capgirar-se —una dilatació ordinària, com ja mostraven les projeccions centrals anteriors. Quan p és entre 0 i h, aquest mateix factor esdevé negatiu: la figura es projecta capgirada, com la imatge d'una cambra fosca, no només escalada.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Entre dos plans paral·lels, amb el punt de projecció fora d'ells, la projecció central és una dilatació ordinària (sense capgirar). Amb el punt de projecció entre els dos plans, el factor de projecció es torna negatiu: la imatge surt capgirada.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">h=10. Amb p=−2 (fora, per sota): factor=(−2−10)/(−2)=6, positiu. Amb p=5 (entremig): factor=(5−10)/5=−1, negatiu —la figura surt exactament invertida i de la mateixa mida.</p><p class="solucio__text">Aquest capgirament és el mateix fenomen que fa que la imatge dins d'una cambra fosca (o la retina de l'ull) surti invertida: el punt de projecció (el forat) queda entre l'objecte i la pantalla on es forma la imatge.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

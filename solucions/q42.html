@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>L'angle inscrit és sempre la meitat de l'angle central — Solució — Geometria</title>
+<meta name="description" content="Generalitzant q41 a una corda qualsevol: per què tots els angles vistos des del mateix arc són iguals, i per què calen dos casos per demostrar-ho.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 42 · pàg. 62 del llibre · solució</span>
+  <h1 class="sol-header__title">L'angle inscrit és sempre la meitat de l'angle central</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Demostra que, si dos punts es connecten al mateix arc, els angles resultants han de ser iguals.</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q42_page62_same_arc_angles.png" alt="Figura de l'enunciat de la Qüestió 42" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Ja no hi ha cap diàmetre de partida</p><p class="solucio__text">A la Qüestió 41 el segment AB ja era un diàmetre, i l'angle sempre sortia 90°. Aquí AB és una corda qualsevol —no passa necessàriament pel centre— i cal demostrar que, mentre el punt es mantingui al mateix arc (la mateixa banda de la corda), l'angle que s'hi veu és sempre el mateix, encara que ja no calgui que sigui recte.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">El mateix truc de q41, aplicat a un diàmetre nou</p><p class="solucio__text">En lloc del diàmetre donat de q41, aquí cal traçar-ne un de nou: el que passa pel centre i pel punt P des d'on es mira. Aquest diàmetre crea dos triangles isòsceles —OPA i OPB—, exactament amb el mateix argument d'abans (OP=OA=OB, tots tres radis).</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-015.png" alt="Figura de la construcció — El mateix truc de q41, aplicat a un diàmetre nou" loading="lazy"><figcaption class="solucio__figura-nota">El diàmetre auxiliar per P (sanguina, discontinu) crea els dos triangles isòsceles OPA i OPB.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Dos casos: el diàmetre pot caure dins o fora de l'angle</p><p class="solucio__text">Anomenant α i β els angles de la base a P en cadascun dels dos triangles isòsceles, l'angle APB que interessa és <strong>α+β</strong> si el diàmetre auxiliar cau <em>dins</em> de l'angle APB (el separa en dos trossos), però és <strong>α−β</strong> si el diàmetre cau <em>fora</em> (P és molt a prop d'un dels dos extrems, i el diàmetre queda fora de l'angle format per PA i PB). Amb un cercle de radi 10, centre a l'origen, A a 200° i B a 340°: amb P a 80° (força separat de tots dos extrems), l'angle APB surt 70° i el cas correcte és la suma (α=30°, β=40°, α+β=70°). Amb P a 350° (gairebé enganxat a B), l'angle APB continua sortint 70°, però ara el cas correcte és la resta (α=15°, β=85°, α−β=70°): la suma, en aquest segon cas, donaria 100°, un valor incorrecte.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">El mateix per Q, i comparar</p><p class="solucio__text">Repetint exactament el mateix procediment per al segon punt Q (amb el seu propi diàmetre auxiliar, que pot estar en un cas diferent del de P), s'obté sempre el mateix angle final —70° en aquest exemple, per a qualsevol punt del mateix arc gran. Que el cas (suma o resta) pugui canviar de punt a punt no trenca l'argument: en tots dos casos, aplicant el mateix raonament sobre els dos triangles isòsceles que crea el diàmetre auxiliar corresponent, s'arriba al mateix resultat final.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Tots els angles vistos des del mateix arc són iguals, i valen exactament la meitat de l'angle central que subtendeix la corda. La demostració necessita distingir dos casos —el diàmetre auxiliar pot caure dins o fora de l'angle que es mira, donant suma o resta dels dos angles isòsceles— però arriba al mateix resultat final en tots dos casos, tal com ja havia passat a la Qüestió 15.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Cercle de radi 10, A a 200°, B a 340° (angle central AOB=140°). Amb P a 80°: angle APB=70° (cas suma, 30°+40°). Amb un punt molt a prop de B, a 350°: angle APB=70° igualment (cas resta, 85°−15°). Tots dos coincideixen amb la meitat de l'angle central, 140°/2=70°.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

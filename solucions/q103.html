@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quan un vèrtex s'escapa a l'infinit — Solució — Geometria</title>
+<meta name="description" content="La projecció d'un polígon no sempre és un polígon: si un costat prolongat passa pel punt de projecció, un vèrtex es projecta a l'infinit.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 103 · pàg. 161 del llibre · solució</span>
+  <h1 class="sol-header__title">Quan un vèrtex s'escapa a l'infinit</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">La projecció d'un polígon sempre és un polígon?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q103_page161_polygon_projection.png" alt="Figura de l'enunciat de la Qüestió 103" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Què hem de produir</p><p class="solucio__text">Una resposta de NO, amb el cas exacte on falla: quin costat del polígon original ha de tenir una propietat concreta —en relació amb el punt de projecció— perquè la seva imatge deixi de ser un segment normal.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Pensa en un sol costat primer</p><p class="solucio__text">Un costat qualsevol del polígon es projecta, en general, a un altre segment. Però si aquell costat, allargat, passés exactament pel punt de projecció mateix —què li passaria a la seva imatge?</p></div><div class="solucio__pas"><p class="solucio__pas-titol">La construcció</p><p class="solucio__text">Un triangle ABC amb el costat BC prolongat passant exactament pel punt de projecció O.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-107.png" alt="Figura de la construcció — el triangle ABC amb BC prolongat passant pel punt de projecció O, i C escapant-se a l'infinit" loading="lazy"><figcaption class="solucio__figura-nota">BC prolongat passa exactament per O: B es projecta normalment a B', però C no té imatge ordinària —s'escapa cap a l'infinit.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho</p><p class="solucio__text">Si la recta que conté un costat passa pel punt de projecció, tots els punts d'aquell costat es projecten des d'ells mateixos —la seva "recta de projecció" és la mateixa recta que ja contenia el costat. En el llenguatge de l'espai projectiu, aquell costat es projecta "cap a l'infinit": dos dels vèrtexs del polígon original es converteixen en un sol punt, o en cap punt ordinari, a la imatge, i el que hauria de ser un polígon tancat de n costats deixa de tancar-se com a tal.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">No sempre: si la recta que conté un costat del polígon passa exactament pel punt de projecció, aquell costat no té imatge ordinària —un dels seus vèrtexs "s'escapa" cap a l'infinit i la imatge deixa de ser un polígon tancat normal.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Amb un triangle i un punt de projecció allunyat de qualsevol de les rectes que contenen els seus costats, la projecció és sempre un triangle normal. Movent el punt de projecció fins que quedi exactament sobre la prolongació d'un costat, aquell costat "desapareix" a l'infinit en la imatge: la distància de projecció d'un punt d'aquell costat tendeix a infinit a mesura que el punt de projecció s'hi acosta.</p><p class="solucio__text">Aquest és el primer lloc del bloc on "un punt se'n va a l'infinit" dins d'una figura real, no com a curiositat abstracta —la mateixa idea que fa que dues rectes en l'espai projectiu es tallin sempre, ordinàriament o a l'infinit.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

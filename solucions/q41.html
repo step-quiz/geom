@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>L'angle inscrit en un semicercle és sempre recte — Solució — Geometria</title>
+<meta name="description" content="Per què un punt qualsevol d'una circumferència, connectat als dos extrems d'un diàmetre, forma sempre un angle de 90°.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 41 · pàg. 62 del llibre · solució</span>
+  <h1 class="sol-header__title">L'angle inscrit en un semicercle és sempre recte</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Quan un punt d'una circumferència es connecta amb els dos extrems d'un diàmetre, sempre forma un angle recte. Per què?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q41_page62_diameter_right_angle.png" alt="Figura de l'enunciat de la Qüestió 41" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">"Sempre" és la part que cal demostrar</p><p class="solucio__text">No n'hi ha prou de comprovar-ho amb un punt concret: cal un argument que valgui <strong>sigui quin sigui</strong> el punt de l'arc que es triï, sense que el resultat final pugui dependre d'on s'hagi posat exactament.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Un punt que no és decoratiu</p><p class="solucio__text">El dibuix marca un punt al mig de la base, encara que l'enunciat no en digui res. Aquest punt és el <strong>centre</strong> de la circumferència, i unir-lo amb el punt de l'arc és la clau de tota la demostració: crea dos segments que, junts amb els dos extrems del diàmetre, ja se sap que fan la mateixa llargada —tots tres són radis.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Dos triangles isòsceles</p><p class="solucio__text">El radi que va del centre fins al punt de l'arc parteix el triangle gran en dos triangles petits, cadascun amb dos costats iguals al radi: <strong>tots dos són isòsceles</strong>. En un triangle isòsceles, els dos angles de la base són sempre iguals entre si —per això la figura marca dos angles amb un sol arc (iguals entre ells) i dos amb doble arc (iguals entre ells), sense que calgui que un arc i un doble arc coincideixin.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-005.png" alt="Figura de la construcció — Dos triangles isòsceles" loading="lazy"><figcaption class="solucio__figura-nota">El radi central crea dos triangles isòsceles (tres marquetes iguals, els tres radis). Anomenant α i β els dos angles de la base del triangle gran, l'angle del vèrtex superior queda dividit exactament en α (d'un triangle) i β (de l'altre).</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Sumar els tres angles del triangle gran</p><p class="solucio__text">Anomenant α i β els dos angles de la base del triangle gran (els que es veuen des dels dos extrems del diàmetre), l'angle del vèrtex superior —el que interessa— queda partit pel radi central en exactament α i β, un tros de cada triangle isòsceles. La suma dels tres angles del triangle gran és sempre 180°: <strong>α + (α+β) + β = 180°</strong>, és a dir, <strong>2α+2β=180°</strong>, i per tant <strong>α+β=90°</strong> —que és, precisament, l'angle del vèrtex superior.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Sempre 90°, sigui quin sigui el punt de l'arc. El radi cap a aquest punt crea dos triangles isòsceles, i sumant els tres angles del triangle gran com α+(α+β)+β=180° s'obté directament α+β=90°, l'angle buscat, sense que l'argument depengui en cap moment de la posició concreta del punt.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Amb el punt al capdamunt (just sobre el centre): per simetria α=β=45°, i 45°+45°=90° ✓. Amb el punt gairebé enganxat a un extrem: el triangle es fa finíssim, però l'argument no ha fet servir en cap moment on exactament és el punt —només que els tres segments són radis— així que l'angle continua sent 90° per molt prim que es faci el triangle.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

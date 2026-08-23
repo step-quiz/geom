@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Quan dos cilindres es tallen, la secció és un quadrat — Solució — Geometria</title>
+<meta name="description" content="La intersecció de dos cilindres perpendiculars del mateix radi: a cada alçada, un quadrat, no un cercle. El volum surt per Cavalieri.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 58 · pàg. 82 del llibre · solució</span>
+  <h1 class="sol-header__title">Quan dos cilindres es tallen, la secció és un quadrat</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Suposa que dos cilindres idèntics es troben en angle recte. Quin aspecte té la seva intersecció, i quin volum té? I per a tres cilindres mútuament perpendiculars?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q58_page82_perpendicular_cylinders.png" alt="Figura de l'enunciat de la Qüestió 58" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Què hem de produir</p><p class="solucio__text">Una descripció de la forma —no és cap sòlid que ja tingui nom conegut— i el seu volum, en termes del radi r comú als dos cilindres.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Talla-ho amb un pla, com a Cavalieri</p><p class="solucio__text">Es talla la intersecció amb un pla horitzontal, a una alçada y qualsevol per sobre del centre. Aquest pla talla cada cilindre en una franja rectangular d'amplada 2√(r²−y²) —el mateix Pitàgores que ja serveix per a la corda d'un cercle. La intersecció dels dos cilindres, en aquest pla, és on totes dues franges es superposen.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">La construcció</p><p class="solucio__text">On es superposen les dues franges rectangulars, marcades en sanguina: quina forma dibuixen —un cercle, o alguna altra cosa?</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-077.png" alt="Figura de la construcció — les dues el·lipses idèntiques amb el quadrat vermell on se superposen les franges" loading="lazy"><figcaption class="solucio__figura-nota">Els dos cilindres i, al mig, el quadrat (vermell) on se superposen les seves franges.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho</p><p class="solucio__text">A cada alçada y, la secció de la intersecció no és un cercle: és un quadrat de costat 2√(r²−y²), perquè les dues franges, perpendiculars entre si, es tallen en un quadrat. Comparant aquesta pila de quadrats amb la pila de cercles d'un sol cilindre (Cavalieri): l'àrea d'un quadrat de costat 2s és 4s², mentre que la d'un cercle de radi s és πs² —una raó constant de 4/π entre totes dues piles, alçada per alçada.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">La intersecció de dos cilindres perpendiculars del mateix radi r —el sòlid de Steinmetz— té, a cada alçada, una secció quadrada, no circular. El seu volum és (16/3)r³.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">r=1: volum = (16/3)r³ ≈ 5,33. Comparant amb el volum d'un sol cilindre de radi 1 i alçada 2: 2π ≈ 6,28 —la intersecció és menor, com cal esperar.</p><p class="solucio__text">Per a tres cilindres mútuament perpendiculars, la intersecció ja no es pot tallar amb un sol argument de Cavalieri tan net com aquest: el seu volum queda, en aquest llibre, com a pregunta oberta per a qui vulgui anar-hi més enllà.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

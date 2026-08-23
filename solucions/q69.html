@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Els dos centroides d'un semicercle — Solució — Geometria</title>
+<meta name="description" content="Trobar, per separat, on cau el centre de massa de la regió semicircular i el del seu arc perimetral — dues distàncies diferents, aplicant el teorema de Pappus a l'inrevés.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 69 · pàg. 103 del llibre · solució</span>
+  <h1 class="sol-header__title">Els dos centroides d'un semicercle</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Pots trobar el centroide d'un semicercle? I el seu centroide de perímetre?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/fig-156.png" alt="Figura de l'enunciat de la Qüestió 69" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Dues preguntes, no una</p><p class="solucio__text">"El centroide d'un semicercle" pot voler dir dues coses diferents: el centre de massa de la <strong>regió</strong> (com si fos una peça massissa) o el centre de massa del seu <strong>arc</strong> (com si fos només el fil corbat de la vora, sense el diàmetre). Res no garanteix que coincideixin.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-085.png" alt="Figura de la construcció — Dues preguntes, no una" loading="lazy"><figcaption class="solucio__figura-nota">La regió semicircular (negre) i el seu arc perimetral (sanguina, sense el diàmetre): dues figures diferents, cadascuna amb el seu propi centroide.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">El teorema de Pappus</p><p class="solucio__text">Quan una figura plana gira al voltant d'un eix que no la travessa, el volum del sòlid que engendra és <strong>àrea × 2π × distància del centroide a l'eix</strong>. Si es coneix el volum del sòlid (perquè és una forma coneguda) i l'àrea de la figura, es pot fer servir aquesta mateixa fórmula <em>a l'inrevés</em> per aïllar la distància del centroide —sense haver-la calculat directament.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Girar la regió: una esfera sencera</p><p class="solucio__text">Girant la regió semicircular al voltant del seu diàmetre, el sòlid que en surt és una <strong>esfera completa</strong> de radi r —el semicercle escombra tot l'espai al voltant de l'eix. El seu volum, (4/3)πr³, ja és conegut.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Girar l'arc: la superfície de la mateixa esfera</p><p class="solucio__text">Girant només l'arc (sense la regió que hi ha a dins), no es genera cap volum: es genera la <strong>superfície</strong> d'aquesta mateixa esfera, 4πr² —una closca buida, no una bola massissa.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Aïllar les dues distàncies</p><p class="solucio__text">Per a la regió: (4/3)πr³ = (πr²/2)·2π·d, d'on <strong>d = 4r/(3π)</strong>. Per a l'arc: 4πr² = (πr)·2π·d, d'on <strong>d = 2r/π</strong>. Les dues distàncies surten <strong>diferents</strong> —la regió té el centroide més a prop del centre del cercle que l'arc.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">El centroide de la regió semicircular és a 4r/(3π)≈0,424r del centre; el del seu arc perimetral és a 2r/π≈0,637r —més lluny. Les dues distàncies surten d'aplicar el teorema de Pappus a l'inrevés: es coneix el volum (o la superfície) de l'esfera que engendra el gir, i s'aïlla la distància del centroide que fa que la fórmula quadri.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Amb r=3: centroide de l'àrea a 4×3/(3π)≈1,27 del centre. Centroide del perímetre a 2×3/π≈1,91. Diferents entre si, confirmant que calen totes dues fórmules per separat.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El principi de Cavalieri per a àrees — Solució — Geometria</title>
+<meta name="description" content="Per què un rectangle i un paral·lelogram amb la mateixa base i alçada tenen sempre la mateixa àrea, sigui quina sigui la inclinació.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 54 · pàg. 80 del llibre · solució</span>
+  <h1 class="sol-header__title">El principi de Cavalieri per a àrees</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Pots idear un principi de Cavalieri per a àrees en el pla?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q54_page80_cavalieri_plane.png" alt="Figura de l'enunciat de la Qüestió 54" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Inclinar sense canviar l'àrea?</p><p class="solucio__text">Un rectangle es pot deformar en un paral·lelogram desplaçant-ne la part de dalt cap al costat, mantenint sempre la mateixa alçada. Visualment sembla que la figura "s'allarga" en fer-se obliqua —però l'àrea real, canvia de debò?</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Mirar el tall, no la figura sencera</p><p class="solucio__text">En lloc de comparar les dues figures senceres, es compara el <strong>tall horitzontal</strong> que fa cadascuna a la mateixa alçada: un segment concret, no tota la superfície.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-195.png" alt="Figura de la construcció — Mirar el tall, no la figura sencera" loading="lazy"><figcaption class="solucio__figura-nota">El tall horitzontal (sanguina) a la mateixa alçada relativa, al rectangle i al paral·lelogram.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">El mateix tall, a qualsevol alçada</p><p class="solucio__text">A qualsevol alçada que es triï, el tall horitzontal del paral·lelogram té exactament la <strong>mateixa longitud</strong> que la base —igual que el rectangle. La inclinació desplaça el tall cap a un costat, però no en canvia la mida.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-032.png" alt="Figura de la construcció — El mateix tall, a qualsevol alçada" loading="lazy"><figcaption class="solucio__figura-nota">Les marquetes confirmen que els talls tenen la mateixa longitud als dos, a la mateixa alçada.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Del tall igual a l'àrea igual</p><p class="solucio__text">Si dues figures tenen el mateix tall a <strong>cada</strong> alçada, la seva àrea —que no és res més que la suma de tots aquests talls, un per cada alçada— ha de ser la mateixa. Aquest és el <strong>principi de Cavalieri</strong> per a àrees en el pla: no cal comparar les figures senceres, n'hi ha prou de comparar-ne els talls a cada alçada.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Un rectangle i un paral·lelogram amb la mateixa base i alçada tenen sempre la mateixa àrea, sigui quina sigui la inclinació, perquè el tall horitzontal a qualsevol alçada té la mateixa longitud als dos. Aquest és el principi de Cavalieri per a àrees: si dues figures tenen el mateix tall a cada alçada, tenen la mateixa àrea.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Rectangle de base 6, alçada 4: àrea 24. Paral·lelogram amb la mateixa base i alçada, inclinat 3 unitats: descomponent-lo en el rectangle més un triangle petit a un costat menys el mateix triangle a l'altre (que es cancel·len exactament), l'àrea es queda en 24.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

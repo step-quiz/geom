@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>L'hèlix del tor: dos angles, dues velocitats — Solució — Geometria</title>
+<meta name="description" content="L'anàleg de l'hèlix sobre un tor: fer avançar els dos angles del tor a velocitats constants diferents, tancant-se o no segons si la proporció és racional.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 126 · pàg. 193 del llibre · solució</span>
+  <h1 class="sol-header__title">L'hèlix del tor: dos angles, dues velocitats</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Se t'acut alguna manera de descriure una hèlix sobre un tor?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/fig-177.png" alt="Figura de l'enunciat de la Qüestió 126" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Què hem de produir</p><p class="solucio__text">Una manera de descriure un moviment sobre la superfície d'un tor (un donut) que sigui l'anàloga natural de l'hèlix sobre un cilindre —no fa falta cap equació, només una descripció clara del moviment.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Un tor té dos cercles, no un</p><p class="solucio__text">Un punt sobre un tor es pot descriure per dos angles: quina posició té al voltant del forat central (com les hores d'un rellotge vist des de dalt), i quina posició té al voltant del "tub" prim (com les hores d'un rellotge vist de costat, girant al voltant del propi tub). Una hèlix sobre un cilindre avançava a velocitat constant en gir i en alçada alhora: quin seria l'anàleg amb aquests dos angles?</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-209.png" alt="Figura de la construcció — els dos angles independents d'un punt sobre el tor, u i v" loading="lazy"><figcaption class="solucio__figura-nota">Els dos angles independents: u al voltant del forat central, v al voltant del tub.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">La construcció</p><p class="solucio__text">Un tor amb una corba dibuixada en sanguina que avança uniformement al voltant del tub mentre avança, també uniformement, al voltant del forat central —una corba que s'enrotlla moltes vegades abans de tancar-se, o que no es tanca mai, si la proporció entre les dues velocitats és irracional.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-128.png" alt="Figura de la construcció — un nus tòric (2,3), 2 voltes pel forat central i 3 pel tub" loading="lazy"><figcaption class="solucio__figura-nota">Un nus tòric (2,3): la corba fa 2 voltes pel forat central pel mateix temps que en fa 3 pel tub.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho</p><p class="solucio__text">Es fan créixer els dos angles cadascun a velocitat constant però diferent: mentre un avança una volta sencera, l'altre n'avança p/q (una fracció). Si p/q és racional, la corba es tanca després de q voltes del primer angle; si és irracional, la corba no es tanca mai.</p><p class="solucio__text">Un avís important sobre aquest darrer cas: la corba <strong>no</strong> "omple" el tor —una corba no pot arribar a ser una superfície, per molt que doni voltes— sinó que hi passa tan a prop com es vulgui de qualsevol punt. Donat un punt del tor i una distància, per petita que sigui, la corba hi acaba passant més a prop que aquella distància.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">L'anàleg tòric de l'hèlix és fer avançar els dos angles del tor a velocitats constants però diferents, en proporció p/q. Amb p/q racional, la corba es tanca després d'un nombre finit de voltes; amb p/q irracional, no es tanca mai, però passa arbitràriament a prop de tots els punts del tor.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Amb p/q=2/3: la corba fa 2 voltes completes al voltant del forat central pel mateix temps que en fa 3 al voltant del tub, i es tanca exactament on va començar —es pot comprovar contant quantes vegades creua un mateix meridià (ha de ser 3) i un mateix paral·lel (ha de ser 2).</p><p class="solucio__text">Aquesta corba es diu "nus tòric" quan p i q no tenen cap factor comú: per a segons valors de p,q dona lloc a nusos autèntics —que no es poden desfer sense tallar-los— l'exemple més senzill dels quals, amb p/q=2/3, és el trèvol, el nus més simple que existeix.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

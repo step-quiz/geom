@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Per què l'escala no s'acosta a la diagonal — Solució — Geometria</title>
+<meta name="description" content="Un límit important del mètode d'exhaustió: encara que una escala s'assembli cada cop més a la diagonal a ull, la seva longitud mai no s'hi acosta.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 55 · pàg. 80 del llibre · solució</span>
+  <h1 class="sol-header__title">Per què l'escala no s'acosta a la diagonal</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Per què no es pot fer servir el mètode d'exhaustió d'aquesta manera per mesurar la diagonal d'un quadrat?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q55_page80_cavalieri_plane.png" alt="Figura de l'enunciat de la Qüestió 55" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">El parany visual</p><p class="solucio__text">Fent els graons d'una escala cada cop més petits i nombrosos, el seu contorn s'assembla cada cop més a la diagonal del quadrat, a simple vista. Sembla natural pensar que la <strong>longitud</strong> de l'escala també s'acosta a la longitud de la diagonal —però cal comprovar-ho, no donar-ho per fet.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Sumar els trams horitzontals, sols</p><p class="solucio__text">Els trams horitzontals de tots els graons, sumats, cobreixen exactament la mateixa distància horitzontal total que el costat del quadrat —es limiten a repartir aquesta mateixa distància en trossos més petits, sigui quin sigui el nombre de graons. La suma dels trams horitzontals és sempre <strong>s</strong> (el costat del quadrat), tant si hi ha 2 graons com 2.000.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-033.png" alt="Figura de la construcció — Sumar els trams horitzontals, sols" loading="lazy"><figcaption class="solucio__figura-nota">Els trams horitzontals marcats: sumats, fan sempre s, independentment del nombre de graons.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">El mateix amb els verticals</p><p class="solucio__text">Exactament el mateix raonament val per als trams verticals: sumats, fan sempre <strong>s</strong> també, per la mateixa raó (repartir la mateixa distància vertical total en trossos més petits no en canvia la suma).</p></div><div class="solucio__pas"><p class="solucio__pas-titol">La longitud de l'escala no canvia mai</p><p class="solucio__text">La longitud total del camí en escala és, doncs, sempre <strong>s+s=2s</strong> —exactament la mateixa, sigui quin sigui el nombre de graons. Però la diagonal del quadrat fa <strong>s√2</strong>, i com que √2≈1,41 és menor que 2, es compleix sempre s√2<2s: la diagonal és, i serà sempre, més curta que qualsevol escala, per fins que se'n facin els graons. La diferència entre totes dues longituds (2s−s√2) no es redueix mai, per molt que el dibuix s'assembli visualment a la diagonal.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">L'escala mai s'acosta a la diagonal en longitud, encara que hi sembli cada cop més a ull: la seva longitud és sempre exactament 2s (la suma dels trams horitzontals, s, més la dels verticals, també s), independentment de com de fins siguin els graons —mentre que la diagonal fa s√2<2s. Aquest és el motiu pel qual el mètode d'exhaustió, que sí funciona per a àrees (Qüestió 54), no es pot aplicar de la mateixa manera ingènua a longituds.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Amb s=10: diagonal=10√2≈14,14. Escala amb qualsevol nombre de graons: longitud sempre 20 —amb 2 graons, amb 20 graons, amb 2.000 graons. La diferència (20−14,14=5,86) es manté idèntica en tots els casos.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>
