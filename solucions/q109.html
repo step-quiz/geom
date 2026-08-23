@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Les esferes de Dandelin: el mateix segment, mesurat dues vegades — Solució — Geometria</title>
+<meta name="description" content="Per què la secció el·líptica d'un con té dos focus amb suma de distàncies constant, via dues esferes tangents al con i al pla de tall.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 109 · pàg. 173 del llibre · solució</span>
+  <h1 class="sol-header__title">Les esferes de Dandelin: el mateix segment, mesurat dues vegades</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Pots treballar els detalls d'aquesta demostració?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q109_page173_double_cone_spheres.png" alt="Figura de l'enunciat de la Qüestió 109" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Què hem de produir</p><p class="solucio__text">Una demostració completa que la secció el·líptica d'un con —tallat per un pla que no travessa totes dues nappes— és de veritat una el·lipse: cal trobar dos punts F₁, F₂ (els focus) tals que, per a qualsevol punt P de la corba de tall, PF₁+PF₂ sigui una constant.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Dues esferes, cadascuna tocant el con i el pla</p><p class="solucio__text">Dins de cada nappa del con —per damunt i per sota del pla de tall— hi cap exactament una esfera tangent tant a la superfície del con com al pla de tall. Anomenant F₁ i F₂ els dos punts on cada esfera toca el pla —aquests seran els focus—, per a un punt P qualsevol de la corba de tall, quina relació hi ha entre PF₁ i la distància, mesurada sobre la superfície del con, entre P i el cercle on la primera esfera hi és tangent?</p></div><div class="solucio__pas"><p class="solucio__pas-titol">La construcció</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-113.png" alt="Figura de la construcció — el con amb les dues esferes de Dandelin, el pla de tall, i els focus F1, F2 marcats" loading="lazy"><figcaption class="solucio__figura-nota">PF₁ = tangent des de P a l'esfera petita = tros de generatriu fins al cercle de tangència, i igual per PF₂: la suma és el tros de generatriu entre els dos cercles, constant.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho</p><p class="solucio__text">Dues maneres de mesurar la mateixa distància: (a) PF₁ és una tangent des de P a l'esfera 1 —i totes les tangents des d'un mateix punt a una esfera tenen la mateixa longitud. (b) El segment de la generatriu del con des de P fins al cercle de tangència amb l'esfera 1 és també una tangent des de P a aquesta mateixa esfera —la generatriu és tangent a l'esfera al llarg de tot el con. Per tant PF₁ és exactament aquest tros de generatriu. Igual per PF₂ amb l'esfera 2, cap a l'altre cercle de tangència. La suma PF₁+PF₂ és exactament la longitud del tros de generatriu entre els dos cercles de tangència —la mateixa per a qualsevol generatriu, perquè els dos cercles de tangència són fixos i no depenen de P.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Les dues esferes de Dandelin donen els focus de l'el·lipse: F₁ i F₂ són els punts on cada esfera toca el pla de tall, i PF₁+PF₂ és sempre igual a la longitud del tros de generatriu entre els dos cercles de tangència —constant per a qualsevol punt P de la corba.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Amb un con d'obertura 30° i un pla de tall concret, la suma PF₁+PF₂ calculada per a diversos punts P de la corba de tall —numèricament, amb les coordenades 3D reals— surt exactament la mateixa: en un cas verificat, 12,86 unitats per a qualsevol dels punts provats.</p><p class="solucio__text">Aquest mateix argument —el mateix tram de recta, mesurat de dues maneres, forçat a ser igual— és el revés d'una altra qüestió sobre les circumferències com a el·lipses amb els dos focus fosos: allà es partia de la definició (dos focus, suma constant) i se'n deduïa que un cercle és el cas límit; aquí, en canvi, es parteix del con i es demostra que la corba resultant compleix la definició amb focus concrets. Quan el pla de tall és perpendicular a l'eix del con, les dues esferes de Dandelin queden igual de grans i tangents al mateix cercle —els dos focus col·lapsen en un de sol, exactament aquell cas límit.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

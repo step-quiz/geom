@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La desigualtat triangular — Solució — Geometria</title>
+<meta name="description" content="Per què no qualsevol tria de tres longituds forma un triangle, i quina és la condició exacta que ho decideix.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 74 · pàg. 107 del llibre · solució</span>
+  <h1 class="sol-header__title">La desigualtat triangular</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Qualsevol tria de tres longituds forma un triangle?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/fig-161.png" alt="Figura de l'enunciat de la Qüestió 74" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Una condició exacta, no només "no sempre"</p><p class="solucio__text">La resposta no és només que no totes les ternes de longituds formen un triangle: cal trobar la <strong>condició exacta</strong> que separa els casos que sí en formen dels que no.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Un cas que falla, dibuixat amb compàs</p><p class="solucio__text">Provant amb 1, 2, 10: traçant primer el segment de longitud 10, i després un arc de radi 1 des d'un extrem i un arc de radi 2 des de l'altre, els dos arcs són massa curts —cap dels dos arriba prou lluny per tocar l'altre. No hi ha cap punt que estigui alhora a distància 1 d'un extrem i a distància 2 de l'altre, si els extrems ja són a 10 de distància entre si.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-084.png" alt="Figura de la construcció — Un cas que falla, dibuixat amb compàs" loading="lazy"><figcaption class="solucio__figura-nota">3, 4, 5: els arcs es toquen, es forma un triangle. 1, 2, 10: els arcs no arriben a tocar-se.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Quan es toquen els dos arcs</p><p class="solucio__text">Els dos arcs es toquen exactament quan la suma dels dos radis és més gran que la distància entre els seus centres —si la suma fos menor, els arcs quedarien massa curts (com a 1,2,10); si fos igual, es tocarien en un sol punt exactament sobre el segment, sense arribar a obrir cap triangle real.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Traduint-ho a a, b, c</p><p class="solucio__text">Amb els tres costats a, b, c (c el més llarg), la condició és <strong>a+b > c</strong>: la suma dels dos costats més curts ha de superar el més llarg. Si aquesta condició falla per a qualsevol dels tres costats fent de "més llarg", no es pot formar cap triangle.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">No, no qualsevol tria de tres longituds forma un triangle: cal que la suma dels dos costats més curts superi el més llarg (a+b>c). Quan aquesta suma és exactament igual al costat més llarg, el "triangle" es degenera en un segment amb els tres punts alineats, d'àrea zero.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">3,4,5: 3+4=7>5 ✓, es forma triangle. 2,3,6: 2+3=5<6, no se'n forma cap. 1,2,10: 1+2=3<10, tampoc.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

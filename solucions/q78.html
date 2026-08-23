@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Sinus d'un angle, cosinus de l'altre — Solució — Geometria</title>
+<meta name="description" content="Per què el sinus d'un angle agut d'un triangle rectangle és sempre igual al cosinus de l'altre — els dos angles comparteixen els mateixos dos costats, amb els noms intercanviats.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 78 · pàg. 120 del llibre · solució</span>
+  <h1 class="sol-header__title">Sinus d'un angle, cosinus de l'altre</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Com es relacionen entre si els sinus i els cosinus dels dos angles d'un triangle rectangle?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q78_page120_sine_cosine_triangle.png" alt="Figura de l'enunciat de la Qüestió 78" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Dues definicions, no una</p><p class="solucio__text">Per a un angle agut d'un triangle rectangle: <strong>sinus</strong> = costat oposat / hipotenusa; <strong>cosinus</strong> = costat contigu / hipotenusa. Amb dos angles aguts A i B en un mateix triangle rectangle (que sumen 90°, ja que el tercer és de 90°), cal veure com es relacionen els seus sinus i cosinus.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">El mateix costat, dos noms diferents</p><p class="solucio__text">Un triangle rectangle només té tres costats, i els dos angles aguts A i B els comparteixen tots dos. El costat que és "oposat" a A és exactament el mateix costat que és "contigu" a B —i el que és "contigu" a A és l'"oposat" a B. La hipotenusa és la mateixa per a tots dos angles.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-086.png" alt="Figura de la construcció — El mateix costat, dos noms diferents" loading="lazy"><figcaption class="solucio__figura-nota">Cada costat porta els seus dos noms alhora: contigu a A és el mateix costat que oposat a B, i viceversa.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Escriure-ho i comparar</p><p class="solucio__text">sinA = oposat_a_A / hipotenusa = contigu_a_B / hipotenusa = <strong>cosB</strong>. I, de la mateixa manera, cosA = contigu_a_A / hipotenusa = oposat_a_B / hipotenusa = <strong>sinB</strong>. Les quatre raons no són quatre coses diferents: són les mateixes dues divisions, mirades des de cada angle.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">sinA=cosB i cosA=sinB, perquè els dos angles aguts d'un triangle rectangle comparteixen exactament els mateixos dos catets, amb els papers d'"oposat" i "contigu" intercanviats. Com que A+B=90° sempre en un triangle rectangle, això és el mateix que dir sin(θ)=cos(90°−θ) per a qualsevol angle agut θ.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Triangle 3-4-5, angle A oposat al costat 3: sinA=3/5=0,6, cosA=4/5=0,8. Angle B oposat al costat 4: sinB=4/5=0,8, cosB=3/5=0,6. sinA=cosB (0,6=0,6) ✓ i cosA=sinB (0,8=0,8) ✓.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

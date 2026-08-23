@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reconstruir un polígon a partir dels punts mitjans — Solució — Geometria</title>
+<meta name="description" content="Per què els punts mitjans dels costats reconstrueixen un únic triangle original, però no un únic quadrilàter — dues preguntes amb respostes diferents.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 73 · pàg. 107 del llibre · solució</span>
+  <h1 class="sol-header__title">Reconstruir un polígon a partir dels punts mitjans</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Els punts mitjans dels costats d'un triangle són prou informació per reconstruir el triangle? I per als polígons de quatre costats?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/fig-160.png" alt="Figura de l'enunciat de la Qüestió 73" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Dues preguntes, no una</p><p class="solucio__text">El triangle i el quadrilàter són casos genuïnament diferents: no hi ha cap raó per suposar que tinguin la mateixa resposta. Cal tractar-los per separat, sense donar per fet que el que valgui per a un valgui també per a l'altre.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">El triangle: el triangle medial ja diu prou</p><p class="solucio__text">Els tres punts mitjans d'un triangle formen el <strong>triangle medial</strong>: semblant a l'original, a escala 1/2 i girat 180°. Si es coneix el triangle medial, ja se'n coneix l'orientació i la mida —només falta "desfer" l'escala i el gir per recuperar l'original.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-201.png" alt="Figura de la construcció — El triangle: el triangle medial ja diu prou" loading="lazy"><figcaption class="solucio__figura-nota">El triangle original ABC (negre) i el triangle medial que formen els seus punts mitjans (sanguina).</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Desfer-ho: només hi ha una manera</p><p class="solucio__text">Cada vèrtex del triangle original és el simètric d'un vèrtex del triangle medial respecte del punt mitjà del costat oposat del medial —o, dit d'una altra manera, cada costat del triangle original passa pel punt mitjà corresponent i és paral·lel al costat oposat del medial, a doble llargada. Aquesta construcció no deixa cap marge d'elecció: donat el triangle medial, <strong>hi ha un únic triangle original</strong> que hi encaixa.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-041.png" alt="Figura de la construcció — Desfer-ho: només hi ha una manera" loading="lazy"><figcaption class="solucio__figura-nota">Aquí la incògnita (el triangle gran, a recuperar) va en sanguina discontínua, i la dada coneguda (el triangle medial, petit) va en tinta —al revés del conveni habitual d'aquest recorregut.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">El quadrilàter: es coneix la forma, no la posició</p><p class="solucio__text">Amb un quadrilàter, la situació canvia. Els quatre punts mitjans dels seus costats formen sempre un <strong>paral·lelogram</strong> —ja demostrat a la Qüestió 16—, i això és tot el que se'n pot assegurar amb certesa. El que no es pot recuperar és la posició exacta dels quatre vèrtexs originals: <strong>múltiples</strong> quadrilàters diferents, de formes ben diferents entre si, poden compartir exactament els mateixos quatre punts mitjans.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Sí per al triangle: els punts mitjans dels seus costats en determinen un únic original, perquè el triangle medial (semblant, escala 1/2, girat 180°) es pot "desfer" d'una sola manera. No per al quadrilàter general: els quatre punts mitjans sempre formen un paral·lelogram (Qüestió 16), però aquesta única condició no basta per recuperar la posició exacta dels quatre vèrtexs originals —molts quadrilàters diferents poden compartir els mateixos quatre punts mitjans.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Amb un triangle medial de costats 3, 4, 5: el triangle original ha de tenir costats 6, 8, 10 —el doble de cadascun, en el mateix ordre, sense cap altra possibilitat.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

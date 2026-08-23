@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La longitud d'una hèlix: la diagonal d'un rectangle — Solució — Geometria</title>
+<meta name="description" content="Desenrotllant el cilindre, una hèlix que fa n voltes es converteix en la diagonal d'un rectangle: la seva longitud surt directament de Pitàgores.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 123 · pàg. 191 del llibre · solució</span>
+  <h1 class="sol-header__title">La longitud d'una hèlix: la diagonal d'un rectangle</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Com podem mesurar la longitud d'una hèlix?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q123_page191_helix_length.png" alt="Figura de l'enunciat de la Qüestió 123" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Què hem de produir</p><p class="solucio__text">Una fórmula per a la longitud d'una hèlix que fa n voltes senceres al voltant d'un cilindre de radi R, mentre puja una alçada total H —sense haver de sumar infinits trossets de corba.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">"Desenrotlla" el cilindre</p><p class="solucio__text">Imagina el cilindre com un full de paper enrotllat. Si es desenrotlla —es retalla per una línia vertical i s'estira pla—, l'hèlix dibuixada a sobre es converteix en quina mena de línia, sobre el rectangle pla resultant?</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-208.png" alt="Figura de la construcció — el cas d'una sola volta, amb el cilindre i el rectangle desenrotllat amb la seva diagonal" loading="lazy"><figcaption class="solucio__figura-nota">El cas d'una sola volta: desenrotllat, el cilindre dona un rectangle, i l'hèlix se'n converteix en la diagonal.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">La construcció</p><p class="solucio__text">El cas real, amb 4 voltes: el cilindre amb l'hèlix dibuixada a sobre, i al costat, en sanguina, el mateix cilindre desenrotllat en un rectangle pla amb la línia recta corresponent.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-127.png" alt="Figura de la construcció — el cilindre amb 4 voltes, i el rectangle desenrotllat amb amplada 2πRn i alçada H" loading="lazy"><figcaption class="solucio__figura-nota">El rectangle desenrotllat: amplada 2πRn (el perímetre multiplicat per les n voltes), alçada H; l'hèlix n'és la diagonal.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho</p><p class="solucio__text">Un cop desenrotllat, el rectangle té amplada igual al perímetre del cilindre multiplicat per n —la distància horitzontal total recorreguda en n voltes— i alçada H. L'hèlix es converteix en la diagonal d'aquest rectangle, una línia recta, i la seva longitud és, per Pitàgores, √((2πRn)² + H²).</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">La longitud d'una hèlix que fa n voltes al voltant d'un cilindre de radi R mentre puja una alçada H és √((2πRn)² + H²) —la diagonal del rectangle que resulta de desenrotllar el cilindre.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">R=1, n=4 voltes, H=3: longitud = √((2π·4)²+9) = √(631,65+9) ≈ 25,31. Comprovat també sumant numèricament milers de trossets petits de la corba real en 3D: coincideix fins a la cinquena xifra decimal.</p><p class="solucio__text">"Desenrotllar" una superfície corba per convertir un problema en un de pla és la mateixa idea ja feta servir per mesurar l'àrea d'un con o d'un cilindre: aquí, en lloc d'una àrea, en surt la longitud d'una corba.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

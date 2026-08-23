@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pitàgores generalitzat amb un angle obtús — Solució — Geometria</title>
+<meta name="description" content="Demostrar c²=a²+b²+2ab·cosC' per a un triangle amb angle obtús, traçant una altura que cau fora del triangle.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 79 · pàg. 121 del llibre · solució</span>
+  <h1 class="sol-header__title">Pitàgores generalitzat amb un angle obtús</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Demostra que, en aquest cas, obtenim c² = a² + b² + 2ab cos C'.</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q79_page121_generalized_pythagorean.png" alt="Figura de l'enunciat de la Qüestió 79" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Pitàgores només val per a 90°</p><p class="solucio__text">El teorema de Pitàgores, tal com se sol veure, només parla d'un triangle rectangle. Aquí l'angle entre a i b no és de 90°, sinó <strong>obtús</strong> (més gran de 90°) —cal una fórmula que funcioni en aquest cas, i que inclogui Pitàgores com un cas particular quan l'angle sigui recte.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Una altura que cau fora</p><p class="solucio__text">Traçant l'altura des del vèrtex oposat a c fins a la recta que conté el costat a, aquesta altura no cau <em>dins</em> del triangle —hi cau <em>fora</em>, més enllà d'un dels extrems, perquè l'angle al costat on cauria és obtús (tal com es veu a la imatge de l'enunciat, a dalt). Aquesta altura crea dos triangles rectangles: un de <strong>gran</strong> (que inclou tot el triangle original) i un de <strong>petit</strong> (el tros extra, fora del triangle original).</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Les dues peces del triangle petit</p><p class="solucio__text">Al triangle rectangle petit, la hipotenusa és b i l'angle conegut és C' (el suplementari de C, agut). L'altura val, doncs, <strong>h = b·sinC'</strong>, i el tros extra de base val <strong>b·cosC'</strong>.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-092.png" alt="Figura de la construcció — Les dues peces del triangle petit" loading="lazy"><figcaption class="solucio__figura-nota">El triangle gran (hipotenusa c, sanguina) i el petit que en surt de l'altura externa, amb base a i el tros extra en termes de b i C'.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Pitàgores al triangle gran</p><p class="solucio__text">La base del triangle rectangle gran és a més el tros extra: a+b·cosC'. Aplicant-hi Pitàgores: c² = (a+b·cosC')² + (b·sinC')². Desenvolupant: c² = a² + 2ab·cosC' + b²cos²C' + b²sin²C'. Com que sin²C'+cos²C'=1, els dos últims termes es converteixen en b²: <strong>c² = a² + b² + 2ab·cosC'</strong>.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">c²=a²+b²+2ab·cosC', on C' és l'angle agut suplementari de l'angle obtús C. Surt de traçar una altura que cau fora del triangle (creant un triangle rectangle gran i un de petit) i aplicar Pitàgores al gran. Quan C=90° (i per tant C'=90° també), cosC'=0 i la fórmula es converteix exactament en el Pitàgores clàssic: aquest resultat el conté com a cas particular, no el substitueix.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">a=5, b=4, C=120° (C'=60°): c²=25+16+2(5)(4)(0,5)=41+20=61, c=√61≈7,81. Comprovat també per coordenades directes (situant els dos costats amb l'angle de 120° entre ells): la distància entre els extrems surt exactament 7,81.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

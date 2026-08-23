@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El casquet esfèric: la semiesfera generalitzada — Solució — Geometria</title>
+<meta name="description" content="El volum d'un casquet esfèric d'alçada h, trobat estenent l'argument de Cavalieri de la semiesfera a qualsevol alçada de tall.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 62 · pàg. 89 del llibre · solució</span>
+  <h1 class="sol-header__title">El casquet esfèric: la semiesfera generalitzada</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Quins són el volum i l'àrea de la superfície d'un casquet esfèric?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q62_page89_spherical_cap.png" alt="Figura de l'enunciat de la Qüestió 62" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Què hem de produir</p><p class="solucio__text">Dues fórmules, en termes del radi de l'esfera R i de l'alçada del casquet h —h és la distància des del "cim" del casquet fins al pla de tall, no és el mateix que R: quan h=R, el casquet és exactament la semiesfera ja mesurada abans.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Comença pel cas que ja se sap</p><p class="solucio__text">Quan h=R, el casquet és la semiesfera. El seu volum ja es va trobar comparant-la, per Cavalieri, amb un cilindre menys un con. Aquesta mateixa comparació, feta a qualsevol alçada de tall —no només a l'equador— és la clau per al cas general.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-072.png" alt="Figura de la construcció — l'esfera amb el radi R i l'alçada del casquet h marcats per separat" loading="lazy"><figcaption class="solucio__figura-nota">R (des del centre real de l'esfera) i h (des del cim del casquet fins al pla de tall): dues distàncies diferents.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho</p><p class="solucio__text">A cada alçada dins del casquet, la secció del casquet (un cercle) i la secció del cilindre-menys-con auxiliar tenen la mateixa àrea —el mateix argument ja fet servir per a la semiesfera, aplicat entre 0 i h en lloc d'entre 0 i R. Per Cavalieri, doncs, el casquet té el mateix volum que aquell tros de cilindre-menys-con: un cilindre de radi R i alçada h, menys el tronc de con que hi queda a dins.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">El volum d'un casquet esfèric d'alçada h en una esfera de radi R és (πh²/3)(3R−h). L'àrea de la superfície corba (sense la base plana) és 2πRh.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">R=2, h=1: V=(πh²/3)(3R−h)=(π/3)(6−1)=5π/3≈5,24. Quan h=R=2 es recupera el volum de la semiesfera, (2/3)πR³=16π/3≈16,76. Superfície corba (sense la base): 2πRh=4π≈12,57.</p><p class="solucio__text">Un avís d'honestedat: aquest argument arriba fins aquí i s'atura. Que "sumar" àrees de seccions infinitament primes doni exactament un volum és el pas que el càlcul integral formalitza, i és fora de l'abast d'aquest recull —el mateix tipus de frontera que ja apareix en trobar el perímetre d'una regió formada per un bastó en moviment. El que sí que queda completament establert és l'argument de Cavalieri: dues figures amb la mateixa secció a cada alçada tenen el mateix volum.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

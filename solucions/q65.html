@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Definir el centroide perquè Pappus digui la veritat — Solució — Geometria</title>
+<meta name="description" content="Quin punt d'una figura ha de ser el centroide perquè el teorema de Pappus sigui cert: el centre del rectangle, no el costat oposat a l'eix.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 65 · pàg. 101 del llibre · solució</span>
+  <h1 class="sol-header__title">Definir el centroide perquè Pappus digui la veritat</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Com hauríem de definir el centroide d'una figura? Ho podem fer de manera que es compleixi el teorema de Pappus?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/fig-211.png" alt="Figura de l'enunciat de la Qüestió 65" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Què hem de produir</p><p class="solucio__text">No un número: una definició. El teorema de Pappus diu que el volum generat en girar una figura plana al voltant d'un eix (que no la talla) és (àrea de la figura) × (distància recorreguda pel seu centroide). L'encàrrec és decidir què ha de ser "el centroide" perquè aquesta frase, tal com està escrita, surti certa.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Comença pel cas més fàcil de comprovar</p><p class="solucio__text">Un rectangle, girat al voltant d'un dels seus costats, genera un cilindre —el volum del qual ja se sap calcular per una altra via. Quin punt del rectangle, multiplicat per 2π i per la seva distància a l'eix, reprodueix exactament aquest volum?</p></div><div class="solucio__pas"><p class="solucio__pas-titol">La construcció</p><p class="solucio__text">El punt marcat "centroide": quina distància a l'eix, multiplicada per 2π, hauria de reproduir el volum del cilindre ja conegut?</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-080.png" alt="Figura de la construcció — el rectangle amb l'eix a un costat i el centroide marcat al seu centre exacte" loading="lazy"><figcaption class="solucio__figura-nota">El rectangle amb l'eix al costat esquerre, i el centroide marcat al centre exacte —a mitja amplada de l'eix.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho</p><p class="solucio__text">Per al rectangle, el punt que fa funcionar el teorema resulta ser el seu centre —el centre de gravetat de tota la vida, on es creuen les dues diagonals—, que és a mitja amplada de l'eix. Compte amb la temptació d'agafar el costat oposat a l'eix: aquell és el punt més lluny de l'eix, no el punt mitjà, i donaria el doble del volum real. El centroide, en general, es defineix com el punt de la figura la distància del qual a l'eix, multiplicada per l'àrea i per 2π, reprodueix el volum de la figura girada, sigui quina sigui la figura.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">El centroide d'una figura es defineix com el punt la distància del qual a l'eix, multiplicada per l'àrea de la figura i per 2π, reprodueix el volum real del sòlid generat en girar-la —per al rectangle, aquest punt és el seu centre geomètric, no cap dels seus costats.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Rectangle de costats 2 i 3, girat al voltant del costat de llargada 3. El costat perpendicular a l'eix fa 2, així que el centre del rectangle és a distància 1 de l'eix. Pappus dona àrea(6) × 2π × distància(1) = 12π; el cilindre que en surt de veritat té radi 2 i alçada 3, és a dir π(2²)(3) = 12π. Coincideixen exactament. Si hagués sortit 24π, seria per haver posat la distància al costat de més enllà (2) en lloc de la distància al centre (1) —l'error exacte que calia evitar.</p><p class="solucio__text">Aquesta definició —el punt que fa que Pappus funcioni— és el que fa possible aplicar el teorema a qualsevol figura, no només al rectangle: un cop decidida, es converteix en una eina reutilitzable.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>
