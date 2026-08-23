@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comptar pics: quan el punt de contacte s'atura — Solució — Geometria</title>
+<meta name="description" content="El nombre de pics d'una hipocicloide o epicicloide és R/r: cada volta completa del cercle petit produeix exactament un instant d'immobilitat.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 124 · pàg. 192 del llibre · solució</span>
+  <h1 class="sol-header__title">Comptar pics: quan el punt de contacte s'atura</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Com depèn el nombre de cúspides d'una hipocicloide dels radis de les dues circumferències? I en el cas d'una epicicloide?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q124_page192_hypocycloid_epicycloid.png" alt="Figura de l'enunciat de la Qüestió 124" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Què hem de produir</p><p class="solucio__text">Una fórmula, a partir dels dos radis —el cercle gran R i el petit r—, que digui quants pics (cúspides) té la corba que dibuixa un punt del cercle petit quan aquest rodola per dins (hipocicloide) o per fora (epicicloide) del cercle gran.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Un pic és un moment en què el punt "s'atura"</p><p class="solucio__text">Un pic passa exactament quan el punt marcat toca el cercle gran: en aquell instant, el punt de contacte és el centre instantani de gir, així que no es mou —i el punt marcat, que hi és a sobre en aquell moment, tampoc. Quantes vegades toca el punt marcat el cercle gran en una volta completa del cercle petit al voltant seu?</p></div><div class="solucio__pas"><p class="solucio__pas-titol">La construcció</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-129.png" alt="Figura de la construcció — el deltoide (R/r=3, 3 pics) i el cardioide (R/r=1, 1 pic)" loading="lazy"><figcaption class="solucio__figura-nota">Dins: R/r=3 → 3 pics (deltoide). Fora: R/r=1 → 1 pic (cardioide).</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho</p><p class="solucio__text">El nombre de pics és R/r, quan aquesta raó és un nombre enter: per cada volta completa del cercle gran, el cercle petit hi ha "rodat" R/r vegades, i cada rodolada completa produeix exactament un pic. Val el mateix argument tant si el cercle petit rodola per dins com per fora.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Tant per a la hipocicloide (rodolant per dins) com per a l'epicicloide (rodolant per fora), el nombre de pics és R/r, quan aquesta raó és un enter: cada volta sencera del cercle petit produeix exactament un instant d'immobilitat i, per tant, un pic.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">R/r=3 (dins): deltoide, 3 pics —el cas de la figura del llibre. R/r=4 (dins): astroide, 4 pics —la mateixa corba que ja apareixia com a envolupant d'un bastó lliscant entre dos eixos. R/r=1 (fora): cardioide, 1 pic.</p><p class="solucio__text">Que l'astroide (R/r=4, hipocicloide) sigui exactament la mateixa corba que l'envolupant del bastó lliscant no és casualitat: en tots dos casos, cada punt de la corba és un instant en què "alguna cosa" —el punt de contacte, o el bastó sencer— es queda momentàniament immòbil.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

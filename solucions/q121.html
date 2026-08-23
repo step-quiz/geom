@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dos terços de la caixa: una fórmula exacta, no un infinitèsim — Solució — Geometria</title>
+<meta name="description" content="Per exhauriment, amb una fórmula exacta per a cada n de franges, es demostra que la secció parabòlica ocupa exactament 2/3 de la seva caixa circumscrita.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 121 · pàg. 186 del llibre · solució</span>
+  <h1 class="sol-header__title">Dos terços de la caixa: una fórmula exacta, no un infinitèsim</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Demostra que una secció parabòlica ocupa exactament dos terços de la seva caixa.</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q121_page186_parabolic_section_box.png" alt="Figura de l'enunciat de la Qüestió 121" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Què hem de produir</p><p class="solucio__text">Un argument que demostri, sense retòrica d'"infinitèsims", que l'àrea tancada entre l'arc de paràbola i els dos costats superiors de la seva caixa circumscrita és exactament 2/3 de l'àrea total —ni una mica més, ni una mica menys.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Parteix la caixa en franges, no en un sol tros</p><p class="solucio__text">Divideix la base de la caixa en n franges verticals iguals. A cada franja, la paràbola hi talla un rectangle petit. Sumant les àrees d'aquests n rectangles —la part que queda per sota de la corba— surt una suma coneguda de quadrats consecutius.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-207.png" alt="Figura de la construcció — la corba amb 8 franges verticals ombrejades per sota" loading="lazy"><figcaption class="solucio__figura-nota">Vuit franges verticals iguals, cadascuna amb el seu rectangle per sota de la corba.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">La construcció</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-125.png" alt="Figura de la construcció — la paràbola inscrita (2/3 de la caixa) i la suma de rectangles que tendeix a 1/3" loading="lazy"><figcaption class="solucio__figura-nota">Esquerra: la secció que es demana, 2/3 de la caixa. Dreta: la suma de rectangles per sota de la corba, que tendeix a 1/3.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho</p><p class="solucio__text">Amb n franges d'amplada 1/n sobre l'interval [0,1], la suma de les àrees dels rectangles per sota de y=x² és (1/n)·Σ(k/n)² per a k=1..n, que val (1/n³)·[n(n+1)(2n+1)/6] = 1/3 + 1/(2n) + 1/(6n²). Aquesta suma no val mai exactament 1/3 —sempre s'hi passa una mica—, però el que s'hi passa, 1/(2n)+1/(6n²), es pot fer més petit que qualsevol número donat, només triant n prou gran. Aquesta és la diferència entre un pas al límit i un infinitèsim: no cal creure's res, la fórmula és exacta per a cada n, i qualsevol xifra proposada per a l'àrea final que no sigui 1/3 es pot desmentir amb un n concret.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">L'àrea sota la corba y=x² entre 0 i 1 és exactament 1/3 de la caixa —demostrat amb una fórmula exacta per a cada n, no per apel·lació a l'infinit—, i per tant la secció parabòlica (la part de dalt) n'és els 2/3 restants.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">n=100: suma ≈ 0,33835, ja molt a prop d'1/3=0,3333. n=10000: suma ≈ 0,33338, encara més a prop. L'àrea sota la corba tendeix exactament a 1/3, i 1−1/3=2/3 confirma la secció.</p><p class="solucio__text">Aquest mètode —partir en franges cada cop més fines i sumar una fórmula coneguda— és exactament l'exhauriment que Arquimedes va fer servir, sense cap concepte de límit formal, per calcular aquesta mateixa àrea. La suma de quadrats 1²+2²+...+n² que hi ha darrere val la pena recordar-la, perquè torna a aparèixer sempre que cal sumar quadrats consecutius.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

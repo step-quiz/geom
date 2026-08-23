@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La paràbola invisible: envolupant d'un feix de rectes — Solució — Geometria</title>
+<meta name="description" content="Per què el patró de rectes que uneixen punts numerats i↔n−i produeix, sense que cap recta la dibuixi, una corba que és exactament una paràbola.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 119 · pàg. 184 del llibre · solució</span>
+  <h1 class="sol-header__title">La paràbola invisible: envolupant d'un feix de rectes</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Si connectes línies seguint aquest patró equidistant, apareix una paràbola. Per què?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q119_page184_parabola_envelope.png" alt="Figura de l'enunciat de la Qüestió 119" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Què hem de produir</p><p class="solucio__text">Una explicació de per què la "corba" que sembla aparèixer entre les rectes —que en realitat no n'hi ha cap de dibuixada— és exactament una paràbola, i no una altra corba qualsevol.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Cap recta és corba; és l'ull qui hi veu una corba</p><p class="solucio__text">Cada recta és tangent a una certa corba (la seva envolupant): la corba que "toca" cada recta del feix sense travessar-ne cap. Amb n+1 punts a cada eix, numerats 0..n, la recta i uneix el punt i d'un eix amb el punt n−i de l'altre. Quina relació hi ha entre els dos números que etiqueten els extrems d'una mateixa recta?</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-206.png" alt="Figura de la construcció — els dos eixos numerats amb algunes rectes del feix marcades" loading="lazy"><figcaption class="solucio__figura-nota">Els dos eixos, punts numerats 0..n, i algunes rectes del feix que uneixen i amb n−i.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">La construcció</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-123.png" alt="Figura de la construcció — el patró complet de rectes amb la corba envolupant marcada en vermell, etiquetada com a paràbola" loading="lazy"><figcaption class="solucio__figura-nota">El patró complet de rectes, amb la corba envolupant real (vermell) sobreposada: una paràbola.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho</p><p class="solucio__text">La recta que uneix (i,0) amb (0,n−i) té equació x/i + y/(n−i) = 1. Cada recta d'aquestes és tangent a la corba √x + √y = √n —una paràbola, girada 45° respecte de la posició habitual.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">El feix de rectes que uneixen (i,0) amb (0,n−i), per a i=0..n, té com a envolupant la corba √x + √y = √n —una paràbola girada 45°. Cap recta la dibuixa; és tangent a totes elles alhora.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">n=10: les rectes i=4 i i=5 es tallen a (2,3), i √2+√3≈3,146, molt a prop de √10≈3,162 —la petita diferència és l'error de fer servir rectes veïnes en lloc del límit real, amb rectes infinitament properes. No és, doncs, una coincidència exacta amb un nombre finit de rectes: és una aproximació que millora com més rectes s'hi dibuixin.</p><p class="solucio__text">Aquesta manera de generar una corba com a envolupant d'una família de rectes —sense dibuixar mai la corba directament— és la mateixa idea ja feta servir amb un bastó de longitud constant lliscant entre dos eixos perpendiculars: allà l'envolupant sortia d'un segment lliscant, aquí, d'una família de segments amb un patró numèric.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

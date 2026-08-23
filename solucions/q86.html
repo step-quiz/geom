@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El cas ambigu: dos costats i un angle no basten — Solució — Geometria</title>
+<meta name="description" content="Un contraexemple que demostra per què conèixer dos costats i un angle no comprès (SSA) no determina un triangle únic, a diferència del cas SAS.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 86 · pàg. 129 del llibre · solució</span>
+  <h1 class="sol-header__title">El cas ambigu: dos costats i un angle no basten</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Per què dos costats i un angle no basten, en general, per determinar un triangle?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/fig-167.png" alt="Figura de l'enunciat de la Qüestió 86" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Quin angle exactament</p><p class="solucio__text">Aquí "un angle" vol dir un angle que <strong>no</strong> és l'angle entre els dos costats donats. Si ho fos, seria el cas costat-angle-costat (SAS), i aquell sí que determina el triangle de manera única —tota la dificultat de la pregunta és aquesta distinció.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Fixar el que es pot fixar</p><p class="solucio__text">Un angle a un vèrtex A i un dels costats donats sortint d'A cap a un punt B ja fixen A i B del tot. L'altre costat donat té una longitud fixa, però només se sap que el seu altre extrem C és <strong>en algun lloc</strong> del segon costat de l'angle —no es coneix encara on.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-202.png" alt="Figura de la construcció — Fixar el que es pot fixar" loading="lazy"><figcaption class="solucio__figura-nota">Un arc de radi fix, centrat a B, tallant el segon costat de l'angle.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Quantes vegades talla l'arc</p><p class="solucio__text">Clavant un compàs a B amb aquella longitud fixa i traçant l'arc, aquest pot tallar el segon costat de l'angle en <strong>dos</strong> punts diferents (o en un de sol, en un cas límit, o en cap si la longitud és massa curta) —no en un de sol en general.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-016.png" alt="Figura de la construcció — Quantes vegades talla l'arc" loading="lazy"><figcaption class="solucio__figura-nota">L'arc talla el segon costat en dos punts, C i C'. Les marquetes confirmen BC=BC': dues solucions vàlides amb les mateixes dades.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Dos triangles, mateixes dades de partida</p><p class="solucio__text">Els dos triangles ABC i ABC' comparteixen l'angle a A, el costat AB, i el costat BC (=BC'). Però són triangles <strong>diferents</strong> —els angles a C i a C' no coincideixen, ni tampoc el costat AC. Amb angle A=30°, AB=8, BC=5, el teorema del cosinus dona una equació de segon grau per a AC amb dues solucions positives diferents: AC≈9,93 i AC≈3,93.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">No, dos costats i un angle no comprès (SSA) no basten: en general hi ha dos triangles diferents, no congruents entre si, que comparteixen exactament aquestes dades. És l'únic dels criteris clàssics de congruència que falla —per això es coneix com "el cas ambigu" en trigonometria, i reapareix sempre que es resol un triangle amb el teorema del sinus.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Angle A=30°, AB=8, BC=5: el teorema del cosinus dona AC≈9,93 i AC≈3,93, dues solucions vàlides. Si en canvi es donés l'angle comprès entre els dos costats (SAS), la mateixa equació només tindria una solució positiva possible.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

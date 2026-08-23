@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El camí més curt que toca una recta pel mig — Solució — Geometria</title>
+<meta name="description" content="Per què el camí més curt entre dos punts que ha de tocar una recta forma angles iguals amb ella, convertint el camí trencat en un de recte mitjançant una reflexió.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 96 · pàg. 150 del llibre · solució</span>
+  <h1 class="sol-header__title">El camí més curt que toca una recta pel mig</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Per què el camí més curt forma angles iguals amb la línia?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q96_page150_shortest_path_ellipse.png" alt="Figura de l'enunciat de la Qüestió 96" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Un camí que no pot ser recte</p><p class="solucio__text">El camí més curt entre dos punts ja se sap que és el segment recte —però aquí el camí ha d'anar de A a B tocant una recta pel mig, i per tant no pot ser un únic segment recte. Tota la dificultat és trobar la manera de convertir-lo, sense canviar-ne la longitud, en un camí que sí ho sigui.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">L'operació que desdobla el camí</p><p class="solucio__text">Es necessita una transformació que conservi totes les distàncies (perquè el camí "més curt" no canviï de sentit) i que permeti posar les dues meitats del camí en línia recta. Aquesta transformació és la <strong>reflexió</strong>: reflectint el punt A respecte de la recta, s'obté un punt A' tal que, per a qualsevol punt P de la recta, la distància AP és sempre igual a A'P.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-011.png" alt="Figura de la construcció — L'operació que desdobla el camí" loading="lazy"><figcaption class="solucio__figura-nota">A' és el reflex d'A respecte de la recta; AP=A'P per a qualsevol punt P de la recta (marquetes).</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">El camí trencat es torna recte</p><p class="solucio__text">Com que AP=A'P per a qualsevol P de la recta, el camí A→P→B fa exactament la mateixa longitud que el camí A'→P→B, sigui quin sigui el punt P triat. I entre tots els camins possibles d'A' a B passant per un punt P de la recta, el més curt és, sense cap dubte, el <strong>segment recte A'B</strong> —que només toca la recta al punt exacte on aquest segment la creua.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">D'aquí surten els angles iguals</p><p class="solucio__text">Un cop trobat aquest punt P òptim (la intersecció d'A'B amb la recta), els angles que el camí A→P i el camí P→B formen amb la recta resulten ser <strong>iguals</strong> —perquè A'P i AP formen el mateix angle amb la recta (per la simetria de la reflexió), i A', P i B estan alineats.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">El camí més curt que toca una recta pel mig forma sempre angles iguals amb ella, perquè reflectint un dels dos punts respecte de la recta, el camí trencat es converteix en un segment recte entre el reflex i l'altre punt —i un segment recte és, per definició, el camí més curt possible.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">A=(0,3), B=(8,1), recta y=0: reflectint A a A'=(0,-3), el punt òptim surt P=(6,0), amb longitud total √80≈8,944. Amb P=(5,0) (no òptim): la longitud surt ≈8,993, més llarga, tal com havia de passar.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El sector parabòlic: la tangent que talla just al mig — Solució — Geometria</title>
+<meta name="description" content="Per què la tangent a una paràbola talla l'eix exactament al punt mitjà, i per què això fa que el sector parabòlic sigui la meitat del triangle diagonal.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 120 · pàg. 186 del llibre · solució</span>
+  <h1 class="sol-header__title">El sector parabòlic: la tangent que talla just al mig</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Per què l'àrea d'un sector parabòlic és igual a la meitat de l'àrea del rectangle parabòlic?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q120_page186_parabolic_sector.png" alt="Figura de l'enunciat de la Qüestió 120" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Què hem de produir</p><p class="solucio__text">Una relació d'àrees 1:2 entre dues figures: el triangle TNP tallat per la tangent en un punt P de la paràbola (el "sector"), i el triangle VNP —la meitat del rectangle des del vèrtex V fins a aquell mateix punt P.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">On talla la tangent l'eix?</p><p class="solucio__text">Sigui P un punt de la paràbola i N el seu peu (la projecció de P sobre l'eix). La tangent en P talla aquest mateix eix en un punt T. Quina relació hi ha entre la distància de T al vèrtex i la de N al vèrtex?</p></div><div class="solucio__pas"><p class="solucio__pas-titol">La construcció</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-124.png" alt="Figura de la construcció — el vèrtex V, el punt P, el peu N, el punt T on la tangent talla la base" loading="lazy"><figcaption class="solucio__figura-nota">V, T, N a l'eix, amb T exactament al punt mitjà entre V i N; P a la paràbola, amb la tangent i la diagonal VP.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho</p><p class="solucio__text">Amb y=x² i P=(p,p²), la tangent en P té pendent 2p —es pot trobar sense derivades, exigint que la recta toqui la paràbola en un sol punt (discriminant zero)— i talla y=0 a x=p/2: exactament el punt mitjà entre el vèrtex (x=0) i N (x=p). El triangle VNP té sempre àrea igual a la meitat del rectangle vèrtex-a-P; i com que T és el punt mitjà de VN, el triangle TNP —el sector— té la mateixa alçada que VNP però la meitat de la base, així que la seva àrea és la meitat de la de VNP.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">La tangent a la paràbola en P talla l'eix exactament al punt mitjà entre el vèrtex i el peu de P. Per això el sector TNP té la meitat de la base del triangle VNP —que ja és la meitat del rectangle— i acaba fent exactament un quart del rectangle, és a dir, la meitat del triangle diagonal VNP.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">p=3: rectangle V-N-P = 3·9=27, meitat (triangle VNP) = 13,5. Triangle TNP amb T=(1,5, 0): base 1,5, alçada 9, àrea 0,5·1,5·9=6,75 = exactament la meitat de 13,5.</p><p class="solucio__text">Que la tangent talli l'eix exactament al punt mitjà —ni abans ni després— és el mateix fet que fa possible calcular, sense cap límit ni integral, quina fracció exacta del rectangle omple la paràbola sencera.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

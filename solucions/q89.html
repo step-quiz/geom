@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El teorema de Steiner–Lehmus — Solució — Geometria</title>
+<meta name="description" content="Per què dues bisectrius iguals impliquen un triangle isòsceles — un resultat on la intuïció encerta, però la demostració completa queda fora d'abast d'aquest recorregut.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 89 · pàg. 132 del llibre · solució</span>
+  <h1 class="sol-header__title">El teorema de Steiner–Lehmus</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Demostra que, si dues bisectrius d'un triangle són iguals, el triangle ha de ser isòsceles.</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/fig-168.png" alt="Figura de l'enunciat de la Qüestió 89" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Una aposta, abans de raonar</p><p class="solucio__text">Aquest és un dels resultats clàssics de la geometria elemental que costa molt més de demostrar del que sembla a primer cop d'ull —es coneix com el <strong>teorema de Steiner–Lehmus</strong>. La intuïció diu que sí, ha de ser isòsceles. Aquesta vegada la intuïció encerta, però val la pena notar que no és evident per què, i que un argument ràpid del tipus "és simètric, doncs..." no en constitueix una demostració vàlida.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Un sentit és fàcil; l'altre no</p><p class="solucio__text">Si el triangle ja fos isòsceles, és fàcil veure per simetria que les dues bisectrius (dels dos angles iguals) fan la mateixa longitud —aquest sentit és senzill de demostrar. Aquí es demana l'<strong>altre</strong> sentit: si les dues bisectrius surten iguals, cal deduir que el triangle era isòsceles. Aquesta implicació inversa és la que necessita una demostració real.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">La construcció, i què confirma la hipòtesi</p><p class="solucio__text">El triangle es dibuixa expressament no isòsceles a ull, amb dues bisectrius (des de B i des de C). Els arcs distingeixen quina bisectriu parteix quin angle. Les ratlletes a BP i CQ marquen la <strong>hipòtesi</strong> que se suposa —que aquestes dues longituds es fan iguals— no pas una mesura d'aquest dibuix concret: en un triangle realment escalè com aquest no poden sortir exactament iguals en píxels. Aquesta és tota la gràcia del teorema: si ho fossin de veritat, el triangle seria isòsceles.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-045.png" alt="Figura de la construcció — La construcció, i què confirma la hipòtesi" loading="lazy"><figcaption class="solucio__figura-nota">Les dues bisectrius BP i CQ, marcades com a iguals per hipòtesi, no com a resultat d'una mesura directa del dibuix.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">On s'atura aquesta pregunta, honestament</p><p class="solucio__text">La demostració completa del teorema de Steiner–Lehmus és coneguda per ser molt més llarga i tècnica que la seva formulació simple —no es dona sencera aquí perquè és massa llarga per a una pista puntual d'aquest recorregut. El que sí és a l'abast és comprovar el resultat numèricament en un cas concret, i raonar per què un triangle molt escalè hauria de donar, d'entrada, bisectrius clarament diferents —sense que això demostri encara la implicació inversa en general.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Sí, si dues bisectrius d'un triangle són iguals, el triangle ha de ser isòsceles —el teorema de Steiner–Lehmus. La implicació fàcil (isòsceles ⟹ bisectrius iguals per simetria) es demostra sense dificultat; la inversa, que és la que demana l'enunciat, és un dels resultats clàssics més coneguts per ser molt més difícils de demostrar del que la seva formulació fa pensar, i la seva demostració completa queda fora de l'abast d'aquest recorregut.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">En un triangle escalè de costats 5, 6, 7, calculant les longituds de dues bisectrius diferents amb la seva fórmula, surten clarament diferents entre si —confirmant que "costats diferents" i "bisectrius diferents" van plegats en el cas típic, cosa que fa creïble (però no demostra) la implicació inversa.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

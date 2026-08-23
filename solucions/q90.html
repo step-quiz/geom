@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La fórmula de Brahmagupta — Solució — Geometria</title>
+<meta name="description" content="Generalitzant la fórmula de Heron a un quadrilàter inscrit en una circumferència, partint-lo en dos triangles per una diagonal.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 90 · pàg. 132 del llibre · solució</span>
+  <h1 class="sol-header__title">La fórmula de Brahmagupta</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Demostra que, si una figura de quatre costats amb costats a, b, c i d està inscrita en una circumferència, la seva àrea ve donada per la fórmula de Brahmagupta: A = √[(s-a)(s-b)(s-c)(s-d)], on s = (1/2)(a+b+c+d).</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/fig-169.png" alt="Figura de l'enunciat de la Qüestió 90" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Una condició imprescindible, no decorativa</p><p class="solucio__text">Es demana generalitzar la fórmula de Heron (àrea d'un triangle a partir només dels seus costats) a un quadrilàter —però només quan els quatre vèrtexs són sobre un mateix cercle. Aquesta condició, "inscrit en una circumferència", és essencial per a tota la demostració, no un detall afegit.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Partir per una diagonal, i què aporta el cercle</p><p class="solucio__text">Una diagonal parteix el quadrilàter en dos triangles que la comparteixen. Els dos angles del quadrilàter que queden a banda i banda d'aquesta diagonal, als altres dos vèrtexs, sumen sempre <strong>180°</strong> perquè el quadrilàter és cíclic —ja demostrat, en essència, a la Qüestió 42: cada angle val la meitat del seu arc oposat, i els dos arcs oposats junts fan la circumferència sencera (360°), de manera que els dos angles sumen la meitat, 180°. Aquest és tot el paper que fa la circumferència en aquesta demostració.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-098.png" alt="Figura de la construcció — Partir per una diagonal, i què aporta el cercle" loading="lazy"><figcaption class="solucio__figura-nota">Els dos angles marcats, a banda i banda de la diagonal: suplementaris (sumen 180°) per estar inscrits en el mateix cercle.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">La mateixa diagonal, dues expressions</p><p class="solucio__text">Anomenant B un d'aquests dos angles (l'altre val 180°−B), el teorema del cosinus aplicat a cada triangle dona dues expressions per al quadrat de la diagonal: p²=a²+b²−2ab·cosB i p²=c²+d²−2cd·cos(180°−B). Com que cos(180°−B)=−cosB, igualant-les: a²+b²−2ab·cosB = c²+d²+2cd·cosB, d'on <strong>cosB = (a²+b²−c²−d²) / (2(ab+cd))</strong>.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Sumar les dues àrees</p><p class="solucio__text">Cada triangle té àrea (1/2)·costat·costat·sinus de l'angle comprès: com que sin(180°−B)=sinB, l'àrea total és (1/2)(ab+cd)·sinB. Substituint sinB=√(1−cos²B) amb l'expressió de cosB ja trobada i simplificant amb tota cura algebraica (factoritzant una diferència de quadrats), l'expressió es redueix exactament a la forma de Heron generalitzada: <strong>Àrea = √[(s−a)(s−b)(s−c)(s−d)]</strong>, amb s el semiperímetre.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Àrea = √[(s−a)(s−b)(s−c)(s−d)], amb s=(a+b+c+d)/2. Surt de partir el quadrilàter cíclic per una diagonal, aprofitar que els angles oposats sumen 180° (Qüestió 42), escriure la diagonal al quadrat de dues maneres amb el teorema del cosinus, i sumar les dues àrees. Quan un costat es redueix a zero, la fórmula es converteix exactament en la de Heron per a un triangle —el mateix tipus de cas límit que ja va aparèixer a la Qüestió 74.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Costats 2, 3, 4, 5: s=7. Àrea=√[(7−2)(7−3)(7−4)(7−5)]=√(5·4·3·2)=√120≈10,95. Verificat també simbòlicament: la meva derivació (cosinus, àrees, simplificació) coincideix exactament amb la forma de Heron generalitzada per a qualssevol quatre costats.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

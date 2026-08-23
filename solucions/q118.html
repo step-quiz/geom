@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La tangent parabòlica, sense trucs de l'infinit — Solució — Geometria</title>
+<meta name="description" content="Una demostració directa, amb triangles isòsceles i cap límit, que la tangent a la paràbola és la mediatriu del segment entre el focus i el peu a la directriu.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 118 · pàg. 183 del llibre · solució</span>
+  <h1 class="sol-header__title">La tangent parabòlica, sense trucs de l'infinit</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Pots demostrar directament aquesta propietat de la tangent, sense cap mena de "trucs de l'infinit"?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q118_page183_parabola_tangent_proof.png" alt="Figura de l'enunciat de la Qüestió 118" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Què hem de produir</p><p class="solucio__text">Una demostració que un raig vertical —paral·lel a l'eix— que arriba a la paràbola rebota exactament cap al focus, sense fer servir cap argument de "límit" ni de rectes que es toquen "a l'infinit". Només construcció i triangles.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">La definició per punts</p><p class="solucio__text">Un punt P de la paràbola és exactament tan lluny del focus F com de la directriu —és a dir, de D, el peu de la perpendicular des de P a la directriu. Si PF=PD, quin triangle isòsceles se'n dibuixa tot sol?</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-205.png" alt="Figura de la construcció — el punt P amb PF i PD marcats amb el mateix senyal d'igualtat" loading="lazy"><figcaption class="solucio__figura-nota">PF i PD, marcats amb el mateix senyal: són iguals, per definició de la paràbola.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">La construcció</p><p class="solucio__text">El triangle isòsceles PFD, amb M el punt mitjà de FD, i la recta que passa per P i per M —que resulta ser, alhora, la mediatriu de FD i la tangent a la paràbola en P.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-122.png" alt="Figura de la construcció — el triangle PFD, el punt mitjà M, i la tangent que hi passa" loading="lazy"><figcaption class="solucio__figura-nota">El triangle isòsceles PFD, l'angle recte a M, i la tangent (que passa per P i M) prolongant-se cap enfora.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho</p><p class="solucio__text">Es demostra que la bisectriu de l'angle en P del triangle isòsceles PFD —que també n'és la mediatriu del costat FD, per ser isòsceles— és precisament la tangent a la paràbola en P. Un cop establert això, el rebot surt sol: aquesta recta bisecta l'angle entre PF i PD. I PD és vertical, perquè D és el peu de la perpendicular de P a la directriu, que és horitzontal —és a dir, PD és exactament la direcció del raig que arriba. Un raig que arriba per PD i rebota en una recta que bisecta l'angle PD–PF se'n va, doncs, per PF: cap al focus. Compte: FD, en canvi, no és vertical, tret del cas del vèrtex —és PD la que ho és sempre, i és aquesta la que fa la feina.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">La tangent a la paràbola en P és la mediatriu del segment FD (entre el focus i el peu a la directriu) —construïda amb un triangle isòsceles ordinari, sense cap argument de límit ni d'infinit.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Paràbola y=x²/8 (p=2, focus F=(0,2), directriu y=−2). Amb x=3: el punt de la corba és P=(3, 9/8), el seu peu a la directriu és D=(3, −2). PD = 9/8+2 = 25/8, i PF = √(3²+(9/8−2)²) = √(9+49/64) = 25/8 —confirmat que PFD és isòsceles. El punt mitjà de F=(0,2) i D=(3,−2) és (1,5, 0). La recta de P a aquest punt mitjà té pendent (9/8−0)/(3−1,5) = 3/4, exactament el pendent de la tangent en aquell punt.</p><p class="solucio__text">Aquesta construcció —la mediatriu d'un segment entre el focus i el peu a la directriu— és el mètode clàssic, sense càlcul, amb què es demostrava aquesta propietat molt abans que existís la geometria analítica, i és exactament la propietat que fa servir qualsevol antena parabòlica: si totes les tangents reflecteixen cap al mateix punt F, tots els raigs paral·lels a l'eix s'hi concentren.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

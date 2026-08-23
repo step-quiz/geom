@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Per què la tangent és perpendicular al radi — Solució — Geometria</title>
+<meta name="description" content="Una demostració per reducció a l'absurd: dibuixar deliberadament el cas fals per veure per què no pot ser cert.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 95 · pàg. 146 del llibre · solució</span>
+  <h1 class="sol-header__title">Per què la tangent és perpendicular al radi</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Per què la tangent a una circumferència és perpendicular al radi?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q95_page146_circle_tangent_radius.png" alt="Figura de l'enunciat de la Qüestió 95" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">La demostració viu dins la definició</p><p class="solucio__text">Una recta tangent a una circumferència és, per definició, una recta que la toca en <strong>exactament un punt</strong> —ni cap ni dos o més. Aquesta condició, que sembla només descriptiva, és tota la hipòtesi que cal per demostrar la perpendicularitat: per això costa veure-ho, la hipòtesi no sembla una hipòtesi.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Dibuixar el cas fals a posta</p><p class="solucio__text">Suposant, per un moment, que el radi <strong>no</strong> fos perpendicular a la tangent: dibuixant-ho ben exagerat i tort, el radi arriba al punt de contacte P formant un angle diferent de 90°.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-203.png" alt="Figura de la construcció — Dibuixar el cas fals a posta" loading="lazy"><figcaption class="solucio__figura-nota">El cas fals dibuixat deliberadament: el radi arriba al punt de contacte sense formar-hi un angle recte.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Baixar la perpendicular real</p><p class="solucio__text">Des del centre O, es baixa la perpendicular <em>real</em> fins a la recta, i es marca on cau: aquest punt, P', és en general <strong>diferent</strong> de P (el punt de contacte suposat). Com que OP' és la distància més curta del centre a la recta (la perpendicular sempre ho és), i les marquetes confirmen que OP=OP' (tots dos són el mateix radi, si P fos realment el punt de tangència), resulta que P' també és a distància del radi de O: <strong>P' és sobre la circumferència</strong>.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-013.png" alt="Figura de la construcció — Baixar la perpendicular real" loading="lazy"><figcaption class="solucio__figura-nota">La perpendicular real des del centre cau a P', un punt diferent de P però igualment a distància del radi.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">La contradicció que ho tanca</p><p class="solucio__text">Però P' també és, per construcció, sobre la <strong>recta</strong> —i si P' és alhora sobre la circumferència i sobre la recta, la recta toca la circumferència en <strong>dos</strong> punts (P i P'), no en un de sol. Això contradiu directament la definició de tangent. L'única manera d'evitar aquesta contradicció és que P i P' siguin, de fet, el mateix punt —cosa que només passa quan el radi ja era perpendicular a la recta des del principi.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">La tangent és sempre perpendicular al radi al punt de contacte. Es demostra per reducció a l'absurd: si no ho fos, la perpendicular real des del centre cauria en un segon punt de la recta, igualment a distància del radi del centre —i per tant també sobre la circumferència—, contradient que la tangent la toca en un sol punt.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">No hi ha xifres a comprovar aquí: la comprovació és repassar la pròpia demostració i assenyalar exactament on fa servir que la recta toca el cercle només una vegada. Si enlloc no s'hi fa servir aquesta condició, hi ha un forat —sense-hi, l'enunciat és fals (una secant, que talla en dos punts, no compleix la perpendicularitat).</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

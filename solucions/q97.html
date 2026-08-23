@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El camí més curt entre dues rectes paral·leles — Solució — Geometria</title>
+<meta name="description" content="Estendre la reflexió de q96 a dues rectes: reflectir un cop per cada recta i unir els dos reflexos amb un segment recte.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 97 · pàg. 151 del llibre · solució</span>
+  <h1 class="sol-header__title">El camí més curt entre dues rectes paral·leles</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Suposa que dos punts es troben entre dues línies paral·leles. Quin és el camí més curt d'un a l'altre que toqui totes dues línies?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q97_page151_parallel_lines_path.png" alt="Figura de l'enunciat de la Qüestió 97" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">El mateix truc, dues vegades</p><p class="solucio__text">A la Qüestió 96 el camí tocava una sola recta. Aquí en toca dues —un cop cadascuna. La idea és exactament la mateixa, però cal aplicar-la dos cops, no un.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Un rebot cada vegada</p><p class="solucio__text">Es reflecteix A respecte de la recta de dalt, obtenint A'; per la mateixa raó que a q96, es reflecteix també B respecte de la recta de baix, obtenint B'. Cadascuna d'aquestes reflexions converteix un tros del camí en un segment equivalent en longitud.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-019.png" alt="Figura de la construcció — Un rebot cada vegada" loading="lazy"><figcaption class="solucio__figura-nota">A' (reflex d'A respecte de la recta de dalt) i B' (reflex de B respecte de la recta de baix), amb el camí complet A→P→Q→B marcat.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Un camí de la mateixa longitud, per a qualsevol elecció</p><p class="solucio__text">Amb A' i B' ja fixats, triant dos punts de contacte qualssevol P (a la recta de dalt) i Q (a la de baix): per la reflexió, AP=A'P i QB=QB'. El camí A→P→Q→B té, doncs, exactament la mateixa longitud que el camí A'→P→Q→B', <strong>sigui quins siguin</strong> P i Q.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">El mínim: el segment recte A'B'</p><p class="solucio__text">El camí A'→P→Q→B' passa per dos punts pel mig, i cap camí així pot ser més curt que el segment recte A'B' —només l'iguala quan P i Q cauen exactament damunt d'aquest segment. Els punts de contacte òptims són, doncs, els dos punts on el segment A'B' talla les dues rectes, i la longitud mínima total és exactament <strong>|A'B'|</strong>.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">El camí més curt que toca dues rectes paral·leles, una cada vegada, surt de reflectir cada extrem respecte de la recta que li toca directament, i unir els dos reflexos amb un segment recte: la longitud mínima és |A'B'|, i els punts de contacte òptims són on aquest segment talla cadascuna de les dues rectes.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Rectes y=6 (dalt) i y=0 (baix). A=(1,4), B=(9,1). Reflectint: A'=(1,8), B'=(9,-1). La distància |A'B'| és √145≈12,042. Un camí "a ull" que toqui totes dues rectes a x=4 surt ≈14,706, més llarg, tal com havia de passar.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>
