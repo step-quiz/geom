@@ -3,6 +3,7 @@
 Un lloc web per explorar 130 preguntes obertes de geometria sintètica. No és un banc d'exercicis per corregir-se:
 cada pregunta és una porta d'entrada a una demostració o un descobriment — sense puntuació, sense respostes correctes marcades, sense
 gamificació.
+Cal fer dos matisos a la frase anterior: en primer lloc, com a versió del professorat, existeix la carpeta 'solucions'.. En segon lloc, l'alumnat pot demanar fer un examen escrit, presencial i per resoldre amb paper i llapis, un cop ha enviat al professor la llista d'exercicis que ha practicat.
 
 ## Com obrir-ho
 
