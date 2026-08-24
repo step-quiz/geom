@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Per què les hipèrboles tenen tanta simetria — Solució — Geometria</title>
+<meta name="description" content="Els dos eixos de simetria (i la simetria de rotació de 180°) d'una hipèrbola es dedueixen directament de l'equació, sense mirar-ne el dibuix.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 110 · pàg. 173 del llibre · solució</span>
+  <h1 class="sol-header__title">Per què les hipèrboles tenen tanta simetria</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Per què les hipèrboles tenen tanta simetria?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q110_page173_hyperbola_symmetry.png" alt="Figura de l'enunciat de la Qüestió 110" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Una raó a l'equació, no només al dibuix</p><p class="solucio__text">No n'hi ha prou de comptar les simetries mirant el dibuix: cal una raó que es vegi directament a l'<strong>equació</strong> x²/a² − y²/b² = 1, sense necessitat de dibuixar res.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Només potències parelles</p><p class="solucio__text">A l'equació de la hipèrbola, x i y hi apareixen <strong>només elevades al quadrat</strong> —mai soles, a la primera potència. Aquest detall, aparentment tècnic, és tota la clau.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Canviar x per −x, i per −y</p><p class="solucio__text">Substituint x per −x a l'equació: (−x)²/a² − y²/b² = x²/a² − y²/b², exactament la mateixa equació —perquè (−x)²=x². Per tant, si un punt (x₀,y₀) satisfà l'equació, el punt (−x₀,y₀) també la satisfà: <strong>simetria respecte de l'eix vertical</strong>. Exactament el mateix argument, ara canviant y per −y, dona <strong>simetria respecte de l'eix horitzontal</strong>.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-114.png" alt="Figura de la construcció — Canviar x per −x, i per −y" loading="lazy"><figcaption class="solucio__figura-nota">Els dos eixos de simetria de la hipèrbola, marcats en sanguina.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Una tercera simetria, de franc</p><p class="solucio__text">Combinant les dues reflexions —canviar x per −x <em>i</em> y per −y alhora— el punt (x₀,y₀) es converteix en (−x₀,−y₀), que també satisfà l'equació pel mateix motiu. Geomètricament, aplicar dues reflexions respecte de dos eixos perpendiculars és equivalent a una <strong>rotació de 180°</strong> al voltant del seu punt de tall (el centre): una tercera simetria que ve inclosa sense haver de demostrar-la per separat.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Una hipèrbola té dos eixos de simetria (i, combinant-los, una simetria de rotació de 180° pel centre) perquè la seva equació només conté x² i y², mai x ni y a soles: substituir x per −x, o y per −y, deixa l'equació exactament igual. El mateix argument (només potències parelles ⇒ simetria) explica per què l'el·lipse té també dos eixos, i per què la paràbola (amb x a la primera potència) en té només un.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Amb a=3, b=4: el punt (5, 5,33) satisfà x²/9−y²/16=1 (val 1,0). Substituint (−5, 5,33), (5, −5,33) i (−5, −5,33) a la mateixa equació, els quatre casos donen exactament 1,0.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

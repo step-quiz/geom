@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La raó doble sobreviu a la projecció — Solució — Geometria</title>
+<meta name="description" content="Una demostració algebraica completa que la raó doble de quatre punts sobre una recta no canvia quan es projecten des d'un punt cap a una altra recta.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 99 · pàg. 156 del llibre · solució</span>
+  <h1 class="sol-header__title">La raó doble sobreviu a la projecció</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Pots treballar els detalls d'aquesta demostració?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/fig-215.png" alt="Figura de l'enunciat de la Qüestió 99" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Auditar, no només intuir</p><p class="solucio__text">Aquí no n'hi ha prou amb la intuïció que "sembla que es manté": cal una comprovació algebraica completa que la raó doble (AC·BD)/(BC·AD) de quatre punts A,B,C,D sobre una recta és exactament la mateixa que la dels seus quatre projectats A′,B′,C′,D′ des d'un mateix punt O cap a una altra recta.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Escriure cada distància amb una àrea</p><p class="solucio__text">Per a un punt O fora de la recta i dos punts X,Y sobre la recta, l'àrea del triangle OXY es pot escriure de dues maneres: (1/2)·OX·OY·sin(∠XOY), o (1/2)·XY·h (amb h l'alçada des d'O fins a la recta). Igualant-les i aïllant XY: <strong>XY = OX·OY·sin(∠XOY) / h</strong>.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-103.png" alt="Figura de la construcció — Escriure cada distància amb una àrea" loading="lazy"><figcaption class="solucio__figura-nota">L'àrea del triangle OAC escrita de dues maneres: amb l'angle a O, i amb la base AC i l'alçada des d'O.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Aplicar-ho a les quatre distàncies</p><p class="solucio__text">Amb la mateixa fórmula aplicada a cadascuna de les quatre distàncies que apareixen a la raó doble: AC = OA·OC·sin(∠AOC)/h, BD = OB·OD·sin(∠BOD)/h, BC = OB·OC·sin(∠BOC)/h, AD = OA·OD·sin(∠AOD)/h. L'alçada h és <strong>la mateixa</strong> per a totes quatre, perquè totes provenen del mateix punt O i la mateixa recta.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Substituir i veure què es cancel·la</p><p class="solucio__text">Substituint les quatre expressions a la raó doble (AC·BD)/(BC·AD): totes les OA, OB, OC, OD i totes les h es <strong>cancel·len completament</strong>. El que en queda és exactament <strong>[sin(∠AOC)·sin(∠BOD)] / [sin(∠AOD)·sin(∠BOC)]</strong> —una expressió que ja no depèn de les distàncies concretes, només dels angles vistos des d'O.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Per què això demostra la invariància</p><p class="solucio__text">Els punts projectats A′,B′,C′,D′ són sobre les mateixes quatre semirectes que surten d'O —el mateix feix de rectes, només que tallat per una segona recta en lloc de la primera. Els angles ∠A′OC′, ∠B′OD′, etc. són, doncs, <strong>exactament els mateixos angles</strong> que ∠AOC, ∠BOD, etc. Com que la raó doble només depèn d'aquests angles (un cop cancel·lades les distàncies), la raó doble dels punts projectats ha de ser idèntica a la dels originals.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">La raó doble (AC·BD)/(BC·AD) de quatre punts sobre una recta es preserva exactament sota qualsevol projecció des d'un punt cap a una altra recta. Escrivint cada distància amb la fórmula d'àrea d'un triangle (OX·OY·sinàngle/h), totes les distàncies a O i l'alçada h es cancel·len de la raó doble, deixant una expressió que només depèn dels angles del feix des d'O —els mateixos per als punts originals i els projectats.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">A,B,C,D a x=0,2,5,9: raó doble=(5)(7)/(3)(9)=35/27≈1,296. Projectant aquests quatre punts des d'un punt O=(3,7) cap a una segona recta (y=−x+20): els quatre punts projectats surten A′=(6,14), B′=(4,25;15,75), C′=(−1,21), D′=(−57,77), i la seva raó doble torna a sortir exactament 1,296.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>
