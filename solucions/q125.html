@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>L'espirògraf sense gir: només queda un cercle — Solució — Geometria</title>
+<meta name="description" content="Si el punt que traça la corba és al centre del cercle petit, tota la complexitat de l'espirògraf es redueix a un simple cercle de radi R-r.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 125 · pàg. 192 del llibre · solució</span>
+  <h1 class="sol-header__title">L'espirògraf sense gir: només queda un cercle</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Què passa si el punt que traça la corba és al centre?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q125_page192_spirograph.png" alt="Figura de l'enunciat de la Qüestió 125" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Què hem de produir</p><p class="solucio__text">Una descripció de la corba degenerada —molt més senzilla que l'espirògraf general— que resulta quan el punt que es traça no és sobre la vora del cercle petit, sinó exactament al seu centre.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Separa els dos moviments</p><p class="solucio__text">A l'espirògraf normal, el punt marcat gira al voltant del centre del cercle petit, i aquest centre alhora es mou al voltant del centre del cercle gran. Si el punt marcat és el centre del cercle petit, quin d'aquests dos moviments desapareix?</p></div><div class="solucio__pas"><p class="solucio__pas-titol">La construcció</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-130.png" alt="Figura de la construcció — l'espirògraf general al costat del cas degenerat, un simple cercle de radi R menys r" loading="lazy"><figcaption class="solucio__figura-nota">Esquerra: l'espirògraf general. Dreta: amb el punt al centre, només queda el cercle de radi R−r.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho</p><p class="solucio__text">Sense el gir addicional del punt sobre el cercle petit, el que queda és només el moviment del centre del cercle petit, que —com que rodola per dins del cercle gran mantenint sempre la mateixa distància R−r del centre comú— descriu simplement un cercle de radi R−r.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Si el punt que traça la corba és al centre del cercle petit, la corba resultant és simplement un cercle de radi R−r, centrat al centre comú.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">R=5, r=2: el centre del cercle petit es manté sempre a distància 5−2=3 del centre, per a qualsevol angle de gir —comprovable calculant-ho a diversos instants i veient que el radi no canvia mai.</p><p class="solucio__text">Aquest cas degenerat —tota la complexitat de l'espirògraf reduïda a un simple cercle— és el mateix tipus de simplificació que ja apareix quan un triangle es va "aixafant" fins a quedar pla: posar un paràmetre a un valor extrem (aquí, distància zero al centre) converteix una figura complicada en la més senzilla possible.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

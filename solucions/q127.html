@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El punt mitjà de l'escala: sempre a la meitat de distància — Solució — Geometria</title>
+<meta name="description" content="Per què el punt mitjà d'una escala que llisca traça un quart de cercle: la mateixa distància constant del vèrtex de l'angle recte al punt mitjà de la hipotenusa.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 127 · pàg. 193 del llibre · solució</span>
+  <h1 class="sol-header__title">El punt mitjà de l'escala: sempre a la meitat de distància</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Una escala llisca per la paret fins que toca el terra. Quina corba descriu el seu punt mitjà?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/fig-178.png" alt="Figura de l'enunciat de la Qüestió 127" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Què hem de produir</p><p class="solucio__text">La identificació exacta de la corba —no només una descripció aproximada com "es corba cap avall": quina figura geomètrica coneguda traça el punt mitjà del bastó mentre aquest llisca?</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Cada instant és un triangle rectangle diferent</p><p class="solucio__text">En qualsevol instant, el bastó, la paret i el terra formen un triangle rectangle: el bastó n'és la hipotenusa, l'angle recte és a la cantonada. Hi ha una propietat sobre la distància des del vèrtex de l'angle recte fins al punt mitjà de la hipotenusa, vàlida en qualsevol triangle rectangle.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">La construcció</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-131.png" alt="Figura de la construcció — dos instants del bastó amb el punt mitjà marcat i el quart de cercle que els uneix" loading="lazy"><figcaption class="solucio__figura-nota">El bastó, ara amb el seu punt mitjà: dos instants diferents, i el quart de cercle (discontinu) que els uneix.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho</p><p class="solucio__text">En un triangle rectangle, la distància del vèrtex de l'angle recte al punt mitjà de la hipotenusa és sempre la meitat de la hipotenusa —independentment de com s'obri o es tanqui l'angle. Com que la hipotenusa (el bastó) té sempre la mateixa longitud L, aquesta distància és sempre L/2: el punt mitjà es manté sempre a la mateixa distància L/2 de la cantonada, i per tant descriu un quart de cercle de radi L/2 centrat a la cantonada.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">El punt mitjà d'un bastó de longitud L que llisca entre una paret i un terra descriu un quart de cercle de radi L/2, centrat a la cantonada —perquè el punt mitjà de la hipotenusa d'un triangle rectangle és sempre a distància L/2 del vèrtex de l'angle recte.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">L=7: amb el peu del bastó a x=7cos(0,37)≈6,52 i l'altre extrem a y=7sin(0,37)≈2,53, el punt mitjà és (3,26, 1,27), a distància √(3,26²+1,27²)≈3,50=7/2 exactament —i ho és per a qualsevol altre angle que es provi.</p><p class="solucio__text">Aquest mateix bastó ja va donar, en una altra qüestió, l'envolupant de totes les seves posicions (un astroide). Aquí en surt un segon resultat, ben diferent: no la corba que "toquen" totes les posicions del bastó, sinó la corba que traça un únic punt (el mig) mentre el bastó es mou. Val la pena no confondre mai aquests dos conceptes: una envolupant és tangent a totes les còpies d'una família de corbes; una trajectòria és el camí d'un sol punt concret.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>
