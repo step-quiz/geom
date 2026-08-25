@@ -2834,7 +2834,7 @@ window.GUIES = {
       }
     ],
     "comprovacio": {
-      "ca": "Base de 12, vèrtex desplaçat (no centrat) a alçada 7. Amb el tall al punt mitjà (a distància 6 de cada cantó), l'àrea de cada meitat surt 21 — sumen 42, que és l'àrea sencera. Prova-ho també desplaçant el vèrtex a un altre lloc de la mateixa alçada 7: les dues meitats han de continuar sortint iguals entre elles, encara que ja no facin 21 cadascuna.",
+      "ca": "Base de 12, vèrtex desplaçat (no centrat) a alçada 7. Amb el tall al punt mitjà (a distància 6 de cada cantó), l'àrea de cada meitat surt 21 — sumen 42, que és l'àrea sencera. Ara prova-ho desplaçant el vèrtex a un altre lloc de la mateixa alçada 7, tan lluny com vulguis: cada meitat continua fent 21. No és que \"quadri igualment\": és que ni la base (6) ni l'alçada (7) de cap de les dues meitats no han canviat, i l'àrea només depèn d'aquestes dues coses. Si canvies l'alçada, sí que canvien les dues meitats —però continuen sent iguals entre elles, que és el que la pregunta demana.",
       "en": null
     },
     "iDespres": {
@@ -3073,7 +3073,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Un semicercle de diàmetre a+b, amb un triangle rectangle inscrit tocant el diàmetre al punt que el parteix en a i b. L'alçada des d'aquest punt fins al semicercle és exactament √(ab) —el teorema de l'altura sobre la hipotenusa (el mateix que fas servir per trobar l'apotema o qualsevol alçada relativa).",
+          "ca": "Un semicercle de diàmetre a+b, amb un triangle rectangle inscrit tocant el diàmetre al punt que el parteix en a i b. L'alçada des d'aquest punt fins al semicercle és exactament √(ab) —el teorema de l'altura sobre la hipotenusa, que ja tens demostrat a q09: l'altura sobre la hipotenusa és mitjana geomètrica dels dos trossos en què la parteix.",
           "en": null
         },
         "figura": "fig-064.png"
@@ -3085,14 +3085,14 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Un cop tens s=√(ab), es pot demostrar que —si el rectangle no és massa allargat (a < 4b)— n'hi ha prou amb DOS talls per recompondre'l en un quadrat de costat s. Si el rectangle és més allargat, calen més peces, però el teorema de Bolyai–Gerwien garanteix que sempre és possible.",
+          "ca": "Un cop tens s=√(ab), es pot demostrar que —si el rectangle no és massa allargat, és a dir si el costat llarg no supera 4 vegades el curt— n'hi ha prou amb DOS talls (tres peces) per recompondre'l en un quadrat de costat s. Si el rectangle és més allargat, es parteix primer per la meitat i s'apilen els dos trossos, tantes vegades com calgui, fins a entrar dins d'aquesta proporció; el teorema de Bolyai–Gerwien garanteix que sempre és possible.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "Rectangle 8×2: s=√16=4. Comprova que 8×2=16=4×4 ✓ (mateixa àrea, com ha de ser per a qualsevol dissecció).",
+      "ca": "Rectangle 6×3: s=√18≈4,243. Comprova que 6×3=18=(√18)² ✓ (mateixa àrea, com ha de ser per a qualsevol dissecció). Prova després amb un 8×2: l'àrea continua quadrant (s=4, i 8×2=16=4²), però fixa't que aquest rectangle és just al límit de la proporció 4:1, o sigui que ja no tens garantit fer-ho amb tres peces.",
       "en": null
     },
     "iDespres": {
@@ -3415,18 +3415,18 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Si 3 no dividís p, p seria de la forma 3k+1 o 3k+2 —cap dels dos casos, comprova-ho, dona un quadrat múltiple de 3. Per tant 3 | p² força 3 | p. Ara: si 3 | p, escriu p=3m i torna a l'equació p²=3q². Què li passa a q? Arribes a la mateixa situació amb p i q més petits —una davallada infinita, impossible per a enters positius.",
+          "ca": "Si 3 no dividís p, p seria de la forma 3k+1 o 3k+2 —cap dels dos casos, comprova-ho, dona un quadrat múltiple de 3. Per tant 3 | p² força 3 | p. Ara: si 3 | p, escriu p=3m i torna a l'equació p²=3q². Et queda 9m²=3q², és a dir q²=3m². Pel mateix argument d'abans, 3 | q. Però llavors 3 divideix alhora p i q —i havies dit que la fracció p/q ja estava reduïda al mínim, o sigui que no tenien cap factor comú. Contradicció: la fracció no existeix.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "No numèrica: repassa la teva demostració i assenyala on fas servir que la fracció p/q ja estava reduïda al mínim. Si no ho fas servir enlloc, la demostració no funciona (la davallada infinita necessita precisament aquesta hipòtesi per contradir-se).",
+      "ca": "No numèrica: repassa la teva demostració i assenyala on fas servir que la fracció p/q ja estava reduïda al mínim. Si no ho fas servir enlloc, la demostració no s'aguanta: és precisament amb aquesta hipòtesi que xoca la conclusió \"3 divideix p i divideix q\".\n\n(Nota per si algú te la fa: hi ha una segona manera de tancar-ho que NO necessita suposar la fracció reduïda —la davallada infinita. De p i q en surten un p/3 i un q/3 que compleixen la mateixa equació, i d'aquests uns altres més petits, i així sense parar; i una successió infinita d'enters positius estrictament decreixents no pot existir. Les dues demostracions són bones; el que no val és barrejar-les, perquè cadascuna contradiu una cosa diferent.)",
       "en": null
     },
     "iDespres": {
-      "ca": "√2+√3 es demostra amb el mateix moviment però un pas indirecte: si fos racional, (√2+√3)² = 5+2√6 també ho seria, i per tant √6 també —contradicció pel mateix argument, aplicat ara a 6.",
+      "ca": "√2+√3 es demostra amb el mateix moviment però un pas indirecte: si fos racional, (√2+√3)² = 5+2√6 també ho seria, i per tant √6 també. I √6 és irracional pel mateix argument —amb una passa més, perquè 6 no és primer: de 6 | p² en surt 2 | p² i 3 | p², i cada primer per separat dona 2 | p i 3 | p, o sigui 6 | p. Aquest detall importa: l'argument NO funcionaria per a √4, i el motiu és exactament aquest.",
       "en": null
     }
   },
@@ -3548,7 +3548,7 @@ window.GUIES = {
       }
     ],
     "comprovacio": {
-      "ca": "Amb R = 1 surt r = √2 − 1 ≈ 0,414 — exactament el mateix valor numèric que et va sortir a q22, tot i que la figura és diferent del tot. No és casualitat: comprova que l'equació r(√2+1) = R que has fet servir aquí és, mirada amb calma, la mateixa equació de q22.",
+      "ca": "Amb R = 1 surt r = √2 − 1 ≈ 0,414 — exactament el mateix valor numèric que et va sortir a q22, tot i que la figura és diferent del tot. Compte a no dir-ne massa de pressa \"és la mateixa equació\": no ho és. A q22 tenies R√2 = R + r (tangència exterior, catets R) i aquí tens r√2 = R − r (tangència interior, catets r). Són equacions diferents que resolen a la mateixa raó, i el motiu és una identitat que val la pena veure: de la primera surt r/R = √2 − 1, de la segona r/R = 1/(√2 + 1), i aquests dos números són iguals perquè (√2 − 1)(√2 + 1) = 2 − 1 = 1. Comprova-ho.",
       "en": null
     },
     "iDespres": {
@@ -3583,7 +3583,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "a²+b²=c² —la mateixa relació que fas servir des de q14/q25. La pregunta aquí no és calcular c a partir de a i b: és trobar TERNES (a,b,c) senceres que la compleixin.",
+          "ca": "a²+b²=c² —la mateixa relació que vas demostrar a q09 i que has fet servir a q25. La pregunta aquí no és calcular c a partir de a i b: és trobar TERNES (a,b,c) senceres que la compleixin.",
           "en": null
         },
         "figura": null
@@ -3618,7 +3618,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Aquestes ternes es diuen pitagòriques, i hi ha una fórmula que les genera totes (m²−n², 2mn, m²+n², per a m>n enters) —una pregunta oberta per qui vulgui anar més enllà del que demana aquest quadern.",
+      "ca": "Aquestes ternes es diuen pitagòriques, i hi ha una fórmula que les genera: (m²−n², 2mn, m²+n²), amb m>n enters positius. Compte amb què genera exactament: amb m i n coprimers i de paritat diferent dona totes les ternes primitives (les que no són múltiple de cap altra), i totes les altres són múltiples d'aquestes. La fórmula tota sola no les dona pas totes —prova de treure'n (9,12,15), que és 3×(3,4,5), i veuràs que no hi ha cap parell (m,n) enter que hi arribi. Una pregunta oberta per a qui vulgui anar més enllà del que demana aquest quadern.",
       "en": null
     }
   },
@@ -3706,7 +3706,7 @@ window.GUIES = {
         "nivell": 1,
         "titol": null,
         "text": {
-          "ca": "Cada meitat és un triangle rectangle amb hipotenusa el costat del triangle (s) i un catet la meitat de la base (s/2). Pitàgores et dona directament l'altre catet — que és, precisament, l'alçada.\n\nDues coses que aquí es donen per bones i que has de saber d'on surten: que l'alçada caigui just al PUNT MITJÀ de la base, i que hi caigui perpendicular. Totes dues venen del mateix argument, fet a q01 (pista 1): els dos trossos són triangles congruents pels tres costats, i d'aquí surten alhora la meitat exacta i els 90°. Si no l'has vist, val la pena fer-hi un tomb abans de seguir: és la peça que fa que aquesta guia funcioni.",
+          "ca": "Cada meitat és un triangle rectangle amb hipotenusa el costat del triangle (s) i un catet la meitat de la base (s/2). Pitàgores et dona directament l'altre catet — que és, precisament, l'alçada.\n\nDues coses que aquí es donen per bones i que has de saber d'on surten: que l'alçada caigui just al PUNT MITJÀ de la base, i que hi caigui perpendicular. Totes dues venen del mateix argument, fet a q01 (pista 1), i compte amb la DIRECCIÓ en què va, que és fàcil de girar sense adonar-se'n. No es parteix de l'alçada: es parteix del segment que va del vèrtex al punt mitjà (la mediana). Aleshores els dos trossos ja tenen els tres costats iguals dos a dos —els dos costats del triangle, les dues meitats de la base i la línia nova compartida—, o sigui que són congruents pels tres costats, i d'aquí surten els 90°. Girar-ho (partir de l'alçada i voler-ne treure la meitat exacta amb el mateix criteri de tres costats) no funciona: la meitat exacta és justament el que encara no tens. Si no l'has vist, val la pena fer-hi un tomb abans de seguir: és la peça que fa que aquesta guia funcioni.",
           "en": null
         },
         "figura": null
@@ -3793,7 +3793,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Al triangle: la distància del centroide a un vèrtex és L/√3. La distància del centroide al centre d'un cercle és 2r menys que això, però també és 2r/√3 (perquè els tres centres formen un triangle equilàter petit, semblant al gran). Iguala-les.",
+          "ca": "Al triangle: la distància del centroide a un vèrtex és L/√3.\n\nAra et falta una peça que el dibuix no et diu i que has de treure tu: a quina distància del vèrtex hi ha el centre del cercle. El centre és a distància r dels dos costats que surten del vèrtex, o sigui que és damunt de la bisectriu, i la bisectriu d'un angle de 60° en fa dos de 30°. En el triangle rectangle petit que formen el vèrtex, el centre i el punt on el cercle toca el costat, r és el catet oposat a 30°: per tant la hipotenusa —la distància del vèrtex al centre— val 2r.\n\nAmb això, la distància del centroide al centre d'un cercle és 2r menys que L/√3. Però també és 2r/√3, perquè els tres centres formen un triangle equilàter petit de costat 2r (dos radis, per la tangència), concèntric amb el gran. Iguala les dues expressions.",
           "en": null
         },
         "figura": null
@@ -3904,7 +3904,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Els dos polígons són regulars (a diferència del de q70), però aquí la regularitat és només perquè es vegi net al dibuix — la fórmula que fas servir no la necessita per res.",
+          "ca": "Els dos polígons són regulars (a diferència del de q70), però aquí la regularitat és només perquè es vegi net al dibuix — la fórmula que fas servir no la necessita per res. El que sí que necessita, i val la pena saber-ho, és que el polígon sigui CONVEX: en un polígon amb entrants, una diagonal traçada des d'un vèrtex pot sortir-se de la figura, i el ventall ja no la parteix netament en n−2 triangles. Per MESURAR les diagonals, en canvi (la segona meitat d'aquesta pregunta), la regularitat sí que et fa falta.",
           "en": null
         },
         "figura": "fig-037.png"
@@ -3982,14 +3982,14 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "A diferència de q39 (pentàgon, triangulat des del centre, deu triangles idèntics), aquí triangules des d'un VÈRTEX: els deu triangles no són tots iguals. Per calcular l'àrea et cal la suma de les deu àrees, no deu vegades una de sola —o bé, alternativa més neta: torna a triangular des del CENTRE, com q39, i aprofita que el dodecàgon és regular.",
+          "ca": "A diferència de q39 (pentàgon, triangulat des del centre, cinc triangles idèntics —un per costat), aquí triangules des d'un VÈRTEX: els deu triangles no són tots iguals. Per calcular l'àrea et cal la suma de les deu àrees, no deu vegades una de sola —o bé, alternativa més neta: torna a triangular des del CENTRE, com q39, i aprofita que el dodecàgon és regular.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "Dodecàgon de costat s=1, triangulat des del centre: apotema a=1/(2 tan15°)≈1,866. Àrea d'un dels 12 triangles: (1/2)(1)(1,866) ≈0,933. Àrea total: 12×0,933≈11,196 —coincideix amb la fórmula estàndard 3(2+√3)s²≈11,196.\n\nI les diagonals, que la Pista 1 et demanava comptar per tipus: n'hi ha cinc de llargades diferents, segons quants vèrtexs salten (1, 2, 3, 4 o 5); la que en saltaria 6 és el diàmetre, i les que en salten més són les mateixes repetides des de l'altra banda. Cadascuna és la base d'un triangle isòsceles format per dos radis R del dodecàgon amb un angle central de k×30° entremig, així que totes surten de la mateixa fórmula: diagonal = 2R·sin(k×15°), amb k=1..6. Amb R=1: 0,518 / 1 / 1,414 / 1,732 / 1,932 / 2. Fixa't que la tercera fa exactament √2 i la sisena exactament 2 (el diàmetre) —bones per comprovar que no t'has equivocat.",
+      "ca": "Dodecàgon de costat s=1, triangulat des del centre: apotema a=1/(2 tan15°)≈1,866. Àrea d'un dels 12 triangles: (1/2)(1)(1,866) ≈0,933. Àrea total: 12×0,933≈11,196 —coincideix amb la fórmula estàndard 3(2+√3)s²≈11,196.\n\nI les diagonals, que la Pista 1 et demanava comptar per tipus. Compta per PASSOS entre vèrtexs, no per \"vèrtexs saltats\", que és on tothom s'entrebanca: k=1 uneix dos vèrtexs veïns i per tant NO és cap diagonal —és el costat. Les diagonals van de k=2 fins a k=6, i les de k=7 endavant són les mateixes repetides des de l'altra banda (k i 12−k donen la mateixa llargada). O sigui que hi ha cinc llargades diferents de diagonal, i l'última, k=6, és el diàmetre.\n\nCadascuna és la base d'un triangle isòsceles format per dos radis R del dodecàgon amb un angle central de k×30° entremig, així que totes surten de la mateixa fórmula: diagonal = 2R·sin(k×15°). Amb R=1: 1 (k=2) / 1,414 (k=3) / 1,732 (k=4) / 1,932 (k=5) / 2 (k=6). Fixa't que la de k=3 fa exactament √2, la de k=4 exactament √3 i la de k=6 exactament 2 (el diàmetre) —bones per comprovar que no t'has equivocat. La mateixa fórmula amb k=1 dona 2sin15°≈0,518, que és el costat: bon control de que la fórmula funciona, però no és una diagonal.",
       "en": null
     },
     "iDespres": {
@@ -4144,7 +4144,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Ja saps (o pots saber, per q31/q32) que d/s=φ compleix φ²=φ+1 per trigonometria. Aquí et demanen la MATEIXA identitat, però llegida directament d'un dibuix, sense cap sinus ni cosinus.",
+          "ca": "Que la raó d/s del pentàgon regular val φ i que φ²=φ+1 es pot obtenir per trigonometria; també et va sortir a q38, amb un rectangle en lloc d'un pentàgon. (Compte: q31 i q32 FAN SERVIR aquesta identitat, però cap de les dues no la demostra.) Aquí et demanen la MATEIXA identitat, però llegida directament d'un dibuix, sense cap sinus ni cosinus.",
           "en": null
         },
         "figura": null
@@ -4180,7 +4180,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Aquest triangle és semblant al triangle \"A\" que ja vas marcar a q31 (els mateixos angles 36°-36°-108°). Un triangle isòsceles amb aquests angles, de base 1 i costats d, compleix una relació de semblança amb ell mateix partit per la bisectriu d'un angle de la base: d/1 = 1/(d−1). Desenvolupa-la.",
+          "ca": "Compte a no confondre'l amb el triangle \"A\" de q31: aquell tenia la base llarga i l'apex de 108°. Aquí passa al revés —la base fa 1 i els altres dos costats fan d, que és MÉS llarg— i per tant l'angle petit ha de ser el de dalt. Els angles surten 72°-72°-36°: és el mateix triangle que els dos laterals grans de q31, els que no portaven etiqueta.\n\nUn triangle isòsceles amb aquests angles, de base 1 i costats d, compleix una relació de semblança amb ell mateix partit per la bisectriu d'un angle de la base (un dels de 72°): la bisectriu deixa un triangle petit amb els mateixos tres angles. D'aquí surt d/1 = 1/(d−1). Desenvolupa-la.",
           "en": null
         },
         "figura": null
@@ -4191,7 +4191,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Ja tens tres demostracions independents de la mateixa identitat (q38 amb el rectangle, q31/q32 amb els triangles del pentagrama, i aquesta amb dos pentàgons) — val la pena que notis que cap de les tres es repeteix: la geometria sovint deixa més d'un camí obert cap al mateix fet.",
+      "ca": "Ja tens dues demostracions independents de la mateixa identitat (q38 amb el rectangle, i aquesta amb dos pentàgons; q31 i q32 n'usen el resultat, però no el demostren) — val la pena que notis que cap de les tres es repeteix: la geometria sovint deixa més d'un camí obert cap al mateix fet.",
       "en": null
     }
   },
@@ -4452,7 +4452,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Un sistema com aquest —dues incògnites que has de trobar a partir de la seva suma i el seu producte— no sempre té solució real: si la condició d'àrea fos massa exigent per al perímetre donat, l'equació de segon grau de la Pista 3 podria tenir discriminant negatiu, i cap rectangle real la compliria. Aquí no passa —val la pena saber per què, en lloc de donar-ho per fet. El discriminant surt s²(9/4 − √3), i com que √3 ≈ 1,73 és més petit que 9/4 = 2,25, aquest número és positiu per a QUALSEVOL costat s > 0: sempre hi ha un rectangle, encara que —com acabes de veure amb s=4— pugui sortir molt allargat.\n\nI encara una cosa més sobre aquest sistema: en general té dues solucions diferents per a (x, y) (els papers de x i y es poden intercanviar, i a més n'hi pot haver una altra parella no trivial): \"mateixa àrea i mateix perímetre\" no determina un únic rectangle. És un recordatori útil que dues figures amb la mateixa àrea i el mateix perímetre no necessiten ser congruents ni úniques.",
+      "ca": "Un sistema com aquest —dues incògnites que has de trobar a partir de la seva suma i el seu producte— no sempre té solució real: si la condició d'àrea fos massa exigent per al perímetre donat, l'equació de segon grau de la Pista 3 podria tenir discriminant negatiu, i cap rectangle real la compliria. Aquí no passa —val la pena saber per què, en lloc de donar-ho per fet. El discriminant surt s²(9/4 − √3), i com que √3 ≈ 1,73 és més petit que 9/4 = 2,25, aquest número és positiu per a QUALSEVOL costat s > 0: sempre hi ha un rectangle, encara que —com acabes de veure amb s=4— pugui sortir molt allargat.\n\nI encara una cosa més sobre aquest sistema, que és fàcil de llegir malament: l'equació de segon grau té DUES arrels, i les dues arrels són x i y. No són dos rectangles diferents —són els dos costats del mateix rectangle. De fet per a rectangles \"mateixa àrea i mateix perímetre\" SÍ que determina la figura: la suma i el producte de dos números en fixen la parella. On això deixa de valer és en sortir dels rectangles: hi ha figures ben diferents amb la mateixa àrea i el mateix perímetre, i tampoc no cal que dues figures amb la mateixa àrea i el mateix perímetre siguin congruents ni úniques.",
       "en": null
     }
   },
@@ -4518,7 +4518,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Aquest número és el nombre auri, i el retrobaràs si mai treballes amb pentàgons regulars i les seves diagonals — la mateixa proporció hi torna a sortir, per una via completament diferent (diagonal entre costat, no rectangle entre rectangle).",
+      "ca": "Aquest número és el nombre auri, i és exactament el mateix que governa el pentàgon regular: la raó entre la seva diagonal i el seu costat. Si véns de q31/q33, l'equació x²=x+1 que acabes de resoldre és, lletra per lletra, la d²=d+1 d'allà —dues figures sense cap parentiu aparent, una mateixa identitat. I si encara no hi has passat, q33 te'n dona una demostració que no fa servir cap rectangle.",
       "en": null
     }
   },
