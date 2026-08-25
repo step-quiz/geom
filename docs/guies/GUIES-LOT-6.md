@@ -191,10 +191,20 @@ relació R = s√2/2). El tercer panell (quatre cercles dins un cercle gran)
 és la mateixa família de puzle però amb més peces — no cal resoldre'l aquí.
 
 **Pista 3 — tanca-ho.**
-Al triangle: la distància del centroide a un vèrtex és L/√3. La distància
-del centroide al centre d'un cercle és 2r menys que això, però també és
-2r/√3 (perquè els tres centres formen un triangle equilàter petit,
-semblant al gran). Iguala-les.
+Al triangle: la distància del centroide a un vèrtex és L/√3.
+
+Ara et falta una peça que el dibuix no et diu i que has de treure tu: a quina
+distància del vèrtex hi ha el centre del cercle. El centre és a distància r
+dels dos costats que surten del vèrtex, o sigui que és damunt de la bisectriu,
+i la bisectriu d'un angle de 60° en fa dos de 30°. En el triangle rectangle
+petit que formen el vèrtex, el centre i el punt on el cercle toca el costat,
+r és el catet oposat a 30°: per tant la hipotenusa —la distància del vèrtex al
+centre— val 2r.
+
+Amb això, la distància del centroide al centre d'un cercle és 2r menys que
+L/√3. Però també és 2r/√3, perquè els tres centres formen un triangle
+equilàter petit de costat 2r (dos radis, per la tangència), concèntric amb el
+gran. Iguala les dues expressions.
 
 **Comprovació.** Triangle de costat L=4: r = L(√3−1)/4 ≈ 0,732. Quadrat de
 costat s=4: R = 4×√2/2 ≈ 2,828.
@@ -318,8 +328,10 @@ tipus d'autosemblança que retrobaràs a les espirals de q122.
 lloc de quadrats). DEPÈN de q32.
 
 **Pista 0 — què vol dir "alternativa".**
-Ja saps (o pots saber, per q31/q32) que d/s=φ compleix φ²=φ+1 per
-trigonometria. Aquí et demanen la MATEIXA identitat, però llegida
+Que la raó d/s del pentàgon regular val φ i que φ²=φ+1 es pot obtenir per
+trigonometria; també et va sortir a q38, amb un rectangle en lloc d'un
+pentàgon. (Compte: q31 i q32 FAN SERVIR aquesta identitat, però cap de les
+dues no la demostra.) Aquí et demanen la MATEIXA identitat, però llegida
 directament d'un dibuix, sense cap sinus ni cosinus.
 
 **Pista 1 — identifica els costats "1" i "d" al dibuix.** → `fig-190.png`
@@ -333,17 +345,23 @@ El triangle isòsceles té base 1 (l'aresta compartida) i dos costats d
 (dues diagonals).
 
 **Pista 3 — tanca-ho.**
-Aquest triangle és semblant al triangle "A" que ja vas marcar a q31 (els
-mateixos angles 36°-36°-108°). Un triangle isòsceles amb aquests angles,
-de base 1 i costats d, compleix una relació de semblança amb ell mateix
-partit per la bisectriu d'un angle de la base: d/1 = 1/(d−1). Desenvolupa-la.
+Compte a no confondre'l amb el triangle "A" de q31: aquell tenia la base
+llarga i l'apex de 108°. Aquí passa al revés —la base fa 1 i els altres dos
+costats fan d, que és MÉS llarg— i per tant l'angle petit ha de ser el de dalt.
+Els angles surten **72°-72°-36°**: és el mateix triangle que els dos laterals
+grans de q31, els que no portaven etiqueta.
+
+Un triangle isòsceles amb aquests angles, de base 1 i costats d, compleix una
+relació de semblança amb ell mateix partit per la bisectriu d'un angle de la
+base (un dels de 72°): la bisectriu deixa un triangle petit amb els mateixos
+tres angles. D'aquí surt d/1 = 1/(d−1). Desenvolupa-la.
 
 **Comprovació.** d/1 = 1/(d−1) → d(d−1)=1 → d²−d=1 → d²=d+1. Amb
 d=φ≈1,618: φ²≈2,618, i φ+1≈2,618 ✓.
 
-**I després.** Ja tens tres demostracions independents de la mateixa
-identitat (q38 amb el rectangle, q31/q32 amb els triangles del
-pentagrama, i aquesta amb dos pentàgons) — val la pena que notis que cap
+**I després.** Ja tens dues demostracions independents de la mateixa
+identitat (q38 amb el rectangle, i aquesta amb dos pentàgons; q31 i q32
+n'usen el resultat, però no el demostren) — val la pena que notis que cap
 de les tres es repeteix: la geometria sovint deixa més d'un camí obert cap
 al mateix fet.
 
@@ -405,17 +423,22 @@ construir aquesta longitud amb regla i compàs?
 Un semicercle de diàmetre a+b, amb un triangle rectangle inscrit tocant el
 diàmetre al punt que el parteix en a i b. L'alçada des d'aquest punt fins
 al semicercle és exactament √(ab) —el teorema de l'altura sobre la
-hipotenusa (el mateix que fas servir per trobar l'apotema o qualsevol
-alçada relativa).
+hipotenusa, que ja tens demostrat a q09: l'altura sobre la hipotenusa és
+mitjana geomètrica dels dos trossos en què la parteix.
 
 **Pista 3 — tanca-ho (en paraules, no en dibuix).**
 Un cop tens s=√(ab), es pot demostrar que —si el rectangle no és massa
-allargat (a < 4b)— n'hi ha prou amb DOS talls per recompondre'l en un
-quadrat de costat s. Si el rectangle és més allargat, calen més peces,
-però el teorema de Bolyai–Gerwien garanteix que sempre és possible.
+allargat, és a dir si el costat llarg no supera 4 vegades el curt— n'hi ha
+prou amb DOS talls (tres peces) per recompondre'l en un quadrat de costat s.
+Si el rectangle és més allargat, es parteix primer per la meitat i s'apilen
+els dos trossos, tantes vegades com calgui, fins a entrar dins d'aquesta
+proporció; el teorema de Bolyai–Gerwien garanteix que sempre és possible.
 
-**Comprovació.** Rectangle 8×2: s=√16=4. Comprova que 8×2=16=4×4 ✓ (mateixa
-àrea, com ha de ser per a qualsevol dissecció).
+**Comprovació.** Rectangle 6×3: s=√18≈4,243. Comprova que 6×3=18=(√18)² ✓
+(mateixa àrea, com ha de ser per a qualsevol dissecció). Prova després amb un
+8×2: l'àrea continua quadrant (s=4, i 8×2=16=4²), però fixa't que aquest
+rectangle és just al límit de la proporció 4:1, o sigui que ja no tens
+garantit fer-ho amb tres peces.
 
 **I després.** El teorema de l'altura sobre la hipotenusa (la peça central
 d'aquesta pista) el retrobaràs cada vegada que necessitis "fabricar" una
@@ -448,18 +471,30 @@ múltiple de 3), sempre en sobra 1.
 **Pista 3 — tanca-ho.**
 Si 3 no dividís p, p seria de la forma 3k+1 o 3k+2 —cap dels dos casos,
 comprova-ho, dona un quadrat múltiple de 3. Per tant 3 | p² força 3 | p.
-Ara: si 3 | p, escriu p=3m i torna a l'equació p²=3q². Què li passa a q?
-Arribes a la mateixa situació amb p i q més petits —una davallada infinita,
-impossible per a enters positius.
+Ara: si 3 | p, escriu p=3m i torna a l'equació p²=3q². Et queda 9m²=3q², és
+a dir q²=3m². Pel mateix argument d'abans, 3 | q. Però llavors 3 divideix
+alhora p i q —i havies dit que la fracció p/q ja estava reduïda al mínim, o
+sigui que no tenien cap factor comú. Contradicció: la fracció no existeix.
 
 **Comprovació.** No numèrica: repassa la teva demostració i assenyala on
-fas servir que la fracció p/q ja estava reduïda al mínim. Si no ho fas
-servir enlloc, la demostració no funciona (la davallada infinita
-necessita precisament aquesta hipòtesi per contradir-se).
+fas servir que la fracció p/q ja estava reduïda al mínim. Si no ho fas servir
+enlloc, la demostració no s'aguanta: és precisament amb aquesta hipòtesi que
+xoca la conclusió "3 divideix p i divideix q".
+
+*(Nota per si algú te la fa: hi ha una segona manera de tancar-ho que NO
+necessita suposar la fracció reduïda —la davallada infinita. De p i q en
+surten un p/3 i un q/3 que compleixen la mateixa equació, i d'aquests uns
+altres més petits, i així sense parar; i una successió infinita d'enters
+positius estrictament decreixents no pot existir. Les dues demostracions són
+bones; el que no val és barrejar-les, perquè cadascuna contradiu una cosa
+diferent.)*
 
 **I després.** √2+√3 es demostra amb el mateix moviment però un pas
 indirecte: si fos racional, (√2+√3)² = 5+2√6 també ho seria, i per tant
-√6 també —contradicció pel mateix argument, aplicat ara a 6.
+√6 també. I √6 és irracional pel mateix argument —amb una passa més, perquè
+6 no és primer: de 6 | p² en surt 2 | p² i 3 | p², i cada primer per separat
+dona 2 | p i 3 | p, o sigui 6 | p. Aquest detall importa: l'argument NO
+funcionaria per a √4, i el motiu és exactament aquest.
 
 ---
 
@@ -473,9 +508,9 @@ No un rectangle concret: la condició general que a, b i c (costats i
 diagonal) han de complir perquè els tres siguin enters alhora.
 
 **Pista 1 — ja coneixes l'equació.**
-a²+b²=c² —la mateixa relació que fas servir des de q14/q25. La pregunta
-aquí no és calcular c a partir de a i b: és trobar TERNES (a,b,c) senceres
-que la compleixin.
+a²+b²=c² —la mateixa relació que vas demostrar a q09 i que has fet servir
+a q25. La pregunta aquí no és calcular c a partir de a i b: és trobar TERNES
+(a,b,c) senceres que la compleixin.
 
 **Pista 2 — la construcció.** → `fig-066.png`
 El triangle rectangle és mig rectangle: la diagonal el parteix en dos.
@@ -489,8 +524,13 @@ si multipliques tota una terna per un mateix nombre?).
 també (6,8,10) —el doble de l'anterior— i (5,12,13).
 
 **I després.** Aquestes ternes es diuen pitagòriques, i hi ha una fórmula
-que les genera totes (m²−n², 2mn, m²+n², per a m>n enters) —una pregunta
-oberta per qui vulgui anar més enllà del que demana aquest quadern.
+que les genera: (m²−n², 2mn, m²+n²), amb m>n enters positius. Compte amb què
+genera exactament: amb m i n coprimers i de paritat diferent dona totes les
+ternes **primitives** (les que no són múltiple de cap altra), i totes les
+altres són múltiples d'aquestes. La fórmula tota sola no les dona pas totes
+—prova de treure'n (9,12,15), que és 3×(3,4,5), i veuràs que no hi ha cap
+parell (m,n) enter que hi arribi. Una pregunta oberta per a qui vulgui anar
+més enllà del que demana aquest quadern.
 
 ---
 
@@ -518,8 +558,8 @@ recomptes que és fàcil de barrejar: des d'un VÈRTEX surten 10 triangles
 són tots idèntics. La figura marca un del ventall des del vèrtex.
 
 **Pista 3 — tanca-ho.**
-A diferència de q39 (pentàgon, triangulat des del centre, deu triangles
-idèntics), aquí triangules des d'un VÈRTEX: els deu triangles no són tots
+A diferència de q39 (pentàgon, triangulat des del centre, cinc triangles
+idèntics —un per costat), aquí triangules des d'un VÈRTEX: els deu triangles no són tots
 iguals. Per calcular l'àrea et cal la suma de les deu àrees, no deu
 vegades una de sola —o bé, alternativa més neta: torna a triangular des
 del CENTRE, com q39, i aprofita que el dodecàgon és regular.
@@ -529,15 +569,22 @@ apotema a=1/(2 tan15°)≈1,866. Àrea d'un dels 12 triangles: (1/2)(1)(1,866)
 ≈0,933. Àrea total: 12×0,933≈11,196 —coincideix amb la fórmula estàndard
 3(2+√3)s²≈11,196.
 
-I les diagonals, que la Pista 1 et demanava comptar per tipus: n'hi ha
-**cinc** de llargades diferents, segons quants vèrtexs salten (1, 2, 3, 4 o
-5); la que en saltaria 6 és el diàmetre, i les que en salten més són les
-mateixes repetides des de l'altra banda. Cadascuna és la base d'un triangle
-isòsceles format per dos radis R del dodecàgon amb un angle central de
-k×30° entremig, així que totes surten de la mateixa fórmula: diagonal =
-2R·sin(k×15°), amb k=1..6. Amb R=1: 0,518 / 1 / 1,414 / 1,732 / 1,932 / 2.
-Fixa't que la tercera fa exactament √2 i la sisena exactament 2 (el
-diàmetre) —bones per comprovar que no t'has equivocat.
+I les diagonals, que la Pista 1 et demanava comptar per tipus. Compta per
+PASSOS entre vèrtexs, no per "vèrtexs saltats", que és on tothom s'entrebanca:
+k=1 uneix dos vèrtexs veïns i per tant NO és cap diagonal —és el costat. Les
+diagonals van de k=2 fins a k=6, i les de k=7 endavant són les mateixes
+repetides des de l'altra banda (k i 12−k donen la mateixa llargada). O sigui
+que hi ha **cinc** llargades diferents de diagonal, i l'última, k=6, és el
+diàmetre.
+
+Cadascuna és la base d'un triangle isòsceles format per dos radis R del
+dodecàgon amb un angle central de k×30° entremig, així que totes surten de la
+mateixa fórmula: diagonal = 2R·sin(k×15°). Amb R=1: 1 (k=2) / 1,414 (k=3) /
+1,732 (k=4) / 1,932 (k=5) / 2 (k=6). Fixa't que la de k=3 fa exactament √2, la
+de k=4 exactament √3 i la de k=6 exactament 2 (el diàmetre) —bones per
+comprovar que no t'has equivocat. La mateixa fórmula amb k=1 dona 2sin15°≈0,518,
+que és el costat: bon control de que la fórmula funciona, però no és una
+diagonal.
 
 **I després.** El mateix parany (triangular des d'un vèrtex dona triangles
 DESIGUALS; triangular des del centre en un polígon regular els dona tots

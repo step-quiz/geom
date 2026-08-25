@@ -254,7 +254,11 @@ coincideixen amb n−3 i n−2 per a n=6 abans de confiar-hi cegament per a n=8.
 **Pista 2 — la construcció.** → `037_hexagon_octagon_triangulats.png`
 Els dos polígons són regulars (a diferència del de q70), però aquí la
 regularitat és només perquè es vegi net al dibuix — la fórmula que fas
-servir no la necessita per res.
+servir no la necessita per res. El que sí que necessita, i val la pena
+saber-ho, és que el polígon sigui CONVEX: en un polígon amb entrants, una
+diagonal traçada des d'un vèrtex pot sortir-se de la figura, i el ventall ja
+no la parteix netament en n−2 triangles. Per MESURAR les diagonals, en canvi
+(la segona meitat d'aquesta pregunta), la regularitat sí que et fa falta.
 
 **Pista 3 — tanca-ho.**
 Aplica n−3 i n−2 per a n=6 i n=8 per separat. Aquí no hi ha cap pas nou de
@@ -492,10 +496,12 @@ identifica el número que t'ha sortit.
 aquest valor a la proporció original: 1,618/1 hauria de ser (aproximadament)
 igual a 1/0,618.
 
-**I després.** Aquest número és el nombre auri, i el retrobaràs si mai
-treballes amb pentàgons regulars i les seves diagonals — la mateixa
-proporció hi torna a sortir, per una via completament diferent (diagonal
-entre costat, no rectangle entre rectangle).
+**I després.** Aquest número és el nombre auri, i és exactament el mateix que
+governa el pentàgon regular: la raó entre la seva diagonal i el seu costat. Si
+véns de q31/q33, l'equació x²=x+1 que acabes de resoldre és, lletra per
+lletra, la d²=d+1 d'allà —dues figures sense cap parentiu aparent, una mateixa
+identitat. I si encara no hi has passat, q33 te'n dona una demostració que no
+fa servir cap rectangle.
 
 ---
 
@@ -677,11 +683,14 @@ lloc de donar-ho per fet. El discriminant surt s²(9/4 − √3), i com que
 QUALSEVOL costat s > 0: sempre hi ha un rectangle, encara que —com
 acabes de veure amb s=4— pugui sortir molt allargat.
 
-I encara una cosa més sobre aquest sistema: en general té dues solucions
-diferents per a (x, y) (els papers de x i y es poden intercanviar, i a més
-n'hi pot haver una altra parella no trivial): "mateixa àrea i mateix
-perímetre" no determina un únic rectangle. És un recordatori útil que dues
-figures amb la mateixa àrea i el mateix perímetre no necessiten ser
+I encara una cosa més sobre aquest sistema, que és fàcil de llegir malament:
+l'equació de segon grau té DUES arrels, i les dues arrels són x i y. No són
+dos rectangles diferents —són els dos costats del mateix rectangle. De fet
+per a rectangles "mateixa àrea i mateix perímetre" SÍ que determina la
+figura: la suma i el producte de dos números en fixen la parella. On això
+deixa de valer és en sortir dels rectangles: hi ha figures ben diferents amb
+la mateixa àrea i el mateix perímetre, i tampoc no cal que dues
+figures amb la mateixa àrea i el mateix perímetre siguin
 congruents ni úniques.
 
 ---

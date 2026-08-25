@@ -43,10 +43,16 @@ directament l'altre catet — que és, precisament, l'alçada.
 
 Dues coses que aquí es donen per bones i que has de saber d'on surten: que
 l'alçada caigui just al PUNT MITJÀ de la base, i que hi caigui
-perpendicular. Totes dues venen del mateix argument, fet a q01 (pista 1):
-els dos trossos són triangles congruents pels tres costats, i d'aquí surten
-alhora la meitat exacta i els 90°. Si no l'has vist, val la pena fer-hi un
-tomb abans de seguir: és la peça que fa que aquesta guia funcioni.
+perpendicular. Totes dues venen del mateix argument, fet a q01 (pista 1), i
+compte amb la DIRECCIÓ en què va, que és fàcil de girar sense adonar-se'n.
+No es parteix de l'alçada: es parteix del segment que va del vèrtex al punt
+mitjà (la mediana). Aleshores els dos trossos ja tenen els tres costats
+iguals dos a dos —els dos costats del triangle, les dues meitats de la base
+i la línia nova compartida—, o sigui que són congruents pels tres costats, i
+d'aquí surten els 90°. Girar-ho (partir de l'alçada i voler-ne treure la
+meitat exacta amb el mateix criteri de tres costats) no funciona: la meitat
+exacta és justament el que encara no tens. Si no l'has vist, val la pena
+fer-hi un tomb abans de seguir: és la peça que fa que aquesta guia funcioni.
 
 **Pista 2 — la construcció.** → `fig-022.png`
 
