@@ -200,7 +200,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "What are all the different ways to make symmetrical mosaic designs using regular polygons?",
-      "ca": "Quantes maneres diferents hi ha de fer dissenys de mosaic simètrics amb polígons regulars?"
+      "ca": "Quines són totes les maneres diferents de fer dissenys de mosaic simètrics amb polígons regulars?"
     },
     "pista": {
       "en": null,
@@ -268,7 +268,7 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "A 5-pointed and a 7-pointed star, directly below the question, same page.",
+    "_notaExtraccio": "A 5-pointed and an 8-pointed star, directly below the question, same page. (Corregit: la nota original deia 7 puntes; la figura en té 8 — són les estrelles {5/2} i {8/3}, que és el que descriuen la guia i la solució.)",
     "_notaClassificacio": "cal comptar voltes/autointerseccions de l'estrella"
   },
   {
@@ -432,7 +432,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Show that if a right triangle is chopped into two smaller ones, they must both be similar to the original triangle.",
-      "ca": "Demostra que si tallem un triangle rectangle en dos de més petits, tots dos han de ser semblants al triangle original."
+      "ca": "Demostra que si tallem un triangle rectangle en dos de més petits amb l'altura sobre la hipotenusa, tots dos han de ser semblants al triangle original."
     },
     "pista": {
       "en": null,

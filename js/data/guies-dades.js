@@ -70,7 +70,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Tria un vèrtex i uneix-lo amb el punt mitjà del costat oposat. Aquesta línia, per simetria del triangle equilàter (els dos costats que surten del vèrtex triat són iguals), parteix l'angle del vèrtex en dos d'iguals i el costat oposat en dos d'iguals alhora. Cap altre triangle té aquesta propietat de franc amb una sola línia.\n\nI encara en fa una tercera, que faràs servir molt: hi cau perpendicular. Val la pena veure per què, perquè és un argument de tres línies que reapareixerà a q26, a q83 i cada cop que partis un isòsceles per la meitat. Els dos triangles en què queda partit tenen els tres costats iguals dos a dos (els dos costats del triangle, que són iguals; la meitat de la base, compartida en mida; i la línia nova, compartida de debò), o sigui que són congruents. Per tant els dos angles que fan amb la base són iguals. I dos angles iguals que junts fan una recta —180°— han de fer 90° cadascun.",
+          "ca": "Tria un vèrtex i uneix-lo amb el punt mitjà del costat oposat. Aquesta línia, per simetria del triangle equilàter (els dos costats que surten del vèrtex triat són iguals), parteix l'angle del vèrtex en dos d'iguals i el costat oposat en dos d'iguals alhora. Qualsevol triangle isòsceles ja té aquesta propietat amb una sola línia (la que surt del vèrtex on es troben els dos costats iguals); el que és propi de l'equilàter és tenir-la alhora des dels tres vèrtexs.\n\nI encara en fa una tercera, que faràs servir molt: hi cau perpendicular. Val la pena veure per què, perquè és un argument de tres línies que reapareixerà a q26, a q83 i cada cop que partis un isòsceles per la meitat. Els dos triangles en què queda partit tenen els tres costats iguals dos a dos (els dos costats del triangle, que són iguals; la meitat de la base, compartida en mida; i la línia nova, compartida de debò), o sigui que són congruents. Per tant els dos angles que fan amb la base són iguals. I dos angles iguals que junts fan una recta —180°— han de fer 90° cadascun.",
           "en": null
         },
         "figura": null
@@ -160,18 +160,18 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Si els tres costats d'un triangle mesuren la meitat dels tres costats d'un altre (i en el mateix ordre), els dos triangles són congruents — és el criteri costat-costat-costat. Aplica'l als quatre triangles petits: tots quatre tenen per costats la meitat dels tres costats del triangle gran.",
+          "ca": "Compte amb un pas que sembla innocent i no ho és. Que els costats d'un triangle petit siguin la meitat dels del gran NO vol dir que hi sigui congruent: vol dir que hi és semblant, de raó 1/2. El que necessites és una altra cosa, i ja la tens: si els costats del triangle gran són a, b i c, els quatre triangles petits tenen exactament els mateixos tres costats, a/2, b/2 i c/2. Tres costats iguals dos a dos és el criteri costat-costat-costat. Per tant els quatre petits són congruents entre ells, que és el que l'enunciat demana.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "Un triangle de costats 6, 8, 10. Cada triangle petit ha de tenir costats 3, 4, 5 — i per tant és rectangle (3² + 4² = 5²), encara que el triangle gran no ho fos necessàriament abans de comprovar-ho.",
+      "ca": "Un triangle de costats 6, 8, 10. Cada triangle petit ha de tenir costats 3, 4, 5 — i per tant és rectangle (3² + 4² = 5²). El gran també ho és (6² + 8² = 10²), i no podria ser d'una altra manera: els petits en són còpies a escala 1/2, i canviar l'escala no canvia cap angle.",
       "en": null
     },
     "iDespres": {
-      "ca": "Aquesta subdivisió en quatre és la mateixa que fa servir la demostració clàssica del teorema de Pitàgores per dissecció, i la retrobaràs si mai treballes amb el rombe (q02 → q11/q12 comparteixen la idea de \"quin paral·lelogram surt de connectar punts mitjans\").",
+      "ca": "El moviment d'aquesta guia —connectar punts mitjans i deixar que el teorema del segment mitjà et digui les mides— torna, amb sorpresa, si l'apliques a un quadrilàter qualsevol per rar que sigui: els punts mitjans dels seus quatre costats sempre formen un paral·lelogram. El motiu és exactament el mateix teorema, aplicat als dos triangles en què una diagonal parteix el quadrilàter.",
       "en": null
     }
   },
@@ -226,7 +226,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Amb triangles (60°) pots ajuntar-ne 3, 4, 5 o 6 a un vèrtex (180°, 240°, 300°, 360° exactes). Amb quadrats (90°), quants? Amb pentàgons (108°)? Amb hexàgons (120°)? Per a cada polígon regular, quantes còpies calen per arribar (o no) a 360° exactes?\n\nUn cop les tinguis totes, atura't a mirar què has demostrat exactament, perquè no és tot el que sembla. La condició dels 360° és una condició per a UN vèrtex sol. Diu quines rosetes de polígons poden existir al voltant d'un punt —i, sobretot, quines no poden existir de cap manera. El que no diu és si aquella roseta es pot anar repetint fins a cobrir tot el pla sense encallar-se en algun lloc més enllà. N'hi ha que quadren perfectament en un vèrtex i, quan intentes continuar el mosaic, arriba un moment que ja no encaixen. Prova-ho al paper amb alguna de les combinacions barrejades que hagis trobat: dibuixa el primer vèrtex, i després el veí, i el següent.",
+          "ca": "Comença pel cas d'un sol tipus de polígon. Amb triangles (60°), quantes còpies calen per arribar a 360° exactes? Vigila amb un error fàcil: 3, 4 o 5 triangles fan 180°, 240° i 300°, i cap d'aquestes sumes no serveix aquí —hi deixen un buit obert. La condició d'un mosaic no és \"no passar-se de 360°\", és fer-los exactament. Amb quadrats (90°), quants? Amb pentàgons (108°)? Amb hexàgons (120°)? Amb heptàgons?\n\nQuan hagis exhaurit els casos d'un sol polígon, passa a les combinacions barrejades, que són la part interessant i molt més nombrosa: un quadrat i dos octàgons, per exemple, fan 90° + 135° + 135° = 360°.\n\nUn cop les tinguis totes, atura't a mirar què has demostrat exactament, perquè no és tot el que sembla. La condició dels 360° és una condició per a UN vèrtex sol. Diu quines rosetes de polígons poden existir al voltant d'un punt —i, sobretot, quines no poden existir de cap manera. El que no diu és si aquella roseta es pot anar repetint fins a cobrir tot el pla sense encallar-se en algun lloc més enllà. N'hi ha que quadren perfectament en un vèrtex i, quan intentes continuar el mosaic, arriba un moment que ja no encaixen. Prova-ho al paper amb alguna de les combinacions barrejades que hagis trobat: dibuixa el primer vèrtex, i després el veí, i el següent.",
           "en": null
         },
         "figura": null
@@ -563,7 +563,7 @@ window.GUIES = {
       }
     ],
     "comprovacio": {
-      "ca": "Compta, per al cub, quants eixos de simetria de cada tipus té: 4 eixos vèrtex-a-vèrtex, 3 eixos cara-a-cara, 6 eixos aresta-a-aresta — 13 eixos en total (sense comptar el centre com a eix). Aquest recompte, combinat amb els girs que cada eix permet, dona les 24 maneres de GIRAR el cub deixant-lo exactament on era. Compte amb dir-ne \"totes les simetries\": si a més hi comptes les de mirall (reflexions), en surten 48. Les 24 són les que pots fer sense aixecar el cub de la taula.",
+      "ca": "Compta, per al cub, quants eixos de simetria de cada tipus té: 4 eixos vèrtex-a-vèrtex, 3 eixos cara-a-cara, 6 eixos aresta-a-aresta — 13 eixos en total (sense comptar el centre com a eix). Aquest recompte, combinat amb els girs que cada eix permet, dona les 24 maneres de GIRAR el cub deixant-lo exactament on era. Compte amb dir-ne \"totes les simetries\": si a més hi comptes les de mirall (reflexions), en surten 48. Les 24 són les que pots aconseguir girant el cub amb les mans; les altres 24 només les veus reflectides en un mirall, i cap moviment del cub no te les dona.",
       "en": null
     },
     "iDespres": {
@@ -692,7 +692,7 @@ window.GUIES = {
       }
     ],
     "comprovacio": {
-      "ca": "No numèrica. Escriu la frase \"dues figures amb els mateixos angles són semblants\" i afegeix-hi la paraula que la fa certa. Després mira quantes de les dotze preguntes d'aquest quadern demanaven demostrar i quantes demanaven refutar.",
+      "ca": "No numèrica. Escriu la frase \"dues figures amb els mateixos angles són semblants\" i afegeix-hi la paraula que la fa certa. Després repassa les preguntes que ja has explorat i reparteix-les en dues piles: les que demanaven demostrar i les que demanaven refutar.",
       "en": null
     },
     "iDespres": {
@@ -814,14 +814,14 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "El plec (la diagonal) parteix el rombe en dos triangles amb els tres costats iguals dos a dos (les marquetes ho diuen) — són congruents. D'aquí surt que la diagonal bisecta els dos angles que talla. I ara ve el pas clau: en un triangle isòsceles, la bisectriu de l'angle del vèrtex és també perpendicular al costat oposat. Aplica això dues vegades (un cop a cada triangle format per l'ALTRA diagonal) i tens la perpendicularitat. Per al paral·lelisme, torna als dos triangles congruents del primer plec: quina parella d'angles iguals et diu que dos costats són paral·lels?",
+          "ca": "El plec (la diagonal) parteix el rombe en dos triangles amb els tres costats iguals dos a dos (les marquetes ho diuen) — són congruents. D'aquí surt que la diagonal bisecta els dos angles que talla. I ara ve el pas clau: en un triangle isòsceles, la bisectriu de l'angle del vèrtex és també perpendicular al costat oposat. Aquí n'hi ha prou amb una sola aplicació: dos costats consecutius del rombe més una diagonal formen un triangle isòsceles, i l'ALTRA diagonal n'és justament la bisectriu del vèrtex —per tant hi cau perpendicular. Per al paral·lelisme, torna als dos triangles congruents del primer plec: quina parella d'angles iguals et diu que dos costats són paral·lels?",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "Rombe amb diagonals de 6 i 8 (perpendiculars per construcció), vèrtexs a (±3,0) i (0,±4). Comprova que els quatre costats fan 5 (el triangle 3-4-5), i que el pendent d'un costat és igual al del costat oposat.",
+      "ca": "Agafa els quatre punts (±3,0) i (0,±4). Comprova que els quatre costats fan 5 (el triangle 3-4-5) —per tant tens un rombe de debò— i que el pendent d'un costat és igual al del costat oposat. Fixa't que aquí has anat en la direcció contrària a la demostració: has partit de dues diagonals perpendiculars i n'has obtingut un rombe. Comprova els números, no demostra el teorema.",
       "en": null
     },
     "iDespres": {
