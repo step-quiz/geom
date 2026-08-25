@@ -435,9 +435,9 @@ rectes cadascun. Són de la mateixa forma? Si la resposta és que no, ja has
 acabat la segona pregunta — i has acabat amb un sol dibuix.
 
 **Comprovació.** No numèrica. Escriu la frase *"dues figures amb els mateixos
-angles són semblants"* i afegeix-hi la paraula que la fa certa. Després mira
-quantes de les dotze preguntes d'aquest quadern demanaven demostrar i quantes
-demanaven refutar.
+angles són semblants"* i afegeix-hi la paraula que la fa certa. Després
+repassa les preguntes que ja has explorat i reparteix-les en dues piles: les
+que demanaven demostrar i les que demanaven refutar.
 
 **I després.** q86 fa la mateixa jugada amb un contraexemple molt més subtil:
 per què dos costats i un angle no determinen un triangle. I la pregunta de

@@ -606,10 +606,16 @@ l'angle complet, 360°, sense buit). El segon mostra dos hexàgons més un
 quadrat, que **no** encaixen: hi queda una escletxa oberta de 30°.
 
 **Pista 3 — tanca-ho.**
-Amb triangles (60°) pots ajuntar-ne 3, 4, 5 o 6 a un vèrtex (180°, 240°,
-300°, 360° exactes). Amb quadrats (90°), quants? Amb pentàgons (108°)?
-Amb hexàgons (120°)? Per a cada polígon regular, quantes còpies calen per
-arribar (o no) a 360° exactes?
+Comença pel cas d'un sol tipus de polígon. Amb triangles (60°), quantes
+còpies calen per arribar a 360° **exactes**? Vigila amb un error fàcil: 3, 4
+o 5 triangles fan 180°, 240° i 300°, i cap d'aquestes sumes no serveix aquí
+—hi deixen un buit obert. La condició d'un mosaic no és "no passar-se de
+360°", és **fer-los exactament**. Amb quadrats (90°), quants? Amb pentàgons
+(108°)? Amb hexàgons (120°)? Amb heptàgons?
+
+Quan hagis exhaurit els casos d'un sol polígon, passa a les combinacions
+barrejades, que són la part interessant i molt més nombrosa: un quadrat i
+dos octàgons, per exemple, fan 90° + 135° + 135° = 360°.
 
 Un cop les tinguis totes, atura't a mirar què has demostrat exactament,
 perquè no és tot el que sembla. La condició dels 360° és una condició per

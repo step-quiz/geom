@@ -222,15 +222,19 @@ El plec (la diagonal) parteix el rombe en dos triangles amb els tres costats
 iguals dos a dos (les marquetes ho diuen) — són congruents. D'aquí surt que
 la diagonal **bisecta** els dos angles que talla. I ara ve el pas clau: en
 un triangle isòsceles, la bisectriu de l'angle del vèrtex és també
-perpendicular al costat oposat. Aplica això dues vegades (un cop a cada
-triangle format per l'ALTRA diagonal) i tens la perpendicularitat. Per al
+perpendicular al costat oposat. Aquí n'hi ha prou amb una sola aplicació:
+dos costats consecutius del rombe més una diagonal formen un triangle
+isòsceles, i l'ALTRA diagonal n'és justament la bisectriu del vèrtex —per
+tant hi cau perpendicular. Per al
 paral·lelisme, torna als dos triangles congruents del primer plec: quina
 parella d'angles iguals et diu que dos costats són paral·lels?
 
-**Comprovació.** Rombe amb diagonals de 6 i 8 (perpendiculars per
-construcció), vèrtexs a (±3,0) i (0,±4). Comprova que els quatre costats fan
-5 (el triangle 3-4-5), i que el pendent d'un costat és igual al del costat
-oposat.
+**Comprovació.** Agafa els quatre punts (±3,0) i (0,±4). Comprova que els
+quatre costats fan 5 (el triangle 3-4-5) —per tant tens un rombe de debò— i
+que el pendent d'un costat és igual al del costat oposat. Fixa't que aquí
+has anat en la direcció contrària a la demostració: has partit de dues
+diagonals perpendiculars i n'has obtingut un rombe. Comprova els números, no
+demostra el teorema.
 
 **I després.** El mateix plec (una diagonal parteix la figura en dos
 triangles congruents per SSS) és el que demostra propietats de qualsevol

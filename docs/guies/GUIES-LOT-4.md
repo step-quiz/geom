@@ -82,8 +82,10 @@ com si n'hi hagués només un.
 Tria un vèrtex i uneix-lo amb el punt mitjà del costat oposat. Aquesta línia,
 per simetria del triangle equilàter (els dos costats que surten del vèrtex
 triat són iguals), parteix l'angle del vèrtex en dos d'iguals **i** el costat
-oposat en dos d'iguals alhora. Cap altre triangle té aquesta propietat de
-franc amb una sola línia.
+oposat en dos d'iguals alhora. Qualsevol triangle isòsceles ja té aquesta
+propietat amb una sola línia (la que surt del vèrtex on es troben els dos
+costats iguals); el que és propi de l'equilàter és tenir-la alhora des dels
+tres vèrtexs.
 
 I encara en fa una tercera, que faràs servir molt: hi cau **perpendicular**.
 Val la pena veure per què, perquè és un argument de tres línies que
@@ -161,19 +163,26 @@ El segon triangle (el de la dreta, no equilàter) és a posta: el mateix
 argument ha de funcionar-hi igual, sense cap simetria addicional a ajudar.
 
 **Pista 3 — tanca-ho.**
-Si els tres costats d'un triangle mesuren la meitat dels tres costats d'un
-altre (i en el mateix ordre), els dos triangles són congruents — és el
-criteri costat-costat-costat. Aplica'l als quatre triangles petits: tots
-quatre tenen per costats la meitat dels tres costats del triangle gran.
+Compte amb un pas que sembla innocent i no ho és. Que els costats d'un
+triangle petit siguin **la meitat** dels del gran NO vol dir que hi sigui
+congruent: vol dir que hi és **semblant**, de raó 1/2. El que necessites és
+una altra cosa, i ja la tens: si els costats del triangle gran són a, b i c,
+els **quatre** triangles petits tenen exactament els mateixos tres costats,
+a/2, b/2 i c/2. Tres costats iguals dos a dos és el criteri
+costat-costat-costat. Per tant els quatre petits són congruents **entre
+ells**, que és el que l'enunciat demana.
 
 **Comprovació.** Un triangle de costats 6, 8, 10. Cada triangle petit ha de
-tenir costats 3, 4, 5 — i per tant és rectangle (3² + 4² = 5²), encara que el
-triangle gran no ho fos necessàriament abans de comprovar-ho.
+tenir costats 3, 4, 5 — i per tant és rectangle (3² + 4² = 5²). El gran també
+ho és (6² + 8² = 10²), i no podria ser d'una altra manera: els petits en són
+còpies a escala 1/2, i canviar l'escala no canvia cap angle.
 
-**I després.** Aquesta subdivisió en quatre és la mateixa que fa servir la
-demostració clàssica del teorema de Pitàgores per dissecció, i la retrobaràs
-si mai treballes amb el rombe (q02 → q11/q12 comparteixen la idea de "quin
-paral·lelogram surt de connectar punts mitjans").
+**I després.** El moviment d'aquesta guia —connectar punts mitjans i deixar
+que el teorema del segment mitjà et digui les mides— torna, amb sorpresa, si
+l'apliques a un quadrilàter qualsevol per rar que sigui: els punts mitjans
+dels seus quatre costats sempre formen un paral·lelogram. El motiu és
+exactament el mateix teorema, aplicat als dos triangles en què una diagonal
+parteix el quadrilàter.
 
 ---
 
@@ -899,7 +908,8 @@ té: 4 eixos vèrtex-a-vèrtex, 3 eixos cara-a-cara, 6 eixos aresta-a-aresta —
 combinat amb els girs que cada eix permet, dona les 24 maneres de GIRAR el
 cub deixant-lo exactament on era. Compte amb dir-ne "totes les simetries":
 si a més hi comptes les de mirall (reflexions), en surten 48. Les 24 són
-les que pots fer sense aixecar el cub de la taula.
+les que pots aconseguir girant el cub amb les mans; les altres 24 només les
+veus reflectides en un mirall, i cap moviment del cub no te les dona.
 
 **I després.** La pregunta natural que ve després de "quins són els
 poliedres amb aquest grau de simetria" és "quants n'hi ha, en total, en tot
