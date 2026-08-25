@@ -1,16 +1,32 @@
 /*
   PROJECTE:     Geometria — preguntes del llibre (llibre complet, p. 1-193)
   FITXER:       js/ui/llista.js
-  ROL:          Vista "totes les preguntes" (amb filtres opcionals). Puja
-                cada entrada de window.PREGUNTES (o el subconjunt filtrat)
-                dins de <ul class="question-list"> seguint l'estructura de
-                classes ja definida a css/base.css — cap classe nova
-                s'inventa aquí, es reutilitza la mateixa signatura visual
+  ROL:          Vista "totes les preguntes". Puja cada entrada de
+                window.PREGUNTES (o el subconjunt filtrat) dins de
+                <ul class="question-list"> seguint l'estructura de classes
+                ja definida a css/base.css — cap classe nova s'inventa
+                aquí, es reutilitza la mateixa signatura visual
                 dissenyada al pas 1.
+
+                Aquest fitxer ha anat acumulant tot el que viu en aquesta
+                pantalla, i avui és el més complex de ui/. En concret, és
+                l'amo de:
+                  · la llista base i els filtres per URL (view.filtres);
+                  · el toggle 2D/3D (estat propi, persistit a
+                    localStorage, invariant: mai tots dos apagats);
+                  · el filtre de categories temàtiques (estat propi,
+                    invariant DIFERENT: cap seleccionada vol dir "totes");
+                  · EXERCICIS_AMAGATS, exposat com a
+                    window.geoLlista.esAmagada() perquè detall.js i
+                    itinerari.js el consultin sense duplicar-lo;
+                  · el bloc "Copia el meu codi", que genera la cadena
+                    GEO1-… que llegeix analitzador-geom.html.
+                Cada estat es manté deliberadament separat dels altres:
+                v. el comentari de cada bloc per saber per què.
   ARQUITECTURA: Es carrega després de tots els mòduls de nucli/ i de
                 contingut.js. S'exposa window.geoLlista.render(view), on
                 view és l'objecte que emet geoRouter (kind:'llista',
-                filtres). main.js (pas 5, pendent) és qui la connecta a
+                filtres). js/ui/main.js és qui la connecta a
                 geoRouter.on(); aquest fitxer no es subscriu ell mateix
                 al router perquè main.js ha de poder decidir quina vista
                 actual mostrar en cada moment (llista.js i detall.js
