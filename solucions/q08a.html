@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Poliedres simètrics: primer cal fixar què vol dir "simètric" — Solució — Geometria</title>
+<meta name="description" content="Abans de llistar els poliedres més simètrics cal acotar quina mena de simetria compten: el cub com a exemple guia.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 08a · pàg. 27 del llibre · solució</span>
+  <h1 class="sol-header__title">Poliedres simètrics: primer cal fixar què vol dir "simètric"</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Quins són tots els poliedres simètrics?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/fig-135.png" alt="Figura de l'enunciat de la Qüestió 08a" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">"Simètric" és ambigu si no s'acota</p><p class="solucio__text">Un poliedre pot tenir moltes menes de simetria —reflexió en un pla, gir al voltant d'un eix, simetria puntual. Aquesta pregunta es refereix al grau més alt possible de simetria: aquells poliedres on totes les cares són el mateix polígon regular, i tots els vèrtexs tenen exactament el mateix aspecte al seu voltant. Cal fixar aquesta definició abans de continuar, perquè si es relaxa apareixen moltes més figures possibles.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Comença pel cas que ja es coneix bé</p><p class="solucio__text">El cub és l'exemple més familiar: sis cares quadrades, tres arestes a cada vèrtex. Té, entre altres, tres tipus d'eix de simetria: eixos que passen per parells de vèrtexs oposats (la diagonal principal del cub), eixos que passen pel centre de cares oposades, i eixos que passen pel punt mitjà d'arestes oposades. Identificar-los tots en aquest sòlid conegut dona el vocabulari necessari per parlar-ne en general.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-180.png" alt="Figura de la construcció — els tres tipus d'eix de simetria del cub" loading="lazy"><figcaption class="solucio__figura-nota">Els tres eixos marcats en vermell: vèrtex-a-vèrtex (la diagonal llarga), cara-a-cara, i aresta-a-aresta.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">La construcció</p><p class="solucio__text">La diagonal sanguina uneix dos vèrtexs oposats del cub —un dels seus eixos de simetria de rotació: un gir de 120° al voltant d'aquest eix porta el cub exactament sobre ell mateix.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-051.png" alt="Figura de la construcció — un eix de rotació concret, vèrtex a vèrtex" loading="lazy"><figcaption class="solucio__figura-nota">Un dels quatre eixos vèrtex-a-vèrtex del cub, marcat en vermell.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho</p><p class="solucio__text">Cal fixar-se que no tot poliedre amb totes les cares iguals és "simètric" en aquest sentit fort: cal, a més, que tots els vèrtexs siguin equivalents entre ells. Aquesta doble condició —cares regulars i totes iguals, vèrtexs tots equivalents— és exactament la que defineix els <strong>poliedres regulars</strong>.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Els poliedres amb el grau més alt de simetria són aquells amb totes les cares el mateix polígon regular i tots els vèrtexs equivalents entre ells —la mateixa condició, doble, que defineix els poliedres regulars.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Compta, per al cub, quants eixos de simetria de cada tipus té: 4 eixos vèrtex-a-vèrtex, 3 eixos cara-a-cara, 6 eixos aresta-a-aresta —13 eixos en total, sense comptar el centre com a eix. Aquest recompte, combinat amb els girs que cada eix permet, dona les 24 maneres de girar el cub deixant-lo exactament on era. Compte amb dir-ne "totes les simetries": si a més s'hi compten les de mirall (reflexions), en surten 48. Les 24 són les que es poden fer sense aixecar el cub de la taula.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

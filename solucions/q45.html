@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>L'àrea d'un cilindre: l'etiqueta desenrotllada — Solució — Geometria</title>
+<meta name="description" content="Per què l'àrea lateral d'un cilindre —circular o generalitzat— és sempre perímetre de la base per alçada.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 45 · pàg. 69 del llibre · solució</span>
+  <h1 class="sol-header__title">L'àrea d'un cilindre: l'etiqueta desenrotllada</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Com podem mesurar l'àrea de la superfície d'un cilindre (generalitzat)?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/fig-150.png" alt="Figura de l'enunciat de la Qüestió 45" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Un avís abans de començar</p><p class="solucio__text">En un dibuix en perspectiva, les circumferències de dalt i de baix d'un cilindre no semblen cercles —surten aixafades, com el·lipses. Cal fiar-se de l'objecte, no del dibuix: són cercles de veritat (o, com mostra la pròpia figura de l'enunciat, qualsevol altra corba tancada: d'aquí ve el "generalitzat" del títol).</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Pensa en l'etiqueta d'una llauna</p><p class="solucio__text">Si es talla l'etiqueta de paper d'una llauna de sopa en vertical i s'estira plana, quina forma en surt? Amb radi 3 i alçada 10: l'amplada de l'etiqueta és la longitud de la circumferència, 2π×3 ≈ 18,85; l'alçada és 10, la mateixa del cilindre. Ja hi ha un rectangle.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-192.png" alt="Figura de la construcció — el cilindre de radi 3 al costat del rectangle que en resulta en desenrotllar-lo" loading="lazy"><figcaption class="solucio__figura-nota">El cilindre de radi 3 i el rectangle resultant: amplada 2π·3≈18,85, alçada h=10.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">La construcció</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-021.png" alt="Figura de la construcció — el cilindre amb el tall vertical marcat, i el rectangle genèric de costats C i h" loading="lazy"><figcaption class="solucio__figura-nota">El tall vertical (en vermell) per on es desenrotlla el cilindre, i el rectangle resultant de costats C (el perímetre de la base) i h (l'alçada).</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Tancar-ho</p><p class="solucio__text">L'àrea lateral del cilindre és, exactament, l'àrea d'aquest rectangle: (2πr) × h. No cal cap fórmula nova ni cap límit —un cop desenrotllat, és literalment base per alçada. El parany habitual: l'amplada del rectangle és la <strong>circumferència</strong>, no el diàmetre ni el radi.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">L'àrea lateral d'un cilindre és perímetre de la base per alçada: en desenrotllar-lo surt sempre un rectangle d'amplada igual a la circumferència (2πr en el cas circular) i alçada h.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Amb r=3, h=10: àrea lateral = 2π(3)(10) = 60π ≈ 188,5. Si s'hi afegeixen les dues tapes circulars (2×πr² = 18π), la superfície total surt 78π ≈ 245,0.</p><p class="solucio__text">Una nota sobre el "generalitzat" del títol: aquest argument treballa sempre, aquí, amb un cilindre de base circular, però el mètode de l'etiqueta desenrotllada val exactament igual per a qualsevol sòlid fet lliscant una corba plana tancada qualsevol —no cal que sigui un cercle— perpendicularment, sense girar-la ni canviar-ne la mida (com la base irregular que mostra la mateixa figura de l'enunciat). Si la base té perímetre P, l'àrea lateral és P × h sempre; 2πr és només el valor d'aquest perímetre en el cas particular que la base sigui un cercle.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>
