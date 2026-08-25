@@ -4,7 +4,7 @@
   ROL:          Hash-routing mínim. Llegeix location.hash, el resol contra
                 window.PREGUNTES i notifica qui l'escolti quina vista toca
                 mostrar. NO pinta res a la pantalla — pintar és feina de
-                js/ui/main.js (§5, encara no construït). Aquesta separació
+                js/ui/main.js (§5). Aquesta separació
                 és deliberada: el document d'arquitectura (§3) ja posa
                 router.js a nucli/ i llista.js/detall.js a ui/ com a
                 carpetes separades, així que aquest fitxer no ha de tocar

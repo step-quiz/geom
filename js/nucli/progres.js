@@ -40,7 +40,7 @@
      conscient: aquest fitxer no depèn de l'existència ni de l'ordre de
      window.PREGUNTES per funcionar (independència total de nucli/,
      mateix esperit que i18n-core.js no sap res de progres.js). Qui
-     crida marcaFet() (ui/detall.js, encara no construït) és qui coneix
+     crida marcaFet() (ui/detall.js) és qui coneix
      el context d'una pregunta real i és responsable de no cridar-lo amb
      ids arbitraris. Si mai cal blindar-ho més, es pot afegir aquesta
      validació a la capa de UI sense tocar aquest fitxer.
