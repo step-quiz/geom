@@ -26,10 +26,14 @@
     definicio     — {ca, en} — v. more avall, "DIRECCIÓ DEL FALLBACK",
                     perquè aquí NO és la mateixa direcció que
                     preguntes-dades.js.
-    figura        — nom de fitxer a assets/img/glossari/, o null. Un
-                    terme sense figura no en necessita — v. §5 del
-                    document de disseny ("amb figures quan sigui
-                    convenient", no a totes les entrades).
+    figura        — nom de fitxer a assets/img/glossari/. L'esquema
+                    admet null (§5 del document de disseny deia "amb
+                    figures quan sigui convenient", no a totes les
+                    entrades), però avui els 53 termes en tenen: v.
+                    docs/guies/NOTA-GLOSSARI-27-FIGURES.md. Són 32
+                    fitxers, no 53 — termes emparentats en comparteixen
+                    un (p. ex. altura/mediana/bisectriu, tots tres a
+                    gloss-cevianes.png).
     relacionats   — array d'ids d'altres entrades. El que fa que sigui un
                     GLOSSARI i no un diccionari pla — v. §2 del document.
     categoria     — slug lliure per a la vista de navegació (§4.1),
