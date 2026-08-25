@@ -41,13 +41,44 @@ no era treure-les, era dir on porten.
 
 ---
 
+## Documents de treball citats només des de `docs/`
+
+Els de la taula de dalt els cita el codi (`js/`, `css/`, `index.html`), i per
+això `verifica_projecte.py` els vigilava des de l'auditoria d'agost. Aquests
+altres els citen només les notes de lliurament entre elles. Són igual de
+morts, i fins a l'auditoria de documentació d'ago. 2026 ningú no ho deia —
+la comprovació saltava `./docs` expressament. Ara també els cobreix.
+
+| Document citat | Qui el cita | Què era |
+|---|---|---|
+| `ANALISI-GRAFICS-NOUS.md` | `NOTA-PART1-ENUNCIATS.md`, `NOTA-PART2-PISTA2.md` | Anàlisi prèvia de quines preguntes necessitaven imatge nova. El resultat és el contingut d'aquelles dues notes |
+| `FIGURES.md` | `docs/AUDITORIA-RIGOR-GUIES.md` | Nota de lliurament d'una ronda de figures, mai al repo. El que se'n va derivar és a `docs/guies/NOTA-IMPROVE-*.md` |
+| `IMPROVE-INSTRUCTIONS.md` | `NOTA-IMPROVE-014-…` | Instruccions donades als tres agents "IMPROVE". El resum del que demanaven és a la mateixa nota, §2 |
+| `NOTA-LLIURAMENT.md` | `NOTA-LOT-2/3/4.md` | Nom genèric que aquelles notes es donaven a si mateixes abans que s'adoptés `NOTA-LOT-N.md`. No és un fitxer a part |
+| `itineraris-detall.md` | `PROPOSTA-ITINERARIS-ORIGINAL.md` | Annex de la proposta amb els 6 itineraris pregunta a pregunta. Avui és `js/data/itineraris-tematics-dades.js`, que és la versió executable del mateix contingut |
+| `publish_lot10.py` | `NOTA-LOT-10.md`, `NOTA-FUSIO-LOT-9-10.md` | Script d'un sol ús per publicar les figures del lot 10 amb el seu `JOBS` propi. Fet i llençat; `docs/publish_figures.py` i `docs/publish_figures_lot9.py` són els que queden |
+| `NOTA-FIX-PART2-7FIGURES.md` | (ja no el cita ningú) | El citava `HANDOFF-COLD-START.md` i no ha existit mai. Referència eliminada a l'auditoria de documentació |
+| `HANDOFF-LLIURAMENT-10.md` | `NOTA-LOT-10.md`, `NOTA-FUSIO-LOT-9-10.md` | Bessó de `HANDOFF-LLIURAMENT-9.md` (v. taula de dalt). Ja executat; la traça és `NOTA-LOT-10.md` |
+| `guies.json` | `parse_guies.py`, `NOTA-LOT-5.md` | Fitxer intermedi d'una sessió antiga de `parse_guies.py`. Avui l'script escriu directament `js/data/guies-dades.js` |
+| `manifest.tsv` | `parse_guies.py`, `guies-dades.js`, `NOTA-LOT-2/3/4.md` | Nom antic de `docs/manifest-figures.tsv`, que sí que existeix |
+| `questions_full_book.json` | `preguntes-dades.js` | El JSON d'extracció del PDF, mai al repo. Sense ell (i sense `build_preguntes_dades.py`) `preguntes-dades.js` no es pot regenerar |
+| `sol-01.html`, `sol-02.html`, `sol-35.html`, `sol-q25.html`, `q08.html` | `COORDINACIO-AGENTS-SOLUCIONS.md` | **No són referències**: són els noms dels dos esquemes de nomenclatura de solucions ja retirats, citats expressament per dir que no s'han de tornar a fer servir. Estan a `DOCS_ABSENTS` perquè el verificador no els compti com a documents perduts |
+
+---
+
 ## Com no tornar-hi a caure
 
 `verifica_projecte.py` comprova ara, a cada execució, que tota referència
-a un `.md` o un `.py` que aparegui dins de `js/`, `css/` o `index.html`
-o bé existeixi al repositori, o bé sigui a la llista d'absents coneguts
-d'aquest fitxer (`DOCS_ABSENTS` dins de l'script). Si algú cita un
-document nou que no existeix, salta un avís amb el fitxer i la línia.
+a un `.md` o un `.py` **que aparegui a qualsevol fitxer del repositori,
+inclosos els `.md` de `docs/`**, o bé existeixi, o bé sigui a la llista
+d'absents coneguts d'aquest fitxer (`DOCS_ABSENTS` dins de l'script). Si
+algú cita un document nou que no existeix, salta un avís amb el fitxer i
+la línia.
+
+Fins a l'auditoria de documentació d'ago. 2026 la comprovació saltava
+`./docs`, que és on viuen gairebé totes les notes — o sigui que cobria
+la part del repositori on menys probable era que aparegués una referència
+morta i no la part on n'hi havia set.
 
 Si mai apareix un d'aquests documents (per exemple, si l'owner el
 recupera de l'arxiu): posa'l al repo, treu-lo de `DOCS_ABSENTS` a
