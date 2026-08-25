@@ -45,6 +45,13 @@ window.UI_LANGS = {
       no_results: "No questions match this filter.",
       no_image_badge: "no figure",
       open: "Open",
+      export_button: "Copy my code",
+      export_note: "Copies a one-line code with the questions you've explored, so your teacher can turn them into a written test.",
+      export_empty: "You haven't explored any question yet",
+      export_copied: "Copied — paste it and send it",
+      export_manual: "Couldn't copy: select it and press Ctrl+C",
+      export_field_label: "Your code",
+      export_file: "or download it as a file",
     },
 
     detail: {
@@ -172,6 +179,13 @@ window.UI_LANGS = {
       no_results: "Cap pregunta coincideix amb aquest filtre.",
       no_image_badge: "sense figura",
       open: "Obre",
+      export_button: "Copia el meu codi",
+      export_note: "Copia un codi d'una línia amb les preguntes que has explorat, perquè el professorat en pugui fer una prova escrita.",
+      export_empty: "Encara no has explorat cap pregunta",
+      export_copied: "Copiat — enganxa'l i envia'l",
+      export_manual: "No s'ha pogut copiar: selecciona'l i prem Ctrl+C",
+      export_field_label: "El teu codi",
+      export_file: "o descarrega'l com a fitxer",
     },
 
     detail: {
