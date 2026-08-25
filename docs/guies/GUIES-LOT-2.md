@@ -58,9 +58,12 @@ entre un triangle i l'altre. Base igual, alçada igual: ja ho tens.
 
 **Comprovació.** Base de 12, vèrtex desplaçat (no centrat) a alçada 7. Amb el
 tall al punt mitjà (a distància 6 de cada cantó), l'àrea de cada meitat surt 21
-— sumen 42, que és l'àrea sencera. Prova-ho també desplaçant el vèrtex a un
-altre lloc de la mateixa alçada 7: les dues meitats han de continuar sortint
-iguals entre elles, encara que ja no facin 21 cadascuna.
+— sumen 42, que és l'àrea sencera. Ara prova-ho desplaçant el vèrtex a un altre
+lloc de la mateixa alçada 7, tan lluny com vulguis: cada meitat continua fent
+21. No és que "quadri igualment": és que ni la base (6) ni l'alçada (7) de
+cap de les dues meitats no han canviat, i l'àrea només depèn d'aquestes dues
+coses. Si canvies l'alçada, sí que canvien les dues meitats —però continuen
+sent iguals entre elles, que és el que la pregunta demana.
 
 **I després.** "Mateixa base, mateixa alçada, mateixa àrea" és el motor que fa
 funcionar mig llibre. El tornaràs a veure servir-se sol, sense que ningú
@@ -189,8 +192,12 @@ tangència amb el cercle gran, R−r. Iguala-les.
 
 **Comprovació.** Amb R = 1 surt r = √2 − 1 ≈ 0,414 — **exactament el mateix
 valor numèric** que et va sortir a q22, tot i que la figura és diferent del
-tot. No és casualitat: comprova que l'equació r(√2+1) = R que has fet servir
-aquí és, mirada amb calma, la mateixa equació de q22.
+tot. Compte a no dir-ne massa de pressa "és la mateixa equació": no ho és.
+A q22 tenies R√2 = R + r (tangència exterior, catets R) i aquí tens
+r√2 = R − r (tangència interior, catets r). Són equacions diferents que
+resolen a la mateixa raó, i el motiu és una identitat que val la pena veure:
+de la primera surt r/R = √2 − 1, de la segona r/R = 1/(√2 + 1), i aquests
+dos números són iguals perquè (√2 − 1)(√2 + 1) = 2 − 1 = 1. Comprova-ho.
 
 **I després.** Ara fes els altres dos puzles de q23 amb la mateixa palanca
 (en un, la "tangència" és amb una diagonal en lloc d'un altre cercle — la
