@@ -368,6 +368,72 @@ if GR is not None and P is not None:
     else:
         ok("els 8 grups entrellaçats només contenen ids reals")
 
+# ------------------------------------------- 13. prova escrita (codi + examen)
+# Comprova el cablejat de la prova escrita: que el codi que copia l'alumne i
+# el que llegeix l'analitzador continuïn parlant el mateix idioma, i que les
+# figures que necessiten tractament especial el rebin. No comprova
+# l'analitzador GENERAT (analitzador-geom.html): comprova les FONTS, perquè
+# un analitzador vell i correcte no ha de fer passar un canvi trencat.
+if os.path.exists("js/ui/llista.js") and os.path.exists("analitzador-geom-plantilla.html"):
+    llista = open("js/ui/llista.js", encoding="utf-8").read()
+    plant = open("analitzador-geom-plantilla.html", encoding="utf-8").read()
+
+    # El prefix del format ha de ser el mateix als dos costats. Si algú el
+    # canvia en un sol lloc, els codis dels alumnes deixen de llegir-se i el
+    # símptoma (una prova buida) no assenyala la causa.
+    m = re.search(r'return "(GEO\d+)-" \+ ids\.join', llista)
+    if not m:
+        err("llista.js: no s'ha trobat formataCodi() amb el prefix GEO<n>-")
+    elif ("GEO" not in plant) or ("/^GEO\\d+-?/i" not in plant):
+        err("la plantilla de l'analitzador no reconeix el prefix %s del codi" % m.group(1))
+    else:
+        ok("el codi de l'alumne i el lector de l'analitzador comparteixen prefix")
+
+    # Camp de només lectura amb el codi: és la sortida quan el porta-retalls
+    # falla (permisos, navegador antic). Sense ell, un error de còpia deixa
+    # l'alumne sense cap manera d'obtenir el seu codi.
+    if "geo-export-codi" in llista and "geo-export-btn" in llista:
+        ok("el codi es pot copiar i, si falla, seleccionar a mà")
+    else:
+        err("llista.js: falta el camp de reserva del codi (geo-export-codi)")
+
+    # esInvertida i esCrop NO són decoració: q42 és traç clar sobre fons fosc
+    # (94 % de píxels foscos) i sense invertir-la s'imprimeix com un rectangle
+    # negre; els retalls de pàgina deixen de llegir-se si s'encongeixen.
+    # Es comprova que els flags s'USIN (que arribin a l'atribut de la
+    # imatge), no només que la paraula aparegui en algun comentari.
+    usa_inv = re.search(r'flagsImatge\(\s*img\s*,\s*"esInvertida"', plant) \
+        and "invert(1)" in plant
+    usa_crop = re.search(r'flagsImatge\(\s*img\s*,\s*"esCrop"', plant) \
+        and "figura--scan" in plant
+    if usa_inv:
+        ok("la prova inverteix les figures amb esInvertida (q42)")
+    else:
+        err("la plantilla no aplica esInvertida: q42 s'imprimirà com un "
+            "rectangle negre (94 % de píxels foscos)")
+    if usa_crop:
+        ok("la prova dona tractament propi als retalls de pàgina (esCrop)")
+    else:
+        err("la plantilla no aplica esCrop: els retalls de pàgina quedaran "
+            "il·legibles en encongir-se")
+
+    # Forats del build. Si en falta un, build_analitzador_geom.py ja peta,
+    # però aquí es diu abans i amb el motiu.
+    for forat in ("/*__PREGUNTES__*/", "/*__AMAGATS__*/", "/*__IMATGES__*/"):
+        if plant.count(forat) != 1:
+            err("la plantilla ha de tenir exactament un %s" % forat)
+    if all(plant.count(f) == 1 for f in
+           ("/*__PREGUNTES__*/", "/*__AMAGATS__*/", "/*__IMATGES__*/")):
+        ok("els tres forats del build hi són")
+
+    # Textos nous, als dos idiomes.
+    if os.path.exists("js/i18n/ui-strings.js"):
+        ui = open("js/i18n/ui-strings.js", encoding="utf-8").read()
+        for clau in ("export_button", "export_copied", "export_manual",
+                     "export_field_label", "export_file", "export_empty"):
+            if ui.count(clau + ":") != 2:
+                err("ui-strings.js: %s no és exactament als dos idiomes" % clau)
+
 # ------------------------------------------------------------------ informe
 print("\n%d comprovacions passades" % len(oks))
 if avisos:

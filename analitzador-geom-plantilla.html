@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Genera una prova · Geometria sintètica</title>
+<style>
+:root{
+  --fons:#FBFAF8; --card:#FFF; --tinta:#211E1B; --apagat:#6B6357; --vora:#E4DFD3;
+  --pencil:#8B5E3C; --pencil-suau:#F1E8DE;
+  --vermell:#B3453C; --vermell-suau:#FBEDEB;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fons);color:var(--tinta);font:15px/1.6 var(--sans)}
+.embolcall{max-width:900px;margin:0 auto;padding:1.6rem 1.1rem 4rem}
+h1{font-size:1.5rem;margin:.2rem 0 .3rem}
+h2{font-size:1.05rem;margin:1.6rem 0 .6rem}
+.cimera{font:600 11px/1.6 var(--mono);letter-spacing:.09em;text-transform:uppercase;color:var(--apagat);margin:0}
+.petit{font-size:13px} .apagat{color:var(--apagat)} .mono{font-family:var(--mono)}
+.targeta{background:var(--card);border:1px solid var(--vora);border-radius:12px;padding:1rem}
+.btn{display:inline-flex;align-items:center;gap:.4rem;border:1px solid var(--tinta);
+  background:var(--tinta);color:#fff;border-radius:9px;padding:.5rem .85rem;
+  font:600 14px var(--sans);cursor:pointer}
+.btn:hover{filter:brightness(1.2)}
+.btn.buit{background:transparent;color:var(--tinta);border-color:var(--vora)}
+.btn[disabled]{opacity:.4;cursor:not-allowed;filter:none}
+textarea{width:100%;min-height:100px;font:13px/1.5 var(--mono);padding:.7rem;
+  border:1px solid var(--vora);border-radius:9px;background:var(--card);color:var(--tinta);resize:vertical}
+.mides{display:flex;gap:.5rem;flex-wrap:wrap;margin:.8rem 0}
+.mida-op{border:1px solid var(--vora);background:var(--card);color:var(--tinta);
+  border-radius:9px;padding:.55rem 1rem;font:600 14px var(--sans);cursor:pointer}
+.mida-op[aria-pressed="true"]{background:var(--pencil);border-color:var(--pencil);color:#fff}
+.mida-op:hover{border-color:var(--pencil)}
+.buit{padding:2.2rem 1rem;text-align:center;color:var(--apagat);border:1px dashed var(--vora);border-radius:12px}
+.mal{color:var(--vermell)}
+.avis-mal{background:var(--vermell-suau);border:1px solid #E9C9C4;color:#7A2C24;
+  border-radius:9px;padding:.6rem .8rem;font-size:13.5px;margin:.8rem 0}
+.estat-carrega{font-size:13px;color:var(--apagat)}
+.prova-accions{display:flex;gap:.5rem;margin:1.1rem 0 .8rem;flex-wrap:wrap}
+.prova-full{background:#fff;border:1px solid var(--vora);border-radius:12px;padding:1.7rem 1.9rem;max-width:780px}
+.prova-full .capc{border-bottom:2px solid var(--tinta);padding-bottom:.7rem;margin-bottom:1.2rem;
+  display:flex;justify-content:space-between;align-items:flex-end;gap:1rem;flex-wrap:wrap}
+.prova-full h2{font-size:1.15rem;margin:0 0 .15rem}
+.prova-full .capc div{font-size:12.5px;color:var(--apagat);text-align:right}
+.prova-preg{margin:0 0 1.6rem;page-break-inside:avoid}
+.prova-preg .cap{font-weight:700;font-size:14.5px;margin-bottom:.5rem}
+.prova-preg .cap .num{display:inline-block;min-width:1.6em}
+/* Les figures s'imprimeixen prou grosses per poder-hi dibuixar a sobre:
+   tot el projecte es basa en "el negre és la figura, la sanguina és el
+   que hi afegeixes tu", i sobre una miniatura de 260 px no s'hi pot
+   afegir res. Els retalls de pàgina (--scan) van a amplada plena amb
+   fons crema, com al lloc. */
+.prova-preg .figura{max-width:420px;width:100%;display:block;margin:.5rem 0 .7rem}
+.prova-preg .figura--scan{max-width:100%;background:#F6F1E8;
+  border-radius:6px;padding:.5rem}
+.prova-preg .espai{border-bottom:1px solid var(--vora);height:2rem;margin-top:.3rem}
+@media print{
+  body *{visibility:hidden}
+  .prova-full,.prova-full *{visibility:visible}
+  .prova-full{position:absolute;left:0;top:0;border:none;padding:0;max-width:100%}
+  .prova-accions,.cimera,h1,.targeta,.avis-mal{display:none!important}
+}
+</style>
+</head>
+<body>
+<main class="embolcall">
+  <p class="cimera">Geometria sintètica</p>
+  <h1>Genera una prova</h1>
+  <p class="apagat petit" style="margin:.3rem 0 0">
+    Enganxa el codi que t'ha enviat l'alumne (o carrega el seu fitxer, si te l'ha adjuntat) i tria
+    quantes preguntes vols a la prova. Es trien a l'atzar d'entre les que ha explorat,
+    amb l'enunciat i la figura reals — sense opcions, per respondre per escrit. Tot
+    passa en aquest navegador: no s'envia res enlloc.
+  </p>
+
+  <div class="targeta" style="margin-top:1.1rem">
+    <h3 style="margin:0 0 .5rem">1. Enganxa el codi de l'alumne</h3>
+    <textarea id="entrada" placeholder="GEO1-q01,q05,q08a,q22,q41…"></textarea>
+    <div style="display:flex;gap:.5rem;flex-wrap:wrap;margin-top:.7rem;align-items:center">
+      <button class="btn" id="btn-llegeix">Llegeix el codi</button>
+      <label class="btn buit" style="position:relative;overflow:hidden">
+        o obre un fitxer
+        <input type="file" id="fitxer" accept=".txt" style="position:absolute;inset:0;opacity:0;cursor:pointer">
+      </label>
+      <span class="estat-carrega" id="estat-carrega"></span>
+    </div>
+    <div id="avis" hidden></div>
+  </div>
+
+  <div class="targeta" id="bloc-mida" style="margin-top:1rem" hidden>
+    <h3 style="margin:0 0 .5rem">2. Quantes preguntes</h3>
+    <div class="mides" id="mides"></div>
+    <p class="petit apagat" id="disponibles" style="margin:.2rem 0 0"></p>
+  </div>
+
+  <div id="resultat"></div>
+</main>
+
+<script>/*__PREGUNTES__*/</script>
+<script>/*__AMAGATS__*/</script>
+<script>/*__IMATGES__*/</script>
+<script>
+(function () {
+  "use strict";
+  var $ = function (s, r) { return (r || document).querySelector(s); };
+
+  /* window.PREGUNTES i window.EXERCICIS_AMAGATS els injecta
+     build_analitzador_geom.py a partir dels mateixos fitxers que fa
+     servir el lloc (js/data/preguntes-dades.js i la llista hardcoded
+     de js/ui/llista.js) -- no és una còpia paral·lela que es pugui
+     desincronitzar, és literalment el mateix contingut, v. capçalera
+     del script de build. */
+  var PREGUNTES = window.PREGUNTES || [];
+  var AMAGATS = window.EXERCICIS_AMAGATS || [];
+  var mapaPreguntes = {};
+  PREGUNTES.forEach(function (p) { mapaPreguntes[p.id] = p; });
+
+  var MIDES = [1, 2, 3];
+  var midaTriada = 1;
+  var idsExplorats = null; /* ids vàlids i visibles, un cop llegit el fitxer */
+
+  function esc(s) {
+    return String(s == null ? "" : s).replace(/&/g, "&amp;").replace(/</g, "&lt;");
+  }
+
+  /* ── lectura del que envia l'alumne ─────────────────────────────────
+
+     Dos formats, tots dos acceptats:
+
+       · CODI D'UNA LÍNIA (el normal, v. formataCodi a js/ui/llista.js):
+             GEO1-q01,q05,q08a,q22
+         És el que l'alumne enganxa a un WhatsApp, a un correu o a una
+         casella de formulari.
+
+       · FITXER .txt (secundari, v. formataFitxer): "GEO1" a la primera
+         línia, comentaris amb "#", un id per línia.
+
+     La lectura és deliberadament tolerant, perquè el codi passa per
+     canals que el maltracten: es parteix per comes, punts i coma,
+     espais, tabuladors i salts de línia indistintament, s'ignoren els
+     comentaris i el prefix GEO1 (amb guió o sense), i es compara sense
+     distingir majúscules -- un alumne que escriu "Q01" perquè el mòbil
+     hi ha posat majúscula automàtica no ha de veure com desapareix la
+     pregunta en silenci. També es tallen els caràcters invisibles que
+     alguns clients de correu hi enganxen (espai fi, BOM).
+
+     El que NO es perdona és un id inexistent: es filtra i no compta.
+     Poden venir d'una còpia a mitges o d'una versió futura amb
+     preguntes que aquest analitzador encara no coneix, i inventar-se
+     una pregunta seria pitjor que ignorar-la.
+
+     Els ids d'EXERCICIS_AMAGATS també es filtren aquí, com a la llista
+     principal del lloc: encara que l'alumne hi hagi entrat per enllaç
+     directe, no han de sortir mai en una prova. */
+  var mapaMinuscules = {};
+  Object.keys(mapaPreguntes).forEach(function (id) {
+    mapaMinuscules[id.toLowerCase()] = id;
+  });
+
+  function llegeixIds(text) {
+    var net = String(text || "")
+      .replace(/^\uFEFF/, "")            /* BOM d'alguns editors */
+      .replace(/[\u00A0\u2007\u202F]/g, " ") /* espais durs de correus i xats */
+      .replace(/^[ \t]*#.*$/gm, "");     /* línies de comentari del fitxer */
+    var bruts = net.split(/[,;\s]+/);
+    var ids = [];
+    bruts.forEach(function (t) {
+      t = t.trim();
+      if (!t) return;
+      /* El prefix pot venir enganxat al primer id ("GEO1-q01") o sol
+         ("GEO1" a la primera línia del fitxer). */
+      var m = /^GEO\d+-?/i.exec(t);
+      if (m) t = t.slice(m[0].length);
+      if (!t) return;
+      ids.push(t);
+    });
+
+    var vistos = {};
+    var valids = [];
+    var desconeguts = [];
+    ids.forEach(function (brut) {
+      var id = mapaMinuscules[brut.toLowerCase()];
+      if (!id) { desconeguts.push(brut); return; }
+      if (vistos[id]) return;            /* un mateix id no compta dues vegades */
+      vistos[id] = true;
+      if (AMAGATS.indexOf(id) === -1) valids.push(id);
+    });
+    return { total: ids.length, valids: valids, desconeguts: desconeguts };
+  }
+
+  function mostraAvis(msg) {
+    var a = $("#avis");
+    if (!msg) { a.hidden = true; a.innerHTML = ""; return; }
+    a.hidden = false;
+    a.innerHTML = '<div class="avis-mal">' + msg + "</div>";
+  }
+
+  function processaText(text) {
+    var r = llegeixIds(text);
+    if (!r.valids.length) {
+      idsExplorats = null;
+      $("#bloc-mida").hidden = true;
+      $("#resultat").innerHTML = "";
+      mostraAvis(r.total
+        ? "Cap dels ids d'aquest codi correspon a una pregunta que es pugui posar en una prova. Comprova que està copiat sencer, des de <span class=\"mono\">GEO1-</span> fins al final."
+        : "No s'ha trobat cap id de pregunta aquí. El codi de l'alumne té la forma <span class=\"mono\">GEO1-q01,q05,q22</span>.");
+      return;
+    }
+    /* Els ids que no s'han reconegut no bloquegen la prova, però es diuen:
+       si el codi s'ha copiat a mitges, el professor ha de saber que la
+       prova s'ha compost amb menys preguntes de les que l'alumne va
+       enviar, no descobrir-ho quan ja l'ha imprès. */
+    if (r.desconeguts.length) {
+      mostraAvis("S'han ignorat " + r.desconeguts.length + " id"
+        + (r.desconeguts.length === 1 ? "" : "s") + " que no corresponen a cap pregunta: "
+        + '<span class="mono">' + esc(r.desconeguts.slice(0, 8).join(", "))
+        + (r.desconeguts.length > 8 ? "…" : "") + "</span>. "
+        + "Si no ho esperaves, comprova que el codi està copiat sencer.");
+    } else {
+      mostraAvis(null);
+    }
+    idsExplorats = r.valids;
+    pintaMides();
+    $("#bloc-mida").hidden = false;
+    $("#resultat").innerHTML = "";
+  }
+
+  /* ── selector de mida (1/2/3, v. MIDES_PROVA de repas: aquí no calen
+     "curta/mitja/llarga" amb noms, el nombre ja ho diu tot) ── */
+  function pintaMides() {
+    var cont = $("#mides");
+    cont.innerHTML = "";
+    MIDES.forEach(function (n) {
+      var btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = "mida-op";
+      btn.textContent = n + (n === 1 ? " pregunta" : " preguntes"); /* pregunta/preguntes, no "preguntas" */
+      btn.setAttribute("aria-pressed", String(n === midaTriada));
+      btn.addEventListener("click", function () {
+        midaTriada = n;
+        pintaMides();
+      });
+      cont.appendChild(btn);
+    });
+    var disp = $("#disponibles");
+    disp.textContent = idsExplorats.length + " pregunt" + (idsExplorats.length === 1 ? "a" : "es")
+      + " explorad" + (idsExplorats.length === 1 ? "a" : "es") + " disponible"
+      + (idsExplorats.length === 1 ? "" : "s") + ".";
+    if (idsExplorats.length < midaTriada) {
+      disp.textContent += " No n'hi ha prou per triar-ne " + midaTriada + " sense repetir.";
+    }
+  }
+
+  /* ── tria a l'atzar, sense repetició dins la mateixa prova (Fisher–
+     Yates parcial: no cal barrejar l'array sencer si només en calen
+     `n`) ── */
+  function triaAleatoria(ids, n) {
+    var copia = ids.slice();
+    var triats = [];
+    var k = Math.min(n, copia.length);
+    for (var i = 0; i < k; i++) {
+      var j = i + Math.floor(Math.random() * (copia.length - i));
+      var tmp = copia[i]; copia[i] = copia[j]; copia[j] = tmp;
+      triats.push(copia[i]);
+    }
+    return triats;
+  }
+
+  function generaProva() {
+    if (!idsExplorats || !idsExplorats.length) return;
+    var triats = triaAleatoria(idsExplorats, midaTriada);
+    pintaProva(triats);
+  }
+
+  /* Normalitza els flags de la imatge, que a preguntes-dades.js venen en
+     singular o en array segons si la pregunta té una figura o més d'una
+     (mateixa doble forma que gestionen esCropFitxer/esInvertidaFitxer a
+     js/nucli/contingut.js). */
+  function flagsImatge(img, clau, quants) {
+    var v = img[clau];
+    if (Array.isArray(v)) return v;
+    var out = [];
+    for (var i = 0; i < quants; i++) out.push(!!v);
+    return out;
+  }
+
+  function figuraHtml(pregunta) {
+    /* Rèplica minimalista de nomsFitxer() de js/nucli/contingut.js:
+       aquest fitxer no carrega contingut.js (ha de ser autònom, v.
+       capçalera del build), així que es refà aquí només la part que
+       cal -- llegir 'fitxers' (plural) abans que 'fitxer', mateix
+       ordre que exigeix el comentari original a preguntes-dades.js.
+
+       esInvertida i esCrop NO són decoració: sense ells la prova
+       s'imprimeix malament.
+
+       · esInvertida (q42): la imatge és traç clar sobre fons FOSC. Amidada,
+         té un 94 % de píxels foscos i una lluminositat mitjana de 15/255.
+         Sense invertir-la, el full que surt de la impressora és un
+         rectangle negre amb unes línies blanques que gairebé no es veuen
+         -- i molt de tòner. El lloc li aplica filter:invert(1) via la
+         classe question-entry__figure--inverted (css/base.css); aquí es
+         fa igual, amb estil inline perquè aquest fitxer no carrega el CSS
+         del projecte.
+
+       · esCrop (q31, q76, q78, q79, q105, q107, q114): són retalls de
+         pàgina del PDF, amb traç fi i tipografia impresa en lloc de dibuix
+         a mà gruixut. El lloc els reserva un espai propi amb fons i
+         padding (--scan); aquí, sobretot, no se'ls pot encongir: q107
+         passa de 620×190 a 260×80 px i deixa de llegir-se. Se'ls dona
+         amplada plena i un fons crema, com al lloc. */
+    var img = pregunta.imatge;
+    if (!img) return "";
+    var fitxers = img.fitxers || (img.fitxer ? [img.fitxer] : []);
+    if (!fitxers.length) return "";
+    var crops = flagsImatge(img, "esCrop", fitxers.length);
+    var inv = flagsImatge(img, "esInvertida", fitxers.length);
+    return fitxers.map(function (f, i) {
+      var classe = "figura" + (crops[i] ? " figura--scan" : "");
+      var estil = inv[i] ? ' style="filter:invert(1)"' : "";
+      return '<img class="' + classe + '" src="' + esc(fontImatge(f)) + '" alt=""' + estil + ">";
+    }).join("");
+  }
+
+  /* Les imatges poden venir incrustades al mateix fitxer (window.IMATGES,
+     que hi injecta build_analitzador_geom.py en base64) o del directori
+     assets/img/ del projecte. Amb les incrustades, l'analitzador funciona
+     desat en qualsevol carpeta -- que és el que promet la seva capçalera. */
+  function fontImatge(f) {
+    var incrustades = window.IMATGES || {};
+    return incrustades[f] || ("assets/img/" + f);
+  }
+
+  function pintaProva(ids) {
+    var ara = new Date();
+    var dataStr = ara.getFullYear() + "-" + String(ara.getMonth() + 1).padStart(2, "0")
+      + "-" + String(ara.getDate()).padStart(2, "0");
+
+    var h = '<div class="prova-accions">'
+      + '<button class="btn" id="pr-imprimeix">Imprimeix / desa en PDF</button>'
+      + '<button class="btn buit" id="pr-regenera">Torna a triar preguntes</button>'
+      + "</div>";
+    h += '<div class="prova-full"><div class="capc"><div><h2>Prova de geometria</h2>'
+      + "<div>" + ids.length + " pregunt" + (ids.length === 1 ? "a" : "es") + "</div></div>"
+      + '<div>Data: ' + dataStr + '<br>Nom i cognoms: ____________________</div></div>';
+
+    ids.forEach(function (id, i) {
+      var p = mapaPreguntes[id];
+      if (!p) return; /* per si un id vàlid en llegir el fitxer ha desaparegut mentrestant -- no hauria de passar dins d'una mateixa sessió */
+      var enunciat = (p.enunciat && p.enunciat.ca) || (p.enunciat && p.enunciat.en) || "";
+      h += '<div class="prova-preg"><div class="cap"><span class="num">' + (i + 1) + '.</span> '
+        + esc(enunciat) + "</div>";
+      h += figuraHtml(p);
+      h += '<div class="espai"></div><div class="espai"></div><div class="espai"></div></div>';
+    });
+    h += "</div>";
+    $("#resultat").innerHTML = h;
+    $("#pr-imprimeix").onclick = function () { window.print(); };
+    $("#pr-regenera").onclick = generaProva;
+  }
+
+  /* ── entrada: text, fitxer, o botó "Llegeix" ── */
+  $("#btn-llegeix").onclick = function () { processaText($("#entrada").value); };
+  $("#fitxer").onchange = function (e) {
+    var f = e.target.files[0];
+    if (!f) return;
+    var lector = new FileReader();
+    lector.onload = function () {
+      $("#entrada").value = String(lector.result);
+      $("#estat-carrega").textContent = "Carregat: " + f.name;
+      processaText(String(lector.result));
+    };
+    lector.readAsText(f, "utf-8");
+  };
+
+  /* El botó "Genera la prova" viu dins de #bloc-mida perquè només té
+     sentit un cop hi ha ids llegits -- s'afegeix aquí en comptes del
+     HTML estàtic perquè bloc-mida comença hidden. */
+  var contMida = $("#bloc-mida");
+  var btnGenera = document.createElement("button");
+  btnGenera.className = "btn";
+  btnGenera.style.marginTop = ".7rem";
+  btnGenera.textContent = "Genera la prova";
+  btnGenera.addEventListener("click", generaProva);
+  contMida.appendChild(btnGenera);
+})();
+</script>
+</body>
+</html>
