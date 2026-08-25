@@ -85,6 +85,76 @@
   box-shadow: none;
 }
 
+/* ---------- Boto "Descarrega la meva llista" (js/ui/llista.js,
+   exportaExplorades) ----------
+   Deliberadament diferent visualment dels toggles .dim-filtre__toggle i
+   .cat-filtre__toggle de sota: aquests canvien que es veu EN AQUESTA
+   pagina (estat, amb aria-pressed); aquest boto dispara una ACCIO
+   (una descarrega) que no te "actiu/inactiu" -- per aixo no porta
+   aria-pressed ni el mateix look de pastilla seleccionable, i pren la
+   vora --pencil (l'accent de "el que hi afegeix l'alumne" a tot el
+   projecte, v. README) en lloc de --rule-strong. */
+.export-explorades__boto {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: var(--fs-metadata);
+  letter-spacing: var(--tracking-mono);
+  color: var(--ink);
+  background: var(--paper-raised);
+  border: var(--stroke-hairline) solid var(--pencil);
+  border-radius: 999px;
+  padding: var(--space-2) var(--space-4);
+  margin: 0 0 var(--space-4);
+  cursor: pointer;
+  transition: background-color 0.12s ease, color 0.12s ease;
+}
+
+.export-explorades__boto:hover { background: var(--pencil); color: var(--paper); }
+.export-explorades__boto:focus-visible {
+  outline: 2px solid var(--pencil);
+  outline-offset: 2px;
+  box-shadow: none;
+}
+
+/* Camp de nomes lectura amb el codi (apareix en copiar-lo). Monoespaiat
+   i seleccionable sencer: si el porta-retalls falla, aquest camp es el
+   cami de sortida i ha de ser comode de seleccionar a ma. */
+.export-explorades__codi {
+  display: block;
+  width: 100%;
+  max-width: 34rem;
+  margin: 0 0 var(--space-2);
+  padding: var(--space-2) var(--space-3);
+  font-family: var(--font-mono);
+  font-size: var(--fs-metadata);
+  color: var(--ink);
+  background: var(--paper-raised);
+  border: var(--stroke-hairline) solid var(--rule);
+  border-radius: var(--radius-sm);
+}
+.export-explorades__codi[hidden] { display: none; }
+
+/* Sortida secundaria (fitxer): enllac de text, no un segon boto -- no ha
+   de competir visualment amb el cami principal, que es el codi. */
+.export-explorades__fitxer {
+  display: inline;
+  padding: 0;
+  margin: 0 0 var(--space-4);
+  border: none;
+  background: none;
+  font-family: var(--font-mono);
+  font-size: var(--fs-metadata);
+  color: var(--ink-muted, var(--ink));
+  opacity: 0.75;
+  text-decoration: underline;
+  cursor: pointer;
+}
+.export-explorades__fitxer:hover { opacity: 1; }
+.export-explorades__fitxer:focus-visible {
+  outline: 2px solid var(--pencil);
+  outline-offset: 2px;
+}
+
 /* ---------- Filtre de categories tematiques (menu de seleccio multiple,
    js/ui/llista.js) ---------- */
 
