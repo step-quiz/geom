@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Els focus d'una hipèrbola: suma, no resta — Solució — Geometria</title>
+<meta name="description" content="Trobar la fórmula c²=a²+b² per als focus d'una hipèrbola, amb el signe oposat al de l'el·lipse, i generalitzar-la amb la dilatació de q112.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 114 · pàg. 178 del llibre · solució</span>
+  <h1 class="sol-header__title">Els focus d'una hipèrbola: suma, no resta</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">On són els focus d'una hipèrbola unitat? Què passa si la dilatem per factors a i b?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q114_page178_unit_hyperbola.png" alt="Figura de l'enunciat de la Qüestió 114" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Provar primer el cas més senzill</p><p class="solucio__text">El cas més senzill de tots és la hipèrbola unitat, x²−y²=1 (a=b=1). Trobant-hi els focus, la fórmula general per a qualsevol a, b hauria de reduir-se a aquest cas particular quan es posi a=b=1.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Un signe diferent del de l'el·lipse</p><p class="solucio__text">A l'el·lipse (Qüestió 113), el focus queda "cap endins": c²=a²−b², amb c més petit que a. A la hipèrbola, les dues branques s'obren cap enfora, allunyant-se de l'eix curt en lloc d'envoltar-lo: el focus hi ha d'anar <strong>més lluny</strong> del centre que el vèrtex, no més a prop. Això suggereix que el signe hauria de ser una suma, no una resta: <strong>c² = a² + b²</strong>.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-117.png" alt="Figura de la construcció — Un signe diferent del de l'el·lipse" loading="lazy"><figcaption class="solucio__figura-nota">La hipèrbola unitat, amb els vèrtexs a (±1,0) i els focus, més enllà, a (±√2,0).</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">Comprovar-ho amb el cas unitat</p><p class="solucio__text">Amb a=b=1: c=√(1²+1²)=√2 —un valor que sí és familiar (la diagonal d'un quadrat de costat 1), confirmant que el signe de suma és el correcte.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Generalitzar amb la dilatació</p><p class="solucio__text">Aplicant la mateixa dilatació de la Qüestió 112 (factor a en horitzontal, b en vertical, ara en sentit invers —de la unitat cap a la general) a la hipèrbola unitat i als seus focus: els vèrtexs (±1,0) passen a (±a,0), i els focus (±√2,0) passen, per la mateixa relació ara amb semieixos a i b, a <strong>(±√(a²+b²), 0)</strong>.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">c² = a² + b² per a una hipèrbola —el signe oposat al de l'el·lipse (c²=a²−b²)—, perquè els focus d'una hipèrbola cauen més enllà dels vèrtexs, no entre ells. Amb a=b=1 (la hipèrbola unitat), c=√2; per a qualsevol altra hipèrbola, la mateixa relació es generalitza amb la dilatació de la Qüestió 112.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">a=4, b=3: c=√(16+9)=5. Focus a (±5,0), vèrtexs a (±4,0) —el mateix triangle 3-4-5 que ja apareixia amb el rombe de la Qüestió 111.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La constant focal és el diàmetre — Solució — Geometria</title>
+<meta name="description" content="Demostrar que la constant que defineix una el·lipse o una hipèrbola (2a) és exactament la distància entre els seus dos vèrtexs, calculant-la al vèrtex mateix.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 115 · pàg. 179 del llibre · solució</span>
+  <h1 class="sol-header__title">La constant focal és el diàmetre</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Demostra que la constant focal d'una el·lipse o d'una hipèrbola és igual al seu diàmetre.</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/fig-216.png" alt="Figura de l'enunciat de la Qüestió 115" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Dues coses que no semblen la mateixa</p><p class="solucio__text">La "constant focal" ve de sumar (el·lipse) o restar (hipèrbola) distàncies a dos punts fixos, els focus. El "diàmetre" és, simplement, la distància entre els dos vèrtexs de la figura —una mida, no cap suma ni resta relacionada amb els focus. Res, a la seva definició, garanteix que siguin la mateixa xifra.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Calcular-ho al punt més fàcil</p><p class="solucio__text">El vèrtex mateix és el punt de la corba més senzill per calcular-hi la constant focal directament: ja és sobre l'eix on cauen els dos focus, així que les distàncies del vèrtex a cadascun es poden escriure sense cap arrel quadrada, només sumant o restant longituds sobre una mateixa línia.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-119.png" alt="Figura de la construcció — Calcular-ho al punt més fàcil" loading="lazy"><figcaption class="solucio__figura-nota">El vèrtex dret de l'el·lipse i de la hipèrbola, amb les distàncies als dos focus escrites en termes de a i c.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">El cas de l'el·lipse</p><p class="solucio__text">El vèrtex dret és a distància <strong>a−c</strong> del focus proper i <strong>a+c</strong> del llunyà (el focus proper és entre el centre i el vèrtex; el llunyà és a l'altra banda). La constant focal —la suma— és (a−c)+(a+c) = <strong>2a</strong>.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">El cas de la hipèrbola</p><p class="solucio__text">Aquí el focus és més enllà del vèrtex, no abans: el vèrtex dret és a distància <strong>c−a</strong> del focus proper i <strong>c+a</strong> del llunyà. La constant focal —ara la diferència— és (c+a)−(c−a) = <strong>2a</strong> també.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">El mateix resultat, dues vegades</p><p class="solucio__text">En tots dos casos, la constant focal surt exactament <strong>2a</strong> —i 2a és, precisament, la distància entre els dos vèrtexs (a un costat del centre i a l'altre): el diàmetre de la figura. Aquesta demostració no depèn de cap punt genèric de la corba, només del vèrtex, i per tant val igual per a qualsevol el·lipse o hipèrbola, sigui quina sigui la seva mida concreta.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">La constant focal (2a en tots dos casos) és exactament el diàmetre de la figura —la distància entre els seus dos vèrtexs. Es demostra calculant les dues distàncies del vèrtex als focus en termes de a i c (a∓c i a±c), i comprovant que la seva suma (el·lipse) o diferència (hipèrbola) dona sempre 2a. És la mateixa constant que fa funcionar el mètode del fil de la Qüestió 98, ara demostrada des d'un punt fix en comptes d'un punt qualsevol de la corba.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">El·lipse a=5,c=4: al vèrtex (5,0), distàncies 5−4=1 i 5+4=9, suma 10=2·5. Hipèrbola a=4,c=5: al vèrtex (4,0), distàncies 5−4=1 i 5+4=9, diferència 8=2·4.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tota hipèrbola és una hipèrbola rectangular dilatada — Solució — Geometria</title>
+<meta name="description" content="Trobar la dilatació —diferent en horitzontal i en vertical— que converteix qualsevol hipèrbola en una amb les asímptotes perpendiculars.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 112 · pàg. 177 del llibre · solució</span>
+  <h1 class="sol-header__title">Tota hipèrbola és una hipèrbola rectangular dilatada</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Per què tota hipèrbola és una dilatació d'una hipèrbola rectangular?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/q112_page177_right_hyperbola.png" alt="Figura de l'enunciat de la Qüestió 112" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Un angle que depèn de la forma</p><p class="solucio__text">Les dues asímptotes d'una hipèrbola es tallen formant un angle que depèn dels valors concrets de a i b —no és sempre el mateix. Quan aquest angle és de 90°, la hipèrbola es diu <strong>recta</strong> (o rectangular). La pregunta demana trobar quina dilatació converteix qualsevol hipèrbola en una d'aquestes.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Per què cal un factor diferent a cada eix</p><p class="solucio__text">A les Qüestions 32 i 77, la dilatació escalava una figura sencera pel mateix factor en totes direccions —una còpia reduïda o ampliada, sense canviar-ne la forma. Aquí, en canvi, cal un factor <strong>diferent</strong> per a l'eix horitzontal i per al vertical: només així es pot canviar l'angle de les asímptotes sense simplement fer la figura més gran o més petita.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Dividir cada eix pel seu propi factor</p><p class="solucio__text">Partint de x²/a² − y²/b² = 1, es defineixen dues noves coordenades X=x/a i Y=y/b —dividir l'eix horitzontal per a, el vertical per b, cadascun pel seu propi valor. Substituint a l'equació original: <strong>X² − Y² = 1</strong>, exactament l'equació d'una hipèrbola recta, amb asímptotes Y=±X (que formen 90° entre si, ja que tenen pendents +1 i −1, perpendiculars).</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-116.png" alt="Figura de la construcció — Dividir cada eix pel seu propi factor" loading="lazy"><figcaption class="solucio__figura-nota">La hipèrbola original, amb asímptotes inclinades (negre), i la mateixa hipèrbola després de la dilatació, amb asímptotes perpendiculars (sanguina).</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">El factor de cada eix</p><p class="solucio__text">La dilatació que ho aconsegueix és de factor <strong>1/a en horitzontal i 1/b en vertical</strong> —dividir cada eix pel seu propi semieix. Amb a=b (el cas particular d'una hipèrbola ja rectangular), aquesta dilatació es converteix en la mateixa escala per als dos eixos, i la figura no canvia de forma, només de mida: el cas anisòtrop conté el cas isòtrop de les Qüestions 32 i 77 com a situació particular.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">La dilatació de factor 1/a en horitzontal i 1/b en vertical converteix qualsevol hipèrbola x²/a²−y²/b²=1 en la hipèrbola rectangular X²−Y²=1, d'asímptotes perpendiculars. A diferència de la dilatació isòtropa de les Qüestions 32 i 77 (el mateix factor a totes direccions), aquí calen dos factors diferents perquè és precisament aquesta diferència la que canvia l'angle entre les asímptotes.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">a=4, b=3: l'equació x²/16−y²/9=1 esdevé X²−Y²=1 amb X=x/4, Y=y/3. Comprovat amb el punt x=4√2, y=3: satisfà l'original (32/16−9/9=2−1=1) i, un cop dividit, X=√2, Y=1 satisfà la recta (2−1=1).</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

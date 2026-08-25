@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Els focus d'una el·lipse en termes dels seus dos radis — Solució — Geometria</title>
+<meta name="description" content="Trobar la fórmula c²=a²−b² per als focus d'una el·lipse, aplicant Pitàgores al triangle isòsceles del punt més alt.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 113 · pàg. 178 del llibre · solució</span>
+  <h1 class="sol-header__title">Els focus d'una el·lipse en termes dels seus dos radis</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Si una el·lipse té radi llarg a i radi curt b, on són els seus focus?</p>
+  <div class="sol-enunciat__figures sol-enunciat__figures--single"><figure class="question-entry__figure"><div class="question-entry__figure-frame"><img src="../assets/img/fig-175.png" alt="Figura de l'enunciat de la Qüestió 113" loading="lazy"></div></figure></div>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Un punt, no tota la corba</p><p class="solucio__text">No cal treballar amb un punt genèric de l'el·lipse: n'hi ha prou de triar el punt més fàcil de tots —l'extrem de l'eix curt (el punt més alt)— i calcular-hi la distància als dos focus.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Per simetria, les dues distàncies són iguals</p><p class="solucio__text">Des del punt més alt de l'el·lipse, les distàncies als dos focus són iguals per simetria —el punt és exactament sobre l'eix que reflecteix un focus sobre l'altre. Com que aquestes dues distàncies han de sumar la constant focal 2a, cadascuna val exactament <strong>a</strong>.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-118.png" alt="Figura de la construcció — Per simetria, les dues distàncies són iguals" loading="lazy"><figcaption class="solucio__figura-nota">El triangle isòsceles des del punt més alt cap als dos focus, amb els dos costats iguals a a i el catet vertical b.</figcaption></figure></div><div class="solucio__pas"><p class="solucio__pas-titol">El triangle rectangle amagat</p><p class="solucio__text">La línia des del centre fins al punt més alt (llargada b, l'eix curt) i la línia des del centre fins a un focus (llargada c, encara desconeguda) formen un angle recte —tots dos són sobre els dos eixos de simetria de l'el·lipse, perpendiculars entre si. Aquestes dues línies, més el segment del focus al punt més alt (llargada a, ja trobada), formen un <strong>triangle rectangle</strong> amb catets b i c i hipotenusa a.</p></div><div class="solucio__pas"><p class="solucio__pas-titol">Pitàgores, i aïllar c</p><p class="solucio__text">Amb hipotenusa a i catet b: <strong>a² = b² + c²</strong>, és a dir, <strong>c² = a² − b²</strong>. Els focus són, doncs, a distància √(a²−b²) del centre, sobre l'eix llarg.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">c² = a² − b², amb c la distància del centre a cada focus. Surt de calcular la distància al punt més alt de l'el·lipse (que val exactament a, per simetria i per la constant focal), i aplicar Pitàgores al triangle rectangle que formen aquesta distància, l'eix curt (b) i la distància al focus (c).</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">a=5, b=3: c²=25−9=16, c=4. Comprovat amb el punt (0,3): distància a cada focus (±4,0) és √(16+9)=5, i 5+5=10=2a.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>
