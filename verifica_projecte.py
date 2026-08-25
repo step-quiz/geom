@@ -220,15 +220,38 @@ DOCS_ABSENTS = {
     "NOTA-GLOSSARI.md",          # mai va existir: v. NOTA-GLOSSARI-MILLORES.md
     "build_preguntes_dades.py",  # arxivat fora del repo per l'owner
     "HANDOFF-LLIURAMENT-9.md",   # full de ruta dels lots 9/10, ja executat
+    "HANDOFF-LLIURAMENT-10.md",  # ídem, citat a NOTA-LOT-10 i NOTA-FUSIO-LOT-9-10
     "i18n-spanish-guide.md",     # d'un projecte germà (karelcat), mai d'aquest
     "HANDOFF-ITINERARIS.md",     # handoff dels itineraris temàtics, de treball, mai al repo
+    # --- afegits a l'auditoria de documentació d'ago. 2026, quan la
+    #     comprovació va deixar de saltar-se ./docs. Tots citats només des
+    #     de notes de lliurament, mai des del codi; explicats un per un a la
+    #     segona taula de docs/DOCUMENTS-DE-DISSENY.md.
+    "ANALISI-GRAFICS-NOUS.md",   # anàlisi prèvia de les imatges de la Part 1 i 2
+    "FIGURES.md",                # nota de lliurament d'una ronda de figures
+    "IMPROVE-INSTRUCTIONS.md",   # instruccions dels tres agents "IMPROVE"
+    "NOTA-LLIURAMENT.md",        # nom genèric que NOTA-LOT-2/3/4 es donaven a si mateixes
+    "itineraris-detall.md",      # annex de PROPOSTA-ITINERARIS-ORIGINAL; avui és el .js
+    "publish_lot10.py",          # script d'un sol ús del lot 10, fet i llençat
+    "guies.json",                # fitxer intermedi de parse_guies.py en una sessió antiga
+    "manifest.tsv",              # nom antic de docs/manifest-figures.tsv
+    "questions_full_book.json",  # JSON font de l'extracció, mai al repo
+    "sol-01.html", "sol-02.html", "sol-35.html", "sol-q25.html", "q08.html",
+    # ^ noms d'esquemes de nomenclatura de solucions ja retirats, citats
+    #   expressament a COORDINACIO-AGENTS-SOLUCIONS.md §"What this replaces"
+    #   per dir que NO s'han de tornar a fer servir.
 }
 # Plantilles, rangs i noms genèrics que no són fitxers concrets:
 #   GUIES-LOT-N.md      plantilla
 #   GUIES-LOT-1..8.md   rang ("dels lots 1 al 8"), no un fitxer
 #   10.md               tros de "HANDOFF-LLIURAMENT-9.md/-10.md" que la
 #                       regex parteix en dos; el document real ja és a DOCS_ABSENTS
-DOCS_IGNORA = {"GUIES-LOT-N.md", "NOTES.md", "figures-NN.html", "10.md"}
+#   NOTES.md            nom genèric ("v. les notes"), no un fitxer
+#   figures-NN.html     plantilla
+#   04.html, X.md       trossos que la regex retalla d'un nom més llarg
+DOCS_IGNORA = {"GUIES-LOT-N.md", "NOTES.md", "figures-NN.html", "10.md",
+               "04.html", "X.md", "NOTA-LOT-NN.md", "fitxer.html",
+               "figures-NN.js", "path/to/source.html"}
 RANG_LOT = re.compile(r"^GUIES-LOT-\d+\.\.\d+\.md$")
 
 def existeix_doc(nom):
@@ -239,10 +262,17 @@ def existeix_doc(nom):
 
 REF_DOC = re.compile(r"\b([A-Za-z0-9_][A-Za-z0-9_.-]*\.(?:md|py))\b")
 morts, revisats = [], set()
+# S'escaneja TOT el repositori, inclosos els .md de docs/. Fins a
+# l'auditoria de documentació d'ago. 2026 aquí hi havia
+# `or arrel.startswith("./docs")`, és a dir, la comprovació es saltava
+# justament el directori on viuen gairebé totes les notes -- i on hi havia
+# set referències mortes sense declarar. `solucions/` sí que se salta: són
+# 115 fitxers de contingut que no citen documents de disseny.
 for arrel, dirs, fitxers in os.walk("."):
-    if ".git" in arrel or arrel.startswith("./docs"): continue
+    if ".git" in arrel or arrel.startswith("./solucions"): continue
     for n in fitxers:
-        if not n.endswith((".js", ".css", ".html")): continue
+        if not n.endswith((".js", ".css", ".html", ".md", ".py")): continue
+        if n == "DOCUMENTS-DE-DISSENY.md": continue   # és qui els declara
         cami = os.path.join(arrel, n)
         for num, linia in enumerate(open(cami, encoding="utf-8"), 1):
             for ref in REF_DOC.findall(linia):
@@ -433,6 +463,66 @@ if os.path.exists("js/ui/llista.js") and os.path.exists("analitzador-geom-planti
                      "export_field_label", "export_file", "export_empty"):
             if ui.count(clau + ":") != 2:
                 err("ui-strings.js: %s no és exactament als dos idiomes" % clau)
+
+# --------------------------------------- 14. xifres a la documentació
+# Origen: l'auditoria de documentació d'ago. 2026 va trobar que el README
+# es contradeia ell mateix sobre el glossari (deia "26 amb figura pròpia"
+# en un lloc, "27 pendents" en un altre, i "53 de 53 completat" en un
+# tercer). Cap comprovació ho podia veure perquè totes miraven dades, no
+# prosa. Aquestes sí que miren la prosa, i només per a les xifres que
+# canvien: les que han fet drift una vegada en faran una altra.
+def compta_figures_per_nivell():
+    guies = llegeix_global("js/data/guies-dades.js", "GUIES")
+    per = {}
+    for g in (guies or {}).values():
+        for pista in g.get("pistes", []):
+            if pista.get("figura"):
+                per[pista.get("nivell")] = per.get(pista.get("nivell"), 0) + 1
+    return per
+
+# glossari-dades.js té les claus SENSE cometes (és un literal JS, no JSON:
+# v. HANDOFF-COLD-START.md §4), així que llegeix_global() no el pot parsejar.
+# Es compten els camps `figura:` amb regex, que aquí és suficient i honest.
+_gloss_txt = open("js/data/glossari-dades.js", encoding="utf-8").read() \
+    if os.path.exists("js/data/glossari-dades.js") else ""
+_gloss_total = len(re.findall(r"^\s{4}id:\s*[\"']", _gloss_txt, re.M)) \
+    or len(re.findall(r"figura:\s*", _gloss_txt))
+_amb_fig = len(re.findall(r"figura:\s*[\"']", _gloss_txt))
+_niv = compta_figures_per_nivell()
+_n1 = _niv.get(1, 0)
+
+for doc in ("README.md", "HANDOFF-COLD-START.md"):
+    if not os.path.exists(doc): continue
+    txt = open(doc, encoding="utf-8").read()
+    # a) glossari: cap document pot dir que hi ha figures pendents si no n'hi ha
+    if _gloss_total and _amb_fig == _gloss_total:
+        for patro in (r"\b26 (?:amb|figures|of 53)", r"27 (?:dels?|of) 53",
+                      r"26 have a figure"):
+            if re.search(patro, txt):
+                err("%s encara diu que falten figures del glossari, i en tenen %d/%d"
+                    % (doc, _amb_fig, _gloss_total))
+                break
+    # b) figures de Pista 2: la xifra ha de ser la real
+    for m in re.finditer(r"(\d+) (?:de les 130 guies|/ 130 \|)", txt):
+        pass
+    if re.search(r"\b31\b[^\n]*(Pista 2|Pista-2)", txt) and _n1 != 31:
+        err("%s diu 31 figures a Pista 2, i n'hi ha %d" % (doc, _n1))
+if _gloss_total and _amb_fig == _gloss_total and _n1:
+    ok("les xifres de glossari i de figures de Pista 2 als documents quadren")
+
+# c) el bloc "Estructura" del README ha d'esmentar tot fitxer de js/ que
+#    index.html carregui. Un mòdul nou que ningú documenta és exactament
+#    com van entrar els itineraris temàtics: tres fitxers, zero mencions.
+if os.path.exists("README.md") and os.path.exists("index.html"):
+    readme = open("README.md", encoding="utf-8").read()
+    idx = open("index.html", encoding="utf-8").read()
+    carregats = re.findall(r'src="(js/[^"]+\.js)"', idx)
+    sense = [c for c in carregats if os.path.basename(c) not in readme]
+    if sense:
+        err("README.md no esmenta enlloc: %s (mòduls que index.html carrega)"
+            % ", ".join(sense))
+    else:
+        ok("tot mòdul que index.html carrega surt al README")
 
 # ------------------------------------------------------------------ informe
 print("\n%d comprovacions passades" % len(oks))

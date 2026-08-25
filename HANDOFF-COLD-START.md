@@ -133,13 +133,17 @@ inspection, not memory, at the moment of writing:
 | Questions | 130 (fixed corpus, not growing) |
 | Questions with an enunciat image | 122 / 130 (67 scanned + 55 hand-drawn) |
 | Questions with a full guide | 130 / 130 |
-| Guides with a second image at Pista 2 | 31 / 130 |
-| Glossary terms | 53, of which 26 have a figure |
+| Guides with a second image at Pista 2 | 32 / 130 |
+| Guide figures, by where they live | 129 at Pista 3 (nivell 2) + 32 at Pista 2 (nivell 1) + 1 at Pista 4 (`q15`, the only guide with no nivell-2 figure) = 162 |
+| Glossary terms | 53, **all 53 with a figure** (32 image files; some terms share one) |
+| Teacher-facing solutions | 115 / 115 visible questions (`solucions/`) |
+| Thematic itineraries | 6 fixed editorial paths over the 115 visible questions |
 | Glossary terms detected inline | inside enunciat text AND inside Pista 1-4 text (never comprovació, never i-després) |
 | Thematic categories | 6 defined, 5 shown in the filter menu (aritmetica_algebra excluded, see §3) |
 | Hidden questions (excluded from list view, "Anterior/Següent", and itinerary suggestions — not deleted) | 15: `q18a q18b q19 q20 q21 q24 q34 q35 q67 q83 q84 q87 q88 q102 q106` |
 | 2D / 3D split | 88 / 42 |
 | Intro demos | 3, each now a 6-step reveal-one-at-a-time flow (not the old "always visible" design) |
+| Written-exam generator | `analitzador-geom.html`, built from `js/data/preguntes-dades.js` + `EXERCICIS_AMAGATS`, with the 116 visible-question images embedded as base64 (see `LLEGEIX-ME.md`) |
 
 `docs/guies/NOTA-*.md` has one delivery note per round, in the repo, each
 documenting exactly what changed, why, and how it was verified. **Read the
@@ -148,12 +152,15 @@ more reliable than this summary for any specific decision's reasoning.
 Chronological list (oldest to newest):
 
 ```
-NOTA-LOT-1 through NOTA-LOT-10, NOTA-FUSIO-LOT-9-10   (the 130 guides)
-NOTA-IMPROVE-*                                          (visual review fixes, pre-Part-1)
+NOTA-LOT-2 … NOTA-LOT-10, NOTA-FUSIO-LOT-9-10         (the 130 guides; there is
+                                                         no NOTA-LOT-1 in the repo)
+NOTA-IMPROVE-014-…, NOTA-IMPROVE-040-…,
+NOTA-IMPROVE-ronda3-43figures                           (visual review fixes, pre-Part-1)
+NOTA-COLLISIONS-FIGURES                                 (figure-number collisions)
 NOTA-ORDRE-PRESENTACIO
 NOTA-GLOSSARI-AMPLIACIO                                 (18→53 terms, no figures yet)
 NOTA-PART1-ENUNCIATS, NOTA-FIX-PART1-12-FIGURES         (47 statement images)
-NOTA-PART2-PISTA2, NOTA-FIX-PART2-7FIGURES              (31 Pista-2 images)
+NOTA-PART2-PISTA2                                       (Pista-2 images)
 NOTA-ANALISI-CONTINGUT-P3                               (10 bridging sentences at Pista 3)
 NOTA-DEMOS-REDISSENY                                    (3→5 static panels, superseded by next)
 NOTA-GLOSSARI-MILLORES                                  (spacing, broken image, inline terms, 7 figures)
@@ -163,7 +170,14 @@ NOTA-CATEGORIES-FILTRE                                  (6-category filter, uplo
 NOTA-CATEGORIA-ARITMETICA-ICONES                        (whole category hidden, 5 hand-drawn icons)
 NOTA-TOGGLE-DEFECTES                                    (border fix, new defaults: 2D-only, Triangles-only)
 NOTA-ENUNCIATS-D                                        (8 new enunciat images, 3 more hidden instead)
+NOTA-GLOSSARI-27-FIGURES                                (the last 27 terms: glossary now 53/53)
+NOTA-AUDITORIA-DOCUMENTACIO                             (doc/comment audit, Aug 2026 — this list included)
 ```
+
+Two documents outside `docs/guies/` belong to the same paper trail:
+`docs/AUDITORIA-RIGOR-GUIES.md` (mathematical-rigour audit) and
+`docs/ITINERARIS-TEMATICS-DESIGN-NOTES.md` (the six fixed itineraries).
+`LLEGEIX-ME.md` at the repo root documents the written-exam generator.
 
 The focus-ring fix, the `index.html` cache-buster fix, the
 category-filter brown→black color fix, the README rewrite, and the
@@ -179,12 +193,12 @@ instead.
 Nothing is broken or blocking. These are the known, explicitly-deferred
 gaps:
 
-1. **27 of 53 glossary terms still have no figure.** `NOTA-GLOSSARI-MILLORES.md`
-   documents which 26 got one this round and how (mostly reused geometry
-   from existing exercise figures, redrawn ink-only per the glossary
-   convention — never copy-pasted). The remaining 27 need the same
-   treatment: check `docs/glossari-figures.html` for the existing pattern
-   (canvases g1-g15) before drawing anything new.
+1. **`docs/manifest-figures.tsv`'s `nivell` column is stale** — 69 of its 162
+   rows name a hint level that isn't where the figure actually lives in
+   `js/data/guies-dades.js`. The `id`, `moviment` and `lot` columns agree
+   100 %, and those are the ones the delivery notes rely on. Treat
+   `guies-dades.js` as the source of truth for which hint a figure belongs to;
+   fix the column if you ever touch the manifest for another reason.
 2. **8 questions have no enunciat image** — down from 16 after
    `docs/guies/NOTA-ENUNCIATS-D.md` (8 of the original 16 got a real
    image; the other 3 that had no natural neutral figure — q67, q102,
@@ -195,15 +209,28 @@ gaps:
    itinerary has an image. If a hidden question is ever un-hidden,
    check this table first: it may need an image before it can ship
    visible.
-3. **`curs` and `interaccio` fields are `null` everywhere** — schema
+3. **`sol.html`'s live-discovery section needs a server.** It probes for
+   `solucions/<id>.html` with `fetch()`, which `file://` blocks — the very
+   constraint the whole project is built around. Opened by double-click it
+   silently shows only the hand-written list. It is teacher-facing and nothing
+   else depends on it, so this is a known limitation, not a bug to rush: run
+   `python3 -m http.server` if you need the full index.
+4. **`curs` and `interaccio` fields are `null` everywhere** — schema
    exists, no content assigned. `interaccio` in particular is not just
    "data to fill in": real interactivity (draggable points, live
    recompute) would need a completely different rendering layer than the
    static-PNG-per-figure approach used everywhere now (`docs/render.js`
    generates PNGs by design). Don't start this without the owner
    explicitly deciding to change the rendering architecture.
-4. Nothing else is queued. If the owner asks for something new, it's a
+5. **Short hints (`pista.ca` / `pista.en`) are `null` on all 130.** They are
+   not the guides and the guides do not replace them; the 💡 button simply
+   doesn't render. Deliberate, not forgotten.
+6. Nothing else is queued. If the owner asks for something new, it's a
    genuinely new request, not a continuation of a documented backlog.
+
+**Glossary figures are DONE** (53/53, see `NOTA-GLOSSARI-27-FIGURES.md`). This
+list said otherwise until the Aug 2026 documentation audit; if you are reading a
+cached copy that still claims 27 are pending, it is out of date.
 
 ---
 
@@ -280,15 +307,24 @@ exceptions, both deliberate: enunciat images (Part 1) are ink-only (no
 are also ink-only (single diagram, no given/added distinction), with a
 `--pencil`-colored text accent marking term names instead.
 
-**`js/ui/llista.js`** is the most complex UI file after this session's
-work — it now owns: the base question list, URL-based filters
-(`view.filtres`, from `#curs=2ESO`-style hashes), the 2D/3D toggle
-(separate state, `localStorage`-persisted, mutual-exclusion invariant:
-never both off), the category filter (separate state, different
-invariant: empty selection means "all"), and the hidden-exercises
-exclusion list. Read its own header comment block before editing —
-it explains why each piece of state is deliberately kept separate from
-the others.
+**`js/ui/llista.js`** is the most complex UI file — it now owns: the base
+question list, URL-based filters (`view.filtres`, from `#curs=2ESO`-style
+hashes), the 2D/3D toggle (separate state, `localStorage`-persisted,
+mutual-exclusion invariant: never both off), the category filter (separate
+state, different invariant: empty selection means "all"), the
+hidden-exercises exclusion list (`EXERCICIS_AMAGATS`, exposed as
+`window.geoLlista.esAmagada` so `detall.js` and `itinerari.js` don't
+duplicate it), and the **"Copia el meu codi"** block that produces the
+`GEO1-…` string the written-exam generator reads. Read its own header
+comment block before editing — it explains why each piece of state is
+deliberately kept separate from the others.
+
+**Teacher-facing surfaces** are separate from the SPA and must stay that way:
+`sol.html` + `solucions/` (115 worked solutions, rules in
+`COORDINACIO-AGENTS-SOLUCIONS.md`) and `analitzador-geom.html` (written-exam
+generator, source `analitzador-geom-plantilla.html`, built by
+`build_analitzador_geom.py`, documented in `LLEGEIX-ME.md`). Nothing under
+`js/` or `index.html` links to any of them.
 
 ---
 

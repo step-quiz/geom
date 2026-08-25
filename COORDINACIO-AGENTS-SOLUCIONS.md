@@ -16,12 +16,13 @@ integration as a bug to fix.
 ## The two agents
 
 - **Agent-sol-2D** — writes solutions for every question with
-  `dimensio: "2D"` in `js/data/preguntes-dades.js`, except the 15 hidden
-  ones (see below). 78 questions in total.
+  `dimensio: "2D"` in `js/data/preguntes-dades.js`, except the hidden ones
+  (see below). 88 questions are 2D, 10 of them are hidden, so the scope is
+  **78 questions**.
 - **Agent-sol-3D** — writes solutions for every question with
-  `dimensio: "3D"`, except any that are hidden. 37 questions in total.
-  (As it happens, none of the 15 hidden questions are 3D, so
-  Agent-sol-3D's real scope is the full 37.) The 37 ids, for reference:
+  `dimensio: "3D"`, except the hidden ones. 42 questions are 3D, 5 of them
+  are hidden (`q18a`, `q18b`, `q67`, `q102`, `q106`), so the scope is
+  **37 questions**. The 37 ids, for reference:
   `q08a, q08b, q25, q45, q47, q48, q49, q50, q51, q52, q53, q56, q57,
   q58, q59, q60, q61, q62, q63, q65, q66, q68, q81, q82, q91, q92, q93,
   q100, q101, q103, q104, q105, q107, q108, q109, q123, q126`.
@@ -49,12 +50,18 @@ public list and out of every themed itinerari:
 q19, q20, q34, q35, q84, q88, q18a, q18b, q21, q24, q83, q87, q67, q102, q106
 ```
 
-All 15 are `dimensio: "2D"`. This is Agent-sol-2D's responsibility to
-check, every time, before starting a new solution — cross-reference the
-id against this list (or against `window.geoLlista.esAmagada(id)` if
-running inside the app's own JS context) before writing anything. If a
-question is on this list, it does not get a solution file, full stop,
-regardless of how interesting or how requested it might otherwise seem.
+**Ten of these are `dimensio: "2D"` and five are `dimensio: "3D"`**
+(`q18a`, `q18b`, `q67`, `q102`, `q106`). Until the Aug 2026 documentation
+audit this file claimed all fifteen were 2D — they are not, and the claim
+contradicted this file's own arithmetic (all-2D would have left
+Agent-sol-2D with 73 questions, not the 78 stated above). **Both agents**
+must check the list, not just Agent-sol-2D.
+
+Cross-reference the id against this list (or against
+`window.geoLlista.esAmagada(id)` if running inside the app's own JS
+context) before writing anything. If a question is on this list, it does
+not get a solution file, full stop, regardless of how interesting or how
+requested it might otherwise seem.
 
 This list can only change by explicit owner instruction. Neither agent
 adds to it, removes from it, or reinterprets it — if new information
@@ -146,17 +153,31 @@ file you add, and never resurrect either retired scheme.
 
 ## `sol.html` — the shared index
 
-`sol.html`, at the project root, is a plain HTML index of every solution
-written so far, split into two sections with explicit headers ("2D —
-Agent-sol-2D", "3D — Agent-sol-3D"). Each agent:
+`sol.html`, at the project root, has **two** indexes, and it matters which
+one you are looking at.
 
-- adds one `<li>` per new solution, inside its own section only,
-  linking to `solucions/<id>.html`;
-- never touches the other section — not to fix a typo, not to reorder
-  it, not to add a note to one of its entries;
-- keeps the running "(N preguntes en total)" count in its own section
-  header accurate as it adds entries, so a reader can see progress at a
-  glance without counting `<li>`s.
+1. **The hand-written lists** at the top, split into "2D — Agent-sol-2D" and
+   "3D — Agent-sol-3D". These stopped being maintained early on: they hold
+   13 entries against 115 solution files on disk. The "(78 preguntes en
+   total)" / "(37 preguntes en total)" counts in those headers are the
+   agents' full *scope*, not a running tally of what's written. Don't read
+   them as progress.
+2. **The "Totes les solucions trobades" section** below, which is the real
+   index. It probes at page load for `solucions/<id>.html` for every id in
+   `js/data/preguntes-dades.js` and lists whatever actually exists, split by
+   `dimensio` and skipping anything already named above. Nothing to
+   maintain: add the file and it appears.
+
+**Caveat worth knowing before you debug it:** that section uses `fetch()`,
+which `file://` blocks — the very constraint the rest of the project is
+built around. Opened by double-click, it silently shows nothing and you
+only see the 13 hand-written entries. Serve the project
+(`python3 -m http.server`) to see the full index. This is a known
+limitation of a teacher-facing page, not a bug to rush into fixing.
+
+So: **an agent adding a solution does not need to touch `sol.html` at
+all.** If you do add a `<li>` to your own section, never touch the other
+agent's section — not to fix a typo, not to reorder it, not to add a note.
 
 ## Content expectations (both agents)
 

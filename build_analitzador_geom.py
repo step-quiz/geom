@@ -134,9 +134,10 @@ def main():
                      .replace("/*__IMATGES__*/", imatges_js)
 
     ruta_sortida = os.path.join(AQUI, "analitzador-geom.html")
-    # Plantilla i sortida són fitxers DIFERENTS (mateix patró que repas:
-    # analitzador-plantilla.html -> analitzador-repas.html), no el
-    # mateix fitxer reescrit sobre si mateix: així el script es pot
+    # Plantilla i sortida són fitxers DIFERENTS (mateix patró que el
+    # projecte germà `repas`, on la parella és analitzador-plantilla.html
+    # -> analitzador-repas.html; cap dels dos és en AQUEST repositori),
+    # no el mateix fitxer reescrit sobre si mateix: així el script es pot
     # córrer tantes vegades com calgui (p. ex. cada cop que es publica
     # una pregunta nova) sense que el marcador /*__PREGUNTES__*/ hagi
     # desaparegut ja de l'origen que es llegeix.
