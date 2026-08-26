@@ -524,6 +524,69 @@ if os.path.exists("README.md") and os.path.exists("index.html"):
     else:
         ok("tot mòdul que index.html carrega surt al README")
 
+# --------------------------------------- dependències: guies vs itineraris
+# Hi ha DOS registres de dependències al projecte i no es generen l'un de
+# l'altre: el "DEPÈN de ..." que cada guia declara a la seva capçalera
+# (docs/guies/GUIES-LOT-*.md, escrit a mà) i el camp `requereix` de
+# js/data/itineraris-tematics-dades.js (que va sortir del graf de citacions,
+# parsejant els "qNN" que apareixen dins del text de les pistes). Un DEPÈN
+# declarat a la capçalera i no repetit dins de cap pista no arriba mai al graf
+# — i l'itinerari acaba dient a l'alumne que no necessita res previ justament
+# on sí que ho necessita. Això va passar amb 19 dependències (ago. 2026).
+#
+# Conveni verificat aquí: `requereix` recull les dependències que CREUEN la
+# frontera d'itinerari; dins d'un mateix itinerari, qui les ha de respectar és
+# el camp `ordre`.
+def _deps_declarades_a_les_guies():
+    dep = {}
+    dirg = os.path.join("docs", "guies")
+    if not os.path.isdir(dirg): return dep
+    for fn in sorted(os.listdir(dirg)):
+        if not fn.startswith("GUIES-LOT"): continue
+        t = open(os.path.join(dirg, fn), encoding="utf-8").read()
+        parts = re.split(r"^## \d+\. (q[0-9a-z_]+) ", t, flags=re.M)
+        for x in range(1, len(parts), 2):
+            cap = re.split(r"\*\*Pista 0", parts[x + 1])[0]   # només la capçalera
+            m = re.search(r"DEP[ÈE]N de (.*?)(?:\n\n|$)", cap, re.S)
+            if m:
+                # els incisos en cursiva *( ... )* són comentari editorial, no
+                # part de la declaració: hi poden citar preguntes SENSE que
+                # això sigui una dependència (p. ex. q79 explica per què NO
+                # es remet a q87). Es tallen abans de comptar.
+                decl = m.group(1).split("*(")[0]
+                d = sorted(set(re.findall(r"\bq\d+[a-z_]*", decl)))
+                if d: dep[parts[x]] = d
+    return dep
+
+_ITIN = llegeix_global("js/data/itineraris-tematics-dades.js", "ITINERARIS_TEMATICS")
+if _ITIN:
+    _loc = {p["id"]: it["clau"] for it in _ITIN for p in it["preguntes"]}
+    _ent = {p["id"]: p for it in _ITIN for p in it["preguntes"]}
+    _dep = _deps_declarades_a_les_guies()
+    _falten, _invertits, _amagades = [], [], []
+    for _q, _ds in sorted(_dep.items()):
+        if _q not in _loc: continue
+        for _r in _ds:
+            if _r not in _loc:
+                _amagades.append("%s → %s" % (_q, _r))
+            elif _loc[_r] != _loc[_q]:
+                if _r not in (_ent[_q].get("requereix") or []):
+                    _falten.append("%s → %s (%s → %s)" % (_q, _r, _loc[_q], _loc[_r]))
+            elif _ent[_r]["ordre"] > _ent[_q]["ordre"]:
+                _invertits.append("%s (#%d) depèn de %s (#%d), itinerari %s"
+                                  % (_q, _ent[_q]["ordre"], _r, _ent[_r]["ordre"], _loc[_q]))
+    if _falten:
+        err("dependències DEPÈN que creuen itinerari i falten a `requereix`: %s"
+            % "; ".join(_falten))
+    else:
+        ok("tot DEPÈN que creua itinerari consta a `requereix`")
+    if _invertits:
+        avis("dins d'un mateix itinerari, l'`ordre` no respecta el DEPÈN: %s"
+             % "; ".join(_invertits))
+    if _amagades:
+        avis("guies visibles que declaren DEPÈN d'una pregunta amagada: %s"
+             % "; ".join(_amagades))
+
 # ------------------------------------------------------------------ informe
 print("\n%d comprovacions passades" % len(oks))
 if avisos:
