@@ -160,7 +160,7 @@ window.ITINERARIS_TEMATICS = [
       { "id": "q74", "ordre": 13, "requereix": ["q125", "q90"], "bessones": ["q90"] },
       { "id": "q75", "ordre": 14, "requereix": [], "bessones": [] },
       { "id": "q76", "ordre": 15, "requereix": ["q39"], "bessones": ["q39"] },
-      { "id": "q77", "ordre": 16, "requereix": ["q112"], "bessones": [] },
+      { "id": "q77", "ordre": 16, "requereix": ["q112", "q32", "q33"], "bessones": [] },
       { "id": "q78", "ordre": 17, "requereix": [], "bessones": [] },
       { "id": "q79", "ordre": 18, "requereix": ["q81"], "bessones": [] },
       { "id": "q80", "ordre": 19, "requereix": [], "bessones": [] },
@@ -172,7 +172,7 @@ window.ITINERARIS_TEMATICS = [
     "clau": "poligons",
     "etiqueta": "2D · Polígons",
     "preguntes": [
-      { "id": "q03", "ordre": 1, "requereix": ["q43", "q82"], "bessones": [] },
+      { "id": "q03", "ordre": 1, "requereix": ["q43", "q82", "q08b"], "bessones": [] },
       { "id": "q04", "ordre": 2, "requereix": [], "bessones": [] },
       { "id": "q05", "ordre": 3, "requereix": ["q07"], "bessones": [] },
       { "id": "q06", "ordre": 4, "requereix": [], "bessones": [] },
@@ -191,8 +191,8 @@ window.ITINERARIS_TEMATICS = [
       { "id": "q39", "ordre": 17, "requereix": ["q57", "q76"], "bessones": ["q76"] },
       { "id": "q70", "ordre": 18, "requereix": ["q73"], "bessones": [] },
       { "id": "q71", "ordre": 19, "requereix": [], "bessones": [] },
-      { "id": "q85", "ordre": 20, "requereix": [], "bessones": [] },
-      { "id": "q90", "ordre": 21, "requereix": ["q74"], "bessones": ["q74"] }
+      { "id": "q85", "ordre": 20, "requereix": ["q31"], "bessones": [] },
+      { "id": "q90", "ordre": 21, "requereix": ["q74", "q79"], "bessones": ["q74"] }
     ]
   },
   {
@@ -206,7 +206,7 @@ window.ITINERARIS_TEMATICS = [
       { "id": "q42", "ordre": 5, "requereix": ["q90"], "bessones": [] },
       { "id": "q43", "ordre": 6, "requereix": [], "bessones": [] },
       { "id": "q44", "ordre": 7, "requereix": [], "bessones": [] },
-      { "id": "q69", "ordre": 8, "requereix": [], "bessones": [] },
+      { "id": "q69", "ordre": 8, "requereix": ["q65"], "bessones": [] },
       { "id": "q94", "ordre": 9, "requereix": ["q109"], "bessones": ["q109"] },
       { "id": "q95", "ordre": 10, "requereix": [], "bessones": [] }
     ]
@@ -221,7 +221,7 @@ window.ITINERARIS_TEMATICS = [
       { "id": "q110", "ordre": 4, "requereix": [], "bessones": [] },
       { "id": "q111", "ordre": 5, "requereix": [], "bessones": [] },
       { "id": "q112", "ordre": 6, "requereix": [], "bessones": [] },
-      { "id": "q113", "ordre": 7, "requereix": [], "bessones": [] },
+      { "id": "q113", "ordre": 7, "requereix": ["q94"], "bessones": [] },
       { "id": "q114", "ordre": 8, "requereix": [], "bessones": [] },
       { "id": "q115", "ordre": 9, "requereix": [], "bessones": [] },
       { "id": "q116", "ordre": 10, "requereix": [], "bessones": [] },
@@ -236,8 +236,8 @@ window.ITINERARIS_TEMATICS = [
     "clau": "altres",
     "etiqueta": "2D · Altres",
     "preguntes": [
-      { "id": "q07", "ordre": 1, "requereix": [], "bessones": [] },
-      { "id": "q27_implicit", "ordre": 2, "requereix": ["q40_implicit"], "bessones": ["q40_implicit"] },
+      { "id": "q07", "ordre": 1, "requereix": ["q05"], "bessones": [] },
+      { "id": "q27_implicit", "ordre": 2, "requereix": ["q40_implicit", "q22"], "bessones": ["q40_implicit"] },
       { "id": "q55", "ordre": 3, "requereix": ["q15", "q53", "q58", "q60"], "bessones": ["q53", "q54"] },
       { "id": "q54", "ordre": 4, "requereix": ["q15", "q46", "q58", "q60"], "bessones": ["q53", "q55"] },
       { "id": "q97", "ordre": 5, "requereix": ["q96", "q98"], "bessones": ["q96", "q98"] },
@@ -246,7 +246,7 @@ window.ITINERARIS_TEMATICS = [
       { "id": "q124", "ordre": 8, "requereix": [], "bessones": [] },
       { "id": "q125", "ordre": 9, "requereix": [], "bessones": [] },
       { "id": "q127", "ordre": 10, "requereix": [], "bessones": [] },
-      { "id": "q64", "ordre": 11, "requereix": ["q119", "q62"], "bessones": [] }
+      { "id": "q64", "ordre": 11, "requereix": ["q119", "q62", "q50"], "bessones": [] }
     ]
   },
   {
@@ -259,14 +259,14 @@ window.ITINERARIS_TEMATICS = [
       { "id": "q45", "ordre": 4, "requereix": [], "bessones": [] },
       { "id": "q47", "ordre": 5, "requereix": [], "bessones": [] },
       { "id": "q48", "ordre": 6, "requereix": [], "bessones": [] },
-      { "id": "q49", "ordre": 7, "requereix": [], "bessones": [] },
+      { "id": "q49", "ordre": 7, "requereix": ["q10", "q36"], "bessones": [] },
       { "id": "q50", "ordre": 8, "requereix": [], "bessones": [] },
       { "id": "q51", "ordre": 9, "requereix": [], "bessones": [] },
       { "id": "q52", "ordre": 10, "requereix": [], "bessones": [] },
-      { "id": "q53", "ordre": 11, "requereix": ["q54"], "bessones": ["q54", "q55"] },
+      { "id": "q53", "ordre": 11, "requereix": ["q54", "q08c", "q86"], "bessones": ["q54", "q55"] },
       { "id": "q56", "ordre": 12, "requereix": [], "bessones": [] },
       { "id": "q57", "ordre": 13, "requereix": [], "bessones": [] },
-      { "id": "q58", "ordre": 14, "requereix": [], "bessones": [] },
+      { "id": "q58", "ordre": 14, "requereix": ["q54", "q55"], "bessones": [] },
       { "id": "q59", "ordre": 15, "requereix": [], "bessones": [] },
       { "id": "q60", "ordre": 16, "requereix": [], "bessones": [] },
       { "id": "q61", "ordre": 17, "requereix": [], "bessones": [] },
@@ -276,7 +276,7 @@ window.ITINERARIS_TEMATICS = [
       { "id": "q66", "ordre": 21, "requereix": [], "bessones": [] },
       { "id": "q68", "ordre": 22, "requereix": ["q69"], "bessones": [] },
       { "id": "q81", "ordre": 23, "requereix": [], "bessones": [] },
-      { "id": "q82", "ordre": 24, "requereix": [], "bessones": [] },
+      { "id": "q82", "ordre": 24, "requereix": ["q03"], "bessones": [] },
       { "id": "q91", "ordre": 25, "requereix": ["q111"], "bessones": [] },
       { "id": "q92", "ordre": 26, "requereix": [], "bessones": [] },
       { "id": "q93", "ordre": 27, "requereix": [], "bessones": [] },
@@ -287,9 +287,9 @@ window.ITINERARIS_TEMATICS = [
       { "id": "q105", "ordre": 32, "requereix": [], "bessones": [] },
       { "id": "q107", "ordre": 33, "requereix": [], "bessones": [] },
       { "id": "q108", "ordre": 34, "requereix": [], "bessones": [] },
-      { "id": "q109", "ordre": 35, "requereix": ["q94"], "bessones": ["q94"] },
+      { "id": "q109", "ordre": 35, "requereix": ["q94", "q99"], "bessones": ["q94"] },
       { "id": "q123", "ordre": 36, "requereix": ["q122"], "bessones": [] },
-      { "id": "q126", "ordre": 37, "requereix": [], "bessones": [] }
+      { "id": "q126", "ordre": 37, "requereix": ["q122"], "bessones": [] }
     ]
   }
 ];

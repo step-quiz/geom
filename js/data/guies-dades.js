@@ -1450,7 +1450,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Dues maneres de mesurar la mateixa distància: (a) PF₁ és una tangent des de P a l'esfera 1 —i totes les tangents des d'un mateix punt a una esfera tenen la mateixa longitud (q93, aquest mateix lot). (b) El segment de la generatriu del con des de P fins al cercle de tangència amb l'esfera 1 és TAMBÉ una tangent des de P a aquesta mateixa esfera (la generatriu és tangent a l'esfera al llarg de tot el con). Per tant PF₁ = aquest tros de generatriu. Igual per PF₂ amb l'esfera 2, cap a l'altre cercle de tangència. Suma PF₁+PF₂: és exactament la longitud del tros de generatriu ENTRE els dos cercles de tangència —la mateixa per a QUALSEVOL generatriu, perquè els dos cercles de tangència són fixos (no depenen de P). Constant trobada.",
+          "ca": "Dues maneres de mesurar la mateixa distància: (a) PF₁ és una tangent des de P a l'esfera 1 —i totes les tangents des d'un mateix punt a una esfera tenen la mateixa longitud (q93). (b) El segment de la generatriu del con des de P fins al cercle de tangència amb l'esfera 1 és TAMBÉ una tangent des de P a aquesta mateixa esfera (la generatriu és tangent a l'esfera al llarg de tot el con). Per tant PF₁ = aquest tros de generatriu. Igual per PF₂ amb l'esfera 2, cap a l'altre cercle de tangència. Suma PF₁+PF₂: és exactament la longitud del tros de generatriu ENTRE els dos cercles de tangència —la mateixa per a QUALSEVOL generatriu, perquè els dos cercles de tangència són fixos (no depenen de P). Constant trobada.",
           "en": null
         },
         "figura": null
@@ -4537,7 +4537,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "A q76 vas partir un triangle en tres triangles des del seu incentre i vas sumar-ne les àrees. Aquí faràs exactament el mateix amb un pentàgon regular i el seu centre —amb l'avantatge que, com que el pentàgon és regular, els cinc triangles que en surten són tots iguals entre ells, no cal sumar cinc termes diferents.",
+          "ca": "El moviment ja te'l saps de q30: unir el centre amb tots els vèrtexs i sumar les àrees dels triangles que en surten. (I el tornaràs a trobar a q76, amb un triangle qualsevol i el seu incentre, on els trossos ja no seran iguals.) Aquí faràs exactament el mateix amb un pentàgon regular i el seu centre —amb l'avantatge que, com que el pentàgon és regular, els cinc triangles que en surten són tots iguals entre ells, no cal sumar cinc termes diferents.",
           "en": null
         },
         "figura": null
@@ -4603,7 +4603,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Dues imatges més sense enunciat. Totes dues amaguen la mateixa pregunta que q27_implicit: mesura el radi petit en funció del gran. (Nota d'aquesta figura: el primer panell es dibuixa com el quadrat inscrit estàndard —els 4 vèrtexs sobre el cercle— perquè l'escaneig original sembla tenir un detall addicional a dalt que no he pogut resoldre amb confiança; v. NOTA-LOT-6.md.)",
+          "ca": "Dues imatges més sense enunciat. Totes dues amaguen la mateixa pregunta que q27_implicit: mesura el radi petit en funció del gran. (Nota d'aquesta figura: el primer panell es dibuixa com el quadrat inscrit estàndard —els 4 vèrtexs sobre el cercle— perquè l'escaneig original sembla tenir un detall addicional a dalt.)",
           "en": null
         },
         "figura": null
@@ -4615,7 +4615,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Al segon panell (dos cercles i un quadrat en fila dins un cercle gran): si el quadrat té costat 2r (igual que el diàmetre comú dels cercles), i tot plegat travessa el diàmetre del cercle gran, quina equació relaciona R (el radi gran) amb r?",
+          "ca": "Al segon panell hi ha dos cercles iguals de radi r i un quadrat de costat 2r (el mateix que el diàmetre dels cercles), tots tres en fila. Abans de calcular res, fixa't bé en com toquen el cercle gran, que és d'on sortirà l'equació: el cercle de l'esquerra hi és tangent per l'extrem esquerre, i el quadrat hi arriba per les dues cantonades de la dreta, no pel mig del seu costat.\n\nAquesta diferència no és un detall: si el quadrat hi arribés pel mig del costat dret, la fila sencera faria 2r+2r+2r = 6r i hauria de valer 2R, o sigui R = 3r. Prova de dibuixar-ho i veuràs que és impossible —les cantonades del quadrat quedarien FORA del cercle, a distància r√10 del centre, que és més que 3r. Quan un model et dona una figura impossible, el model és el que falla.",
           "en": null
         },
         "figura": "fig-191.png"
@@ -4636,14 +4636,14 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Al primer panell: la diagonal del quadrat és el diàmetre del cercle, 2R. Si el costat del quadrat és s, quina relació de Pitàgores lliga s amb R?",
+          "ca": "Al primer panell: la diagonal del quadrat és el diàmetre del cercle, 2R. Si el costat del quadrat és s, quina relació de Pitàgores lliga s amb R?\n\nAl segon panell: posa el centre del cercle gran a l'origen. El cercle esquerre és tangent per dins a (−R, 0), o sigui que el seu centre és a −R+r; el segon centre, a −R+3r; el quadrat va de −R+4r a −R+6r, amb els costats de dalt i de baix a ±r. Escriu que una cantonada de la dreta, (−R+6r, r), és sobre la circumferència i simplifica: la R² se t'anirà dels dos costats i et quedarà una relació ben neta entre R i r.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "Quadrat de costat s=4: diagonal=4√2, per tant R=2√2≈2,83.",
+      "ca": "Primer panell, quadrat de costat s=4: diagonal=4√2, per tant R=2√2≈2,83. Segon panell: t'ha de sortir 37r = 12R. Comprova que la cantonada hi cau de debò —amb R=37 i r=12, el quadrat arriba fins a x=35, i 12²+35² = 144+1225 = 1369 = 37². És el triple pitagòric (12, 35, 37) el que fa que aquesta figura tanqui amb números exactes.",
       "en": null
     },
     "iDespres": {
@@ -4834,7 +4834,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Aquest angle (al centre d'un cercle, entre els dos radis que van als punts de tall) és el doble de l'angle del triangle equilàter: 120°. La zona solapada (l'ull, o vesica) és la suma de dos \"segments circulars\" — cadascun, un sector de 120° menys el triangle equilàter que ja hi has trobat. El perímetre és la suma dels dos arcs de 120°, un de cada cercle.",
+          "ca": "Aquest angle (al centre d'un cercle, entre els dos radis que van als punts de tall) és el doble de l'angle del triangle equilàter: 120°. La zona solapada (l'ull, o vesica) és la suma de dos \"segments circulars\" — cadascun, un sector de 120° menys el triangle que aquest sector deixa sota la corda.\n\nCompte aquí amb una confusió fàcil: aquest triangle que restes NO és l'equilàter que has trobat abans. L'equilàter té per vèrtexs els dos centres i un punt de tall; el que has de restar té per vèrtexs UN centre i els DOS punts de tall, i els seus costats fan r, r i r√3. Ara bé, l'àrea els surt igual —tots dos fan (√3/4)r²—, perquè el segon és isòsceles amb dos costats r i l'angle de 120° entremig, i (1/2)r²·sin120° = (√3/4)r². Val la pena adonar-se'n en lloc de confondre'ls: si dibuixes el que restes, veuràs que no és equilàter.\n\nEl perímetre és la suma dels dos arcs de 120°, un de cada cercle.",
           "en": null
         },
         "figura": null
@@ -4861,7 +4861,7 @@ window.GUIES = {
         "nivell": 0,
         "titol": null,
         "text": {
-          "ca": "Ja saps dir, de dues maneres, la distància entre els centres de dos cercles tangents a la mateixa recta (q23). Aquí en tens tres parelles de cercles tangents (gran-petit esquerre, gran-petit dret, petit-gran esquerre amb gran dret) — i les tres relacions han de ser certes alhora.",
+          "ca": "El moviment és el de q22 i q23: dir una mateixa distància de dues maneres, i igualar-les. Aquí hi ha tres parelles de cercles tangents entre ells —(R₁, r), (r, R₂) i (R₁, R₂)— i les tres relacions han de ser certes alhora.",
           "en": null
         },
         "figura": null
@@ -4870,7 +4870,7 @@ window.GUIES = {
         "nivell": 1,
         "titol": null,
         "text": {
-          "ca": "Per a dos cercles de radis a i b, tots dos tangents a la mateixa recta i tangents entre ells, la distància horitzontal entre els peus (on toquen la recta) és 2√(ab) — és el mateix triangle rectangle de q23, amb catets (a−b) i 2√(ab), hipotenusa (a+b). Aplica'l a la parella (R₁, r).",
+          "ca": "La peça que necessites no és cap resultat previ: la construeix tu ara, i és de dues línies. Agafa dos cercles de radis a i b, tots dos tangents a la mateixa recta i tangents entre ells. Els seus centres són a altura a i b sobre la recta, així que la diferència d'altures és (a−b); i com que els cercles es toquen, la distància entre centres és (a+b). Amb Pitàgores, la distància HORITZONTAL entre centres —que és també la distància entre els peus, els punts on cada cercle toca la recta— val √((a+b)² − (a−b)²) = √(4ab) = 2√(ab). Aplica-ho a la parella (R₁, r).",
           "en": null
         },
         "figura": null
@@ -4894,7 +4894,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "La mateixa relació val per a (R₂, r). Els peus dels tres cercles són tots sobre la mateixa recta, així que la distància entre el peu de R₁ i el peu de R₂ (que ja saps que és 2√(R₁R₂), directament de q23) ha de ser la suma de les altres dues distàncies parcials (peu de R₁ a peu de r, i peu de r a peu de R₂) — perquè r és, precisament, en algun punt entremig. Escriu aquesta equació amb els tres √( ) i aïlla r.",
+          "ca": "La mateixa relació val per a (R₂, r). Els peus dels tres cercles són tots sobre la mateixa recta, així que la distància entre el peu de R₁ i el peu de R₂ (que és 2√(R₁R₂), la mateixa fórmula de la Pista 1 aplicada a la tercera parella) ha de ser la suma de les altres dues distàncies parcials (peu de R₁ a peu de r, i peu de r a peu de R₂) — perquè r és, precisament, en algun punt entremig. Escriu aquesta equació amb els tres √( ) i aïlla r.",
           "en": null
         },
         "figura": null
@@ -5025,7 +5025,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Aquest mateix argument de \"franges que s'estiren\" funciona per a qualsevol figura, no només un cercle — és, de fet, una altra manera d'arribar al mateix tipus de raonament que Cavalieri (q54, en aquest mateix lot) fa servir per a àrees en general.",
+      "ca": "Aquest mateix argument de \"franges que s'estiren\" funciona per a qualsevol figura, no només un cercle — és, de fet, una altra manera d'arribar al mateix tipus de raonament que Cavalieri (q54) fa servir per a àrees en general.",
       "en": null
     }
   },
@@ -5085,7 +5085,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "El mateix cub amb el mateix sistema de coordenades et servirà sense cap canvi per a q52 i q56, en aquest mateix lot.",
+      "ca": "El mateix cub amb el mateix sistema de coordenades et servirà sense cap canvi per a q52 i q56.",
       "en": null
     }
   },
@@ -5116,7 +5116,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Prolonga els quatre costats inclinats del tronc fins que es tornin a trobar en un sol punt. Aquest punt existeix sempre (perquè els dos quadrats són paral·lels i concèntrics, un d'escala diferent): és el vèrtex de la piràmide sencera de la qual el teu sòlid n'és només un tros.",
+          "ca": "Prolonga els quatre costats inclinats del tronc fins que es tornin a trobar en un sol punt: és el vèrtex de la piràmide sencera de la qual el teu sòlid n'és només un tros. Aquest punt existeix perquè els dos quadrats són paral·lels i concèntrics —un és l'altre a una escala diferent—, amb una única excepció que val la pena tenir present: si a=b, els costats són verticals i no es troben mai. En aquell cas el sòlid no és cap tronc de piràmide sinó un prisma, i el seu volum és simplement a²h.",
           "en": null
         },
         "figura": null
@@ -5260,18 +5260,18 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "A mesura que n (el nombre de discs) creix, cada disc s'aprima i se n'ajusten més: la suma dels volums dels discs s'acosta cada cop més al volum real del con, sense arribar-hi mai amb un nombre finit de discs. Quin és, doncs, el volum del con mateix (la fórmula que ja coneixes), comparat amb el d'un cilindre de la mateixa base i alçada?",
+          "ca": "Compte a no contestar \"s'acosta al volum del con, que ja el sé\": això no és cap patró, i a més és fer servir la resposta per justificar-la. El que et demanen és la successió: quant val la suma dels discs per a cada n?\n\nParteix l'alçada en n llesques iguals i fixa't que el disc de la llesca número j (comptant des de dalt) té el radi que té el con al SEU sostre, o sigui r(j−1)/n, i gruix h/n. Suma'ls:\n\nVₙ = Σ π·[r(j−1)/n]²·(h/n) = (πr²h/n³)·(0² + 1² + 2² + … + (n−1)²)\n\nI la suma de quadrats consecutius val (n−1)n(2n−1)/6. Simplifica-ho i mira què et queda: sortirà πr²h multiplicat per una expressió amb n que pots llegir d'un cop d'ull.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "Con de radi 3, alçada 6: volum = (1/3)π(9)(6) = 18π ≈ 56,5. El cilindre corresponent (mateixa base i alçada) fa 3 vegades més: 54π ≈ 169,6. Comprova que la successió d'aproximacions per discs, per a n creixent, s'acosta a 18π i no a 54π.",
+      "ca": "El que t'ha de sortir és Vₙ = πr²h·(1/3 − 1/(2n) + 1/(6n²)), sempre una mica per SOTA d'un terç —els discs van per dins del con— i acostant-s'hi tant com vulguis si tries n prou gran. Amb n=2 dona 1/8 del cilindre; amb n=8 (els set discs que es veuen al dibuix, més la llesca de dalt que queda buida), 35/128 ≈ 0,273; amb n=100, 0,32835.\n\nCon de radi 3, alçada 6: volum = (1/3)π(9)(6) = 18π ≈ 56,5. El cilindre corresponent (mateixa base i alçada) fa 3 vegades més: 54π ≈ 169,6. Comprova que la successió d'aproximacions per discs, per a n creixent, s'acosta a 18π i no a 54π.",
       "en": null
     },
     "iDespres": {
-      "ca": "Aquesta mateixa idea —apilar peces conegudes cada cop més primes i mirar cap a on tendeix la suma— reapareix, en una forma diferent, quan cal justificar per què el volum del casquet esfèric (q62) depèn de l'alçada de tall exactament com hi depèn.",
+      "ca": "Aquesta mateixa idea —apilar peces conegudes cada cop més primes i mirar cap a on tendeix la suma— reapareix quan cal justificar per què el volum del casquet esfèric (q62) depèn de l'alçada de tall exactament com hi depèn. I sobretot a q121, amb la paràbola: allà surt la mateixa suma de quadrats i la mateixa expressió, però amb els signes de l'altra banda —1/3 + 1/(2n) + 1/(6n²) en lloc de 1/3 − 1/(2n) + 1/(6n²)— perquè allà els rectangles sobresurten de la corba en comptes de quedar-hi per dins. Val la pena comparar-les quan hi arribis.",
       "en": null
     }
   },
@@ -5377,7 +5377,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "El pla talla exactament sis arestes del cub (les sis que no toquen cap dels dos vèrtexs de la diagonal triada), pel seu punt mitjà. Amb coordenades (cub de costat 1, diagonal de (0,0,0) a (1,1,1)): comprova que els sis punts mitjans són tots a la mateixa distància del centre del cub, i que la distància entre dos punts mitjans consecutius és la mateixa arreu.",
+          "ca": "El pla talla exactament sis arestes del cub (les sis que no toquen cap dels dos vèrtexs de la diagonal triada), pel seu punt mitjà. Amb coordenades (cub de costat 1, diagonal de (0,0,0) a (1,1,1)) els sis punts mitjans són (1, ½, 0), (½, 1, 0), (0, 1, ½), (0, ½, 1), (½, 0, 1) i (1, 0, ½) — comprova que tots sis compleixen x+y+z = 3/2, que és l'equació del pla de tall.\n\nAra comprova que tots sis són a la mateixa distància del centre del cub, i que la distància entre dos consecutius és la mateixa arreu. I fixa't en el pas que et falta per poder dir \"regular\", que no és automàtic: un hexàgon amb els sis costats iguals encara podria estar deformat. El que ho tanca és tenir les dues coses ALHORA —tots els vèrtexs a la mateixa distància del centre i tots els costats iguals—, perquè aleshores els sis angles centrals són iguals (a igual radi, cordes iguals subtendeixen angles iguals), i sis angles iguals que sumen 360° fan 60° cadascun.",
           "en": null
         },
         "figura": null
@@ -5388,7 +5388,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Aquest mateix pla (perpendicular a una diagonal principal, pel centre) és el que fa servir q56, en aquest mateix lot, per trobar el tetràedre inscrit al cub. El dibuix, però, es mira des d'un angle diferent del de q56: exactament al llarg de la diagonal principal, perquè és l'única direcció des de la qual el pla de tall es veu en veritable magnitud i l'hexàgon surt regular en lloc d'aixafat (rev1, v. docs/guies/REVISIONS.md). Si tornes a la figura de q56 hi reconeixeràs el mateix cub dibuixat amb la projecció habitual d'aquest quadern: la direcció de mirada és part del contingut de cada figura, no un simple estil.",
+      "ca": "Aquest mateix pla (perpendicular a una diagonal principal, pel centre) és el que fa servir q56 per trobar el tetràedre inscrit al cub. El dibuix, però, es mira des d'un angle diferent del de q56: exactament al llarg de la diagonal principal, perquè és l'única direcció des de la qual el pla de tall es veu en veritable magnitud i l'hexàgon surt regular en lloc d'aixafat. Si tornes a la figura de q56 hi reconeixeràs el mateix cub dibuixat amb la projecció habitual d'aquest quadern: la direcció de mirada és part del contingut de cada figura, no un simple estil.",
       "en": null
     }
   },
@@ -5437,18 +5437,18 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "El cilindre inclinat té una superfície lateral estrictament més gran que el recte, encara que el volum sigui idèntic — cada \"franja\" vertical de la superfície s'allarga en inclinar-se, de la mateixa manera que la hipotenusa d'un triangle rectangle és més llarga que el catet.",
+          "ca": "El cilindre inclinat té una superfície lateral estrictament més gran que el recte, encara que el volum sigui idèntic — cada \"franja\" vertical de la superfície s'allarga en inclinar-se, de la mateixa manera que la hipotenusa d'un triangle rectangle és més llarga que el catet.\n\nAra vigila amb el pas següent, que és on cau tothom: que cada franja s'allargui per un factor k NO vol dir que la superfície es multipliqui per k. No totes les franges s'inclinen igual respecte de la vora de la base: les que queden a la banda per on el cilindre \"cau\" s'inclinen de ple, i les de la banda perpendicular gairebé no ho noten. La superfície creix, sí, però menys que el factor k. Si vols un número exacte, canvia el cilindre per un prisma: allà cada cara és plana i es pot mesurar sense cap eina nova.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "Amb un cilindre recte de radi 2, alçada 10: superfície lateral 2π(2)(10)=40π≈125,7. Si l'inclines de manera que cada \"franja\" s'allargui per un factor 1,2 (un pendent moderat), la superfície lateral inclinada surt ≈150,8 — més gran, mentre que el volum (àrea de la base × alçada vertical) es manté exactament igual als dos.",
+      "ca": "Amb un prisma de base quadrada els números surten exactes. Base de costat 6, alçada 8: superfície lateral del prisma recte = 4×6×8 = 192, volum = 36×8 = 288. Ara inclina'l 6 unitats en la direcció d'un dels costats de la base. El volum es manté a 288 (Cavalieri: cada tall horitzontal continua sent el mateix quadrat). La superfície, en canvi:\n\n- Les dues cares paral·leles a la direcció d'inclinació passen de rectangles a paral·lelograms de la mateixa base i la mateixa alçada: 6×8 = 48 cadascuna, igual que abans. - Les dues cares perpendiculars a la direcció d'inclinació s'inclinen de ple: passen a ser rectangles de 6 per √(8²+6²) = 10, o sigui 60 cadascuna.\n\nTotal: 2(48) + 2(60) = 216, més que 192. I fixa't que 216/192 = 1,125 mentre que les arestes s'han allargat per 10/8 = 1,25: la superfície creix, però no pel factor de les arestes, justament perquè dues de les quatre cares no creixen gens.",
       "en": null
     },
     "iDespres": {
-      "ca": "Aquest exemple és el bessó en 3D del que trobaràs a q55 (en aquest mateix lot): igual que aquí el volum no \"sent\" la inclinació però la superfície sí, allà l'àrea no sentirà els esglaons però el perímetre sí.",
+      "ca": "Aquest exemple és el bessó en 3D del que trobaràs a q55: igual que aquí el volum no \"sent\" la inclinació però la superfície sí, allà l'àrea no sentirà els esglaons però el perímetre sí. I totes dues comparteixen el mateix parany de fons: les longituds i les superfícies no es deixen sumar a ull tan bé com les àrees i els volums.",
       "en": null
     }
   },
@@ -5508,7 +5508,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Aquest mateix principi, aplicat a volums en lloc d'àrees (tallant amb plans en lloc de rectes), és el que permetrà comparar volums de sòlids que semblen molt diferents — i és exactament la idea que fa servir q53, en aquest mateix lot, per al cas contrari (quan NO es conserva alguna cosa).",
+      "ca": "Aquest mateix principi, aplicat a volums en lloc d'àrees (tallant amb plans en lloc de rectes), és el que permetrà comparar volums de sòlids que semblen molt diferents — i és exactament la idea que fa servir q53 per al cas contrari (quan NO es conserva alguna cosa).",
       "en": null
     }
   },
@@ -5656,7 +5656,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Uneix el centre del sòlid amb cadascun dels seus vèrtexs (o, més fàcil de mesurar, amb el centre de cadascuna de les seves cares). Quantes peces n'obtens, per a un tetraedre? I per a un octaedre?",
+          "ca": "Uneix el centre del sòlid amb cadascun dels seus vèrtexs: això és el que el parteix en piràmides, una per cada cara. (Compte a no confondre-ho amb el segment que va del centre al centre d'una cara: aquell no talla res, però et farà falta de seguida, perquè és l'ALÇADA de cada piràmide.) Quantes peces n'obtens, per a un tetraedre? I per a un octaedre?",
           "en": null
         },
         "figura": null
@@ -5746,14 +5746,14 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "A cada alçada y, la secció de la intersecció NO és un cercle: és un QUADRAT de costat 2√(r²−y²) (perquè les dues franges, perpendiculars entre si, es tallen en un quadrat). Compara aquesta pila de quadrats amb la pila de cercles d'un sol cilindre (Cavalieri, com a q54/q55): quina relació hi ha entre l'àrea d'un quadrat de costat 2s i la d'un cercle de radi s?",
+          "ca": "A cada alçada y, la secció de la intersecció NO és un cercle: és un QUADRAT de costat 2√(r²−y²) (perquè les dues franges, perpendiculars entre si, es tallen en un quadrat).\n\nAra et cal un sòlid conegut per comparar-hi, i has d'anar amb compte a triar-lo: no serveix el cilindre. Les seccions horitzontals d'un cilindre vertical són cercles de radi r SEMPRE EL MATEIX, mentre que els teus quadrats es van encongint amb l'alçada. El sòlid que sí que encaixa és l'esfera de radi r —la que queda inscrita a la intersecció—, perquè la seva secció a l'alçada y és un cercle de radi √(r²−y²): exactament el mateix √(r²−y²) que et marca el costat del quadrat.\n\nAmb s = √(r²−y²): quina relació hi ha entre l'àrea d'un quadrat de costat 2s i la d'un cercle de radi s? Comprova que aquesta relació NO depèn de y —que és el que et deixa aplicar Cavalieri— i multiplica-la pel volum de l'esfera, que ja el saps.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "r=1: volum = (16/3)r³ ≈ 5,33. Compara amb el volum d'un sol cilindre de radi 1 i alçada 2: 2π ≈ 6,28 — la intersecció és menor, com cal esperar.",
+      "ca": "La raó entre les dues piles és 4s²/(πs²) = 4/π a totes les alçades, així que el volum de la intersecció és (4/π)·(4/3)πr³ = (16/3)r³. Amb r=1: ≈ 5,33. Compara-ho amb el volum d'un sol cilindre de radi 1 i alçada 2: 2π ≈ 6,28 — la intersecció és menor, com cal esperar.",
       "en": null
     },
     "iDespres": {
@@ -5820,7 +5820,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "π/6 és exactament la mateixa fracció que apareix a q61 (superfície de l'esfera enfront del seu cilindre circumscrit) — no és casualitat: totes dues comparen l'esfera amb el sòlid més senzill que la conté ajustada.",
+      "ca": "Compte a no confondre aquesta fracció amb la de q61, que compara l'esfera amb el CILINDRE que la conté i dona 2/3, un número diferent (π/6 ≈ 0,524; 2/3 ≈ 0,667). El que sí que és una coincidència notable —i és el resultat que Arquimedes va voler a la seva tomba— és que l'esfera i el seu cilindre circumscrit estan en raó 2/3 tant en volum com en superfície. Comprova-ho tu: el cilindre fa πr²·2r = 2πr³ i l'esfera (4/3)πr³.",
       "en": null
     }
   },
@@ -5839,7 +5839,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Si ja saps les fórmules del volum del con i de l'esfera, podries fer-ho per càlcul directe —però l'objectiu d'aquesta guia és que ho vegis també per comparació directa de seccions, que és el mateix moviment que vas fer servir a q54 i q55 per comparar volums sense fórmules.",
+          "ca": "Si ja saps les fórmules del volum del con i de l'esfera, podries fer-ho per càlcul directe —però l'objectiu d'aquesta guia és que ho vegis també per comparació directa de seccions: tallar els dos sòlids a la mateixa alçada i comprovar que els talls tenen la mateixa àrea. És el principi de Cavalieri, que trobaràs enunciat per a àrees planes a q54.",
           "en": null
         },
         "figura": null
@@ -5875,7 +5875,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "A qualsevol alçada h des de la base, la secció horitzontal del sòlid \"cilindre menys con invertit\" té exactament la mateixa àrea que la secció de la semiesfera a la mateixa alçada (aquest és el pas de Cavalieri: dues seccions iguals a totes les alçades ⟹ mateix volum). Com que coneixes el volum del cilindre i el del con invertit per separat, en pots deduir el de la semiesfera —i per tant comparar-lo amb el con inscrit de l'enunciat, que és exactament la meitat del con invertit (mateixa base, mateixa alçada, mateix vèrtex a un extrem).",
+          "ca": "A qualsevol alçada h des de la base, la secció horitzontal del sòlid \"cilindre menys con invertit\" té exactament la mateixa àrea que la secció de la semiesfera a la mateixa alçada (aquest és el pas de Cavalieri: dues seccions iguals a totes les alçades ⟹ mateix volum). Com que coneixes el volum del cilindre i el del con invertit per separat, en pots deduir el de la semiesfera: πR³ − (1/3)πR³ = (2/3)πR³.\n\nI ara compara. Compte amb una temptació aquí: el con invertit auxiliar i el con inscrit de l'enunciat NO tenen un el doble de volum que l'altre —tenen exactament el mateix. Tots dos tenen radi R i alçada R, i (1/3)πR²·R = (1/3)πR³ els dos; l'un és l'altre girat de cap per avall. La meitat que has de trobar no és entre els dos cons, és entre el con inscrit i la semiesfera: (1/3)πR³ contra (2/3)πR³.",
           "en": null
         },
         "figura": null
@@ -5886,7 +5886,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Que la resposta surti exactament 1/2, sense arrodoniments ni aproximacions, no és casualitat: és el mateix tipus de relació neta entre volums que vas trobar a q54/q55 amb el con i la piràmide, i reapareix cada vegada que dos sòlids comparteixen la mateixa \"funció d'àrea de secció\" a una constant de proporcionalitat de distància.",
+      "ca": "Que la resposta surti exactament 1/2, sense arrodoniments ni aproximacions, no és casualitat: passa cada vegada que dos sòlids tenen la mateixa àrea de secció a cada alçada, o bé àrees en una proporció fixa. El retrobaràs a q62, on el mateix tall entre cilindre i con, fet a una alçada qualsevol en lloc de just a l'equador, dona el volum d'un casquet esfèric.",
       "en": null
     }
   },
@@ -5949,7 +5949,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Aquest mateix 2/3 —comparant l'esfera amb el sòlid més senzill que la conté ajustada— és exactament el complementari de la fracció que vas trobar a q59 (π/6, esfera dins d'un cub): totes dues comparacions diuen, de maneres diferents, \"l'esfera n'ocupa menys que el sòlid recte que la conté\".",
+      "ca": "Aquest 2/3 no té cap relació aritmètica amb el π/6 de q59 —són dues comparacions diferents, amb dos sòlids continents diferents (allà un cub, aquí un cilindre), i π/6 + 2/3 no fa res en particular. El que sí que val la pena mirar és una altra cosa: calcula ara la raó de VOLUMS entre l'esfera i aquest mateix cilindre. L'esfera fa (4/3)πr³ i el cilindre πr²·2r = 2πr³, o sigui... 2/3 una altra vegada. Que la mateixa fracció governi alhora les superfícies i els volums és el resultat que Arquimedes va demanar que li gravessin a la tomba.",
       "en": null
     }
   },
@@ -6004,7 +6004,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "A cada alçada dins del casquet, la secció del casquet (un cercle) i la secció del cilindre-menys-con auxiliar tenen la mateixa àrea — exactament el mateix argument de q60, aplicat entre 0 i h en lloc d'entre 0 i R. Per Cavalieri, doncs, el casquet té el mateix volum que aquell tros de cilindre-menys-con, que sí que saps calcular: un cilindre de radi R i alçada h, menys el tronc de con que hi queda a dins (i el volum d'un tronc ja el vas fer a q48). Fes la resta i simplifica.\n\nUn avís d'honestedat: aquesta guia et porta fins aquí i s'atura. Que \"sumar\" àrees de seccions infinitament primes doni exactament un volum és el pas que el càlcul integral formalitza, i és fora d'aquest quadern —el mateix tipus de frontera que ja et vas trobar a q64 amb la longitud de l'astroide. El que sí que és teu del tot és l'argument de Cavalieri: dues figures amb la mateixa secció a cada alçada tenen el mateix volum.",
+          "ca": "A cada alçada dins del casquet, la secció del casquet (un cercle) i la secció del cilindre-menys-con auxiliar tenen la mateixa àrea — exactament el mateix argument de q60, aplicat entre 0 i h en lloc d'entre 0 i R. Per Cavalieri, doncs, el casquet té el mateix volum que aquell tros de cilindre-menys-con, que sí que saps calcular: un cilindre de radi R i alçada h, menys el tronc de con que hi queda a dins.\n\nEl tronc té alçada h i radis R−h (a baix) i R (a dalt). El volum d'un tronc ja el vas fer a q48, allà amb base quadrada; amb base circular la fórmula té la mateixa forma però amb π: (πh/3)(a²+ab+b²). Substitueix a=R−h i b=R, resta-ho de πR²h i simplifica —veuràs que els R² es cancel·len sols i et queda una expressió ben curta en h i R.\n\nUn avís d'honestedat, i en van dos. El primer: que \"sumar\" àrees de seccions infinitament primes doni exactament un volum és el pas que el càlcul integral formalitza, i és fora d'aquest quadern —el mateix tipus de frontera que ja et vas trobar a q64 amb la longitud de l'astroide. El segon, i val la pena que el sàpigues: tot això et dona el VOLUM, no la superfície. La fórmula de l'àrea corba del casquet, 2πRh, és certa i és un teorema d'Arquimedes —diu que projectant el casquet horitzontalment sobre el cilindre que envolta l'esfera, l'àrea es conserva exactament, cosa gens evident—, però aquí te la donem, no la demostrem. El que sí que és teu del tot és l'argument de Cavalieri: dues figures amb la mateixa secció a cada alçada tenen el mateix volum.",
           "en": null
         },
         "figura": null
@@ -6046,7 +6046,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Una manera: quina forma plana, desplaçada en línia recta, deixa un cilindre al seu pas? Una altra manera, molt diferent: quina forma plana, girada al voltant d'un eix, en traça la superfície?",
+          "ca": "Una manera: quina forma plana, desplaçada en línia recta, deixa un cilindre al seu pas? Una altra manera, molt diferent: quina forma plana, girada al voltant d'un eix, l'escombra sencer? (I, ja posats: quina forma plana, girada, en traça només la superfície lateral, sense omplir-lo?)",
           "en": null
         },
         "figura": "fig-197.png"
@@ -6078,7 +6078,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "La segona manera (rotació d'una forma plana al voltant d'un eix) és exactament la idea que fa funcionar el teorema de Pappus — q65, més endavant en aquest mateix lot, la converteix en una eina general per calcular volums.",
+      "ca": "La segona manera (rotació d'una forma plana al voltant d'un eix) és exactament la idea que fa funcionar el teorema de Pappus, que la converteix en una eina general per calcular volums: q65, q66, q67 i q68 hi estan dedicades.",
       "en": null
     }
   },
@@ -6196,7 +6196,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Per al rectangle, el punt que fa funcionar el teorema resulta ser el seu CENTRE —el centre de gravetat \"de tota la vida\", allà on es creuen les dues diagonals—, que és a mitja amplada de l'eix. Compte amb la temptació d'agafar el costat oposat a l'eix: aquell és el punt més LLUNY de l'eix, no el punt mitjà, i et donaria el doble del volum real. Defineix el centroide, en general, com el punt de la figura la distància del qual a l'eix, multiplicada per l'àrea i per 2π, reprodueix el volum de la figura girada, sigui quina sigui la figura.",
+          "ca": "Per al rectangle, el punt que fa funcionar el teorema resulta ser el seu CENTRE —el centre de gravetat \"de tota la vida\", allà on es creuen les dues diagonals—, que és a mitja amplada de l'eix. Compte amb la temptació d'agafar el costat oposat a l'eix: aquell és el punt més LLUNY de l'eix, no el punt mitjà, i et donaria el doble del volum real.\n\nAra, la definició general. Vigila amb la sortida fàcil: dir \"el centroide és el punt que fa que Pappus funcioni\" NO serveix, per dues raons. La primera és que no defineix cap punt —només et fixa a quina distància ha de ser d'un eix concret, i això és una recta de punts possibles, no un punt. La segona és que et deixa sense pregunta: si el defineixes així, Pappus surt cert per decret, i l'enunciat et demanava precisament si es POT fer que surti cert.\n\nLa definició que sí que serveix no parla d'eixos ni de volums: talla la figura en molts trossos petits, tots de la mateixa àrea, i pren la posició MITJANA de tots ells. Aquest és el centroide —el punt on la figura, retallada en cartolina, se't quedaria en equilibri damunt d'un dit.\n\nI ara sí que Pappus és una afirmació que es pot comprovar. Mira per què funciona: quan gires, cada trosset d'àrea que és a distància r de l'eix recorre una circumferència de llargada 2πr, i escombra un volum (trosset) × 2πr. Sumant-ho tot, el volum és 2π × (àrea total) × (la MITJANA de les distàncies r). I aquesta mitjana de distàncies és exactament la distància del centroide a l'eix —perquè el centroide és la posició mitjana i, mentre la figura queda tota a una banda de l'eix, la distància a l'eix creix de manera uniforme a mesura que t'hi allunyes. Aquí es veu, de passada, per què l'enunciat de Pappus exigeix que l'eix NO talli la figura: si la tallés, hi hauria trossos a banda i banda, les distàncies deixarien de comptar totes en el mateix sentit, i la mitjana ja no seria la distància del centroide.",
           "en": null
         },
         "figura": null
@@ -6207,7 +6207,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Aquesta definició (el punt que fa que Pappus funcioni) és el que fa possible q66, q67 i q68, tots en aquest mateix lot: un cop decidida la definició, es converteix en una eina que es pot aplicar a qualsevol figura, no només al rectangle.",
+      "ca": "Un cop tens la definició, es converteix en una eina que es pot aplicar a qualsevol figura, no només al rectangle: q66 la comprova amb un rectangle que no toca l'eix, q67 en fa la versió per a perímetres i superfícies, i q68 la fa servir a l'inrevés (coneixent el volum, per trobar on és el centroide).",
       "en": null
     }
   },
@@ -6238,7 +6238,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Rectangle d'amplada w (perpendicular a l'eix) i alçada H (paral·lela a l'eix), amb el costat més proper a l'eix a distància d. El seu centroide —pel que vas definir a q65— és al seu propi centre geomètric.",
+          "ca": "Rectangle d'amplada w (perpendicular a l'eix) i alçada H (paral·lela a l'eix), amb el costat més proper a l'eix a distància d. El seu centroide —la posició mitjana de tots els seus punts, que és la definició que es construeix a q65— és al seu propi centre geomètric, per simetria.",
           "en": null
         },
         "figura": null
@@ -6301,7 +6301,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "A q65 vas repartir l'àrea en trossos petits i vas trobar el punt que \"resumeix\" on és, de mitjana, tota aquesta àrea. Aquí, en lloc de trossos d'àrea, reparteix el PERÍMETRE en trossets petits de longitud.",
+          "ca": "El centroide d'una regió (q65) es construeix repartint l'ÀREA en trossos petits i prenent la posició mitjana de tots ells. Aquí fes exactament el mateix, però amb una peça diferent: reparteix el PERÍMETRE en trossets petits de longitud, i pren la posició mitjana d'aquests.",
           "en": null
         },
         "figura": null
@@ -6322,7 +6322,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "El centroide del perímetre és el punt la distància del qual a l'eix, multiplicada per 2π i per la LLARGADA TOTAL del perímetre (no per l'àrea), reprodueix la superfície (no el volum) generada en girar la figura.",
+          "ca": "El centroide del perímetre és la posició mitjana dels trossets de longitud del contorn —definit, doncs, sense parlar d'eixos ni de superfícies, igual que a q65. I la versió de Pappus que en surt és: la SUPERFÍCIE generada en girar el contorn val (llargada total del perímetre) × 2π × (distància d'aquest centroide a l'eix). Fixa't en els dos canvis respecte de q65, que van aparellats: on hi havia àrea ara hi ha longitud, i on hi havia volum ara hi ha superfície.\n\nI compte amb una cosa: el centroide del perímetre i el centroide de la regió NO són el mateix punt en general. Coincideixen quan la figura té prou simetria (un rectangle, un cercle), i per això és fàcil no adonar-se'n.",
           "en": null
         },
         "figura": null
@@ -6333,7 +6333,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "q68, la darrera guia d'aquest lot, fa servir aquesta mateixa idea —però pensada al revés: coneixes ja el volum del sòlid generat, i el que et falta és ON és exactament el centroide.",
+      "ca": "q68 fa servir aquesta mateixa idea, però pensada al revés: allà coneixes ja el volum del sòlid generat, i el que et falta és ON és exactament el centroide.",
       "en": null
     }
   },
@@ -6455,11 +6455,11 @@ window.GUIES = {
       }
     ],
     "comprovacio": {
-      "ca": "r=3: centroide de l'àrea a distància 4r/(3π)≈1,27 del centre. Centroide del perímetre a distància 2r/π≈1,91. Fixa't que són DIFERENTS — exactament el que q67 ja avisava que calia esperar.",
+      "ca": "r=3: centroide de l'àrea a distància 4r/(3π)≈1,27 del centre. Centroide de l'arc a distància 2r/π≈1,91. Fixa't que són DIFERENTS: el centroide d'una regió i el del seu contorn són dos punts distints, i aquí en tens la prova amb xifres.\n\n(Un detall d'enunciat que val la pena decidir tu mateix: aquí s'ha pres \"el perímetre\" com l'arc sol, sense el diàmetre. Si hi comptes també el diàmetre, la longitud passa a ser πr+2r i el centroide s'acosta al centre: et sortirà 2r/(π+2)≈0,389r. Pappus funciona igual en els dos casos —el diàmetre és sobre l'eix i, en girar, no escombra res—, i les dues respostes són correctes per a la seva pregunta.)",
       "en": null
     },
     "iDespres": {
-      "ca": "Que aquestes dues distàncies surtin diferents confirma, amb un exemple concret, per què calia la doble definició de q65 i q67: \"el centroide\" no és una sola idea, són dues, i aquí ho pots veure amb xifres.",
+      "ca": "Que aquestes dues distàncies surtin diferents és el motiu pel qual \"el centroide\" no és una sola idea sinó dues —la d'una regió i la del seu contorn—, cadascuna amb la seva versió de Pappus: una per a volums i una per a superfícies. q65 i q67 les construeixen amb calma; aquí en tens, amb xifres, la raó per la qual calen totes dues.",
       "en": null
     }
   },
@@ -6514,7 +6514,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Des d'un vèrtex d'un polígon de n costats, quantes diagonals hi caben (sense comptar els dos costats que ja hi surten)? Cada diagonal afegeix un triangle més als dos que ja fan els costats adjacents al vèrtex. Compta els triangles en funció de n i multiplica per 180°.",
+          "ca": "Des d'un vèrtex d'un polígon de n costats, quantes diagonals hi caben (sense comptar els dos costats que ja hi surten)? I ara compta els triangles amb cura, que és on es despista tothom: cada diagonal nova parteix en dos un dels trossos que ja tenies, o sigui que n'afegeix exactament UN. Sense cap diagonal tens una sola peça; amb una en tens 2; amb dues, 3. Per tant, amb n−3 diagonals en tens n−2. Multiplica per 180°.",
           "en": null
         },
         "figura": null
@@ -6552,11 +6552,11 @@ window.GUIES = {
       {
         "nivell": 1,
         "titol": {
-          "ca": "parteix-lo amb una diagonal, com a q11",
+          "ca": "mira què li passa a cada vèrtex",
           "en": null
         },
         "text": {
-          "ca": "Traça una diagonal. Els dos triangles resultants no comparteixen encara cap informació evident sobre costats —però sí que pots fer servir que la suma d'angles de cada triangle és 180°, combinat amb els angles rectes donats als dos vèrtexs originals de cada triangle, per trobar els altres dos angles de cadascun.",
+          "ca": "Pots provar de traçar una diagonal, com a q11, però vigila amb què t'hi trobes: la diagonal parteix DOS dels quatre angles rectes per la meitat, i només deixa sencers els altres dos —un a cada triangle, no dos. Amb un sol angle conegut per triangle no arribes gaire lluny.\n\nProva millor una altra cosa, que no necessita cap diagonal: no miris els triangles, mira les DIRECCIONS dels quatre costats. Si en un vèrtex els dos costats formen 90°, què saps de la direcció de l'un respecte de l'altre? I si això passa als quatre vèrtexs alhora, què pots dir de dos costats oposats, que estan tots dos lligats al mateix costat intermedi?",
           "en": null
         },
         "figura": null
@@ -6580,7 +6580,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Amb els quatre angles fixats a 90°, els dos costats que arriben a cada vèrtex hi arriben perpendiculars. D'aquí es dedueix que costats oposats han de ser paral·lels (dues rectes perpendiculars a una tercera són paral·leles entre elles), i un cop tens el paral·lelisme, ets en la mateixa situació que q11: és un paral·lelogram, i per tant costats oposats iguals. La condició final sobre les longituds és, doncs, costats oposats iguals dos a dos —el mateix que ja sabies d'un rectangle, però ara deduït només a partir dels angles, sense donar per fet el paral·lelisme des del principi.",
+          "ca": "Amb els quatre angles fixats a 90°, els dos costats que arriben a cada vèrtex hi arriben perpendiculars. D'aquí es dedueix que costats oposats han de ser paral·lels (dues rectes perpendiculars a una tercera són paral·leles entre elles), i un cop tens el paral·lelisme ja tens un paral·lelogram. Que en un paral·lelogram els costats oposats siguin iguals no és exactament el que q11 enunciava —allà es demostraven iguals els ANGLES oposats—, però surt de la mateixa jugada d'una línia: traça una diagonal, els angles alterns interns et donen dos triangles congruents (costat comú entre angles iguals), i de la congruència surten alhora els angles oposats iguals i els costats oposats iguals. La condició final sobre les longituds és, doncs, costats oposats iguals dos a dos —el mateix que ja sabies d'un rectangle, però ara deduït només a partir dels angles, sense donar per fet el paral·lelisme des del principi.",
           "en": null
         },
         "figura": null
@@ -6739,7 +6739,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Una resposta de NO, amb la condició exacta que separa quan sí d'quan no — no n'hi ha prou de dir \"no sempre\".",
+          "ca": "Una resposta de NO, amb la condició exacta que separa quan sí de quan no — no n'hi ha prou de dir \"no sempre\".",
           "en": null
         },
         "figura": null
@@ -6849,7 +6849,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Contrasta-ho amb el criteri SSS (tres costats determinen un triangle de manera única): aquí has vist que DOS números (àrea i perímetre junts) no basten per fer el mateix — calen tres dades independents, no dues, per fixar un triangle.",
+      "ca": "Contrasta-ho amb el criteri SSS (tres costats determinen un triangle de manera única): aquí has vist que DOS números (àrea i perímetre junts) no basten per fer el mateix — calen tres dades independents, no dues, per fixar un triangle.\n\nI encara pots dir-ho més fort. Amb el llenguatge x, y, z tens només DUES condicions —x+y+z=35 i xyz=1260— per a TRES incògnites, o sigui que et queda un grau de llibertat sencer: no hi ha dos triangles amb perímetre 70 i àrea 210, n'hi ha infinits. Els dos del quadern són simplement els dos que surten amb costats sencers. Si vols veure'n un de \"lleig\", prova els costats 28,488… / 23,823… / 17,689…: perímetre 70 i àrea 210 igualment.",
       "en": null
     }
   },
@@ -6892,7 +6892,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Els tres segments discontinus curts (els radis cap a cada costat) tenen tots la mateixa marca — i, a diferència d'altres figures d'aquest lot, aquí sí és literalment cert que els tres fan la mateixa longitud, perquè tots tres són el radi del mateix cercle inscrit.",
+          "ca": "Els tres segments discontinus curts (els radis cap a cada costat) tenen tots la mateixa marca — i, a diferència del que passa en altres figures, aquí sí és literalment cert que els tres fan la mateixa longitud, perquè tots tres són el radi del mateix cercle inscrit.",
           "en": null
         },
         "figura": "fig-043.png"
@@ -6934,7 +6934,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Un NOM per a la tècnica (no un càlcul nou encara): com vas trobar la longitud de la diagonal del pentàgon a q32, sense mesurar-la directament?",
+          "ca": "Un NOM per a la tècnica (no un càlcul nou encara): a les preguntes del pentàgon, com es va trobar la longitud de la diagonal sense mesurar-la directament?",
           "en": null
         },
         "figura": null
@@ -6942,11 +6942,11 @@ window.GUIES = {
       {
         "nivell": 1,
         "titol": {
-          "ca": "recorda q32",
+          "ca": "torna al pentàgon",
           "en": null
         },
         "text": {
-          "ca": "No vas mesurar la diagonal amb un regle: vas trobar una figura semblant —més petita— amagada dins de la gran, i vas plantejar una equació a partir de la proporció entre totes dues.",
+          "ca": "Allà no es va mesurar la diagonal amb un regle. El que es va fer va ser trobar una figura semblant —més petita— amagada dins de la gran, i plantejar una equació a partir de la proporció entre totes dues. A q33 això és literal: la bisectriu d'un angle de la base retalla, dins del triangle de costats d i base 1, un altre triangle amb els mateixos tres angles, i d'igualar-ne les proporcions en surt d²=d+1. A q32 la mateixa jugada dona el costat del pentàgon petit.",
           "en": null
         },
         "figura": null
@@ -6970,7 +6970,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "La tècnica es diu, en aquest projecte, \"dilatació\": dues figures semblants (una és una versió escalada de l'altra) donen una PROPORCIÓ — una equació que relaciona longituds—, sense necessitat de Pitàgores ni de mesurar-les una per una.",
+          "ca": "La tècnica consisteix a fer servir dues figures semblants (una és una versió escalada de l'altra) per obtenir una PROPORCIÓ —una equació que relaciona longituds—, sense necessitat de Pitàgores ni de mesurar-les una per una. És, senzillament, raonar per semblança.\n\nUna nota de vocabulari, perquè aquí hi ha un parany de traducció. El llibre en diu dilation, que en anglès és el nom de la transformació que agafa una figura i l'escala des d'un punt fix. En català aquella transformació es diu homotècia; \"dilatació\" vol dir una altra cosa (la que fan els metalls amb la calor). Al llarg d'aquestes guies el moviment s'anomena \"dilatació\" per fidelitat al llibre, però el que trobaràs a classe i als llibres de text és semblança —i, quan es parla de la transformació concreta, homotècia.",
           "en": null
         },
         "figura": null
@@ -7044,7 +7044,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Com que A+B=90° sempre en un triangle rectangle, això diu sin(θ)=cos(90°−θ) per a qualsevol angle agut θ — una identitat que faràs servir constantment a la resta d'aquest lot.",
+      "ca": "Com que A+B=90° sempre en un triangle rectangle, això diu sin(θ)=cos(90°−θ) per a qualsevol angle agut θ — una identitat que faràs servir constantment d'ara endavant.",
       "en": null
     }
   },
@@ -7063,7 +7063,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Una generalització de Pitàgores per a un triangle amb un angle obtús C —Pitàgores sol només val per al cas de 90°. C' és, com a q87, el suplementari de C.",
+          "ca": "Una generalització de Pitàgores per a un triangle amb un angle obtús C —Pitàgores sol només val per al cas de 90°. C' és el suplementari de C, és a dir 180°−C: com que C és obtús, C' és agut, i per això s'hi pot fer trigonometria de triangle rectangle de tota la vida.",
           "en": null
         },
         "figura": null
@@ -7071,11 +7071,11 @@ window.GUIES = {
       {
         "nivell": 1,
         "titol": {
-          "ca": "la mateixa alçada de q87",
+          "ca": "una alçada que cau a fora",
           "en": null
         },
         "text": {
-          "ca": "Traça l'alçada des del vèrtex oposat a c, que cau fora del triangle (com a q87). Aquesta alçada crea DOS triangles rectangles: un de gran (que inclou tot el triangle original) i un de petit (el tros extra, fora del triangle original).",
+          "ca": "Traça l'alçada des del vèrtex oposat a c. Com que l'angle C és obtús, aquesta alçada NO cau dins del triangle: cau més enllà de l'extrem del costat a. Justament per això crea DOS triangles rectangles: un de gran (que inclou tot el triangle original) i un de petit (el tros extra que sobresurt).",
           "en": null
         },
         "figura": null
@@ -7176,7 +7176,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Aquesta fórmula no necessita que el triangle sigui rectangle ni que en sàpigues l'altura per endavant — funciona amb qualsevol triangle del qual coneguis dos costats i l'angle que formen, inclòs el cas en què C és obtús. Aquí la Pista 1 s'ha de llegir amb compte: si C és obtús, el peu de l'altura cau FORA del triangle, no dins. Que la fórmula h = b·sin(C) continuï valent en aquest cas no és casualitat — és precisament la raó per la qual q87 defineix el sinus d'un angle obtús com sin(180°−C) en lloc de deixar-lo sense definir: la definició es tria expressament perquè fórmules com aquesta no s'hagin de partir en dos casos. És la porta d'entrada natural a la llei del sinus i del cosinus si mai hi treballes.",
+      "ca": "Aquesta fórmula no necessita que el triangle sigui rectangle ni que en sàpigues l'altura per endavant — funciona amb qualsevol triangle del qual coneguis dos costats i l'angle que formen, inclòs el cas en què C és obtús. Aquí la Pista 1 s'ha de llegir amb compte: si C és obtús, el peu de l'altura cau FORA del triangle, no dins. Que la fórmula h = b·sin(C) continuï valent en aquest cas no és casualitat — és precisament la raó per la qual el sinus d'un angle obtús es defineix com sin(180°−C) en lloc de deixar-lo sense definir: la definició es tria expressament perquè fórmules com aquesta no s'hagin de partir en dos casos. És la porta d'entrada natural a la llei del sinus i del cosinus si mai hi treballes.",
       "en": null
     }
   },
@@ -7231,18 +7231,18 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Amb les coordenades dels vèrtexs del tetràedre (o mesurant els dos segments i el segment que uneix els altres dos vèrtexs), planteja el triangle format pels dos peus i el centre, i fes servir el teorema del cosinus (q79) per aïllar l'angle diedre.",
+          "ca": "El triangle amb què treballaràs té per vèrtexs el punt mitjà de l'aresta compartida i els dos vèrtexs oposats, un de cada cara. Els dos costats que surten del punt mitjà són les dues alçades de cara (√3/2 per aresta 1); el tercer costat és el segment que uneix els dos vèrtexs oposats. Amb el teorema del cosinus (q79) n'aïlles l'angle del punt mitjà, que és el diedre.\n\nCompte amb el tercer costat, que NO és el mateix als dos sòlids: al tetràedre els dos vèrtexs oposats són veïns i el segment fa 1 (una aresta); a l'octàedre són diametralment oposats i fa √2. D'aquí surt tota la diferència entre els dos resultats.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "Tetràedre regular: angle diedre = arccos(1/3) ≈ 70,53°. Octàedre regular: angle diedre = arccos(−1/3) ≈ 109,47°. Comprova que aquests dos angles sumen exactament 180°.",
+      "ca": "Tetràedre regular: angle diedre = arccos(1/3) ≈ 70,53°. Octàedre regular: angle diedre = arccos(−1/3) ≈ 109,47°. Comprova que aquests dos angles sumen exactament 180°.\n\nI ara la segona meitat de la pregunta, la dels altres tres. Compte amb una temptació: la recepta concreta de la Pista 1 —anar del punt mitjà de l'aresta al vèrtex oposat de la cara— només dona una perpendicular a l'aresta quan la cara és un triangle equilàter. En un quadrat, el segment del punt mitjà d'un costat al vèrtex oposat va de biaix i no serveix; el que hi val és anar al punt mitjà del costat oposat. La idea de fons (dos segments, un a cada cara, tots dos perpendiculars a l'aresta compartida) sí que és general; la recepta, no. Amb la idea de fons, el cub es fa de cap: dues cares que comparteixen una aresta hi són perpendiculars, o sigui 90°. Els altres dos surten arccos(−1/√5) ≈ 116,57° per al dodecàedre i arccos(−√5/3) ≈ 138,19° per a l'icosàedre.",
       "en": null
     },
     "iDespres": {
-      "ca": "Aquesta suma de 180° entre l'angle diedre del tetràedre i el de l'octàedre no és casualitat — és exactament el que fa possible omplir l'espai alternant-ne, la pregunta següent d'aquest lot.",
+      "ca": "Aquesta suma de 180° entre l'angle diedre del tetràedre i el de l'octàedre no és casualitat — és exactament el que fa possible omplir l'espai alternant-ne, que és el que es pregunta a continuació.",
       "en": null
     }
   },
@@ -7305,7 +7305,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "A diferència del mosaic pla (q03), on un sol tipus de polígon regular (el triangle, el quadrat, l'hexàgon) ja pot folrar tot sol, aquí calen DOS sòlids diferents junts —el tetràedre regular sol no pot omplir l'espai (el seu angle diedre, 70,53°, no divideix 360° de manera exacta cap nombre de vegades).",
+      "ca": "L'enunciat també et demana si hi ha ALTRES maneres de folrar l'espai, i n'hi ha una de molt més senzilla que aquesta: el cub. El seu angle diedre fa 90°, i 360/90 = 4 exactes, o sigui que quatre cubs es tanquen al voltant de cada aresta sense necessitar cap company.\n\nDe fet, si passes pel mateix filtre els cinc angles diedres de q81, veuràs que el cub és l'únic poliedre regular que ho aconsegueix tot sol: 360/70,53 = 5,10 (tetràedre), 360/90 = 4 (cub), 360/109,47 = 3,29 (octàedre), 360/116,57 = 3,09 (dodecàedre), 360/138,19 = 2,60 (icosàedre). Només el cub dona un enter. Per això el tetràedre necessita l'octàedre: sol no hi arriba, i la parella tetràedre+octàedre és la manera de tapar el forat que li queda.\n\nI aquí hi ha la diferència de debò amb el pla: a q03 hi havia TRES polígons regulars que folraven tots sols (triangle, quadrat, hexàgon), i a l'espai n'hi ha un de sol.",
       "en": null
     }
   },
@@ -7357,7 +7357,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "El triangle rectangle té hipotenusa 2, un catet 1 (la meitat del costat que has partit), i l'altre catet per Pitàgores. Que aquest triangle sigui rectangle de veritat —és a dir, que la línia que has traçat caigui perpendicular al costat oposat— no és cosa del dibuix: és el que es demostra a q01 (pista 1), amb dos triangles congruents pels tres costats. L'angle de 60° és el que queda al vèrtex original —quin catet hi és oposat, quin hi és contigu?",
+          "ca": "El triangle rectangle té hipotenusa 2, un catet 1 (la meitat del costat que has partit), i l'altre catet per Pitàgores. Que aquest triangle sigui rectangle de veritat —és a dir, que la línia que has traçat caigui perpendicular al costat oposat— no és cosa del dibuix: és el que es demostra a q01 (pista 1), amb dos triangles congruents pels tres costats. I ara vigila amb quin dels dos angles aguts és el de 60°, que és exactament on es perd tothom. El vèrtex DES D'ON has partit el triangle ja no en té 60°: el tall li ha partit l'angle per la meitat i n'hi ha deixat 30°. El de 60° és el de l'altre extrem, un dels dos vèrtexs de la base, que el tall no ha tocat. Situa-t'hi i mira: quin catet hi és oposat, quin hi és contigu? (Si et surt sin60°=1/2 és que t'has posat al vèrtex equivocat i has trobat, sense voler, el sinus de 30°.)",
           "en": null
         },
         "figura": null
@@ -7686,7 +7686,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "q85, un parell de guies més endavant en aquest mateix lot, fa servir exactament aquesta fórmula del cosinus doble per trobar el sinus i el cosinus de 72° a partir dels de 36°.",
+      "ca": "q85 fa servir exactament aquesta fórmula del cosinus doble per trobar el sinus i el cosinus de 72° a partir dels de 36°.",
       "en": null
     }
   },
@@ -7717,7 +7717,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Si el triangle ja fos isòsceles, és fàcil veure per simetria que les dues bisectrius (dels dos angles iguals) fan la mateixa longitud —aquest sentit és senzill. Aquí et demanen l'altre sentit: si les dues bisectrius surten iguals, has de deduir que el triangle era isòsceles. Aquesta implicació inversa és la que necessita una demostració real (i no la donarem aquí sencera: és massa llarga per a una pista puntual d'aquest lot).",
+          "ca": "Si el triangle ja fos isòsceles, és fàcil veure per simetria que les dues bisectrius (dels dos angles iguals) fan la mateixa longitud —aquest sentit és senzill. Aquí et demanen l'altre sentit: si les dues bisectrius surten iguals, has de deduir que el triangle era isòsceles. Aquesta implicació inversa és la que necessita una demostració real (i no la donarem aquí sencera: és massa llarga per a una pista puntual).",
           "en": null
         },
         "figura": null
@@ -7737,7 +7737,7 @@ window.GUIES = {
       {
         "nivell": 3,
         "titol": {
-          "ca": "el que sí pots fer amb les eines d'aquest lot",
+          "ca": "el que sí pots fer amb les eines que ja tens",
           "en": null
         },
         "text": {
@@ -7752,7 +7752,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Aquest és l'únic resultat d'aquest lot on la demostració completa se't queda fora d'abast expressament —val la pena saber que existeixen teoremes senzills d'enunciar i difícils de provar, i que \"contraintuïtivament difícil\" no vol dir \"fals\".",
+      "ca": "Aquest és un dels pocs resultats del quadern on la demostració completa se't queda fora d'abast expressament —val la pena saber que existeixen teoremes senzills d'enunciar i difícils de provar, i que \"contraintuïtivament difícil\" no vol dir \"fals\".",
       "en": null
     }
   },
@@ -8145,7 +8145,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "A q96 retrobaràs la mateixa idea (la perpendicular és el camí més curt) fent una feina completament diferent: camins mínims i reflexió. I ja pots mirar enrere: de les set preguntes d'aquest lot, quantes has resolt afegint una línia? Aquesta és, de moment, la teva eina principal.",
+      "ca": "A q96 retrobaràs la mateixa idea (la perpendicular és el camí més curt) fent una feina completament diferent: camins mínims i reflexió. I ja pots mirar enrere: de les preguntes que ja portes, quantes has resolt afegint una línia? Aquesta és, de moment, la teva eina principal.",
       "en": null
     }
   },
@@ -8271,7 +8271,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Si en lloc de dues rectes tinguessis un triangle sencer (tres costats) i volguessis el camí tancat més curt que toqués els tres, la mateixa idea —reflectir, un cop per cada costat— hi funciona, encara que amb tres reflexions en cadena en lloc de dues. I com ja vas veure prometut a q96: la propietat de reflexió d'una el·lipse (q98, en aquest mateix lot) és la mateixa idea mirada des d'una corba en lloc de dues rectes.",
+      "ca": "Si en lloc de dues rectes tinguessis un triangle sencer (tres costats) i volguessis el camí tancat més curt que toqués els tres, la mateixa idea —reflectir, un cop per cada costat— hi funciona, encara que amb tres reflexions en cadena en lloc de dues. I com ja vas veure prometut a q96: la propietat de reflexió d'una el·lipse (q98) és la mateixa idea mirada des d'una corba en lloc de dues rectes.",
       "en": null
     }
   },
