@@ -46,8 +46,19 @@ punts d'intersecció.
 Aquest angle (al centre d'un cercle, entre els dos radis que van als
 punts de tall) és el doble de l'angle del triangle equilàter: 120°. La
 zona solapada (l'ull, o *vesica*) és la suma de dos "segments circulars"
-— cadascun, un sector de 120° menys el triangle equilàter que ja hi has
-trobat. El perímetre és la suma dels dos arcs de 120°, un de cada cercle.
+— cadascun, un sector de 120° menys el triangle que aquest sector deixa
+sota la corda.
+
+Compte aquí amb una confusió fàcil: aquest triangle que restes NO és
+l'equilàter que has trobat abans. L'equilàter té per vèrtexs els dos
+centres i un punt de tall; el que has de restar té per vèrtexs UN centre i
+els DOS punts de tall, i els seus costats fan r, r i r√3. Ara bé, l'àrea
+els surt igual —tots dos fan (√3/4)r²—, perquè el segon és isòsceles amb
+dos costats r i l'angle de 120° entremig, i (1/2)r²·sin120° = (√3/4)r².
+Val la pena adonar-se'n en lloc de confondre'ls: si dibuixes el que
+restes, veuràs que no és equilàter.
+
+El perímetre és la suma dels dos arcs de 120°, un de cada cercle.
 
 **Comprovació.** Amb r=1: sector de 120° = π/3 ≈ 1,047; triangle equilàter
 de costat 1 = √3/4 ≈ 0,433; un segment ≈ 0,614; àrea solapada ≈ 1,228.
@@ -88,10 +99,13 @@ mateix r. Simplifica la fracció — hi sobreviu π, i res més.
 **Comprovació.** r=1: cub de costat 2, volum 8. Esfera: (4/3)π ≈ 4,19.
 Fracció ≈ 0,524 — més de la meitat (π/6 > 1/2 perquè π > 3).
 
-**I després.** π/6 és exactament la mateixa fracció que apareix a q61
-(superfície de l'esfera enfront del seu cilindre circumscrit) — no és
-casualitat: totes dues comparen l'esfera amb el sòlid més senzill que la
-conté ajustada.
+**I després.** Compte a no confondre aquesta fracció amb la de q61, que
+compara l'esfera amb el CILINDRE que la conté i dona 2/3, un número
+diferent (π/6 ≈ 0,524; 2/3 ≈ 0,667). El que sí que és una coincidència
+notable —i és el resultat que Arquimedes va voler a la seva tomba— és que
+l'esfera i el seu cilindre circumscrit estan en raó 2/3 tant en volum com
+en superfície. Comprova-ho tu: el cilindre fa πr²·2r = 2πr³ i l'esfera
+(4/3)πr³.
 
 ---
 
@@ -126,14 +140,23 @@ secció del cilindre-menys-con auxiliar tenen la mateixa àrea — exactament
 el mateix argument de q60, aplicat entre 0 i h en lloc d'entre 0 i R. Per
 Cavalieri, doncs, el casquet té el mateix volum que aquell tros de
 cilindre-menys-con, que sí que saps calcular: un cilindre de radi R i
-alçada h, menys el tronc de con que hi queda a dins (i el volum d'un
-tronc ja el vas fer a q48). Fes la resta i simplifica.
+alçada h, menys el tronc de con que hi queda a dins.
 
-Un avís d'honestedat: aquesta guia et porta fins aquí i s'atura. Que
-"sumar" àrees de seccions infinitament primes doni exactament un volum és
-el pas que el càlcul integral formalitza, i és fora d'aquest quadern —el
-mateix tipus de frontera que ja et vas trobar a q64 amb la longitud de
-l'astroide. El que sí que és teu del tot és l'argument de Cavalieri: dues
+El tronc té alçada h i radis R−h (a baix) i R (a dalt). El volum d'un tronc
+ja el vas fer a q48, allà amb base quadrada; amb base circular la fórmula té
+la mateixa forma però amb π: (πh/3)(a²+ab+b²). Substitueix a=R−h i b=R,
+resta-ho de πR²h i simplifica —veuràs que els R² es cancel·len sols i et
+queda una expressió ben curta en h i R.
+
+Un avís d'honestedat, i en van dos. El primer: que "sumar" àrees de
+seccions infinitament primes doni exactament un volum és el pas que el
+càlcul integral formalitza, i és fora d'aquest quadern —el mateix tipus de
+frontera que ja et vas trobar a q64 amb la longitud de l'astroide. El
+segon, i val la pena que el sàpigues: **tot això et dona el VOLUM, no la
+superfície**. La fórmula de l'àrea corba del casquet, 2πRh, és certa i és
+un teorema d'Arquimedes —diu que projectant el casquet horitzontalment
+sobre el cilindre que envolta l'esfera, l'àrea es conserva exactament, cosa
+gens evident—, però aquí te la donem, no la demostrem. El que sí que és teu del tot és l'argument de Cavalieri: dues
 figures amb la mateixa secció a cada alçada tenen el mateix volum.
 
 **Comprovació.** R=2, h=1: V=(πh²/3)(3R−h)=(π/3)(6−1)=5π/3≈5,24.
@@ -161,7 +184,8 @@ genuïnament diferents — no la mateixa idea dita amb altres paraules.
 **Pista 1 — pensa en QUÈ es mou i QUIN moviment fa.** → `fig-197.png`
 Una manera: quina forma plana, desplaçada en línia recta, deixa un
 cilindre al seu pas? Una altra manera, molt diferent: quina forma plana,
-girada al voltant d'un eix, en traça la superfície?
+girada al voltant d'un eix, l'escombra sencer? (I, ja posats: quina forma
+plana, girada, en traça només la superfície lateral, sense omplir-lo?)
 
 **Pista 2 — la construcció.** → `fig-073.png`
 
@@ -175,9 +199,9 @@ maneres, quina és la forma plana que es mou i quin és exactament el
 moviment (direcció de translació, o eix de rotació).
 
 **I després.** La segona manera (rotació d'una forma plana al voltant
-d'un eix) és exactament la idea que fa funcionar el teorema de Pappus —
-q65, més endavant en aquest mateix lot, la converteix en una eina general
-per calcular volums.
+d'un eix) és exactament la idea que fa funcionar el teorema de Pappus, que
+la converteix en una eina general per calcular volums: q65, q66, q67 i q68
+hi estan dedicades.
 
 ---
 
@@ -196,9 +220,12 @@ d'una piràmide, no una piràmide sencera.
 
 **Pista 1 — completa el que falta.**
 Prolonga els quatre costats inclinats del tronc fins que es tornin a
-trobar en un sol punt. Aquest punt existeix sempre (perquè els dos
-quadrats són paral·lels i concèntrics, un d'escala diferent): és el
-vèrtex de la piràmide sencera de la qual el teu sòlid n'és només un tros.
+trobar en un sol punt: és el vèrtex de la piràmide sencera de la qual el
+teu sòlid n'és només un tros. Aquest punt existeix perquè els dos quadrats
+són paral·lels i concèntrics —un és l'altre a una escala diferent—, amb
+una única excepció que val la pena tenir present: si a=b, els costats són
+verticals i no es troben mai. En aquell cas el sòlid no és cap tronc de
+piràmide sinó un prisma, i el seu volum és simplement a²h.
 
 **Pista 2 — la construcció.** → `fig-074.png`
 Els costats prolongats fins al vèrtex comú, marcats en sanguina — no
@@ -241,21 +268,39 @@ fer servir a q18a, ara apilat en comptes de format per una sola capa.
 **Pista 2 — la construcció.** → `fig-075.png`
 
 **Pista 3 — tanca-ho.**
-A mesura que n (el nombre de discs) creix, cada disc s'aprima i se
-n'ajusten més: la suma dels volums dels discs s'acosta cada cop més al
-volum real del con, sense arribar-hi mai amb un nombre finit de discs.
-Quin és, doncs, el volum del con mateix (la fórmula que ja coneixes),
-comparat amb el d'un cilindre de la mateixa base i alçada?
+Compte a no contestar "s'acosta al volum del con, que ja el sé": això no
+és cap patró, i a més és fer servir la resposta per justificar-la. El que
+et demanen és la successió: quant val la suma dels discs per a cada n?
 
-**Comprovació.** Con de radi 3, alçada 6: volum = (1/3)π(9)(6) = 18π ≈
+Parteix l'alçada en n llesques iguals i fixa't que el disc de la llesca
+número j (comptant des de dalt) té el radi que té el con al SEU sostre, o
+sigui r(j−1)/n, i gruix h/n. Suma'ls:
+
+  Vₙ = Σ π·[r(j−1)/n]²·(h/n) = (πr²h/n³)·(0² + 1² + 2² + … + (n−1)²)
+
+I la suma de quadrats consecutius val (n−1)n(2n−1)/6. Simplifica-ho i
+mira què et queda: sortirà πr²h multiplicat per una expressió amb n que
+pots llegir d'un cop d'ull.
+
+**Comprovació.** El que t'ha de sortir és Vₙ = πr²h·(1/3 − 1/(2n) +
+1/(6n²)), sempre una mica per SOTA d'un terç —els discs van per dins del
+con— i acostant-s'hi tant com vulguis si tries n prou gran. Amb n=2 dona
+1/8 del cilindre; amb n=8 (els set discs que es veuen al dibuix, més la
+llesca de dalt que queda buida), 35/128 ≈ 0,273; amb n=100, 0,32835.
+
+Con de radi 3, alçada 6: volum = (1/3)π(9)(6) = 18π ≈
 56,5. El cilindre corresponent (mateixa base i alçada) fa 3 vegades més:
 54π ≈ 169,6. Comprova que la successió d'aproximacions per discs, per a
 n creixent, s'acosta a 18π i no a 54π.
 
 **I després.** Aquesta mateixa idea —apilar peces conegudes cada cop més
-primes i mirar cap a on tendeix la suma— reapareix, en una forma
-diferent, quan cal justificar per què el volum del casquet esfèric (q62)
-depèn de l'alçada de tall exactament com hi depèn.
+primes i mirar cap a on tendeix la suma— reapareix quan cal justificar per
+què el volum del casquet esfèric (q62) depèn de l'alçada de tall
+exactament com hi depèn. I sobretot a q121, amb la paràbola: allà surt la
+mateixa suma de quadrats i la mateixa expressió, però amb els signes de
+l'altra banda —1/3 + 1/(2n) + 1/(6n²) en lloc de 1/3 − 1/(2n) + 1/(6n²)—
+perquè allà els rectangles sobresurten de la corba en comptes de quedar-hi
+per dins. Val la pena comparar-les quan hi arribis.
 
 ---
 
@@ -273,9 +318,11 @@ No cal que en trobis els cinc: n'hi ha prou que en resolguis un (o dos)
 de manera que el mètode sigui evidentment el mateix per als altres tres.
 
 **Pista 1 — parteix-lo en peces que ja saps mesurar.**
-Uneix el centre del sòlid amb cadascun dels seus vèrtexs (o, més fàcil de
-mesurar, amb el centre de cadascuna de les seves cares). Quantes peces
-n'obtens, per a un tetraedre? I per a un octaedre?
+Uneix el centre del sòlid amb cadascun dels seus **vèrtexs**: això és el
+que el parteix en piràmides, una per cada cara. (Compte a no confondre-ho
+amb el segment que va del centre al centre d'una cara: aquell no talla res,
+però et farà falta de seguida, perquè és l'ALÇADA de cada piràmide.)
+Quantes peces n'obtens, per a un tetraedre? I per a un octaedre?
 
 **Pista 2 — la construcció.** → `fig-076.png`
 El tetraedre i l'octaedre, cadascun partit en piràmides des del seu
@@ -327,12 +374,24 @@ quina forma dibuixen — un cercle, o alguna altra cosa?
 **Pista 3 — tanca-ho.**
 A cada alçada y, la secció de la intersecció NO és un cercle: és un
 QUADRAT de costat 2√(r²−y²) (perquè les dues franges, perpendiculars
-entre si, es tallen en un quadrat). Compara aquesta pila de quadrats amb
-la pila de cercles d'un sol cilindre (Cavalieri, com a q54/q55): quina
-relació hi ha entre l'àrea d'un quadrat de costat 2s i la d'un cercle de
-radi s?
+entre si, es tallen en un quadrat).
 
-**Comprovació.** r=1: volum = (16/3)r³ ≈ 5,33. Compara amb el volum d'un
+Ara et cal un sòlid conegut per comparar-hi, i has d'anar amb compte a
+triar-lo: no serveix el cilindre. Les seccions horitzontals d'un cilindre
+vertical són cercles de radi r SEMPRE EL MATEIX, mentre que els teus
+quadrats es van encongint amb l'alçada. El sòlid que sí que encaixa és
+**l'esfera de radi r** —la que queda inscrita a la intersecció—, perquè la
+seva secció a l'alçada y és un cercle de radi √(r²−y²): exactament el
+mateix √(r²−y²) que et marca el costat del quadrat.
+
+Amb s = √(r²−y²): quina relació hi ha entre l'àrea d'un quadrat de costat
+2s i la d'un cercle de radi s? Comprova que aquesta relació NO depèn de y
+—que és el que et deixa aplicar Cavalieri— i multiplica-la pel volum de
+l'esfera, que ja el saps.
+
+**Comprovació.** La raó entre les dues piles és 4s²/(πs²) = 4/π a totes
+les alçades, així que el volum de la intersecció és (4/π)·(4/3)πr³ =
+**(16/3)r³**. Amb r=1: ≈ 5,33. Compara-ho amb el volum d'un
 sol cilindre de radi 1 i alçada 2: 2π ≈ 6,28 — la intersecció és menor,
 com cal esperar.
 
@@ -370,11 +429,14 @@ compara-la directament amb 4πr².
 **Comprovació.** r=1: esfera=4π≈12,57. Cilindre: lateral=4π, tapes=2π,
 total=6π≈18,85. Ratio: 4π/6π=2/3 exacte.
 
-**I després.** Aquest mateix 2/3 —comparant l'esfera amb el sòlid més
-senzill que la conté ajustada— és exactament el complementari de la
-fracció que vas trobar a q59 (π/6, esfera dins d'un cub): totes dues
-comparacions diuen, de maneres diferents, "l'esfera n'ocupa menys que el
-sòlid recte que la conté".
+**I després.** Aquest 2/3 no té cap relació aritmètica amb el π/6 de q59
+—són dues comparacions diferents, amb dos sòlids continents diferents (allà
+un cub, aquí un cilindre), i π/6 + 2/3 no fa res en particular. El que sí
+que val la pena mirar és una altra cosa: calcula ara la raó de VOLUMS entre
+l'esfera i aquest mateix cilindre. L'esfera fa (4/3)πr³ i el cilindre
+πr²·2r = 2πr³, o sigui... 2/3 una altra vegada. Que la mateixa fracció
+governi alhora les superfícies i els volums és el resultat que Arquimedes
+va demanar que li gravessin a la tomba.
 
 ---
 
@@ -457,9 +519,32 @@ CENTRE —el centre de gravetat "de tota la vida", allà on es creuen les
 dues diagonals—, que és a mitja amplada de l'eix. Compte amb la
 temptació d'agafar el costat oposat a l'eix: aquell és el punt més LLUNY
 de l'eix, no el punt mitjà, i et donaria el doble del volum real.
-Defineix el centroide, en general, com el punt de la figura la distància
-del qual a l'eix, multiplicada per l'àrea i per 2π, reprodueix el volum
-de la figura girada, sigui quina sigui la figura.
+
+Ara, la definició general. Vigila amb la sortida fàcil: dir "el centroide
+és el punt que fa que Pappus funcioni" NO serveix, per dues raons. La
+primera és que no defineix cap punt —només et fixa a quina distància ha de
+ser d'un eix concret, i això és una recta de punts possibles, no un punt.
+La segona és que et deixa sense pregunta: si el defineixes així, Pappus
+surt cert per decret, i l'enunciat et demanava precisament si es POT fer
+que surti cert.
+
+La definició que sí que serveix no parla d'eixos ni de volums: **talla la
+figura en molts trossos petits, tots de la mateixa àrea, i pren la posició
+MITJANA de tots ells.** Aquest és el centroide —el punt on la figura,
+retallada en cartolina, se't quedaria en equilibri damunt d'un dit.
+
+I ara sí que Pappus és una afirmació que es pot comprovar. Mira per què
+funciona: quan gires, cada trosset d'àrea que és a distància r de l'eix
+recorre una circumferència de llargada 2πr, i escombra un volum (trosset) ×
+2πr. Sumant-ho tot, el volum és 2π × (àrea total) × (la MITJANA de les
+distàncies r). I aquesta mitjana de distàncies és exactament la distància
+del centroide a l'eix —perquè el centroide és la posició mitjana i, mentre
+la figura queda tota a una banda de l'eix, la distància a l'eix creix de
+manera uniforme a mesura que t'hi allunyes. Aquí es veu, de passada, per
+què l'enunciat de Pappus exigeix que l'eix NO talli la figura: si la
+tallés, hi hauria trossos a banda i banda, les distàncies deixarien de
+comptar totes en el mateix sentit, i la mitjana ja no seria la distància
+del centroide.
 
 **Comprovació.** Rectangle de costats 2 i 3, girat al voltant del costat
 de llargada 3. El costat perpendicular a l'eix fa 2, així que el centre
@@ -469,10 +554,11 @@ distància(1) = 12π; el cilindre que en surt de veritat té radi 2 i alçada
 hi has posat la distància al costat de més enllà (2) en lloc de la
 distància al centre (1) —és l'error que la Pista 3 t'avisava.
 
-**I després.** Aquesta definició (el punt que fa que Pappus funcioni) és
-el que fa possible q66, q67 i q68, tots en aquest mateix lot: un cop
-decidida la definició, es converteix en una eina que es pot aplicar a
-qualsevol figura, no només al rectangle.
+**I després.** Un cop tens la definició, es converteix en una eina que es
+pot aplicar a qualsevol figura, no només al rectangle: q66 la comprova amb
+un rectangle que no toca l'eix, q67 en fa la versió per a perímetres i
+superfícies, i q68 la fa servir a l'inrevés (coneixent el volum, per trobar
+on és el centroide).
 
 ---
 
@@ -492,26 +578,34 @@ o una línia trencada), pensada perquè Pappus funcioni per a SUPERFÍCIES
 generades en girar.
 
 **Pista 1 — el mateix truc, amb una peça diferent.**
-A q65 vas repartir l'àrea en trossos petits i vas trobar el punt que
-"resumeix" on és, de mitjana, tota aquesta àrea. Aquí, en lloc de trossos
-d'àrea, reparteix el PERÍMETRE en trossets petits de longitud.
+El centroide d'una regió (q65) es construeix repartint l'ÀREA en trossos
+petits i prenent la posició mitjana de tots ells. Aquí fes exactament el
+mateix, però amb una peça diferent: reparteix el PERÍMETRE en trossets
+petits de longitud, i pren la posició mitjana d'aquests.
 
 **Pista 2 — la construcció.** → `fig-081.png`
 
 **Pista 3 — tanca-ho.**
-El centroide del perímetre és el punt la distància del qual a l'eix,
-multiplicada per 2π i per la LLARGADA TOTAL del perímetre (no per
-l'àrea), reprodueix la superfície (no el volum) generada en girar la
-figura.
+El centroide del perímetre és la posició mitjana dels trossets de
+longitud del contorn —definit, doncs, sense parlar d'eixos ni de
+superfícies, igual que a q65. I la versió de Pappus que en surt és: la
+SUPERFÍCIE generada en girar el contorn val (llargada total del perímetre)
+× 2π × (distància d'aquest centroide a l'eix). Fixa't en els dos canvis
+respecte de q65, que van aparellats: on hi havia àrea ara hi ha longitud, i
+on hi havia volum ara hi ha superfície.
+
+I compte amb una cosa: el centroide del perímetre i el centroide de la
+regió NO són el mateix punt en general. Coincideixen quan la figura té prou
+simetria (un rectangle, un cercle), i per això és fàcil no adonar-se'n.
 
 **Comprovació.** Un segment de llargada 3, girat a distància 2 del seu
 punt mitjà: superfície = perímetre(3) × 2π × distància(2) = 12π —
 compara-ho amb la superfície lateral d'un cilindre de radi 2 i alçada 3:
 2π(2)(3)=12π. Coincideixen.
 
-**I després.** q68, la darrera guia d'aquest lot, fa servir aquesta
-mateixa idea —però pensada al revés: coneixes ja el volum del sòlid
-generat, i el que et falta és ON és exactament el centroide.
+**I després.** q68 fa servir aquesta mateixa idea, però pensada al revés:
+allà coneixes ja el volum del sòlid generat, i el que et falta és ON és
+exactament el centroide.
 
 ---
 
@@ -532,7 +626,8 @@ d'un cilindre donen EXACTAMENT el mateix nombre.
 **Pista 1 — situa el rectangle respecte de l'eix.**
 Rectangle d'amplada w (perpendicular a l'eix) i alçada H (paral·lela a
 l'eix), amb el costat més proper a l'eix a distància d. El seu centroide
-—pel que vas definir a q65— és al seu propi centre geomètric.
+—la posició mitjana de tots els seus punts, que és la definició que es
+construeix a q65— és al seu propi centre geomètric, per simetria.
 
 **Pista 2 — la construcció.** → `fig-082.png`
 

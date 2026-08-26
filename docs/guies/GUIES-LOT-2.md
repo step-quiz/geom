@@ -293,7 +293,7 @@ rectes a x=4: aquest surt ≈ 14,705 — més llarg, com havia de ser.
 costats) i volguessis el camí tancat més curt que toqués els tres, la mateixa
 idea —reflectir, un cop per cada costat— hi funciona, encara que amb tres
 reflexions en cadena en lloc de dues. I com ja vas veure prometut a q96: la
-propietat de reflexió d'una el·lipse (q98, en aquest mateix lot) és la
+propietat de reflexió d'una el·lipse (q98) és la
 mateixa idea mirada des d'una corba en lloc de dues rectes.
 
 ---

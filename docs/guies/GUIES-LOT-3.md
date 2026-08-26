@@ -99,16 +99,19 @@ llibre) com a peça d'una altra demostració — val la pena notar-ho.
 **Moviment: digues la mateixa distància de dues maneres** (reaplicat de
 q22/q23, ara amb tres tangències combinades). DEPÈN de q22 i q23.
 
-**Pista 0.** Ja saps dir, de dues maneres, la distància entre els centres de
-dos cercles tangents a la mateixa recta (q23). Aquí en tens **tres** parelles
-de cercles tangents (gran-petit esquerre, gran-petit dret, petit-gran
-esquerre amb gran dret) — i les tres relacions han de ser certes alhora.
+**Pista 0.** El moviment és el de q22 i q23: dir una mateixa distància de
+dues maneres, i igualar-les. Aquí hi ha **tres** parelles de cercles
+tangents entre ells —(R₁, r), (r, R₂) i (R₁, R₂)— i les tres relacions han
+de ser certes alhora.
 
-**Pista 1.** Per a dos cercles de radis a i b, tots dos tangents a la
-mateixa recta i tangents entre ells, la distància horitzontal entre els
-peus (on toquen la recta) és 2√(ab) — és el mateix triangle rectangle de
-q23, amb catets (a−b) i 2√(ab), hipotenusa (a+b). Aplica'l a la parella
-(R₁, r).
+**Pista 1.** La peça que necessites no és cap resultat previ: la construeix
+tu ara, i és de dues línies. Agafa dos cercles de radis a i b, tots dos
+tangents a la mateixa recta i tangents entre ells. Els seus centres són a
+altura a i b sobre la recta, així que la diferència d'altures és (a−b); i
+com que els cercles es toquen, la distància entre centres és (a+b). Amb
+Pitàgores, la distància HORITZONTAL entre centres —que és també la
+distància entre els peus, els punts on cada cercle toca la recta— val
+√((a+b)² − (a−b)²) = √(4ab) = **2√(ab)**. Aplica-ho a la parella (R₁, r).
 
 **Pista 2 — la construcció.** → `fig-024.png`
 Aplica el mateix triangle a la parella (R₂, r) — quin és l'anàleg del catet
@@ -116,8 +119,9 @@ Aplica el mateix triangle a la parella (R₂, r) — quin és l'anàleg del cate
 
 **Pista 3 — tanca-ho.** La mateixa relació val per a (R₂, r). Els peus dels
 tres cercles són tots sobre la mateixa recta, així que la distància entre
-el peu de R₁ i el peu de R₂ (que ja saps que és 2√(R₁R₂), directament de
-q23) ha de ser la suma de les altres dues distàncies parcials (peu de R₁ a
+el peu de R₁ i el peu de R₂ (que és 2√(R₁R₂), la mateixa fórmula de la
+Pista 1 aplicada a la tercera parella) ha de ser la suma de les altres dues
+distàncies parcials (peu de R₁ a
 peu de r, i peu de r a peu de R₂) — perquè r és, precisament, en algun punt
 entremig. Escriu aquesta equació amb els tres √( ) i aïlla r.
 
@@ -161,8 +165,7 @@ particular b=a (l'"el·lipse" és el cercle mateix): πa·a=πa², correcte.
 
 **I després.** Aquest mateix argument de "franges que s'estiren" funciona
 per a qualsevol figura, no només un cercle — és, de fet, una altra manera
-d'arribar al mateix tipus de raonament que Cavalieri (q54, en aquest mateix
-lot) fa servir per a àrees en general.
+d'arribar al mateix tipus de raonament que Cavalieri (q54) fa servir per a àrees en general.
 
 ---
 
@@ -195,7 +198,7 @@ Volum d'una piràmide: (1/3)×2×1=2/3. Dues piràmides: 4/3. Fracció del cub:
 (4/3)/8 = 1/6.
 
 **I després.** El mateix cub amb el mateix sistema de coordenades et servirà
-sense cap canvi per a q52 i q56, en aquest mateix lot.
+sense cap canvi per a q52 i q56.
 
 ---
 
@@ -253,21 +256,30 @@ toca cada cara del cub un cop, pot sortir-ne?
 
 **Pista 3 — tanca-ho.** El pla talla exactament sis arestes del cub (les
 sis que no toquen cap dels dos vèrtexs de la diagonal triada), pel seu punt
-mitjà. Amb coordenades (cub de costat 1, diagonal de (0,0,0) a (1,1,1)):
-comprova que els sis punts mitjans són tots a la mateixa distància del
-centre del cub, i que la distància entre dos punts mitjans consecutius és
-la mateixa arreu.
+mitjà. Amb coordenades (cub de costat 1, diagonal de (0,0,0) a (1,1,1)) els
+sis punts mitjans són (1, ½, 0), (½, 1, 0), (0, 1, ½), (0, ½, 1), (½, 0, 1)
+i (1, 0, ½) — comprova que tots sis compleixen x+y+z = 3/2, que és
+l'equació del pla de tall.
+
+Ara comprova que tots sis són a la mateixa distància del centre del cub, i
+que la distància entre dos consecutius és la mateixa arreu. I fixa't en el
+pas que et falta per poder dir "regular", que no és automàtic: un hexàgon
+amb els sis costats iguals encara podria estar deformat. El que ho tanca és
+tenir les dues coses ALHORA —tots els vèrtexs a la mateixa distància del
+centre i tots els costats iguals—, perquè aleshores els sis angles centrals
+són iguals (a igual radi, cordes iguals subtendeixen angles iguals), i sis
+angles iguals que sumen 360° fan 60° cadascun.
 
 **Comprovació.** Punts mitjans com (1, 0.5, 0) i (0.5, 1, 0): distància
 √((0.5)²+(0.5)²+0²)=√0,5≈0,707. Fes-ho amb un altre parell consecutiu, per
 exemple (0.5,1,0) i (0,1,0.5): √(0,25+0+0,25)=√0,5≈0,707 — igual.
 
 **I després.** Aquest mateix pla (perpendicular a una diagonal principal,
-pel centre) és el que fa servir q56, en aquest mateix lot, per trobar el
+pel centre) és el que fa servir q56 per trobar el
 tetràedre inscrit al cub. El dibuix, però, es mira des d'un angle diferent
 del de q56: exactament al llarg de la diagonal principal, perquè és
 l'única direcció des de la qual el pla de tall es veu en veritable magnitud
-i l'hexàgon surt regular en lloc d'aixafat (rev1, v. `docs/guies/REVISIONS.md`).
+i l'hexàgon surt regular en lloc d'aixafat.
 Si tornes a la figura de q56 hi reconeixeràs el mateix cub dibuixat amb la
 projecció habitual d'aquest quadern: la direcció de mirada és part del
 contingut de cada figura, no un simple estil.
@@ -381,15 +393,36 @@ cada "franja" vertical de la superfície s'allarga en inclinar-se, de la
 mateixa manera que la hipotenusa d'un triangle rectangle és més llarga que
 el catet.
 
-**Comprovació.** Amb un cilindre recte de radi 2, alçada 10: superfície
-lateral 2π(2)(10)=40π≈125,7. Si l'inclines de manera que cada "franja"
-s'allargui per un factor 1,2 (un pendent moderat), la superfície lateral
-inclinada surt ≈150,8 — més gran, mentre que el volum (àrea de la base ×
-alçada vertical) es manté exactament igual als dos.
+Ara vigila amb el pas següent, que és on cau tothom: **que cada franja
+s'allargui per un factor k NO vol dir que la superfície es multipliqui per
+k**. No totes les franges s'inclinen igual respecte de la vora de la base:
+les que queden a la banda per on el cilindre "cau" s'inclinen de ple, i les
+de la banda perpendicular gairebé no ho noten. La superfície creix, sí, però
+menys que el factor k. Si vols un número exacte, canvia el cilindre per un
+prisma: allà cada cara és plana i es pot mesurar sense cap eina nova.
 
-**I després.** Aquest exemple és el bessó en 3D del que trobaràs a q55 (en
-aquest mateix lot): igual que aquí el volum no "sent" la inclinació però la
-superfície sí, allà l'àrea no sentirà els esglaons però el perímetre sí.
+**Comprovació.** Amb un prisma de base quadrada els números surten exactes.
+Base de costat 6, alçada 8: superfície lateral del prisma recte = 4×6×8 =
+192, volum = 36×8 = 288. Ara inclina'l 6 unitats en la direcció d'un dels
+costats de la base. El volum es manté a 288 (Cavalieri: cada tall horitzontal
+continua sent el mateix quadrat). La superfície, en canvi:
+
+- Les dues cares **paral·leles** a la direcció d'inclinació passen de
+  rectangles a paral·lelograms de la mateixa base i la mateixa alçada:
+  6×8 = 48 cadascuna, **igual que abans**.
+- Les dues cares **perpendiculars** a la direcció d'inclinació s'inclinen de
+  ple: passen a ser rectangles de 6 per √(8²+6²) = 10, o sigui 60 cadascuna.
+
+Total: 2(48) + 2(60) = **216**, més que 192. I fixa't que 216/192 = 1,125
+mentre que les arestes s'han allargat per 10/8 = 1,25: la superfície creix,
+però no pel factor de les arestes, justament perquè dues de les quatre cares
+no creixen gens.
+
+**I després.** Aquest exemple és el bessó en 3D del que trobaràs a q55:
+igual que aquí el volum no "sent" la inclinació però la superfície sí, allà
+l'àrea no sentirà els esglaons però el perímetre sí. I totes dues comparteixen
+el mateix parany de fons: les longituds i les superfícies no es deixen sumar
+a ull tan bé com les àrees i els volums.
 
 ---
 
@@ -426,7 +459,7 @@ menys el mateix triangle a l'altre.
 **I després.** Aquest mateix principi, aplicat a volums en lloc d'àrees
 (tallant amb plans en lloc de rectes), és el que permetrà comparar volums
 de sòlids que semblen molt diferents — i és exactament la idea que fa
-servir q53, en aquest mateix lot, per al cas contrari (quan NO es conserva
+servir q53 per al cas contrari (quan NO es conserva
 alguna cosa).
 
 ---

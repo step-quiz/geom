@@ -328,7 +328,7 @@ condició l'enunciat és fals.
 
 **I després.** A q96 retrobaràs la mateixa idea (la perpendicular és el camí més
 curt) fent una feina completament diferent: camins mínims i reflexió. I ja pots
-mirar enrere: de les set preguntes d'aquest lot, quantes has resolt afegint una
+mirar enrere: de les preguntes que ja portes, quantes has resolt afegint una
 línia? Aquesta és, de moment, la teva eina principal.
 
 ---

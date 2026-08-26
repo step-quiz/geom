@@ -224,14 +224,22 @@ Dues imatges més sense enunciat. Totes dues amaguen la mateixa pregunta
 que q27_implicit: mesura el radi petit en funció del gran.
 *(Nota d'aquesta figura: el primer panell es dibuixa com el quadrat inscrit
 estàndard —els 4 vèrtexs sobre el cercle— perquè l'escaneig original
-sembla tenir un detall addicional a dalt que no he pogut resoldre amb
-confiança; v. `NOTA-LOT-6.md`.)*
+sembla tenir un detall addicional a dalt.)*
 
 **Pista 1 — quantes incògnites, quantes condicions.** → `fig-191.png`
-Al segon panell (dos cercles i un quadrat en fila dins un cercle gran):
-si el quadrat té costat 2r (igual que el diàmetre comú dels cercles), i
-tot plegat travessa el diàmetre del cercle gran, quina equació relaciona
-R (el radi gran) amb r?
+Al segon panell hi ha dos cercles iguals de radi r i un quadrat de costat
+2r (el mateix que el diàmetre dels cercles), tots tres en fila. Abans de
+calcular res, fixa't bé en com toquen el cercle gran, que és d'on sortirà
+l'equació: el cercle de l'esquerra hi és tangent per l'extrem esquerre, i
+el quadrat hi arriba **per les dues cantonades de la dreta**, no pel mig
+del seu costat.
+
+Aquesta diferència no és un detall: si el quadrat hi arribés pel mig del
+costat dret, la fila sencera faria 2r+2r+2r = 6r i hauria de valer 2R, o
+sigui R = 3r. Prova de dibuixar-ho i veuràs que és impossible —les
+cantonades del quadrat quedarien FORA del cercle, a distància r√10 del
+centre, que és més que 3r. Quan un model et dona una figura impossible,
+el model és el que falla.
 
 **Pista 2 — la construcció.** → `fig-059.png`
 
@@ -239,7 +247,18 @@ R (el radi gran) amb r?
 Al primer panell: la diagonal del quadrat és el diàmetre del cercle, 2R.
 Si el costat del quadrat és s, quina relació de Pitàgores lliga s amb R?
 
-**Comprovació.** Quadrat de costat s=4: diagonal=4√2, per tant R=2√2≈2,83.
+Al segon panell: posa el centre del cercle gran a l'origen. El cercle
+esquerre és tangent per dins a (−R, 0), o sigui que el seu centre és a
+−R+r; el segon centre, a −R+3r; el quadrat va de −R+4r a −R+6r, amb els
+costats de dalt i de baix a ±r. Escriu que una cantonada de la dreta,
+(−R+6r, r), és sobre la circumferència i simplifica: la R² se t'anirà dels
+dos costats i et quedarà una relació ben neta entre R i r.
+
+**Comprovació.** Primer panell, quadrat de costat s=4: diagonal=4√2, per
+tant R=2√2≈2,83. Segon panell: t'ha de sortir 37r = 12R. Comprova que la
+cantonada hi cau de debò —amb R=37 i r=12, el quadrat arriba fins a x=35,
+i 12²+35² = 144+1225 = 1369 = 37². És el triple pitagòric (12, 35, 37) el
+que fa que aquesta figura tanqui amb números exactes.
 
 **I després.** Aquesta família de puzles de cercles tangents (q22, q27,
 q40) comparteix sempre el mateix moviment: connecta centres, troba un

@@ -209,9 +209,11 @@ pot dependre de cap simetria, ha de valer per a qualsevol polígon **convex**
 
 **Pista 3 — tanca-ho.**
 Des d'un vèrtex d'un polígon de n costats, quantes diagonals hi caben (sense
-comptar els dos costats que ja hi surten)? Cada diagonal afegeix un triangle
-més als dos que ja fan els costats adjacents al vèrtex. Compta els triangles
-en funció de n i multiplica per 180°.
+comptar els dos costats que ja hi surten)? I ara compta els triangles amb
+cura, que és on es despista tothom: cada diagonal nova parteix en dos un dels
+trossos que ja tenies, o sigui que n'afegeix exactament UN. Sense cap
+diagonal tens una sola peça; amb una en tens 2; amb dues, 3. Per tant, amb
+n−3 diagonals en tens **n−2**. Multiplica per 180°.
 
 **Comprovació.** Un hexàgon (n=6): hauries d'obtenir 4 triangles i, per tant,
 720°. Un polígon de 10 costats: 8 triangles, 1440°. La fórmula general hauria
@@ -524,7 +526,7 @@ diferents (a, b i c)?
 
 **Pista 2 — la construcció.** → `043_incentre_tres_triangles.png`
 Els tres segments discontinus curts (els radis cap a cada costat) tenen tots
-la mateixa marca — i, a diferència d'altres figures d'aquest lot, aquí *sí*
+la mateixa marca — i, a diferència del que passa en altres figures, aquí *sí*
 és literalment cert que els tres fan la mateixa longitud, perquè tots tres
 són el radi del mateix cercle inscrit.
 
@@ -582,7 +584,7 @@ del qual coneguis dos costats i l'angle que formen, **inclòs el cas en què
 C és obtús**. Aquí la Pista 1 s'ha de llegir amb compte: si C és obtús, el
 peu de l'altura cau FORA del triangle, no dins. Que la fórmula h = b·sin(C)
 continuï valent en aquest cas no és casualitat — és precisament la raó per
-la qual q87 defineix el sinus d'un angle obtús com sin(180°−C) en lloc de
+la qual el sinus d'un angle obtús es defineix com sin(180°−C) en lloc de
 deixar-lo sense definir: la definició es tria expressament perquè fórmules
 com aquesta no s'hagin de partir en dos casos. És la porta d'entrada
 natural a la llei del sinus i del cosinus si mai hi treballes.
@@ -608,7 +610,7 @@ bisectrius (dels dos angles iguals) fan la mateixa longitud —aquest sentit
 és senzill. Aquí et demanen l'altre sentit: si les dues bisectrius **surten**
 iguals, has de deduir que el triangle era isòsceles. Aquesta implicació
 inversa és la que necessita una demostració real (i no la donarem aquí
-sencera: és massa llarga per a una pista puntual d'aquest lot).
+sencera: és massa llarga per a una pista puntual).
 
 **Pista 2 — la construcció.** → `fig-045.png`
 El triangle del dibuix s'ha fet **expressament no isòsceles** a ull. Hi ha
@@ -622,7 +624,7 @@ iguals en píxels** (és tota la gràcia del teorema: si ho fossin de veritat,
 el triangle seria isòsceles). La ratlleta és la hipòtesi que estàs suposant,
 no el que veus.
 
-**Pista 3 — el que sí pots fer amb les eines d'aquest lot.**
+**Pista 3 — el que sí pots fer amb les eines que ja tens.**
 El que sí està al teu abast és comprovar el resultat numèricament en un cas
 concret, i raonar per què un triangle *molt* escalè (costats molt diferents)
 hauria de donar bisectrius molt diferents —encara que demostrar-ho en
@@ -635,7 +637,7 @@ haurien de sortir clarament diferents entre elles. Això no demostra el
 teorema, però confirma que "diferents costats ⟹ diferents bisectrius" no
 falla en el cas típic, que és el que fa creïble la implicació inversa.
 
-**I després.** Aquest és l'únic resultat d'aquest lot on la demostració
+**I després.** Aquest és un dels pocs resultats del quadern on la demostració
 completa se't queda fora d'abast expressament —val la pena saber que
 existeixen teoremes senzills d'enunciar i difícils de provar, i que
 "contraintuïtivament difícil" no vol dir "fals".
@@ -701,8 +703,9 @@ congruents ni úniques.
 **Moviment: redueix el desconegut al conegut (reaplica q76, amb una peça extra).**
 
 **Pista 0 — ja has resolt un problema molt semblant.**
-A q76 vas partir un triangle en tres triangles des del seu incentre i vas
-sumar-ne les àrees. Aquí faràs exactament el mateix amb un pentàgon regular
+El moviment ja te'l saps de q30: unir el centre amb tots els vèrtexs i sumar
+les àrees dels triangles que en surten. (I el tornaràs a trobar a q76, amb un
+triangle qualsevol i el seu incentre, on els trossos ja no seran iguals.) Aquí faràs exactament el mateix amb un pentàgon regular
 i el seu centre —amb l'avantatge que, com que el pentàgon és regular, els
 cinc triangles que en surten són tots iguals entre ells, no cal sumar cinc
 termes diferents.
@@ -834,8 +837,9 @@ una escala sinó el principi de Cavalieri.
 **Pista 0 — no calculis els dos volums per separat encara.**
 Si ja saps les fórmules del volum del con i de l'esfera, podries fer-ho per
 càlcul directe —però l'objectiu d'aquesta guia és que ho vegis també per
-comparació directa de seccions, que és el mateix moviment que vas fer
-servir a q54 i q55 per comparar volums sense fórmules.
+comparació directa de seccions: tallar els dos sòlids a la mateixa alçada i
+comprovar que els talls tenen la mateixa àrea. És el principi de Cavalieri,
+que trobaràs enunciat per a àrees planes a q54.
 
 **Pista 1 — mira el sòlid que "falta".**
 Dins del cilindre que envolta la semiesfera (mateix radi, mateixa alçada),
@@ -861,9 +865,14 @@ A qualsevol alçada h des de la base, la secció horitzontal del sòlid
 de la semiesfera a la mateixa alçada (aquest és el pas de Cavalieri: dues
 seccions iguals a totes les alçades ⟹ mateix volum). Com que coneixes el
 volum del cilindre i el del con invertit per separat, en pots deduir el de
-la semiesfera —i per tant comparar-lo amb el con inscrit de l'enunciat, que
-és exactament la meitat del con invertit (mateixa base, mateixa alçada,
-mateix vèrtex a un extrem).
+la semiesfera: πR³ − (1/3)πR³ = (2/3)πR³.
+
+I ara compara. Compte amb una temptació aquí: el con invertit auxiliar i el
+con inscrit de l'enunciat NO tenen un el doble de volum que l'altre —tenen
+**exactament el mateix**. Tots dos tenen radi R i alçada R, i (1/3)πR²·R =
+(1/3)πR³ els dos; l'un és l'altre girat de cap per avall. La meitat que has
+de trobar no és entre els dos cons, és entre el con inscrit i la
+semiesfera: (1/3)πR³ contra (2/3)πR³.
 
 **Comprovació.** Amb radi R=3: volum de la semiesfera = (2/3)πR³ = 18π.
 Volum del con inscrit (radi 3, alçada 3) = (1/3)πR²h = 9π. La raó con/semi-
@@ -871,10 +880,10 @@ esfera és 9π/18π = 1/2 exactament —ni més ni menys que la meitat, per a
 qualsevol R.
 
 **I després.** Que la resposta surti exactament 1/2, sense arrodoniments ni
-aproximacions, no és casualitat: és el mateix tipus de relació neta entre
-volums que vas trobar a q54/q55 amb el con i la piràmide, i reapareix cada
-vegada que dos sòlids comparteixen la mateixa "funció d'àrea de secció" a
-una constant de proporcionalitat de distància.
+aproximacions, no és casualitat: passa cada vegada que dos sòlids tenen la
+mateixa àrea de secció a cada alçada, o bé àrees en una proporció fixa. El
+retrobaràs a q62, on el mateix tall entre cilindre i con, fet a una alçada
+qualsevol en lloc de just a l'equador, dona el volum d'un casquet esfèric.
 
 ---
 
@@ -1005,12 +1014,17 @@ només saps que els quatre angles interiors fan 90° cadascun. Has d'esbrinar
 quina condició sobre els **costats** es dedueix necessàriament d'aquesta
 única dada sobre els angles.
 
-**Pista 1 — parteix-lo amb una diagonal, com a q11.**
-Traça una diagonal. Els dos triangles resultants no comparteixen encara cap
-informació evident sobre costats —però sí que pots fer servir que la suma
-d'angles de cada triangle és 180°, combinat amb els angles rectes donats
-als dos vèrtexs originals de cada triangle, per trobar els altres dos
-angles de cadascun.
+**Pista 1 — mira què li passa a cada vèrtex.**
+Pots provar de traçar una diagonal, com a q11, però vigila amb què t'hi
+trobes: la diagonal parteix DOS dels quatre angles rectes per la meitat, i
+només deixa sencers els altres dos —un a cada triangle, no dos. Amb un sol
+angle conegut per triangle no arribes gaire lluny.
+
+Prova millor una altra cosa, que no necessita cap diagonal: no miris els
+triangles, mira les DIRECCIONS dels quatre costats. Si en un vèrtex els dos
+costats formen 90°, què saps de la direcció de l'un respecte de l'altre? I
+si això passa als quatre vèrtexs alhora, què pots dir de dos costats
+oposats, que estan tots dos lligats al mateix costat intermedi?
 
 **Pista 2 — la construcció.** → `053_quadrilater_angles_rectes.png`
 Els quatre angles rectes hi són tots marcats des del principi —no com una
@@ -1021,8 +1035,13 @@ enrere.
 Amb els quatre angles fixats a 90°, els dos costats que arriben a cada
 vèrtex hi arriben perpendiculars. D'aquí es dedueix que costats oposats han
 de ser paral·lels (dues rectes perpendiculars a una tercera són paral·leles
-entre elles), i un cop tens el paral·lelisme, ets en la mateixa situació que
-q11: és un paral·lelogram, i per tant costats oposats iguals. La condició
+entre elles), i un cop tens el paral·lelisme ja tens un paral·lelogram. Que
+en un paral·lelogram els costats oposats siguin iguals no és exactament el
+que q11 enunciava —allà es demostraven iguals els ANGLES oposats—, però surt
+de la mateixa jugada d'una línia: traça una diagonal, els angles alterns
+interns et donen dos triangles congruents (costat comú entre angles iguals),
+i de la congruència surten alhora els angles oposats iguals i els costats
+oposats iguals. La condició
 final sobre les longituds és, doncs, costats oposats iguals dos a dos —el
 mateix que ja sabies d'un rectangle, però ara deduït només a partir dels
 angles, sense donar per fet el paral·lelisme des del principi.

@@ -709,7 +709,7 @@ tangent?
 **Pista 3 — tanca-ho.**
 Dues maneres de mesurar la mateixa distància: (a) PF₁ és una tangent
 des de P a l'esfera 1 —i totes les tangents des d'un mateix punt a una
-esfera tenen la mateixa longitud (q93, aquest mateix lot). (b) El
+esfera tenen la mateixa longitud (q93). (b) El
 segment de la generatriu del con des de P fins al cercle de tangència
 amb l'esfera 1 és TAMBÉ una tangent des de P a aquesta mateixa esfera
 (la generatriu és tangent a l'esfera al llarg de tot el con). Per tant

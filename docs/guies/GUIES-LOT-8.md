@@ -24,7 +24,7 @@ recte en una projecció en perspectiva.
 **Moviment: cas límit.**
 
 **Pista 0 — què has de produir.**
-Una resposta de NO, amb la condició exacta que separa quan sí d'quan no —
+Una resposta de NO, amb la condició exacta que separa quan sí de quan no —
 no n'hi ha prou de dir "no sempre".
 
 **Pista 1 — prova-ho amb un cas que falla.**
@@ -77,13 +77,22 @@ l'inrevés, com a q68: iguala el volum (o la superfície) coneguts amb
 un cop per a cada centroide.
 
 **Comprovació.** r=3: centroide de l'àrea a distància 4r/(3π)≈1,27 del
-centre. Centroide del perímetre a distància 2r/π≈1,91. Fixa't que són
-DIFERENTS — exactament el que q67 ja avisava que calia esperar.
+centre. Centroide de l'arc a distància 2r/π≈1,91. Fixa't que són
+DIFERENTS: el centroide d'una regió i el del seu contorn són dos punts
+distints, i aquí en tens la prova amb xifres.
 
-**I després.** Que aquestes dues distàncies surtin diferents confirma,
-amb un exemple concret, per què calia la doble definició de q65 i q67:
-"el centroide" no és una sola idea, són dues, i aquí ho pots veure amb
-xifres.
+*(Un detall d'enunciat que val la pena decidir tu mateix: aquí s'ha pres
+"el perímetre" com l'arc sol, sense el diàmetre. Si hi comptes també el
+diàmetre, la longitud passa a ser πr+2r i el centroide s'acosta al centre:
+et sortirà 2r/(π+2)≈0,389r. Pappus funciona igual en els dos casos —el
+diàmetre és sobre l'eix i, en girar, no escombra res—, i les dues respostes
+són correctes per a la seva pregunta.)*
+
+**I després.** Que aquestes dues distàncies surtin diferents és el motiu
+pel qual "el centroide" no és una sola idea sinó dues —la d'una regió i la
+del seu contorn—, cadascuna amb la seva versió de Pappus: una per a volums
+i una per a superfícies. q65 i q67 les construeixen amb calma; aquí en
+tens, amb xifres, la raó per la qual calen totes dues.
 
 ---
 
@@ -116,7 +125,7 @@ Comprova que sinA=cosB i cosA=sinB.
 
 **I després.** Com que A+B=90° sempre en un triangle rectangle, això diu
 sin(θ)=cos(90°−θ) per a qualsevol angle agut θ — una identitat que faràs
-servir constantment a la resta d'aquest lot.
+servir constantment d'ara endavant.
 
 ---
 
@@ -142,8 +151,13 @@ que has partit), i l'altre catet per Pitàgores. Que aquest triangle sigui
 rectangle de veritat —és a dir, que la línia que has traçat caigui
 perpendicular al costat oposat— no és cosa del dibuix: és el que es
 demostra a q01 (pista 1), amb dos triangles congruents pels tres costats.
-L'angle de 60° és el que queda al vèrtex original —quin catet hi és
-oposat, quin hi és contigu?
+I ara vigila amb quin dels dos angles aguts és el de 60°, que és
+exactament on es perd tothom. El vèrtex DES D'ON has partit el triangle ja
+no en té 60°: el tall li ha partit l'angle per la meitat i n'hi ha deixat
+**30°**. El de 60° és el de l'altre extrem, un dels dos vèrtexs de la base,
+que el tall no ha tocat. Situa-t'hi i mira: quin catet hi és oposat, quin
+hi és contigu? (Si et surt sin60°=1/2 és que t'has posat al vèrtex
+equivocat i has trobat, sense voler, el sinus de 30°.)
 
 **Comprovació.** Catets 1 i √3, hipotenusa 2: sin60°=√3/2≈0,866,
 cos60°=1/2. Comprova amb Pitàgores: 1²+(√3)²=1+3=4=2² ✓.
@@ -219,21 +233,33 @@ un triangle de manera única): aquí has vist que DOS números (àrea i
 perímetre junts) no basten per fer el mateix — calen tres dades
 independents, no dues, per fixar un triangle.
 
+I encara pots dir-ho més fort. Amb el llenguatge x, y, z tens només DUES
+condicions —x+y+z=35 i xyz=1260— per a TRES incògnites, o sigui que et
+queda un grau de llibertat sencer: no hi ha dos triangles amb perímetre 70
+i àrea 210, n'hi ha **infinits**. Els dos del quadern són simplement els
+dos que surten amb costats sencers. Si vols veure'n un de "lleig", prova
+els costats 28,488… / 23,823… / 17,689…: perímetre 70 i àrea 210 igualment.
+
 ---
 
 ## 7. q77 — *There is actually another technique for measuring lengths, which we used for the diagonal of a regular pentagon. What is it?*
 > De fet hi ha una altra tècnica per mesurar longituds, que ja vam fer servir per a la diagonal del pentàgon regular. Quina és?
 
-**Moviment: dilatació.** DEPÈN de q31/q32 (ja fets).
+**Moviment: dilatació.** DEPÈN de q31/q32/q33.
 
 **Pista 0 — què has de produir.**
-Un NOM per a la tècnica (no un càlcul nou encara): com vas trobar la
-longitud de la diagonal del pentàgon a q32, sense mesurar-la directament?
+Un NOM per a la tècnica (no un càlcul nou encara): a les preguntes del
+pentàgon, com es va trobar la longitud de la diagonal sense mesurar-la
+directament?
 
-**Pista 1 — recorda q32.**
-No vas mesurar la diagonal amb un regle: vas trobar una figura semblant
-—més petita— amagada dins de la gran, i vas plantejar una equació a
-partir de la proporció entre totes dues.
+**Pista 1 — torna al pentàgon.**
+Allà no es va mesurar la diagonal amb un regle. El que es va fer va ser
+trobar una figura semblant —més petita— amagada dins de la gran, i
+plantejar una equació a partir de la proporció entre totes dues. A q33 això
+és literal: la bisectriu d'un angle de la base retalla, dins del triangle
+de costats d i base 1, un altre triangle amb els mateixos tres angles, i
+d'igualar-ne les proporcions en surt d²=d+1. A q32 la mateixa jugada dona
+el costat del pentàgon petit.
 
 **Pista 2 — la construcció.** → `fig-090.png`
 Un exemple nou, diferent del pentàgon: un triangle amb una línia
@@ -241,10 +267,19 @@ paral·lela a un costat, que en talla els altres dos i crea un triangle
 petit semblant a l'original.
 
 **Pista 3 — tanca-ho.**
-La tècnica es diu, en aquest projecte, "dilatació": dues figures
-semblants (una és una versió escalada de l'altra) donen una PROPORCIÓ —
-una equació que relaciona longituds—, sense necessitat de Pitàgores ni de
-mesurar-les una per una.
+La tècnica consisteix a fer servir dues figures **semblants** (una és una
+versió escalada de l'altra) per obtenir una PROPORCIÓ —una equació que
+relaciona longituds—, sense necessitat de Pitàgores ni de mesurar-les una
+per una. És, senzillament, raonar per semblança.
+
+Una nota de vocabulari, perquè aquí hi ha un parany de traducció. El llibre
+en diu *dilation*, que en anglès és el nom de la transformació que agafa una
+figura i l'escala des d'un punt fix. En català aquella transformació es diu
+**homotècia**; "dilatació" vol dir una altra cosa (la que fan els metalls
+amb la calor). Al llarg d'aquestes guies el moviment s'anomena "dilatació"
+per fidelitat al llibre, però el que trobaràs a classe i als llibres de text
+és **semblança** —i, quan es parla de la transformació concreta,
+**homotècia**.
 
 **Comprovació.** Triangle amb costats 6 i 9 des d'un vèrtex; una
 paral·lela al tercer costat que talla el primer costat a 4 unitats del
@@ -296,19 +331,23 @@ guia, per generalitzar Pitàgores a triangles amb un angle obtús.
 ## 9. q79 — *Show that in this case we get c² = a² + b² + 2ab cos C'.*
 > Demostra que, en aquest cas, surt c² = a² + b² + 2ab cos C'.
 
-**Moviment: redueix el desconegut al conegut.** DEPÈN de q78, q87
-(aquest mateix lot), i de Pitàgores (ja fet).
+**Moviment: redueix el desconegut al conegut.** DEPÈN de q78 i de
+Pitàgores (ja fet). *(La definició de sinus i cosinus d'un angle obtús
+mitjançant el suplementari, que aquí es dona per bona, es treballa a q87 —
+que avui és a EXERCICIS_AMAGATS, per això aquesta guia la reprodueix en
+lloc de remetre-s'hi.)*
 
 **Pista 0 — què has de produir.**
 Una generalització de Pitàgores per a un triangle amb un angle obtús C
-—Pitàgores sol només val per al cas de 90°. C' és, com a q87, el
-suplementari de C.
+—Pitàgores sol només val per al cas de 90°. C' és el **suplementari** de C,
+és a dir 180°−C: com que C és obtús, C' és agut, i per això s'hi pot fer
+trigonometria de triangle rectangle de tota la vida.
 
-**Pista 1 — la mateixa alçada de q87.**
-Traça l'alçada des del vèrtex oposat a c, que cau fora del triangle (com
-a q87). Aquesta alçada crea DOS triangles rectangles: un de gran (que
-inclou tot el triangle original) i un de petit (el tros extra, fora del
-triangle original).
+**Pista 1 — una alçada que cau a fora.**
+Traça l'alçada des del vèrtex oposat a c. Com que l'angle C és obtús, aquesta
+alçada NO cau dins del triangle: cau més enllà de l'extrem del costat a.
+Justament per això crea DOS triangles rectangles: un de gran (que inclou tot
+el triangle original) i un de petit (el tros extra que sobresurt).
 
 **Pista 2 — la construcció.** → `fig-092.png`
 El triangle rectangle gran (hipotenusa c): quina és la seva base, en
@@ -359,8 +398,7 @@ dos triangles rectangles).
 **Comprovació.** θ=37°: sin(74°)≈0,961, i 2·sin37°·cos37°≈2(0,602)(0,799)
 ≈0,961 ✓. cos(74°)≈0,276, i 1−2sin²37°≈1−2(0,362)≈0,276 ✓.
 
-**I després.** q85, un parell de guies més endavant en aquest mateix lot,
-fa servir exactament aquesta fórmula del cosinus doble per trobar el
+**I després.** q85 fa servir exactament aquesta fórmula del cosinus doble per trobar el
 sinus i el cosinus de 72° a partir dels de 36°.
 
 ---
@@ -464,18 +502,36 @@ L'angle marcat entre els dos segments (en sanguina): és aquest, i no cap
 altre, l'angle diedre que busques?
 
 **Pista 3 — tanca-ho.**
-Amb les coordenades dels vèrtexs del tetràedre (o mesurant els dos
-segments i el segment que uneix els altres dos vèrtexs), planteja el
-triangle format pels dos peus i el centre, i fes servir el teorema del
-cosinus (q79) per aïllar l'angle diedre.
+El triangle amb què treballaràs té per vèrtexs el **punt mitjà de l'aresta
+compartida** i els **dos vèrtexs oposats**, un de cada cara. Els dos costats
+que surten del punt mitjà són les dues alçades de cara (√3/2 per aresta 1);
+el tercer costat és el segment que uneix els dos vèrtexs oposats. Amb el
+teorema del cosinus (q79) n'aïlles l'angle del punt mitjà, que és el diedre.
+
+Compte amb el tercer costat, que NO és el mateix als dos sòlids: al
+tetràedre els dos vèrtexs oposats són veïns i el segment fa 1 (una aresta);
+a l'octàedre són diametralment oposats i fa √2. D'aquí surt tota la
+diferència entre els dos resultats.
 
 **Comprovació.** Tetràedre regular: angle diedre = arccos(1/3) ≈ 70,53°.
 Octàedre regular: angle diedre = arccos(−1/3) ≈ 109,47°. Comprova que
 aquests dos angles sumen exactament 180°.
 
+I ara la segona meitat de la pregunta, la dels altres tres. Compte amb una
+temptació: la recepta concreta de la Pista 1 —anar del punt mitjà de
+l'aresta al vèrtex oposat de la cara— només dona una perpendicular a
+l'aresta quan la cara és un **triangle equilàter**. En un quadrat, el
+segment del punt mitjà d'un costat al vèrtex oposat va de biaix i no
+serveix; el que hi val és anar al punt mitjà del costat oposat. La idea de
+fons (dos segments, un a cada cara, tots dos perpendiculars a l'aresta
+compartida) sí que és general; la recepta, no. Amb la idea de fons, el cub
+es fa de cap: dues cares que comparteixen una aresta hi són perpendiculars,
+o sigui **90°**. Els altres dos surten arccos(−1/√5) ≈ 116,57° per al
+dodecàedre i arccos(−√5/3) ≈ 138,19° per a l'icosàedre.
+
 **I després.** Aquesta suma de 180° entre l'angle diedre del tetràedre i
 el de l'octàedre no és casualitat — és exactament el que fa possible
-omplir l'espai alternant-ne, la pregunta següent d'aquest lot.
+omplir l'espai alternant-ne, que és el que es pregunta a continuació.
 
 ---
 
@@ -509,11 +565,22 @@ concreta (2+2) és la que realment es fa servir en aquest folrat.
 
 **Comprovació.** 2×70,53°+2×109,47° = 141,06°+218,94° = 360° exacte.
 
-**I després.** A diferència del mosaic pla (q03), on un sol tipus de
-polígon regular (el triangle, el quadrat, l'hexàgon) ja pot folrar tot
-sol, aquí calen DOS sòlids diferents junts —el tetràedre regular sol no
-pot omplir l'espai (el seu angle diedre, 70,53°, no divideix 360° de
-manera exacta cap nombre de vegades).
+**I després.** L'enunciat també et demana si hi ha ALTRES maneres de folrar
+l'espai, i n'hi ha una de molt més senzilla que aquesta: **el cub**. El seu
+angle diedre fa 90°, i 360/90 = 4 exactes, o sigui que quatre cubs es tanquen
+al voltant de cada aresta sense necessitar cap company.
+
+De fet, si passes pel mateix filtre els cinc angles diedres de q81, veuràs
+que el cub és **l'únic** poliedre regular que ho aconsegueix tot sol:
+360/70,53 = 5,10 (tetràedre), 360/90 = 4 (cub), 360/109,47 = 3,29
+(octàedre), 360/116,57 = 3,09 (dodecàedre), 360/138,19 = 2,60 (icosàedre).
+Només el cub dona un enter. Per això el tetràedre necessita l'octàedre: sol
+no hi arriba, i la parella tetràedre+octàedre és la manera de tapar el forat
+que li queda.
+
+I aquí hi ha la diferència de debò amb el pla: a q03 hi havia TRES polígons
+regulars que folraven tots sols (triangle, quadrat, hexàgon), i a l'espai
+n'hi ha un de sol.
 
 ---
 

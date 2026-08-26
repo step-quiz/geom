@@ -168,3 +168,71 @@ assets/img/pistes/fig-054..069.png setze figures noves publicades
 js/data/guies-dades.js             regenerat (+16 entrades, cap altra tocada)
 README.md                          comptador actualitzat (68/130)
 ```
+
+---
+
+## 9. Addenda de la revisió matemàtica — tram 4 (2026-08-25)
+
+### 9.1. El «detall addicional» de fig-059 panell 1: resolt
+
+El §3 deixava obert un detall del panell 1 de q40 («una mena de pestanya
+estreta entre el costat superior i l'arc») i el va dibuixar com el quadrat
+inscrit estàndard. **La pestanya és interpretable, i canvia la pregunta.**
+
+Mesurant l'escaneig `q40_page58_favorite_circle_square.png` a nivell de píxel
+(cercle de centre (670, 671) i R≈660):
+
+- El quadrat gran **no** està girat 45°: està alineat amb els eixos, amb els
+  costats a x≈209 i x≈1134 i les vores superior i inferior a y≈225 i y≈1124.
+  Costat ≈ 918, semidiagonal ≈ 649, contra R = 660 → **quadrat inscrit**, sí,
+  però amb els vèrtexs a les cantonades, no a dalt i a baix. La fig-059 actual
+  el dibuixa girat 45°, cosa que no correspon al llibre.
+- La «pestanya» és un **segon quadrat, petit, dret sobre el costat superior del
+  gran i centrat**: costats verticals a x≈573 i x≈790 (amplada ≈ 217), base
+  sobre la vora del quadrat gran (y≈225) i les dues cantonades de dalt sobre
+  l'arc (distància al centre ≈ 648, contra R = 660).
+
+Amb aquesta lectura la pregunta és el clàssic i té resposta exacta i bonica.
+Amb R=1, el quadrat gran té costat S=R√2 i la vora superior a y=S/2. Imposant
+que la cantonada (t/2, S/2+t) del quadrat petit sigui sobre la circumferència:
+
+```
+(t/2)² + (S/2 + t)² = R²   →   5t² + 4√2·R·t − 2R² = 0   →   t = √2·R/5 = S/5
+```
+
+**El quadrat petit té exactament un cinquè del costat del gran, i per tant
+1/25 de la seva àrea.** Això sí que fa que la pregunta sigui «una de les meves
+preferides»; la lectura actual (quadrat inscrit sol, R = s√2/2) la deixa en un
+exercici de Pitàgores d'una línia.
+
+**No he tocat el text de la guia ni el de la solució per al panell 1**, perquè
+canviar-lo desincronitzaria el text amb `fig-059`, que hauria de tornar-se a
+dibuixar (quadrat dret + quadrat petit al damunt) i això surt de l'abast d'una
+revisió de text. Queda proposat, amb els números fets.
+
+### 9.2. El panell 2 sí que s'ha corregit
+
+El model que la guia i la solució feien servir era **geomètricament
+impossible**: si la fila sencera (cercle + cercle + quadrat, tots de 2r
+d'amplada) travessés el diàmetre, seria 6r = 2R, o sigui R = 3r, i aleshores
+les cantonades del quadrat quedarien a r√10 ≈ 3,16r del centre —fora del
+cercle de radi 3r. A més, la solució en treia R = 2r comptant *un radi* per
+cercle en lloc d'un diàmetre (`r + 2r + r = 4r`), que és un error d'aritmètica
+independent del model.
+
+La lectura que sí que quadra amb l'escaneig: el cercle esquerre és tangent per
+dins a l'extrem esquerre, i el quadrat toca la circumferència **per les dues
+cantonades de la dreta**. Amb el centre a l'origen, la cantonada (−R+6r, r)
+sobre la circumferència dona:
+
+```
+(6r − R)² + r² = R²   →   37r² = 12rR   →   37r = 12R   (R ≈ 3,083·r)
+```
+
+Contrast amb els píxels (R≈655): predit r≈212 i vora dreta del quadrat a
+x≈1289; mesurat r≈220 i vora dreta a x≈1280. La cantonada superior dreta
+predita cau a (1289, 456); mesurada, (1280, 459).
+
+I el motiu pel qual la figura tanca amb números exactes és que hi ha amagat el
+triple pitagòric **(12, 35, 37)**: amb R=37 i r=12 el quadrat arriba a x=35, i
+12²+35² = 1369 = 37².
