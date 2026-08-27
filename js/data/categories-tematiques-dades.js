@@ -734,7 +734,7 @@ window.CLASSIFICACIO_TEMATICA = [
     "id": "q84",
     "collectionId": "geometry-book-1",
     "pagina": 125,
-    "categoriaTematica": "aritmetica_algebra",
+    "categoriaTematica": "triangles",
     "categoriaTematicaCodi": 5
   },
   {
@@ -762,7 +762,7 @@ window.CLASSIFICACIO_TEMATICA = [
     "id": "q88",
     "collectionId": "geometry-book-1",
     "pagina": 132,
-    "categoriaTematica": "aritmetica_algebra",
+    "categoriaTematica": "triangles",
     "categoriaTematicaCodi": 5
   },
   {

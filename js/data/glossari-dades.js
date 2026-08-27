@@ -500,15 +500,15 @@ window.GLOSSARI = {
   "criteris-congruencia-triangles": {
     id: "criteris-congruencia-triangles",
     termes: {
-      ca: ["criteris de congruència de triangles", "costat-costat-costat", "costat-angle-costat", "angle-costat-angle", "CCC", "CAC", "ACA", "SSS", "SAS", "ASA"],
-      en: ["triangle congruence criteria", "SSS", "SAS", "ASA"]
+      ca: ["criteris de congruència de triangles", "costat-costat-costat", "costat-angle-costat", "angle-costat-angle", "angle-angle-costat", "hipotenusa-catet", "CCC", "CAC", "ACA", "AAC", "SSS", "SAS", "ASA", "AAS", "SSA", "cas ambigu"],
+      en: ["triangle congruence criteria", "SSS", "SAS", "ASA", "AAS", "SSA", "ambiguous case"]
     },
     definicio: {
-      ca: "Les condicions mínimes que garanteixen que dos triangles són congruents, sense haver de comprovar els sis elements (tres costats i tres angles) un per un. Les tres més habituals: costat-costat-costat (CCC, si es coneix sovint per les sigles angleses SSS) — els tres costats iguals; costat-angle-costat (CAC / SAS) — dos costats i l'angle que formen; angle-costat-angle (ACA / ASA) — dos angles i el costat entre ells.",
+      ca: "Les condicions mínimes que garanteixen que dos triangles són congruents, sense haver de comprovar els sis elements (tres costats i tres angles) un per un. En són quatre: costat-costat-costat (CCC, sovint conegut per les sigles angleses SSS) — els tres costats iguals; costat-angle-costat (CAC / SAS) — dos costats i l'angle que formen; angle-costat-angle (ACA / ASA) — dos angles i el costat entre ells; i angle-angle-costat (AAC / AAS) — dos angles i un costat que no hi és entremig, que funciona perquè conèixer dos angles ja dona el tercer. Per als triangles rectangles n'hi ha un cinquè, hipotenusa-catet, que de fet és el criteri CCC disfressat: Pitàgores determina el tercer costat. — Igual d'important és saber quines combinacions de tres elements NO són criteris. Dues, i fallen per raons ben diferents. AAA (els tres angles) no determina el triangle perquè fixa la forma i no la mida: dona semblança, no congruència. I SSA (dos costats i un angle que no és el que formen) tampoc, i aquest és el cas delicat: amb l'angle donat agut i el costat que se li oposa més curt que l'altre costat conegut, hi ha dos triangles diferents que compleixen les dades, i per això se'n diu el cas ambigu. Compte, però, a no dir que SSA falla sempre: si l'angle donat és recte o obtús, el costat que se li oposa és el més llarg del triangle i les dades sí que el determinen.",
       en: null
     },
     figura: "gloss-criteris-congruencia.png",
-    relacionats: ["congruencia", "criteris-semblanca-triangles"],
+    relacionats: ["congruencia", "criteris-semblanca-triangles", "teorema-de-pitagores"],
     categoria: "triangles"
   },
   "criteris-semblanca-triangles": {
