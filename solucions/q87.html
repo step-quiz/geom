@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>El sinus d'un angle obtús: una definició forçada — Solució — Geometria</title>
+<meta name="description" content="Definir sin(C) com sin(180°−C) no és una convenció arbitrària: és l'única definició que manté viu el teorema del sinus.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 87 · pàg. 131 del llibre · solució</span>
+  <h1 class="sol-header__title">El sinus d'un angle obtús: una definició forçada</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Com hauríem de definir el sinus d'un angle obtús? Ho podem fer de manera que el teorema del sinus encara es compleixi?</p>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Què hem de produir</p><p class="solucio__text">Una definició, no un càlcul. La definició de sinus de la Qüestió 78 —oposat dividit per hipotenusa— només té sentit per a un angle agut d'un triangle rectangle, i un angle obtús no en pot ser mai un. Cal decidir, doncs, què vol dir sin(120°). I la pregunta en fa una segona, que és la que dona valor a la primera: es pot decidir de manera que el teorema del sinus continuï valent?</p></div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">La perpendicular cau fora del triangle</p><p class="solucio__text">En un triangle ABC amb l'angle C obtús, es deixa caure l'alçada des d'A fins a la <strong>recta</strong> que conté el costat CB. Compte: no des de C —aquella cau a dins i no serveix. Com que C és obtús, el peu cau fora del segment, passat C; se'n dirà H. Al triangle rectangle ACH, l'angle que queda a C val C' = 180°−C, que sí que és agut i, per tant, sí que té sinus en el sentit de sempre.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-091.png" alt="Figura de la construcció — l'alçada des d'A cau fora del segment CB, al peu H" loading="lazy"><figcaption class="solucio__figura-nota">L'angle obtús a C, el seu suplementari marcat a l'esquerra, i el peu H de l'alçada, que cau fora del segment.</figcaption></figure></div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Mirar la mateixa alçada dues vegades</p><p class="solucio__text">Al triangle rectangle ACH: AH = b·sin(C'), amb b = CA. Al triangle rectangle ABH: AH = c·sin(B), amb c = AB —i l'angle que hi ha a B és el mateix B del triangle original, perquè H és sobre la recta BC. Igualant les dues expressions de la mateixa alçada: b/sin B = c/sin C'.</p></div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">La definició no es tria: es dedueix</p><p class="solucio__text">El teorema del sinus demana b/sin B = c/sin C. Comparant-ho amb el que acaba de sortir, no hi ha cap elecció possible: <strong>sin(C) := sin(C') = sin(180°−C)</strong> és l'única definició que el salva. No és una convenció arbitrària ni un caprici de notació —és el preu exacte de voler que la fórmula no s'hagi de partir en dos casos segons si l'angle és agut o obtús. Fet això, l'argument del cas agut es repeteix paraula per paraula i el teorema del sinus val també per als triangles obtusangles.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">Es defineix sin(C) := sin(180°−C) per als angles obtusos, fent servir l'angle agut suplementari, que sí que és angle d'un triangle rectangle de veritat. I sí, el teorema del sinus continua valent —de fet, aquesta és l'única definició amb la qual continua valent: l'alçada des d'A val alhora b·sin(180°−C) i c·sin(B), i igualar-les no deixa cap altra sortida.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Triangle amb C=120°, a=CB=5 i b=CA=4. L'alçada des d'A val 4·sin60°≈3,464, i el peu H cau 4·cos60°=2 més enllà de C, o sigui a 5+2=7 de B; Pitàgores dona c=√(7²+3,464²)=√61≈7,810. Ara els tres quocients: c/sin C = 7,810/0,866 ≈ 9,02; sin B = 3,464/7,810 ≈ 0,4435 i b/sin B = 4/0,4435 ≈ 9,02; i amb l'alçada des de B (5·sin60°≈4,330), sin A ≈ 4,330/7,810 ≈ 0,5544 i a/sin A = 5/0,5544 ≈ 9,02. Els tres donen el mateix. De propina, A≈33,7° i B≈26,3°, i 33,7+26,3+120 = 180.</p></div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">I després</p><p class="solucio__text">Aquesta mateixa construcció —l'alçada que cau fora i l'angle suplementari— és la que fa servir la Qüestió 79 per generalitzar Pitàgores als triangles amb un angle obtús. El cosinus demana el mateix tracte, però amb una diferència de signe que val la pena entendre: la definició que fa que la fórmula de la Qüestió 79 s'escrigui com una de sola, c² = a²+b²−2ab·cos C, és cos(C) := −cos(180°−C). Per què el sinus no porta el menys i el cosinus sí? Perquè l'alçada és una longitud i no canvia de banda quan C passa de 90°, mentre que la projecció sobre la base sí que ho fa.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>

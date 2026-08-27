@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La identitat que lliga el sinus i el cosinus — Solució — Geometria</title>
+<meta name="description" content="Per què sin²θ+cos²θ=1: és el teorema de Pitàgores dividit per la hipotenusa al quadrat.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="../css/tokens.css?v=5">
+<link rel="stylesheet" href="../css/base.css?v=5">
+<link rel="stylesheet" href="../css/components.css?v=5">
+<link rel="stylesheet" href="sol.css?v=1">
+</head>
+
+<body>
+
+<header class="sol-header">
+  <span class="eyebrow">Qüestió 84 · pàg. 125 del llibre · solució</span>
+  <h1 class="sol-header__title">La identitat que lliga el sinus i el cosinus</h1>
+</header>
+
+<section class="sol-enunciat">
+  <p class="question-entry__prompt">Quina és la relació entre el sinus i el cosinus d'un angle?</p>
+</section>
+
+<section class="solucio">
+  <div class="solucio__marc">
+    <span class="solucio__eyebrow">Solució</span>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Què hem de produir</p><p class="solucio__text">Una identitat: una igualtat entre sin θ i cos θ que valgui per a <strong>qualsevol</strong> angle agut, no una que només funcioni per a un angle concret. Convé no confondre-la amb la relació de la Qüestió 78, que lliga els sinus i cosinus dels <em>dos</em> angles d'un triangle rectangle; aquí es tracta d'un sol angle.</p></div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Torna a la definició</p><p class="solucio__text">Amb el triangle rectangle de sempre i θ un dels angles aguts: sin θ = catet oposat / hipotenusa, i cos θ = catet contigu / hipotenusa. Les dues raons comparteixen el mateix denominador, i els dos numeradors són justament els dos catets —o sigui que hi ha una relació entre ells que ja es coneix.</p><figure class="solucio__figura"><img src="../assets/img/pistes/fig-088.png" alt="Figura de la construcció — el triangle rectangle amb el catet oposat, el contigu i la hipotenusa" loading="lazy"><figcaption class="solucio__figura-nota">Els dos catets i la hipotenusa: tot el que fa falta hi és.</figcaption></figure></div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Pitàgores, dividit</p><p class="solucio__text">El teorema de Pitàgores diu que oposat² + contigu² = hipotenusa². Dividint els dos costats de la igualtat per hipotenusa²: (oposat/hipotenusa)² + (contigu/hipotenusa)² = 1. Els dos parèntesis són exactament sin θ i cos θ, de manera que <strong>sin²θ + cos²θ = 1</strong>.</p></div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Fins on arriba</p><p class="solucio__text">L'argument fa servir un triangle rectangle de veritat, i per tant θ ha de ser un angle agut: és l'única cosa que fa falta perquè les dues definicions tinguin sentit. Per a angles obtusos la identitat continua valent, però primer cal decidir què volen dir sin i cos d'un angle obtús —que és el que fa la Qüestió 87 amb el sinus.</p></div>
+    <div class="solucio__resultat">
+      <span class="solucio__resultat-eyebrow">En resum</span>
+      <p class="solucio__resultat-text">sin²θ + cos²θ = 1, per a qualsevol angle agut θ. No és una identitat nova: és el teorema de Pitàgores dividit per la hipotenusa al quadrat. Els dos catets, mesurats en unitats d'hipotenusa, són precisament el sinus i el cosinus, i Pitàgores diu que els seus quadrats sumen 1.</p>
+    </div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">Comprovació</p><p class="solucio__text">Triangle 3-4-5. Per a l'angle que té el 3 al davant: sin θ = 3/5 = 0,6 i cos θ = 4/5 = 0,8, i 0,6² + 0,8² = 0,36 + 0,64 = 1 ✓. Per a l'altre angle agut les dues raons s'intercanvien —sin = 0,8, cos = 0,6— i la suma dels quadrats torna a ser 1, com havia de ser: la identitat no distingeix quin dels dos angles es tria.</p></div>
+    <div class="solucio__pas"><p class="solucio__pas-titol">I després</p><p class="solucio__text">Aquesta identitat és la que diu que el punt de coordenades (cos θ, sin θ) cau sempre sobre una circumferència de radi 1: si els quadrats de les dues coordenades sumen 1, la distància a l'origen val exactament 1. Aquest és el pas que permet, més endavant, definir el sinus i el cosinus com les coordenades d'un punt que es mou per aquella circumferència, en lloc de dependre d'un triangle rectangle. Fora de l'abast d'aquest quadern, però val la pena saber cap on porta.</p></div>
+  </div>
+</section>
+
+<footer class="sol-footer">
+  <p>Solució redactada a partir de les quatre pistes de la guia d'aquest exercici — geometria, llibre complet.</p>
+</footer>
+
+</body>
+</html>
