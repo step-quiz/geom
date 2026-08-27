@@ -34,23 +34,33 @@ catorze moviments que calen ja existien.
 ---
 
 ## 1. q91 — *How exactly does the dilation factor depend on the angle between the planes?*
-> Com depèn exactament el factor de dilatació de l'angle entre els plans?
+> Com depèn exactament el factor d'escala de l'angle entre els plans?
 
-**Moviment: redueix el desconegut al conegut.**
+**Moviment: redueix el desconegut al conegut** (però mira't també la
+l'estirament de q112 i q114: el que surt d'aquí és
+exactament això, un factor que no és el mateix en totes les direccions —o
+sigui que no és cap homotècia).
 
 **Avís 3D.** Un angle recte no es veu recte en una projecció en
 perspectiva.
 
 **Pista 0 — què has de produir.**
-Una fórmula: el factor pel qual s'allarga (o s'escurça) una longitud
-quan es projecta perpendicularment d'un pla a un altre, en termes d'un
-sol angle —l'angle entre els dos plans.
+Una fórmula per al factor pel qual s'allarga o s'escurça una longitud quan
+es projecta perpendicularment d'un pla a un altre. Però abans que res,
+compte amb la paraula "factor": aquí **no n'hi ha un de sol**. La primera
+feina és descobrir de què depèn, a part de l'angle entre els plans.
 
-**Pista 1 — prova-ho amb un cas fàcil.**
+**Pista 1 — prova-ho amb un cas fàcil, i després amb un altre.**
 Si els dos plans coincideixen (angle 0°), cap longitud canvia: factor 1.
 Si el pla girés fins quedar perpendicular a l'altre (angle 90°), un
 segment que hi fos perpendicular es projectaria a un sol punt: factor 0.
 Quina funció trigonomètrica val 1 a 0° i 0 a 90°?
+
+Ara la pregunta incòmoda, amb els plans a 90°: què li passa a un segment
+que estigui **damunt de la recta on els dos plans es tallen**? Aquella
+recta és als dos plans alhora, i per tant el segment no es mou gens: factor
+1, no 0. Dos segments de la mateixa longitud, dins del mateix pla, amb
+factors diferents.
 
 **Pista 2 — la construcció.** → `fig-099.png`
 Un segment sobre el pla inclinat, perpendicular a la línia on es
@@ -58,26 +68,42 @@ tallen els dos plans, i la seva projecció (perpendicular) sobre el pla
 horitzontal.
 
 **Pista 3 — tanca-ho.**
-El segment, la seva projecció i el tros de pla entre tots dos formen un
-triangle rectangle: la hipotenusa és el segment original, un catet és
-la projecció. L'angle entre els plans és exactament l'angle d'aquest
-triangle rectangle que toca el segment original. Quina raó
-trigonomètrica relaciona el catet (projecció) amb la hipotenusa
-(original)?
+Per al segment del dibuix —el perpendicular a la recta de tall— el segment,
+la seva projecció i el tros de pla entre tots dos formen un triangle
+rectangle: la hipotenusa és el segment original, un catet és la projecció,
+i l'angle entre els plans és exactament l'angle d'aquest triangle que toca
+el segment original. La raó entre catet i hipotenusa et dona el factor
+**cos θ**, i aquest és el més petit de tots.
 
-**Comprovació.** Angle entre plans de 60°, segment de 8 unitats
-perpendicular a la línia de tall: projecció = 8×cos60° = 4 unitats.
-Angle de 0°: factor cos0°=1, cap canvi.
+Amb això ja pots descriure què fa la projecció a qualsevol figura: encongeix
+per un factor cos θ **en la direcció perpendicular a la recta de tall**, i
+no toca res **en la direcció de la recta de tall**. És un estirament, doncs,
+amb dos factors diferents segons la direcció —el mateix tipus de
+transformació que trobaràs a q112. Un segment en qualsevol altra direcció
+queda entremig, entre cos θ i 1.
 
-**I després.** Aquest mateix factor cos(angle) és el que fa que una
-moneda circular, vista de gairebé de cantell, es vegi com una el·lipse
-molt aixafada —la relació entre els dos eixos de l'el·lipse aparent és
-exactament aquest cosinus.
+I encara hi ha un número que sí que és el mateix per a tothom: **l'àrea**.
+Si el rectangle que projectes té un costat en cada una d'aquestes dues
+direccions, un costat es queda igual i l'altre es multiplica per cos θ, o
+sigui que l'àrea es multiplica exactament per cos θ, sigui quina sigui la
+figura. Això sí que és un factor únic.
+
+**Comprovació.** Angle entre plans de 60°. Un segment de 8 unitats
+perpendicular a la recta de tall es projecta a 8×cos60° = 4 unitats. Un
+segment de 8 unitats **damunt** de la recta de tall es projecta a 8: no
+canvia. I un de 8 a 45° de la recta de tall es projecta a 6,32 —entremig,
+com havia de ser. L'àrea, en canvi, sempre queda multiplicada per 0,5.
+
+**I després.** Aquí tens la comprovació de tot plegat: una moneda circular,
+vista de gairebé de cantell, es veu com una el·lipse molt aixafada, i la
+relació entre els dos eixos de l'el·lipse és exactament aquest cosinus. Que
+es vegi el·lipse i no cercle petit **és** la prova que el factor no és el
+mateix en totes direccions: si ho fos, un cercle donaria sempre un cercle.
 
 ---
 
 ## 2. q92 — *Do projections in any direction always produce dilations?*
-> Les projeccions en qualsevol direcció, sempre produeixen dilatacions?
+> Les projeccions en qualsevol direcció, sempre produeixen homotècies?
 
 **Moviment: contraexemple.**
 
@@ -86,35 +112,52 @@ perspectiva.
 
 **Pista 0 — què has de produir.**
 Una resposta de NO, amb un exemple concret de projecció que NO sigui
-una dilatació (és a dir, que no multipliqui totes les longituds pel
+una homotècia (és a dir, que no multipliqui totes les longituds pel
 mateix factor constant).
 
-**Pista 1 — pensa en la projecció central, no la paral·lela.**
-q91 projectava perpendicularment (totes les línies de projecció
-paral·leles entre si). Què passa si totes les línies de projecció
-passen, en canvi, per un sol punt fix (una "làmpada"), en lloc de ser
-paral·leles?
+**Pista 1 — hi ha dues maneres de fallar, i q91 ja et va ensenyar la primera.**
+A q91 vas veure que fins i tot la projecció perpendicular entre dos plans
+inclinats deixa una direcció intacta i n'encongeix una altra per cos θ: ja
+no és cap homotècia. O sigui que la resposta és **no** abans i tot
+de canviar de direcció de projecció.
+
+La segona manera és pitjor, i val la pena veure-la perquè és de naturalesa
+diferent. Què passa si les línies de projecció, en lloc de ser paral·leles
+entre si, passen totes per un sol punt fix —una "làmpada"?
 
 **Pista 2 — la construcció.** → `fig-100.png`
 Dos plans, un punt de projecció, i dos punts sobre el primer pla a
 diferents distàncies del punt de projecció, projectats sobre el segon.
 
 **Pista 3 — tanca-ho.**
-En una projecció central, un punt més a prop del punt de projecció es
-mou "menys" en proporció que un punt més lluny —el factor d'ampliació
-depèn de la distància al punt de projecció, no és constant per a tota
-la figura. Compara com es mouen dos segments iguals situats a
-distàncies diferents del punt de projecció.
+En una projecció central, l'ombra d'un segment paral·lel a la pantalla
+s'amplia pel factor (distància de la làmpada a la pantalla) dividit per
+(distància de la làmpada al segment). O sigui que **com més a prop de la
+làmpada, més gran surt l'ombra** —és el que fas amb la mà quan vols que
+l'ombra ompli la paret. Si el pla de partida està inclinat, els seus punts
+són a distàncies diferents de la làmpada i cada tros s'amplia pel seu
+compte.
 
-**Comprovació.** Amb el punt de projecció a distància 2 d'un segment i
-a distància 6 d'un altre segment igual (ambdós paral·lels al pla
-d'arribada), els factors d'ampliació respectius NO coincideixen —depèn
-de 1/distància, no és el mateix nombre per als dos segments.
+Fixa't en la diferència amb q91: allà el factor depenia de la **direcció**
+del segment i era el mateix a tot arreu de la figura; aquí depèn d'**on** és
+el segment. Dues maneres distintes de no ser una homotècia.
 
-**I després.** Aquesta distinció —projecció paral·lela (sempre una
-dilatació uniforme) contra projecció central (una dilatació que varia
-punt a punt)— és exactament la diferència entre un plànol arquitectònic
-(paral·lela) i una fotografia (central), i és la raó per la qual les
+I ja que hi ets, mira on és de veritat la frontera. No és en si les línies de
+projecció són paral·leles o no: és en si **els dos plans** ho són. Amb els
+plans paral·lels, tant l'una com l'altra donen una homotècia de debò —q100 en
+calcula el factor. Amb els plans inclinats, cap de les dues.
+
+**Comprovació.** Làmpada, pantalla a 12 unitats, i dos segments iguals
+paral·lels a la pantalla, un a distància 2 de la làmpada i l'altre a
+distància 6. Factors: 12/2 = 6 i 12/6 = 2. El de més a prop surt **tres
+vegades més gran**, no més petit. Cap factor únic, doncs, cap homotècia.
+
+**I després.** Aquesta distinció —el que decideix si una projecció és
+una homotècia o no— és exactament la diferència entre un plànol
+arquitectònic i una fotografia. Compte a no resumir-ho malament: no és
+que la projecció paral·lela sigui sempre una homotècia (q91 ja et va
+ensenyar que entre plans inclinats no ho és); el que passa és que un
+plànol es dibuixa amb els dos plans paral·lels, i llavors sí, i és la raó per la qual les
 línies paral·leles d'una via de tren semblen convergir en una
 fotografia (q104) però no en un plànol.
 
@@ -133,9 +176,11 @@ Un argument que valgui per a QUALSEVOL de les infinites rectes tangents
 des d'un mateix punt exterior —no la comprovació d'un sol cas.
 
 **Pista 1 — el radi i la tangent són perpendiculars.**
-Igual que en un cercle, el radi que va del centre al punt de tangència
-és perpendicular a la recta tangent en aquell punt (encara que ara
-estiguis en tres dimensions). Amb el centre O, el punt exterior P, i un
+Igual que en un cercle —és el que vas demostrar a q95—, el radi que va del
+centre al punt de tangència és perpendicular a la recta tangent en aquell
+punt. En tres dimensions continua valent, i per la mateixa raó: T és el
+punt de la recta tangent més proper a O, i el segment més curt d'un punt a
+una recta hi és perpendicular. Amb el centre O, el punt exterior P, i un
 punt de tangència T qualsevol: quin angle té el triangle OPT al vèrtex
 T?
 
@@ -152,11 +197,19 @@ els mateixos per a totes les tangents, PT també ho és.
 l'esfera: 6. Longitud de qualsevol tangent: √(10²−6²)=√64=8, la mateixa
 per a totes.
 
-**I després.** El mateix argument, amb el mateix triangle rectangle,
-és el que ja vas fer servir per a tangents des d'un punt a un cercle en
-2D —aquí no canvia res essencial en passar a tres dimensions, només cal
-comprovar que el pla que conté O, P i T sempre existeix (tres punts no
-alineats determinen un pla).
+**I després.** El mateix argument, amb el mateix triangle rectangle, val
+paraula per paraula per a les dues tangents des d'un punt a un cercle en
+2D; el quadern no t'ho ha demanat mai com a qüestió a part, però ja veus
+que és el mateix teorema una dimensió més avall. En passar a tres
+dimensions no canvia res essencial: només cal veure que O, P i T són
+sempre tres punts no alineats —ho són, perquè l'angle a T és recte i el
+triangle no pot degenerar— i que per tant hi ha un pla que els conté, dins
+del qual tot passa com al pla de sempre.
+
+Fixa't també en el que això vol dir de la figura sencera: els punts de
+tangència no estan escampats de qualsevol manera, sinó tots a la mateixa
+distància de P **i** tots a la mateixa distància d'O. Formen, doncs, una
+circumferència.
 
 ---
 
@@ -238,8 +291,9 @@ recta i qualsevol segona recta) i comprova que torna a sortir 35/27.
 **I després.** Aquest fet —que la raó doble sobrevisca la projecció
 mentre que distàncies i raons simples no ho fan— és la base de tot el
 que ve després en aquest bloc: q101 el reformula com una pregunta sobre
-quants punts es poden moure lliurement, i q106 li posa nom
-(«invariant projectiu»).
+quants punts es poden moure lliurement. I ja li pots posar el nom que
+li correspon: una quantitat que sobreviu qualsevol projecció és un
+**invariant projectiu**, i la raó doble és el primer que trobes.
 
 ---
 
@@ -259,24 +313,34 @@ canvia si el punt de projecció queda ENTRE els dos plans.
 
 **Pista 1 — segueix un sol punt amb un paràmetre.**
 Posa el punt de projecció a alçada p, un pla a alçada 0 i l'altre a
-alçada h. Un punt a distància x0 de l'eix, al pla 0, es projecta a
-distància x0·(p−h)/p al pla h (surt de resoldre on la recta des del
-punt de projecció talla el segon pla). Prova-ho amb p més gran que h
+alçada h. Un punt de coordenada x0 respecte de l'eix, al pla 0, es
+projecta a la coordenada x0·(p−h)/p al pla h (surt de resoldre on la
+recta des del punt de projecció talla el segon pla). Coordenada, i no
+distància: el signe hi és part de la resposta. Prova-ho amb p més gran que h
 (fora d'entremig) i després amb p entre 0 i h.
 
 **Pista 2 — la construcció.** → `fig-104.png`
 
 **Pista 3 — tanca-ho.**
 Quan p és fora de l'interval [0,h], el factor (p−h)/p és positiu: la
-figura es projecta ampliada o reduïda però SENSE capgirar-se —una
-dilatació ordinària, com q91/q92 ja et van fer veure per a la
-projecció paral·lela. Quan p és entre 0 i h, aquest mateix factor
-esdevé NEGATIU: la figura es projecta capgirada (com la imatge
-d'una càmera fosca), no només escalada.
+figura es projecta ampliada o reduïda però SENSE capgirar-se. I val la
+pena que t'hi aturis, perquè aquesta és la primera homotècia de debò
+del bloc: a q91 el factor depenia de la direcció del segment, i
+a q92 depenia d'on era el segment; aquí no depèn de res, és el mateix
+número per a tota la figura i per a totes les direccions. El que ho
+arregla no són les línies de projecció, que continuen sortint totes d'un
+sol punt: és que ara els dos plans són PARAL·LELS. Quan p és entre 0 i
+h, aquest mateix factor esdevé NEGATIU: la figura es projecta capgirada
+(com la imatge d'una càmera fosca), no només escalada.
 
 **Comprovació.** h=10. Amb p=−2 (fora, per sota): factor=(−2−10)/(−2)=6,
-positiu. Amb p=5 (entremig): factor=(5−10)/5=−1, negatiu —la figura
-surt exactament invertida i de la mateixa mida.
+positiu. Amb p=20 (fora, per sobre): factor=(20−10)/20=0,5, també
+positiu —la figura surt a la meitat i dreta. Amb p=5 (entremig):
+factor=(5−10)/5=−1, negatiu —la figura surt exactament invertida i de la
+mateixa mida. Acosta ara el punt de projecció al primer pla, p=0,001: el
+factor es dispara a −9999, i a p=0 exacte ja no hi ha projecció
+possible, perquè el punt de projecció cauria damunt de la figura
+mateixa.
 
 **I després.** Aquest capgirament és el mateix fenomen que fa que la
 imatge dins d'una cambra fosca (o la retina de l'ull) surti invertida:
@@ -299,34 +363,44 @@ DUES respostes diferents: SÍ per a tres punts (sempre es pot trobar
 una projecció que hi arribi), i en general NO per a quatre —amb la raó
 exacta de per què quatre punts són diferents de tres.
 
-**Pista 1 — compta graus de llibertat.**
-Triar un punt de projecció O i una segona recta dona prou llibertat per
-moure tres punts on vulguis (tres condicions, prou paràmetres lliures
-per satisfer-les). Un quart punt, en canvi, ja no és lliure: la seva
-posició queda determinada pels altres tres i per la projecció
-concreta. Quina cosa, ja calculada a q99, és la que fixa aquest quart
-punt?
+**Pista 1 — compta graus de llibertat, però compta bé.**
+Amb els tres punts d'arribada ja donats, la segona recta no la tries tu:
+és la que ells determinen. Només et queda triar O, i això són dos
+números per a tres condicions. Fixa't, a més, en una cosa que limita
+molt una projecció sola: si les dues rectes es tallen en un punt X,
+aleshores la recta que va d'O a X és la mateixa per a totes dues, o
+sigui que **X es projecta damunt d'ell mateix**. Una projecció no pot
+moure aquell punt de cap manera. Amb dues projeccions encadenades, en
+canvi, sí que el pots moure —i aleshores els tres punts van on vulguis.
+
+Un quart punt, en canvi, no s'arregla per molt que encadenis: la seva
+posició queda determinada pels altres tres. Quina cosa, ja calculada a
+q99, és la que el fixa?
 
 **Pista 2 — la construcció.** → `fig-105.png`
 
 **Pista 3 — tanca-ho.**
-Un cop fixada la imatge de tres punts A,B,C (sempre possible, perquè
-tres punts no porten cap invariant que els lligui), la imatge D′ del
+Un cop fixada la imatge de tres punts A,B,C (sempre possible, encara
+que et calguin dues projeccions seguides, perquè tres punts no porten
+cap invariant que els lligui), la imatge D′ del
 quart punt D ha de complir que la raó doble (AC·BD)/(BC·AD) sigui la
 MATEIXA abans i després (q99) —això determina D′ de manera única. Per
 tant, quatre punts només es poden projectar a quatre punts amb la
 mateixa raó doble, no a qualssevol quatre.
 
-**Comprovació.** Amb A,B,C fixats en qualsevol posició, la raó doble
-original (per exemple 35/27, com a q99) prediu exactament on ha de
-caure D′ —comprova-ho triant tres imatges A′,B′,C′ arbitràries i
-resolent D′ perquè la raó doble surti 35/27.
+**Comprovació.** Fes-la amb números. Parteix dels quatre punts de q99,
+a x=0, 2, 5 i 9, amb raó doble 35/27. Envia A→0, B→1 i C→3 (tres
+imatges triades a l'atzar) i mira on ha d'anar D: imposant
+(3−0)(d−1)/((3−1)(d−0)) = 35/27 surt d = 81/11 ≈ 7,364, i **no hi ha
+cap altre valor possible**. Si en lloc de 35/27 haguessis volgut, per
+exemple, 2, hauries obtingut un altre d —o sigui que els quatre punts
+d'arribada no els pots triar tots quatre.
 
 **I després.** Aquesta és la primera vegada, en aquest bloc, que es veu
 EXPLÍCITAMENT que la raó doble no és només "una cosa que es conserva":
 és la mesura completa de la llibertat que perdem en passar de tres
-punts a quatre. q106 li posa nom formal («invariant projectiu») i en
-demana un altre exemple.
+punts a quatre. El nom formal d'una quantitat així —una que cap
+projecció no pot tocar— és **invariant projectiu**.
 
 ---
 
@@ -339,9 +413,8 @@ demana un altre exemple.
 perspectiva.
 
 **Pista 0 — què has de produir.**
-DUES respostes. Segurament esperes un contrast, perquè q101 te'n va
-donar un (tres punts sobre una recta, sí; quatre, no). Aquí no n'hi ha:
-la resposta és **SÍ totes dues vegades**. Tots els triangles són el
+DUES respostes. Segurament n'esperes un contrast —un sí i un no. Aquí
+no n'hi ha: la resposta és **SÍ totes dues vegades**. Tots els triangles són el
 mateix projectivament, i tots els quadrilàters també. La pregunta
 interessant, doncs, canvia: si a la recta la llibertat s'acabava al
 quart punt, per què al pla encara no s'ha acabat?
@@ -369,8 +442,8 @@ altre (passant pel quadrat, si cal, en dos passos).
 On s'acaba, doncs, la llibertat? Al **cinquè** punt. Amb quatre punts al
 pla encara pots decidir on van tots quatre; el cinquè ja no el pots
 moure, queda determinat pels altres quatre i per la projecció que has
-triat. Exactament el mateix fenomen de q101, però un punt més tard,
-perquè el pla té una dimensió més que la recta.
+triat. És el mateix fenomen que trobaràs sobre una recta a q101, però
+un punt més tard, perquè el pla té una dimensió més que la recta.
 
 **Comprovació.** No numèrica, i val la pena fer-la de veritat: fes una
 foto d'un terra de rajoles o d'un tauler d'escacs des de molt de costat.
@@ -386,7 +459,7 @@ al cinquè sobre un pla no és una coincidència: és la mateixa
 comptabilitat feta en una dimensió i en dues. Cada dimensió que
 afegeixes et regala exactament un punt més de llibertat abans que
 apareguin els invariants —les quantitats que la projecció ja no pot
-tocar, com la raó doble de q106. Recorda també que aquest "sí" és sobre
+tocar, com la raó doble que calcularàs a q99. Recorda també que aquest "sí" és sobre
 quadrilàters mirats com a quatre punts en posició general (cap tres
 alineats): la projecció respecta quins punts hi ha, no si la figura et
 sembla ben proporcionada.
@@ -402,33 +475,54 @@ sembla ben proporcionada.
 perspectiva.
 
 **Pista 0 — què has de produir.**
-Una resposta de NO, amb el cas exacte on falla: quin costat del polígon
-original ha de tenir una propietat concreta (en relació amb el punt de
-projecció) perquè la seva imatge deixi de ser un segment normal.
+Una resposta de NO, amb els casos exactes on falla. N'hi ha **dos**, i
+són de naturalesa oposada: en un la figura s'aplana i en l'altre s'obre.
+Has de saber dir, per a cadascun, quina relació concreta entre el
+polígon i el punt de projecció el provoca.
 
 **Pista 1 — pensa en un sol costat primer.**
 Un costat qualsevol del polígon es projecta, en general, a un altre
-segment. Però si aquell costat, allargat, passés exactament pel PUNT DE
-PROJECCIÓ mateix —què li passaria a la seva imatge?
+segment. Hi ha dues maneres que això falli, i val la pena separar-les
+des del principi perquè són ben diferents. La primera: què passa si dos
+vèrtexs del polígon i el punt de projecció queden **alineats**? La
+segona: hi ha algun punt del pla que no tingui imatge enlloc? (Pensa en
+quina direcció hauria de sortir el raig des del punt de projecció
+perquè no arribés mai a la recta o al pla d'arribada.)
 
 **Pista 2 — la construcció.** → `fig-107.png`
 
 **Pista 3 — tanca-ho.**
-Si la recta que conté un costat passa pel punt de projecció, tots els
-punts d'aquell costat es projecten des d'ells mateixos —la seva "recta
-de projecció" és la mateixa recta que ja contenia el costat. En el
-llenguatge que ja coneixes de q104/q105, aquell costat es projecta
-"cap a l'infinit": dos dels vèrtexs del polígon original es converteixen
-en un sol punt (o en cap punt ordinari) a la imatge, i el que hauria de
-ser un polígon tancat de n costats deixa de tancar-se com a tal.
+**Primera manera: el col·lapse.** Si un costat, allargat, passa pel punt
+de projecció, els seus dos extrems comparteixen el mateix raig i van a
+parar **al mateix lloc**. Aquell costat es projecta a un sol punt, i el
+que era un triangle et queda aplanat en un segment. No s'escapa res: al
+contrari, dues coses que eren diferents s'ajunten. Ja no és un polígon.
 
-**Comprovació.** Amb un triangle i un punt de projecció allunyat de
-qualsevol de les rectes que contenen els seus costats, la projecció és
-sempre un triangle normal. Si mous el punt de projecció fins que quedi
-exactament sobre la prolongació d'un costat, aquell costat "desapareix"
-a l'infinit en la imatge —comprova-ho seguint numèricament què passa
-amb la distància de projecció d'un punt d'aquell costat quan el punt de
-projecció s'hi acosta (tendeix a infinit).
+**Segona manera: la fugida.** Un punt X no té imatge quan el raig que hi
+va des del punt de projecció **no arriba mai** a la recta d'arribada, és
+a dir, quan aquell raig és paral·lel a la recta d'arribada. Els punts
+del pla que compleixen això formen tota una recta —la recta de fuga—, i
+qualsevol polígon que la travessi es trenca en la imatge i se'n va a
+l'infinit per tots dos costats. En el llenguatge de l'espai projectiu de
+q105, aquella recta és la que va a parar als punts de l'infinit. Si has
+mirat mai una foto d'un terra de rajoles, la recta de fuga té un nom que
+ja coneixes: l'horitzó.
+
+Dues respostes de "no", doncs, i per raons oposades: en una la figura
+s'aplana, en l'altra s'obre.
+
+**Comprovació.** Fes els dos casos amb coordenades. Recta d'arribada
+y=4, punt de projecció O=(6,0).
+
+*Col·lapse.* Triangle de vèrtexs A=(1,1), B=(4,2) i C=(5,1). Els punts
+B i C són alineats amb O, i efectivament es projecten tots dos a
+x=2, el mateix punt; A se'n va a x=−14. La imatge del triangle és el
+segment de x=−14 a x=2: aplanada, no trencada.
+
+*Fugida.* Ara el punt X=(1,0), a la mateixa alçada que O: el raig d'O a
+X és horitzontal i **no talla mai** y=4, o sigui que X no té imatge. La
+recta de fuga és, doncs, y=0. Acosta-t'hi i mira com se'n va: X=(1,½)
+dona x=−34, X=(1,0,1) dona x=−194, i X=(1,0,01) dona x=−1994.
 
 **I després.** Aquest és el primer lloc del bloc on "un punt se'n va a
 l'infinit" dins d'una figura real, no com a curiositat abstracta —q105
@@ -447,9 +541,10 @@ lot, el cas del costat que passa pel punt de projecció).
 perspectiva.
 
 **Pista 0 — què has de produir.**
-Una descripció qualitativa concreta: tres rectes que, un cop
-projectades, ja NO són paral·leles entre si, sinó que tenen alguna
-altra relació geomètrica exacta —quina?
+Una descripció qualitativa concreta de com queden les tres rectes un cop
+projectades. I una segona part que la pregunta no diu però que hi és:
+**passa sempre?** Abans de tancar-la, busca't tu mateix una manera que
+falli.
 
 **Pista 1 — pensa en les vies del tren.** → `fig-204.png`
 Imagina't dret entre dues vies de tren paral·leles, mirant cap on
@@ -466,15 +561,41 @@ totes tres (la seva direcció comuna), pel mateix mecanisme que ja vas
 veure a q103: la direcció compartida es projecta a un únic punt
 ordinari, anomenat punt de fuga.
 
-**Comprovació.** Tres rectes horitzontals paral·leles, projectades des
-d'un punt per sobre seu cap a un pla inclinat: numèricament, comprova
-que les tres imatges, prolongades, es tallen totes en el MATEIX punt
-—no en tres punts diferents.
+**Ara la lletra petita, que és mig la pregunta.** Aquell punt de fuga
+existeix si el raig que surt del punt de projecció en la direcció comuna
+arriba al pla d'arribada. I hi ha un cas en què no hi arriba: quan la
+direcció comuna de les tres rectes és **paral·lela al pla d'arribada**.
+Aleshores no hi ha punt de fuga i les tres imatges continuen sent
+paral·leles entre si. No és cap raresa de laboratori: en una foto d'una
+via de tren, els dos rails convergeixen —la seva direcció se'n va cap al
+fons— però les travesses, que travessen la imatge de dreta a esquerra,
+surten paral·leles. Les has vistes mil vegades.
+
+I fixa't que les dues respostes són, en el fons, la mateixa: amb el
+llenguatge de q105, dues imatges paral·leles també "es tallen", però al
+seu propi punt de l'infinit. El punt de fuga se n'hi ha anat.
+
+**Comprovació.** Amb coordenades: pla de partida z=0, punt de projecció
+O=(0,0,1) i pla d'arribada y=1. Un punt (x,y,0) es projecta a la posició
+u=x/y, w=1−1/y dins del pla d'arribada.
+
+*Cas concurrent.* Pren les tres rectes x=1, x=2 i x=−1, de direcció
+comuna (0,1) —les que se'n van cap al fons. Les imatges surten w=1−u,
+w=1−u/2 i w=1+u, i les tres passen per **(u,w)=(0,1)**: hi ha punt de
+fuga.
+
+*Cas paral·lel.* Ara les rectes y=2, y=3 i y=4, de direcció comuna (1,0),
+que és paral·lela al pla d'arribada. Les imatges surten w=1/2, w=2/3 i
+w=3/4: tres rectes horitzontals, **paral·leles**, que no es tallen
+enlloc. Compara els dos casos i veuràs on és exactament la diferència.
 
 **I després.** Aquest és, literalment, el punt de fuga de la pintura en
-perspectiva: qualsevol conjunt de rectes paral·leles del món real
-convergeix, en un dibuix o fotografia, cap a un únic punt. La geometria
-projectiva no en fa cap excepció: n'és la manera formal de dir-ho.
+perspectiva: cada conjunt de rectes paral·leles del món real té el seu
+punt de fuga propi al quadre —i com que hi ha una direcció per a cada
+punt de fuga, un quadre en perspectiva en pot tenir un, dos o més. Les
+direccions que es queden paral·leles al quadre són justament les que un
+pintor dibuixa paral·leles: és el que distingeix una perspectiva
+"frontal" d'una "d'angle".
 
 ---
 
@@ -488,20 +609,25 @@ mateix lot, el punt de fuga com a punt a l'infinit real).
 perspectiva.
 
 **Pista 0 — què has de produir.**
-Una resposta de SÍ —a diferència del pla ordinari, on dues rectes
-paral·leles no es tallen mai— amb l'explicació exacta de quin punt
-"nou" fa que sempre es tallin.
+Una resposta de SÍ, **dins d'un pla** —a diferència del pla ordinari, on
+dues rectes paral·leles no es tallen mai—, amb l'explicació exacta de
+quin punt "nou" fa que sempre es tallin. El "dins d'un pla" no és un
+detall menor i el trobaràs a l'"I després": a l'espai de tres dimensions
+la resposta canvia.
 
 **Pista 1 — què li falta al pla ordinari.**
 En el pla ordinari, dues rectes paral·leles són l'única excepció a "dues
-rectes sempre es tallen en un punt". q104 ja et va donar cada direcció
-del pla el seu propi "punt de fuga". Si a CADA direcció del pla
-li afegeixes aquest punt (un punt "a l'infinit" per direcció), què
-els passa a dues rectes paral·leles?
+rectes sempre es tallen en un punt". Una sola excepció, i tot just per
+un pèl: inclina una de les dues un mil·lèsim de grau i ja es tallen,
+encara que sigui a quilòmetres d'aquí. Mira on se'n va aquell punt de
+tall a mesura que les tornes paral·leles. Si a CADA direcció del pla li
+inventes un punt nou —un punt "a l'infinit" per direcció, allà on se'n
+va aquell tall—, què els passa a dues rectes paral·leles?
 
 **Pista 2 — la construcció.** → `fig-109.png`
 Diverses rectes gairebé paral·leles convergint totes cap a un mateix
-punt marcat "∞", tal com ja ho vas veure amb el punt de fuga a q104.
+punt marcat "∞". És la mateixa imatge que et fa un carrer llarg mirat
+de cap a cap, o dues vies de tren.
 
 **Pista 3 — tanca-ho.**
 Dues rectes secants es tallen, com sempre, en un punt ordinari. Dues
@@ -511,12 +637,16 @@ tallen allà. En l'espai projectiu (el pla ordinari més un punt a
 l'infinit per cada direcció), literalment CAP parella de rectes deixa
 de tallar-se.
 
-**Comprovació.** Dues rectes de pendent 3 (paral·leles entre si) no es
-tallen mai en el pla ordinari (cap solució real al sistema
-d'equacions). En l'espai projectiu, totes dues "arriben" al mateix punt
-a l'infinit associat a la direcció de pendent 3 —comprova que és
-l'ÚNIC punt a l'infinit que comparteixen amb qualsevol tercera recta de
-pendent diferent (que arriba a un punt a l'infinit distint).
+**Comprovació.** y=3x i y=3x+5 són paral·leles: iguala-les i et queda
+0=5, sense solució —al pla ordinari no es tallen. Al pla projectiu totes
+dues arriben al mateix punt de l'infinit, el de la direcció de pendent
+3, i és allà on es tallen. Afegeix-hi ara una tercera recta de pendent
+diferent, y=x. Aquesta se'n va a un altre punt de l'infinit, el del
+pendent 1, i per tant **no** es troba amb les altres dues allà: s'hi ha
+de trobar en punts ordinaris, i efectivament hi surt —talla y=3x a
+(0,0) i y=3x+5 a (−2,5 · −2,5). Cap parella no se n'escapa: o
+comparteixen direcció i es tallen a l'infinit, o no la comparteixen i
+es tallen aquí.
 
 **I després.** Primer, la lletra petita d'aquest "sempre", que val la pena
 saber ara i no d'aquí a dos anys. Tot el que has fet aquí passa DINS D'UN
@@ -571,17 +701,23 @@ altra recta, la deixa exactament igual —ho vas demostrar tu mateix a
 q99. Cap distància individual, ni cap raó simple de dues distàncies, té
 aquesta propietat.
 
-**Comprovació.** Amb els mateixos quatre punts de q99 (distàncies
-0,2,5,9), la raó doble val 35/27 abans i després de QUALSEVOL projecció
-que triïs —repeteix-ho amb un punt de projecció i una recta d'arribada
-diferents dels que vas fer servir llavors i comprova que segueix sortint
-35/27.
+**Comprovació.** Amb els mateixos quatre punts de q99 (a 0, 2, 5 i 9),
+la raó doble val 35/27. Ara refés-ho amb una projecció **completament
+diferent** de la de q99: punt de projecció a (4,−3) i recta d'arribada
+y=2. Els quatre punts van a parar a −8/3, 2/3, 17/3 i 37/3, que no
+s'assemblen gens als d'abans. I la raó doble:
+(17/3+8/3)(37/3−2/3) / ((17/3−2/3)(37/3+8/3)) = (25/3)(35/3) /
+((15/3)(45/3)) = 875/675 = **35/27**. Exactament el mateix. Aquesta és
+la comprovació que fa la pregunta: no que es conservi *en una*
+projecció, sinó que es conservi *sigui quina sigui*.
 
 **I després.** Trobar aquest invariant és el pas que fa possible
 demostrar coses sobre projeccions sense haver de repetir un càlcul de
-triangles cada vegada —q107 el fa servir (implícitament, via el
-mecanisme de q105) per identificar amb precisió quins dos punts d'un
-cercle es projecten a l'infinit quan es forma una hipèrbola.
+triangles cada vegada. Compte, però, a no atribuir-li més del que fa:
+q107, que identifica quins dos punts d'un cercle se'n van a l'infinit en
+formar-se una hipèrbola, **no** fa servir la raó doble —li basta el
+mecanisme de fugida de q103 i q105. Són dues eines diferents del mateix
+calaix: una diu què es conserva, l'altra què desapareix.
 
 ---
 
@@ -611,8 +747,8 @@ quines rectes que hi passen són "les rectes de projecció"?
 **Pista 3 — tanca-ho.**
 Les "rectes de projecció" des del vèrtex són exactament les generatrius
 del con (les rectes rectes que el formen). Dues d'aquestes generatrius
-—les que passen pels dos punts del cercle base on el con és paral·lel
-al pla de tall— no arriben MAI al pla de tall (com dues rectes
+—exactament les dues que són paral·leles al pla de tall— no arriben MAI
+al pla de tall (com dues rectes
 paral·leles que no es tallen, en el sentit ordinari). Els dos punts del
 cercle per on passen aquestes dues generatrius són exactament els que
 se'n van "a l'infinit" —i per això la hipèrbola té dues branques que
@@ -628,9 +764,11 @@ pla és encara més inclinat que qualsevol generatriu, hi ha DOS punts
 que hi són paral·lels —i la secció és una hipèrbola de dues branques.
 
 **I després.** Aquesta identificació és exactament el que fa falta per
-a q109: les esferes de Dandelin es col·loquen tocant el con al llarg
-d'aquests mateixos cercles base, i el seu argument depèn de saber
-exactament on i com el pla de tall es relaciona amb el con.
+a q109: les esferes de Dandelin s'encaixen dins del con
+tocant-lo cadascuna al llarg d'un cercle propi —no d'aquest cercle base,
+sinó del que li toca segons la mida de l'esfera— i tangents al pla de
+tall. El que hi aprofitaràs d'aquí no és el cercle, sinó la relació
+entre les generatrius i el pla de tall que acabes de fixar.
 
 ---
 
@@ -660,11 +798,12 @@ més.
 Perpendicular a l'eix: cercle. Inclinant la paret fins que quedi
 paral·lela a UNA generatriu del con de llum (la vora del feix): la
 taca es converteix en una paràbola, oberta per un sol costat. Inclinant
-encara més (com q107 ja et va fer descobrir): dues generatrius es
-tornen paral·leles a la paret alhora, i encara que aquí només hi ha un
-con (no un con doble com a q107/q109), la vora del feix de llum es veu
-"obrir-se" cap als dos costats de manera característica d'una branca de
-hipèrbola.
+encara més, hi ha DUES generatrius que es tornen paral·leles a la paret
+alhora, i la vora del feix se't veu "obrir-se" cap als dos costats: és
+una hipèrbola. Amb un matís honest, que veuràs de seguida: una
+hipèrbola de debò té dues branques, i amb una llanterna només en pots
+veure una, perquè la llanterna fa un sol con i la hipèrbola sencera
+demana el con doble —el que continua a l'altra banda del vèrtex.
 
 **Comprovació.** Amb la paret perpendicular a l'eix de la llanterna:
 taca circular (comprova que el contorn manté la mateixa distància al
@@ -673,8 +812,10 @@ paral·lel a la paret: el contorn deixa de tancar-se per aquell costat.
 
 **I després.** Aquest experiment físic —una llanterna i una paret— és
 la manera més directa de veure per què les tres còniques comparteixen
-nom de família: totes surten del mateix con, només canviant l'angle
-del pla de tall, exactament com q107 i q109 ho demostren amb rigor.
+nom de família: totes surten del mateix con, i l'única cosa que canvia
+és l'angle del pla que el talla. Guarda-t'ho, perquè més endavant q107 i
+q109 tornaran a aquesta mateixa figura per demostrar amb rigor el que
+aquí hauràs vist projectat a la paret.
 
 ---
 
@@ -696,9 +837,12 @@ un pla que no travessa totes dues nappes) és de veritat una el·lipse
 QUALSEVOL punt P de la corba de tall, PF₁+PF₂ és una constant.
 
 **Pista 1 — dues esferes, cadascuna tocant el con i el pla.**
-Dins de cada nappa del con (per damunt i per sota del pla de tall) hi
-cap exactament una esfera tangent tant a la superfície del con com al
-pla de tall. Anomena F₁ i F₂ els dos punts on cada esfera toca el pla
+Compte amb un detall que sovint es diu malament: com que el pla de tall
+no travessa les dues nappes, **totes dues esferes són a la mateixa
+nappa** —una encaixada entre el vèrtex i el pla, l'altra més enllà del
+pla, allunyant-se del vèrtex. Cadascuna és tangent alhora a la
+superfície del con i al pla de tall, i de cada mena n'hi cap
+exactament una. Anomena F₁ i F₂ els dos punts on cada esfera toca el pla
 —aquests seran els focus. Per a un punt P qualsevol de la corba de
 tall, quina relació hi ha entre PF₁ i la distància, MESURADA SOBRE LA
 SUPERFÍCIE DEL CON, entre P i el cercle on la primera esfera hi és
@@ -712,18 +856,26 @@ des de P a l'esfera 1 —i totes les tangents des d'un mateix punt a una
 esfera tenen la mateixa longitud (q93). (b) El
 segment de la generatriu del con des de P fins al cercle de tangència
 amb l'esfera 1 és TAMBÉ una tangent des de P a aquesta mateixa esfera
-(la generatriu és tangent a l'esfera al llarg de tot el con). Per tant
+(l'esfera toca el con al llarg de tot un cercle, i per tant cada
+generatriu la toca en un punt, el d'aquell cercle). Per tant
 PF₁ = aquest tros de generatriu. Igual per PF₂ amb l'esfera 2, cap a
 l'altre cercle de tangència. Suma PF₁+PF₂: és exactament la longitud
 del tros de generatriu ENTRE els dos cercles de tangència —**la
 mateixa per a QUALSEVOL generatriu**, perquè els dos cercles de
 tangència són fixos (no depenen de P). Constant trobada.
 
-**Comprovació.** Amb un con d'obertura 30° i un pla de tall concret,
-la suma PF₁+PF₂ calculada per a diversos punts P de la corba de tall
-(numèricament, amb les coordenades 3D reals) surt EXACTAMENT la
-mateixa —per exemple, en un cas verificat, 12,86 unitats per a
-qualsevol dels punts provats.
+**Comprovació.** Amb un cas del tot concret, perquè el puguis refer.
+Con de semiobertura 30° amb el vèrtex a l'origen i l'eix vertical, i
+pla de tall z = 4 + x/2 (menys inclinat que les generatrius, o sigui
+el·lipse). Les dues esferes surten centrades a l'eix, a altures 2,566 i
+9,071 —totes dues per damunt del vèrtex, com deia la Pista 1—, amb
+radis 1,283 i 4,535. Toquen el pla a F₁=(−0,574; 0; 3,713) i
+F₂=(2,028; 0; 5,014), i toquen el con al llarg de dos cercles situats a
+2,222 i a 7,855 del vèrtex, mesurats sobre la generatriu. La constant
+ha de ser, doncs, la diferència: 7,855 − 2,222 = **5,633**. Tria ara
+punts P de la corba de tall i suma: per a P=(3,247; 0; 5,623) surt
+5,633; per a P=(0; 2,309; 4) surt 5,633; per a P=(−1,792; 0; 3,104)
+surt 5,633. Sempre el mateix, i sempre el tros de generatriu.
 
 **I després.** Aquest argument —el mateix tram de recta, mesurat de dues
 maneres, forçat a ser igual (q93 per a la tangència, geometria del con
@@ -767,12 +919,23 @@ de franc.
 (x₀,−y₀) i (−x₀,−y₀) també ho satisfan —substitueix-los directament a
 l'equació i comprova que dona el mateix resultat en els quatre casos.
 
+**Torna ara a la pregunta, que deia "TANTA" simetria.** Una el·lipse
+també té dos eixos i la rotació de 180°: en nombre no en té menys. El
+que sorprèn de la hipèrbola és **on porten** aquelles simetries. La
+reflexió en l'eix vertical i la rotació de 180° no deixen cada branca al
+seu lloc: **s'intercanvien les dues branques**. Dibuixades, les branques
+semblen dues corbes separades que no es toquen enlloc, i la simetria diu
+que són la mateixa corba i que hi ha moviments del pla que converteixen
+l'una en l'altra exactament. Aquesta és la resposta al "tanta": no en
+té més que l'el·lipse, però n'hi ha que travessen un buit que semblava
+infranquejable.
+
 **I després.** Aquest mateix argument (només potències parelles ⇒
 simetria) és el que ja explica per què una el·lipse x²/a²+y²/b²=1 té
 també dos eixos de simetria, i per què una paràbola y²=4px en té només
 UN (hi apareix x a la primera potència, no x²) —la mateixa tècnica,
-aplicada a les tres còniques, prediu correctament quantes simetries
-té cadascuna.
+aplicada a les tres còniques, prediu correctament quantes simetries té
+cadascuna.
 
 ---
 
@@ -784,25 +947,32 @@ mateix lot, els dos eixos de simetria que fan que el "diamant" sigui
 realment un rombe).
 
 **Pista 0 — què has de produir.**
-Una identificació exacta de què és "el diamant" (el quadrilàter que
-formen les dues asímptotes i les tangents als vèrtexs) i una prova que
-el seu costat val exactament el mateix que la distància del centre a
-cada focus.
+Una identificació exacta de què és "el diamant" i una prova que el seu
+costat val exactament el mateix que la distància del centre a cada
+focus. Comença per la identificació, que és on es cau: al voltant d'una
+hipèrbola hi ha **dos** quadrilàters que criden l'atenció, i només un
+d'ells és el diamant.
 
 **Pista 1 — el diamant té els vèrtexs sobre els dos eixos.**
-Amb els vèrtexs de la hipèrbola a distància a del centre (sobre un
-eix) i les seves tangents tallant les asímptotes a distància b del
-mateix centre (sobre l'altre eix), el "diamant" és el quadrilàter amb
-aquests quatre punts com a vèrtexs. Amb l'orientació de sempre —la de
-x²/a² − y²/b² = 1, amb els vèrtexs sobre l'eix horitzontal— són (a,0),
-(0,b), (−a,0), (0,−b). Quin
-tipus de quadrilàter és, exactament, si les seves diagonals es tallen
-en angle recte i es reparteixen per la meitat?
+El que **no** és: el rectangle que formen les dues asímptotes amb les
+tangents als vèrtexs. Aquell existeix i és útil —té els vèrtexs a
+(±a,±b) i les asímptotes en són les diagonals—, però els seus costats
+fan 2a i 2b, no pas c, o sigui que no és el que busques.
+
+El diamant té els seus quatre vèrtexs **sobre els eixos**: els dos
+vèrtexs de la hipèrbola, a distància a del centre, i els dos punts a
+distància b del centre sobre l'altre eix. Amb l'orientació de sempre
+—la de x²/a² − y²/b² = 1, amb els vèrtexs sobre l'eix horitzontal— són
+(a,0), (0,b), (−a,0) i (0,−b). Comprova de passada que els seus costats
+són paral·lels a les asímptotes: el que va de (a,0) a (0,b) té pendent
+−b/a, exactament el d'una d'elles. Quin tipus de quadrilàter és,
+exactament, si les seves diagonals es tallen en angle recte i es
+reparteixen per la meitat?
 
 **Pista 2 — la construcció.** → `fig-115.png`
 
 **Pista 3 — tanca-ho.**
-Aquest quadrilàter és un rombe (les seves quatre costats són iguals),
+Aquest quadrilàter és un rombe (els seus quatre costats són iguals),
 perquè les seves diagonals —de longituds 2a i 2b— es tallen
 perpendicularment pel seu punt mitjà comú (el centre). El costat
 d'aquest rombe és la hipotenusa d'un triangle rectangle de catets a i
@@ -817,8 +987,10 @@ hipèrbola.
 
 **I després.** Aquesta identitat —costat del rombe igual a c— és el
 mateix triangle rectangle (a, b, c) que ja apareixia amagat a l'equació
-de la hipèrbola des del principi; converteix una relació algebraica en
-una relació que es veu directament en un dibuix, tancant el bloc de
-projecció i còniques amb la mateixa idea que l'obria a q91: mesurar una
-longitud amb un triangle rectangle ben triat.
+de la hipèrbola des del principi, i converteix una relació algebraica en
+una que es veu directament en un dibuix. Guarda't el triangle, perquè a
+q113 el retrobaràs per a l'el·lipse amb els papers canviats: allà la
+hipotenusa serà a i el focus caurà **entre** els vèrtexs (c²=a²−b²),
+mentre que aquí la hipotenusa és c i el focus cau **fora** dels vèrtexs
+(c²=a²+b²). El mateix triangle, llegit de dues maneres.
 

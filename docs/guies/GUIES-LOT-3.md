@@ -140,8 +140,11 @@ només tres en línia.
 ## 4. q46 — *What is the area of an ellipse?*
 > L'àrea d'una el·lipse de semieixos a i b.
 
-**Moviment nou: dilatacio** — estirar (o encongir) una figura per un factor
+**Moviment nou: estirament** — estirar (o encongir) una figura per un factor
 fix en una sola direcció multiplica la seva àrea per aquell mateix factor.
+Compte a no dir-ne "homotècia": una homotècia escala igual en totes les
+direccions i, per tant, no canvia la forma de res. Això d'aquí sí que la
+canvia —d'un cercle en fa una el·lipse—, i és justament per això que serveix.
 
 **Pista 0.** Ja coneixes l'àrea d'un cercle. Una el·lipse de semieixos a i
 b es pot obtenir a partir d'un cercle de radi a estirant-lo verticalment

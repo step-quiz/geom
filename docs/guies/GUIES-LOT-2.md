@@ -131,9 +131,9 @@ molt més subtil). Depèn de q08c.
 "Insuficient" es refuta amb **un** exemple: dos triangles diferents (no
 congruents) que comparteixin els dos costats i l'angle donats. Ara bé —
 compte, perquè aquí "un angle" vol dir un angle que **no** és l'angle entre
-els dos costats donats (si ho fos, seria el cas SAS de q08c-recíproc, i
-aquell sí que determina el triangle). Aquesta distinció és tota la dificultat
-de la pregunta.
+els dos costats donats. Si ho fos, seria el criteri costat-angle-costat (SAS)
+que ja portes de classe, i aquell sí que determina el triangle. Aquesta
+distinció és tota la dificultat de la pregunta.
 
 **Pista 1 — mou-ho amb un compàs, mentalment.** → `fig-202.png`
 Fixa un angle a un vèrtex A, i un dels costats donats sortint d'A cap a un
@@ -151,16 +151,25 @@ diferents — mira els angles a C i C′, o el costat AC. Dos costats i un angle
 (no comprès) et donen, en general, **dues** respostes possibles, no una.
 Compara amb el cas SAS: per què allà el compàs només pot tallar en un lloc?
 
-**Comprovació.** Amb angle A = 30°, AB = 8 i BC = 5, el teorema del cosinus et
-dona una equació de segon grau per a AC amb **dues** solucions positives:
-AC ≈ 9,93 i AC ≈ 3,93. Comprova-ho tu mateix — i fixa't que si canviessis
-"dos costats i un angle" per "dos costats i l'angle comprès" (SAS), la
-mateixa equació només tindria una solució possible.
+**Comprovació.** Amb angle A = 30°, AB = 8 i BC = 5 no et cal cap fórmula
+nova. Deixa caure la perpendicular des de B fins al segon costat i
+digues-li H al peu: AH = 8·cos30° ≈ 6,93 i BH = 8·sin30° = 4. Com que
+BC = 5, Pitàgores al triangle BHC dona HC = √(5²−4²) = 3. Els dos talls
+del compàs són a 3 a banda i banda de H —H n'és el punt mitjà—, i per
+tant AC ≈ 6,93+3 = 9,93 o bé AC ≈ 6,93−3 = 3,93. Aquest "±" és
+l'ambigüitat, escrita. Amb l'angle comprès (SAS) no hi hauria cap arrel
+a treure i, per tant, cap ±.
 
-**I després.** Dels cinc criteris clàssics de congruència de triangles (SSS,
-SAS, ASA, AAS...), SSA és l'únic que falla — per això té nom propi ("el cas
-ambigu") en trigonometria, i reapareix cada vegada que resols un triangle
-amb el teorema del sinus.
+**I després.** Els criteris clàssics de congruència són SSS, SAS, ASA i AAS
+(i, per als triangles rectangles, hipotenusa-catet). SSA **no** hi és, i
+aquesta pregunta n'és la raó. Però compte, que no falla sempre: si el radi
+del compàs supera el costat AB, un dels dos talls cau a l'altra banda del
+vèrtex i només en queda un de vàlid, i això passa **sempre** que l'angle
+donat és recte o obtús. El "cas ambigu" és, doncs, el d'angle agut amb el
+costat oposat més curt que l'adjacent conegut: aquell sí, i el retrobaràs
+cada vegada que resolguis un triangle amb el teorema del sinus. (AAA
+tampoc no determina un triangle, però per una raó ben diferent: et fixa
+la forma i no la mida — és semblança, q77, no congruència.)
 
 ---
 
@@ -284,17 +293,31 @@ exactament A′B′ quan P i Q cauen damunt d'aquest segment. Per tant els
 punts de contacte que busques són **els dos punts on el segment A′B′
 creua les dues rectes**, i la longitud mínima és exactament A′B′.
 
+Una cosa més abans de donar-ho per tancat: has decidit tocar primer la recta
+de dalt i després la de baix. També podries fer-ho a l'inrevés, i aleshores
+els reflexos serien uns altres (A respecte de la de baix, B respecte de la de
+dalt) i et donarien un altre número. Són dos problemes diferents, i el més
+curt de tots dos és la resposta. Val la pena que provis les dues i miris qui
+guanya —i que pensis quina característica d'A i de B ho decideix.
+
 **Comprovació.** Rectes y=6 (dalt) i y=0 (baix). A=(1,4), B=(9,1). Reflectint:
 A′=(1,8), B′=(9,−1). La distància A′B′ (i per tant la longitud del camí
-òptim) és √145 ≈ 12,042. Compara-ho amb un camí "a ull" que toqui totes dues
-rectes a x=4: aquest surt ≈ 14,705 — més llarg, com havia de ser.
+òptim) és √145 ≈ 12,042, amb els contactes a (2,78 · 6) i (8,11 · 0). Compara-ho
+amb un camí "a ull" que toqui totes dues rectes a x=4: aquest surt ≈ 14,705 —
+més llarg, com havia de ser. I ara l'altre ordre, tocant primer la de baix:
+A″=(1,−4), B″=(9,11), i la distància surt exactament **17**. Molt pitjor. Aquí
+A és a prop de la recta de dalt i B a prop de la de baix, i per això convé
+anar-hi en aquest ordre; si fos al revés, guanyaria l'altre.
 
 **I després.** Si en lloc de dues rectes tinguessis un triangle sencer (tres
 costats) i volguessis el camí tancat més curt que toqués els tres, la mateixa
 idea —reflectir, un cop per cada costat— hi funciona, encara que amb tres
-reflexions en cadena en lloc de dues. I com ja vas veure prometut a q96: la
-propietat de reflexió d'una el·lipse (q98) és la
-mateixa idea mirada des d'una corba en lloc de dues rectes.
+reflexions en cadena en lloc de dues. I com ja t'anunciava q96: la propietat
+de reflexió d'una el·lipse és aquesta mateixa idea mirada des d'una corba en
+lloc de dues rectes. Compte, però, que el que et dona q98 és la **definició**
+de l'el·lipse per suma de distàncies, no la propietat de reflexió; per
+arribar-hi cal el pas de q96, que la tangent només toca l'el·lipse en un punt
+i per tant és allà on la suma es fa mínima.
 
 ---
 
@@ -329,10 +352,20 @@ condició amb un objecte que físicament no pot fer altra cosa.
 distàncies 5 i 5, sumen 10. Al punt (5,0) (un extrem de l'el·lipse):
 distàncies 8 i 2, sumen també 10.
 
-**I després.** Ara ajunta aquest fet amb el de q96/q97 (reflectir converteix
-un camí trencat en un de recte): és exactament el que fa que una bola de
-billar llançada des d'un focus d'una taula el·líptica passi sempre per
-l'altre focus, sigui quin sigui l'angle de sortida.
+I una comprovació que no és de números: què passaria si el fil fos **més curt**
+que la distància entre els dos punxons? Que no el podries tensar enlloc, i no
+dibuixaries res. I si fes exactament aquella distància? Que el llapis només
+podria anar amunt i avall del segment que els uneix: l'"el·lipse" et quedaria
+aixafada fins a ser un segment. O sigui que el mètode demana **fil més llarg
+que la separació dels punxons**, i com més marge li donis, més rodona et
+sortirà.
+
+**I després.** Guarda aquest fet, perquè quan arribis a q96 i q97 (reflectir
+converteix un camí trencat en un de recte) el podràs ajuntar amb aquells i
+en sortirà una cosa bonica: que una bola de billar llançada des d'un focus
+d'una taula el·líptica passa sempre per l'altre focus, sigui quin sigui
+l'angle de sortida. Aquí encara no ho pots demostrar —el fil només et dona
+la suma constant, no els angles.
 
 ---
 

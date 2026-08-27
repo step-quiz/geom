@@ -315,19 +315,36 @@ exagerat, ben tort. Dibuixar deliberadament el cas impossible és una tècnica,
 no una pèrdua de temps.
 
 **Pista 2 — la construcció.** → `q95_pista2_contradiccio.png`
-Baixa la perpendicular des del centre fins a la recta i mira on cau.
+Baixa la perpendicular des del centre O fins a la recta i mira on cau el peu.
+Compte, que aquí hi ha tres punts i és fàcil confondre'ls: hi ha P (el punt on
+suposes que la recta toca el cercle), hi ha el peu de la perpendicular —el de
+l'angle recte, que **no** està etiquetat— i hi ha P′. Si el radi OP no fos
+perpendicular a la recta, el peu no cauria damunt de P. Amb el compàs, o
+comptant quadrets, marca damunt de la recta el punt que és a l'altra banda del
+peu i a la mateixa distància que P: aquest és P′.
 
 **Pista 3 — tanca-ho.**
-Quant fa OP′? *(Les marquetes t'ho diuen.)* Per tant, P′ és al cercle? És a la
-recta? I què deia exactament la teva definició de tangent?
+Quant fa OP′? *(Les marquetes t'ho diuen.)* Mira per què: els dos triangles que
+el peu de la perpendicular ha creat tenen un angle recte allà, comparteixen el
+segment que va d'O al peu, i tenen els altres dos catets iguals perquè així has
+triat P′ —o sigui que són iguals i OP′ fa exactament el mateix que OP, un radi.
+Per tant, P′ és al cercle? És a la recta? És diferent de P? I què deia
+exactament la teva definició de tangent?
+
+*(No confonguis P′ amb el peu de la perpendicular. El peu és a distància
+**menor** que el radi —la perpendicular és sempre el camí més curt del centre a
+la recta— i per tant queda a dins del cercle, no damunt. El que és al cercle és
+P′.)*
 
 **Comprovació.** Aquí no hi ha números. La comprovació és una altra: repassa la
 teva demostració i assenyala **on** fa servir que la recta toca el cercle només
 una vegada. Si no ho fa servir enlloc, tens un forat, perquè sense aquesta
 condició l'enunciat és fals.
 
-**I després.** A q96 retrobaràs la mateixa idea (la perpendicular és el camí més
-curt) fent una feina completament diferent: camins mínims i reflexió. I ja pots
+**I després.** Fixa't que la construcció d'aquí ja és una reflexió: P′ és el
+reflex de P respecte del peu de la perpendicular, i és per això que els dos
+segments fins a O fan el mateix. A q96 retrobaràs la mateixa idea fent una
+feina completament diferent: camins mínims. I ja pots
 mirar enrere: de les preguntes que ja portes, quantes has resolt afegint una
 línia? Aquesta és, de moment, la teva eina principal.
 
@@ -514,10 +531,13 @@ més llarg (≈ 8,993).
 
 **I després.** q97 posa dues rectes paral·leles: el mateix truc, aplicat dues
 vegades. I ara torna a la figura del llibre, que és una el·lipse amb els seus
-dos focus: la suma de distàncies als focus és constant, i el punt de tangència
-és el que la fa mínima sobre la tangent. Per això els angles hi són iguals — i
-per això una bola que surt d'un focus d'una taula de billar el·líptica sempre
-passa per l'altre.
+dos focus. El pas que hi falta és aquest: la tangent toca l'el·lipse només al
+punt T, i tots els altres punts de la tangent queden **fora** de l'el·lipse; i
+si un punt és fora, la suma de distàncies als dos focus és més gran que la de
+l'el·lipse (que val 2a, q98). O sigui que T és, sobre aquella recta, el punt
+que fa mínima la suma —i llavors això que acabes de demostrar diu que els dos
+angles amb la tangent són iguals. D'aquí surt que una bola llançada des d'un
+focus d'una taula de billar el·líptica passi sempre per l'altre.
 
 ---
 

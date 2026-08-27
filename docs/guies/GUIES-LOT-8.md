@@ -172,7 +172,8 @@ rectangle) — per la relació que acabes de trobar a q78.
 > Quina relació hi ha entre el sinus i el cosinus d'un angle?
 
 **Moviment: redueix el desconegut al conegut.** DEPÈN de q78 i de
-Pitàgores (q14/q25, ja fets).
+Pitàgores, que en aquest quadern és coneixement previ: no el demostra cap
+pregunta, i el glossari sí que el té.
 
 **Pista 0 — què has de produir.**
 Una identitat que valgui per a QUALSEVOL angle agut, no un parell de
@@ -245,7 +246,7 @@ els costats 28,488… / 23,823… / 17,689…: perímetre 70 i àrea 210 igualme
 ## 7. q77 — *There is actually another technique for measuring lengths, which we used for the diagonal of a regular pentagon. What is it?*
 > De fet hi ha una altra tècnica per mesurar longituds, que ja vam fer servir per a la diagonal del pentàgon regular. Quina és?
 
-**Moviment: dilatació.** DEPÈN de q31/q32/q33.
+**Moviment: homotècia.** DEPÈN de q31/q32/q33.
 
 **Pista 0 — què has de produir.**
 Un NOM per a la tècnica (no un càlcul nou encara): a les preguntes del
@@ -275,11 +276,17 @@ per una. És, senzillament, raonar per semblança.
 Una nota de vocabulari, perquè aquí hi ha un parany de traducció. El llibre
 en diu *dilation*, que en anglès és el nom de la transformació que agafa una
 figura i l'escala des d'un punt fix. En català aquella transformació es diu
-**homotècia**; "dilatació" vol dir una altra cosa (la que fan els metalls
-amb la calor). Al llarg d'aquestes guies el moviment s'anomena "dilatació"
-per fidelitat al llibre, però el que trobaràs a classe i als llibres de text
-és **semblança** —i, quan es parla de la transformació concreta,
-**homotècia**.
+**homotècia**; "dilatació" és un fals amic —vol dir el que fan els metalls
+amb la calor. En aquestes guies, doncs, se'n diu **homotècia**, que és el que
+trobaràs a classe, i el raonament que la fa servir es diu **semblança**.
+
+I un avís que t'estalviarà confusions més endavant: hi ha una altra
+transformació que també escala, però amb un factor **diferent** per a cada
+direcció —la que converteix un cercle en una el·lipse (q46) o una hipèrbola
+qualsevol en una de rectangular (q112). Aquella **no** és una homotècia, i en
+aquestes guies se'n diu **estirament**. La diferència no és de vocabulari: una
+homotècia no canvia la forma de res i respecta angles i focus, i un estirament
+sí que els canvia.
 
 **Comprovació.** Triangle amb costats 6 i 9 des d'un vèrtex; una
 paral·lela al tercer costat que talla el primer costat a 4 unitats del
@@ -307,24 +314,41 @@ hipotenusa) només té sentit per a un angle agut d'un triangle rectangle
 per exemple.
 
 **Pista 1 — cau la perpendicular fora del triangle.**
-En un triangle amb un angle obtús C, l'alçada des del vèrtex oposat cau
-FORA del triangle, no a dins. Aquesta alçada forma un triangle rectangle
-nou, amb un angle C' que és el suplementari de C (C'=180°−C).
+En un triangle ABC amb l'angle C obtús, deixa caure l'alçada des d'A fins
+a la RECTA que conté el costat CB. Compte: no des de C —aquella cau a
+dins i no et serveix de res. Com que C és obtús, el peu cau FORA del
+segment, passat C; digues-li H. Al triangle rectangle ACH, l'angle que hi
+queda a C és C' = 180°−C, que sí que és agut.
 
 **Pista 2 — la construcció.** → `fig-091.png`
 
 **Pista 3 — tanca-ho.**
-Defineix sin(C) := sin(C'), fent servir l'angle agut suplementari, que sí
-que és l'angle d'un triangle rectangle de veritat. Comprova, amb aquesta
-definició, que el teorema del sinus (costat / sin(angle oposat) igual als
-tres vèrtexs) encara dona el mateix valor als tres costats del triangle
-obtusangle.
+Mira l'alçada AH dues vegades. Al triangle rectangle ACH: AH = b·sin(C'),
+amb b = CA. Al triangle rectangle ABH: AH = c·sin(B), amb c = AB —l'angle
+que hi ha a B és el mateix B del triangle original, perquè H és a la
+recta BC. Iguala-les: b/sin B = c/sin C'. Ara bé, el teorema del sinus
+demana b/sin B = c/sin C. Per tant no tens elecció: sin(C) := sin(C') =
+sin(180°−C) és l'ÚNICA definició que el salva. No és un caprici ni una
+convenció arbitrària —és el preu exacte de voler que la fórmula no
+s'hagi de partir en dos casos.
 
-**Comprovació.** C=120°, C'=60°: sin(120°):=sin(60°)=√3/2≈0,866.
+**Comprovació.** Triangle amb C=120°, a=CB=5, b=CA=4. L'alçada des d'A
+val 4·sin60°≈3,464 i el peu H cau 4·cos60°=2 més enllà de C, o sigui a
+5+2=7 de B; Pitàgores dona c=√(7²+3,464²)=√61≈7,810. Ara els tres
+quocients: c/sin C = 7,810/0,866 ≈ 9,02; sin B = 3,464/7,810 ≈ 0,4435, i
+b/sin B = 4/0,4435 ≈ 9,02; i amb l'alçada des de B (5·sin60°≈4,330),
+sin A ≈ 4,330/7,810 ≈ 0,5544 i a/sin A = 5/0,5544 ≈ 9,02. Els tres donen
+el mateix ✓. De propina, A≈33,7°, B≈26,3° i 33,7+26,3+120 = 180 ✓.
 
 **I després.** Aquesta mateixa construcció (l'alçada que cau fora,
-l'angle suplementari C') és exactament la que fa servir q79, la propera
-guia, per generalitzar Pitàgores a triangles amb un angle obtús.
+l'angle suplementari C') és la que fa servir q79 per generalitzar
+Pitàgores als triangles amb un angle obtús. El cosinus demana el mateix
+tracte, però amb una diferència de signe que val la pena entendre: la
+definició que fa que la fórmula de q79 s'escrigui com una de sola,
+c² = a²+b²−2ab·cos C, és cos(C) := −cos(180°−C). Per què el sinus no
+porta el menys i el cosinus sí? Perquè l'alçada és una longitud i no
+canvia de banda quan C passa de 90°, mentre que la projecció sobre la
+base sí que ho fa.
 
 ---
 
@@ -368,38 +392,69 @@ dos fan 90°), cos C'=0 i la fórmula es converteix exactament en el
 Pitàgores de tota la vida —aquest resultat el conté com a cas particular,
 no el substitueix.
 
+I queda el tercer cas, el d'angle C **agut**, que val la pena que facis
+perquè és la mateixa construcció amb una sola diferència: el peu de
+l'alçada cau **dins** del costat a en comptes de passat l'extrem. La base
+del triangle rectangle gran, doncs, es queda curta en lloc d'allargar-se:
+
+ara la base val a − b·cos C (en lloc de a + b·cos C') i l'alçada, b·sin C.
+Pitàgores al triangle gran: c² = (a − b·cos C)² + (b·sin C)². Desenvolupant,
+c² = a² − 2ab·cos C + b²cos²C + b²sin²C, i com que sin²C + cos²C = 1 (q84)
+els dos últims termes fan b²: **c² = a² + b² − 2ab·cos C**. Fixa't que és el
+mateix desenvolupament que acabes de fer, amb un únic signe canviat.
+
+Amb les dues meitats a la mà
+tens el resultat sencer, que es coneix com a **teorema del cosinus**: amb
+C agut hi va un menys, i amb C obtús un més davant del suplementari. I si
+acceptes definir cos(C) := −cos(180°−C) per als obtusos —el germà amb el
+signe canviat del que fa q87 amb el sinus— les dues línies es fonen en una
+de sola, c² = a² + b² − 2ab·cos C, per a qualsevol triangle. Comprova el
+cas agut amb a=b=√3/2 i C=arccos(1/3)≈70,53°: dona c²=1 exacte, que és
+justament el càlcul del diedre del tetràedre de q81.
+
 ---
 
 ## 10. q88 — *How are the sine and cosine of an angle related to the sine and cosine of an angle twice as large?*
 > Com es relacionen el sinus i el cosinus d'un angle amb els d'un angle del doble?
 
-**Moviment: redueix el desconegut al conegut.** DEPÈN de q78, q79
-(aquest mateix lot).
+**Moviment: redueix el desconegut al conegut.** DEPÈN de q78, de q80
+(l'àrea ½ab·sinC) i de q84 (sin²+cos²=1).
 
 **Pista 0 — què has de produir.**
 Dues fórmules, sin(2θ) i cos(2θ), en termes de sinθ i cosθ solament.
 
 **Pista 1 — un triangle isòsceles amb angle 2θ al vèrtex.**
 Triangle isòsceles, dos costats de longitud 1, angle 2θ entre ells.
-Calcula'n l'àrea de dues maneres: (a) amb la fórmula "meitat del producte
-de dos costats pel sinus de l'angle entre ells", i (b) partint-lo per la
-meitat amb l'alçada des del vèrtex, que en dona dos triangles rectangles
-d'angle θ.
+Calcula'n l'àrea de dues maneres: (a) amb la fórmula de q80, "meitat del
+producte de dos costats pel sinus de l'angle entre ells", i (b)
+partint-lo per la meitat amb l'alçada des del vèrtex, que en dona dos
+triangles rectangles d'angle θ. Fixa't que són dues alçades diferents —la
+de (a) surt d'un vèrtex de la base, la de (b) de la punta—; si fossin la
+mateixa, igualar-les no diria res.
 
 **Pista 2 — la construcció.** → `fig-093.png`
 
 **Pista 3 — tanca-ho.**
-Per a sin(2θ): iguala les dues àrees de la Pista 1. Per a cos(2θ): aplica
-el teorema del cosinus de q79 a aquest mateix triangle isòsceles (costats
-1, 1, angle 2θ) per trobar el costat que falta al quadrat, i compara-ho
-amb el mateix costat calculat com el doble de sinθ (per la partició en
-dos triangles rectangles).
+Per a sin(2θ): iguala les dues àrees de la Pista 1. Per a cos(2θ) no et
+cal cap teorema nou —i compte, perquè el teorema del cosinus encara no el
+tens en la forma que et faria falta: q79 només en demostra el cas de
+l'angle obtús. Fes-ho amb q84. Com que 2θ és agut (θ<45°), cos(2θ) és
+l'arrel POSITIVA de 1−sin²(2θ). Substitueix-hi el sin(2θ) que acabes de
+trobar, torna a fer servir cos²θ = 1−sin²θ per deixar-ho tot en sinθ, i
+mira bé el que et queda sota l'arrel: és un quadrat perfecte.
 
 **Comprovació.** θ=37°: sin(74°)≈0,961, i 2·sin37°·cos37°≈2(0,602)(0,799)
-≈0,961 ✓. cos(74°)≈0,276, i 1−2sin²37°≈1−2(0,362)≈0,276 ✓.
+≈0,961 ✓. El quadrat perfecte, escrivint s=sinθ: 1−(2s√(1−s²))² =
+1−4s²+4s⁴ = (1−2s²)². Amb s=sin37°≈0,602: 1−2(0,362) ≈ 0,276, i
+cos(74°)≈0,276 ✓.
 
-**I després.** q85 fa servir exactament aquesta fórmula del cosinus doble per trobar el
-sinus i el cosinus de 72° a partir dels de 36°.
+**I després.** Fixa't fins on arriba l'argument: cal θ<45°, i no per cap
+tecnicisme sinó perquè és el que et permet triar l'arrel positiva. Si 2θ
+passa de 90° les dues fórmules continuen valent, però abans cal decidir
+què vol dir el cosinus d'un angle obtús —la mateixa feina que q87 fa amb
+el sinus, i la resposta és la germana amb el signe canviat,
+cos(C) := −cos(180°−C). Comprova-ho: amb θ=60°, 1−2sin²60° = −0,5, i
+cos120° = −0,5.
 
 ---
 
@@ -443,17 +498,20 @@ moviments en direccions diferents.
 ## 12. q85 — *Can you use a regular pentagon to find the sine and cosine of one-fifth of a turn?*
 > Pots fer servir un pentàgon regular per trobar el sinus i el cosinus d'un cinquè de volta?
 
-**Moviment: dilatació.** DEPÈN de q31/q32 (raó àuria) i de q88 (angle
-doble), tots ja fets.
+**Moviment: homotècia.** DEPÈN de q31 (com es parteix el pentàgon) i de
+q33 (el triangle 72°-72°-36°: base 1, costats φ, i la identitat φ²=φ+1),
+tots dos ja fets.
 
 **Pista 0 — què has de produir.**
 Un cinquè de volta = 72°. Sinus i cosinus d'aquest angle, en termes del
 nombre auri φ=(1+√5)/2.
 
-**Pista 1 — comença per la meitat de l'angle.**
-36° és la meitat de 72°, i és exactament l'angle a la punta del triangle
-isòsceles daurat que ja vas trobar a q31/q32 (dos costats en raó φ:1). Si
-en saps el cosinus de 36°, l'angle doble (q88) et dona el de 72°.
+**Pista 1 — el 72° ja el tens dibuixat.**
+No et cal cap angle intermedi: 72° és exactament l'angle de la BASE del
+triangle isòsceles de q33 —base 1, els altres dos costats φ, i 36° a la
+punta. Compte a no confondre'l amb els triangles A, B i C de q31, que són
+36°-36°-108°: és l'avís que el mateix q33 et fa. Amb aquest triangle en
+tindràs prou per al sinus i el cosinus de 72°.
 
 **Pista 2 — la construcció.** → `fig-095.png`
 L'alçada discontínua parteix l'angle de dalt (36°) exactament per la
@@ -461,17 +519,28 @@ meitat — per això l'angle marcat val 18°. Quin costat i quin angle del
 triangle petit que en resulta ja coneixes?
 
 **Pista 3 — tanca-ho.**
-Al triangle daurat (dos costats φ, base 1, angle 36° al vèrtex), parteix-
-lo per la meitat des del vèrtex: obtens cos36°=(φ/2). Aplica la fórmula
-de l'angle doble de q88 per obtenir cos72° i sin72° a partir d'això.
+El triangle rectangle que et queda té hipotenusa φ i un catet 1/2 (la
+meitat de la base). A la base hi té l'angle de 72° (=90°−18°), i el catet
+de 1/2 hi és el CONTIGU: per tant cos72° = (1/2)/φ = 1/(2φ). L'altre
+catet és l'alçada; treu-la amb Pitàgores i divideix-la per φ, i tindràs
+sin72°. Compte amb la temptació de llegir-hi cos36° = φ/2: partir el
+triangle no et dona el cosinus del 36° de la punta —aquell angle ha
+quedat partit i ja no hi és— sinó el del 72° de la base, que és
+justament el que et demanen.
 
-**Comprovació.** cos36°=φ/2≈0,809. cos72°=2cos²36°−1=2(0,809)²−1≈0,309.
-sin72°=√(1−cos²72°)≈0,951. Comprova que φ²=φ+1 (l'equació que ja
-coneixes de q33) simplifica cos72° a exactament (φ−1)/2 = 1/(2φ).
+**Comprovació.** Amb φ≈1,618: cos72° = 1/(2φ) ≈ 0,309. I amb φ²=φ+1
+(q33), 1/(2φ) és el mateix que (φ−1)/2 = 0,618/2 = 0,309 ✓. L'alçada val
+√(φ²−¼) = √(φ+¾) ≈ 1,539, i sin72° = 1,539/1,618 ≈ 0,951; en forma
+tancada, sin72° = √(φ+2)/2. Repassa-ho amb la calculadora:
+0,309²+0,951² = 1,000 ✓.
 
-**I després.** Aquest mateix valor, sin72°≈0,951, és el que fa falta per
-calcular l'àrea exacta d'un pentàgon regular en termes només del seu
-costat, sense passar per l'apotema mesurada per separat.
+**I després.** Aquest mateix valor, sin72°≈0,951, és el que et dona
+l'àrea exacta d'un pentàgon regular a partir del radi R de la
+circumferència que el circumscriu: parteix-lo en cinc triangles iguals de
+costats R, R i angle 72° al centre; cada un fa ½R²·sin72° (q80), i el
+pentàgon sencer (5/2)R²·sin72° ≈ 2,378·R². Si en lloc del radi el que
+tens és el costat, la fórmula també és exacta, però ja no és sin72° el
+que hi surt.
 
 ---
 
@@ -598,9 +667,9 @@ vèrtexs són sobre un mateix cercle: aquesta condició és imprescindible,
 no decorativa.
 
 **Pista 1 — parteix el quadrilàter en dos triangles per una diagonal.**
-Els dos triangles comparteixen la diagonal i tenen angles oposats en
-aquell vèrtex del quadrilàter que, per estar inscrit en un cercle, sumen
-180°. Aquest fet —els angles oposats d'un quadrilàter cíclic sumen
+Els dos triangles comparteixen la diagonal. Els angles que queden als
+**altres dos vèrtexs**, un a cada triangle, són angles oposats del
+quadrilàter, i per estar inscrit en un cercle sumen 180°. Aquest fet —els angles oposats d'un quadrilàter cíclic sumen
 sempre 180°— és la hipòtesi "inscrit en un cercle" convertida en una
 dada sobre angles, i és tota la feina que fa aquí la circumferència. Si
 no l'has vist mai demostrat, surt en dues línies de l'angle inscrit de
@@ -612,15 +681,25 @@ Els dos angles marcats (a banda i banda de la diagonal): quina relació
 ja saps que els lliga, per estar inscrits en el mateix cercle?
 
 **Pista 3 — tanca-ho.**
-Escriu la diagonal al quadrat de dues maneres (teorema del cosinus, un
-cop a cada triangle) i iguala-les — com que els dos angles són
-suplementaris, els cosinus són oposats, i es poden eliminar. Suma les
-dues àrees (cadascuna, mig producte de costats pel sinus de l'angle
-comú) i simplifica amb sin²+cos²=1 fins arribar a la forma de Heron
-generalitzada.
+Escriu la diagonal al quadrat de dues maneres (teorema del cosinus de q79,
+un cop a cada triangle) i iguala-les: com que els dos angles són
+suplementaris els cosinus són oposats, i te'n surt cos B tot sol. Suma
+després les dues àrees (q80, mig producte de costats pel sinus). Aquí ve la
+part que sol quedar per fer, i és tota la pregunta, així que no la saltis:
+posa-hi noms curts, K = ab+cd i M = a²+b²−c²−d², i comprova que
+cos B = M/(2K) i que l'àrea val ½K·sin B. Eleva-la al quadrat i fes servir
+sin² = 1−cos² (q84): et queda 16A² = 4K² − M². Això és una **diferència de
+quadrats**, i és l'únic pas realment ingeniós de la demostració:
+16A² = (2K+M)(2K−M). Desenvolupa cada parèntesi i mira si el reconeixes —
+un et donarà (a+b)²−(c−d)² i l'altre (c+d)²−(a−b)², que són dues diferències
+de quadrats més. En surten quatre factors i cadascun val 2s menys un costat.
 
-**Comprovació.** Costats 2, 3, 4, 5: s=7. A=√[(7−2)(7−3)(7−4)(7−5)] =
-√(5·4·3·2) = √120 ≈ 10,95.
+**Comprovació.** Costats 2, 3, 4, 5: s=7, i la fórmula dona
+A = √[(7−2)(7−3)(7−4)(7−5)] = √(5·4·3·2) = √120 ≈ 10,95. Refés-ho pel camí
+llarg per comprovar que la teva àlgebra és bona: K = 2·3+4·5 = 26,
+M = 4+9−16−25 = −28, i 16A² = 4·26² − 28² = 2704 − 784 = 1920, o sigui
+A² = 120 ✓. De passada, cos B = −28/52 ≈ −0,538, que vol dir B ≈ 122,6°:
+un angle obtús, i per això et calia q79 sencera i no només el cas agut.
 
 **I després.** Quan un dels quatre costats es "col·lapsa" a zero (d→0),
 la fórmula de Brahmagupta es converteix exactament en la de Heron per a

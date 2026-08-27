@@ -307,7 +307,7 @@ retrobaràs, ja convertida en xifra, a q32.
 ## 8. q32 — *How big is the small pentagon?*
 > Quant fa el pentàgon petit?
 
-**Moviment: dilatació.** DEPÈN de q31 i de q38 (ja fet, rectangle auri).
+**Moviment: homotècia.** DEPÈN de q31 i de q38 (ja fet, rectangle auri).
 
 **Pista 0 — què has de produir.**
 Un factor d'escala: quantes vegades més petit és el pentàgon interior del

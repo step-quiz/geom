@@ -30,16 +30,17 @@ construcció auxiliar es dibuixa en sanguina, mai en negre.
 ---
 
 ## 1. q112 — *Why is every hyperbola a dilation of a right hyperbola?*
-> Per què tota hipèrbola és una dilatació d'una hipèrbola recta?
+> Per què tota hipèrbola és un estirament d'una hipèrbola recta?
 
-**Moviment: dilatació anisòtropa** (parenta de q32/q77, però no la
-mateixa: allà el factor era el mateix en totes direccions; aquí no).
+**Moviment: estirament** (parent de l'homotècia de q32/q77, però no la
+mateixa cosa: allà el factor era el mateix en totes direccions —i per això
+allò sí que és una homotècia—; aquí no ho és, i per tant no en pot ser).
 DEPÈN de q111 (ja fet: el focus i la diagonal del diamant).
 
 **Pista 0 — què has de produir.**
 Una hipèrbola qualsevol té dues asímptotes que es tallen amb un angle
 que depèn de la seva "forma". Una hipèrbola **recta** (o rectangular) és
-la que té les asímptotes perpendiculars. Has de trobar la dilatació —
+la que té les asímptotes perpendiculars. Has de trobar l'estirament —
 diferent en horitzontal i en vertical— que converteix la primera en la
 segona.
 
@@ -47,10 +48,11 @@ segona.
 Una hipèrbola es descriu amb dos números, a (semieix) i b (el que marca
 el pendent de les asímptotes). Si dilates l'eix horitzontal per un
 factor i el vertical per un altre —diferent de l'anterior—, què li passa
-al pendent de les asímptotes? Aquesta és la diferència amb q32/q77: allà
-el mateix factor valia per a totes les direccions (una FIGURA sencera
-escalada igual pertot); aquí cada eix té el seu propi factor, i és
-justament perquè són diferents que l'angle de les asímptotes canvia.
+al pendent de les asímptotes? Aquesta és la diferència amb l'homotècia
+de q77: allà el mateix factor valia per a totes les direccions (una
+FIGURA sencera escalada igual pertot); aquí cada eix té el seu propi
+factor, i és justament perquè són diferents que l'angle de les
+asímptotes canvia.
 
 **Pista 2 — la construcció.** → `fig-116.png`
 Una hipèrbola amb asímptotes inclinades (traç negre), i al costat, en
@@ -61,7 +63,7 @@ que cal — les asímptotes ara perpendiculars.
 Si l'equació és x²/a² − y²/b² = 1, divideix x per a i y per b: la
 corba es converteix en X² − Y² = 1, l'equació d'una hipèrbola recta
 (asímptotes Y = ±X, que formen 90°). Aquesta substitució és exactament
-una dilatació de factor 1/a en horitzontal i 1/b en vertical.
+un estirament de factor 1/a en horitzontal i 1/b en vertical.
 
 **Comprovació.** a=4, b=3: l'equació x²/16 − y²/9 = 1 esdevé
 X²−Y²=1 amb X=x/4, Y=y/3. Comprova un punt: x=4√2, y=3 satisfà
@@ -69,16 +71,17 @@ l'original (32/16−9/9=2−1=1 ✓); X=√2, Y=1 satisfà la recta
 (2−1=1 ✓).
 
 **I després.** La mateixa idea —separar una figura complicada en una de
-"normalitzada" més una dilatació— reapareix de seguida a q114, ara amb
-la hipèrbola unitat com a patró de referència, i uns quants passos
-enllà a q117 amb la paràbola.
+"normalitzada" més un canvi d'escala— la retrobaràs de seguida a q114, ara
+amb la hipèrbola unitat com a patró de referència. I si mires enrere,
+q117 ja te l'havia feta servir amb la paràbola: allà, com que n'hi ha
+prou amb un sol número, la normalització és encara més senzilla.
 
 ---
 
 ## 2. q114 — *Where are the focal points of a unit hyperbola? What if we dilate it by factors a and b?*
 > On són els focus d'una hipèrbola unitat? I si la dilatem per factors a i b?
 
-**Moviment: dilatació anisòtropa** (el mateix parell d'eixos amb factors
+**Moviment: estirament** (el mateix parell d'eixos amb factors
 diferents que a q112, ara aplicat a la hipèrbola unitat com a patró de
 referència). DEPÈN de q112.
 
@@ -90,8 +93,13 @@ de dilatar-la per (a, b) — que és la mateixa hipèrbola de q112.
 **Pista 1 — Pitàgores, no resta.**
 A l'el·lipse, c²=a²−b² (el focus és "més a prop" que el semieix gran).
 A la hipèrbola els dos braços s'obren cap enfora: el focus ha d'anar
-més lluny que el vèrtex. Prova c²=a²+b² i comprova que amb a=b=1 et
-dona un valor familiar.
+més lluny que el vèrtex, o sigui que la relació ha de ser una suma. Ara
+bé, endevinar-la i comprovar que quadra no és demostrar-la, i aquí sí
+que la pots demostrar. Fes-ho al punt de la corba que hi ha **just
+damunt del focus**: si P=(c, h), la distància al focus proper és
+simplement h, i la distància al llunyà surt de Pitàgores amb catets 2c i
+h. Imposa que la diferència valgui 2a (la constant focal), aïlla h, i
+compara-ho amb el h que et dona l'equació de la corba.
 
 **Pista 2 — la construcció.** → `fig-117.png`
 La hipèrbola unitat amb els vèrtexs a (±1,0) i els focus marcats a
@@ -99,12 +107,32 @@ La hipèrbola unitat amb els vèrtexs a (±1,0) i els focus marcats a
 demostra.
 
 **Pista 3 — tanca-ho.**
-Amb a=b=1: c=√(1+1)=√2. En dilatar per (a,b), els vèrtexs passen a
-(±a,0) i (per la mateixa relació, ara amb semieixos a,b) els focus a
-(±√(a²+b²), 0).
+Amb a=b=1: c=√(1+1)=√2, la diagonal del quadrat de costat 1.
 
-**Comprovació.** a=4,b=3: c=√(16+9)=5. Focus a (±5,0), vèrtexs a
-(±4,0) — el mateix triangle 3-4-5 que ja coneixes.
+Ara la segona meitat, i **aquí hi ha la trampa gran de la pregunta**.
+En dilatar per (a,b) la corba es transforma bé: els vèrtexs (±1,0)
+passen a (±a,0), que són els vèrtexs nous. Amb els focus, en canvi, la
+l'estirament **no serveix**: el punt on va a parar el focus antic no és el
+focus nou. Mira-ho amb números abans de creure-t'ho: amb a=4 i b=3, el
+focus (√2,0) es transforma en (4√2, 0) ≈ (5,66 · 0), mentre que el focus
+de veritat de x²/16 − y²/9 = 1 és (5,0). No hi ha manera de fer-los
+coincidir.
+
+Per què? Perquè els focus no es defineixen mirant la corba de prop:
+depenen de **distàncies**, i un estirament que allarga més en una
+direcció que en l'altra no conserva les distàncies. Només quan a=b —quan
+l'escalat és uniforme, i per tant una homotècia de les de q77— els
+focus s'hi deixen portar. Per als focus de la hipèrbola general, doncs,
+has de tornar a aplicar la relació c²=a²+b², ara amb els semieixos a i
+b: els focus són a (±√(a²+b²), 0).
+
+**Comprovació.** a=4, b=3: c=√(16+9)=5, focus a (±5,0) i vèrtexs a
+(±4,0) —el mateix triangle 3-4-5 de q111. Comprova la relació pel camí
+llarg, amb el punt just damunt del focus: P=(5, 9/4) és a la corba
+(25/16 − (81/16)/9 = 1 ✓), la distància al focus proper (5,0) val 9/4, i
+la distància al llunyà (−5,0) val √(10² + (9/4)²) = 41/4. La diferència
+és 41/4 − 9/4 = 8 = 2a ✓. I recorda de comprovar la trampa: 4√2 ≈ 5,66,
+que **no** és 5.
 
 **I després.** Aquest triangle 3-4-5 no és casualitat: la mateixa
 relació c²=a²+b² és exactament la que hauràs d'utilitzar a q115 per
@@ -141,10 +169,14 @@ Pitàgores.
 **Comprovació.** a=5, b=3: c²=25−9=16, c=4. Comprova amb el punt
 (0,3): distància a cada focus (±4,0) és √(16+9)=5, i 5+5=10=2a ✓.
 
-**I després.** El mateix triangle, amb els catets intercanviats
-(a²=b²+c² en lloc de c²=a²−b²), és exactament el que reapareix a
-q114 per a la hipèrbola — només que allà els papers de a i c
-s'intercanvien perquè el focus cau fora dels vèrtexs, no entre ells.
+**I després.** Compte a no dir-ho malament: a²=b²+c² i c²=a²−b² són la
+MATEIXA igualtat escrita de dues maneres, no dues de diferents. El que
+canvia de veritat en passar a la hipèrbola és **qui fa d'hipotenusa**.
+Aquí, a l'el·lipse, la hipotenusa és a, i per tant c<a: el focus cau
+entre els vèrtexs. A la hipèrbola la hipotenusa és c, surt c²=a²+b², i
+per tant c>a: el focus cau fora dels vèrtexs. És el mateix triangle
+rectangle llegit amb els papers canviats —ja ho vas veure a q111 amb el
+costat del rombe, i ho tornaràs a veure a q114.
 
 ---
 
@@ -227,37 +259,45 @@ la tangent canvia els dos angles alhora, i els deixa iguals igualment.
 **I després.** Aquesta bisectriu interior —en lloc de l'exterior— és
 exactament el que fa que un mirall amb forma d'hipèrbola, orientat cap
 a un focus, dispersi els raigs en lloc de concentrar-los: el principi
-que fan servir els telescopis Cassegrain per combinar un mirall el·líptic
-i un d'hiperbòlic.
+que fan servir els telescopis Cassegrain, on un mirall gran parabòlic
+recull la llum i l'envia cap al seu focus, i un petit mirall hiperbòlic
+posat pel mig la desvia cap a l'altre focus de la hipèrbola, que és on
+hi ha l'ocular. És exactament la propietat d'aquí: el que va cap a un
+focus, en surt cap a l'altre.
 
 ---
 
 ## 6. q117 — *What about dilations of a parabola?*
-> Què me'n dius de les dilatacions d'una paràbola?
+> Què me'n dius de les homotècies d'una paràbola?
 
-**Moviment: dilatació.** DEPÈN de q112.
+**Moviment: homotècia.** DEPÈN de q112.
 
 **Pista 0 — què has de produir.**
-A q112 vas veure que TOTES les hipèrboles són dilatacions les unes de
-les altres. Aquí et pregunten el mateix per a la paràbola: totes les
-paràboles, són dilatacions d'una de sola?
+A q112 vas veure que TOTES les hipèrboles s'obtenen les unes de les
+altres estirant-les. Aquí et pregunten el mateix per a la paràbola: totes les
+paràboles, s'obtenen totes d'una de sola?
 
 **Pista 1 — compta els graus de llibertat.**
 Una hipèrbola necessita DOS números (a i b) per descriure-la — per això
-calia una dilatació amb dos factors diferents. Una paràbola y=x²/(4p)
-només en necessita UN (p). Quantes dilatacions (potser només una
+calia un estirament amb dos factors diferents. Una paràbola y=x²/(4p)
+només en necessita UN (p). Quants factors d'escala (potser només un
 direcció, potser una d'uniforme) calen per passar d'una paràbola a
 qualsevol altra?
 
 **Pista 2 — la construcció.** → `fig-121.png`
-Dues paràboles amb el mateix vèrtex sobre la mateixa directriu, una més
-"tancada" que l'altra, amb els respectius focus marcats en sanguina a
-alçades diferents.
+Dues paràboles amb el **mateix vèrtex**, una més "tancada" que l'altra,
+amb els respectius focus marcats en sanguina a alçades diferents. La
+recta horitzontal que les toca totes dues al vèrtex és la tangent comuna
+en aquell punt, que l'homotècia deixa quieta. Compte a no confondre-la
+amb la directriu: la directriu és a distància p per sota del vèrtex, i
+com que cada paràbola té la seva p, cadascuna té la seva directriu —la
+homotècia les allunya, igual que allunya els focus.
 
 **Pista 3 — tanca-ho.**
-Amb una dilatació UNIFORME (el mateix factor en x i en y) centrada al
+Amb una HOMOTÈCIA (el mateix factor en x i en y, que és el que la
+distingeix d'un estirament) centrada al
 vèrtex, y=x²/(4p) es converteix en y=x²/(4·k·p): totes les paràboles
-són dilatacions uniformes les unes de les altres, a diferència de les
+són homotècies les unes de les altres, a diferència de les
 hipèrboles, que en necessiten dues de diferents.
 
 **Comprovació.** p=1 (y=x²/4) dilatada per factor 2 uniforme des del
@@ -266,10 +306,10 @@ n'anomenes X=2x la coordenada nova, aleshores x=X/2 i l'alçada nova és
 (X/2)²/2 = X²/8. La paràbola dilatada és, doncs, y = x²/8, és a dir
 p=2 — exactament el k·p de la Pista 3, amb k=2. El focus, que és a
 alçada p, es mou de (0,1) a (0,2): s'allunya el mateix factor 2 que tota
-la resta, com ha de fer qualsevol punt en una dilatació uniforme. Si
-t'ha sortit p més PETIT en dilatar, has aplicat la dilatació al revés.
+la resta, com ha de fer qualsevol punt en una homotècia. Si t'ha sortit
+p més PETIT, has aplicat l'homotècia al revés.
 
-**I després.** Que calgui només UN factor de dilatació —en lloc de dos,
+**I després.** Que calgui només UN factor d'escala —en lloc de dos,
 com a la hipèrbola— és el primer indici que totes les paràboles són
 "la mateixa figura, vista de més a prop o de més lluny": una idea que
 tornaràs a fer servir a q119, on la paràbola apareix com a envolupant
@@ -301,9 +341,18 @@ Un punt P sobre la paràbola, el focus F, el peu D a la directriu, i en
 sanguina el triangle isòsceles PFD amb la seva bisectriu des de P.
 
 **Pista 3 — tanca-ho.**
-Demostra que la bisectriu de l'angle en P del triangle isòsceles PFD
-—que també n'és la mediatriu del costat FD, per ser isòsceles— és
-precisament la tangent a la paràbola en P.
+Aquella bisectriu, per ser el triangle isòsceles, és també la mediatriu
+del costat FD. I ara la peça que ho tanca tot: **aquella recta és la
+tangent a la paràbola en P**, i es pot demostrar sense cap límit ni cap
+derivada, així. Agafa un punt Q qualsevol d'aquella recta, diferent de
+P. Com que és la mediatriu de FD, tenim QF = QD. Però QD és la distància
+de Q fins a D, i D no és, per a Q, el peu de la seva perpendicular a la
+directriu —només ho era per a P. Anar de Q fins a D, doncs, és fer més
+camí que anar de Q fins a la directriu en perpendicular: QD > (distància
+de Q a la directriu). Per tant QF > (distància de Q a la directriu), i
+això vol dir que Q **no** és a la paràbola: hi és fora. O sigui que
+aquella recta toca la corba a P i no la torna a tocar enlloc més: és la
+tangent.
 
 Un cop ho tinguis, el rebot surt sol. Aquesta recta bisecta l'angle
 entre PF i PD. I PD és vertical, perquè D és el peu de la perpendicular
@@ -357,11 +406,31 @@ totes elles.
 **Pista 3 — tanca-ho.**
 La recta que uneix (i,0) amb (0,n−i) té equació x/i + y/(n−i) = 1.
 Cada recta d'aquestes és tangent a la corba √x + √y = √n (una
-paràbola, girada 45° respecte de la posició habitual). Comprova-ho amb
-dos valors consecutius de i i troba on es tallen les rectes veïnes.
+paràbola, girada 45° respecte de la posició habitual). I això no te l'has
+de creure: es demostra amb l'eina que ja tens de q120, la de "tangent =
+la recta que hi toca amb arrel doble".
 
-**Comprovació.** n=10: les rectes i=4 i i=5 es tallen a (2,3),
-i √2+√3≈3,146, molt a prop de √10≈3,162 — la petita diferència és
+Escriu la corba sense arrels. De √x + √y = √n, elevant al quadrat dues
+vegades, en surt (x−y)² = 2n(x+y) − n². Ara substitueix-hi la recta
+y = b − (b/a)x, amb a=i i b=n−i, i recorda que a+b=n. Els comptes es
+simplifiquen sols i queda
+
+    (n²/a²)·x² − 2n·x + a² = 0,   és a dir   (x − a²/n)² = 0.
+
+**Arrel doble.** La recta no talla la corba en dos punts: la toca en un de
+sol, x = a²/n, i per simetria y = b²/n. Comprova de passada que aquell punt
+hi és de veritat: √(a²/n) + √(b²/n) = (a+b)/√n = n/√n = √n ✓. Cada recta
+del feix té, doncs, el seu punt de contacte, i tots ells junts dibuixen la
+paràbola que hi veus.
+
+**Comprovació.** n=10, recta i=4 (x/4 + y/6 = 1): el punt de contacte que
+prediu la fórmula és (16/10, 36/10) = (1,6 · 3,6). És a la recta?
+1,6/4 + 3,6/6 = 0,4 + 0,6 = 1 ✓. És a la corba? √1,6 + √3,6 = 1,2649 +
+1,8974 = 3,1623 = √10 ✓. Prova-ho també amb i=5, que dona (2,5 · 2,5), i
+amb i=3, que dona (0,9 · 4,9): totes tres cauen sobre la mateixa corba.
+
+Fixa't ara en una cosa diferent: les rectes i=4 i i=5 es tallen a (2,3),
+i √2+√3≈3,146, que no és √10≈3,162 sinó una mica menys. La diferència és
 l'error de fer servir rectes VEÏNES en lloc del límit real (rectes
 infinitament properes).
 
@@ -381,10 +450,17 @@ un patró numèric.
 com q31/q32). DEPÈN de q117.
 
 **Pista 0 — què has de produir.**
-Una relació d'àrees 1:2 entre dues figures: un triangle tallat per la
-tangent en un punt de la paràbola (el "sector"), i un altre triangle
-—la meitat del rectangle que va del vèrtex fins aquell mateix punt (el
-"rectangle" o, més exactament, la seva diagonal).
+Una relació d'àrees 1:2 entre dues figures: el triangle TNP tallat per la
+tangent en un punt P de la paràbola (el "sector"), i el triangle VNP, que
+és la meitat del rectangle que va del vèrtex fins a aquell mateix punt.
+
+Compte amb els noms, perquè l'enunciat diu "la meitat del rectangle" i
+això es pot llegir malament. Aquí hi ha **tres** àrees en joc, i val la
+pena que les tinguis totes tres al cap des del principi: el rectangle
+sencer, la seva diagonal (el triangle VNP, que n'és la meitat sense cap
+misteri —qualsevol diagonal parteix un rectangle en dos) i el sector
+TNP. El que has de demostrar és que el sector és la meitat de la
+diagonal; respecte del rectangle sencer, doncs, en serà una quarta part.
 
 **Pista 1 — on talla la tangent l'eix?**
 Sigui P un punt de la paràbola i N el seu peu (la projecció de P sobre
@@ -416,9 +492,13 @@ el triangle TNP —el "sector" tallat per la tangent— té la mateixa
 altura que VNP però la meitat de la base, així que la seva àrea és la
 meitat de la de VNP.
 
-**Comprovació.** p=3: rectangle V-N-P = 3·9=27, meitat (triangle VNP)
-= 13,5. Triangle TNP amb T=(1,5, 0): base 1,5, alçada 9, àrea
-0,5·1,5·9=6,75 = exactament la meitat de 13,5 ✓.
+**Comprovació.** p=3, o sigui P=(3,9) i N=(3,0). Les tres àrees:
+rectangle de costats 3 i 9 = **27**; triangle VNP (la diagonal) =
+27/2 = **13,5**; i el sector TNP, amb T=(1,5 · 0), té base 1,5 i alçada
+9, o sigui 0,5·1,5·9 = **6,75**. Comprova les dues raons: 6,75 és
+exactament la meitat de 13,5 ✓, i exactament una quarta part de 27. Si
+et surt 1/4 en lloc d'1/2, no t'has equivocat: has comparat amb el
+rectangle en lloc de la diagonal.
 
 **I després.** Que la tangent talli l'eix exactament al punt mitjà —ni
 abans ni després— és el mateix fet que farà possible, a q121, calcular
@@ -469,12 +549,35 @@ Aquesta és la diferència entre un pas al límit i un infinitèsim: aquí no
 et demanem que et creguis res, et donem la fórmula i pots exigir el
 número.
 
+Ara bé, hi ha un forat en aquest argument, i és el que separa una
+demostració d'una comprovació. Aquests rectangles, amb l'alçada presa a
+l'extrem DRET de cada franja, **sobresurten** per damunt de la corba: no
+són "els de sota", són els que la contenen. Per això la suma sempre passa
+d'1/3. I això només et diu que l'àrea és **com a molt** 1/3 —encara no que
+sigui exactament 1/3.
+
+Per tancar-ho et falta l'altra meitat, i és gratis: pren els mateixos
+rectangles amb l'alçada a l'extrem ESQUERRE de cada franja. Ara sí que
+queden per sota de la corba, i la seva suma és la mateixa fórmula amb
+k=0..n−1, que val 1/3 − 1/(2n) + 1/(6n²). L'àrea de veritat queda
+atrapada entre les dues:
+
+    1/3 − 1/(2n) + 1/(6n²)  ≤  àrea  ≤  1/3 + 1/(2n) + 1/(6n²)
+
+i les dues puntes s'estrenyen al voltant d'1/3 tant com vulguis. Ara sí
+que qualsevol número que no sigui 1/3 es pot desmentir: si algú et diu
+0,34, la suma superior amb n gran ja hi baixa per sota; si et diu 0,33,
+la inferior ja hi puja per sobre.
+
 L'àrea SOTA la corba és, doncs, 1/3 de la caixa, i per tant l'àrea ENTRE
 la corba i la part de dalt —la "secció"— n'és els 2/3 restants.
 
-**Comprovació.** n=100: suma ≈ 0,33835 (ja molt a prop d'1/3=0,3333).
-n=10000: suma ≈ 0,33338, encara més a prop. L'àrea sota la corba tendeix
-exactament a 1/3, i 1−1/3=2/3 confirma la secció.
+**Comprovació.** Fes sempre les dues sumes, que és el que dona la
+demostració. n=10: la inferior val 0,285 i la superior 0,385 —una forquilla
+ampla, però l'1/3 ja hi és a dins. n=100: 0,32835 i 0,33835. n=10000:
+0,333283 i 0,333383. La forquilla s'estreny per tots dos costats al voltant
+de 0,33333…, i cap altre número no hi cap. Fet això, 1−1/3=2/3 dona la
+secció.
 
 **I després.** Aquest mètode —partir en franges cada cop més fines i
 sumar una fórmula coneguda— és exactament l'"exhauriment" que Arquimedes
@@ -556,14 +659,20 @@ rectangle —una línia recta—, i la seva longitud és, per Pitàgores,
 √((2πRn)² + H²).
 
 **Comprovació.** R=1, n=4 voltes, H=3: longitud = √((2π·4)²+9) =
-√(631,65+9) ≈ 25,31. Comprovat també sumant numèricament milers de
-trossets petits de la corba real en 3D: coincideix fins a la cinquena
-xifra decimal.
+√(631,65+9) ≈ 25,31. Val la pena fer-ne dues comprovacions de sentit
+comú, que no demanen calculadora. La primera: si H=0 (no puja gens),
+l'hèlix es converteix en el cercle recorregut 4 vegades, i la fórmula
+dona √((2π·4)²) = 2π·4, que és exactament això ✓. La segona: si R=0 (el
+cilindre s'aprima fins a ser una recta), queda √(H²)=H, la pujada
+sencera ✓. Una fórmula que passa els dos casos extrems difícilment
+s'equivoca al mig.
 
 **I després.** "Desenrotllar" una superfície corba per convertir un
-problema en un de pla és la mateixa idea que ja vas fer servir per
-mesurar l'àrea d'un con o d'un cilindre: aquí, en lloc d'una àrea, en
-surt la longitud d'una corba.
+problema en un de pla és la mateixa idea que ja vas fer servir a q45
+(l'àrea d'un cilindre) i a q51 (la d'un con). Aquí, en lloc d'una àrea,
+en surt la longitud d'una corba —i és el mateix motiu que fa que
+funcioni: el cilindre es pot obrir i estendre pla sense estirar-lo enlloc,
+o sigui que cap longitud dibuixada a sobre no canvia en desenrotllar-lo.
 
 ---
 
@@ -605,11 +714,16 @@ punt del tor i una distància, per petita que sigui, i la corba hi acabarà
 passant més a prop que aquella distància. No és el mateix, i la diferència
 et tornarà a sortir sovint.
 
-**Comprovació.** Amb p/q=2/3: la corba fa 2 voltes completes al
-voltant del forat central pel mateix temps que en fa 3 al voltant del
-tub, i es tanca exactament on va començar — es pot comprovar contant
-quantes vegades creua un mateix meridià (ha de ser 3) i un mateix
-paral·lel (ha de ser 2).
+**Comprovació.** Amb p/q=2/3: la corba fa 2 voltes completes al voltant
+del forat central pel mateix temps que en fa 3 al voltant del tub, i es
+tanca exactament on va començar. Es pot comprovar contant creuaments, però
+compte a no barrejar els dos cercles del tor, que és fàcil. Un **meridià**
+és el cercle petit que dona la volta al tub (com un tall del donut amb un
+ganivet); per creuar-lo cal haver fet una volta sencera al voltant del
+forat central, o sigui que la corba el creua **2** vegades. Un
+**paral·lel** és el cercle gran que dona la volta al forat; per creuar-lo
+cal haver fet una volta sencera al voltant del tub, o sigui **3**. Si et
+surten els números canviats, has intercanviat els dos cercles.
 
 **I després.** Aquesta corba es diu "nus tòric" quan p i q no tenen cap
 factor comú: per a segons valors de p,q dona lloc a nusos autèntics
@@ -644,14 +758,25 @@ deltoide) i per fora (dos cercles enganxats, cardioide) del cercle
 gran, cadascun amb el punt de contacte marcat en sanguina.
 
 **Pista 3 — tanca-ho.**
-El nombre de pics és R/r (quan aquesta raó és un nombre enter): per
-cada volta completa del cercle gran, el cercle petit hi ha "rodat"
-R/r vegades, i cada rodolada completa produeix exactament un pic. Val
-el mateix argument tant si el cercle petit rodola per dins com per
-fora.
+El nombre de pics és R/r, quan aquesta raó és un nombre enter. L'argument
+és de longituds, i val la pena fer-lo amb aquestes paraules exactes:
+rodolar sense lliscar vol dir que els dos arcs que es toquen mesuren el
+mateix. Fer la volta sencera al cercle gran són 2πR de recorregut, i la
+circumferència del petit fa 2πr; per tant, el punt de contacte ha recorregut
+2πR/2πr = R/r circumferències senceres del cercle petit. Cada vegada que
+en completa una, el punt marcat torna a ser al lloc del contacte —o sigui,
+toca el cercle gran— i allà hi ha un pic. Val igual per dins que per fora.
+
+**Compte amb una trampa famosa aquí.** No comptis les voltes que fa el
+cercle petit **sobre el seu propi centre**: no en són R/r. Rodolant per
+dins en fa R/r − 1, i rodolant per fora, R/r + 1 —és la paradoxa de les dues
+monedes, i si comptes això et surt el número equivocat en tots dos casos.
+Amb R/r=4 per dins, el cercle petit gira 3 vegades sobre si mateix i tanmateix
+l'astroide té 4 pics. El que compta els pics és l'arc recorregut, no la
+rotació pròpia.
 
 **Comprovació.** R/r=3 (dins): deltoide, 3 pics — el cas de la
-figura del llibre. R/r=4 (dins): astroide, 4 pics —la mateixa corba
+figura del llibre. R/r=2 (fora): nefroide, 2 pics. R/r=4 (dins): astroide, 4 pics —la mateixa corba
 que ja vas trobar a q64 amb el bastó lliscant. R/r=1 (fora):
 cardioide, 1 pic.
 
@@ -690,10 +815,12 @@ Sense el gir addicional del punt sobre el cercle petit, el que queda
 per dins del cercle gran mantenint sempre la mateixa distància R−r del
 centre comú— descriu simplement un cercle de radi R−r.
 
-**Comprovació.** R=5, r=2: el centre del cercle petit es manté sempre
-a distància 5−2=3 del centre, per a qualsevol angle de gir — es pot
-comprovar calculant-ho a diversos instants i veient que el radi no
-canvia mai.
+**Comprovació.** R=5, r=2: el centre del cercle petit es manté sempre a
+distància 5−2=3 del centre comú, per a qualsevol angle de gir. I fixa't que
+no cal calcular res a cap instant concret: la distància entre els dos
+centres és R−r sempre, per la simple raó que els dos cercles es toquen i
+el petit és a dins. Si el fessis rodolar **per fora**, la mateixa raó
+donaria R+r, i el cercle traçat seria de radi 5+2=7.
 
 **I després.** Aquest cas degenerat —tota la complexitat de l'espirògraf
 reduïda a un simple cercle— és el mateix tipus de simplificació que ja
@@ -736,10 +863,13 @@ distància és sempre L/2: el punt mitjà es manté sempre a la mateixa
 distància L/2 de la cantonada, i per tant descriu un quart de cercle
 de radi L/2 centrat a la cantonada.
 
-**Comprovació.** L=7: amb el peu del bastó a x=7cos(0,37)≈6,52 i
-l'altre extrem a y=7sin(0,37)≈2,53, el punt mitjà és (3,26, 1,27), a
-distància √(3,26²+1,27²)≈3,50=7/2 exactament ✓ — i ho és per a
-qualsevol altre angle que provis.
+**Comprovació.** L=7 i el bastó formant un angle de 0,37 **radians**
+(uns 21°) amb el terra: el peu és a x=7·cos(0,37)≈6,53 i l'altre extrem
+a y=7·sin(0,37)≈2,53, de manera que el punt mitjà és (3,26 · 1,27) i la
+seva distància a la cantonada, √(3,26²+1,27²)≈3,50 = 7/2 ✓. Prova-ho amb
+qualsevol altre angle i tornarà a sortir 3,5: de fet no cal ni provar-ho,
+perquè el punt mitjà és sempre (½·L·cos α, ½·L·sin α) i la seva distància
+a l'origen és ½·L·√(cos²α+sin²α) = L/2, sigui quin sigui α.
 
 **I després.** Aquest mateix bastó ja et va donar, a q64, l'envolupant
 de totes les seves posicions (un astroide). Ara en tens un segon

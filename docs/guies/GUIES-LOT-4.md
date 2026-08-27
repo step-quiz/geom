@@ -609,8 +609,10 @@ Si el triangle ja fos isòsceles, és fàcil veure per simetria que les dues
 bisectrius (dels dos angles iguals) fan la mateixa longitud —aquest sentit
 és senzill. Aquí et demanen l'altre sentit: si les dues bisectrius **surten**
 iguals, has de deduir que el triangle era isòsceles. Aquesta implicació
-inversa és la que necessita una demostració real (i no la donarem aquí
-sencera: és massa llarga per a una pista puntual).
+inversa és la que necessita una demostració real. Contra el que se sol dir
+d'aquest teorema, amb el que ja tens al quadern la pots fer sencera: només
+et calen la fórmula de la longitud d'una bisectriu i una observació sobre
+quan una fracció creix.
 
 **Pista 2 — la construcció.** → `fig-045.png`
 El triangle del dibuix s'ha fet **expressament no isòsceles** a ull. Hi ha
@@ -624,23 +626,40 @@ iguals en píxels** (és tota la gràcia del teorema: si ho fossin de veritat,
 el triangle seria isòsceles). La ratlleta és la hipòtesi que estàs suposant,
 no el que veus.
 
-**Pista 3 — el que sí pots fer amb les eines que ja tens.**
-El que sí està al teu abast és comprovar el resultat numèricament en un cas
-concret, i raonar per què un triangle *molt* escalè (costats molt diferents)
-hauria de donar bisectrius molt diferents —encara que demostrar-ho en
-general no hi sigui.
+**Pista 3 — tanca-ho.**
+Primer, la longitud de la bisectriu des de B. Parteix el triangle en dos amb
+aquesta bisectriu i escriu-ne l'àrea de dues maneres (q80): l'àrea sencera és
+½·a·c·sin B, i les dues meitats fan ½·c·t·sin(B/2) + ½·a·t·sin(B/2), on t és
+la bisectriu i a, c els dos costats que es troben a B. Iguala, fes servir
+sin B = 2·sin(B/2)·cos(B/2) (q88) i aïlla:
 
-**Comprovació.** En un triangle escalè "normal" (per exemple, costats 5, 6,
-7), calcula (amb la fórmula de la longitud de la bisectriu, si la tens a
-mà, o amb un dibuix a escala) les longituds de dues bisectrius diferents:
-haurien de sortir clarament diferents entre elles. Això no demostra el
-teorema, però confirma que "diferents costats ⟹ diferents bisectrius" no
-falla en el cas típic, que és el que fa creïble la implicació inversa.
+t_B = 2ac·cos(B/2) / (a+c).
 
-**I després.** Aquest és un dels pocs resultats del quadern on la demostració
-completa se't queda fora d'abast expressament —val la pena saber que
-existeixen teoremes senzills d'enunciar i difícils de provar, i que
-"contraintuïtivament difícil" no vol dir "fals".
+Ara suposa que el triangle **no** és isòsceles, per exemple b > c. Se'n
+segueixen dues coses, i totes dues empenyen en la mateixa direcció. Una: a
+costat més gran, angle oposat més gran, o sigui B > C, i per tant
+cos(B/2) < cos(C/2), perquè tots dos mig-angles són aguts i el cosinus hi
+decreix. L'altra: escriu la fracció al revés, (a+c)/(2ac) = 1/(2c) + 1/(2a),
+i veuràs que 2ac/(a+c) **creix** quan creix qualsevol dels dos costats; com
+que b > c, això fa 2ab/(a+b) > 2ac/(a+c). Multiplica les dues desigualtats i
+et surt t_C > t_B. O sigui que si les bisectrius són iguals, b > c és
+impossible; per simetria, c > b també; i només queda b = c.
+
+**Comprovació.** Triangle de costats a=5, b=6, c=7 (a oposat a A, i així
+els altres). Els angles surten A≈44,42°, B≈57,12°, C≈78,46°, que sumen 180 ✓.
+Bisectriu des de B: t_B = 2·5·7·cos(28,56°)/(5+7) = 70·0,8783/12 ≈ **5,124**.
+Bisectriu des de C: t_C = 2·5·6·cos(39,23°)/(5+6) = 60·0,7744/11 ≈ **4,225**.
+Diferents, com havien de ser. I fixa't que van en l'ordre que diu la
+demostració: c=7 > b=6, i efectivament t_B > t_C.
+
+**I després.** Val la pena saber per què aquest teorema té fama de difícil,
+ara que ja l'has demostrat. Totes les demostracions conegudes, inclosa
+aquesta, són **indirectes**: suposen que el triangle no és isòsceles i
+n'arriben a una contradicció. Des del segle XIX es busca una demostració
+*directa* —que construeixi la igualtat dels dos costats a partir de la de
+les bisectrius, sense passar per la negació— i no n'hi ha cap que tingui
+consens que ho sigui de debò. Que un enunciat tan simple resisteixi això és
+més interessant que la demostració mateixa.
 
 ---
 
