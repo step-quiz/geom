@@ -106,7 +106,7 @@ tanmateix s'invocava a q86, a q88, a la solució de q81 i a la de q90. Ara el
 cas agut és a l'«I després» de q79, amb la mateixa figura i el peu de
 l'alçada a dins; l'entrada de glossari pot remetre-hi per als dos casos.
 
-### A8. `criteris-congruencia-triangles` — falten AAS, hipotenusa-catet i, sobretot, què NO és criteri
+### A8. `criteris-congruencia-triangles` — ✅ RESOLTA (ago. 2026): l'entrada del glossari ja porta AAS, hipotenusa-catet i què NO és criteri
 
 L'entrada llista tres criteris: CCC/SSS, CAC/SAS i ACA/ASA. Però **q86 és,
 sencera, la pregunta de què passa amb la combinació que no hi és** (SSA), i
@@ -119,8 +119,9 @@ per respondre-la calen quatre fets que l'entrada no porta:
 | **SSA no és cap criteri** | És exactament la resposta de q86 |
 | **AAA tampoc**, però per una altra raó (dona forma i no mida) | La confusió natural que q86 ha de desfer |
 
-És l'entrada més barata d'ampliar de tota la secció A i la que sosté una
-pregunta sencera. Nota: SSA **sí** determina el triangle quan l'angle donat és
+Era l'entrada més barata d'ampliar de tota la secció A i la que sosté una
+pregunta sencera; **ja està feta**: l'entrada de `js/data/glossari-dades.js`
+porta ara els quatre fets, amb «cas ambigu» i SSA entre els termes de cerca. Nota: SSA **sí** determina el triangle quan l'angle donat és
 recte o obtús; si l'entrada arriba a esmentar el «cas ambigu», convé que ho
 digui, perquè «SSA falla» a seques és fals.
 
