@@ -95,6 +95,25 @@ q69, q83) — invisible if you read them separately.
 Five questions per tram is the right size. Some trams justify fewer (tram 4
 stopped at q45 because q40 alone took the budget); say so rather than rushing.
 
+**Read the itinerary map before you edit a `DEPÈN` line.** Two traps, both
+cheap to avoid and expensive to discover with the verifier in red:
+
+- If a `DEPÈN` names a question in a **different** itinerary, `verifica_projecte.py`
+  raises an **error** (not a warning) unless that question is also in the
+  entry's `requereix` in `itineraris-tematics-dades.js`.
+- If it names a **hidden** question you simply swap one warning for another.
+  In tram 12, q85 needed q78 (different itinerary → would have needed a
+  `requereix` edit) and q84 (hidden → would have replaced the `q85 → q88`
+  warning with `q85 → q84`). Citing q31/q33 was both correct mathematically
+  and free.
+
+**The `DEPÈN` text never reaches the student.** `parse_guies.py` keeps only
+the `**Moviment: …**` title; everything after it on that line is discarded.
+So the three `(aquest mateix lot)` strings inside `DEPÈN` lines in
+`GUIES-LOT-8.md` are *not* a regression of the §5 production-vocabulary
+sweep — `grep -c "aquest mateix lot" js/data/guies-dades.js` returns 0. Don't
+spend a tram chasing them.
+
 ### 3.2 Verify numerically, don't eyeball
 
 Every numeric claim gets checked with Python. This is not optional and it is
@@ -111,6 +130,24 @@ where a lot of the errors were caught:
 holds the generated hint figures. Several findings came only from looking:
 q05's `_notaExtraccio` said "7-pointed star" and the figure has 8; q40's
 "unresolvable detail" turned out to be resolvable.
+
+### 3.2b Measure the figure when the picture and the text disagree
+
+Extends what was done at q40. In tram 12 the q86 hint says "put the compass
+point at **B**" and the arc in `fig-202.png` looks like it starts at A. It
+does not, and reporting it would have been a false positive. The procedure:
+
+1. Mask the red channel (`r>110 && r−g>50 && r−b>50`) and the black.
+2. **Least-squares circle fit** on the red pixels (x²+y²+Dx+Ey+F=0). Result:
+   centre (360,348), radius 256, mean residual 0.93 px — the centre is B.
+3. Line-fit each black ray, excluding the bounding boxes of the text labels.
+4. Take red pixels within 2.5 px of the upper ray, cluster them by proximity,
+   and **count the crossings**.
+
+Step 4 is the one that matters and the one q40 didn't do: the claim under test
+is usually *how many* intersections there are, not where they are. Here: two,
+at 40 px and 383 px from A, with the angle at A measuring 41.4°. The figure is
+correct.
 
 ### 3.3 Edit surgically
 
@@ -196,12 +233,34 @@ Always check them against each other.
 > **q57**, **q60**, **q69**, **q83**.
 
 ### 4.5 False or misdirected cross-references
+
+Two variants, with different costs to detect.
+
+**(a) The wrong question is named.**
 > **q44** cited a result to q23 that q23 never establishes.
 > **q77** cited q32 for "the diagonal of a pentagon"; q32 computes the *side of
 > the small pentagon* — the diagonal is q33.
 > **q24** cited q14 for Pythagoras; q14 is about a triangle being half its box.
 > **q59**/**q61** claimed π/6 and 2/3 were "the same fraction" and then
 > "complementary". They are neither.
+> **q86** cited "the SAS case of q08c-reversed"; q08c is about AAA and
+> similarity and has no SAS content at all (found tram 12).
+> **q84**'s `DEPÈN` cited q14/q25 for Pythagoras. q14 is the half-the-box
+> question, q25 is the 3D box diagonal; **no question in the notebook proves
+> Pythagoras** — it is prior knowledge. Same residue as the q24 case above
+> (found tram 12).
+
+**(b) The right question is named, but it proves something narrower than the
+use.** More expensive to spot, because the citation looks resolved. The check:
+for every named result a guide cites, open the source question and write down
+its **hypothesis**, not its name.
+> **q79** proves the law of cosines *for an obtuse angle only*
+> (c² = a²+b²+2ab·cos C'). Four places used it on an **acute** angle:
+> **q86** (30°), **q88** (its own worked example is 2θ=74°),
+> `solucions/q81.html` (the tetrahedron's arccos(1/3) ≈ 70.53°) and
+> `solucions/q90.html`. q81 had been passed as verified in tram 11 precisely
+> because the citation pointed at the right question. Closed in tram 12 by
+> adding the acute case to q79 itself (see §5).
 
 ### 4.6 The recipe is narrower than the claim
 > **q81** — "the same method works for the other three solids". The specific
@@ -228,6 +287,14 @@ Always check them against each other.
 > **q21** — claimed infinite descent *needs* the coprimality hypothesis. It's
 > the opposite; that's the point of descent.
 
+**Claims of the form "X is the only one that …" need three checks, not one:**
+that X belongs to the set, that nothing else fails, and that X fails *always*.
+> **q86** — "of the five classic congruence criteria, SSA is the only one
+> that fails" failed all three at once: SSA is not a criterion, AAA fails too
+> (it fixes shape, not size), and SSA **does** determine the triangle when the
+> given angle is right or obtuse. The third is the one that hurts a student,
+> who may pick their own numbers, get a single answer and think they erred.
+
 ### 4.9 Answers that stop short of the question asked
 > **q50** — "can you figure out the pattern?" was answered with the limit, not
 > the pattern. The pattern is exact: Vₙ = πr²h·(1/3 − 1/(2n) + 1/(6n²)).
@@ -245,6 +312,25 @@ Always check them against each other.
 
 ---
 
+### 4.11 The argument returns to where it started
+
+A valid chain whose final value equals one of its own intermediate values,
+because of a symmetry nobody names. Not 4.1 (the argument *does* reach the
+conclusion) and not 4.2 (no step assumes what it proves). It is still worth
+fixing, because it hides from the student that the figure already contained
+the answer — which in a geometry notebook is the thing being taught.
+> **q85** — travelled 18° → 36° → 72° with two applications of the double-angle
+> formula to land on cos72° = 1/(2φ), which is the value of sin18° read off the
+> figure in step one. 18° and 72° are complementary, so q78 makes the return
+> inevitable. Fixed by taking the short route in the guide and keeping the long
+> one in the solution *as the lesson*, under a step titled "why the double-angle
+> route adds nothing".
+
+**Detection:** at the end of any chained derivation, evaluate every
+intermediate numerically and check whether one equals the final value. If it
+does, find the symmetry (complementary, supplementary, similarity, symmetry of
+the figure) that makes it inevitable.
+
 ## 5. Cross-cutting sweeps — all closed, keep them closed
 
 | Sweep | Status |
@@ -252,10 +338,30 @@ Always check them against each other.
 | Unescaped `<` inside solution text (breaks XML/validators) | **closed** — 0 remaining |
 | Production vocabulary ("en aquest mateix lot", pointers to `NOTA-LOT-6.md`, `REVISIONS.md`) leaking into student-facing hints | **closed** — 0 remaining, verified against the generated `guies-dades.js` |
 | Guide `DEPÈN de` vs itinerary `requereix` | **closed** — 19 added; now guarded by `verifica_projecte.py` |
+| Prose that asserts presentation order ("la propera guia", "la pregunta següent") | **closed** in tram 12 — one real case, q87, which said q79 was "the next guide" when q79 is 42 positions later |
+| Law of cosines cited in a form q79 doesn't prove | **closed** in tram 12 — the acute case now lives in q79's *I després*, which legitimises the citations in q81 and q90 without touching them |
 
 If you introduce a `<` in a solution, escape it as `&lt;`. If you write a
 cross-reference, don't mention lots, notes or internal files — the student sees
-this text.
+this text. And never let prose assert order: the order lives in
+`ordre-preguntes.js` and the owner can reorder it without touching any text.
+
+The sweep for that one, if you need to re-run it:
+
+```bash
+grep -rno "la propera guia\|la guia següent\|la següent guia\|la pregunta següent\
+\|la propera pregunta\|tot seguit\|la que ve ara\|just després\|just abans" \
+  docs/guies/GUIES-LOT-*.md solucions/*.html
+```
+
+**Reopening earlier trams.** If you find an error in already-reviewed material
+and the correction is local and certain, **fix it** and record it in the tram
+changelog under *"Reobertures de trams anteriors"*. A known-and-uncorrected
+error is worse than an undiscovered one, because it survives the next review
+wearing an "already checked" label. If the fix needs an owner decision or
+touches a figure, report only. And before repairing *n* questions that depend
+on one gap, check whether the gap can be closed once at its source — that is
+what q79 did for q81 and q90.
 
 ---
 
@@ -338,13 +444,27 @@ appears, you introduced it.
 - **68 files** changed or created.
 - **57 of the 130 guides** modified (via the `.md` sources, then regenerated).
 - **51 solution files** rewritten in part.
-- **11 tram changelogs** + 1 side-task changelog, all in
+- **12 tram changelogs** + 1 side-task changelog, all in
   `docs/revisio-matematica/`, each recording what was found, what was changed
   and why, and what was verified as correct without change.
 - **15 questions have no solution file** and never did: q18a, q18b, q19, q20,
   q21, q24, q34, q35, q67, q83, q84, q87, q88, q102, q106. Several of them now
   have a complete and correct argument in the guide, if the owner wants them
   written.
+
+Trams 1–11 covered q01–q83; tram 12 covered q84–q88 and reopened q79.
+**q89–q130 remain.** The next hot spot is **q90**: its solution uses
+p² = a²+b²−2ab·cos B (the acute case) and cos(180°−B) (the cosine of an obtuse
+angle). Both are now available — the acute case from q79's *I després*, the
+obtuse-cosine definition from the same place and from q87's — so q90 should be
+straightforward to close.
+
+One structural observation left undecided, sibling to §6: the three questions
+that **establish** the basic trigonometry — q84 (sin²+cos²=1), q87 (sine of an
+obtuse angle), q88 (double angle) — are all in `EXERCICIS_AMAGATS`. The
+notebook proves them where the student cannot go and uses them where they can.
+Unhiding is cheaper here than for q18a or q67: all three already have a
+complete and correct guide, and two are short.
 
 **Nothing in the original `preguntes-dades.js` statements has been changed
 except three fields**, all recorded in `CANVIS-TRAM-01.md` and
