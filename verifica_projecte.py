@@ -227,6 +227,7 @@ DOCS_ABSENTS = {
     #     comprovació va deixar de saltar-se ./docs. Tots citats només des
     #     de notes de lliurament, mai des del codi; explicats un per un a la
     #     segona taula de docs/DOCUMENTS-DE-DISSENY.md.
+    "NOTA-METODE-TRAM-12.md",    # esborrat a posta: v. CANVIS-TRAM-12.md §8
     "ANALISI-GRAFICS-NOUS.md",   # anàlisi prèvia de les imatges de la Part 1 i 2
     "FIGURES.md",                # nota de lliurament d'una ronda de figures
     "IMPROVE-INSTRUCTIONS.md",   # instruccions dels tres agents "IMPROVE"

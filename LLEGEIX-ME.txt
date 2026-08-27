@@ -1,0 +1,15 @@
+geom — revisio matematica completa (trams 12 a 20, q84–q127) + registre d'oberts
+
+APLICAR: descomprimir sobre l'arrel del repositori, sobreescrivint.
+
+COMPROVAR:
+  python3 parse_guies.py        -> 130 guies, 0 problemes
+  python3 verifica_projecte.py  -> 53 comprovacions, 0 errors, 2 avisos
+
+COMENCA PER:  docs/revisio-matematica/HANDOFF-FULL.md
+  (tot el que queda obert, consolidat, amb una llista de tres coses per fer
+   primer)
+
+NOTA: docs/revisio-matematica/NOTA-METODE-TRAM-12.md va existir durant el
+tram 12 i es va esborrar a posta; el seu contingut es ara dins de HANDOFF.md.
+Si el teu repositori encara el te, esborra'l a ma.
