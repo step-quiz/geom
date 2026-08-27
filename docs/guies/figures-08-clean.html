@@ -186,7 +186,9 @@ function ACCENT_LOCAL(){return '#8B5E3C';}
   stampNum(ctx,380,'090');
 })();
 
-/* fig-091 -- q87: angle obtus -- alcada cau fora, C i C'. Moviment: construeix-per-definir. */
+/* fig-091 -- q87: angle obtus -- alcada cau fora; el peu es H (NO C', que
+   a les guies de q79 i q87 designa l'angle suplementari 180-C). Moviment:
+   construeix-per-definir. */
 (function(){
   const ctx=mk('i8',620,380),hd=makeHandDraw(ctx,6008);ctx.translate(260,300);
   const a=200,bLen=160,CpDeg=60;
@@ -202,7 +204,7 @@ function ACCENT_LOCAL(){return '#8B5E3C';}
   angleMark(hd,Bv.x,Bv.y,A.x,A.y,apex.x,apex.y,34,1,SANG);
   angleMark(hd,Bv.x,Bv.y,apex.x,apex.y,apex.x,0,26,2,SANG);
   lblC(ctx,'C',Bv.x-18,Bv.y+16,INK,20);
-  lblC(ctx,"C'",apex.x-6,18,SANG,18);
+  lblC(ctx,'H',apex.x-6,18,SANG,18);
   stampNum(ctx,340,'091');
 })();
 

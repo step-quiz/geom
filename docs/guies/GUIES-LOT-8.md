@@ -355,11 +355,10 @@ base sí que ho fa.
 ## 9. q79 — *Show that in this case we get c² = a² + b² + 2ab cos C'.*
 > Demostra que, en aquest cas, surt c² = a² + b² + 2ab cos C'.
 
-**Moviment: redueix el desconegut al conegut.** DEPÈN de q78 i de
-Pitàgores (ja fet). *(La definició de sinus i cosinus d'un angle obtús
-mitjançant el suplementari, que aquí es dona per bona, es treballa a q87 —
-que avui és a EXERCICIS_AMAGATS, per això aquesta guia la reprodueix en
-lloc de remetre-s'hi.)*
+**Moviment: redueix el desconegut al conegut.** DEPÈN de q78, de q87 (la
+definició de sinus d'un angle obtús mitjançant el suplementari), de q84
+(la identitat sin²+cos²=1, que fa col·lapsar dos termes en un) i de
+Pitàgores.
 
 **Pista 0 — què has de produir.**
 Una generalització de Pitàgores per a un triangle amb un angle obtús C
@@ -657,8 +656,7 @@ n'hi ha un de sol.
 > Demostra que, si un quadrilàter de costats a, b, c i d està inscrit en un cercle, la seva àrea ve donada per la fórmula de Brahmagupta.
 
 **Moviment: redueix el desconegut al conegut.** DEPÈN de q79 (teorema
-del cosinus generalitzat) i q84 (identitat sin²+cos²=1), tots dos
-d'aquest mateix lot.
+del cosinus) i de q84 (identitat sin²+cos²=1).
 
 **Pista 0 — què has de produir.**
 Una fórmula que generalitza la de Heron (àrea d'un triangle a partir

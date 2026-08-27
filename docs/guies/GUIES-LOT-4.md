@@ -594,7 +594,7 @@ natural a la llei del sinus i del cosinus si mai hi treballes.
 ## 12. q89 — *If two of a triangle's angle bisectors are equal in length, is the triangle isosceles?*
 > Si dues bisectrius d'angle d'un triangle fan la mateixa longitud, el triangle és isòsceles?
 
-**Moviment: contraexemple i demostració — quan la intuïció i la resposta correcta coincideixen per raons no òbvies.**
+**Moviment: contraexemple i demostració — quan la intuïció i la resposta correcta coincideixen per raons no òbvies.** DEPÈN de q80 (l'àrea com a mig producte de dos costats pel sinus) i de q88 (l'angle doble), que són les dues peces amb què es construeix la longitud de la bisectriu.
 
 **Pista 0 — aposta abans de raonar.**
 Aquest és un dels resultats clàssics de la geometria elemental que costa més
