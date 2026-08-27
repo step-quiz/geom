@@ -132,38 +132,45 @@
    * Per treure un exercici d'aquesta llista (tornar-lo a fer visible),
    * elimina'n l'id d'aquest array -- res més cal tocar.
    *
-   * Dues tandes acumulades:
-   *  - q19, q20, q34, q35, q84, q88: petició original, sense relació
-   *    amb cap categoria concreta.
+   * Tandes acumulades:
+   *  - q19, q20, q34, q35: petició original, sense relació amb cap
+   *    categoria concreta.
    *  - q18a, q18b, q21, q24, q83: la resta de la categoria
-   *    "aritmetica_algebra" (11 preguntes en total -- les altres 6 ja hi
-   *    eren de la tanda anterior), a petició explícita d'amagar TOTA
-   *    la categoria sencera. V. window.CLASSIFICACIO_TEMATICA per
+   *    "aritmetica_algebra", a petició explícita d'amagar TOTA la
+   *    categoria sencera. V. window.CLASSIFICACIO_TEMATICA per
    *    confirmar la llista completa si mai cal regenerar-la.
-   *  - q87: tercera tanda, sol, NO forma part de "aritmetica_algebra"
-   *    (categoritzada com "triangles" a window.CLASSIFICACIO_TEMATICA --
-   *    tracta el sinus d'un angle obtús, no una propietat aritmètica).
-   *    Decisió de contingut independent de l'owner. Aquesta llista ja
-   *    no coincideix 1:1 amb cap categoria sencera des d'aquesta tanda.
-   *  - q67, q102, q106: quarta tanda -- decidida en revisar quines
-   *    preguntes sense imatge d'enunciat calia il·lustrar; per a
-   *    aquestes tres, la decisió de contingut va ser amagar-les en lloc
-   *    de dibuixar-los una imatge (v. NOTA-ENUNCIATS-D.md).
+   *  - q67, q102, q106: decidida en revisar quines preguntes sense
+   *    imatge d'enunciat calia il·lustrar; per a aquestes tres, la
+   *    decisió de contingut va ser amagar-les en lloc de dibuixar-los
+   *    una imatge (v. NOTA-ENUNCIATS-D.md).
+   *
+   * PUBLICADES (ago. 2026, decisió de l'owner en tancar la revisió
+   * matemàtica): q84, q87 i q88 eren aquí i ja no hi són. El motiu és
+   * que les tres ESTABLEIXEN resultats que la resta del quadern fa
+   * servir -- sin²+cos²=1, el sinus d'un angle obtús i les fórmules de
+   * l'angle doble--, i el quadern les demostrava en llocs on l'alumne
+   * no podia entrar. En publicar-les es van fer tres canvis més que van
+   * junts amb aquest: se'ls va escriure la solució (solucions/q84.html,
+   * q87.html, q88.html), es van afegir a l'itinerari "triangles" i,
+   * com que q84 i q88 estaven categoritzades com "aritmetica_algebra"
+   * --una categoria sense itinerari i exclosa del menú de filtres--,
+   * es van recategoritzar com "triangles", que és on pertanyen pel
+   * contingut (totes dues es demostren amb triangles i viuen al costat
+   * de q78, q79 i q80).
    */
-  // Decisió de contingut de l'owner: aquestes 15 preguntes no es
+  // Decisió de contingut de l'owner: aquestes 12 preguntes no es
   // mostren enlloc que llisti o suggereixi preguntes (aquesta llista,
   // "Anterior/Següent" a detall.js, "Suggerit per a tu" a itinerari.js)
   // -- però SÍ són accessibles per enllaç directe (#q19, etc.), amb la
   // seva guia completa (v. README §"Exercicis amagats de la llista").
-  // 11 d'aquestes són EXACTAMENT les 11 preguntes de la categoria
-  // "aritmetica_algebra" (per això aquella categoria no apareix al menú
-  // de filtres, v. més avall); q87, q67, q102 i q106 s'hi van afegir
-  // després per decisions de contingut independents -- per tant aquesta
-  // llista ja NO coincideix 1:1 amb cap categoria completa.
+  // 9 d'aquestes són EXACTAMENT les 9 preguntes que queden a la
+  // categoria "aritmetica_algebra" (per això aquella categoria no
+  // apareix al menú de filtres, v. més avall); q67, q102 i q106 s'hi
+  // van afegir per decisions de contingut independents -- per tant
+  // aquesta llista no coincideix 1:1 amb cap categoria completa.
   const EXERCICIS_AMAGATS = [
-    "q19", "q20", "q34", "q35", "q84", "q88",
+    "q19", "q20", "q34", "q35",
     "q18a", "q18b", "q21", "q24", "q83",
-    "q87",
     "q67", "q102", "q106",
   ];
 
