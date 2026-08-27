@@ -856,7 +856,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Posa el punt de projecció a alçada p, un pla a alçada 0 i l'altre a alçada h. Un punt a distància x0 de l'eix, al pla 0, es projecta a distància x0·(p−h)/p al pla h (surt de resoldre on la recta des del punt de projecció talla el segon pla). Prova-ho amb p més gran que h (fora d'entremig) i després amb p entre 0 i h.",
+          "ca": "Posa el punt de projecció a alçada p, un pla a alçada 0 i l'altre a alçada h. Un punt de coordenada x0 respecte de l'eix, al pla 0, es projecta a la coordenada x0·(p−h)/p al pla h (surt de resoldre on la recta des del punt de projecció talla el segon pla). Coordenada, i no distància: el signe hi és part de la resposta. Prova-ho amb p més gran que h (fora d'entremig) i després amb p entre 0 i h.",
           "en": null
         },
         "figura": null
@@ -877,14 +877,14 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Quan p és fora de l'interval [0,h], el factor (p−h)/p és positiu: la figura es projecta ampliada o reduïda però SENSE capgirar-se —una dilatació ordinària, com q91/q92 ja et van fer veure per a la projecció paral·lela. Quan p és entre 0 i h, aquest mateix factor esdevé NEGATIU: la figura es projecta capgirada (com la imatge d'una càmera fosca), no només escalada.",
+          "ca": "Quan p és fora de l'interval [0,h], el factor (p−h)/p és positiu: la figura es projecta ampliada o reduïda però SENSE capgirar-se. I val la pena que t'hi aturis, perquè aquesta és la primera homotècia de debò del bloc: a q91 el factor depenia de la direcció del segment, i a q92 depenia d'on era el segment; aquí no depèn de res, és el mateix número per a tota la figura i per a totes les direccions. El que ho arregla no són les línies de projecció, que continuen sortint totes d'un sol punt: és que ara els dos plans són PARAL·LELS. Quan p és entre 0 i h, aquest mateix factor esdevé NEGATIU: la figura es projecta capgirada (com la imatge d'una càmera fosca), no només escalada.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "h=10. Amb p=−2 (fora, per sota): factor=(−2−10)/(−2)=6, positiu. Amb p=5 (entremig): factor=(5−10)/5=−1, negatiu —la figura surt exactament invertida i de la mateixa mida.",
+      "ca": "h=10. Amb p=−2 (fora, per sota): factor=(−2−10)/(−2)=6, positiu. Amb p=20 (fora, per sobre): factor=(20−10)/20=0,5, també positiu —la figura surt a la meitat i dreta. Amb p=5 (entremig): factor=(5−10)/5=−1, negatiu —la figura surt exactament invertida i de la mateixa mida. Acosta ara el punt de projecció al primer pla, p=0,001: el factor es dispara a −9999, i a p=0 exacte ja no hi ha projecció possible, perquè el punt de projecció cauria damunt de la figura mateixa.",
       "en": null
     },
     "iDespres": {
@@ -915,11 +915,11 @@ window.GUIES = {
       {
         "nivell": 1,
         "titol": {
-          "ca": "compta graus de llibertat",
+          "ca": "compta graus de llibertat, però compta bé",
           "en": null
         },
         "text": {
-          "ca": "Triar un punt de projecció O i una segona recta dona prou llibertat per moure tres punts on vulguis (tres condicions, prou paràmetres lliures per satisfer-les). Un quart punt, en canvi, ja no és lliure: la seva posició queda determinada pels altres tres i per la projecció concreta. Quina cosa, ja calculada a q99, és la que fixa aquest quart punt?",
+          "ca": "Amb els tres punts d'arribada ja donats, la segona recta no la tries tu: és la que ells determinen. Només et queda triar O, i això són dos números per a tres condicions. Fixa't, a més, en una cosa que limita molt una projecció sola: si les dues rectes es tallen en un punt X, aleshores la recta que va d'O a X és la mateixa per a totes dues, o sigui que X es projecta damunt d'ell mateix. Una projecció no pot moure aquell punt de cap manera. Amb dues projeccions encadenades, en canvi, sí que el pots moure —i aleshores els tres punts van on vulguis.\n\nUn quart punt, en canvi, no s'arregla per molt que encadenis: la seva posició queda determinada pels altres tres. Quina cosa, ja calculada a q99, és la que el fixa?",
           "en": null
         },
         "figura": null
@@ -940,18 +940,18 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Un cop fixada la imatge de tres punts A,B,C (sempre possible, perquè tres punts no porten cap invariant que els lligui), la imatge D′ del quart punt D ha de complir que la raó doble (AC·BD)/(BC·AD) sigui la MATEIXA abans i després (q99) —això determina D′ de manera única. Per tant, quatre punts només es poden projectar a quatre punts amb la mateixa raó doble, no a qualssevol quatre.",
+          "ca": "Un cop fixada la imatge de tres punts A,B,C (sempre possible, encara que et calguin dues projeccions seguides, perquè tres punts no porten cap invariant que els lligui), la imatge D′ del quart punt D ha de complir que la raó doble (AC·BD)/(BC·AD) sigui la MATEIXA abans i després (q99) —això determina D′ de manera única. Per tant, quatre punts només es poden projectar a quatre punts amb la mateixa raó doble, no a qualssevol quatre.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "Amb A,B,C fixats en qualsevol posició, la raó doble original (per exemple 35/27, com a q99) prediu exactament on ha de caure D′ —comprova-ho triant tres imatges A′,B′,C′ arbitràries i resolent D′ perquè la raó doble surti 35/27.",
+      "ca": "Fes-la amb números. Parteix dels quatre punts de q99, a x=0, 2, 5 i 9, amb raó doble 35/27. Envia A→0, B→1 i C→3 (tres imatges triades a l'atzar) i mira on ha d'anar D: imposant (3−0)(d−1)/((3−1)(d−0)) = 35/27 surt d = 81/11 ≈ 7,364, i no hi ha cap altre valor possible. Si en lloc de 35/27 haguessis volgut, per exemple, 2, hauries obtingut un altre d —o sigui que els quatre punts d'arribada no els pots triar tots quatre.",
       "en": null
     },
     "iDespres": {
-      "ca": "Aquesta és la primera vegada, en aquest bloc, que es veu EXPLÍCITAMENT que la raó doble no és només \"una cosa que es conserva\": és la mesura completa de la llibertat que perdem en passar de tres punts a quatre. q106 li posa nom formal («invariant projectiu») i en demana un altre exemple.",
+      "ca": "Aquesta és la primera vegada, en aquest bloc, que es veu EXPLÍCITAMENT que la raó doble no és només \"una cosa que es conserva\": és la mesura completa de la llibertat que perdem en passar de tres punts a quatre. El nom formal d'una quantitat així —una que cap projecció no pot tocar— és invariant projectiu.",
       "en": null
     }
   },
@@ -970,7 +970,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "DUES respostes. Segurament esperes un contrast, perquè q101 te'n va donar un (tres punts sobre una recta, sí; quatre, no). Aquí no n'hi ha: la resposta és SÍ totes dues vegades. Tots els triangles són el mateix projectivament, i tots els quadrilàters també. La pregunta interessant, doncs, canvia: si a la recta la llibertat s'acabava al quart punt, per què al pla encara no s'ha acabat?",
+          "ca": "DUES respostes. Segurament n'esperes un contrast —un sí i un no. Aquí no n'hi ha: la resposta és SÍ totes dues vegades. Tots els triangles són el mateix projectivament, i tots els quadrilàters també. La pregunta interessant, doncs, canvia: si a la recta la llibertat s'acabava al quart punt, per què al pla encara no s'ha acabat?",
           "en": null
         },
         "figura": null
@@ -1003,7 +1003,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Mira una foto d'un terra de rajoles quadrades, feta de gairebé qualsevol lloc. Cada rajola és un quadrat de veritat, i a la foto n'hi ha de totes les formes: més amples, més estretes, més aixafades com més lluny són. Aquella foto és, literalment, una projecció central. Ja tens la resposta davant dels ulls: un quadrat es pot projectar sobre tota mena de quadrilàters, i per tant qualsevol quadrilàter es pot portar a qualsevol altre (passant pel quadrat, si cal, en dos passos).\n\nOn s'acaba, doncs, la llibertat? Al cinquè punt. Amb quatre punts al pla encara pots decidir on van tots quatre; el cinquè ja no el pots moure, queda determinat pels altres quatre i per la projecció que has triat. Exactament el mateix fenomen de q101, però un punt més tard, perquè el pla té una dimensió més que la recta.",
+          "ca": "Mira una foto d'un terra de rajoles quadrades, feta de gairebé qualsevol lloc. Cada rajola és un quadrat de veritat, i a la foto n'hi ha de totes les formes: més amples, més estretes, més aixafades com més lluny són. Aquella foto és, literalment, una projecció central. Ja tens la resposta davant dels ulls: un quadrat es pot projectar sobre tota mena de quadrilàters, i per tant qualsevol quadrilàter es pot portar a qualsevol altre (passant pel quadrat, si cal, en dos passos).\n\nOn s'acaba, doncs, la llibertat? Al cinquè punt. Amb quatre punts al pla encara pots decidir on van tots quatre; el cinquè ja no el pots moure, queda determinat pels altres quatre i per la projecció que has triat. És el mateix fenomen que trobaràs sobre una recta a q101, però un punt més tard, perquè el pla té una dimensió més que la recta.",
           "en": null
         },
         "figura": null
@@ -1014,7 +1014,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Que la llibertat s'acabi al quart punt sobre una recta i al cinquè sobre un pla no és una coincidència: és la mateixa comptabilitat feta en una dimensió i en dues. Cada dimensió que afegeixes et regala exactament un punt més de llibertat abans que apareguin els invariants —les quantitats que la projecció ja no pot tocar, com la raó doble de q106. Recorda també que aquest \"sí\" és sobre quadrilàters mirats com a quatre punts en posició general (cap tres alineats): la projecció respecta quins punts hi ha, no si la figura et sembla ben proporcionada.",
+      "ca": "Que la llibertat s'acabi al quart punt sobre una recta i al cinquè sobre un pla no és una coincidència: és la mateixa comptabilitat feta en una dimensió i en dues. Cada dimensió que afegeixes et regala exactament un punt més de llibertat abans que apareguin els invariants —les quantitats que la projecció ja no pot tocar, com la raó doble que calcularàs a q99. Recorda també que aquest \"sí\" és sobre quadrilàters mirats com a quatre punts en posició general (cap tres alineats): la projecció respecta quins punts hi ha, no si la figura et sembla ben proporcionada.",
       "en": null
     }
   },
@@ -1033,7 +1033,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Una resposta de NO, amb el cas exacte on falla: quin costat del polígon original ha de tenir una propietat concreta (en relació amb el punt de projecció) perquè la seva imatge deixi de ser un segment normal.",
+          "ca": "Una resposta de NO, amb els casos exactes on falla. N'hi ha dos, i són de naturalesa oposada: en un la figura s'aplana i en l'altre s'obre. Has de saber dir, per a cadascun, quina relació concreta entre el polígon i el punt de projecció el provoca.",
           "en": null
         },
         "figura": null
@@ -1045,7 +1045,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Un costat qualsevol del polígon es projecta, en general, a un altre segment. Però si aquell costat, allargat, passés exactament pel PUNT DE PROJECCIÓ mateix —què li passaria a la seva imatge?",
+          "ca": "Un costat qualsevol del polígon es projecta, en general, a un altre segment. Hi ha dues maneres que això falli, i val la pena separar-les des del principi perquè són ben diferents. La primera: què passa si dos vèrtexs del polígon i el punt de projecció queden alineats? La segona: hi ha algun punt del pla que no tingui imatge enlloc? (Pensa en quina direcció hauria de sortir el raig des del punt de projecció perquè no arribés mai a la recta o al pla d'arribada.)",
           "en": null
         },
         "figura": null
@@ -1066,14 +1066,14 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Si la recta que conté un costat passa pel punt de projecció, tots els punts d'aquell costat es projecten des d'ells mateixos —la seva \"recta de projecció\" és la mateixa recta que ja contenia el costat. En el llenguatge que ja coneixes de q104/q105, aquell costat es projecta \"cap a l'infinit\": dos dels vèrtexs del polígon original es converteixen en un sol punt (o en cap punt ordinari) a la imatge, i el que hauria de ser un polígon tancat de n costats deixa de tancar-se com a tal.",
+          "ca": "Primera manera: el col·lapse. Si un costat, allargat, passa pel punt de projecció, els seus dos extrems comparteixen el mateix raig i van a parar al mateix lloc. Aquell costat es projecta a un sol punt, i el que era un triangle et queda aplanat en un segment. No s'escapa res: al contrari, dues coses que eren diferents s'ajunten. Ja no és un polígon.\n\nSegona manera: la fugida. Un punt X no té imatge quan el raig que hi va des del punt de projecció no arriba mai a la recta d'arribada, és a dir, quan aquell raig és paral·lel a la recta d'arribada. Els punts del pla que compleixen això formen tota una recta —la recta de fuga—, i qualsevol polígon que la travessi es trenca en la imatge i se'n va a l'infinit per tots dos costats. En el llenguatge de l'espai projectiu de q105, aquella recta és la que va a parar als punts de l'infinit. Si has mirat mai una foto d'un terra de rajoles, la recta de fuga té un nom que ja coneixes: l'horitzó.\n\nDues respostes de \"no\", doncs, i per raons oposades: en una la figura s'aplana, en l'altra s'obre.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "Amb un triangle i un punt de projecció allunyat de qualsevol de les rectes que contenen els seus costats, la projecció és sempre un triangle normal. Si mous el punt de projecció fins que quedi exactament sobre la prolongació d'un costat, aquell costat \"desapareix\" a l'infinit en la imatge —comprova-ho seguint numèricament què passa amb la distància de projecció d'un punt d'aquell costat quan el punt de projecció s'hi acosta (tendeix a infinit).",
+      "ca": "Fes els dos casos amb coordenades. Recta d'arribada y=4, punt de projecció O=(6,0).\n\nCol·lapse. Triangle de vèrtexs A=(1,1), B=(4,2) i C=(5,1). Els punts B i C són alineats amb O, i efectivament es projecten tots dos a x=2, el mateix punt; A se'n va a x=−14. La imatge del triangle és el segment de x=−14 a x=2: aplanada, no trencada.\n\nFugida. Ara el punt X=(1,0), a la mateixa alçada que O: el raig d'O a X és horitzontal i no talla mai y=4, o sigui que X no té imatge. La recta de fuga és, doncs, y=0. Acosta-t'hi i mira com se'n va: X=(1,½) dona x=−34, X=(1,0,1) dona x=−194, i X=(1,0,01) dona x=−1994.",
       "en": null
     },
     "iDespres": {
@@ -1096,7 +1096,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Una descripció qualitativa concreta: tres rectes que, un cop projectades, ja NO són paral·leles entre si, sinó que tenen alguna altra relació geomètrica exacta —quina?",
+          "ca": "Una descripció qualitativa concreta de com queden les tres rectes un cop projectades. I una segona part que la pregunta no diu però que hi és: passa sempre? Abans de tancar-la, busca't tu mateix una manera que falli.",
           "en": null
         },
         "figura": null
@@ -1129,18 +1129,18 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Tres rectes paral·leles, en ser projectades des d'un punt fix, es converteixen en tres rectes CONCURRENTS —totes es tallen en un mateix punt. Aquest punt és exactament la imatge del \"punt a l'infinit\" comú a totes tres (la seva direcció comuna), pel mateix mecanisme que ja vas veure a q103: la direcció compartida es projecta a un únic punt ordinari, anomenat punt de fuga.",
+          "ca": "Tres rectes paral·leles, en ser projectades des d'un punt fix, es converteixen en tres rectes CONCURRENTS —totes es tallen en un mateix punt. Aquest punt és exactament la imatge del \"punt a l'infinit\" comú a totes tres (la seva direcció comuna), pel mateix mecanisme que ja vas veure a q103: la direcció compartida es projecta a un únic punt ordinari, anomenat punt de fuga.\n\nAra la lletra petita, que és mig la pregunta. Aquell punt de fuga existeix si el raig que surt del punt de projecció en la direcció comuna arriba al pla d'arribada. I hi ha un cas en què no hi arriba: quan la direcció comuna de les tres rectes és paral·lela al pla d'arribada. Aleshores no hi ha punt de fuga i les tres imatges continuen sent paral·leles entre si. No és cap raresa de laboratori: en una foto d'una via de tren, els dos rails convergeixen —la seva direcció se'n va cap al fons— però les travesses, que travessen la imatge de dreta a esquerra, surten paral·leles. Les has vistes mil vegades.\n\nI fixa't que les dues respostes són, en el fons, la mateixa: amb el llenguatge de q105, dues imatges paral·leles també \"es tallen\", però al seu propi punt de l'infinit. El punt de fuga se n'hi ha anat.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "Tres rectes horitzontals paral·leles, projectades des d'un punt per sobre seu cap a un pla inclinat: numèricament, comprova que les tres imatges, prolongades, es tallen totes en el MATEIX punt —no en tres punts diferents.",
+      "ca": "Amb coordenades: pla de partida z=0, punt de projecció O=(0,0,1) i pla d'arribada y=1. Un punt (x,y,0) es projecta a la posició u=x/y, w=1−1/y dins del pla d'arribada.\n\nCas concurrent. Pren les tres rectes x=1, x=2 i x=−1, de direcció comuna (0,1) —les que se'n van cap al fons. Les imatges surten w=1−u, w=1−u/2 i w=1+u, i les tres passen per (u,w)=(0,1): hi ha punt de fuga.\n\nCas paral·lel. Ara les rectes y=2, y=3 i y=4, de direcció comuna (1,0), que és paral·lela al pla d'arribada. Les imatges surten w=1/2, w=2/3 i w=3/4: tres rectes horitzontals, paral·leles, que no es tallen enlloc. Compara els dos casos i veuràs on és exactament la diferència.",
       "en": null
     },
     "iDespres": {
-      "ca": "Aquest és, literalment, el punt de fuga de la pintura en perspectiva: qualsevol conjunt de rectes paral·leles del món real convergeix, en un dibuix o fotografia, cap a un únic punt. La geometria projectiva no en fa cap excepció: n'és la manera formal de dir-ho.",
+      "ca": "Aquest és, literalment, el punt de fuga de la pintura en perspectiva: cada conjunt de rectes paral·leles del món real té el seu punt de fuga propi al quadre —i com que hi ha una direcció per a cada punt de fuga, un quadre en perspectiva en pot tenir un, dos o més. Les direccions que es queden paral·leles al quadre són justament les que un pintor dibuixa paral·leles: és el que distingeix una perspectiva \"frontal\" d'una \"d'angle\".",
       "en": null
     }
   },
@@ -1159,7 +1159,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Una resposta de SÍ —a diferència del pla ordinari, on dues rectes paral·leles no es tallen mai— amb l'explicació exacta de quin punt \"nou\" fa que sempre es tallin.",
+          "ca": "Una resposta de SÍ, dins d'un pla —a diferència del pla ordinari, on dues rectes paral·leles no es tallen mai—, amb l'explicació exacta de quin punt \"nou\" fa que sempre es tallin. El \"dins d'un pla\" no és un detall menor i el trobaràs a l'\"I després\": a l'espai de tres dimensions la resposta canvia.",
           "en": null
         },
         "figura": null
@@ -1171,7 +1171,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "En el pla ordinari, dues rectes paral·leles són l'única excepció a \"dues rectes sempre es tallen en un punt\". q104 ja et va donar cada direcció del pla el seu propi \"punt de fuga\". Si a CADA direcció del pla li afegeixes aquest punt (un punt \"a l'infinit\" per direcció), què els passa a dues rectes paral·leles?",
+          "ca": "En el pla ordinari, dues rectes paral·leles són l'única excepció a \"dues rectes sempre es tallen en un punt\". Una sola excepció, i tot just per un pèl: inclina una de les dues un mil·lèsim de grau i ja es tallen, encara que sigui a quilòmetres d'aquí. Mira on se'n va aquell punt de tall a mesura que les tornes paral·leles. Si a CADA direcció del pla li inventes un punt nou —un punt \"a l'infinit\" per direcció, allà on se'n va aquell tall—, què els passa a dues rectes paral·leles?",
           "en": null
         },
         "figura": null
@@ -1183,7 +1183,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Diverses rectes gairebé paral·leles convergint totes cap a un mateix punt marcat \"∞\", tal com ja ho vas veure amb el punt de fuga a q104.",
+          "ca": "Diverses rectes gairebé paral·leles convergint totes cap a un mateix punt marcat \"∞\". És la mateixa imatge que et fa un carrer llarg mirat de cap a cap, o dues vies de tren.",
           "en": null
         },
         "figura": "fig-109.png"
@@ -1202,7 +1202,7 @@ window.GUIES = {
       }
     ],
     "comprovacio": {
-      "ca": "Dues rectes de pendent 3 (paral·leles entre si) no es tallen mai en el pla ordinari (cap solució real al sistema d'equacions). En l'espai projectiu, totes dues \"arriben\" al mateix punt a l'infinit associat a la direcció de pendent 3 —comprova que és l'ÚNIC punt a l'infinit que comparteixen amb qualsevol tercera recta de pendent diferent (que arriba a un punt a l'infinit distint).",
+      "ca": "y=3x i y=3x+5 són paral·leles: iguala-les i et queda 0=5, sense solució —al pla ordinari no es tallen. Al pla projectiu totes dues arriben al mateix punt de l'infinit, el de la direcció de pendent 3, i és allà on es tallen. Afegeix-hi ara una tercera recta de pendent diferent, y=x. Aquesta se'n va a un altre punt de l'infinit, el del pendent 1, i per tant no es troba amb les altres dues allà: s'hi ha de trobar en punts ordinaris, i efectivament hi surt —talla y=3x a (0,0) i y=3x+5 a (−2,5 · −2,5). Cap parella no se n'escapa: o comparteixen direcció i es tallen a l'infinit, o no la comparteixen i es tallen aquí.",
       "en": null
     },
     "iDespres": {
@@ -1265,11 +1265,11 @@ window.GUIES = {
       }
     ],
     "comprovacio": {
-      "ca": "Amb els mateixos quatre punts de q99 (distàncies 0,2,5,9), la raó doble val 35/27 abans i després de QUALSEVOL projecció que triïs —repeteix-ho amb un punt de projecció i una recta d'arribada diferents dels que vas fer servir llavors i comprova que segueix sortint 35/27.",
+      "ca": "Amb els mateixos quatre punts de q99 (a 0, 2, 5 i 9), la raó doble val 35/27. Ara refés-ho amb una projecció completament diferent de la de q99: punt de projecció a (4,−3) i recta d'arribada y=2. Els quatre punts van a parar a −8/3, 2/3, 17/3 i 37/3, que no s'assemblen gens als d'abans. I la raó doble: (17/3+8/3)(37/3−2/3) / ((17/3−2/3)(37/3+8/3)) = (25/3)(35/3) / ((15/3)(45/3)) = 875/675 = 35/27. Exactament el mateix. Aquesta és la comprovació que fa la pregunta: no que es conservi en una projecció, sinó que es conservi sigui quina sigui.",
       "en": null
     },
     "iDespres": {
-      "ca": "Trobar aquest invariant és el pas que fa possible demostrar coses sobre projeccions sense haver de repetir un càlcul de triangles cada vegada —q107 el fa servir (implícitament, via el mecanisme de q105) per identificar amb precisió quins dos punts d'un cercle es projecten a l'infinit quan es forma una hipèrbola.",
+      "ca": "Trobar aquest invariant és el pas que fa possible demostrar coses sobre projeccions sense haver de repetir un càlcul de triangles cada vegada. Compte, però, a no atribuir-li més del que fa: q107, que identifica quins dos punts d'un cercle se'n van a l'infinit en formar-se una hipèrbola, no fa servir la raó doble —li basta el mecanisme de fugida de q103 i q105. Són dues eines diferents del mateix calaix: una diu què es conserva, l'altra què desapareix.",
       "en": null
     }
   },
@@ -1321,7 +1321,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Les \"rectes de projecció\" des del vèrtex són exactament les generatrius del con (les rectes rectes que el formen). Dues d'aquestes generatrius —les que passen pels dos punts del cercle base on el con és paral·lel al pla de tall— no arriben MAI al pla de tall (com dues rectes paral·leles que no es tallen, en el sentit ordinari). Els dos punts del cercle per on passen aquestes dues generatrius són exactament els que se'n van \"a l'infinit\" —i per això la hipèrbola té dues branques que s'obren cap enfora sense parar: són la imatge d'un cercle sencer, menys aquests dos punts que han fugit a l'infinit.",
+          "ca": "Les \"rectes de projecció\" des del vèrtex són exactament les generatrius del con (les rectes rectes que el formen). Dues d'aquestes generatrius —exactament les dues que són paral·leles al pla de tall— no arriben MAI al pla de tall (com dues rectes paral·leles que no es tallen, en el sentit ordinari). Els dos punts del cercle per on passen aquestes dues generatrius són exactament els que se'n van \"a l'infinit\" —i per això la hipèrbola té dues branques que s'obren cap enfora sense parar: són la imatge d'un cercle sencer, menys aquests dos punts que han fugit a l'infinit.",
           "en": null
         },
         "figura": null
@@ -1332,7 +1332,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Aquesta identificació és exactament el que fa falta per a q109: les esferes de Dandelin es col·loquen tocant el con al llarg d'aquests mateixos cercles base, i el seu argument depèn de saber exactament on i com el pla de tall es relaciona amb el con.",
+      "ca": "Aquesta identificació és exactament el que fa falta per a q109: les esferes de Dandelin s'encaixen dins del con tocant-lo cadascuna al llarg d'un cercle propi —no d'aquest cercle base, sinó del que li toca segons la mida de l'esfera— i tangents al pla de tall. El que hi aprofitaràs d'aquí no és el cercle, sinó la relació entre les generatrius i el pla de tall que acabes de fixar.",
       "en": null
     }
   },
@@ -1387,7 +1387,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Perpendicular a l'eix: cercle. Inclinant la paret fins que quedi paral·lela a UNA generatriu del con de llum (la vora del feix): la taca es converteix en una paràbola, oberta per un sol costat. Inclinant encara més (com q107 ja et va fer descobrir): dues generatrius es tornen paral·leles a la paret alhora, i encara que aquí només hi ha un con (no un con doble com a q107/q109), la vora del feix de llum es veu \"obrir-se\" cap als dos costats de manera característica d'una branca de hipèrbola.",
+          "ca": "Perpendicular a l'eix: cercle. Inclinant la paret fins que quedi paral·lela a UNA generatriu del con de llum (la vora del feix): la taca es converteix en una paràbola, oberta per un sol costat. Inclinant encara més, hi ha DUES generatrius que es tornen paral·leles a la paret alhora, i la vora del feix se't veu \"obrir-se\" cap als dos costats: és una hipèrbola. Amb un matís honest, que veuràs de seguida: una hipèrbola de debò té dues branques, i amb una llanterna només en pots veure una, perquè la llanterna fa un sol con i la hipèrbola sencera demana el con doble —el que continua a l'altra banda del vèrtex.",
           "en": null
         },
         "figura": null
@@ -1398,7 +1398,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Aquest experiment físic —una llanterna i una paret— és la manera més directa de veure per què les tres còniques comparteixen nom de família: totes surten del mateix con, només canviant l'angle del pla de tall, exactament com q107 i q109 ho demostren amb rigor.",
+      "ca": "Aquest experiment físic —una llanterna i una paret— és la manera més directa de veure per què les tres còniques comparteixen nom de família: totes surten del mateix con, i l'única cosa que canvia és l'angle del pla que el talla. Guarda-t'ho, perquè més endavant q107 i q109 tornaran a aquesta mateixa figura per demostrar amb rigor el que aquí hauràs vist projectat a la paret.",
       "en": null
     }
   },
@@ -1429,7 +1429,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Dins de cada nappa del con (per damunt i per sota del pla de tall) hi cap exactament una esfera tangent tant a la superfície del con com al pla de tall. Anomena F₁ i F₂ els dos punts on cada esfera toca el pla —aquests seran els focus. Per a un punt P qualsevol de la corba de tall, quina relació hi ha entre PF₁ i la distància, MESURADA SOBRE LA SUPERFÍCIE DEL CON, entre P i el cercle on la primera esfera hi és tangent?",
+          "ca": "Compte amb un detall que sovint es diu malament: com que el pla de tall no travessa les dues nappes, totes dues esferes són a la mateixa nappa —una encaixada entre el vèrtex i el pla, l'altra més enllà del pla, allunyant-se del vèrtex. Cadascuna és tangent alhora a la superfície del con i al pla de tall, i de cada mena n'hi cap exactament una. Anomena F₁ i F₂ els dos punts on cada esfera toca el pla —aquests seran els focus. Per a un punt P qualsevol de la corba de tall, quina relació hi ha entre PF₁ i la distància, MESURADA SOBRE LA SUPERFÍCIE DEL CON, entre P i el cercle on la primera esfera hi és tangent?",
           "en": null
         },
         "figura": null
@@ -1450,14 +1450,14 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Dues maneres de mesurar la mateixa distància: (a) PF₁ és una tangent des de P a l'esfera 1 —i totes les tangents des d'un mateix punt a una esfera tenen la mateixa longitud (q93). (b) El segment de la generatriu del con des de P fins al cercle de tangència amb l'esfera 1 és TAMBÉ una tangent des de P a aquesta mateixa esfera (la generatriu és tangent a l'esfera al llarg de tot el con). Per tant PF₁ = aquest tros de generatriu. Igual per PF₂ amb l'esfera 2, cap a l'altre cercle de tangència. Suma PF₁+PF₂: és exactament la longitud del tros de generatriu ENTRE els dos cercles de tangència —la mateixa per a QUALSEVOL generatriu, perquè els dos cercles de tangència són fixos (no depenen de P). Constant trobada.",
+          "ca": "Dues maneres de mesurar la mateixa distància: (a) PF₁ és una tangent des de P a l'esfera 1 —i totes les tangents des d'un mateix punt a una esfera tenen la mateixa longitud (q93). (b) El segment de la generatriu del con des de P fins al cercle de tangència amb l'esfera 1 és TAMBÉ una tangent des de P a aquesta mateixa esfera (l'esfera toca el con al llarg de tot un cercle, i per tant cada generatriu la toca en un punt, el d'aquell cercle). Per tant PF₁ = aquest tros de generatriu. Igual per PF₂ amb l'esfera 2, cap a l'altre cercle de tangència. Suma PF₁+PF₂: és exactament la longitud del tros de generatriu ENTRE els dos cercles de tangència —la mateixa per a QUALSEVOL generatriu, perquè els dos cercles de tangència són fixos (no depenen de P). Constant trobada.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "Amb un con d'obertura 30° i un pla de tall concret, la suma PF₁+PF₂ calculada per a diversos punts P de la corba de tall (numèricament, amb les coordenades 3D reals) surt EXACTAMENT la mateixa —per exemple, en un cas verificat, 12,86 unitats per a qualsevol dels punts provats.",
+      "ca": "Amb un cas del tot concret, perquè el puguis refer. Con de semiobertura 30° amb el vèrtex a l'origen i l'eix vertical, i pla de tall z = 4 + x/2 (menys inclinat que les generatrius, o sigui el·lipse). Les dues esferes surten centrades a l'eix, a altures 2,566 i 9,071 —totes dues per damunt del vèrtex, com deia la Pista 1—, amb radis 1,283 i 4,535. Toquen el pla a F₁=(−0,574; 0; 3,713) i F₂=(2,028; 0; 5,014), i toquen el con al llarg de dos cercles situats a 2,222 i a 7,855 del vèrtex, mesurats sobre la generatriu. La constant ha de ser, doncs, la diferència: 7,855 − 2,222 = 5,633. Tria ara punts P de la corba de tall i suma: per a P=(3,247; 0; 5,623) surt 5,633; per a P=(0; 2,309; 4) surt 5,633; per a P=(−1,792; 0; 3,104) surt 5,633. Sempre el mateix, i sempre el tros de generatriu.",
       "en": null
     },
     "iDespres": {
@@ -1586,7 +1586,7 @@ window.GUIES = {
       }
     ],
     "comprovacio": {
-      "ca": "Amb a=3, b=4: comprova que si (x₀,y₀) satisfà x₀²/9−y₀²/16=1, aleshores (−x₀,y₀), (x₀,−y₀) i (−x₀,−y₀) també ho satisfan —substitueix-los directament a l'equació i comprova que dona el mateix resultat en els quatre casos.",
+      "ca": "Amb a=3, b=4: comprova que si (x₀,y₀) satisfà x₀²/9−y₀²/16=1, aleshores (−x₀,y₀), (x₀,−y₀) i (−x₀,−y₀) també ho satisfan —substitueix-los directament a l'equació i comprova que dona el mateix resultat en els quatre casos.\n\nTorna ara a la pregunta, que deia \"TANTA\" simetria. Una el·lipse també té dos eixos i la rotació de 180°: en nombre no en té menys. El que sorprèn de la hipèrbola és on porten aquelles simetries. La reflexió en l'eix vertical i la rotació de 180° no deixen cada branca al seu lloc: s'intercanvien les dues branques. Dibuixades, les branques semblen dues corbes separades que no es toquen enlloc, i la simetria diu que són la mateixa corba i que hi ha moviments del pla que converteixen l'una en l'altra exactament. Aquesta és la resposta al \"tanta\": no en té més que l'el·lipse, però n'hi ha que travessen un buit que semblava infranquejable.",
       "en": null
     },
     "iDespres": {
@@ -1609,7 +1609,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Una identificació exacta de què és \"el diamant\" (el quadrilàter que formen les dues asímptotes i les tangents als vèrtexs) i una prova que el seu costat val exactament el mateix que la distància del centre a cada focus.",
+          "ca": "Una identificació exacta de què és \"el diamant\" i una prova que el seu costat val exactament el mateix que la distància del centre a cada focus. Comença per la identificació, que és on es cau: al voltant d'una hipèrbola hi ha dos quadrilàters que criden l'atenció, i només un d'ells és el diamant.",
           "en": null
         },
         "figura": null
@@ -1621,7 +1621,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Amb els vèrtexs de la hipèrbola a distància a del centre (sobre un eix) i les seves tangents tallant les asímptotes a distància b del mateix centre (sobre l'altre eix), el \"diamant\" és el quadrilàter amb aquests quatre punts com a vèrtexs. Amb l'orientació de sempre —la de x²/a² − y²/b² = 1, amb els vèrtexs sobre l'eix horitzontal— són (a,0), (0,b), (−a,0), (0,−b). Quin tipus de quadrilàter és, exactament, si les seves diagonals es tallen en angle recte i es reparteixen per la meitat?",
+          "ca": "El que no és: el rectangle que formen les dues asímptotes amb les tangents als vèrtexs. Aquell existeix i és útil —té els vèrtexs a (±a,±b) i les asímptotes en són les diagonals—, però els seus costats fan 2a i 2b, no pas c, o sigui que no és el que busques.\n\nEl diamant té els seus quatre vèrtexs sobre els eixos: els dos vèrtexs de la hipèrbola, a distància a del centre, i els dos punts a distància b del centre sobre l'altre eix. Amb l'orientació de sempre —la de x²/a² − y²/b² = 1, amb els vèrtexs sobre l'eix horitzontal— són (a,0), (0,b), (−a,0) i (0,−b). Comprova de passada que els seus costats són paral·lels a les asímptotes: el que va de (a,0) a (0,b) té pendent −b/a, exactament el d'una d'elles. Quin tipus de quadrilàter és, exactament, si les seves diagonals es tallen en angle recte i es reparteixen per la meitat?",
           "en": null
         },
         "figura": null
@@ -1642,7 +1642,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Aquest quadrilàter és un rombe (les seves quatre costats són iguals), perquè les seves diagonals —de longituds 2a i 2b— es tallen perpendicularment pel seu punt mitjà comú (el centre). El costat d'aquest rombe és la hipotenusa d'un triangle rectangle de catets a i b: costat = √(a²+b²). Aquesta mateixa expressió, √(a²+b²), és exactament c, la distància del centre als focus —la \"constant focal\" d'aquest llibre.",
+          "ca": "Aquest quadrilàter és un rombe (els seus quatre costats són iguals), perquè les seves diagonals —de longituds 2a i 2b— es tallen perpendicularment pel seu punt mitjà comú (el centre). El costat d'aquest rombe és la hipotenusa d'un triangle rectangle de catets a i b: costat = √(a²+b²). Aquesta mateixa expressió, √(a²+b²), és exactament c, la distància del centre als focus —la \"constant focal\" d'aquest llibre.",
           "en": null
         },
         "figura": null
@@ -1653,14 +1653,14 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Aquesta identitat —costat del rombe igual a c— és el mateix triangle rectangle (a, b, c) que ja apareixia amagat a l'equació de la hipèrbola des del principi; converteix una relació algebraica en una relació que es veu directament en un dibuix, tancant el bloc de projecció i còniques amb la mateixa idea que l'obria a q91: mesurar una longitud amb un triangle rectangle ben triat.",
+      "ca": "Aquesta identitat —costat del rombe igual a c— és el mateix triangle rectangle (a, b, c) que ja apareixia amagat a l'equació de la hipèrbola des del principi, i converteix una relació algebraica en una que es veu directament en un dibuix. Guarda't el triangle, perquè a q113 el retrobaràs per a l'el·lipse amb els papers canviats: allà la hipotenusa serà a i el focus caurà entre els vèrtexs (c²=a²−b²), mentre que aquí la hipotenusa és c i el focus cau fora dels vèrtexs (c²=a²+b²). El mateix triangle, llegit de dues maneres.",
       "en": null
     }
   },
   "q112": {
-    "moviment": "dilatacio-anisotropa",
+    "moviment": "estirament",
     "movimentTitol": {
-      "ca": "dilatació anisòtropa",
+      "ca": "estirament",
       "en": null
     },
     "lot": 10,
@@ -1672,7 +1672,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Una hipèrbola qualsevol té dues asímptotes que es tallen amb un angle que depèn de la seva \"forma\". Una hipèrbola recta (o rectangular) és la que té les asímptotes perpendiculars. Has de trobar la dilatació — diferent en horitzontal i en vertical— que converteix la primera en la segona.",
+          "ca": "Una hipèrbola qualsevol té dues asímptotes que es tallen amb un angle que depèn de la seva \"forma\". Una hipèrbola recta (o rectangular) és la que té les asímptotes perpendiculars. Has de trobar l'estirament — diferent en horitzontal i en vertical— que converteix la primera en la segona.",
           "en": null
         },
         "figura": null
@@ -1684,7 +1684,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Una hipèrbola es descriu amb dos números, a (semieix) i b (el que marca el pendent de les asímptotes). Si dilates l'eix horitzontal per un factor i el vertical per un altre —diferent de l'anterior—, què li passa al pendent de les asímptotes? Aquesta és la diferència amb q32/q77: allà el mateix factor valia per a totes les direccions (una FIGURA sencera escalada igual pertot); aquí cada eix té el seu propi factor, i és justament perquè són diferents que l'angle de les asímptotes canvia.",
+          "ca": "Una hipèrbola es descriu amb dos números, a (semieix) i b (el que marca el pendent de les asímptotes). Si dilates l'eix horitzontal per un factor i el vertical per un altre —diferent de l'anterior—, què li passa al pendent de les asímptotes? Aquesta és la diferència amb l'homotècia de q77: allà el mateix factor valia per a totes les direccions (una FIGURA sencera escalada igual pertot); aquí cada eix té el seu propi factor, i és justament perquè són diferents que l'angle de les asímptotes canvia.",
           "en": null
         },
         "figura": null
@@ -1708,7 +1708,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Si l'equació és x²/a² − y²/b² = 1, divideix x per a i y per b: la corba es converteix en X² − Y² = 1, l'equació d'una hipèrbola recta (asímptotes Y = ±X, que formen 90°). Aquesta substitució és exactament una dilatació de factor 1/a en horitzontal i 1/b en vertical.",
+          "ca": "Si l'equació és x²/a² − y²/b² = 1, divideix x per a i y per b: la corba es converteix en X² − Y² = 1, l'equació d'una hipèrbola recta (asímptotes Y = ±X, que formen 90°). Aquesta substitució és exactament un estirament de factor 1/a en horitzontal i 1/b en vertical.",
           "en": null
         },
         "figura": null
@@ -1719,7 +1719,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "La mateixa idea —separar una figura complicada en una de \"normalitzada\" més una dilatació— reapareix de seguida a q114, ara amb la hipèrbola unitat com a patró de referència, i uns quants passos enllà a q117 amb la paràbola.",
+      "ca": "La mateixa idea —separar una figura complicada en una de \"normalitzada\" més un canvi d'escala— la retrobaràs de seguida a q114, ara amb la hipèrbola unitat com a patró de referència. I si mires enrere, q117 ja te l'havia feta servir amb la paràbola: allà, com que n'hi ha prou amb un sol número, la normalització és encara més senzilla.",
       "en": null
     }
   },
@@ -1785,14 +1785,14 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "El mateix triangle, amb els catets intercanviats (a²=b²+c² en lloc de c²=a²−b²), és exactament el que reapareix a q114 per a la hipèrbola — només que allà els papers de a i c s'intercanvien perquè el focus cau fora dels vèrtexs, no entre ells.",
+      "ca": "Compte a no dir-ho malament: a²=b²+c² i c²=a²−b² són la MATEIXA igualtat escrita de dues maneres, no dues de diferents. El que canvia de veritat en passar a la hipèrbola és qui fa d'hipotenusa. Aquí, a l'el·lipse, la hipotenusa és a, i per tant c<a: el focus cau entre els vèrtexs. A la hipèrbola la hipotenusa és c, surt c²=a²+b², i per tant c>a: el focus cau fora dels vèrtexs. És el mateix triangle rectangle llegit amb els papers canviats —ja ho vas veure a q111 amb el costat del rombe, i ho tornaràs a veure a q114.",
       "en": null
     }
   },
   "q114": {
-    "moviment": "dilatacio-anisotropa",
+    "moviment": "estirament",
     "movimentTitol": {
-      "ca": "dilatació anisòtropa",
+      "ca": "estirament",
       "en": null
     },
     "lot": 10,
@@ -1816,7 +1816,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "A l'el·lipse, c²=a²−b² (el focus és \"més a prop\" que el semieix gran). A la hipèrbola els dos braços s'obren cap enfora: el focus ha d'anar més lluny que el vèrtex. Prova c²=a²+b² i comprova que amb a=b=1 et dona un valor familiar.",
+          "ca": "A l'el·lipse, c²=a²−b² (el focus és \"més a prop\" que el semieix gran). A la hipèrbola els dos braços s'obren cap enfora: el focus ha d'anar més lluny que el vèrtex, o sigui que la relació ha de ser una suma. Ara bé, endevinar-la i comprovar que quadra no és demostrar-la, i aquí sí que la pots demostrar. Fes-ho al punt de la corba que hi ha just damunt del focus: si P=(c, h), la distància al focus proper és simplement h, i la distància al llunyà surt de Pitàgores amb catets 2c i h. Imposa que la diferència valgui 2a (la constant focal), aïlla h, i compara-ho amb el h que et dona l'equació de la corba.",
           "en": null
         },
         "figura": null
@@ -1840,14 +1840,14 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Amb a=b=1: c=√(1+1)=√2. En dilatar per (a,b), els vèrtexs passen a (±a,0) i (per la mateixa relació, ara amb semieixos a,b) els focus a (±√(a²+b²), 0).",
+          "ca": "Amb a=b=1: c=√(1+1)=√2, la diagonal del quadrat de costat 1.\n\nAra la segona meitat, i aquí hi ha la trampa gran de la pregunta. En dilatar per (a,b) la corba es transforma bé: els vèrtexs (±1,0) passen a (±a,0), que són els vèrtexs nous. Amb els focus, en canvi, la l'estirament no serveix: el punt on va a parar el focus antic no és el focus nou. Mira-ho amb números abans de creure-t'ho: amb a=4 i b=3, el focus (√2,0) es transforma en (4√2, 0) ≈ (5,66 · 0), mentre que el focus de veritat de x²/16 − y²/9 = 1 és (5,0). No hi ha manera de fer-los coincidir.\n\nPer què? Perquè els focus no es defineixen mirant la corba de prop: depenen de distàncies, i un estirament que allarga més en una direcció que en l'altra no conserva les distàncies. Només quan a=b —quan l'escalat és uniforme, i per tant una homotècia de les de q77— els focus s'hi deixen portar. Per als focus de la hipèrbola general, doncs, has de tornar a aplicar la relació c²=a²+b², ara amb els semieixos a i b: els focus són a (±√(a²+b²), 0).",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "a=4,b=3: c=√(16+9)=5. Focus a (±5,0), vèrtexs a (±4,0) — el mateix triangle 3-4-5 que ja coneixes.",
+      "ca": "a=4, b=3: c=√(16+9)=5, focus a (±5,0) i vèrtexs a (±4,0) —el mateix triangle 3-4-5 de q111. Comprova la relació pel camí llarg, amb el punt just damunt del focus: P=(5, 9/4) és a la corba (25/16 − (81/16)/9 = 1 ✓), la distància al focus proper (5,0) val 9/4, i la distància al llunyà (−5,0) val √(10² + (9/4)²) = 41/4. La diferència és 41/4 − 9/4 = 8 = 2a ✓. I recorda de comprovar la trampa: 4√2 ≈ 5,66, que no és 5.",
       "en": null
     },
     "iDespres": {
@@ -1983,14 +1983,14 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Aquesta bisectriu interior —en lloc de l'exterior— és exactament el que fa que un mirall amb forma d'hipèrbola, orientat cap a un focus, dispersi els raigs en lloc de concentrar-los: el principi que fan servir els telescopis Cassegrain per combinar un mirall el·líptic i un d'hiperbòlic.",
+      "ca": "Aquesta bisectriu interior —en lloc de l'exterior— és exactament el que fa que un mirall amb forma d'hipèrbola, orientat cap a un focus, dispersi els raigs en lloc de concentrar-los: el principi que fan servir els telescopis Cassegrain, on un mirall gran parabòlic recull la llum i l'envia cap al seu focus, i un petit mirall hiperbòlic posat pel mig la desvia cap a l'altre focus de la hipèrbola, que és on hi ha l'ocular. És exactament la propietat d'aquí: el que va cap a un focus, en surt cap a l'altre.",
       "en": null
     }
   },
   "q117": {
-    "moviment": "dilatacio",
+    "moviment": "homotecia",
     "movimentTitol": {
-      "ca": "dilatació",
+      "ca": "homotècia",
       "en": null
     },
     "lot": 10,
@@ -2002,7 +2002,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "A q112 vas veure que TOTES les hipèrboles són dilatacions les unes de les altres. Aquí et pregunten el mateix per a la paràbola: totes les paràboles, són dilatacions d'una de sola?",
+          "ca": "A q112 vas veure que TOTES les hipèrboles s'obtenen les unes de les altres estirant-les. Aquí et pregunten el mateix per a la paràbola: totes les paràboles, s'obtenen totes d'una de sola?",
           "en": null
         },
         "figura": null
@@ -2014,7 +2014,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Una hipèrbola necessita DOS números (a i b) per descriure-la — per això calia una dilatació amb dos factors diferents. Una paràbola y=x²/(4p) només en necessita UN (p). Quantes dilatacions (potser només una direcció, potser una d'uniforme) calen per passar d'una paràbola a qualsevol altra?",
+          "ca": "Una hipèrbola necessita DOS números (a i b) per descriure-la — per això calia un estirament amb dos factors diferents. Una paràbola y=x²/(4p) només en necessita UN (p). Quants factors d'escala (potser només un direcció, potser una d'uniforme) calen per passar d'una paràbola a qualsevol altra?",
           "en": null
         },
         "figura": null
@@ -2026,7 +2026,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Dues paràboles amb el mateix vèrtex sobre la mateixa directriu, una més \"tancada\" que l'altra, amb els respectius focus marcats en sanguina a alçades diferents.",
+          "ca": "Dues paràboles amb el mateix vèrtex, una més \"tancada\" que l'altra, amb els respectius focus marcats en sanguina a alçades diferents. La recta horitzontal que les toca totes dues al vèrtex és la tangent comuna en aquell punt, que l'homotècia deixa quieta. Compte a no confondre-la amb la directriu: la directriu és a distància p per sota del vèrtex, i com que cada paràbola té la seva p, cadascuna té la seva directriu —la homotècia les allunya, igual que allunya els focus.",
           "en": null
         },
         "figura": "fig-121.png"
@@ -2038,18 +2038,18 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Amb una dilatació UNIFORME (el mateix factor en x i en y) centrada al vèrtex, y=x²/(4p) es converteix en y=x²/(4·k·p): totes les paràboles són dilatacions uniformes les unes de les altres, a diferència de les hipèrboles, que en necessiten dues de diferents.",
+          "ca": "Amb una HOMOTÈCIA (el mateix factor en x i en y, que és el que la distingeix d'un estirament) centrada al vèrtex, y=x²/(4p) es converteix en y=x²/(4·k·p): totes les paràboles són homotècies les unes de les altres, a diferència de les hipèrboles, que en necessiten dues de diferents.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "p=1 (y=x²/4) dilatada per factor 2 uniforme des del vèrtex. Fes-ho seguint un punt: (x, x²/4) va a parar a (2x, x²/2). Si n'anomenes X=2x la coordenada nova, aleshores x=X/2 i l'alçada nova és (X/2)²/2 = X²/8. La paràbola dilatada és, doncs, y = x²/8, és a dir p=2 — exactament el k·p de la Pista 3, amb k=2. El focus, que és a alçada p, es mou de (0,1) a (0,2): s'allunya el mateix factor 2 que tota la resta, com ha de fer qualsevol punt en una dilatació uniforme. Si t'ha sortit p més PETIT en dilatar, has aplicat la dilatació al revés.",
+      "ca": "p=1 (y=x²/4) dilatada per factor 2 uniforme des del vèrtex. Fes-ho seguint un punt: (x, x²/4) va a parar a (2x, x²/2). Si n'anomenes X=2x la coordenada nova, aleshores x=X/2 i l'alçada nova és (X/2)²/2 = X²/8. La paràbola dilatada és, doncs, y = x²/8, és a dir p=2 — exactament el k·p de la Pista 3, amb k=2. El focus, que és a alçada p, es mou de (0,1) a (0,2): s'allunya el mateix factor 2 que tota la resta, com ha de fer qualsevol punt en una homotècia. Si t'ha sortit p més PETIT, has aplicat l'homotècia al revés.",
       "en": null
     },
     "iDespres": {
-      "ca": "Que calgui només UN factor de dilatació —en lloc de dos, com a la hipèrbola— és el primer indici que totes les paràboles són \"la mateixa figura, vista de més a prop o de més lluny\": una idea que tornaràs a fer servir a q119, on la paràbola apareix com a envolupant d'un feix de rectes.",
+      "ca": "Que calgui només UN factor d'escala —en lloc de dos, com a la hipèrbola— és el primer indici que totes les paràboles són \"la mateixa figura, vista de més a prop o de més lluny\": una idea que tornaràs a fer servir a q119, on la paràbola apareix com a envolupant d'un feix de rectes.",
       "en": null
     }
   },
@@ -2104,7 +2104,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Demostra que la bisectriu de l'angle en P del triangle isòsceles PFD —que també n'és la mediatriu del costat FD, per ser isòsceles— és precisament la tangent a la paràbola en P.\n\nUn cop ho tinguis, el rebot surt sol. Aquesta recta bisecta l'angle entre PF i PD. I PD és vertical, perquè D és el peu de la perpendicular de P a la directriu, que és horitzontal —o sigui que PD és exactament la direcció del raig que arriba. Un raig que arriba per PD i rebota en una recta que bisecta l'angle PD–PF se'n va, doncs, per PF: cap al focus. (Compte: FD, en canvi, NO és vertical, tret del cas del vèrtex. És PD la que ho és sempre, i és aquesta la que fa la feina.)",
+          "ca": "Aquella bisectriu, per ser el triangle isòsceles, és també la mediatriu del costat FD. I ara la peça que ho tanca tot: aquella recta és la tangent a la paràbola en P, i es pot demostrar sense cap límit ni cap derivada, així. Agafa un punt Q qualsevol d'aquella recta, diferent de P. Com que és la mediatriu de FD, tenim QF = QD. Però QD és la distància de Q fins a D, i D no és, per a Q, el peu de la seva perpendicular a la directriu —només ho era per a P. Anar de Q fins a D, doncs, és fer més camí que anar de Q fins a la directriu en perpendicular: QD > (distància de Q a la directriu). Per tant QF > (distància de Q a la directriu), i això vol dir que Q no és a la paràbola: hi és fora. O sigui que aquella recta toca la corba a P i no la torna a tocar enlloc més: és la tangent.\n\nUn cop ho tinguis, el rebot surt sol. Aquesta recta bisecta l'angle entre PF i PD. I PD és vertical, perquè D és el peu de la perpendicular de P a la directriu, que és horitzontal —o sigui que PD és exactament la direcció del raig que arriba. Un raig que arriba per PD i rebota en una recta que bisecta l'angle PD–PF se'n va, doncs, per PF: cap al focus. (Compte: FD, en canvi, NO és vertical, tret del cas del vèrtex. És PD la que ho és sempre, i és aquesta la que fa la feina.)",
           "en": null
         },
         "figura": null
@@ -2170,14 +2170,14 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "La recta que uneix (i,0) amb (0,n−i) té equació x/i + y/(n−i) = 1. Cada recta d'aquestes és tangent a la corba √x + √y = √n (una paràbola, girada 45° respecte de la posició habitual). Comprova-ho amb dos valors consecutius de i i troba on es tallen les rectes veïnes.",
+          "ca": "La recta que uneix (i,0) amb (0,n−i) té equació x/i + y/(n−i) = 1. Cada recta d'aquestes és tangent a la corba √x + √y = √n (una paràbola, girada 45° respecte de la posició habitual). I això no te l'has de creure: es demostra amb l'eina que ja tens de q120, la de \"tangent = la recta que hi toca amb arrel doble\".\n\nEscriu la corba sense arrels. De √x + √y = √n, elevant al quadrat dues vegades, en surt (x−y)² = 2n(x+y) − n². Ara substitueix-hi la recta y = b − (b/a)x, amb a=i i b=n−i, i recorda que a+b=n. Els comptes es simplifiquen sols i queda\n\n(n²/a²)·x² − 2n·x + a² = 0,   és a dir   (x − a²/n)² = 0.\n\nArrel doble. La recta no talla la corba en dos punts: la toca en un de sol, x = a²/n, i per simetria y = b²/n. Comprova de passada que aquell punt hi és de veritat: √(a²/n) + √(b²/n) = (a+b)/√n = n/√n = √n ✓. Cada recta del feix té, doncs, el seu punt de contacte, i tots ells junts dibuixen la paràbola que hi veus.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "n=10: les rectes i=4 i i=5 es tallen a (2,3), i √2+√3≈3,146, molt a prop de √10≈3,162 — la petita diferència és l'error de fer servir rectes VEÏNES en lloc del límit real (rectes infinitament properes).",
+      "ca": "n=10, recta i=4 (x/4 + y/6 = 1): el punt de contacte que prediu la fórmula és (16/10, 36/10) = (1,6 · 3,6). És a la recta? 1,6/4 + 3,6/6 = 0,4 + 0,6 = 1 ✓. És a la corba? √1,6 + √3,6 = 1,2649 + 1,8974 = 3,1623 = √10 ✓. Prova-ho també amb i=5, que dona (2,5 · 2,5), i amb i=3, que dona (0,9 · 4,9): totes tres cauen sobre la mateixa corba.\n\nFixa't ara en una cosa diferent: les rectes i=4 i i=5 es tallen a (2,3), i √2+√3≈3,146, que no és √10≈3,162 sinó una mica menys. La diferència és l'error de fer servir rectes VEÏNES en lloc del límit real (rectes infinitament properes).",
       "en": null
     },
     "iDespres": {
@@ -2266,7 +2266,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Una relació d'àrees 1:2 entre dues figures: un triangle tallat per la tangent en un punt de la paràbola (el \"sector\"), i un altre triangle —la meitat del rectangle que va del vèrtex fins aquell mateix punt (el \"rectangle\" o, més exactament, la seva diagonal).",
+          "ca": "Una relació d'àrees 1:2 entre dues figures: el triangle TNP tallat per la tangent en un punt P de la paràbola (el \"sector\"), i el triangle VNP, que és la meitat del rectangle que va del vèrtex fins a aquell mateix punt.\n\nCompte amb els noms, perquè l'enunciat diu \"la meitat del rectangle\" i això es pot llegir malament. Aquí hi ha tres àrees en joc, i val la pena que les tinguis totes tres al cap des del principi: el rectangle sencer, la seva diagonal (el triangle VNP, que n'és la meitat sense cap misteri —qualsevol diagonal parteix un rectangle en dos) i el sector TNP. El que has de demostrar és que el sector és la meitat de la diagonal; respecte del rectangle sencer, doncs, en serà una quarta part.",
           "en": null
         },
         "figura": null
@@ -2309,7 +2309,7 @@ window.GUIES = {
       }
     ],
     "comprovacio": {
-      "ca": "p=3: rectangle V-N-P = 3·9=27, meitat (triangle VNP) = 13,5. Triangle TNP amb T=(1,5, 0): base 1,5, alçada 9, àrea 0,5·1,5·9=6,75 = exactament la meitat de 13,5 ✓.",
+      "ca": "p=3, o sigui P=(3,9) i N=(3,0). Les tres àrees: rectangle de costats 3 i 9 = 27; triangle VNP (la diagonal) = 27/2 = 13,5; i el sector TNP, amb T=(1,5 · 0), té base 1,5 i alçada 9, o sigui 0,5·1,5·9 = 6,75. Comprova les dues raons: 6,75 és exactament la meitat de 13,5 ✓, i exactament una quarta part de 27. Si et surt 1/4 en lloc d'1/2, no t'has equivocat: has comparat amb el rectangle en lloc de la diagonal.",
       "en": null
     },
     "iDespres": {
@@ -2368,14 +2368,14 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Amb n franges d'amplada 1/n cadascuna sobre l'interval [0,1], la suma de les àrees dels rectangles per sota de y=x² és (1/n)·Σ(k/n)² per a k=1..n, que val (1/n³)·[n(n+1)(2n+1)/6].\n\nAra mira per què això compleix la promesa de la Pista 0. No estem dient \"quan n és infinit passa una cosa màgica\": tenim una fórmula EXACTA per a cada n, i la podem desenvolupar. Surt 1/3 + 1/(2n) + 1/(6n²). O sigui que la suma no val mai 1/3 exacte —sempre s'hi passa una mica— però el que s'hi passa és 1/(2n) + 1/(6n²), i això es pot fer més petit que qualsevol número que et diguin, només triant n prou gran. Si algú et diu que l'àrea val 0,34, li pots ensenyar un n concret que ho desmenteix; si et diu 0,33, també. L'únic número que no es pot desmentir així és 1/3. Aquesta és la diferència entre un pas al límit i un infinitèsim: aquí no et demanem que et creguis res, et donem la fórmula i pots exigir el número.\n\nL'àrea SOTA la corba és, doncs, 1/3 de la caixa, i per tant l'àrea ENTRE la corba i la part de dalt —la \"secció\"— n'és els 2/3 restants.",
+          "ca": "Amb n franges d'amplada 1/n cadascuna sobre l'interval [0,1], la suma de les àrees dels rectangles per sota de y=x² és (1/n)·Σ(k/n)² per a k=1..n, que val (1/n³)·[n(n+1)(2n+1)/6].\n\nAra mira per què això compleix la promesa de la Pista 0. No estem dient \"quan n és infinit passa una cosa màgica\": tenim una fórmula EXACTA per a cada n, i la podem desenvolupar. Surt 1/3 + 1/(2n) + 1/(6n²). O sigui que la suma no val mai 1/3 exacte —sempre s'hi passa una mica— però el que s'hi passa és 1/(2n) + 1/(6n²), i això es pot fer més petit que qualsevol número que et diguin, només triant n prou gran. Si algú et diu que l'àrea val 0,34, li pots ensenyar un n concret que ho desmenteix; si et diu 0,33, també. L'únic número que no es pot desmentir així és 1/3. Aquesta és la diferència entre un pas al límit i un infinitèsim: aquí no et demanem que et creguis res, et donem la fórmula i pots exigir el número.\n\nAra bé, hi ha un forat en aquest argument, i és el que separa una demostració d'una comprovació. Aquests rectangles, amb l'alçada presa a l'extrem DRET de cada franja, sobresurten per damunt de la corba: no són \"els de sota\", són els que la contenen. Per això la suma sempre passa d'1/3. I això només et diu que l'àrea és com a molt 1/3 —encara no que sigui exactament 1/3.\n\nPer tancar-ho et falta l'altra meitat, i és gratis: pren els mateixos rectangles amb l'alçada a l'extrem ESQUERRE de cada franja. Ara sí que queden per sota de la corba, i la seva suma és la mateixa fórmula amb k=0..n−1, que val 1/3 − 1/(2n) + 1/(6n²). L'àrea de veritat queda atrapada entre les dues:\n\n1/3 − 1/(2n) + 1/(6n²)  ≤  àrea  ≤  1/3 + 1/(2n) + 1/(6n²)\n\ni les dues puntes s'estrenyen al voltant d'1/3 tant com vulguis. Ara sí que qualsevol número que no sigui 1/3 es pot desmentir: si algú et diu 0,34, la suma superior amb n gran ja hi baixa per sota; si et diu 0,33, la inferior ja hi puja per sobre.\n\nL'àrea SOTA la corba és, doncs, 1/3 de la caixa, i per tant l'àrea ENTRE la corba i la part de dalt —la \"secció\"— n'és els 2/3 restants.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "n=100: suma ≈ 0,33835 (ja molt a prop d'1/3=0,3333). n=10000: suma ≈ 0,33338, encara més a prop. L'àrea sota la corba tendeix exactament a 1/3, i 1−1/3=2/3 confirma la secció.",
+      "ca": "Fes sempre les dues sumes, que és el que dona la demostració. n=10: la inferior val 0,285 i la superior 0,385 —una forquilla ampla, però l'1/3 ja hi és a dins. n=100: 0,32835 i 0,33835. n=10000: 0,333283 i 0,333383. La forquilla s'estreny per tots dos costats al voltant de 0,33333…, i cap altre número no hi cap. Fet això, 1−1/3=2/3 dona la secció.",
       "en": null
     },
     "iDespres": {
@@ -2507,11 +2507,11 @@ window.GUIES = {
       }
     ],
     "comprovacio": {
-      "ca": "R=1, n=4 voltes, H=3: longitud = √((2π·4)²+9) = √(631,65+9) ≈ 25,31. Comprovat també sumant numèricament milers de trossets petits de la corba real en 3D: coincideix fins a la cinquena xifra decimal.",
+      "ca": "R=1, n=4 voltes, H=3: longitud = √((2π·4)²+9) = √(631,65+9) ≈ 25,31. Val la pena fer-ne dues comprovacions de sentit comú, que no demanen calculadora. La primera: si H=0 (no puja gens), l'hèlix es converteix en el cercle recorregut 4 vegades, i la fórmula dona √((2π·4)²) = 2π·4, que és exactament això ✓. La segona: si R=0 (el cilindre s'aprima fins a ser una recta), queda √(H²)=H, la pujada sencera ✓. Una fórmula que passa els dos casos extrems difícilment s'equivoca al mig.",
       "en": null
     },
     "iDespres": {
-      "ca": "\"Desenrotllar\" una superfície corba per convertir un problema en un de pla és la mateixa idea que ja vas fer servir per mesurar l'àrea d'un con o d'un cilindre: aquí, en lloc d'una àrea, en surt la longitud d'una corba.",
+      "ca": "\"Desenrotllar\" una superfície corba per convertir un problema en un de pla és la mateixa idea que ja vas fer servir a q45 (l'àrea d'un cilindre) i a q51 (la d'un con). Aquí, en lloc d'una àrea, en surt la longitud d'una corba —i és el mateix motiu que fa que funcioni: el cilindre es pot obrir i estendre pla sense estirar-lo enlloc, o sigui que cap longitud dibuixada a sobre no canvia en desenrotllar-lo.",
       "en": null
     }
   },
@@ -2566,14 +2566,14 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "El nombre de pics és R/r (quan aquesta raó és un nombre enter): per cada volta completa del cercle gran, el cercle petit hi ha \"rodat\" R/r vegades, i cada rodolada completa produeix exactament un pic. Val el mateix argument tant si el cercle petit rodola per dins com per fora.",
+          "ca": "El nombre de pics és R/r, quan aquesta raó és un nombre enter. L'argument és de longituds, i val la pena fer-lo amb aquestes paraules exactes: rodolar sense lliscar vol dir que els dos arcs que es toquen mesuren el mateix. Fer la volta sencera al cercle gran són 2πR de recorregut, i la circumferència del petit fa 2πr; per tant, el punt de contacte ha recorregut 2πR/2πr = R/r circumferències senceres del cercle petit. Cada vegada que en completa una, el punt marcat torna a ser al lloc del contacte —o sigui, toca el cercle gran— i allà hi ha un pic. Val igual per dins que per fora.\n\nCompte amb una trampa famosa aquí. No comptis les voltes que fa el cercle petit sobre el seu propi centre: no en són R/r. Rodolant per dins en fa R/r − 1, i rodolant per fora, R/r + 1 —és la paradoxa de les dues monedes, i si comptes això et surt el número equivocat en tots dos casos. Amb R/r=4 per dins, el cercle petit gira 3 vegades sobre si mateix i tanmateix l'astroide té 4 pics. El que compta els pics és l'arc recorregut, no la rotació pròpia.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "R/r=3 (dins): deltoide, 3 pics — el cas de la figura del llibre. R/r=4 (dins): astroide, 4 pics —la mateixa corba que ja vas trobar a q64 amb el bastó lliscant. R/r=1 (fora): cardioide, 1 pic.",
+      "ca": "R/r=3 (dins): deltoide, 3 pics — el cas de la figura del llibre. R/r=2 (fora): nefroide, 2 pics. R/r=4 (dins): astroide, 4 pics —la mateixa corba que ja vas trobar a q64 amb el bastó lliscant. R/r=1 (fora): cardioide, 1 pic.",
       "en": null
     },
     "iDespres": {
@@ -2639,7 +2639,7 @@ window.GUIES = {
       }
     ],
     "comprovacio": {
-      "ca": "R=5, r=2: el centre del cercle petit es manté sempre a distància 5−2=3 del centre, per a qualsevol angle de gir — es pot comprovar calculant-ho a diversos instants i veient que el radi no canvia mai.",
+      "ca": "R=5, r=2: el centre del cercle petit es manté sempre a distància 5−2=3 del centre comú, per a qualsevol angle de gir. I fixa't que no cal calcular res a cap instant concret: la distància entre els dos centres és R−r sempre, per la simple raó que els dos cercles es toquen i el petit és a dins. Si el fessis rodolar per fora, la mateixa raó donaria R+r, i el cercle traçat seria de radi 5+2=7.",
       "en": null
     },
     "iDespres": {
@@ -2705,7 +2705,7 @@ window.GUIES = {
       }
     ],
     "comprovacio": {
-      "ca": "Amb p/q=2/3: la corba fa 2 voltes completes al voltant del forat central pel mateix temps que en fa 3 al voltant del tub, i es tanca exactament on va començar — es pot comprovar contant quantes vegades creua un mateix meridià (ha de ser 3) i un mateix paral·lel (ha de ser 2).",
+      "ca": "Amb p/q=2/3: la corba fa 2 voltes completes al voltant del forat central pel mateix temps que en fa 3 al voltant del tub, i es tanca exactament on va començar. Es pot comprovar contant creuaments, però compte a no barrejar els dos cercles del tor, que és fàcil. Un meridià és el cercle petit que dona la volta al tub (com un tall del donut amb un ganivet); per creuar-lo cal haver fet una volta sencera al voltant del forat central, o sigui que la corba el creua 2 vegades. Un paral·lel és el cercle gran que dona la volta al forat; per creuar-lo cal haver fet una volta sencera al voltant del tub, o sigui 3. Si et surten els números canviats, has intercanviat els dos cercles.",
       "en": null
     },
     "iDespres": {
@@ -2771,7 +2771,7 @@ window.GUIES = {
       }
     ],
     "comprovacio": {
-      "ca": "L=7: amb el peu del bastó a x=7cos(0,37)≈6,52 i l'altre extrem a y=7sin(0,37)≈2,53, el punt mitjà és (3,26, 1,27), a distància √(3,26²+1,27²)≈3,50=7/2 exactament ✓ — i ho és per a qualsevol altre angle que provis.",
+      "ca": "L=7 i el bastó formant un angle de 0,37 radians (uns 21°) amb el terra: el peu és a x=7·cos(0,37)≈6,53 i l'altre extrem a y=7·sin(0,37)≈2,53, de manera que el punt mitjà és (3,26 · 1,27) i la seva distància a la cantonada, √(3,26²+1,27²)≈3,50 = 7/2 ✓. Prova-ho amb qualsevol altre angle i tornarà a sortir 3,5: de fet no cal ni provar-ho, perquè el punt mitjà és sempre (½·L·cos α, ½·L·sin α) i la seva distància a l'origen és ½·L·√(cos²α+sin²α) = L/2, sigui quin sigui α.",
       "en": null
     },
     "iDespres": {
@@ -4064,9 +4064,9 @@ window.GUIES = {
     }
   },
   "q32": {
-    "moviment": "dilatacio",
+    "moviment": "homotecia",
     "movimentTitol": {
-      "ca": "dilatació",
+      "ca": "homotècia",
       "en": null
     },
     "lot": 6,
@@ -4973,9 +4973,9 @@ window.GUIES = {
     }
   },
   "q46": {
-    "moviment": "dilatacio",
+    "moviment": "estirament",
     "movimentTitol": {
-      "ca": "nou: dilatacio",
+      "ca": "nou: estirament",
       "en": null
     },
     "lot": 3,
@@ -6920,9 +6920,9 @@ window.GUIES = {
     }
   },
   "q77": {
-    "moviment": "dilatacio",
+    "moviment": "homotecia",
     "movimentTitol": {
-      "ca": "dilatació",
+      "ca": "homotècia",
       "en": null
     },
     "lot": 8,
@@ -6970,7 +6970,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "La tècnica consisteix a fer servir dues figures semblants (una és una versió escalada de l'altra) per obtenir una PROPORCIÓ —una equació que relaciona longituds—, sense necessitat de Pitàgores ni de mesurar-les una per una. És, senzillament, raonar per semblança.\n\nUna nota de vocabulari, perquè aquí hi ha un parany de traducció. El llibre en diu dilation, que en anglès és el nom de la transformació que agafa una figura i l'escala des d'un punt fix. En català aquella transformació es diu homotècia; \"dilatació\" vol dir una altra cosa (la que fan els metalls amb la calor). Al llarg d'aquestes guies el moviment s'anomena \"dilatació\" per fidelitat al llibre, però el que trobaràs a classe i als llibres de text és semblança —i, quan es parla de la transformació concreta, homotècia.",
+          "ca": "La tècnica consisteix a fer servir dues figures semblants (una és una versió escalada de l'altra) per obtenir una PROPORCIÓ —una equació que relaciona longituds—, sense necessitat de Pitàgores ni de mesurar-les una per una. És, senzillament, raonar per semblança.\n\nUna nota de vocabulari, perquè aquí hi ha un parany de traducció. El llibre en diu dilation, que en anglès és el nom de la transformació que agafa una figura i l'escala des d'un punt fix. En català aquella transformació es diu homotècia; \"dilatació\" és un fals amic —vol dir el que fan els metalls amb la calor. En aquestes guies, doncs, se'n diu homotècia, que és el que trobaràs a classe, i el raonament que la fa servir es diu semblança.\n\nI un avís que t'estalviarà confusions més endavant: hi ha una altra transformació que també escala, però amb un factor diferent per a cada direcció —la que converteix un cercle en una el·lipse (q46) o una hipèrbola qualsevol en una de rectangular (q112). Aquella no és una homotècia, i en aquestes guies se'n diu estirament. La diferència no és de vocabulari: una homotècia no canvia la forma de res i respecta angles i focus, i un estirament sí que els canvia.",
           "en": null
         },
         "figura": null
@@ -7110,7 +7110,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Quan C=90° (C'=90° també, ja que són suplementaris i tots dos fan 90°), cos C'=0 i la fórmula es converteix exactament en el Pitàgores de tota la vida —aquest resultat el conté com a cas particular, no el substitueix.",
+      "ca": "Quan C=90° (C'=90° també, ja que són suplementaris i tots dos fan 90°), cos C'=0 i la fórmula es converteix exactament en el Pitàgores de tota la vida —aquest resultat el conté com a cas particular, no el substitueix.\n\nI queda el tercer cas, el d'angle C agut, que val la pena que facis perquè és la mateixa construcció amb una sola diferència: el peu de l'alçada cau dins del costat a en comptes de passat l'extrem. La base del triangle rectangle gran, doncs, es queda curta en lloc d'allargar-se:\n\nara la base val a − b·cos C (en lloc de a + b·cos C') i l'alçada, b·sin C. Pitàgores al triangle gran: c² = (a − b·cos C)² + (b·sin C)². Desenvolupant, c² = a² − 2ab·cos C + b²cos²C + b²sin²C, i com que sin²C + cos²C = 1 (q84) els dos últims termes fan b²: c² = a² + b² − 2ab·cos C. Fixa't que és el mateix desenvolupament que acabes de fer, amb un únic signe canviat.\n\nAmb les dues meitats a la mà tens el resultat sencer, que es coneix com a teorema del cosinus: amb C agut hi va un menys, i amb C obtús un més davant del suplementari. I si acceptes definir cos(C) := −cos(180°−C) per als obtusos —el germà amb el signe canviat del que fa q87 amb el sinus— les dues línies es fonen en una de sola, c² = a² + b² − 2ab·cos C, per a qualsevol triangle. Comprova el cas agut amb a=b=√3/2 i C=arccos(1/3)≈70,53°: dona c²=1 exacte, que és justament el càlcul del diedre del tetràedre de q81.",
       "en": null
     }
   },
@@ -7436,9 +7436,9 @@ window.GUIES = {
     }
   },
   "q85": {
-    "moviment": "dilatacio",
+    "moviment": "homotecia",
     "movimentTitol": {
-      "ca": "dilatació",
+      "ca": "homotècia",
       "en": null
     },
     "lot": 8,
@@ -7458,11 +7458,11 @@ window.GUIES = {
       {
         "nivell": 1,
         "titol": {
-          "ca": "comença per la meitat de l'angle",
+          "ca": "el 72° ja el tens dibuixat",
           "en": null
         },
         "text": {
-          "ca": "36° és la meitat de 72°, i és exactament l'angle a la punta del triangle isòsceles daurat que ja vas trobar a q31/q32 (dos costats en raó φ:1). Si en saps el cosinus de 36°, l'angle doble (q88) et dona el de 72°.",
+          "ca": "No et cal cap angle intermedi: 72° és exactament l'angle de la BASE del triangle isòsceles de q33 —base 1, els altres dos costats φ, i 36° a la punta. Compte a no confondre'l amb els triangles A, B i C de q31, que són 36°-36°-108°: és l'avís que el mateix q33 et fa. Amb aquest triangle en tindràs prou per al sinus i el cosinus de 72°.",
           "en": null
         },
         "figura": null
@@ -7486,18 +7486,18 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Al triangle daurat (dos costats φ, base 1, angle 36° al vèrtex), parteix-lo per la meitat des del vèrtex: obtens cos36°=(φ/2). Aplica la fórmula de l'angle doble de q88 per obtenir cos72° i sin72° a partir d'això.",
+          "ca": "El triangle rectangle que et queda té hipotenusa φ i un catet 1/2 (la meitat de la base). A la base hi té l'angle de 72° (=90°−18°), i el catet de 1/2 hi és el CONTIGU: per tant cos72° = (1/2)/φ = 1/(2φ). L'altre catet és l'alçada; treu-la amb Pitàgores i divideix-la per φ, i tindràs sin72°. Compte amb la temptació de llegir-hi cos36° = φ/2: partir el triangle no et dona el cosinus del 36° de la punta —aquell angle ha quedat partit i ja no hi és— sinó el del 72° de la base, que és justament el que et demanen.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "cos36°=φ/2≈0,809. cos72°=2cos²36°−1=2(0,809)²−1≈0,309. sin72°=√(1−cos²72°)≈0,951. Comprova que φ²=φ+1 (l'equació que ja coneixes de q33) simplifica cos72° a exactament (φ−1)/2 = 1/(2φ).",
+      "ca": "Amb φ≈1,618: cos72° = 1/(2φ) ≈ 0,309. I amb φ²=φ+1 (q33), 1/(2φ) és el mateix que (φ−1)/2 = 0,618/2 = 0,309 ✓. L'alçada val √(φ²−¼) = √(φ+¾) ≈ 1,539, i sin72° = 1,539/1,618 ≈ 0,951; en forma tancada, sin72° = √(φ+2)/2. Repassa-ho amb la calculadora: 0,309²+0,951² = 1,000 ✓.",
       "en": null
     },
     "iDespres": {
-      "ca": "Aquest mateix valor, sin72°≈0,951, és el que fa falta per calcular l'àrea exacta d'un pentàgon regular en termes només del seu costat, sense passar per l'apotema mesurada per separat.",
+      "ca": "Aquest mateix valor, sin72°≈0,951, és el que et dona l'àrea exacta d'un pentàgon regular a partir del radi R de la circumferència que el circumscriu: parteix-lo en cinc triangles iguals de costats R, R i angle 72° al centre; cada un fa ½R²·sin72° (q80), i el pentàgon sencer (5/2)R²·sin72° ≈ 2,378·R². Si en lloc del radi el que tens és el costat, la fórmula també és exacta, però ja no és sin72° el que hi surt.",
       "en": null
     }
   },
@@ -7516,7 +7516,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "\"Insuficient\" es refuta amb un exemple: dos triangles diferents (no congruents) que comparteixin els dos costats i l'angle donats. Ara bé — compte, perquè aquí \"un angle\" vol dir un angle que no és l'angle entre els dos costats donats (si ho fos, seria el cas SAS de q08c-recíproc, i aquell sí que determina el triangle). Aquesta distinció és tota la dificultat de la pregunta.",
+          "ca": "\"Insuficient\" es refuta amb un exemple: dos triangles diferents (no congruents) que comparteixin els dos costats i l'angle donats. Ara bé — compte, perquè aquí \"un angle\" vol dir un angle que no és l'angle entre els dos costats donats. Si ho fos, seria el criteri costat-angle-costat (SAS) que ja portes de classe, i aquell sí que determina el triangle. Aquesta distinció és tota la dificultat de la pregunta.",
           "en": null
         },
         "figura": null
@@ -7556,11 +7556,11 @@ window.GUIES = {
       }
     ],
     "comprovacio": {
-      "ca": "Amb angle A = 30°, AB = 8 i BC = 5, el teorema del cosinus et dona una equació de segon grau per a AC amb dues solucions positives: AC ≈ 9,93 i AC ≈ 3,93. Comprova-ho tu mateix — i fixa't que si canviessis \"dos costats i un angle\" per \"dos costats i l'angle comprès\" (SAS), la mateixa equació només tindria una solució possible.",
+      "ca": "Amb angle A = 30°, AB = 8 i BC = 5 no et cal cap fórmula nova. Deixa caure la perpendicular des de B fins al segon costat i digues-li H al peu: AH = 8·cos30° ≈ 6,93 i BH = 8·sin30° = 4. Com que BC = 5, Pitàgores al triangle BHC dona HC = √(5²−4²) = 3. Els dos talls del compàs són a 3 a banda i banda de H —H n'és el punt mitjà—, i per tant AC ≈ 6,93+3 = 9,93 o bé AC ≈ 6,93−3 = 3,93. Aquest \"±\" és l'ambigüitat, escrita. Amb l'angle comprès (SAS) no hi hauria cap arrel a treure i, per tant, cap ±.",
       "en": null
     },
     "iDespres": {
-      "ca": "Dels cinc criteris clàssics de congruència de triangles (SSS, SAS, ASA, AAS...), SSA és l'únic que falla — per això té nom propi (\"el cas ambigu\") en trigonometria, i reapareix cada vegada que resols un triangle amb el teorema del sinus.",
+      "ca": "Els criteris clàssics de congruència són SSS, SAS, ASA i AAS (i, per als triangles rectangles, hipotenusa-catet). SSA no hi és, i aquesta pregunta n'és la raó. Però compte, que no falla sempre: si el radi del compàs supera el costat AB, un dels dos talls cau a l'altra banda del vèrtex i només en queda un de vàlid, i això passa sempre que l'angle donat és recte o obtús. El \"cas ambigu\" és, doncs, el d'angle agut amb el costat oposat més curt que l'adjacent conegut: aquell sí, i el retrobaràs cada vegada que resolguis un triangle amb el teorema del sinus. (AAA tampoc no determina un triangle, però per una raó ben diferent: et fixa la forma i no la mida — és semblança, q77, no congruència.)",
       "en": null
     }
   },
@@ -7591,7 +7591,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "En un triangle amb un angle obtús C, l'alçada des del vèrtex oposat cau FORA del triangle, no a dins. Aquesta alçada forma un triangle rectangle nou, amb un angle C' que és el suplementari de C (C'=180°−C).",
+          "ca": "En un triangle ABC amb l'angle C obtús, deixa caure l'alçada des d'A fins a la RECTA que conté el costat CB. Compte: no des de C —aquella cau a dins i no et serveix de res. Com que C és obtús, el peu cau FORA del segment, passat C; digues-li H. Al triangle rectangle ACH, l'angle que hi queda a C és C' = 180°−C, que sí que és agut.",
           "en": null
         },
         "figura": null
@@ -7612,18 +7612,18 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Defineix sin(C) := sin(C'), fent servir l'angle agut suplementari, que sí que és l'angle d'un triangle rectangle de veritat. Comprova, amb aquesta definició, que el teorema del sinus (costat / sin(angle oposat) igual als tres vèrtexs) encara dona el mateix valor als tres costats del triangle obtusangle.",
+          "ca": "Mira l'alçada AH dues vegades. Al triangle rectangle ACH: AH = b·sin(C'), amb b = CA. Al triangle rectangle ABH: AH = c·sin(B), amb c = AB —l'angle que hi ha a B és el mateix B del triangle original, perquè H és a la recta BC. Iguala-les: b/sin B = c/sin C'. Ara bé, el teorema del sinus demana b/sin B = c/sin C. Per tant no tens elecció: sin(C) := sin(C') = sin(180°−C) és l'ÚNICA definició que el salva. No és un caprici ni una convenció arbitrària —és el preu exacte de voler que la fórmula no s'hagi de partir en dos casos.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "C=120°, C'=60°: sin(120°):=sin(60°)=√3/2≈0,866.",
+      "ca": "Triangle amb C=120°, a=CB=5, b=CA=4. L'alçada des d'A val 4·sin60°≈3,464 i el peu H cau 4·cos60°=2 més enllà de C, o sigui a 5+2=7 de B; Pitàgores dona c=√(7²+3,464²)=√61≈7,810. Ara els tres quocients: c/sin C = 7,810/0,866 ≈ 9,02; sin B = 3,464/7,810 ≈ 0,4435, i b/sin B = 4/0,4435 ≈ 9,02; i amb l'alçada des de B (5·sin60°≈4,330), sin A ≈ 4,330/7,810 ≈ 0,5544 i a/sin A = 5/0,5544 ≈ 9,02. Els tres donen el mateix ✓. De propina, A≈33,7°, B≈26,3° i 33,7+26,3+120 = 180 ✓.",
       "en": null
     },
     "iDespres": {
-      "ca": "Aquesta mateixa construcció (l'alçada que cau fora, l'angle suplementari C') és exactament la que fa servir q79, la propera guia, per generalitzar Pitàgores a triangles amb un angle obtús.",
+      "ca": "Aquesta mateixa construcció (l'alçada que cau fora, l'angle suplementari C') és la que fa servir q79 per generalitzar Pitàgores als triangles amb un angle obtús. El cosinus demana el mateix tracte, però amb una diferència de signe que val la pena entendre: la definició que fa que la fórmula de q79 s'escrigui com una de sola, c² = a²+b²−2ab·cos C, és cos(C) := −cos(180°−C). Per què el sinus no porta el menys i el cosinus sí? Perquè l'alçada és una longitud i no canvia de banda quan C passa de 90°, mentre que la projecció sobre la base sí que ho fa.",
       "en": null
     }
   },
@@ -7654,7 +7654,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Triangle isòsceles, dos costats de longitud 1, angle 2θ entre ells. Calcula'n l'àrea de dues maneres: (a) amb la fórmula \"meitat del producte de dos costats pel sinus de l'angle entre ells\", i (b) partint-lo per la meitat amb l'alçada des del vèrtex, que en dona dos triangles rectangles d'angle θ.",
+          "ca": "Triangle isòsceles, dos costats de longitud 1, angle 2θ entre ells. Calcula'n l'àrea de dues maneres: (a) amb la fórmula de q80, \"meitat del producte de dos costats pel sinus de l'angle entre ells\", i (b) partint-lo per la meitat amb l'alçada des del vèrtex, que en dona dos triangles rectangles d'angle θ. Fixa't que són dues alçades diferents —la de (a) surt d'un vèrtex de la base, la de (b) de la punta—; si fossin la mateixa, igualar-les no diria res.",
           "en": null
         },
         "figura": null
@@ -7675,18 +7675,18 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Per a sin(2θ): iguala les dues àrees de la Pista 1. Per a cos(2θ): aplica el teorema del cosinus de q79 a aquest mateix triangle isòsceles (costats 1, 1, angle 2θ) per trobar el costat que falta al quadrat, i compara-ho amb el mateix costat calculat com el doble de sinθ (per la partició en dos triangles rectangles).",
+          "ca": "Per a sin(2θ): iguala les dues àrees de la Pista 1. Per a cos(2θ) no et cal cap teorema nou —i compte, perquè el teorema del cosinus encara no el tens en la forma que et faria falta: q79 només en demostra el cas de l'angle obtús. Fes-ho amb q84. Com que 2θ és agut (θ<45°), cos(2θ) és l'arrel POSITIVA de 1−sin²(2θ). Substitueix-hi el sin(2θ) que acabes de trobar, torna a fer servir cos²θ = 1−sin²θ per deixar-ho tot en sinθ, i mira bé el que et queda sota l'arrel: és un quadrat perfecte.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "θ=37°: sin(74°)≈0,961, i 2·sin37°·cos37°≈2(0,602)(0,799) ≈0,961 ✓. cos(74°)≈0,276, i 1−2sin²37°≈1−2(0,362)≈0,276 ✓.",
+      "ca": "θ=37°: sin(74°)≈0,961, i 2·sin37°·cos37°≈2(0,602)(0,799) ≈0,961 ✓. El quadrat perfecte, escrivint s=sinθ: 1−(2s√(1−s²))² = 1−4s²+4s⁴ = (1−2s²)². Amb s=sin37°≈0,602: 1−2(0,362) ≈ 0,276, i cos(74°)≈0,276 ✓.",
       "en": null
     },
     "iDespres": {
-      "ca": "q85 fa servir exactament aquesta fórmula del cosinus doble per trobar el sinus i el cosinus de 72° a partir dels de 36°.",
+      "ca": "Fixa't fins on arriba l'argument: cal θ<45°, i no per cap tecnicisme sinó perquè és el que et permet triar l'arrel positiva. Si 2θ passa de 90° les dues fórmules continuen valent, però abans cal decidir què vol dir el cosinus d'un angle obtús —la mateixa feina que q87 fa amb el sinus, i la resposta és la germana amb el signe canviat, cos(C) := −cos(180°−C). Comprova-ho: amb θ=60°, 1−2sin²60° = −0,5, i cos120° = −0,5.",
       "en": null
     }
   },
@@ -7717,7 +7717,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Si el triangle ja fos isòsceles, és fàcil veure per simetria que les dues bisectrius (dels dos angles iguals) fan la mateixa longitud —aquest sentit és senzill. Aquí et demanen l'altre sentit: si les dues bisectrius surten iguals, has de deduir que el triangle era isòsceles. Aquesta implicació inversa és la que necessita una demostració real (i no la donarem aquí sencera: és massa llarga per a una pista puntual).",
+          "ca": "Si el triangle ja fos isòsceles, és fàcil veure per simetria que les dues bisectrius (dels dos angles iguals) fan la mateixa longitud —aquest sentit és senzill. Aquí et demanen l'altre sentit: si les dues bisectrius surten iguals, has de deduir que el triangle era isòsceles. Aquesta implicació inversa és la que necessita una demostració real. Contra el que se sol dir d'aquest teorema, amb el que ja tens al quadern la pots fer sencera: només et calen la fórmula de la longitud d'una bisectriu i una observació sobre quan una fracció creix.",
           "en": null
         },
         "figura": null
@@ -7737,22 +7737,22 @@ window.GUIES = {
       {
         "nivell": 3,
         "titol": {
-          "ca": "el que sí pots fer amb les eines que ja tens",
+          "ca": "tanca-ho",
           "en": null
         },
         "text": {
-          "ca": "El que sí està al teu abast és comprovar el resultat numèricament en un cas concret, i raonar per què un triangle molt escalè (costats molt diferents) hauria de donar bisectrius molt diferents —encara que demostrar-ho en general no hi sigui.",
+          "ca": "Primer, la longitud de la bisectriu des de B. Parteix el triangle en dos amb aquesta bisectriu i escriu-ne l'àrea de dues maneres (q80): l'àrea sencera és ½·a·c·sin B, i les dues meitats fan ½·c·t·sin(B/2) + ½·a·t·sin(B/2), on t és la bisectriu i a, c els dos costats que es troben a B. Iguala, fes servir sin B = 2·sin(B/2)·cos(B/2) (q88) i aïlla:\n\nt_B = 2ac·cos(B/2) / (a+c).\n\nAra suposa que el triangle no és isòsceles, per exemple b > c. Se'n segueixen dues coses, i totes dues empenyen en la mateixa direcció. Una: a costat més gran, angle oposat més gran, o sigui B > C, i per tant cos(B/2) < cos(C/2), perquè tots dos mig-angles són aguts i el cosinus hi decreix. L'altra: escriu la fracció al revés, (a+c)/(2ac) = 1/(2c) + 1/(2a), i veuràs que 2ac/(a+c) creix quan creix qualsevol dels dos costats; com que b > c, això fa 2ab/(a+b) > 2ac/(a+c). Multiplica les dues desigualtats i et surt t_C > t_B. O sigui que si les bisectrius són iguals, b > c és impossible; per simetria, c > b també; i només queda b = c.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "En un triangle escalè \"normal\" (per exemple, costats 5, 6, 7), calcula (amb la fórmula de la longitud de la bisectriu, si la tens a mà, o amb un dibuix a escala) les longituds de dues bisectrius diferents: haurien de sortir clarament diferents entre elles. Això no demostra el teorema, però confirma que \"diferents costats ⟹ diferents bisectrius\" no falla en el cas típic, que és el que fa creïble la implicació inversa.",
+      "ca": "Triangle de costats a=5, b=6, c=7 (a oposat a A, i així els altres). Els angles surten A≈44,42°, B≈57,12°, C≈78,46°, que sumen 180 ✓. Bisectriu des de B: t_B = 2·5·7·cos(28,56°)/(5+7) = 70·0,8783/12 ≈ 5,124. Bisectriu des de C: t_C = 2·5·6·cos(39,23°)/(5+6) = 60·0,7744/11 ≈ 4,225. Diferents, com havien de ser. I fixa't que van en l'ordre que diu la demostració: c=7 > b=6, i efectivament t_B > t_C.",
       "en": null
     },
     "iDespres": {
-      "ca": "Aquest és un dels pocs resultats del quadern on la demostració completa se't queda fora d'abast expressament —val la pena saber que existeixen teoremes senzills d'enunciar i difícils de provar, i que \"contraintuïtivament difícil\" no vol dir \"fals\".",
+      "ca": "Val la pena saber per què aquest teorema té fama de difícil, ara que ja l'has demostrat. Totes les demostracions conegudes, inclosa aquesta, són indirectes: suposen que el triangle no és isòsceles i n'arriben a una contradicció. Des del segle XIX es busca una demostració directa —que construeixi la igualtat dels dos costats a partir de la de les bisectrius, sense passar per la negació— i no n'hi ha cap que tingui consens que ho sigui de debò. Que un enunciat tan simple resisteixi això és més interessant que la demostració mateixa.",
       "en": null
     }
   },
@@ -7783,7 +7783,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Els dos triangles comparteixen la diagonal i tenen angles oposats en aquell vèrtex del quadrilàter que, per estar inscrit en un cercle, sumen 180°. Aquest fet —els angles oposats d'un quadrilàter cíclic sumen sempre 180°— és la hipòtesi \"inscrit en un cercle\" convertida en una dada sobre angles, i és tota la feina que fa aquí la circumferència. Si no l'has vist mai demostrat, surt en dues línies de l'angle inscrit de q42: cada angle del quadrilàter val la meitat de l'arc oposat, i els dos arcs oposats fan junts la circumferència sencera.",
+          "ca": "Els dos triangles comparteixen la diagonal. Els angles que queden als altres dos vèrtexs, un a cada triangle, són angles oposats del quadrilàter, i per estar inscrit en un cercle sumen 180°. Aquest fet —els angles oposats d'un quadrilàter cíclic sumen sempre 180°— és la hipòtesi \"inscrit en un cercle\" convertida en una dada sobre angles, i és tota la feina que fa aquí la circumferència. Si no l'has vist mai demostrat, surt en dues línies de l'angle inscrit de q42: cada angle del quadrilàter val la meitat de l'arc oposat, i els dos arcs oposats fan junts la circumferència sencera.",
           "en": null
         },
         "figura": null
@@ -7807,14 +7807,14 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Escriu la diagonal al quadrat de dues maneres (teorema del cosinus, un cop a cada triangle) i iguala-les — com que els dos angles són suplementaris, els cosinus són oposats, i es poden eliminar. Suma les dues àrees (cadascuna, mig producte de costats pel sinus de l'angle comú) i simplifica amb sin²+cos²=1 fins arribar a la forma de Heron generalitzada.",
+          "ca": "Escriu la diagonal al quadrat de dues maneres (teorema del cosinus de q79, un cop a cada triangle) i iguala-les: com que els dos angles són suplementaris els cosinus són oposats, i te'n surt cos B tot sol. Suma després les dues àrees (q80, mig producte de costats pel sinus). Aquí ve la part que sol quedar per fer, i és tota la pregunta, així que no la saltis: posa-hi noms curts, K = ab+cd i M = a²+b²−c²−d², i comprova que cos B = M/(2K) i que l'àrea val ½K·sin B. Eleva-la al quadrat i fes servir sin² = 1−cos² (q84): et queda 16A² = 4K² − M². Això és una diferència de quadrats, i és l'únic pas realment ingeniós de la demostració: 16A² = (2K+M)(2K−M). Desenvolupa cada parèntesi i mira si el reconeixes — un et donarà (a+b)²−(c−d)² i l'altre (c+d)²−(a−b)², que són dues diferències de quadrats més. En surten quatre factors i cadascun val 2s menys un costat.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "Costats 2, 3, 4, 5: s=7. A=√[(7−2)(7−3)(7−4)(7−5)] = √(5·4·3·2) = √120 ≈ 10,95.",
+      "ca": "Costats 2, 3, 4, 5: s=7, i la fórmula dona A = √[(7−2)(7−3)(7−4)(7−5)] = √(5·4·3·2) = √120 ≈ 10,95. Refés-ho pel camí llarg per comprovar que la teva àlgebra és bona: K = 2·3+4·5 = 26, M = 4+9−16−25 = −28, i 16A² = 4·26² − 28² = 2704 − 784 = 1920, o sigui A² = 120 ✓. De passada, cos B = −28/52 ≈ −0,538, que vol dir B ≈ 122,6°: un angle obtús, i per això et calia q79 sencera i no només el cas agut.",
       "en": null
     },
     "iDespres": {
@@ -7837,7 +7837,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Una fórmula: el factor pel qual s'allarga (o s'escurça) una longitud quan es projecta perpendicularment d'un pla a un altre, en termes d'un sol angle —l'angle entre els dos plans.",
+          "ca": "Una fórmula per al factor pel qual s'allarga o s'escurça una longitud quan es projecta perpendicularment d'un pla a un altre. Però abans que res, compte amb la paraula \"factor\": aquí no n'hi ha un de sol. La primera feina és descobrir de què depèn, a part de l'angle entre els plans.",
           "en": null
         },
         "figura": null
@@ -7845,11 +7845,11 @@ window.GUIES = {
       {
         "nivell": 1,
         "titol": {
-          "ca": "prova-ho amb un cas fàcil",
+          "ca": "prova-ho amb un cas fàcil, i després amb un altre",
           "en": null
         },
         "text": {
-          "ca": "Si els dos plans coincideixen (angle 0°), cap longitud canvia: factor 1. Si el pla girés fins quedar perpendicular a l'altre (angle 90°), un segment que hi fos perpendicular es projectaria a un sol punt: factor 0. Quina funció trigonomètrica val 1 a 0° i 0 a 90°?",
+          "ca": "Si els dos plans coincideixen (angle 0°), cap longitud canvia: factor 1. Si el pla girés fins quedar perpendicular a l'altre (angle 90°), un segment que hi fos perpendicular es projectaria a un sol punt: factor 0. Quina funció trigonomètrica val 1 a 0° i 0 a 90°?\n\nAra la pregunta incòmoda, amb els plans a 90°: què li passa a un segment que estigui damunt de la recta on els dos plans es tallen? Aquella recta és als dos plans alhora, i per tant el segment no es mou gens: factor 1, no 0. Dos segments de la mateixa longitud, dins del mateix pla, amb factors diferents.",
           "en": null
         },
         "figura": null
@@ -7873,18 +7873,18 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "El segment, la seva projecció i el tros de pla entre tots dos formen un triangle rectangle: la hipotenusa és el segment original, un catet és la projecció. L'angle entre els plans és exactament l'angle d'aquest triangle rectangle que toca el segment original. Quina raó trigonomètrica relaciona el catet (projecció) amb la hipotenusa (original)?",
+          "ca": "Per al segment del dibuix —el perpendicular a la recta de tall— el segment, la seva projecció i el tros de pla entre tots dos formen un triangle rectangle: la hipotenusa és el segment original, un catet és la projecció, i l'angle entre els plans és exactament l'angle d'aquest triangle que toca el segment original. La raó entre catet i hipotenusa et dona el factor cos θ, i aquest és el més petit de tots.\n\nAmb això ja pots descriure què fa la projecció a qualsevol figura: encongeix per un factor cos θ en la direcció perpendicular a la recta de tall, i no toca res en la direcció de la recta de tall. És un estirament, doncs, amb dos factors diferents segons la direcció —el mateix tipus de transformació que trobaràs a q112. Un segment en qualsevol altra direcció queda entremig, entre cos θ i 1.\n\nI encara hi ha un número que sí que és el mateix per a tothom: l'àrea. Si el rectangle que projectes té un costat en cada una d'aquestes dues direccions, un costat es queda igual i l'altre es multiplica per cos θ, o sigui que l'àrea es multiplica exactament per cos θ, sigui quina sigui la figura. Això sí que és un factor únic.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "Angle entre plans de 60°, segment de 8 unitats perpendicular a la línia de tall: projecció = 8×cos60° = 4 unitats. Angle de 0°: factor cos0°=1, cap canvi.",
+      "ca": "Angle entre plans de 60°. Un segment de 8 unitats perpendicular a la recta de tall es projecta a 8×cos60° = 4 unitats. Un segment de 8 unitats damunt de la recta de tall es projecta a 8: no canvia. I un de 8 a 45° de la recta de tall es projecta a 6,32 —entremig, com havia de ser. L'àrea, en canvi, sempre queda multiplicada per 0,5.",
       "en": null
     },
     "iDespres": {
-      "ca": "Aquest mateix factor cos(angle) és el que fa que una moneda circular, vista de gairebé de cantell, es vegi com una el·lipse molt aixafada —la relació entre els dos eixos de l'el·lipse aparent és exactament aquest cosinus.",
+      "ca": "Aquí tens la comprovació de tot plegat: una moneda circular, vista de gairebé de cantell, es veu com una el·lipse molt aixafada, i la relació entre els dos eixos de l'el·lipse és exactament aquest cosinus. Que es vegi el·lipse i no cercle petit és la prova que el factor no és el mateix en totes direccions: si ho fos, un cercle donaria sempre un cercle.",
       "en": null
     }
   },
@@ -7903,7 +7903,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Una resposta de NO, amb un exemple concret de projecció que NO sigui una dilatació (és a dir, que no multipliqui totes les longituds pel mateix factor constant).",
+          "ca": "Una resposta de NO, amb un exemple concret de projecció que NO sigui una homotècia (és a dir, que no multipliqui totes les longituds pel mateix factor constant).",
           "en": null
         },
         "figura": null
@@ -7911,11 +7911,11 @@ window.GUIES = {
       {
         "nivell": 1,
         "titol": {
-          "ca": "pensa en la projecció central, no la paral·lela",
+          "ca": "hi ha dues maneres de fallar, i q91 ja et va ensenyar la primera",
           "en": null
         },
         "text": {
-          "ca": "q91 projectava perpendicularment (totes les línies de projecció paral·leles entre si). Què passa si totes les línies de projecció passen, en canvi, per un sol punt fix (una \"làmpada\"), en lloc de ser paral·leles?",
+          "ca": "A q91 vas veure que fins i tot la projecció perpendicular entre dos plans inclinats deixa una direcció intacta i n'encongeix una altra per cos θ: ja no és cap homotècia. O sigui que la resposta és no abans i tot de canviar de direcció de projecció.\n\nLa segona manera és pitjor, i val la pena veure-la perquè és de naturalesa diferent. Què passa si les línies de projecció, en lloc de ser paral·leles entre si, passen totes per un sol punt fix —una \"làmpada\"?",
           "en": null
         },
         "figura": null
@@ -7939,18 +7939,18 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "En una projecció central, un punt més a prop del punt de projecció es mou \"menys\" en proporció que un punt més lluny —el factor d'ampliació depèn de la distància al punt de projecció, no és constant per a tota la figura. Compara com es mouen dos segments iguals situats a distàncies diferents del punt de projecció.",
+          "ca": "En una projecció central, l'ombra d'un segment paral·lel a la pantalla s'amplia pel factor (distància de la làmpada a la pantalla) dividit per (distància de la làmpada al segment). O sigui que com més a prop de la làmpada, més gran surt l'ombra —és el que fas amb la mà quan vols que l'ombra ompli la paret. Si el pla de partida està inclinat, els seus punts són a distàncies diferents de la làmpada i cada tros s'amplia pel seu compte.\n\nFixa't en la diferència amb q91: allà el factor depenia de la direcció del segment i era el mateix a tot arreu de la figura; aquí depèn d'on és el segment. Dues maneres distintes de no ser una homotècia.\n\nI ja que hi ets, mira on és de veritat la frontera. No és en si les línies de projecció són paral·leles o no: és en si els dos plans ho són. Amb els plans paral·lels, tant l'una com l'altra donen una homotècia de debò —q100 en calcula el factor. Amb els plans inclinats, cap de les dues.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "Amb el punt de projecció a distància 2 d'un segment i a distància 6 d'un altre segment igual (ambdós paral·lels al pla d'arribada), els factors d'ampliació respectius NO coincideixen —depèn de 1/distància, no és el mateix nombre per als dos segments.",
+      "ca": "Làmpada, pantalla a 12 unitats, i dos segments iguals paral·lels a la pantalla, un a distància 2 de la làmpada i l'altre a distància 6. Factors: 12/2 = 6 i 12/6 = 2. El de més a prop surt tres vegades més gran, no més petit. Cap factor únic, doncs, cap homotècia.",
       "en": null
     },
     "iDespres": {
-      "ca": "Aquesta distinció —projecció paral·lela (sempre una dilatació uniforme) contra projecció central (una dilatació que varia punt a punt)— és exactament la diferència entre un plànol arquitectònic (paral·lela) i una fotografia (central), i és la raó per la qual les línies paral·leles d'una via de tren semblen convergir en una fotografia (q104) però no en un plànol.",
+      "ca": "Aquesta distinció —el que decideix si una projecció és una homotècia o no— és exactament la diferència entre un plànol arquitectònic i una fotografia. Compte a no resumir-ho malament: no és que la projecció paral·lela sigui sempre una homotècia (q91 ja et va ensenyar que entre plans inclinats no ho és); el que passa és que un plànol es dibuixa amb els dos plans paral·lels, i llavors sí, i és la raó per la qual les línies paral·leles d'una via de tren semblen convergir en una fotografia (q104) però no en un plànol.",
       "en": null
     }
   },
@@ -7981,7 +7981,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Igual que en un cercle, el radi que va del centre al punt de tangència és perpendicular a la recta tangent en aquell punt (encara que ara estiguis en tres dimensions). Amb el centre O, el punt exterior P, i un punt de tangència T qualsevol: quin angle té el triangle OPT al vèrtex T?",
+          "ca": "Igual que en un cercle —és el que vas demostrar a q95—, el radi que va del centre al punt de tangència és perpendicular a la recta tangent en aquell punt. En tres dimensions continua valent, i per la mateixa raó: T és el punt de la recta tangent més proper a O, i el segment més curt d'un punt a una recta hi és perpendicular. Amb el centre O, el punt exterior P, i un punt de tangència T qualsevol: quin angle té el triangle OPT al vèrtex T?",
           "en": null
         },
         "figura": null
@@ -8013,7 +8013,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "El mateix argument, amb el mateix triangle rectangle, és el que ja vas fer servir per a tangents des d'un punt a un cercle en 2D —aquí no canvia res essencial en passar a tres dimensions, només cal comprovar que el pla que conté O, P i T sempre existeix (tres punts no alineats determinen un pla).",
+      "ca": "El mateix argument, amb el mateix triangle rectangle, val paraula per paraula per a les dues tangents des d'un punt a un cercle en 2D; el quadern no t'ho ha demanat mai com a qüestió a part, però ja veus que és el mateix teorema una dimensió més avall. En passar a tres dimensions no canvia res essencial: només cal veure que O, P i T són sempre tres punts no alineats —ho són, perquè l'angle a T és recte i el triangle no pot degenerar— i que per tant hi ha un pla que els conté, dins del qual tot passa com al pla de sempre.\n\nFixa't també en el que això vol dir de la figura sencera: els punts de tangència no estan escampats de qualsevol manera, sinó tots a la mateixa distància de P i tots a la mateixa distància d'O. Formen, doncs, una circumferència.",
       "en": null
     }
   },
@@ -8122,7 +8122,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Baixa la perpendicular des del centre fins a la recta i mira on cau.",
+          "ca": "Baixa la perpendicular des del centre O fins a la recta i mira on cau el peu. Compte, que aquí hi ha tres punts i és fàcil confondre'ls: hi ha P (el punt on suposes que la recta toca el cercle), hi ha el peu de la perpendicular —el de l'angle recte, que no està etiquetat— i hi ha P′. Si el radi OP no fos perpendicular a la recta, el peu no cauria damunt de P. Amb el compàs, o comptant quadrets, marca damunt de la recta el punt que és a l'altra banda del peu i a la mateixa distància que P: aquest és P′.",
           "en": null
         },
         "figura": "fig-013.png"
@@ -8134,7 +8134,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Quant fa OP′? (Les marquetes t'ho diuen.) Per tant, P′ és al cercle? És a la recta? I què deia exactament la teva definició de tangent?",
+          "ca": "Quant fa OP′? (Les marquetes t'ho diuen.) Mira per què: els dos triangles que el peu de la perpendicular ha creat tenen un angle recte allà, comparteixen el segment que va d'O al peu, i tenen els altres dos catets iguals perquè així has triat P′ —o sigui que són iguals i OP′ fa exactament el mateix que OP, un radi. Per tant, P′ és al cercle? És a la recta? És diferent de P? I què deia exactament la teva definició de tangent?\n\n(No confonguis P′ amb el peu de la perpendicular. El peu és a distància menor que el radi —la perpendicular és sempre el camí més curt del centre a la recta— i per tant queda a dins del cercle, no damunt. El que és al cercle és P′.)",
           "en": null
         },
         "figura": null
@@ -8145,7 +8145,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "A q96 retrobaràs la mateixa idea (la perpendicular és el camí més curt) fent una feina completament diferent: camins mínims i reflexió. I ja pots mirar enrere: de les preguntes que ja portes, quantes has resolt afegint una línia? Aquesta és, de moment, la teva eina principal.",
+      "ca": "Fixa't que la construcció d'aquí ja és una reflexió: P′ és el reflex de P respecte del peu de la perpendicular, i és per això que els dos segments fins a O fan el mateix. A q96 retrobaràs la mateixa idea fent una feina completament diferent: camins mínims. I ja pots mirar enrere: de les preguntes que ja portes, quantes has resolt afegint una línia? Aquesta és, de moment, la teva eina principal.",
       "en": null
     }
   },
@@ -8208,7 +8208,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "q97 posa dues rectes paral·leles: el mateix truc, aplicat dues vegades. I ara torna a la figura del llibre, que és una el·lipse amb els seus dos focus: la suma de distàncies als focus és constant, i el punt de tangència és el que la fa mínima sobre la tangent. Per això els angles hi són iguals — i per això una bola que surt d'un focus d'una taula de billar el·líptica sempre passa per l'altre.",
+      "ca": "q97 posa dues rectes paral·leles: el mateix truc, aplicat dues vegades. I ara torna a la figura del llibre, que és una el·lipse amb els seus dos focus. El pas que hi falta és aquest: la tangent toca l'el·lipse només al punt T, i tots els altres punts de la tangent queden fora de l'el·lipse; i si un punt és fora, la suma de distàncies als dos focus és més gran que la de l'el·lipse (que val 2a, q98). O sigui que T és, sobre aquella recta, el punt que fa mínima la suma —i llavors això que acabes de demostrar diu que els dos angles amb la tangent són iguals. D'aquí surt que una bola llançada des d'un focus d'una taula de billar el·líptica passi sempre per l'altre.",
       "en": null
     }
   },
@@ -8260,18 +8260,18 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Amb A′ (reflex d'A respecte de la recta de dalt) i B′ (reflex de B respecte de la recta de baix), tries dos punts de contacte qualssevol P (a dalt) i Q (a baix). Per la reflexió, AP fa el mateix que A′P, i QB fa el mateix que QB′: el camí A→P→Q→B fa sempre la mateixa longitud que el camí A′→P→Q→B′, triïs on triïs P i Q. Aquesta és la part que val per a qualsevol elecció.\n\nAra mira el camí A′→P→Q→B′: va d'A′ a B′ passant per dos punts pel mig. Cap camí així pot ser més curt que el segment recte A′B′, i només fa exactament A′B′ quan P i Q cauen damunt d'aquest segment. Per tant els punts de contacte que busques són els dos punts on el segment A′B′ creua les dues rectes, i la longitud mínima és exactament A′B′.",
+          "ca": "Amb A′ (reflex d'A respecte de la recta de dalt) i B′ (reflex de B respecte de la recta de baix), tries dos punts de contacte qualssevol P (a dalt) i Q (a baix). Per la reflexió, AP fa el mateix que A′P, i QB fa el mateix que QB′: el camí A→P→Q→B fa sempre la mateixa longitud que el camí A′→P→Q→B′, triïs on triïs P i Q. Aquesta és la part que val per a qualsevol elecció.\n\nAra mira el camí A′→P→Q→B′: va d'A′ a B′ passant per dos punts pel mig. Cap camí així pot ser més curt que el segment recte A′B′, i només fa exactament A′B′ quan P i Q cauen damunt d'aquest segment. Per tant els punts de contacte que busques són els dos punts on el segment A′B′ creua les dues rectes, i la longitud mínima és exactament A′B′.\n\nUna cosa més abans de donar-ho per tancat: has decidit tocar primer la recta de dalt i després la de baix. També podries fer-ho a l'inrevés, i aleshores els reflexos serien uns altres (A respecte de la de baix, B respecte de la de dalt) i et donarien un altre número. Són dos problemes diferents, i el més curt de tots dos és la resposta. Val la pena que provis les dues i miris qui guanya —i que pensis quina característica d'A i de B ho decideix.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "Rectes y=6 (dalt) i y=0 (baix). A=(1,4), B=(9,1). Reflectint: A′=(1,8), B′=(9,−1). La distància A′B′ (i per tant la longitud del camí òptim) és √145 ≈ 12,042. Compara-ho amb un camí \"a ull\" que toqui totes dues rectes a x=4: aquest surt ≈ 14,705 — més llarg, com havia de ser.",
+      "ca": "Rectes y=6 (dalt) i y=0 (baix). A=(1,4), B=(9,1). Reflectint: A′=(1,8), B′=(9,−1). La distància A′B′ (i per tant la longitud del camí òptim) és √145 ≈ 12,042, amb els contactes a (2,78 · 6) i (8,11 · 0). Compara-ho amb un camí \"a ull\" que toqui totes dues rectes a x=4: aquest surt ≈ 14,705 — més llarg, com havia de ser. I ara l'altre ordre, tocant primer la de baix: A″=(1,−4), B″=(9,11), i la distància surt exactament 17. Molt pitjor. Aquí A és a prop de la recta de dalt i B a prop de la de baix, i per això convé anar-hi en aquest ordre; si fos al revés, guanyaria l'altre.",
       "en": null
     },
     "iDespres": {
-      "ca": "Si en lloc de dues rectes tinguessis un triangle sencer (tres costats) i volguessis el camí tancat més curt que toqués els tres, la mateixa idea —reflectir, un cop per cada costat— hi funciona, encara que amb tres reflexions en cadena en lloc de dues. I com ja vas veure prometut a q96: la propietat de reflexió d'una el·lipse (q98) és la mateixa idea mirada des d'una corba en lloc de dues rectes.",
+      "ca": "Si en lloc de dues rectes tinguessis un triangle sencer (tres costats) i volguessis el camí tancat més curt que toqués els tres, la mateixa idea —reflectir, un cop per cada costat— hi funciona, encara que amb tres reflexions en cadena en lloc de dues. I com ja t'anunciava q96: la propietat de reflexió d'una el·lipse és aquesta mateixa idea mirada des d'una corba en lloc de dues rectes. Compte, però, que el que et dona q98 és la definició de l'el·lipse per suma de distàncies, no la propietat de reflexió; per arribar-hi cal el pas de q96, que la tangent només toca l'el·lipse en un punt i per tant és allà on la suma es fa mínima.",
       "en": null
     }
   },
@@ -8330,11 +8330,11 @@ window.GUIES = {
       }
     ],
     "comprovacio": {
-      "ca": "Punxons a (−3,0) i (3,0), fil de longitud 10. Al punt (0,4): distàncies 5 i 5, sumen 10. Al punt (5,0) (un extrem de l'el·lipse): distàncies 8 i 2, sumen també 10.",
+      "ca": "Punxons a (−3,0) i (3,0), fil de longitud 10. Al punt (0,4): distàncies 5 i 5, sumen 10. Al punt (5,0) (un extrem de l'el·lipse): distàncies 8 i 2, sumen també 10.\n\nI una comprovació que no és de números: què passaria si el fil fos més curt que la distància entre els dos punxons? Que no el podries tensar enlloc, i no dibuixaries res. I si fes exactament aquella distància? Que el llapis només podria anar amunt i avall del segment que els uneix: l'\"el·lipse\" et quedaria aixafada fins a ser un segment. O sigui que el mètode demana fil més llarg que la separació dels punxons, i com més marge li donis, més rodona et sortirà.",
       "en": null
     },
     "iDespres": {
-      "ca": "Ara ajunta aquest fet amb el de q96/q97 (reflectir converteix un camí trencat en un de recte): és exactament el que fa que una bola de billar llançada des d'un focus d'una taula el·líptica passi sempre per l'altre focus, sigui quin sigui l'angle de sortida.",
+      "ca": "Guarda aquest fet, perquè quan arribis a q96 i q97 (reflectir converteix un camí trencat en un de recte) el podràs ajuntar amb aquells i en sortirà una cosa bonica: que una bola de billar llançada des d'un focus d'una taula el·líptica passa sempre per l'altre focus, sigui quin sigui l'angle de sortida. Aquí encara no ho pots demostrar —el fil només et dona la suma constant, no els angles.",
       "en": null
     }
   },
@@ -8397,7 +8397,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Aquest fet —que la raó doble sobrevisca la projecció mentre que distàncies i raons simples no ho fan— és la base de tot el que ve després en aquest bloc: q101 el reformula com una pregunta sobre quants punts es poden moure lliurement, i q106 li posa nom («invariant projectiu»).",
+      "ca": "Aquest fet —que la raó doble sobrevisca la projecció mentre que distàncies i raons simples no ho fan— és la base de tot el que ve després en aquest bloc: q101 el reformula com una pregunta sobre quants punts es poden moure lliurement. I ja li pots posar el nom que li correspon: una quantitat que sobreviu qualsevol projecció és un invariant projectiu, i la raó doble és el primer que trobes.",
       "en": null
     }
   }
