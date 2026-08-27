@@ -38,6 +38,7 @@ no era treure-les, era dir on porten.
 | `docs/guies/NOTA-*.md`, `REVISIONS.md`, `REFERENTS-PEDAGOGICS.md` | **Sí** | A `docs/guies/` |
 | `docs/HAND_DRAWN_GEOMETRY_TECHNIQUE.md` | **Sí** | A `docs/` |
 | `parse_guies.py` | **Sí** | A l'arrel, i funciona: és idempotent |
+| `NOTA-METODE-TRAM-12.md` | **No** (esborrat a posta) | Va existir un dia. Era una nota de mètode adreçada nominalment a l'agent que havia fet els trams 1–11, i el criteri és que **cap fitxer del repositori no s'adreça a un agent concret**: els agents passen i el repositori queda. El seu contingut és avui a `HANDOFF.md` (§3.1, §3.2b, §4.5, §4.8, §4.11, §5 i §9), incorporat in situ; la taula de correspondència és a `CANVIS-TRAM-12.md` §8 |
 
 ---
 
