@@ -1,15 +1,17 @@
-geom — revisio matematica completa (trams 12 a 20, q84–q127) + registre d'oberts
+geom — revisio matematica completa + q84/q87/q88 publicades
 
 APLICAR: descomprimir sobre l'arrel del repositori, sobreescrivint.
 
 COMPROVAR:
-  python3 parse_guies.py        -> 130 guies, 0 problemes
-  python3 verifica_projecte.py  -> 53 comprovacions, 0 errors, 2 avisos
+  python3 parse_guies.py           -> 130 guies, 0 problemes
+  python3 verifica_projecte.py     -> 53 comprovacions, 0 errors, 2 avisos
+  python3 build_analitzador_geom.py-> 130 preguntes, 12 amagades
 
-COMENCA PER:  docs/revisio-matematica/HANDOFF-FULL.md
-  (tot el que queda obert, consolidat, amb una llista de tres coses per fer
-   primer)
+COMENCA PER: docs/revisio-matematica/HANDOFF-FULL.md
+
+analitzador-geom.html hi va inclos perque es un fitxer generat i el nombre
+d'amagades hi ha canviat (15 -> 12). Es pot regenerar amb el seu script.
 
 NOTA: docs/revisio-matematica/NOTA-METODE-TRAM-12.md va existir durant el
-tram 12 i es va esborrar a posta; el seu contingut es ara dins de HANDOFF.md.
-Si el teu repositori encara el te, esborra'l a ma.
+tram 12 i es va esborrar a posta. Si el teu repositori encara el te,
+esborra'l a ma.

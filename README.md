@@ -105,7 +105,7 @@ hi hagi res desat a `localStorage`): només "2D" i només "Triangles" actius —
 
 ### Exercicis amagats de la llista
 
-15 preguntes no apareixen a la llista de preguntes, ni a "Anterior/Següent" ni
+12 preguntes no apareixen a la llista de preguntes, ni a "Anterior/Següent" ni
 als suggeriments de l'itinerari, per una decisió de contingut de l'owner — **mai
 esborrades del codi**, només excloses en pintar/suggerir (`EXERCICIS_AMAGATS`,
 hardcoded a `js/ui/llista.js`, sempre la font de veritat; exposada com a
@@ -114,14 +114,24 @@ consultin sense duplicar-la). Segueixen accessibles amb normalitat per enllaç
 directe (`#q19`, etc.) i amb la seva guia completa.
 
 ```
-q18a, q18b, q19, q20, q21, q24, q34, q35, q67, q83, q84, q87, q88, q102, q106
+q18a, q18b, q19, q20, q21, q24, q34, q35, q67, q83, q102, q106
 ```
 
-(11 d'aquestes són exactament les 11 preguntes de la categoria "Propietats
-d'aritmètica o d'àlgebra" senceres — per això aquesta categoria no apareix al
-menú de filtres, v. més amunt; `q87`, `q67`, `q102` i `q106` s'hi van afegir en
-tandes posteriors i independents — la llista ja no coincideix 1:1 amb cap
-categoria sencera des d'aleshores. `q67`, `q102` i `q106` es van amagar en
+(9 d'aquestes són exactament les 9 preguntes que queden a la categoria
+"Propietats d'aritmètica o d'àlgebra" senceres — per això aquesta categoria no
+apareix al menú de filtres, v. més amunt; `q67`, `q102` i `q106` s'hi van
+afegir en una tanda posterior i independent — la llista no coincideix 1:1 amb
+cap categoria sencera des d'aleshores.
+
+**q84, q87 i q88 eren en aquesta llista i se'n van treure** (ago. 2026, en
+tancar la revisió matemàtica): les tres **estableixen** resultats que la resta
+del quadern fa servir —sin²+cos²=1, el sinus d'un angle obtús i les fórmules de
+l'angle doble—, o sigui que el quadern les demostrava en llocs on l'alumne no
+podia entrar i les feia servir en llocs on sí. Publicar-les va comportar tres
+canvis més que hi van junts: escriure'ls la solució, afegir-les a l'itinerari
+"triangles", i recategoritzar `q84` i `q88` de "aritmetica_algebra" a
+"triangles" —perquè aquella categoria no té itinerari ni surt al menú, i pel
+contingut totes dues pertanyen als triangles. `q67`, `q102` i `q106` es van amagar en
 comptes de dibuixar-los una imatge d'enunciat — v. §"Imatges d'enunciat noves"
 més avall).
 

@@ -318,7 +318,7 @@ if G is not None:
 
 # --------------------------------------------------- 12. itineraris temàtics
 # Afegit ago. 2026 (js/data/itineraris-tematics-dades.js). Aquest fitxer és
-# una REORGANITZACIÓ de les 115 preguntes visibles en 6 camins fixos, no una
+# una REORGANITZACIÓ de les 118 preguntes visibles en 6 camins fixos, no una
 # classificació nova -- ha de quedar perfectament coherent amb l'única font
 # real de "de quin tema és cada pregunta": CLASSIFICACIO_TEMATICA.
 IT = llegeix_global("js/data/itineraris-tematics-dades.js", "ITINERARIS_TEMATICS")
@@ -328,8 +328,8 @@ CLS = llegeix_global("js/data/categories-tematiques-dades.js", "CLASSIFICACIO_TE
 
 if IT is not None and P is not None and CLS is not None:
     idsReals = {p["id"] for p in P}
-    AMAGADES = {"q19", "q20", "q34", "q35", "q84", "q88", "q18a", "q18b",
-                "q21", "q24", "q83", "q87", "q67", "q102", "q106"}
+    AMAGADES = {"q19", "q20", "q34", "q35", "q18a", "q18b",
+                "q21", "q24", "q83", "q67", "q102", "q106"}
     visibles_esperades = idsReals - AMAGADES
 
     totes_it = []
@@ -352,7 +352,7 @@ if IT is not None and P is not None and CLS is not None:
     if sobren:
         err("itinerari temàtic conté ids amagats o inexistents: %s" % ", ".join(sorted(sobren)))
     if not falten and not sobren:
-        ok("els 6 itineraris temàtics cobreixen exactament les 115 preguntes visibles")
+        ok("els 6 itineraris temàtics cobreixen exactament les 118 preguntes visibles")
 
     # Coherència amb CLASSIFICACIO_TEMATICA: cada itinerari 2D ha de
     # coincidir amb la seva categoria oficial; "3d" amb dimensio=="3D".
@@ -372,7 +372,7 @@ if IT is not None and P is not None and CLS is not None:
     if mismatch:
         err("itinerari temàtic incoherent amb CLASSIFICACIO_TEMATICA: %s" % "; ".join(mismatch[:10]))
     else:
-        ok("els 6 itineraris temàtics coincideixen amb CLASSIFICACIO_TEMATICA per a totes les 115")
+        ok("els 6 itineraris temàtics coincideixen amb CLASSIFICACIO_TEMATICA per a totes les 118")
 
     # requereix / bessones: cap referència trencada.
     reqTrencat, bessTrencat = [], []
