@@ -667,6 +667,7 @@
 
   var ALL_ITEMS = [];
   var FIELD_INDEX = {};
+  var FIELD_INDEX_ITEM_IDS = {};
   var state = { edits: {}, reviewed: {} };
   var currentItemId = null;
   var currentSection = "preguntes";
@@ -826,14 +827,22 @@
       return;
     }
     var applied = 0, skipped = 0;
+    var conflictes = [];
     obj.camps.forEach(function (c) {
       if (!c || !c.path) return;
       var entry = FIELD_INDEX[c.path];
       if (!entry) { skipped++; return; }
-      if (typeof c.actual === "string" && c.actual !== entry.field.original) {
-        state.edits[c.path] = c.actual;
-        applied++;
+      if (typeof c.actual !== "string" || c.actual === entry.field.original) return;
+      if (typeof c.original === "string" && c.original !== entry.field.original) {
+        // El text "original" ha canviat al projecte des que es va exportar
+        // aquest fitxer (potser ja s'ha corregit al codi). No apliquem a
+        // cegues per no perdre una correcció més recent -- ho deixem com a
+        // conflicte perquè es revisi a mà.
+        conflictes.push({ path: c.path, referencia: c.referencia || c.path });
+        return;
       }
+      state.edits[c.path] = c.actual;
+      applied++;
     });
     if (Array.isArray(obj.itemsRevisats)) {
       obj.itemsRevisats.forEach(function (id) {
@@ -846,11 +855,14 @@
     updateProgress();
     if (currentItemId) selectItem(currentItemId);
     var msg = "Importat: " + applied + " camp(s) amb canvis aplicats.";
-    if (skipped) msg += " (" + skipped + " camps del fitxer ja no existeixen en aquesta versió del projecte i s'han ignorat.)";
+    if (skipped) msg += " " + skipped + " camp(s) del fitxer ja no existeixen en aquesta versió del projecte i s'han ignorat.";
+    if (conflictes.length) {
+      msg += "\n\n" + conflictes.length + " camp(s) NO s'han aplicat perquè el text ha canviat al projecte des que vas exportar aquest fitxer. Revisa'ls a mà:\n";
+      msg += conflictes.slice(0, 8).map(function (c) { return "\u2022 " + c.referencia; }).join("\n");
+      if (conflictes.length > 8) msg += "\n\u2026 i " + (conflictes.length - 8) + " més.";
+    }
     alert(msg);
   }
-
-  var FIELD_INDEX_ITEM_IDS = {};
 
   // ---------------- renderitzat: pestanyes i llista ----------------
   function renderTabs() {
@@ -1178,6 +1190,7 @@
       typeof window.CATEGORIES_TEMATIQUES !== "undefined" &&
       typeof window.ITINERARIS_TEMATICS !== "undefined" &&
       typeof window.ITINERARIS_GRUPS_ENTRELLACATS !== "undefined" &&
+      typeof window.ORDRE_PREGUNTES !== "undefined" &&
       typeof window.UI_LANGS !== "undefined" &&
       typeof window.EinaFrasesExtract !== "undefined";
   }
@@ -1211,6 +1224,7 @@
       CATEGORIES_TEMATIQUES: window.CATEGORIES_TEMATIQUES,
       ITINERARIS_TEMATICS: window.ITINERARIS_TEMATICS,
       ITINERARIS_GRUPS_ENTRELLACATS: window.ITINERARIS_GRUPS_ENTRELLACATS,
+      ORDRE_PREGUNTES: window.ORDRE_PREGUNTES,
       UI_LANGS: window.UI_LANGS,
     };
     ALL_ITEMS = window.EinaFrasesExtract.buildAllItems(data);
