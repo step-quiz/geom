@@ -1074,7 +1074,10 @@
     ta.rows = 1;
     ta.value = currentValue(f.path, f.original);
     ta.spellcheck = true;
-    ta.lang = "ca";
+    // L'única font de text EDITABLE en anglès és UI_LANGS.en.* (l'anglès de
+    // PREGUNTES.*.enunciat.en es mostra només com a refFields, no editable).
+    // Tota la resta -- inclòs UI_LANGS.ca.* -- és català.
+    ta.lang = f.path.indexOf("UI_LANGS.en.") === 0 ? "en" : "ca";
 
     function refreshEditedState() {
       var isEdited = ta.value !== f.original;
@@ -1087,7 +1090,25 @@
       ta.style.height = ta.scrollHeight + "px";
     }
 
+    // f.multiline es calcula a l'extracció (buildXxxItems) però fins ara no
+    // es feia servir enlloc en el renderitzat: qualsevol camp -- inclosos
+    // l'enunciat, el nom d'un moviment o una etiqueta de categoria, tots
+    // marcats multiline:false -- acceptava en silenci un salt de línia si
+    // es prement Retorn o s'hi enganxava text de diverses línies, perquè
+    // sempre es crea un <textarea>. Els camps multiline:false s'han de
+    // comportar com un input d'una sola línia de veritat:
+    if (!f.multiline) {
+      ta.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") e.preventDefault();
+      });
+    }
+
     ta.addEventListener("input", function () {
+      if (!f.multiline && /[\r\n]/.test(ta.value)) {
+        // xarxa de seguretat per a vies que no passen per keydown (enganxar,
+        // arrossegar text, etc.)
+        ta.value = ta.value.replace(/[\r\n]+/g, " ");
+      }
       setValue(f.path, f.original, ta.value);
       refreshEditedState();
       autoResize();
