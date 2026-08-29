@@ -135,7 +135,23 @@
     }
 
     idx.forEach(({ forma, id }) => {
-      const re = new RegExp("\\b" + escapaRegex(forma) + "\\b", "i");
+      // VORA DE PARAULA CONSCIENT D'UNICODE, NO \b.
+      // \b de JavaScript es basa en \w = [A-Za-z0-9_] -- NO inclou vocals
+      // accentuades ni la ce trencada. Quan `forma` ACABA en un caràcter
+      // fora d'aquest conjunt (p. ex. "escalè", "projecció", "arc capaç"),
+      // la posició just després del terme deixa de comptar com a vora si
+      // el que segueix és un espai o puntuació -- cap dels dos costats és
+      // \w -- i el \b final no fa mai match. Bug real, no teòric: amb la
+      // forma antiga, "projecció" (4 cops als enunciats, 57 dins les
+      // guies) no activava mai el popover. (?<![\p{L}\p{N}_]) /
+      // (?![\p{L}\p{N}_]) amb el flag 'u' tracta qualsevol lletra Unicode
+      // -- accentuada o no -- com a part de la paraula, sense aquest
+      // forat. Verificat sense regressió: "angle" continua SENSE
+      // trobar-se dins "rectangle".
+      const re = new RegExp(
+        "(?<![\\p{L}\\p{N}_])" + escapaRegex(forma) + "(?![\\p{L}\\p{N}_])",
+        "iu"
+      );
       const m = re.exec(text);
       if (!m) return;
       const start = m.index;
