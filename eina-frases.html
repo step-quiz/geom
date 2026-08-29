@@ -1,0 +1,1249 @@
+<!DOCTYPE html>
+<html lang="ca">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Eina de repàs de frases — Geometria</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --paper: #FBF9F4;
+    --paper-raised: #F5F1E8;
+    --ink: #211E1B;
+    --ink-soft: #56534C;
+    --ink-faint: #8C887E;
+    --pencil: #8B5E3C;
+    --pencil-soft: #C9AD93;
+    --rule: #DEDACE;
+    --rule-strong: #C7C1B2;
+    --ok: #4C7A5E;
+    --ok-soft: #BFD4C6;
+    --font-serif: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+    --font-mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, monospace;
+    --focus-ring: 0 0 0 3px rgba(139, 94, 60, 0.35);
+  }
+  * { box-sizing: border-box; }
+  html, body { height: 100%; margin: 0; }
+  body {
+    font-family: var(--font-serif);
+    background: var(--paper);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.5;
+  }
+  code { font-family: var(--font-mono); background: var(--paper-raised); padding: 0.1em 0.35em; border-radius: 3px; font-size: 0.9em; }
+
+  #app { display: flex; flex-direction: column; height: 100vh; }
+
+  .topbar {
+    display: flex; align-items: center; gap: 1rem;
+    padding: 0.55rem 1rem;
+    background: var(--paper-raised);
+    border-bottom: 1px solid var(--rule-strong);
+    flex-wrap: wrap;
+  }
+  .topbar__title { font-weight: 600; font-size: 0.98rem; white-space: nowrap; }
+  .topbar__progress { font-family: var(--font-mono); font-size: 0.74rem; color: var(--ink-soft); white-space: nowrap; display:flex; align-items:center; gap:0.5rem; }
+  .progress-bar { width: 110px; height: 6px; background: var(--rule); border-radius: 3px; overflow: hidden; display: inline-block; }
+  .progress-bar__fill { height: 100%; width: 0%; background: var(--pencil); transition: width 200ms var(--ease-settle, ease); }
+  .topbar__search {
+    flex: 1; min-width: 140px; font-family: var(--font-serif); font-size: 0.88rem;
+    padding: 0.38rem 0.6rem; border: 1px solid var(--rule-strong); border-radius: 5px;
+    background: var(--paper); color: var(--ink);
+  }
+  .topbar__actions { display: flex; gap: 0.35rem; flex-wrap: wrap; }
+
+  button {
+    font-family: var(--font-serif); font-size: 0.8rem; padding: 0.4rem 0.65rem;
+    border-radius: 5px; border: 1px solid var(--rule-strong); background: var(--paper);
+    color: var(--ink); cursor: pointer; white-space: nowrap;
+  }
+  button:hover { border-color: var(--pencil); }
+  button.primary { background: var(--pencil); color: var(--paper); border-color: var(--pencil); }
+  button.primary:hover { opacity: 0.88; }
+  button:focus-visible, textarea:focus-visible, input:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+
+  .storage-warning {
+    display: none; font-size: 0.78rem; line-height: 1.5; padding: 0.6rem 1rem;
+    background: #FBF0E4; color: #6B4423; border-bottom: 1px solid var(--pencil-soft);
+  }
+  .storage-warning code { background: rgba(139,94,60,0.12); }
+
+  .help { padding: 0 1rem; background: var(--paper-raised); border-bottom: 1px solid var(--rule); }
+  .help__toggle { font-size: 0.74rem; color: var(--ink-soft); background: none; border: none; text-decoration: underline; cursor: pointer; padding: 0.35rem 0; }
+  .help__body { display: none; font-size: 0.8rem; color: var(--ink-soft); padding: 0 0 0.8rem; line-height: 1.55; max-width: 62rem; }
+  .help__body.open { display: block; }
+  .help__body p { margin: 0 0 0.5em; }
+
+  .body { display: flex; flex: 1; min-height: 0; }
+
+  .sidebar { width: 320px; flex-shrink: 0; border-right: 1px solid var(--rule-strong); display: flex; flex-direction: column; background: var(--paper-raised); }
+  .tabs { display: flex; flex-wrap: wrap; gap: 0.25rem; padding: 0.55rem; border-bottom: 1px solid var(--rule); }
+  .tab { font-family: var(--font-mono); font-size: 0.68rem; padding: 0.3rem 0.5rem; border-radius: 4px; border: 1px solid transparent; background: transparent; color: var(--ink-soft); cursor: pointer; }
+  .tab.active { background: var(--paper); border-color: var(--rule-strong); color: var(--ink); font-weight: 600; }
+  .tab .count { color: var(--ink-faint); }
+
+  .item-list { flex: 1; overflow-y: auto; padding: 0.3rem 0; }
+  .item-row { display: flex; align-items: flex-start; gap: 0.55rem; padding: 0.5rem 0.85rem; cursor: pointer; border-left: 3px solid transparent; }
+  .item-row:hover { background: var(--paper); }
+  .item-row.selected { background: var(--paper); border-left-color: var(--pencil); }
+  .item-row__dot { width: 8px; height: 8px; border-radius: 50%; margin-top: 0.42em; flex-shrink: 0; background: var(--rule-strong); }
+  .item-row[data-status="editat"] .item-row__dot { background: var(--pencil); }
+  .item-row[data-status="revisat"] .item-row__dot { background: var(--ok); }
+  .item-row__title { font-size: 0.85rem; line-height: 1.32; }
+  .item-row__section-tag { font-family: var(--font-mono); font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--ink-faint); display: block; margin-bottom: 0.15em; }
+  .empty-state { padding: 3rem 1.5rem; text-align: center; color: var(--ink-soft); font-size: 0.85rem; }
+
+  .main { flex: 1; overflow-y: auto; padding: 2.2rem 3rem 8rem; }
+  .item-detail__header { margin-bottom: 1.7rem; border-bottom: 1px solid var(--rule); padding-bottom: 1rem; max-width: 46rem; }
+  .item-detail__title-row { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .item-detail__title { font-size: 1.35rem; font-weight: 600; margin: 0; }
+  .btn-reviewed { margin-left: auto; }
+  .btn-reviewed.on { background: var(--ok); border-color: var(--ok); color: #fff; }
+  .badges { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-top: 0.6rem; }
+  .badge { font-family: var(--font-mono); font-size: 0.66rem; color: var(--ink-soft); background: var(--paper-raised); border: 1px solid var(--rule); padding: 0.15rem 0.5rem; border-radius: 4px; }
+
+  .group { margin-bottom: 2.3rem; max-width: 46rem; }
+  .group__heading { font-size: 1rem; font-weight: 600; color: var(--ink); margin: 0 0 0.7rem; }
+  .group__figures { display: flex; gap: 0.7rem; flex-wrap: wrap; margin-bottom: 0.9rem; }
+  .group__figures img { max-width: 220px; max-height: 220px; border: 1px solid var(--rule); border-radius: 4px; background: #fff; mix-blend-mode: multiply; }
+
+  .ref-field { margin: 0 0 0.9rem; padding: 0.55rem 0.9rem; border-left: 2px solid var(--rule-strong); color: var(--ink-soft); font-style: italic; font-size: 0.92rem; }
+  .ref-field__label { display: block; font-family: var(--font-mono); font-style: normal; font-size: 0.63rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--ink-faint); margin-bottom: 0.25rem; }
+
+  .field { margin-bottom: 1.15rem; }
+  .field__label-row { display: flex; align-items: center; gap: 0.55rem; margin-bottom: 0.3rem; flex-wrap: wrap; }
+  .field__label { font-family: var(--font-mono); font-size: 0.71rem; color: var(--ink-soft); }
+  .field__hint { font-family: var(--font-mono); font-size: 0.63rem; color: var(--ink-faint); }
+  .field__tag-edited { display: none; font-family: var(--font-mono); font-size: 0.6rem; color: var(--pencil); border: 1px solid var(--pencil-soft); padding: 0.05rem 0.4rem; border-radius: 3px; }
+  .field.is-edited .field__tag-edited { display: inline-block; }
+  .field__revert { display: none; font-size: 0.67rem; padding: 0.08rem 0.4rem; margin-left: auto; }
+  .field.is-edited .field__revert { display: inline-block; }
+
+  .field__input {
+    width: 100%; font-family: var(--font-serif); font-size: 1rem; line-height: 1.55;
+    padding: 0.6rem 0.7rem; border: 1px solid var(--rule-strong); border-radius: 5px;
+    background: var(--paper); color: var(--ink); resize: none; overflow-y: hidden; max-height: 520px;
+  }
+  .field.is-edited .field__input { border-color: var(--pencil); background: #FFFDF8; }
+  .field.is-edited .field__label { color: var(--pencil); }
+
+  .error-screen { max-width: 640px; margin: 4rem auto; padding: 2rem 2.2rem; border: 1px solid var(--rule-strong); border-radius: 8px; background: var(--paper-raised); line-height: 1.55; }
+  .error-screen h2 { margin-top: 0; }
+
+  @media (max-width: 900px) {
+    .sidebar { width: 42vw; }
+    .main { padding: 1.3rem 1.3rem 6rem; }
+    .topbar__title { display: none; }
+  }
+</style>
+</head>
+<body>
+  <div id="app">
+    <header class="topbar">
+      <span class="topbar__title">Eina de repàs de frases</span>
+      <span class="topbar__progress">
+        <span class="progress-bar"><span class="progress-bar__fill" id="progressBarFill"></span></span>
+        <span id="progressText">0 / 0</span>
+      </span>
+      <input type="search" id="searchBox" class="topbar__search" placeholder="Cerca dins de totes les frases…">
+      <div class="topbar__actions">
+        <button id="btnNextPending">Següent pendent →</button>
+        <button id="btnExportAll" class="primary">Desa tot (JSON)</button>
+        <button id="btnExportDiff">Exporta només canvis</button>
+        <button id="btnImport">Importa JSON</button>
+        <input type="file" id="fileImport" accept="application/json" hidden>
+        <button id="btnReset">Reinicia</button>
+      </div>
+    </header>
+    <div class="storage-warning" id="storageWarning">
+      ⚠️ Aquest navegador no permet desar el progrés automàticament quan el fitxer s'obre amb doble clic (protocol <code>file://</code> — passa sovint amb el Firefox). L'eina funciona igual, però <strong>no confiïs en l'autodesat</strong>: exporta sovint amb «Desa tot (JSON)» perquè no perdis la feina. Alternativa: obre aquesta carpeta amb un servidor local (<code>python3 -m http.server</code>, com explica el README del projecte) i entra-hi per <code>http://localhost:8000/eina-frases.html</code> — així l'autodesat sí que funcionarà.
+    </div>
+    <div class="help">
+      <button class="help__toggle" id="helpToggle">Com funciona aquesta eina?</button>
+      <div class="help__body" id="helpBody">
+        <p>Navega per les pestanyes (Preguntes, Glossari, Demos, Itineraris, Interfície) o cerca directament a la caixa de dalt. Cada pregunta mostra de cop el seu enunciat i tota la guia (les 4 pistes, la comprovació i l'"i després"), amb la imatge corresponent al costat de cada pista.</p>
+        <p>Edita qualsevol text directament: es desa automàticament en aquest navegador (localStorage) perquè no perdis res encara que tanquis la pestanya. Un camp editat es marca en color; el botó <strong>↺ desfés</strong> el torna al text original.</p>
+        <p><strong>✓ Marca com a revisada</strong> serveix per anotar que ja has llegit una fitxa encara que no calgui canviar-hi res, per no perdre el fil. <strong>Següent pendent</strong> et porta directament a la propera fitxa que encara no has tocat.</p>
+        <p><strong>Desa tot (JSON)</strong> exporta una còpia completa de l'estat (per fer-ne còpia de seguretat, continuar en un altre ordinador, o importar-la aquí més tard). <strong>Exporta només els canvis</strong> exporta només les frases que has editat — aquest és el fitxer que has d'enviar-me perquè apliqui els canvis al codi del projecte.</p>
+      </div>
+    </div>
+    <div class="body">
+      <nav class="sidebar">
+        <div class="tabs" id="tabs"></div>
+        <div class="item-list" id="itemList"></div>
+      </nav>
+      <main class="main" id="mainPanel"></main>
+    </div>
+  </div>
+
+  <!-- ==== Dades reals del projecte: mateixos fitxers que index.html ==== -->
+  <script src="js/data/preguntes-dades.js"></script>
+  <script src="js/data/guies-dades.js"></script>
+  <script src="js/data/glossari-dades.js"></script>
+  <script src="js/data/demos-dades.js"></script>
+  <script src="js/data/categories-tematiques-dades.js"></script>
+  <script src="js/data/itineraris-tematics-dades.js"></script>
+  <script src="js/data/ordre-preguntes.js"></script>
+  <script src="js/i18n/ui-strings.js"></script>
+
+  <!-- ==== Lògica de l'eina ==== -->
+  <script id="extract-script">
+/*
+  Lògica d'extracció de "frases" a partir de les dades reals del projecte.
+  Es carrega tant a eina-frases.html (navegador) com aquí, per Node, per
+  poder-la provar contra els fitxers reals abans d'incrustar-la.
+*/
+(function (root) {
+  "use strict";
+
+  function esc(s) {
+    return String(s == null ? "" : s);
+  }
+
+  function placeholders(s) {
+    const m = esc(s).match(/\{[a-zA-Z_]+\}/g);
+    return m ? Array.from(new Set(m)) : [];
+  }
+
+  // ---------- PREGUNTES + GUIES (un sol item per pregunta) ----------
+  function imatgesPregunta(imatge) {
+    if (!imatge) return [];
+    if (imatge.fitxers) {
+      return imatge.fitxers.map((f) => "assets/img/" + f);
+    }
+    if (imatge.fitxer) {
+      return ["assets/img/" + imatge.fitxer];
+    }
+    return [];
+  }
+
+  function buildPreguntesItems(PREGUNTES, GUIES, ORDRE) {
+    const byId = {};
+    PREGUNTES.forEach((q) => (byId[q.id] = q));
+    const ordre = ORDRE && ORDRE.length ? ORDRE : PREGUNTES.map((q) => q.id);
+
+    return ordre.map((id, idx) => {
+      const q = byId[id];
+      const g = GUIES[id];
+      const groups = [];
+
+      groups.push({
+        heading: "Enunciat",
+        images: imatgesPregunta(q.imatge),
+        refFields: [{ label: "Original (anglès, del llibre)", value: q.enunciat.en }],
+        fields: [
+          {
+            path: "PREGUNTES." + id + ".enunciat.ca",
+            label: "Enunciat (català)",
+            value: q.enunciat.ca || "",
+            original: q.enunciat.ca || "",
+            multiline: false,
+          },
+        ],
+      });
+
+      if (g) {
+        groups.push({
+          heading: "Moviment",
+          fields: [
+            {
+              path: "GUIES." + id + ".movimentTitol.ca",
+              label: "Nom del moviment (com es mostra a la guia)",
+              value: g.movimentTitol.ca || "",
+              original: g.movimentTitol.ca || "",
+              multiline: false,
+            },
+          ],
+        });
+
+        g.pistes.forEach((p, i) => {
+          const fields = [];
+          if (p.titol) {
+            fields.push({
+              path: "GUIES." + id + ".pistes[" + i + "].titol.ca",
+              label: "Títol",
+              value: p.titol.ca || "",
+              original: p.titol.ca || "",
+              multiline: false,
+            });
+          }
+          if (p.text) {
+            fields.push({
+              path: "GUIES." + id + ".pistes[" + i + "].text.ca",
+              label: "Text",
+              value: p.text.ca || "",
+              original: p.text.ca || "",
+              multiline: true,
+            });
+          }
+          if (fields.length === 0) return; // pista buida (només imatge) -- res a repassar
+          groups.push({
+            heading: "Pista " + (i + 1) + (p.titol ? " · " + p.titol.ca : ""),
+            images: p.figura ? ["assets/img/pistes/" + p.figura] : [],
+            fields: fields,
+          });
+        });
+
+        groups.push({
+          heading: "Comprovació",
+          fields: [
+            {
+              path: "GUIES." + id + ".comprovacio.ca",
+              label: "Comprovació",
+              value: g.comprovacio.ca || "",
+              original: g.comprovacio.ca || "",
+              multiline: true,
+            },
+          ],
+        });
+
+        groups.push({
+          heading: "I després",
+          fields: [
+            {
+              path: "GUIES." + id + ".iDespres.ca",
+              label: "I després",
+              value: g.iDespres.ca || "",
+              original: g.iDespres.ca || "",
+              multiline: true,
+            },
+          ],
+        });
+      }
+
+      return {
+        id: "q:" + id,
+        section: "preguntes",
+        order: idx,
+        title: id + " — " + (q.enunciat.ca || q.enunciat.en || "").slice(0, 60),
+        searchText: [q.enunciat.ca, q.enunciat.en, id].join(" "),
+        meta: [
+          "pàg. " + q.pagina,
+          q.dimensio,
+          "dificultat " + q.dificultat,
+          g ? "lot " + g.lot : null,
+          g ? g.moviment : null,
+        ].filter(Boolean),
+        groups: groups,
+      };
+    });
+  }
+
+  // ---------- GLOSSARI ----------
+  function buildGlossariItems(GLOSSARI) {
+    const ids = Object.keys(GLOSSARI).sort((a, b) => {
+      const ta = (GLOSSARI[a].termes.ca && GLOSSARI[a].termes.ca[0]) || a;
+      const tb = (GLOSSARI[b].termes.ca && GLOSSARI[b].termes.ca[0]) || b;
+      return ta.localeCompare(tb, "ca");
+    });
+    return ids.map((id, idx) => {
+      const t = GLOSSARI[id];
+      const nomCa = (t.termes.ca && t.termes.ca.join(", ")) || id;
+      return {
+        id: "gl:" + id,
+        section: "glossari",
+        order: idx,
+        title: nomCa,
+        searchText: [nomCa, t.termes.en && t.termes.en.join(" "), t.definicio.ca].join(" "),
+        meta: [t.categoria].filter(Boolean),
+        groups: [
+          {
+            heading: nomCa,
+            images: t.figura ? ["assets/img/glossari/" + t.figura] : [],
+            refFields: [
+              { label: "Formes (català)", value: (t.termes.ca || []).join(" · ") },
+              { label: "Formes (anglès)", value: (t.termes.en || []).join(" · ") },
+            ],
+            fields: [
+              {
+                path: "GLOSSARI." + id + ".definicio.ca",
+                label: "Definició",
+                value: t.definicio.ca || "",
+                original: t.definicio.ca || "",
+                multiline: true,
+              },
+            ],
+          },
+        ],
+      };
+    });
+  }
+
+  // ---------- DEMOS ----------
+  function buildDemosItems(DEMOS, DEMOS_TANCAMENT) {
+    const items = DEMOS.map((d, di) => {
+      const groups = [];
+      groups.push({
+        heading: "Presentació",
+        fields: [
+          {
+            path: "DEMOS[" + di + "].titol.ca",
+            label: "Títol de la demo",
+            value: d.titol.ca || "",
+            original: d.titol.ca || "",
+            multiline: false,
+          },
+          {
+            path: "DEMOS[" + di + "].movimentTitol.ca",
+            label: "Nom del moviment",
+            value: d.movimentTitol.ca || "",
+            original: d.movimentTitol.ca || "",
+            multiline: false,
+          },
+        ],
+      });
+
+      d.passos.forEach((p, pi) => {
+        if (pi === 0) {
+          groups.push({
+            heading: "Pas 0 · Context",
+            fields: [
+              {
+                path: "DEMOS[" + di + "].passos[0].context.ca",
+                label: "Context",
+                value: p.context.ca || "",
+                original: p.context.ca || "",
+                multiline: true,
+              },
+            ],
+          });
+        } else if (p.tancament) {
+          groups.push({
+            heading: "Pas " + pi + " · Tancament",
+            fields: [
+              {
+                path: "DEMOS[" + di + "].passos[" + pi + "].tancament.ca",
+                label: "Tancament",
+                value: p.tancament.ca || "",
+                original: p.tancament.ca || "",
+                multiline: true,
+              },
+              {
+                path: "DEMOS[" + di + "].passos[" + pi + "].handoff.text.ca",
+                label: "Enllaç cap a la pregunta real (" + p.handoff.questionId + ")",
+                value: p.handoff.text.ca || "",
+                original: p.handoff.text.ca || "",
+                multiline: true,
+              },
+            ],
+          });
+        } else {
+          groups.push({
+            heading: "Pas " + pi,
+            images: d.figura && p.figuraPanell != null ? ["assets/img/demo/" + d.figura + "-p" + p.figuraPanell + ".png"] : [],
+            fields: [
+              {
+                path: "DEMOS[" + di + "].passos[" + pi + "].enunciat.ca",
+                label: "Enunciat (prova-ho al paper)",
+                value: p.enunciat.ca || "",
+                original: p.enunciat.ca || "",
+                multiline: true,
+              },
+              {
+                path: "DEMOS[" + di + "].passos[" + pi + "].text.ca",
+                label: "Argument",
+                value: p.text.ca || "",
+                original: p.text.ca || "",
+                multiline: true,
+              },
+              {
+                path: "DEMOS[" + di + "].passos[" + pi + "].comprovacio.ca",
+                label: "Comprovació",
+                value: p.comprovacio.ca || "",
+                original: p.comprovacio.ca || "",
+                multiline: true,
+              },
+            ],
+          });
+        }
+      });
+
+      return {
+        id: "demo:" + di,
+        section: "demos",
+        order: di,
+        title: "Demo " + (di + 1) + " — " + (d.titol.ca || ""),
+        searchText: [d.titol.ca, d.movimentTitol.ca].join(" "),
+        meta: [d.moviment].filter(Boolean),
+        groups: groups,
+      };
+    });
+
+    items.push({
+      id: "demo:tancament",
+      section: "demos",
+      order: 99,
+      title: "Tancament conjunt de les 3 demos",
+      searchText: [DEMOS_TANCAMENT.titol.ca, DEMOS_TANCAMENT.text.ca].join(" "),
+      meta: [],
+      groups: [
+        {
+          heading: "Tancament compartit",
+          fields: [
+            {
+              path: "DEMOS_TANCAMENT.titol.ca",
+              label: "Títol",
+              value: DEMOS_TANCAMENT.titol.ca || "",
+              original: DEMOS_TANCAMENT.titol.ca || "",
+              multiline: false,
+            },
+            {
+              path: "DEMOS_TANCAMENT.text.ca",
+              label: "Text",
+              value: DEMOS_TANCAMENT.text.ca || "",
+              original: DEMOS_TANCAMENT.text.ca || "",
+              multiline: true,
+            },
+          ],
+        },
+      ],
+    });
+
+    return items;
+  }
+
+  // ---------- ITINERARIS + CATEGORIES (un sol item) ----------
+  function buildItinerarisItems(CATEGORIES_TEMATIQUES, ITINERARIS_TEMATICS, ITINERARIS_GRUPS_ENTRELLACATS) {
+    const groups = [];
+
+    groups.push({
+      heading: "Categories temàtiques (menú de filtres)",
+      fields: CATEGORIES_TEMATIQUES.map((c, i) => ({
+        path: "CATEGORIES_TEMATIQUES[" + i + "].etiqueta",
+        label: c.clau,
+        value: c.etiqueta || "",
+        original: c.etiqueta || "",
+        multiline: false,
+      })),
+    });
+
+    groups.push({
+      heading: "Itineraris temàtics (etiquetes)",
+      fields: ITINERARIS_TEMATICS.map((it, i) => ({
+        path: "ITINERARIS_TEMATICS[" + i + "].etiqueta",
+        label: it.clau + " (" + it.preguntes.length + " preguntes)",
+        value: it.etiqueta || "",
+        original: it.etiqueta || "",
+        multiline: false,
+      })),
+    });
+
+    groups.push({
+      heading: "Notes de grups entrellaçats (\"bessones\")",
+      fields: ITINERARIS_GRUPS_ENTRELLACATS.map((gr, i) => ({
+        path: "ITINERARIS_GRUPS_ENTRELLACATS[" + i + "].nota",
+        label: gr.ids.join(", "),
+        value: gr.nota || "",
+        original: gr.nota || "",
+        multiline: true,
+      })),
+    });
+
+    return [
+      {
+        id: "itin:all",
+        section: "itineraris",
+        order: 0,
+        title: "Itineraris i categories",
+        searchText: groups.map((g) => g.fields.map((f) => f.value).join(" ")).join(" "),
+        meta: [],
+        groups: groups,
+      },
+    ];
+  }
+
+  // ---------- INTERFÍCIE (UI_LANGS) ----------
+  function buildInterficieItems(UI_LANGS) {
+    const sectionOrder = ["_name", "nav", "list", "detail", "guide", "lang", "meta", "glossary", "itinerary", "demo", "itineraris"];
+    const keys = sectionOrder.filter((k) => k in UI_LANGS.ca);
+    Object.keys(UI_LANGS.ca).forEach((k) => {
+      if (keys.indexOf(k) === -1) keys.push(k);
+    });
+
+    function walk(prefixPath, caObj, enObj, fields) {
+      Object.keys(caObj).forEach((k) => {
+        const caVal = caObj[k];
+        const enVal = enObj ? enObj[k] : undefined;
+        const p = prefixPath + "." + k;
+        if (typeof caVal === "string") {
+          fields.push({
+            path: "UI_LANGS.ca." + p,
+            label: p + " — CA",
+            value: caVal || "",
+            original: caVal || "",
+            multiline: caVal.length > 60 || caVal.indexOf("\n") !== -1,
+            hints: placeholders(caVal),
+          });
+          if (typeof enVal === "string") {
+            fields.push({
+              path: "UI_LANGS.en." + p,
+              label: p + " — EN",
+              value: enVal || "",
+              original: enVal || "",
+              multiline: enVal.length > 60 || enVal.indexOf("\n") !== -1,
+              hints: placeholders(enVal),
+            });
+          }
+        } else if (caVal && typeof caVal === "object") {
+          walk(p, caVal, enVal || {}, fields);
+        }
+      });
+    }
+
+    return keys.map((k, idx) => {
+      const fields = [];
+      if (UI_LANGS.ca[k] && typeof UI_LANGS.ca[k] === "object") {
+        walk(k, UI_LANGS.ca[k], UI_LANGS.en[k] || {}, fields);
+      }
+      // walk() espera objectes; per a claus amb valor string directe (_name) el truquem diferent:
+      let fieldsFinal = fields;
+      if (typeof UI_LANGS.ca[k] === "string") {
+        fieldsFinal = [
+          {
+            path: "UI_LANGS.ca." + k,
+            label: k + " — CA",
+            value: UI_LANGS.ca[k] || "",
+            original: UI_LANGS.ca[k] || "",
+            multiline: false,
+            hints: placeholders(UI_LANGS.ca[k]),
+          },
+          {
+            path: "UI_LANGS.en." + k,
+            label: k + " — EN",
+            value: UI_LANGS.en[k] || "",
+            original: UI_LANGS.en[k] || "",
+            multiline: false,
+            hints: placeholders(UI_LANGS.en[k]),
+          },
+        ];
+      }
+      return {
+        id: "ui:" + k,
+        section: "interficie",
+        order: idx,
+        title: "Interfície — " + k,
+        searchText: fieldsFinal.map((f) => f.value).join(" "),
+        meta: [],
+        groups: [{ heading: "Textos: " + k, fields: fieldsFinal }],
+      };
+    });
+  }
+
+  function buildAllItems(data) {
+    const items = []
+      .concat(buildPreguntesItems(data.PREGUNTES, data.GUIES, data.ORDRE_PREGUNTES))
+      .concat(buildGlossariItems(data.GLOSSARI))
+      .concat(buildDemosItems(data.DEMOS, data.DEMOS_TANCAMENT))
+      .concat(buildItinerarisItems(data.CATEGORIES_TEMATIQUES, data.ITINERARIS_TEMATICS, data.ITINERARIS_GRUPS_ENTRELLACATS))
+      .concat(buildInterficieItems(data.UI_LANGS));
+    return items;
+  }
+
+  const API = { buildAllItems: buildAllItems, placeholders: placeholders };
+
+  if (typeof module !== "undefined" && module.exports) {
+    module.exports = API;
+  } else {
+    root.EinaFrasesExtract = API;
+  }
+})(typeof window !== "undefined" ? window : globalThis);
+
+</script>
+  <script id="app-script">
+/* ================================================================
+   EINA-FRASES — capa d'aplicació (estat, renderitzat, esdeveniments)
+   Depèn de: window.EinaFrasesExtract (v. extract.js) i dels globals
+   de dades carregats abans (window.PREGUNTES, window.GUIES, etc.)
+   ================================================================ */
+(function () {
+  "use strict";
+
+  var STORAGE_KEY = "eina-frases:v1";
+  var SECTION_LABELS = { preguntes: "Preguntes", glossari: "Glossari", demos: "Demos", itineraris: "Itineraris", interficie: "Interfície" };
+  var SECTIONS_ORDER = ["preguntes", "glossari", "demos", "itineraris", "interficie"];
+
+  var ALL_ITEMS = [];
+  var FIELD_INDEX = {};
+  var state = { edits: {}, reviewed: {} };
+  var currentItemId = null;
+  var currentSection = "preguntes";
+  var searchQuery = "";
+  var localStorageOK = false;
+
+  function testLocalStorage() {
+    try {
+      var k = "__eina-frases-test__";
+      localStorage.setItem(k, "1");
+      localStorage.removeItem(k);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  // ---------------- helpers ----------------
+  function fold(s) {
+    return String(s == null ? "" : s)
+      .toLowerCase()
+      .normalize("NFD")
+      .replace(/[\u0300-\u036f]/g, "");
+  }
+  function escapeHtml(s) {
+    return String(s == null ? "" : s).replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+  function debounce(fn, ms) {
+    var t;
+    return function () {
+      var args = arguments, ctx = this;
+      clearTimeout(t);
+      t = setTimeout(function () { fn.apply(ctx, args); }, ms);
+    };
+  }
+  function $(sel) { return document.querySelector(sel); }
+  function todayStr() {
+    var d = new Date();
+    function p(n) { return String(n).padStart(2, "0"); }
+    return d.getFullYear() + "-" + p(d.getMonth() + 1) + "-" + p(d.getDate());
+  }
+
+  // ---------------- estat derivat ----------------
+  function currentValue(path, original) {
+    return Object.prototype.hasOwnProperty.call(state.edits, path) ? state.edits[path] : original;
+  }
+  function setValue(path, original, val) {
+    if (val === original) delete state.edits[path];
+    else state.edits[path] = val;
+  }
+  function itemHasEdits(item) {
+    for (var gi = 0; gi < item.groups.length; gi++) {
+      var fields = item.groups[gi].fields || [];
+      for (var fi = 0; fi < fields.length; fi++) {
+        if (Object.prototype.hasOwnProperty.call(state.edits, fields[fi].path)) return true;
+      }
+    }
+    return false;
+  }
+  function itemStatus(item) {
+    if (itemHasEdits(item)) return "editat";
+    if (state.reviewed[item.id]) return "revisat";
+    return "pendent";
+  }
+  function countAllFields() {
+    var n = 0;
+    ALL_ITEMS.forEach(function (it) { it.groups.forEach(function (g) { n += (g.fields || []).length; }); });
+    return n;
+  }
+
+  // ---------------- persistència ----------------
+  function saveLocal() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify({
+        edits: state.edits,
+        reviewed: Object.keys(state.reviewed).filter(function (k) { return state.reviewed[k]; }),
+        updatedAt: new Date().toISOString(),
+      }));
+    } catch (e) {
+      console.warn("eina-frases: no s'ha pogut desar a localStorage", e);
+    }
+  }
+  var saveLocalDebounced = debounce(saveLocal, 500);
+
+  function loadLocal() {
+    try {
+      var raw = localStorage.getItem(STORAGE_KEY);
+      if (!raw) return;
+      var parsed = JSON.parse(raw);
+      state.edits = parsed.edits || {};
+      state.reviewed = {};
+      (parsed.reviewed || []).forEach(function (id) { state.reviewed[id] = true; });
+    } catch (e) {
+      console.warn("eina-frases: no s'ha pogut llegir el progrés desat", e);
+    }
+  }
+
+  // ---------------- exportació / importació ----------------
+  function buildExportPayload(mode) {
+    var camps = [];
+    ALL_ITEMS.forEach(function (item) {
+      item.groups.forEach(function (group) {
+        (group.fields || []).forEach(function (f) {
+          var actual = currentValue(f.path, f.original);
+          var canviat = actual !== f.original;
+          if (mode === "diff" && !canviat) return;
+          camps.push({
+            path: f.path,
+            referencia: item.title + " › " + group.heading + " › " + f.label,
+            original: f.original,
+            actual: actual,
+            canviat: canviat,
+          });
+        });
+      });
+    });
+    var editat = 0, revisat = 0;
+    ALL_ITEMS.forEach(function (it) {
+      var s = itemStatus(it);
+      if (s === "editat") editat++;
+      else if (s === "revisat") revisat++;
+    });
+    return {
+      eina: "eina-frases",
+      versio: 1,
+      generat: new Date().toISOString(),
+      resum: {
+        totalFitxes: ALL_ITEMS.length,
+        fitxesEditades: editat,
+        fitxesRevisades: revisat,
+        fitxesPendents: ALL_ITEMS.length - editat - revisat,
+        totalCamps: countAllFields(),
+        campsCanviats: camps.filter(function (c) { return c.canviat; }).length,
+      },
+      itemsRevisats: Object.keys(state.reviewed).filter(function (k) { return state.reviewed[k]; }),
+      camps: camps,
+    };
+  }
+
+  function downloadJSON(obj, filename) {
+    var blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    setTimeout(function () { URL.revokeObjectURL(url); }, 2000);
+  }
+
+  function importPayload(obj) {
+    if (!obj || !Array.isArray(obj.camps)) {
+      alert("Aquest fitxer no té el format esperat (li falta \"camps\").");
+      return;
+    }
+    var applied = 0, skipped = 0;
+    obj.camps.forEach(function (c) {
+      if (!c || !c.path) return;
+      var entry = FIELD_INDEX[c.path];
+      if (!entry) { skipped++; return; }
+      if (typeof c.actual === "string" && c.actual !== entry.field.original) {
+        state.edits[c.path] = c.actual;
+        applied++;
+      }
+    });
+    if (Array.isArray(obj.itemsRevisats)) {
+      obj.itemsRevisats.forEach(function (id) {
+        if (FIELD_INDEX_ITEM_IDS[id]) state.reviewed[id] = true;
+      });
+    }
+    saveLocal();
+    renderTabs();
+    renderSidebar();
+    updateProgress();
+    if (currentItemId) selectItem(currentItemId);
+    var msg = "Importat: " + applied + " camp(s) amb canvis aplicats.";
+    if (skipped) msg += " (" + skipped + " camps del fitxer ja no existeixen en aquesta versió del projecte i s'han ignorat.)";
+    alert(msg);
+  }
+
+  var FIELD_INDEX_ITEM_IDS = {};
+
+  // ---------------- renderitzat: pestanyes i llista ----------------
+  function renderTabs() {
+    var tabsEl = $("#tabs");
+    var html = SECTIONS_ORDER.map(function (sec) {
+      var n = ALL_ITEMS.filter(function (it) { return it.section === sec; }).length;
+      var active = sec === currentSection && !searchQuery;
+      return '<button class="tab' + (active ? " active" : "") + '" data-section="' + sec + '">' + SECTION_LABELS[sec] + ' <span class="count">' + n + "</span></button>";
+    }).join("");
+    tabsEl.innerHTML = html;
+    Array.prototype.forEach.call(tabsEl.children, function (btn) {
+      btn.addEventListener("click", function () {
+        currentSection = btn.dataset.section;
+        searchQuery = "";
+        $("#searchBox").value = "";
+        renderTabs();
+        renderSidebar();
+      });
+    });
+  }
+
+  function visibleItems() {
+    if (searchQuery) {
+      var q = fold(searchQuery);
+      return ALL_ITEMS.filter(function (it) { return fold(it.title).indexOf(q) !== -1 || fold(it.searchText).indexOf(q) !== -1; });
+    }
+    return ALL_ITEMS.filter(function (it) { return it.section === currentSection; });
+  }
+
+  function renderSidebar() {
+    var list = $("#itemList");
+    var items = visibleItems();
+    if (items.length === 0) {
+      list.innerHTML = '<div class="empty-state">Cap resultat.</div>';
+      return;
+    }
+    list.innerHTML = items.map(function (it) {
+      var status = itemStatus(it);
+      var tag = searchQuery ? '<span class="item-row__section-tag">' + escapeHtml(SECTION_LABELS[it.section]) + "</span>" : "";
+      return '<div class="item-row" data-id="' + escapeHtml(it.id) + '" data-status="' + status + '"><span class="item-row__dot"></span><span>' + tag + '<span class="item-row__title">' + escapeHtml(it.title) + "</span></span></div>";
+    }).join("");
+    Array.prototype.forEach.call(list.children, function (row) {
+      row.addEventListener("click", function () { selectItem(row.dataset.id); });
+    });
+    highlightSelectedRow();
+  }
+
+  function highlightSelectedRow() {
+    Array.prototype.forEach.call(document.querySelectorAll(".item-row"), function (r) {
+      r.classList.toggle("selected", r.dataset.id === currentItemId);
+    });
+  }
+
+  function updateItemRowStatus(itemId) {
+    var item = ALL_ITEMS.filter(function (it) { return it.id === itemId; })[0];
+    if (!item) return;
+    var row = $('.item-row[data-id="' + itemId + '"]');
+    if (row) row.dataset.status = itemStatus(item);
+  }
+
+  function updateProgress() {
+    var total = ALL_ITEMS.length;
+    var editat = 0, revisat = 0;
+    ALL_ITEMS.forEach(function (it) {
+      var s = itemStatus(it);
+      if (s === "editat") editat++;
+      else if (s === "revisat") revisat++;
+    });
+    var done = editat + revisat;
+    $("#progressText").textContent = done + " / " + total + " fitxes \u00b7 " + editat + " editades";
+    $("#progressBarFill").style.width = Math.round((done / total) * 100) + "%";
+  }
+
+  // ---------------- renderitzat: detall d'un item ----------------
+  function selectItem(id) {
+    var item = ALL_ITEMS.filter(function (it) { return it.id === id; })[0];
+    if (!item) return;
+    currentItemId = id;
+    renderMain(item);
+    highlightSelectedRow();
+    var main = $("#mainPanel");
+    main.scrollTop = 0;
+  }
+
+  function renderMain(item) {
+    var main = $("#mainPanel");
+    main.innerHTML = "";
+
+    var header = document.createElement("div");
+    header.className = "item-detail__header";
+
+    var titleRow = document.createElement("div");
+    titleRow.className = "item-detail__title-row";
+    var h1 = document.createElement("h1");
+    h1.className = "item-detail__title";
+    h1.textContent = item.title;
+    titleRow.appendChild(h1);
+
+    var btnRev = document.createElement("button");
+    btnRev.type = "button";
+    btnRev.className = "btn-reviewed" + (state.reviewed[item.id] ? " on" : "");
+    btnRev.textContent = state.reviewed[item.id] ? "\u2713 Revisada" : "Marca com a revisada";
+    btnRev.addEventListener("click", function () {
+      state.reviewed[item.id] = !state.reviewed[item.id];
+      saveLocal();
+      renderMain(item);
+      updateItemRowStatus(item.id);
+      updateProgress();
+    });
+    titleRow.appendChild(btnRev);
+    header.appendChild(titleRow);
+
+    if (item.meta && item.meta.length) {
+      var badges = document.createElement("div");
+      badges.className = "badges";
+      item.meta.forEach(function (m) {
+        var b = document.createElement("span");
+        b.className = "badge";
+        b.textContent = m;
+        badges.appendChild(b);
+      });
+      header.appendChild(badges);
+    }
+    main.appendChild(header);
+
+    item.groups.forEach(function (group) {
+      var sec = document.createElement("section");
+      sec.className = "group";
+      var h2 = document.createElement("h2");
+      h2.className = "group__heading";
+      h2.textContent = group.heading;
+      sec.appendChild(h2);
+
+      if (group.images && group.images.length) {
+        var figWrap = document.createElement("div");
+        figWrap.className = "group__figures";
+        group.images.forEach(function (src) {
+          var img = document.createElement("img");
+          img.src = src;
+          img.loading = "lazy";
+          img.alt = "";
+          img.addEventListener("error", function () { img.style.display = "none"; });
+          figWrap.appendChild(img);
+        });
+        sec.appendChild(figWrap);
+      }
+
+      if (group.refFields) {
+        group.refFields.forEach(function (rf) {
+          if (!rf.value) return;
+          var bq = document.createElement("blockquote");
+          bq.className = "ref-field";
+          var lbl = document.createElement("span");
+          lbl.className = "ref-field__label";
+          lbl.textContent = rf.label;
+          bq.appendChild(lbl);
+          bq.appendChild(document.createTextNode(rf.value));
+          sec.appendChild(bq);
+        });
+      }
+
+      (group.fields || []).forEach(function (f) {
+        sec.appendChild(renderField(f));
+      });
+
+      main.appendChild(sec);
+    });
+
+    Array.prototype.forEach.call(main.querySelectorAll(".field__input"), function (ta) {
+      ta.style.height = "auto";
+      ta.style.height = ta.scrollHeight + "px";
+    });
+  }
+
+  function renderField(f) {
+    var wrap = document.createElement("div");
+    wrap.className = "field";
+    wrap.dataset.path = f.path;
+
+    var labelRow = document.createElement("div");
+    labelRow.className = "field__label-row";
+    var label = document.createElement("span");
+    label.className = "field__label";
+    label.textContent = f.label;
+    labelRow.appendChild(label);
+
+    if (f.hints && f.hints.length) {
+      var hint = document.createElement("span");
+      hint.className = "field__hint";
+      hint.textContent = "cont\u00e9 " + f.hints.join(", ") + " \u2014 no ho esborris";
+      labelRow.appendChild(hint);
+    }
+
+    var tag = document.createElement("span");
+    tag.className = "field__tag-edited";
+    tag.textContent = "editat";
+    labelRow.appendChild(tag);
+
+    var revertBtn = document.createElement("button");
+    revertBtn.type = "button";
+    revertBtn.className = "field__revert";
+    revertBtn.textContent = "\u21ba desf\u00e9s";
+    labelRow.appendChild(revertBtn);
+
+    wrap.appendChild(labelRow);
+
+    var ta = document.createElement("textarea");
+    ta.className = "field__input";
+    ta.rows = 1;
+    ta.value = currentValue(f.path, f.original);
+    ta.spellcheck = true;
+    ta.lang = "ca";
+
+    function refreshEditedState() {
+      var isEdited = ta.value !== f.original;
+      wrap.classList.toggle("is-edited", isEdited);
+    }
+    refreshEditedState();
+
+    function autoResize() {
+      ta.style.height = "auto";
+      ta.style.height = ta.scrollHeight + "px";
+    }
+
+    ta.addEventListener("input", function () {
+      setValue(f.path, f.original, ta.value);
+      refreshEditedState();
+      autoResize();
+      saveLocalDebounced();
+      updateItemRowStatus(currentItemId);
+      updateProgress();
+    });
+
+    revertBtn.addEventListener("click", function () {
+      ta.value = f.original;
+      setValue(f.path, f.original, f.original);
+      refreshEditedState();
+      autoResize();
+      saveLocal();
+      updateItemRowStatus(currentItemId);
+      updateProgress();
+    });
+
+    wrap.appendChild(ta);
+    return wrap;
+  }
+
+  // ---------------- esdeveniments globals ----------------
+  function wireGlobalEvents() {
+    $("#searchBox").addEventListener("input", debounce(function (e) {
+      searchQuery = e.target.value.trim();
+      renderTabs();
+      renderSidebar();
+    }, 150));
+
+    $("#btnNextPending").addEventListener("click", function () {
+      var idx = ALL_ITEMS.findIndex ? ALL_ITEMS.findIndex(function (it) { return it.id === currentItemId; }) : -1;
+      for (var i = 1; i <= ALL_ITEMS.length; i++) {
+        var cand = ALL_ITEMS[(idx + i + ALL_ITEMS.length) % ALL_ITEMS.length];
+        if (itemStatus(cand) === "pendent") {
+          currentSection = cand.section;
+          searchQuery = "";
+          $("#searchBox").value = "";
+          renderTabs();
+          renderSidebar();
+          selectItem(cand.id);
+          return;
+        }
+      }
+      alert("Ja no queda cap fitxa pendent. \ud83c\udf89");
+    });
+
+    $("#btnExportAll").addEventListener("click", function () {
+      downloadJSON(buildExportPayload("all"), "eina-frases-TOT-" + todayStr() + ".json");
+    });
+    $("#btnExportDiff").addEventListener("click", function () {
+      var payload = buildExportPayload("diff");
+      if (payload.camps.length === 0) {
+        alert("Encara no has editat cap frase, no hi ha canvis a exportar.");
+        return;
+      }
+      downloadJSON(payload, "eina-frases-CANVIS-" + todayStr() + ".json");
+    });
+    $("#btnImport").addEventListener("click", function () { $("#fileImport").click(); });
+    $("#fileImport").addEventListener("change", function (e) {
+      var file = e.target.files[0];
+      if (!file) return;
+      var reader = new FileReader();
+      reader.onload = function () {
+        try {
+          importPayload(JSON.parse(reader.result));
+        } catch (err) {
+          alert("No s'ha pogut llegir el fitxer JSON: " + err.message);
+        }
+      };
+      reader.readAsText(file);
+      e.target.value = "";
+    });
+    $("#btnReset").addEventListener("click", function () {
+      if (!confirm("Aix\u00f2 esborrar\u00e0 tots els canvis i marques desats en aquest navegador. Si tens un JSON exportat no es perd res (el pots tornar a importar). Vols continuar?")) return;
+      try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
+      state = { edits: {}, reviewed: {} };
+      renderTabs();
+      renderSidebar();
+      updateProgress();
+      if (currentItemId) selectItem(currentItemId);
+    });
+
+    $("#helpToggle").addEventListener("click", function () {
+      $("#helpBody").classList.toggle("open");
+    });
+
+    window.addEventListener("beforeunload", function () {
+      saveLocal();
+    });
+  }
+
+  // ---------------- inici ----------------
+  function dataLoaded() {
+    return typeof window.PREGUNTES !== "undefined" &&
+      typeof window.GUIES !== "undefined" &&
+      typeof window.GLOSSARI !== "undefined" &&
+      typeof window.DEMOS !== "undefined" &&
+      typeof window.DEMOS_TANCAMENT !== "undefined" &&
+      typeof window.CATEGORIES_TEMATIQUES !== "undefined" &&
+      typeof window.ITINERARIS_TEMATICS !== "undefined" &&
+      typeof window.ITINERARIS_GRUPS_ENTRELLACATS !== "undefined" &&
+      typeof window.UI_LANGS !== "undefined" &&
+      typeof window.EinaFrasesExtract !== "undefined";
+  }
+
+  function showDataError() {
+    $("#app").innerHTML =
+      '<div class="error-screen">' +
+      "<h2>No trobo les dades del projecte</h2>" +
+      "<p>Aquesta eina ha d\u2019obrir-se des de dins la carpeta del projecte, al mateix nivell que <code>index.html</code>, perqu\u00e8 pugui carregar els fitxers de <code>js/data/</code> i <code>js/i18n/</code> tal com fa el lloc real.</p>" +
+      "<p>Comprova que <code>eina-frases.html</code> \u00e9s a la carpeta arrel del projecte (la mateixa on hi ha <code>index.html</code>, <code>css/</code> i <code>js/</code>) i torna a obrir-lo amb doble clic.</p>" +
+      "</div>";
+  }
+
+  function init() {
+    if (!dataLoaded()) {
+      showDataError();
+      return;
+    }
+    localStorageOK = testLocalStorage();
+    if (!localStorageOK) {
+      var warn = $("#storageWarning");
+      if (warn) warn.style.display = "block";
+    }
+
+    var data = {
+      PREGUNTES: window.PREGUNTES,
+      GUIES: window.GUIES,
+      GLOSSARI: window.GLOSSARI,
+      DEMOS: window.DEMOS,
+      DEMOS_TANCAMENT: window.DEMOS_TANCAMENT,
+      CATEGORIES_TEMATIQUES: window.CATEGORIES_TEMATIQUES,
+      ITINERARIS_TEMATICS: window.ITINERARIS_TEMATICS,
+      ITINERARIS_GRUPS_ENTRELLACATS: window.ITINERARIS_GRUPS_ENTRELLACATS,
+      UI_LANGS: window.UI_LANGS,
+    };
+    ALL_ITEMS = window.EinaFrasesExtract.buildAllItems(data);
+    ALL_ITEMS.forEach(function (item) {
+      FIELD_INDEX_ITEM_IDS[item.id] = true;
+      item.groups.forEach(function (g) {
+        (g.fields || []).forEach(function (f) {
+          FIELD_INDEX[f.path] = { field: f, item: item, group: g };
+        });
+      });
+    });
+
+    loadLocal();
+    renderTabs();
+    renderSidebar();
+    updateProgress();
+    wireGlobalEvents();
+
+    var firstPending = ALL_ITEMS.filter(function (it) { return itemStatus(it) === "pendent"; })[0];
+    var toSelect = firstPending || ALL_ITEMS[0];
+    currentSection = toSelect.section;
+    renderTabs();
+    renderSidebar();
+    selectItem(toSelect.id);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
+  }
+})();
+
+</script>
+</body>
+</html>
