@@ -125,13 +125,47 @@
   .field__input {
     width: 100%; font-family: var(--font-serif); font-size: 1rem; line-height: 1.55;
     padding: 0.6rem 0.7rem; border: 1px solid var(--rule-strong); border-radius: 5px;
-    background: var(--paper); color: var(--ink); resize: none; overflow-y: hidden; max-height: 520px;
+    background: var(--paper); color: var(--ink); resize: vertical;
+    /* overflow-y:hidden + max-height tallava el text llarg sense manera de
+       desplaçar-lo amb el ratolí (GUIES.q121.pistes[3].text.ca fa 2.027
+       caràcters i se n'anava molt per sobre dels 520px, i en finestra
+       estreta hi queien ~38 camps). Amb 'auto' hi apareix la barra. */
+    overflow-y: auto; max-height: 60vh;
   }
   .field.is-edited .field__input { border-color: var(--pencil); background: #FFFDF8; }
   .field.is-edited .field__label { color: var(--pencil); }
 
   .error-screen { max-width: 640px; margin: 4rem auto; padding: 2rem 2.2rem; border: 1px solid var(--rule-strong); border-radius: 8px; background: var(--paper-raised); line-height: 1.55; }
   .error-screen h2 { margin-top: 0; }
+  .error-screen pre { font-family: var(--font-mono); font-size: 0.72rem; white-space: pre-wrap; background: var(--paper); border: 1px solid var(--rule); border-radius: 4px; padding: 0.6rem; }
+
+  /* --- Solució publicada, com a referència al costat de la guia --- */
+  .group--solucio { border-top: 1px dashed var(--rule-strong); padding-top: 1.1rem; }
+  .sol-ref > summary {
+    cursor: pointer; font-size: 1rem; font-weight: 600; list-style: none;
+    display: flex; align-items: center; gap: 0.5rem; padding: 0.2rem 0;
+  }
+  .sol-ref > summary::-webkit-details-marker { display: none; }
+  .sol-ref > summary::before { content: "▸"; color: var(--pencil); font-size: 0.85em; }
+  .sol-ref[open] > summary::before { content: "▾"; }
+  .sol-ref__note { font-family: var(--font-mono); font-size: 0.63rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--ink-faint); font-weight: 400; }
+  .sol-ref__body { padding: 0.6rem 0 0 1rem; border-left: 2px solid var(--pencil-soft); margin-top: 0.6rem; }
+  .sol-ref__step-title { font-size: 0.9rem; font-weight: 600; margin: 1rem 0 0.3rem; }
+  .sol-ref__text { font-size: 0.92rem; color: var(--ink-soft); margin: 0 0 0.6em; }
+  .sol-ref__caption { font-size: 0.78rem; font-style: italic; color: var(--ink-faint); margin: 0.2rem 0 0.8rem; }
+  .sol-ref__resum { background: var(--paper-raised); border-radius: 5px; padding: 0.6rem 0.8rem; margin-top: 1rem; }
+  .sol-ref__resum-label { display: block; font-family: var(--font-mono); font-size: 0.63rem; text-transform: uppercase; letter-spacing: 0.03em; color: var(--ink-faint); margin-bottom: 0.25rem; }
+  .sol-ref__missing { font-size: 0.85rem; color: var(--ink-faint); font-style: italic; }
+
+  .data-warning {
+    display: none; font-size: 0.78rem; line-height: 1.5; padding: 0.6rem 1rem;
+    background: #FBF0E4; color: #6B4423; border-bottom: 1px solid var(--pencil-soft);
+  }
+  .data-warning ul { margin: 0.35rem 0 0; padding-left: 1.2rem; }
+  .data-warning code { background: rgba(139,94,60,0.12); }
+
+  .item-row:focus-visible { outline: none; box-shadow: inset var(--focus-ring); }
+  .sol-ref > summary:focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: 4px; }
 
   @media (max-width: 900px) {
     .sidebar { width: 42vw; }
@@ -161,10 +195,14 @@
     <div class="storage-warning" id="storageWarning">
       ⚠️ Aquest navegador no permet desar el progrés automàticament quan el fitxer s'obre amb doble clic (protocol <code>file://</code> — passa sovint amb el Firefox). L'eina funciona igual, però <strong>no confiïs en l'autodesat</strong>: exporta sovint amb «Desa tot (JSON)» perquè no perdis la feina. Alternativa: obre aquesta carpeta amb un servidor local (<code>python3 -m http.server</code>, com explica el README del projecte) i entra-hi per <code>http://localhost:8000/eina-frases.html</code> — així l'autodesat sí que funcionarà.
     </div>
+    <div class="data-warning" id="dataWarning"></div>
     <div class="help">
-      <button class="help__toggle" id="helpToggle">Com funciona aquesta eina?</button>
+      <button class="help__toggle" id="helpToggle" aria-expanded="false" aria-controls="helpBody">Com funciona aquesta eina?</button>
       <div class="help__body" id="helpBody">
-        <p>Navega per les pestanyes (Preguntes, Glossari, Demos, Itineraris, Interfície) o cerca directament a la caixa de dalt. Cada pregunta mostra de cop el seu enunciat i tota la guia (les 4 pistes, la comprovació i l'"i després"), amb la imatge corresponent al costat de cada pista.</p>
+        <p>Navega per les pestanyes (Preguntes, Glossari, Demos, Itineraris, Interfície) o cerca directament a la caixa de dalt. Cada pregunta mostra de cop el seu enunciat i tota la guia (les 4 pistes, la comprovació i l'"i després"), amb la imatge corresponent al costat de cada pista, i al final la <strong>solució publicada</strong> plegada com a referència: obre-la per comprovar que la guia i la solució no es contradiuen, que és per on s'han escapat els errors de q05/q07, q33, q37, q57, q60, q69 i q83.</p>
+        <p>Només s'hi mostra el text en <strong>català</strong>, que és l'únic que es repassa aquí. L'anglès del llibre i els textos <code>UI_LANGS.en</code> no hi surten.</p>
+        <p>La cerca mira dins de tot el text visible d'una fitxa —enunciat, pistes, comprovació, i-després i solució— i té en compte les teves edicions, no el text original.</p>
+        <p>Amb el teclat: <kbd>↑</kbd>/<kbd>↓</kbd> a la llista per canviar de fitxa, i <kbd>Retorn</kbd> per obrir-la.</p>
         <p>Edita qualsevol text directament: es desa automàticament en aquest navegador (localStorage) perquè no perdis res encara que tanquis la pestanya. Un camp editat es marca en color; el botó <strong>↺ desfés</strong> el torna al text original.</p>
         <p><strong>✓ Marca com a revisada</strong> serveix per anotar que ja has llegit una fitxa encara que no calgui canviar-hi res, per no perdre el fil. <strong>Següent pendent</strong> et porta directament a la propera fitxa que encara no has tocat.</p>
         <p><strong>Desa tot (JSON)</strong> exporta una còpia completa de l'estat (per fer-ne còpia de seguretat, continuar en un altre ordinador, o importar-la aquí més tard). <strong>Exporta només els canvis</strong> exporta només les frases que has editat — aquest és el fitxer que has d'enviar-me perquè apliqui els canvis al codi del projecte.</p>
@@ -173,7 +211,7 @@
     <div class="body">
       <nav class="sidebar">
         <div class="tabs" id="tabs"></div>
-        <div class="item-list" id="itemList"></div>
+        <div class="item-list" id="itemList" role="listbox" aria-label="Fitxes"></div>
       </nav>
       <main class="main" id="mainPanel"></main>
     </div>
@@ -188,30 +226,74 @@
   <script src="js/data/itineraris-tematics-dades.js"></script>
   <script src="js/data/ordre-preguntes.js"></script>
   <script src="js/i18n/ui-strings.js"></script>
+  <!-- Text pla de solucions/qNN.html, generat per genera-solucions-dades.js.
+       OPCIONAL: si aquest fitxer no hi és, l'eina funciona igual i només
+       s'hi perd el bloc de referència "Solució publicada". Es carrega com a
+       global i no amb fetch() pel mateix motiu que la resta: file://. -->
+  <script src="js/data/solucions-dades.js"></script>
 
   <!-- ==== Lògica de l'eina ==== -->
   <script id="extract-script">
 /*
   Lògica d'extracció de "frases" a partir de les dades reals del projecte.
-  Es carrega tant a eina-frases.html (navegador) com aquí, per Node, per
-  poder-la provar contra els fitxers reals abans d'incrustar-la.
+  Es carrega tant a eina-frases.html (navegador) com per Node, per poder-la
+  provar contra els fitxers reals abans d'incrustar-la.
+
+  NOMÉS CATALÀ (canvi ago. 2026, a petició de l'owner)
+  Aquesta eina no mostra ni deixa editar cap text en anglès: ni l'enunciat
+  original del llibre (PREGUNTES.*.enunciat.en), ni les formes angleses del
+  glossari, ni els textos d'interfície UI_LANGS.en.*. Aquells textos segueixen
+  existint als fitxers de dades i no els toca ningú des d'aquí.
+
+  ROBUSTESA (canvi ago. 2026)
+  Abans, un sol node de dades incomplet (una guia sense `pistes`, un pas de
+  demo amb `tancament` però sense `handoff`) llançava una excepció dins de
+  buildAllItems() i, com que init() no la capturava, la pàgina es quedava en
+  blanc i muda. Ara cada accés va amb guarda i el que falta s'acumula a
+  `problemes`, que l'app ensenya en un avís sense deixar de funcionar.
 */
 (function (root) {
   "use strict";
+
+  var problemes = [];
+  function avisa(m) { if (problemes.indexOf(m) === -1) problemes.push(m); }
 
   function esc(s) {
     return String(s == null ? "" : s);
   }
 
   function placeholders(s) {
-    const m = esc(s).match(/\{[a-zA-Z_]+\}/g);
+    const m = esc(s).match(/\{[a-zA-Z_][a-zA-Z0-9_]*\}/g);
     return m ? Array.from(new Set(m)) : [];
+  }
+
+  // Llegeix el text català d'un node {ca, en}. Retorna null si el node no
+  // existeix (no hi ha res a repassar) i "" si existeix però és buit/null.
+  function ca(node, on) {
+    if (node == null) return null;
+    if (typeof node === "string") return node;
+    if (typeof node !== "object") { avisa(on + ": s'esperava un text i hi ha un " + typeof node); return null; }
+    if (typeof node.ca === "string") return node.ca;
+    if (node.ca == null) return "";
+    avisa(on + ": el text català no és una cadena");
+    return "";
+  }
+
+  function camp(path, label, valor, multiline, hints) {
+    return {
+      path: path,
+      label: label,
+      value: valor || "",
+      original: valor || "",
+      multiline: !!multiline,
+      hints: hints || [],
+    };
   }
 
   // ---------- PREGUNTES + GUIES (un sol item per pregunta) ----------
   function imatgesPregunta(imatge) {
     if (!imatge) return [];
-    if (imatge.fitxers) {
+    if (Array.isArray(imatge.fitxers)) {
       return imatge.fitxers.map((f) => "assets/img/" + f);
     }
     if (imatge.fitxer) {
@@ -220,112 +302,129 @@
     return [];
   }
 
-  function buildPreguntesItems(PREGUNTES, GUIES, ORDRE) {
+  // ---------- Solució publicada (solucions/qNN.html, aplanada a
+  // js/data/solucions-dades.js per genera-solucions-dades.py) ----------
+  // Va aquí perquè el propi projecte ho documenta a
+  // docs/revisio-matematica/extreu-per-revisar.py: repassar la guia i la
+  // solució per separat és com se't cola que es contradiguin, i és el que
+  // va passar a q05/q07, q33, q37, q57, q60, q69 i q83.
+  function grupSolucio(id, SOLUCIONS) {
+    if (!SOLUCIONS) return null; // js/data/solucions-dades.js no carregat
+    const s = SOLUCIONS[id];
+    const grup = {
+      heading: "Solució publicada",
+      collapsible: true,
+      fields: [],
+      solucio: s || null,
+      searchExtra: "",
+    };
+    if (!s) return grup; // 13 preguntes no en tenen; es diu i prou
+    const parts = [s.titol, s.resum];
+    (s.passos || []).forEach((p) => {
+      parts.push(p.titol);
+      (p.textos || []).forEach((t) => parts.push(t));
+      (p.figures || []).forEach((f) => parts.push(f.peu));
+    });
+    grup.searchExtra = parts.filter(Boolean).join(" \n ");
+    return grup;
+  }
+
+  function buildPreguntesItems(PREGUNTES, GUIES, ORDRE, SOLUCIONS) {
+    const llista = Array.isArray(PREGUNTES) ? PREGUNTES : [];
     const byId = {};
-    PREGUNTES.forEach((q) => (byId[q.id] = q));
-    const ordre = ORDRE && ORDRE.length ? ORDRE : PREGUNTES.map((q) => q.id);
+    llista.forEach((q) => { if (q && q.id) byId[q.id] = q; });
+    const guies = GUIES || {};
+
+    let ordre = ORDRE && ORDRE.length ? ORDRE.slice() : llista.map((q) => q.id);
+    // Una pregunta que no és a ORDRE_PREGUNTES quedava invisible a l'eina
+    // sense dir-ho; i un id a ORDRE que no fos a PREGUNTES petava.
+    const desconegudes = ordre.filter((id) => !byId[id]);
+    if (desconegudes.length) {
+      avisa("ORDRE_PREGUNTES té " + desconegudes.length + " id(s) que no són a PREGUNTES: " + desconegudes.join(", "));
+      ordre = ordre.filter((id) => byId[id]);
+    }
+    const fora = llista.map((q) => q.id).filter((id) => ordre.indexOf(id) === -1);
+    if (fora.length) {
+      avisa(fora.length + " pregunta(es) no són a ORDRE_PREGUNTES i s'han afegit al final: " + fora.join(", "));
+      ordre = ordre.concat(fora);
+    }
 
     return ordre.map((id, idx) => {
       const q = byId[id];
-      const g = GUIES[id];
+      const g = guies[id];
       const groups = [];
 
+      const enunciatCa = ca(q.enunciat, "PREGUNTES." + id + ".enunciat");
       groups.push({
         heading: "Enunciat",
         images: imatgesPregunta(q.imatge),
-        refFields: [{ label: "Original (anglès, del llibre)", value: q.enunciat.en }],
         fields: [
-          {
-            path: "PREGUNTES." + id + ".enunciat.ca",
-            label: "Enunciat (català)",
-            value: q.enunciat.ca || "",
-            original: q.enunciat.ca || "",
-            multiline: false,
-          },
+          camp("PREGUNTES." + id + ".enunciat.ca", "Enunciat (català)", enunciatCa, false),
         ],
       });
 
       if (g) {
-        groups.push({
-          heading: "Moviment",
-          fields: [
-            {
-              path: "GUIES." + id + ".movimentTitol.ca",
-              label: "Nom del moviment (com es mostra a la guia)",
-              value: g.movimentTitol.ca || "",
-              original: g.movimentTitol.ca || "",
-              multiline: false,
-            },
-          ],
-        });
+        const movTitol = ca(g.movimentTitol, "GUIES." + id + ".movimentTitol");
+        if (movTitol !== null) {
+          groups.push({
+            heading: "Moviment",
+            fields: [
+              camp("GUIES." + id + ".movimentTitol.ca", "Nom del moviment (com es mostra a la guia)", movTitol, false),
+            ],
+          });
+        }
 
-        g.pistes.forEach((p, i) => {
+        const pistes = Array.isArray(g.pistes) ? g.pistes : [];
+        if (!Array.isArray(g.pistes)) avisa("GUIES." + id + " no té llista de pistes");
+        pistes.forEach((p, i) => {
+          if (!p) return;
+          const base = "GUIES." + id + ".pistes[" + i + "]";
           const fields = [];
-          if (p.titol) {
-            fields.push({
-              path: "GUIES." + id + ".pistes[" + i + "].titol.ca",
-              label: "Títol",
-              value: p.titol.ca || "",
-              original: p.titol.ca || "",
-              multiline: false,
-            });
-          }
-          if (p.text) {
-            fields.push({
-              path: "GUIES." + id + ".pistes[" + i + "].text.ca",
-              label: "Text",
-              value: p.text.ca || "",
-              original: p.text.ca || "",
-              multiline: true,
-            });
-          }
+          const titolCa = p.titol ? ca(p.titol, base + ".titol") : null;
+          const textCa = p.text ? ca(p.text, base + ".text") : null;
+          if (titolCa !== null) fields.push(camp(base + ".titol.ca", "Títol", titolCa, false));
+          if (textCa !== null) fields.push(camp(base + ".text.ca", "Text", textCa, true));
           if (fields.length === 0) return; // pista buida (només imatge) -- res a repassar
           groups.push({
-            heading: "Pista " + (i + 1) + (p.titol ? " · " + p.titol.ca : ""),
+            heading: "Pista " + (i + 1) + (titolCa ? " · " + titolCa : ""),
             images: p.figura ? ["assets/img/pistes/" + p.figura] : [],
             fields: fields,
           });
         });
 
-        groups.push({
-          heading: "Comprovació",
-          fields: [
-            {
-              path: "GUIES." + id + ".comprovacio.ca",
-              label: "Comprovació",
-              value: g.comprovacio.ca || "",
-              original: g.comprovacio.ca || "",
-              multiline: true,
-            },
-          ],
-        });
+        const compr = ca(g.comprovacio, "GUIES." + id + ".comprovacio");
+        if (compr !== null) {
+          groups.push({
+            heading: "Comprovació",
+            fields: [camp("GUIES." + id + ".comprovacio.ca", "Comprovació", compr, true)],
+          });
+        }
 
-        groups.push({
-          heading: "I després",
-          fields: [
-            {
-              path: "GUIES." + id + ".iDespres.ca",
-              label: "I després",
-              value: g.iDespres.ca || "",
-              original: g.iDespres.ca || "",
-              multiline: true,
-            },
-          ],
-        });
+        const desp = ca(g.iDespres, "GUIES." + id + ".iDespres");
+        if (desp !== null) {
+          groups.push({
+            heading: "I després",
+            fields: [camp("GUIES." + id + ".iDespres.ca", "I després", desp, true)],
+          });
+        }
       }
+
+      const gs = grupSolucio(id, SOLUCIONS);
+      if (gs) groups.push(gs);
 
       return {
         id: "q:" + id,
         section: "preguntes",
         order: idx,
-        title: id + " — " + (q.enunciat.ca || q.enunciat.en || "").slice(0, 60),
-        searchText: [q.enunciat.ca, q.enunciat.en, id].join(" "),
+        title: id + " — " + (enunciatCa || "").slice(0, 60),
+        searchText: [id, q.pagina, q.dimensio, g ? g.moviment : null].filter(Boolean).join(" "),
         meta: [
           "pàg. " + q.pagina,
           q.dimensio,
           "dificultat " + q.dificultat,
           g ? "lot " + g.lot : null,
           g ? g.moviment : null,
+          SOLUCIONS && !SOLUCIONS[id] ? "sense solució" : null,
         ].filter(Boolean),
         groups: groups,
       };
@@ -334,38 +433,31 @@
 
   // ---------- GLOSSARI ----------
   function buildGlossariItems(GLOSSARI) {
-    const ids = Object.keys(GLOSSARI).sort((a, b) => {
-      const ta = (GLOSSARI[a].termes.ca && GLOSSARI[a].termes.ca[0]) || a;
-      const tb = (GLOSSARI[b].termes.ca && GLOSSARI[b].termes.ca[0]) || b;
+    const dades = GLOSSARI || {};
+    const ids = Object.keys(dades).sort((a, b) => {
+      const ta = (dades[a].termes && dades[a].termes.ca && dades[a].termes.ca[0]) || a;
+      const tb = (dades[b].termes && dades[b].termes.ca && dades[b].termes.ca[0]) || b;
       return ta.localeCompare(tb, "ca");
     });
     return ids.map((id, idx) => {
-      const t = GLOSSARI[id];
-      const nomCa = (t.termes.ca && t.termes.ca.join(", ")) || id;
+      const t = dades[id];
+      const formesCa = (t.termes && t.termes.ca) || [];
+      if (!t.termes) avisa("GLOSSARI." + id + " no té `termes`");
+      const nomCa = formesCa.join(", ") || id;
+      const defCa = ca(t.definicio, "GLOSSARI." + id + ".definicio");
       return {
         id: "gl:" + id,
         section: "glossari",
         order: idx,
         title: nomCa,
-        searchText: [nomCa, t.termes.en && t.termes.en.join(" "), t.definicio.ca].join(" "),
+        searchText: [id, t.categoria].filter(Boolean).join(" "),
         meta: [t.categoria].filter(Boolean),
         groups: [
           {
             heading: nomCa,
             images: t.figura ? ["assets/img/glossari/" + t.figura] : [],
-            refFields: [
-              { label: "Formes (català)", value: (t.termes.ca || []).join(" · ") },
-              { label: "Formes (anglès)", value: (t.termes.en || []).join(" · ") },
-            ],
-            fields: [
-              {
-                path: "GLOSSARI." + id + ".definicio.ca",
-                label: "Definició",
-                value: t.definicio.ca || "",
-                original: t.definicio.ca || "",
-                multiline: true,
-              },
-            ],
+            refFields: [{ label: "Formes (català)", value: formesCa.join(" · ") }],
+            fields: defCa === null ? [] : [camp("GLOSSARI." + id + ".definicio.ca", "Definició", defCa, true)],
           },
         ],
       };
@@ -374,90 +466,59 @@
 
   // ---------- DEMOS ----------
   function buildDemosItems(DEMOS, DEMOS_TANCAMENT) {
-    const items = DEMOS.map((d, di) => {
+    const llista = Array.isArray(DEMOS) ? DEMOS : [];
+    const items = llista.map((d, di) => {
       const groups = [];
-      groups.push({
-        heading: "Presentació",
-        fields: [
-          {
-            path: "DEMOS[" + di + "].titol.ca",
-            label: "Títol de la demo",
-            value: d.titol.ca || "",
-            original: d.titol.ca || "",
-            multiline: false,
-          },
-          {
-            path: "DEMOS[" + di + "].movimentTitol.ca",
-            label: "Nom del moviment",
-            value: d.movimentTitol.ca || "",
-            original: d.movimentTitol.ca || "",
-            multiline: false,
-          },
-        ],
-      });
+      const arrel = "DEMOS[" + di + "]";
+      const titolCa = ca(d.titol, arrel + ".titol");
+      const movCa = ca(d.movimentTitol, arrel + ".movimentTitol");
+      const presentacio = [];
+      if (titolCa !== null) presentacio.push(camp(arrel + ".titol.ca", "Títol de la demo", titolCa, false));
+      if (movCa !== null) presentacio.push(camp(arrel + ".movimentTitol.ca", "Nom del moviment", movCa, false));
+      if (presentacio.length) groups.push({ heading: "Presentació", fields: presentacio });
 
-      d.passos.forEach((p, pi) => {
+      const passos = Array.isArray(d.passos) ? d.passos : [];
+      if (!Array.isArray(d.passos)) avisa(arrel + " no té llista de passos");
+      passos.forEach((p, pi) => {
+        if (!p) return;
+        const base = arrel + ".passos[" + pi + "]";
         if (pi === 0) {
-          groups.push({
-            heading: "Pas 0 · Context",
-            fields: [
-              {
-                path: "DEMOS[" + di + "].passos[0].context.ca",
-                label: "Context",
-                value: p.context.ca || "",
-                original: p.context.ca || "",
-                multiline: true,
-              },
-            ],
-          });
+          const ctx = ca(p.context, base + ".context");
+          if (ctx !== null) {
+            groups.push({
+              heading: "Pas 0 · Context",
+              fields: [camp(base + ".context.ca", "Context", ctx, true)],
+            });
+          }
         } else if (p.tancament) {
-          groups.push({
-            heading: "Pas " + pi + " · Tancament",
-            fields: [
-              {
-                path: "DEMOS[" + di + "].passos[" + pi + "].tancament.ca",
-                label: "Tancament",
-                value: p.tancament.ca || "",
-                original: p.tancament.ca || "",
-                multiline: true,
-              },
-              {
-                path: "DEMOS[" + di + "].passos[" + pi + "].handoff.text.ca",
-                label: "Enllaç cap a la pregunta real (" + p.handoff.questionId + ")",
-                value: p.handoff.text.ca || "",
-                original: p.handoff.text.ca || "",
-                multiline: true,
-              },
-            ],
-          });
+          const fields = [];
+          const tanc = ca(p.tancament, base + ".tancament");
+          if (tanc !== null) fields.push(camp(base + ".tancament.ca", "Tancament", tanc, true));
+          if (p.handoff) {
+            const ho = ca(p.handoff.text, base + ".handoff.text");
+            if (ho !== null) {
+              fields.push(camp(base + ".handoff.text.ca",
+                "Enllaç cap a la pregunta real (" + (p.handoff.questionId || "?") + ")", ho, true));
+            }
+          } else {
+            avisa(base + " té `tancament` però no `handoff`");
+          }
+          if (fields.length) groups.push({ heading: "Pas " + pi + " · Tancament", fields: fields });
         } else {
-          groups.push({
-            heading: "Pas " + pi,
-            images: d.figura && p.figuraPanell != null ? ["assets/img/demo/" + d.figura + "-p" + p.figuraPanell + ".png"] : [],
-            fields: [
-              {
-                path: "DEMOS[" + di + "].passos[" + pi + "].enunciat.ca",
-                label: "Enunciat (prova-ho al paper)",
-                value: p.enunciat.ca || "",
-                original: p.enunciat.ca || "",
-                multiline: true,
-              },
-              {
-                path: "DEMOS[" + di + "].passos[" + pi + "].text.ca",
-                label: "Argument",
-                value: p.text.ca || "",
-                original: p.text.ca || "",
-                multiline: true,
-              },
-              {
-                path: "DEMOS[" + di + "].passos[" + pi + "].comprovacio.ca",
-                label: "Comprovació",
-                value: p.comprovacio.ca || "",
-                original: p.comprovacio.ca || "",
-                multiline: true,
-              },
-            ],
-          });
+          const fields = [];
+          const en = ca(p.enunciat, base + ".enunciat");
+          const tx = ca(p.text, base + ".text");
+          const co = ca(p.comprovacio, base + ".comprovacio");
+          if (en !== null) fields.push(camp(base + ".enunciat.ca", "Enunciat (prova-ho al paper)", en, true));
+          if (tx !== null) fields.push(camp(base + ".text.ca", "Argument", tx, true));
+          if (co !== null) fields.push(camp(base + ".comprovacio.ca", "Comprovació", co, true));
+          if (fields.length) {
+            groups.push({
+              heading: "Pas " + pi,
+              images: d.figura && p.figuraPanell != null ? ["assets/img/demo/" + d.figura + "-p" + p.figuraPanell + ".png"] : [],
+              fields: fields,
+            });
+          }
         }
       });
 
@@ -465,81 +526,59 @@
         id: "demo:" + di,
         section: "demos",
         order: di,
-        title: "Demo " + (di + 1) + " — " + (d.titol.ca || ""),
-        searchText: [d.titol.ca, d.movimentTitol.ca].join(" "),
+        title: "Demo " + (di + 1) + " — " + (titolCa || ""),
+        searchText: [d.moviment, d.figura].filter(Boolean).join(" "),
         meta: [d.moviment].filter(Boolean),
         groups: groups,
       };
     });
 
-    items.push({
-      id: "demo:tancament",
-      section: "demos",
-      order: 99,
-      title: "Tancament conjunt de les 3 demos",
-      searchText: [DEMOS_TANCAMENT.titol.ca, DEMOS_TANCAMENT.text.ca].join(" "),
-      meta: [],
-      groups: [
-        {
-          heading: "Tancament compartit",
-          fields: [
-            {
-              path: "DEMOS_TANCAMENT.titol.ca",
-              label: "Títol",
-              value: DEMOS_TANCAMENT.titol.ca || "",
-              original: DEMOS_TANCAMENT.titol.ca || "",
-              multiline: false,
-            },
-            {
-              path: "DEMOS_TANCAMENT.text.ca",
-              label: "Text",
-              value: DEMOS_TANCAMENT.text.ca || "",
-              original: DEMOS_TANCAMENT.text.ca || "",
-              multiline: true,
-            },
-          ],
-        },
-      ],
-    });
+    if (DEMOS_TANCAMENT) {
+      const tTit = ca(DEMOS_TANCAMENT.titol, "DEMOS_TANCAMENT.titol");
+      const tTxt = ca(DEMOS_TANCAMENT.text, "DEMOS_TANCAMENT.text");
+      const fields = [];
+      if (tTit !== null) fields.push(camp("DEMOS_TANCAMENT.titol.ca", "Títol", tTit, false));
+      if (tTxt !== null) fields.push(camp("DEMOS_TANCAMENT.text.ca", "Text", tTxt, true));
+      items.push({
+        id: "demo:tancament",
+        section: "demos",
+        order: 99,
+        title: "Tancament conjunt de les 3 demos",
+        searchText: "tancament demos",
+        meta: [],
+        groups: [{ heading: "Tancament compartit", fields: fields }],
+      });
+    }
 
     return items;
   }
 
   // ---------- ITINERARIS + CATEGORIES (un sol item) ----------
   function buildItinerarisItems(CATEGORIES_TEMATIQUES, ITINERARIS_TEMATICS, ITINERARIS_GRUPS_ENTRELLACATS) {
+    const cats = Array.isArray(CATEGORIES_TEMATIQUES) ? CATEGORIES_TEMATIQUES : [];
+    const itins = Array.isArray(ITINERARIS_TEMATICS) ? ITINERARIS_TEMATICS : [];
+    const grups = Array.isArray(ITINERARIS_GRUPS_ENTRELLACATS) ? ITINERARIS_GRUPS_ENTRELLACATS : [];
     const groups = [];
 
     groups.push({
       heading: "Categories temàtiques (menú de filtres)",
-      fields: CATEGORIES_TEMATIQUES.map((c, i) => ({
-        path: "CATEGORIES_TEMATIQUES[" + i + "].etiqueta",
-        label: c.clau,
-        value: c.etiqueta || "",
-        original: c.etiqueta || "",
-        multiline: false,
-      })),
+      fields: cats.map((c, i) => camp("CATEGORIES_TEMATIQUES[" + i + "].etiqueta", c.clau || ("#" + i), c.etiqueta, false)),
     });
 
     groups.push({
       heading: "Itineraris temàtics (etiquetes)",
-      fields: ITINERARIS_TEMATICS.map((it, i) => ({
-        path: "ITINERARIS_TEMATICS[" + i + "].etiqueta",
-        label: it.clau + " (" + it.preguntes.length + " preguntes)",
-        value: it.etiqueta || "",
-        original: it.etiqueta || "",
-        multiline: false,
-      })),
+      fields: itins.map((it, i) => camp(
+        "ITINERARIS_TEMATICS[" + i + "].etiqueta",
+        (it.clau || "#" + i) + " (" + ((it.preguntes && it.preguntes.length) || 0) + " preguntes)",
+        it.etiqueta, false)),
     });
 
     groups.push({
       heading: "Notes de grups entrellaçats (\"bessones\")",
-      fields: ITINERARIS_GRUPS_ENTRELLACATS.map((gr, i) => ({
-        path: "ITINERARIS_GRUPS_ENTRELLACATS[" + i + "].nota",
-        label: gr.ids.join(", "),
-        value: gr.nota || "",
-        original: gr.nota || "",
-        multiline: true,
-      })),
+      fields: grups.map((gr, i) => camp(
+        "ITINERARIS_GRUPS_ENTRELLACATS[" + i + "].nota",
+        (gr.ids || []).join(", ") || ("#" + i),
+        gr.nota, true)),
     });
 
     return [
@@ -548,93 +587,59 @@
         section: "itineraris",
         order: 0,
         title: "Itineraris i categories",
-        searchText: groups.map((g) => g.fields.map((f) => f.value).join(" ")).join(" "),
+        searchText: "itineraris categories bessones",
         meta: [],
         groups: groups,
       },
     ];
   }
 
-  // ---------- INTERFÍCIE (UI_LANGS) ----------
+  // ---------- INTERFÍCIE (UI_LANGS.ca -- l'anglès no es toca) ----------
   function buildInterficieItems(UI_LANGS) {
+    if (!UI_LANGS || !UI_LANGS.ca) { avisa("UI_LANGS.ca no existeix"); return []; }
     const sectionOrder = ["_name", "nav", "list", "detail", "guide", "lang", "meta", "glossary", "itinerary", "demo", "itineraris"];
     const keys = sectionOrder.filter((k) => k in UI_LANGS.ca);
     Object.keys(UI_LANGS.ca).forEach((k) => {
       if (keys.indexOf(k) === -1) keys.push(k);
     });
 
-    function walk(prefixPath, caObj, enObj, fields) {
+    function walk(prefixPath, caObj, fields) {
       Object.keys(caObj).forEach((k) => {
         const caVal = caObj[k];
-        const enVal = enObj ? enObj[k] : undefined;
         const p = prefixPath + "." + k;
         if (typeof caVal === "string") {
-          fields.push({
-            path: "UI_LANGS.ca." + p,
-            label: p + " — CA",
-            value: caVal || "",
-            original: caVal || "",
-            multiline: caVal.length > 60 || caVal.indexOf("\n") !== -1,
-            hints: placeholders(caVal),
-          });
-          if (typeof enVal === "string") {
-            fields.push({
-              path: "UI_LANGS.en." + p,
-              label: p + " — EN",
-              value: enVal || "",
-              original: enVal || "",
-              multiline: enVal.length > 60 || enVal.indexOf("\n") !== -1,
-              hints: placeholders(enVal),
-            });
-          }
+          fields.push(camp("UI_LANGS.ca." + p, p, caVal,
+            caVal.length > 60 || caVal.indexOf("\n") !== -1, placeholders(caVal)));
         } else if (caVal && typeof caVal === "object") {
-          walk(p, caVal, enVal || {}, fields);
+          walk(p, caVal, fields);
         }
       });
     }
 
     return keys.map((k, idx) => {
-      const fields = [];
-      if (UI_LANGS.ca[k] && typeof UI_LANGS.ca[k] === "object") {
-        walk(k, UI_LANGS.ca[k], UI_LANGS.en[k] || {}, fields);
-      }
-      // walk() espera objectes; per a claus amb valor string directe (_name) el truquem diferent:
-      let fieldsFinal = fields;
-      if (typeof UI_LANGS.ca[k] === "string") {
-        fieldsFinal = [
-          {
-            path: "UI_LANGS.ca." + k,
-            label: k + " — CA",
-            value: UI_LANGS.ca[k] || "",
-            original: UI_LANGS.ca[k] || "",
-            multiline: false,
-            hints: placeholders(UI_LANGS.ca[k]),
-          },
-          {
-            path: "UI_LANGS.en." + k,
-            label: k + " — EN",
-            value: UI_LANGS.en[k] || "",
-            original: UI_LANGS.en[k] || "",
-            multiline: false,
-            hints: placeholders(UI_LANGS.en[k]),
-          },
-        ];
+      let fields = [];
+      const val = UI_LANGS.ca[k];
+      if (typeof val === "string") {
+        fields = [camp("UI_LANGS.ca." + k, k, val, false, placeholders(val))];
+      } else if (val && typeof val === "object") {
+        walk(k, val, fields);
       }
       return {
         id: "ui:" + k,
         section: "interficie",
         order: idx,
         title: "Interfície — " + k,
-        searchText: fieldsFinal.map((f) => f.value).join(" "),
+        searchText: k,
         meta: [],
-        groups: [{ heading: "Textos: " + k, fields: fieldsFinal }],
+        groups: [{ heading: "Textos: " + k, fields: fields }],
       };
     });
   }
 
   function buildAllItems(data) {
+    problemes = [];
     const items = []
-      .concat(buildPreguntesItems(data.PREGUNTES, data.GUIES, data.ORDRE_PREGUNTES))
+      .concat(buildPreguntesItems(data.PREGUNTES, data.GUIES, data.ORDRE_PREGUNTES, data.SOLUCIONS))
       .concat(buildGlossariItems(data.GLOSSARI))
       .concat(buildDemosItems(data.DEMOS, data.DEMOS_TANCAMENT))
       .concat(buildItinerarisItems(data.CATEGORIES_TEMATIQUES, data.ITINERARIS_TEMATICS, data.ITINERARIS_GRUPS_ENTRELLACATS))
@@ -642,7 +647,11 @@
     return items;
   }
 
-  const API = { buildAllItems: buildAllItems, placeholders: placeholders };
+  const API = {
+    buildAllItems: buildAllItems,
+    placeholders: placeholders,
+    problemes: function () { return problemes.slice(); },
+  };
 
   if (typeof module !== "undefined" && module.exports) {
     module.exports = API;
@@ -650,7 +659,6 @@
     root.EinaFrasesExtract = API;
   }
 })(typeof window !== "undefined" ? window : globalThis);
-
 </script>
   <script id="app-script">
 /* ================================================================
@@ -668,6 +676,7 @@
   var ALL_ITEMS = [];
   var FIELD_INDEX = {};
   var FIELD_INDEX_ITEM_IDS = {};
+  var SEARCH_CACHE = {};
   var state = { edits: {}, reviewed: {} };
   var currentItemId = null;
   var currentSection = "preguntes";
@@ -719,15 +728,44 @@
   function setValue(path, original, val) {
     if (val === original) delete state.edits[path];
     else state.edits[path] = val;
+    var entry = FIELD_INDEX[path];
+    if (entry) delete SEARCH_CACHE[entry.item.id];
   }
+  // Abans això mirava si la CLAU existia a state.edits, mentre que la resta
+  // del codi (setValue, buildExportPayload) compara VALORS. Les dues coses
+  // divergeixen just després d'aplicar els canvis al projecte: el text del
+  // codi ja és igual a l'edició desada, l'export de canvis (correctament) ja
+  // no la inclou, però la fitxa es quedava marcada "editada" per sempre i
+  // el comptador de progrés la seguia comptant. Ara compara valors.
   function itemHasEdits(item) {
     for (var gi = 0; gi < item.groups.length; gi++) {
       var fields = item.groups[gi].fields || [];
       for (var fi = 0; fi < fields.length; fi++) {
-        if (Object.prototype.hasOwnProperty.call(state.edits, fields[fi].path)) return true;
+        var f = fields[fi];
+        if (currentValue(f.path, f.original) !== f.original) return true;
       }
     }
     return false;
+  }
+
+  // Text sobre el qual cerca la caixa de dalt. Abans era un `searchText`
+  // fix i molt parcial: d'una pregunta només s'hi indexava l'enunciat, o
+  // sigui que cercar una frase d'una pista, de la comprovació o de l'"i
+  // després" no trobava res (en 133 de les 199 fitxes cobria menys de la
+  // meitat del text). Ara s'hi indexa tot el que es veu a la fitxa, amb el
+  // valor ACTUAL -- si has reescrit una frase, la trobes pel text nou.
+  function itemSearchText(item) {
+    if (SEARCH_CACHE[item.id] == null) {
+      var parts = [item.title, item.searchText];
+      item.groups.forEach(function (g) {
+        parts.push(g.heading);
+        if (g.searchExtra) parts.push(g.searchExtra);
+        (g.refFields || []).forEach(function (rf) { parts.push(rf.value); });
+        (g.fields || []).forEach(function (f) { parts.push(currentValue(f.path, f.original)); });
+      });
+      SEARCH_CACHE[item.id] = fold(parts.filter(Boolean).join(" \n "));
+    }
+    return SEARCH_CACHE[item.id];
   }
   function itemStatus(item) {
     if (itemHasEdits(item)) return "editat";
@@ -762,8 +800,28 @@
       state.edits = parsed.edits || {};
       state.reviewed = {};
       (parsed.reviewed || []).forEach(function (id) { state.reviewed[id] = true; });
+      podaEdicions();
     } catch (e) {
       console.warn("eina-frases: no s'ha pogut llegir el progrés desat", e);
+    }
+  }
+
+  // Neteja les edicions desades que ja no són edicions: o bé el projecte ja
+  // porta aquell text (li has enviat el diff i s'ha aplicat), o bé el camp
+  // ha desaparegut d'aquesta versió (per exemple tots els UI_LANGS.en.*, que
+  // aquesta eina ja no mostra). Sense això s'acumulen invisiblement i fan
+  // que les fitxes quedin marcades com a editades per sempre.
+  function podaEdicions() {
+    var aplicades = 0, orfes = 0;
+    Object.keys(state.edits).forEach(function (path) {
+      var entry = FIELD_INDEX[path];
+      if (!entry) { delete state.edits[path]; orfes++; return; }
+      if (state.edits[path] === entry.field.original) { delete state.edits[path]; aplicades++; }
+    });
+    if (aplicades || orfes) {
+      console.info("eina-frases: netejades " + aplicades + " edicions que el projecte ja porta i " +
+        orfes + " que ja no corresponen a cap camp.");
+      saveLocal();
     }
   }
 
@@ -795,6 +853,8 @@
     return {
       eina: "eina-frases",
       versio: 1,
+      mode: mode === "diff" ? "canvis" : "tot",
+      idioma: "ca",
       generat: new Date().toISOString(),
       resum: {
         totalFitxes: ALL_ITEMS.length,
@@ -809,7 +869,19 @@
     };
   }
 
+  var editsExportats = null; // signatura de l'estat en el moment d'exportar
+  function signaturaEdits() {
+    return Object.keys(state.edits).sort().map(function (k) {
+      return k + "\u0000" + state.edits[k];
+    }).join("\u0001");
+  }
+  function canvisSenseExportar() {
+    var ara = signaturaEdits();
+    return ara !== "" && ara !== editsExportats;
+  }
+
   function downloadJSON(obj, filename) {
+    editsExportats = signaturaEdits();
     var blob = new Blob([JSON.stringify(obj, null, 2)], { type: "application/json" });
     var url = URL.createObjectURL(blob);
     var a = document.createElement("a");
@@ -826,18 +898,43 @@
       alert("Aquest fitxer no té el format esperat (li falta \"camps\").");
       return;
     }
-    var applied = 0, skipped = 0;
+
+    // Una còpia de "Desa tot (JSON)" porta els 1.796 camps, editats o no.
+    // Si l'usuari ja té feina feta en aquest navegador li hem de preguntar
+    // què vol, perquè fusionar i substituir donen resultats molt diferents.
+    var editsLocals = Object.keys(state.edits).length;
+    var substitueix = false;
+    if (editsLocals > 0) {
+      substitueix = confirm(
+        "En aquest navegador ja hi tens " + editsLocals + " camp(s) editats.\n\n" +
+        "D'acord = SUBSTITUEIX: es descarta el que tens aquí i es queda només el del fitxer.\n" +
+        "Cancel·la = FUSIONA: es manté el que tens i s'hi afegeix el del fitxer.");
+    }
+    if (substitueix) {
+      state.edits = {};
+      state.reviewed = {};
+      SEARCH_CACHE = {};
+    }
+
+    var applied = 0, skipped = 0, sensecanvi = 0;
     var conflictes = [];
     obj.camps.forEach(function (c) {
       if (!c || !c.path) return;
+      // Un camp que l'usuari no va tocar viatja al fitxer amb original ===
+      // actual. Abans aquests camps passaven el primer filtre i queien al
+      // segon com a "conflicte" en quant el projecte hagués canviat aquell
+      // text pel seu compte: una còpia de seguretat aplicada després d'un
+      // tram de correccions generava desenes de conflictes FALSOS, tots de
+      // frases que l'usuari no havia tocat mai. El camp `canviat` ja era al
+      // payload i no es feia servir; ara sí.
+      if (c.canviat === false || c.actual === c.original) { sensecanvi++; return; }
       var entry = FIELD_INDEX[c.path];
       if (!entry) { skipped++; return; }
-      if (typeof c.actual !== "string" || c.actual === entry.field.original) return;
+      if (typeof c.actual !== "string" || c.actual === entry.field.original) { sensecanvi++; return; }
       if (typeof c.original === "string" && c.original !== entry.field.original) {
-        // El text "original" ha canviat al projecte des que es va exportar
-        // aquest fitxer (potser ja s'ha corregit al codi). No apliquem a
-        // cegues per no perdre una correcció més recent -- ho deixem com a
-        // conflicte perquè es revisi a mà.
+        // Ara sí que és un conflicte de veritat: l'usuari va editar aquest
+        // camp I el text original ha canviat al projecte des de l'exportació.
+        // No apliquem a cegues per no trepitjar una correcció més recent.
         conflictes.push({ path: c.path, referencia: c.referencia || c.path });
         return;
       }
@@ -849,12 +946,15 @@
         if (FIELD_INDEX_ITEM_IDS[id]) state.reviewed[id] = true;
       });
     }
+    SEARCH_CACHE = {};
     saveLocal();
     renderTabs();
     renderSidebar();
     updateProgress();
     if (currentItemId) selectItem(currentItemId);
-    var msg = "Importat: " + applied + " camp(s) amb canvis aplicats.";
+    var msg = (substitueix ? "Estat substituït. " : "") +
+      "Importat: " + applied + " camp(s) amb canvis aplicats.";
+    if (sensecanvi) msg += " " + sensecanvi + " camp(s) del fitxer no portaven cap canvi.";
     if (skipped) msg += " " + skipped + " camp(s) del fitxer ja no existeixen en aquesta versió del projecte i s'han ignorat.";
     if (conflictes.length) {
       msg += "\n\n" + conflictes.length + " camp(s) NO s'han aplicat perquè el text ha canviat al projecte des que vas exportar aquest fitxer. Revisa'ls a mà:\n";
@@ -887,7 +987,7 @@
   function visibleItems() {
     if (searchQuery) {
       var q = fold(searchQuery);
-      return ALL_ITEMS.filter(function (it) { return fold(it.title).indexOf(q) !== -1 || fold(it.searchText).indexOf(q) !== -1; });
+      return ALL_ITEMS.filter(function (it) { return itemSearchText(it).indexOf(q) !== -1; });
     }
     return ALL_ITEMS.filter(function (it) { return it.section === currentSection; });
   }
@@ -902,17 +1002,31 @@
     list.innerHTML = items.map(function (it) {
       var status = itemStatus(it);
       var tag = searchQuery ? '<span class="item-row__section-tag">' + escapeHtml(SECTION_LABELS[it.section]) + "</span>" : "";
-      return '<div class="item-row" data-id="' + escapeHtml(it.id) + '" data-status="' + status + '"><span class="item-row__dot"></span><span>' + tag + '<span class="item-row__title">' + escapeHtml(it.title) + "</span></span></div>";
+      return '<div class="item-row" role="option" tabindex="0" data-id="' + escapeHtml(it.id) + '" data-status="' + status + '"><span class="item-row__dot"></span><span>' + tag + '<span class="item-row__title">' + escapeHtml(it.title) + "</span></span></div>";
     }).join("");
     Array.prototype.forEach.call(list.children, function (row) {
       row.addEventListener("click", function () { selectItem(row.dataset.id); });
+      row.addEventListener("keydown", function (e) {
+        if (e.key === "Enter" || e.key === " ") { e.preventDefault(); selectItem(row.dataset.id); return; }
+        if (e.key !== "ArrowDown" && e.key !== "ArrowUp") return;
+        e.preventDefault();
+        var germa = e.key === "ArrowDown" ? row.nextElementSibling : row.previousElementSibling;
+        if (germa) { germa.focus(); selectItem(germa.dataset.id); }
+      });
     });
     highlightSelectedRow();
   }
 
-  function highlightSelectedRow() {
+  // El segon argument el posa selectItem(): "porta'm on és". renderSidebar()
+  // el deixa a false perquè la llista no salti sola mentre escrius.
+  function highlightSelectedRow(scroll) {
     Array.prototype.forEach.call(document.querySelectorAll(".item-row"), function (r) {
-      r.classList.toggle("selected", r.dataset.id === currentItemId);
+      var sel = r.dataset.id === currentItemId;
+      r.classList.toggle("selected", sel);
+      r.setAttribute("aria-selected", sel ? "true" : "false");
+      // Sense això, "Següent pendent" saltava de la fitxa 5 a la 120 i la
+      // llista es quedava dalt de tot: canviava el panell i perdies el fil.
+      if (sel && scroll && r.scrollIntoView) r.scrollIntoView({ block: "nearest" });
     });
   }
 
@@ -933,7 +1047,7 @@
     });
     var done = editat + revisat;
     $("#progressText").textContent = done + " / " + total + " fitxes \u00b7 " + editat + " editades";
-    $("#progressBarFill").style.width = Math.round((done / total) * 100) + "%";
+    $("#progressBarFill").style.width = (total ? Math.round((done / total) * 100) : 0) + "%";
   }
 
   // ---------------- renderitzat: detall d'un item ----------------
@@ -942,7 +1056,7 @@
     if (!item) return;
     currentItemId = id;
     renderMain(item);
-    highlightSelectedRow();
+    highlightSelectedRow(true);
     var main = $("#mainPanel");
     main.scrollTop = 0;
   }
@@ -990,11 +1104,31 @@
 
     item.groups.forEach(function (group) {
       var sec = document.createElement("section");
-      sec.className = "group";
-      var h2 = document.createElement("h2");
-      h2.className = "group__heading";
-      h2.textContent = group.heading;
-      sec.appendChild(h2);
+      sec.className = "group" + (group.solucio !== undefined ? " group--solucio" : "");
+
+      // Els grups plegables (de moment, la solució publicada) van dins d'un
+      // <details> perquè hi siguin sense allargar la fitxa a qui no els mira.
+      var cos = sec;
+      if (group.collapsible) {
+        var det = document.createElement("details");
+        det.className = "sol-ref";
+        var sum = document.createElement("summary");
+        sum.appendChild(document.createTextNode(group.heading));
+        var nota = document.createElement("span");
+        nota.className = "sol-ref__note";
+        nota.textContent = "referència · no editable";
+        sum.appendChild(nota);
+        det.appendChild(sum);
+        cos = document.createElement("div");
+        cos.className = "sol-ref__body";
+        det.appendChild(cos);
+        sec.appendChild(det);
+      } else {
+        var h2 = document.createElement("h2");
+        h2.className = "group__heading";
+        h2.textContent = group.heading;
+        sec.appendChild(h2);
+      }
 
       if (group.images && group.images.length) {
         var figWrap = document.createElement("div");
@@ -1007,7 +1141,7 @@
           img.addEventListener("error", function () { img.style.display = "none"; });
           figWrap.appendChild(img);
         });
-        sec.appendChild(figWrap);
+        cos.appendChild(figWrap);
       }
 
       if (group.refFields) {
@@ -1020,12 +1154,14 @@
           lbl.textContent = rf.label;
           bq.appendChild(lbl);
           bq.appendChild(document.createTextNode(rf.value));
-          sec.appendChild(bq);
+          cos.appendChild(bq);
         });
       }
 
+      if (group.solucio !== undefined) renderSolucio(cos, group.solucio);
+
       (group.fields || []).forEach(function (f) {
-        sec.appendChild(renderField(f));
+        cos.appendChild(renderField(f));
       });
 
       main.appendChild(sec);
@@ -1035,6 +1171,66 @@
       ta.style.height = "auto";
       ta.style.height = ta.scrollHeight + "px";
     });
+  }
+
+  // Text pla de solucions/qNN.html. Tot amb textContent: el text ve d'un
+  // fitxer generat, però ni tan sols així s'hi injecta HTML.
+  function renderSolucio(cos, s) {
+    if (!s) {
+      var buit = document.createElement("p");
+      buit.className = "sol-ref__missing";
+      buit.textContent = "Aquesta pregunta encara no té fitxer a solucions/. " +
+        "Res a comparar amb la guia.";
+      cos.appendChild(buit);
+      return;
+    }
+    (s.passos || []).forEach(function (p) {
+      if (p.titol) {
+        var h3 = document.createElement("p");
+        h3.className = "sol-ref__step-title";
+        h3.textContent = p.titol;
+        cos.appendChild(h3);
+      }
+      (p.textos || []).forEach(function (t) {
+        var par = document.createElement("p");
+        par.className = "sol-ref__text";
+        par.textContent = t;
+        cos.appendChild(par);
+      });
+      (p.figures || []).forEach(function (fig) {
+        if (fig.src) {
+          var wrapImg = document.createElement("div");
+          wrapImg.className = "group__figures";
+          var img = document.createElement("img");
+          img.src = fig.src;
+          img.loading = "lazy";
+          img.alt = "";
+          img.addEventListener("error", function () { wrapImg.style.display = "none"; });
+          wrapImg.appendChild(img);
+          cos.appendChild(wrapImg);
+        }
+        if (fig.peu) {
+          var peu = document.createElement("p");
+          peu.className = "sol-ref__caption";
+          peu.textContent = fig.peu;
+          cos.appendChild(peu);
+        }
+      });
+    });
+    if (s.resum) {
+      var box = document.createElement("div");
+      box.className = "sol-ref__resum";
+      var lbl = document.createElement("span");
+      lbl.className = "sol-ref__resum-label";
+      lbl.textContent = "En resum";
+      box.appendChild(lbl);
+      var txt = document.createElement("p");
+      txt.className = "sol-ref__text";
+      txt.style.margin = "0";
+      txt.textContent = s.resum;
+      box.appendChild(txt);
+      cos.appendChild(box);
+    }
   }
 
   function renderField(f) {
@@ -1074,10 +1270,10 @@
     ta.rows = 1;
     ta.value = currentValue(f.path, f.original);
     ta.spellcheck = true;
-    // L'única font de text EDITABLE en anglès és UI_LANGS.en.* (l'anglès de
-    // PREGUNTES.*.enunciat.en es mostra només com a refFields, no editable).
-    // Tota la resta -- inclòs UI_LANGS.ca.* -- és català.
-    ta.lang = f.path.indexOf("UI_LANGS.en.") === 0 ? "en" : "ca";
+    // Aquesta eina ja no mostra cap text en anglès, ni editable ni de
+    // referència: tot el que hi surt és català i el corrector ho ha de
+    // saber per no subratllar-ho tot.
+    ta.lang = "ca";
 
     function refreshEditedState() {
       var isEdited = ta.value !== f.original;
@@ -1186,6 +1382,7 @@
       if (!confirm("Aix\u00f2 esborrar\u00e0 tots els canvis i marques desats en aquest navegador. Si tens un JSON exportat no es perd res (el pots tornar a importar). Vols continuar?")) return;
       try { localStorage.removeItem(STORAGE_KEY); } catch (e) {}
       state = { edits: {}, reviewed: {} };
+      SEARCH_CACHE = {};
       renderTabs();
       renderSidebar();
       updateProgress();
@@ -1193,11 +1390,20 @@
     });
 
     $("#helpToggle").addEventListener("click", function () {
-      $("#helpBody").classList.toggle("open");
+      var obert = $("#helpBody").classList.toggle("open");
+      $("#helpToggle").setAttribute("aria-expanded", obert ? "true" : "false");
     });
 
-    window.addEventListener("beforeunload", function () {
+    window.addEventListener("beforeunload", function (e) {
       saveLocal();
+      // Sota file:// amb el Firefox l'autodesat no funciona i l'única còpia
+      // real de la feina és el JSON exportat. Si hi ha edicions posteriors a
+      // l'última exportació, val més preguntar-ho que perdre-les.
+      if (canvisSenseExportar()) {
+        e.preventDefault();
+        e.returnValue = "";
+        return "";
+      }
     });
   }
 
@@ -1216,13 +1422,32 @@
       typeof window.EinaFrasesExtract !== "undefined";
   }
 
-  function showDataError() {
-    $("#app").innerHTML =
+  function showDataError(detall) {
+    var html =
       '<div class="error-screen">' +
       "<h2>No trobo les dades del projecte</h2>" +
       "<p>Aquesta eina ha d\u2019obrir-se des de dins la carpeta del projecte, al mateix nivell que <code>index.html</code>, perqu\u00e8 pugui carregar els fitxers de <code>js/data/</code> i <code>js/i18n/</code> tal com fa el lloc real.</p>" +
-      "<p>Comprova que <code>eina-frases.html</code> \u00e9s a la carpeta arrel del projecte (la mateixa on hi ha <code>index.html</code>, <code>css/</code> i <code>js/</code>) i torna a obrir-lo amb doble clic.</p>" +
-      "</div>";
+      "<p>Comprova que <code>eina-frases.html</code> \u00e9s a la carpeta arrel del projecte (la mateixa on hi ha <code>index.html</code>, <code>css/</code> i <code>js/</code>) i torna a obrir-lo amb doble clic.</p>";
+    if (detall) {
+      html += "<p>Detall t\u00e8cnic:</p><pre>" + escapeHtml(detall) + "</pre>";
+    }
+    $("#app").innerHTML = html + "</div>";
+  }
+
+  // Els problemes de dades que no impedeixen treballar (una guia incompleta,
+  // una pregunta fora d'ORDRE_PREGUNTES) es diuen aquí dalt en comptes de
+  // quedar-se al console.log, que no mira ningú.
+  function mostraProblemes(llista) {
+    if (!llista || !llista.length) return;
+    var el = $("#dataWarning");
+    if (!el) return;
+    el.innerHTML = "\u26a0\ufe0f Les dades del projecte tenen " + llista.length +
+      " cosa/es que no quadren. L'eina funciona igual, per\u00f2 val la pena mirar-les " +
+      "(<code>python3 verifica_projecte.py</code>):<ul>" +
+      llista.slice(0, 12).map(function (p) { return "<li>" + escapeHtml(p) + "</li>"; }).join("") +
+      "</ul>" + (llista.length > 12 ? "<p>\u2026 i " + (llista.length - 12) + " m\u00e9s (consola).</p>" : "");
+    el.style.display = "block";
+    console.warn("eina-frases: problemes a les dades", llista);
   }
 
   function init() {
@@ -1247,8 +1472,23 @@
       ITINERARIS_GRUPS_ENTRELLACATS: window.ITINERARIS_GRUPS_ENTRELLACATS,
       ORDRE_PREGUNTES: window.ORDRE_PREGUNTES,
       UI_LANGS: window.UI_LANGS,
+      // Opcional: si js/data/solucions-dades.js no hi és, l'eina tira igual
+      // i només s'hi perd el bloc de referència de la solució.
+      SOLUCIONS: typeof window.SOLUCIONS !== "undefined" ? window.SOLUCIONS : null,
     };
-    ALL_ITEMS = window.EinaFrasesExtract.buildAllItems(data);
+    // Abans això anava sense xarxa: qualsevol excepció aquí dins deixava la
+    // pàgina en blanc, sense llista, sense missatge i sense pista de per què.
+    try {
+      ALL_ITEMS = window.EinaFrasesExtract.buildAllItems(data);
+    } catch (e) {
+      console.error("eina-frases: buildAllItems ha fallat", e);
+      showDataError("buildAllItems(): " + (e && e.message ? e.message : String(e)));
+      return;
+    }
+    if (!ALL_ITEMS.length) {
+      showDataError("buildAllItems() no ha generat cap fitxa.");
+      return;
+    }
     ALL_ITEMS.forEach(function (item) {
       FIELD_INDEX_ITEM_IDS[item.id] = true;
       item.groups.forEach(function (g) {
@@ -1258,10 +1498,9 @@
       });
     });
 
+    if (window.EinaFrasesExtract.problemes) mostraProblemes(window.EinaFrasesExtract.problemes());
+
     loadLocal();
-    renderTabs();
-    renderSidebar();
-    updateProgress();
     wireGlobalEvents();
 
     var firstPending = ALL_ITEMS.filter(function (it) { return itemStatus(it) === "pendent"; })[0];
@@ -1269,6 +1508,7 @@
     currentSection = toSelect.section;
     renderTabs();
     renderSidebar();
+    updateProgress();
     selectItem(toSelect.id);
   }
 
