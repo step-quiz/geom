@@ -206,12 +206,12 @@ sense cap canvi per a q52 i q56.
 ---
 
 ## 6. q49 — *Where is the center of a regular tetrahedron?*
-> On és el centre d'un tetràedre regular?
+> On és el centre d'un tetraedre regular?
 
 **Moviment: endevina per simetria, després demostra** (reaplicat de q36/q10).
 DEPÈN de q36 i q10.
 
-**Pista 0.** Un tetràedre regular té una simetria total entre els seus
+**Pista 0.** Un tetraedre regular té una simetria total entre els seus
 quatre vèrtexs — cap n'és especial. Si el "centre" existeix, la simetria
 ja et diu una cosa forta sobre on ha de ser.
 
@@ -229,7 +229,7 @@ a 3/4 del camí de cada vèrtex cap al centre de gravetat de la cara oposada
 simetria als altres tres.
 
 **Comprovació.** Amb A=(1,1,1), B=(1,−1,−1), C=(−1,1,−1), D=(−1,−1,1) (un
-tetràedre regular clàssic inscrit en un cub): G=(0,0,0). El centre de la
+tetraedre regular clàssic inscrit en un cub): G=(0,0,0). El centre de la
 cara BCD és ((1−1−1)/3,(−1+1−1)/3,(−1−1+1)/3)=(−1/3,−1/3,−1/3). El punt a
 3/4 del camí d'A cap a aquest centre: A+(3/4)((−1/3,−1/3,−1/3)−A) =
 (1,1,1)+(3/4)(−4/3,−4/3,−4/3) = (1,1,1)+(−1,−1,−1) = (0,0,0) = G ✓.
@@ -279,7 +279,7 @@ exemple (0.5,1,0) i (0,1,0.5): √(0,25+0+0,25)=√0,5≈0,707 — igual.
 
 **I després.** Aquest mateix pla (perpendicular a una diagonal principal,
 pel centre) és el que fa servir q56 per trobar el
-tetràedre inscrit al cub. El dibuix, però, es mira des d'un angle diferent
+tetraedre inscrit al cub. El dibuix, però, es mira des d'un angle diferent
 del de q56: exactament al llarg de la diagonal principal, perquè és
 l'única direcció des de la qual el pla de tall es veu en veritable magnitud
 i l'hexàgon surt regular en lloc d'aixafat.
@@ -290,7 +290,7 @@ contingut de cada figura, no un simple estil.
 ---
 
 ## 8. q56 — *The diagonals of a cube form a regular tetrahedron. How much of the cube does it take up?*
-> Les diagonals de cara del cub formen un tetràedre regular. Quina fracció
+> Les diagonals de cara del cub formen un tetraedre regular. Quina fracció
 > del cub ocupa?
 
 **Moviment: tria un altre pla** (reaplicat, mateix cub que q47/q52).
@@ -303,7 +303,7 @@ cap parella triada sigui una aresta del cub — només diagonals.
 **Pista 1.** Amb el cub de costat 1 i vèrtexs a {0,1}³, tria (0,0,0),
 (1,1,0), (1,0,1), (0,1,1). Comprova que cada parella d'aquests quatre punts
 està a distància √2 (una diagonal de cara) — si ho és per a totes sis
-parelles, tens un tetràedre regular.
+parelles, tens un tetraedre regular.
 
 **Pista 2 — la construcció.** → `fig-029.png`
 
@@ -311,26 +311,26 @@ parelles, tens un tetràedre regular.
 n'hi ha dos.
 
 El curt fa servir una eina que segurament encara no has vist: el volum
-d'un tetràedre és (1/6)|det[B−A, C−A, D−A]|, un determinant 3×3. Si la
+d'un tetraedre és (1/6)|det[B−A, C−A, D−A]|, un determinant 3×3. Si la
 coneixes, calcula'l amb les coordenades de la Pista 1. Si no, no és el
 lloc d'aprendre-la ara.
 
 El llarg no necessita res que no tinguis, i de fet ensenya més. Mira què
-queda del cub quan en treus el tetràedre: quatre trossos, un a cada
+queda del cub quan en treus el tetraedre: quatre trossos, un a cada
 cantonada que no has fet servir. Cadascun és una piràmide amb una cara del
 cub per base (àrea 1) i una aresta del cub per alçada (1), o sigui volum
 (1/3)(1)(1) = 1/3... que és massa. Fixa-t'hi millor: la base de cada tros
 no és una cara sencera del cub, és mig cara —un triangle rectangle d'àrea
 1/2— i l'alçada és 1. Volum de cada tros: (1/3)(1/2)(1) = 1/6. Quatre
-trossos fan 4/6 = 2/3. El tetràedre és, doncs, 1 − 2/3 del cub. Compara
+trossos fan 4/6 = 2/3. El tetraedre és, doncs, 1 − 2/3 del cub. Compara
 aquest resultat amb el del camí curt.
 
 **Comprovació.** Amb A=(0,0,0), B=(1,1,0), C=(1,0,1), D=(0,1,1):
 det[(1,1,0),(1,0,1),(0,1,1)] = 1(0−1)−1(1−0)+0(1−0) = −1−1+0=−2. Volum =
-2/6 = 1/3. El tetràedre ocupa exactament un terç del cub.
+2/6 = 1/3. El tetraedre ocupa exactament un terç del cub.
 
-**I després.** El cub sencer es pot partir en aquest tetràedre més quatre
-petits tetràedres iguals, un a cada vèrtex retallat — comprova que
+**I després.** El cub sencer es pot partir en aquest tetraedre més quatre
+petits tetraedres iguals, un a cada vèrtex retallat — comprova que
 4×(volum d'un d'aquests) + 1/3 = 1 (el cub sencer).
 
 ---

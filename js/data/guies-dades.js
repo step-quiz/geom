@@ -46,7 +46,7 @@ window.GUIES = {
   "q01": {
     "moviment": "centre-per-simetria",
     "movimentTitol": {
-      "ca": "troba un punt per simetria (moviment nou d'aquest lot)",
+      "ca": "Troba un punt destacat d'aquest triangle, pensant en la simetria",
       "en": null
     },
     "lot": 4,
@@ -58,7 +58,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Un triangle qualsevol té diversos punts que es podrien dir \"centre\": on es tallen les altures, on es tallen les bisectrius, on es tallen les medianes... En general són tres punts diferents. La pregunta interessant no és calcular-ne un, és preguntar-se per què, en el cas equilàter, tothom en diu el centre com si n'hi hagués només un.",
+          "ca": "Un triangle qualsevol té diversos punts que es podrien dir \"centre\": on es tallen les altures, on es tallen les bisectrius, on es tallen les medianes... En general són punts diferents. La pregunta interessant no és calcular-ne un, és preguntar-se per què, en el cas equilàter, tothom en diu \"el centre\", com si n'hi hagués només un.",
           "en": null
         },
         "figura": null
@@ -1696,7 +1696,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Una hipèrbola amb asímptotes inclinades (traç negre), i al costat, en sanguina, la mateixa hipèrbola després de dilatar cada eix pel factor que cal — les asímptotes ara perpendiculars.",
+          "ca": "Una hipèrbola amb asímptotes inclinades (traç negre), i al costat, en sanguina, la mateixa hipèrbola després d'estirar cada eix pel factor que cal — les asímptotes ara perpendiculars.",
           "en": null
         },
         "figura": "fig-116.png"
@@ -1804,7 +1804,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Dues coses: (1) la posició dels focus de x²−y²=1 (la hipèrbola recta més senzilla, amb a=b=1), i (2) la fórmula general dels focus després de dilatar-la per (a, b) — que és la mateixa hipèrbola de q112.",
+          "ca": "Dues coses: (1) la posició dels focus de x²−y²=1 (la hipèrbola recta més senzilla, amb a=b=1), i (2) la fórmula general dels focus després d'estirar-la per (a, b) — que és la mateixa hipèrbola de q112.",
           "en": null
         },
         "figura": null
@@ -1840,7 +1840,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Amb a=b=1: c=√(1+1)=√2, la diagonal del quadrat de costat 1.\n\nAra la segona meitat, i aquí hi ha la trampa gran de la pregunta. En dilatar per (a,b) la corba es transforma bé: els vèrtexs (±1,0) passen a (±a,0), que són els vèrtexs nous. Amb els focus, en canvi, la l'estirament no serveix: el punt on va a parar el focus antic no és el focus nou. Mira-ho amb números abans de creure-t'ho: amb a=4 i b=3, el focus (√2,0) es transforma en (4√2, 0) ≈ (5,66 · 0), mentre que el focus de veritat de x²/16 − y²/9 = 1 és (5,0). No hi ha manera de fer-los coincidir.\n\nPer què? Perquè els focus no es defineixen mirant la corba de prop: depenen de distàncies, i un estirament que allarga més en una direcció que en l'altra no conserva les distàncies. Només quan a=b —quan l'escalat és uniforme, i per tant una homotècia de les de q77— els focus s'hi deixen portar. Per als focus de la hipèrbola general, doncs, has de tornar a aplicar la relació c²=a²+b², ara amb els semieixos a i b: els focus són a (±√(a²+b²), 0).",
+          "ca": "Amb a=b=1: c=√(1+1)=√2, la diagonal del quadrat de costat 1.\n\nAra la segona meitat, i aquí hi ha la trampa gran de la pregunta. En estirar per (a,b) la corba es transforma bé: els vèrtexs (±1,0) passen a (±a,0), que són els vèrtexs nous. Amb els focus, en canvi, la l'estirament no serveix: el punt on va a parar el focus antic no és el focus nou. Mira-ho amb números abans de creure-t'ho: amb a=4 i b=3, el focus (√2,0) es transforma en (4√2, 0) ≈ (5,66 · 0), mentre que el focus de veritat de x²/16 − y²/9 = 1 és (5,0). No hi ha manera de fer-los coincidir.\n\nPer què? Perquè els focus no es defineixen mirant la corba de prop: depenen de distàncies, i un estirament que allarga més en una direcció que en l'altra no conserva les distàncies. Només quan a=b —quan l'escalat és uniforme, i per tant una homotècia de les de q77— els focus s'hi deixen portar. Per als focus de la hipèrbola general, doncs, has de tornar a aplicar la relació c²=a²+b², ara amb els semieixos a i b: els focus són a (±√(a²+b²), 0).",
           "en": null
         },
         "figura": null
@@ -2045,7 +2045,7 @@ window.GUIES = {
       }
     ],
     "comprovacio": {
-      "ca": "p=1 (y=x²/4) dilatada per factor 2 uniforme des del vèrtex. Fes-ho seguint un punt: (x, x²/4) va a parar a (2x, x²/2). Si n'anomenes X=2x la coordenada nova, aleshores x=X/2 i l'alçada nova és (X/2)²/2 = X²/8. La paràbola dilatada és, doncs, y = x²/8, és a dir p=2 — exactament el k·p de la Pista 3, amb k=2. El focus, que és a alçada p, es mou de (0,1) a (0,2): s'allunya el mateix factor 2 que tota la resta, com ha de fer qualsevol punt en una homotècia. Si t'ha sortit p més PETIT, has aplicat l'homotècia al revés.",
+      "ca": "p=1 (y=x²/4) escalada per factor 2 uniforme des del vèrtex. Fes-ho seguint un punt: (x, x²/4) va a parar a (2x, x²/2). Si n'anomenes X=2x la coordenada nova, aleshores x=X/2 i l'alçada nova és (X/2)²/2 = X²/8. La paràbola escalada és, doncs, y = x²/8, és a dir p=2 — exactament el k·p de la Pista 3, amb k=2. El focus, que és a alçada p, es mou de (0,1) a (0,2): s'allunya el mateix factor 2 que tota la resta, com ha de fer qualsevol punt en una homotècia. Si t'ha sortit p més PETIT, has aplicat l'homotècia al revés.",
       "en": null
     },
     "iDespres": {
@@ -5167,7 +5167,7 @@ window.GUIES = {
         "nivell": 0,
         "titol": null,
         "text": {
-          "ca": "Un tetràedre regular té una simetria total entre els seus quatre vèrtexs — cap n'és especial. Si el \"centre\" existeix, la simetria ja et diu una cosa forta sobre on ha de ser.",
+          "ca": "Un tetraedre regular té una simetria total entre els seus quatre vèrtexs — cap n'és especial. Si el \"centre\" existeix, la simetria ja et diu una cosa forta sobre on ha de ser.",
           "en": null
         },
         "figura": null
@@ -5204,7 +5204,7 @@ window.GUIES = {
       }
     ],
     "comprovacio": {
-      "ca": "Amb A=(1,1,1), B=(1,−1,−1), C=(−1,1,−1), D=(−1,−1,1) (un tetràedre regular clàssic inscrit en un cub): G=(0,0,0). El centre de la cara BCD és ((1−1−1)/3,(−1+1−1)/3,(−1−1+1)/3)=(−1/3,−1/3,−1/3). El punt a 3/4 del camí d'A cap a aquest centre: A+(3/4)((−1/3,−1/3,−1/3)−A) = (1,1,1)+(3/4)(−4/3,−4/3,−4/3) = (1,1,1)+(−1,−1,−1) = (0,0,0) = G ✓.",
+      "ca": "Amb A=(1,1,1), B=(1,−1,−1), C=(−1,1,−1), D=(−1,−1,1) (un tetraedre regular clàssic inscrit en un cub): G=(0,0,0). El centre de la cara BCD és ((1−1−1)/3,(−1+1−1)/3,(−1−1+1)/3)=(−1/3,−1/3,−1/3). El punt a 3/4 del camí d'A cap a aquest centre: A+(3/4)((−1/3,−1/3,−1/3)−A) = (1,1,1)+(3/4)(−4/3,−4/3,−4/3) = (1,1,1)+(−1,−1,−1) = (0,0,0) = G ✓.",
       "en": null
     },
     "iDespres": {
@@ -5388,7 +5388,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Aquest mateix pla (perpendicular a una diagonal principal, pel centre) és el que fa servir q56 per trobar el tetràedre inscrit al cub. El dibuix, però, es mira des d'un angle diferent del de q56: exactament al llarg de la diagonal principal, perquè és l'única direcció des de la qual el pla de tall es veu en veritable magnitud i l'hexàgon surt regular en lloc d'aixafat. Si tornes a la figura de q56 hi reconeixeràs el mateix cub dibuixat amb la projecció habitual d'aquest quadern: la direcció de mirada és part del contingut de cada figura, no un simple estil.",
+      "ca": "Aquest mateix pla (perpendicular a una diagonal principal, pel centre) és el que fa servir q56 per trobar el tetraedre inscrit al cub. El dibuix, però, es mira des d'un angle diferent del de q56: exactament al llarg de la diagonal principal, perquè és l'única direcció des de la qual el pla de tall es veu en veritable magnitud i l'hexàgon surt regular en lloc d'aixafat. Si tornes a la figura de q56 hi reconeixeràs el mateix cub dibuixat amb la projecció habitual d'aquest quadern: la direcció de mirada és part del contingut de cada figura, no un simple estil.",
       "en": null
     }
   },
@@ -5593,7 +5593,7 @@ window.GUIES = {
         "nivell": 1,
         "titol": null,
         "text": {
-          "ca": "Amb el cub de costat 1 i vèrtexs a {0,1}³, tria (0,0,0), (1,1,0), (1,0,1), (0,1,1). Comprova que cada parella d'aquests quatre punts està a distància √2 (una diagonal de cara) — si ho és per a totes sis parelles, tens un tetràedre regular.",
+          "ca": "Amb el cub de costat 1 i vèrtexs a {0,1}³, tria (0,0,0), (1,1,0), (1,0,1), (0,1,1). Comprova que cada parella d'aquests quatre punts està a distància √2 (una diagonal de cara) — si ho és per a totes sis parelles, tens un tetraedre regular.",
           "en": null
         },
         "figura": null
@@ -5614,18 +5614,18 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Hi ha dos camins, i val la pena que sàpigues que n'hi ha dos.\n\nEl curt fa servir una eina que segurament encara no has vist: el volum d'un tetràedre és (1/6)|det[B−A, C−A, D−A]|, un determinant 3×3. Si la coneixes, calcula'l amb les coordenades de la Pista 1. Si no, no és el lloc d'aprendre-la ara.\n\nEl llarg no necessita res que no tinguis, i de fet ensenya més. Mira què queda del cub quan en treus el tetràedre: quatre trossos, un a cada cantonada que no has fet servir. Cadascun és una piràmide amb una cara del cub per base (àrea 1) i una aresta del cub per alçada (1), o sigui volum (1/3)(1)(1) = 1/3... que és massa. Fixa-t'hi millor: la base de cada tros no és una cara sencera del cub, és mig cara —un triangle rectangle d'àrea 1/2— i l'alçada és 1. Volum de cada tros: (1/3)(1/2)(1) = 1/6. Quatre trossos fan 4/6 = 2/3. El tetràedre és, doncs, 1 − 2/3 del cub. Compara aquest resultat amb el del camí curt.",
+          "ca": "Hi ha dos camins, i val la pena que sàpigues que n'hi ha dos.\n\nEl curt fa servir una eina que segurament encara no has vist: el volum d'un tetraedre és (1/6)|det[B−A, C−A, D−A]|, un determinant 3×3. Si la coneixes, calcula'l amb les coordenades de la Pista 1. Si no, no és el lloc d'aprendre-la ara.\n\nEl llarg no necessita res que no tinguis, i de fet ensenya més. Mira què queda del cub quan en treus el tetraedre: quatre trossos, un a cada cantonada que no has fet servir. Cadascun és una piràmide amb una cara del cub per base (àrea 1) i una aresta del cub per alçada (1), o sigui volum (1/3)(1)(1) = 1/3... que és massa. Fixa-t'hi millor: la base de cada tros no és una cara sencera del cub, és mig cara —un triangle rectangle d'àrea 1/2— i l'alçada és 1. Volum de cada tros: (1/3)(1/2)(1) = 1/6. Quatre trossos fan 4/6 = 2/3. El tetraedre és, doncs, 1 − 2/3 del cub. Compara aquest resultat amb el del camí curt.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "Amb A=(0,0,0), B=(1,1,0), C=(1,0,1), D=(0,1,1): det[(1,1,0),(1,0,1),(0,1,1)] = 1(0−1)−1(1−0)+0(1−0) = −1−1+0=−2. Volum = 2/6 = 1/3. El tetràedre ocupa exactament un terç del cub.",
+      "ca": "Amb A=(0,0,0), B=(1,1,0), C=(1,0,1), D=(0,1,1): det[(1,1,0),(1,0,1),(0,1,1)] = 1(0−1)−1(1−0)+0(1−0) = −1−1+0=−2. Volum = 2/6 = 1/3. El tetraedre ocupa exactament un terç del cub.",
       "en": null
     },
     "iDespres": {
-      "ca": "El cub sencer es pot partir en aquest tetràedre més quatre petits tetràedres iguals, un a cada vèrtex retallat — comprova que 4×(volum d'un d'aquests) + 1/3 = 1 (el cub sencer).",
+      "ca": "El cub sencer es pot partir en aquest tetraedre més quatre petits tetraedres iguals, un a cada vèrtex retallat — comprova que 4×(volum d'un d'aquests) + 1/3 = 1 (el cub sencer).",
       "en": null
     }
   },
@@ -7110,7 +7110,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Quan C=90° (C'=90° també, ja que són suplementaris i tots dos fan 90°), cos C'=0 i la fórmula es converteix exactament en el Pitàgores de tota la vida —aquest resultat el conté com a cas particular, no el substitueix.\n\nI queda el tercer cas, el d'angle C agut, que val la pena que facis perquè és la mateixa construcció amb una sola diferència: el peu de l'alçada cau dins del costat a en comptes de passat l'extrem. La base del triangle rectangle gran, doncs, es queda curta en lloc d'allargar-se:\n\nara la base val a − b·cos C (en lloc de a + b·cos C') i l'alçada, b·sin C. Pitàgores al triangle gran: c² = (a − b·cos C)² + (b·sin C)². Desenvolupant, c² = a² − 2ab·cos C + b²cos²C + b²sin²C, i com que sin²C + cos²C = 1 (q84) els dos últims termes fan b²: c² = a² + b² − 2ab·cos C. Fixa't que és el mateix desenvolupament que acabes de fer, amb un únic signe canviat.\n\nAmb les dues meitats a la mà tens el resultat sencer, que es coneix com a teorema del cosinus: amb C agut hi va un menys, i amb C obtús un més davant del suplementari. I si acceptes definir cos(C) := −cos(180°−C) per als obtusos —el germà amb el signe canviat del que fa q87 amb el sinus— les dues línies es fonen en una de sola, c² = a² + b² − 2ab·cos C, per a qualsevol triangle. Comprova el cas agut amb a=b=√3/2 i C=arccos(1/3)≈70,53°: dona c²=1 exacte, que és justament el càlcul del diedre del tetràedre de q81.",
+      "ca": "Quan C=90° (C'=90° també, ja que són suplementaris i tots dos fan 90°), cos C'=0 i la fórmula es converteix exactament en el Pitàgores de tota la vida —aquest resultat el conté com a cas particular, no el substitueix.\n\nI queda el tercer cas, el d'angle C agut, que val la pena que facis perquè és la mateixa construcció amb una sola diferència: el peu de l'alçada cau dins del costat a en comptes de passat l'extrem. La base del triangle rectangle gran, doncs, es queda curta en lloc d'allargar-se:\n\nara la base val a − b·cos C (en lloc de a + b·cos C') i l'alçada, b·sin C. Pitàgores al triangle gran: c² = (a − b·cos C)² + (b·sin C)². Desenvolupant, c² = a² − 2ab·cos C + b²cos²C + b²sin²C, i com que sin²C + cos²C = 1 (q84) els dos últims termes fan b²: c² = a² + b² − 2ab·cos C. Fixa't que és el mateix desenvolupament que acabes de fer, amb un únic signe canviat.\n\nAmb les dues meitats a la mà tens el resultat sencer, que es coneix com a teorema del cosinus: amb C agut hi va un menys, i amb C obtús un més davant del suplementari. I si acceptes definir cos(C) := −cos(180°−C) per als obtusos —el germà amb el signe canviat del que fa q87 amb el sinus— les dues línies es fonen en una de sola, c² = a² + b² − 2ab·cos C, per a qualsevol triangle. Comprova el cas agut amb a=b=√3/2 i C=arccos(1/3)≈70,53°: dona c²=1 exacte, que és justament el càlcul del diedre del tetraedre de q81.",
       "en": null
     }
   },
@@ -7231,7 +7231,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "El triangle amb què treballaràs té per vèrtexs el punt mitjà de l'aresta compartida i els dos vèrtexs oposats, un de cada cara. Els dos costats que surten del punt mitjà són les dues alçades de cara (√3/2 per aresta 1); el tercer costat és el segment que uneix els dos vèrtexs oposats. Amb el teorema del cosinus (q79) n'aïlles l'angle del punt mitjà, que és el diedre.\n\nCompte amb el tercer costat, que NO és el mateix als dos sòlids: al tetràedre els dos vèrtexs oposats són veïns i el segment fa 1 (una aresta); a l'octàedre són diametralment oposats i fa √2. D'aquí surt tota la diferència entre els dos resultats.",
+          "ca": "El triangle amb què treballaràs té per vèrtexs el punt mitjà de l'aresta compartida i els dos vèrtexs oposats, un de cada cara. Els dos costats que surten del punt mitjà són les dues alçades de cara (√3/2 per aresta 1); el tercer costat és el segment que uneix els dos vèrtexs oposats. Amb el teorema del cosinus (q79) n'aïlles l'angle del punt mitjà, que és el diedre.\n\nCompte amb el tercer costat, que NO és el mateix als dos sòlids: al tetraedre els dos vèrtexs oposats són veïns i el segment fa 1 (una aresta); a l'octàedre són diametralment oposats i fa √2. D'aquí surt tota la diferència entre els dos resultats.",
           "en": null
         },
         "figura": null
@@ -7242,7 +7242,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Aquesta suma de 180° entre l'angle diedre del tetràedre i el de l'octàedre no és casualitat — és exactament el que fa possible omplir l'espai alternant-ne, que és el que es pregunta a continuació.",
+      "ca": "Aquesta suma de 180° entre l'angle diedre del tetraedre i el de l'octàedre no és casualitat — és exactament el que fa possible omplir l'espai alternant-ne, que és el que es pregunta a continuació.",
       "en": null
     }
   },
@@ -7273,7 +7273,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "A cada aresta d'aquest folrat, hi conflueixen alguns tetràedres i alguns octàedres. Amb l'angle diedre de cada un (q81), quina combinació suma 360°?",
+          "ca": "A cada aresta d'aquest folrat, hi conflueixen alguns tetraedres i alguns octàedres. Amb l'angle diedre de cada un (q81), quina combinació suma 360°?",
           "en": null
         },
         "figura": null
@@ -7294,7 +7294,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Dos angles diedres de tetràedre (2×70,53°) més dos d'octàedre (2×109,47°) sumen 360° exactes —perquè cada parella (un tetràedre, un octàedre) ja en suma 180° (q81). Comprova que aquesta combinació concreta (2+2) és la que realment es fa servir en aquest folrat.",
+          "ca": "Dos angles diedres de tetraedre (2×70,53°) més dos d'octàedre (2×109,47°) sumen 360° exactes —perquè cada parella (un tetraedre, un octàedre) ja en suma 180° (q81). Comprova que aquesta combinació concreta (2+2) és la que realment es fa servir en aquest folrat.",
           "en": null
         },
         "figura": null
@@ -7305,7 +7305,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "L'enunciat també et demana si hi ha ALTRES maneres de folrar l'espai, i n'hi ha una de molt més senzilla que aquesta: el cub. El seu angle diedre fa 90°, i 360/90 = 4 exactes, o sigui que quatre cubs es tanquen al voltant de cada aresta sense necessitar cap company.\n\nDe fet, si passes pel mateix filtre els cinc angles diedres de q81, veuràs que el cub és l'únic poliedre regular que ho aconsegueix tot sol: 360/70,53 = 5,10 (tetràedre), 360/90 = 4 (cub), 360/109,47 = 3,29 (octàedre), 360/116,57 = 3,09 (dodecàedre), 360/138,19 = 2,60 (icosàedre). Només el cub dona un enter. Per això el tetràedre necessita l'octàedre: sol no hi arriba, i la parella tetràedre+octàedre és la manera de tapar el forat que li queda.\n\nI aquí hi ha la diferència de debò amb el pla: a q03 hi havia TRES polígons regulars que folraven tots sols (triangle, quadrat, hexàgon), i a l'espai n'hi ha un de sol.",
+      "ca": "L'enunciat també et demana si hi ha ALTRES maneres de folrar l'espai, i n'hi ha una de molt més senzilla que aquesta: el cub. El seu angle diedre fa 90°, i 360/90 = 4 exactes, o sigui que quatre cubs es tanquen al voltant de cada aresta sense necessitar cap company.\n\nDe fet, si passes pel mateix filtre els cinc angles diedres de q81, veuràs que el cub és l'únic poliedre regular que ho aconsegueix tot sol: 360/70,53 = 5,10 (tetraedre), 360/90 = 4 (cub), 360/109,47 = 3,29 (octàedre), 360/116,57 = 3,09 (dodecàedre), 360/138,19 = 2,60 (icosàedre). Només el cub dona un enter. Per això el tetraedre necessita l'octàedre: sol no hi arriba, i la parella tetraedre+octàedre és la manera de tapar el forat que li queda.\n\nI aquí hi ha la diferència de debò amb el pla: a q03 hi havia TRES polígons regulars que folraven tots sols (triangle, quadrat, hexàgon), i a l'espai n'hi ha un de sol.",
       "en": null
     }
   },

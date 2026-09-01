@@ -164,6 +164,12 @@
   .data-warning ul { margin: 0.35rem 0 0; padding-left: 1.2rem; }
   .data-warning code { background: rgba(139,94,60,0.12); }
 
+  .field__font {
+    font-family: var(--font-mono); font-size: 0.6rem; text-transform: none;
+    letter-spacing: 0; color: var(--ink-faint); margin-left: 0.5rem;
+    padding: 0.05rem 0.3rem; border: 1px solid var(--rule); border-radius: 3px;
+  }
+
   .item-row:focus-visible { outline: none; box-shadow: inset var(--focus-ring); }
   .sol-ref > summary:focus-visible { outline: none; box-shadow: var(--focus-ring); border-radius: 4px; }
 
@@ -202,7 +208,7 @@
         <p>Navega per les pestanyes (Preguntes, Glossari, Demos, Itineraris, Interfície) o cerca directament a la caixa de dalt. Cada pregunta mostra de cop el seu enunciat i tota la guia (les 4 pistes, la comprovació i l'"i després"), amb la imatge corresponent al costat de cada pista, i al final la <strong>solució publicada</strong> plegada com a referència: obre-la per comprovar que la guia i la solució no es contradiuen, que és per on s'han escapat els errors de q05/q07, q33, q37, q57, q60, q69 i q83.</p>
         <p>Només s'hi mostra el text en <strong>català</strong>, que és l'únic que es repassa aquí. L'anglès del llibre i els textos <code>UI_LANGS.en</code> no hi surten.</p>
         <p>La cerca mira dins de tot el text visible d'una fitxa —enunciat, pistes, comprovació, i-després i solució— i té en compte les teves edicions, no el text original.</p>
-        <p>Amb el teclat: <kbd>↑</kbd>/<kbd>↓</kbd> a la llista per canviar de fitxa, i <kbd>Retorn</kbd> per obrir-la.</p>
+        <p>Els camps de la guia porten l'etiqueta <code>font:</code> amb el fitxer on viu de veritat aquell text. No has de fer res: <code>aplica-canvis.py</code> hi escriu tot sol i torna a compilar la còpia. Només ho has de saber si algun dia edites una guia a mà.</p>\n        <p>Amb el teclat: <kbd>↑</kbd>/<kbd>↓</kbd> a la llista per canviar de fitxa, i <kbd>Retorn</kbd> per obrir-la.</p>
         <p>Edita qualsevol text directament: es desa automàticament en aquest navegador (localStorage) perquè no perdis res encara que tanquis la pestanya. Un camp editat es marca en color; el botó <strong>↺ desfés</strong> el torna al text original.</p>
         <p><strong>✓ Marca com a revisada</strong> serveix per anotar que ja has llegit una fitxa encara que no calgui canviar-hi res, per no perdre el fil. <strong>Següent pendent</strong> et porta directament a la propera fitxa que encara no has tocat.</p>
         <p><strong>Desa tot (JSON)</strong> exporta una còpia completa de l'estat (per fer-ne còpia de seguretat, continuar en un altre ordinador, o importar-la aquí més tard). <strong>Exporta només els canvis</strong> exporta només les frases que has editat — aquest és el fitxer que has d'enviar-me perquè apliqui els canvis al codi del projecte.</p>
@@ -279,7 +285,7 @@
     return "";
   }
 
-  function camp(path, label, valor, multiline, hints) {
+  function camp(path, label, valor, multiline, hints, font) {
     return {
       path: path,
       label: label,
@@ -287,6 +293,11 @@
       original: valor || "",
       multiline: !!multiline,
       hints: hints || [],
+      // D'on surt de veritat aquest text. Els camps de guia no viuen al
+      // fitxer que llegeix l'eina: js/data/guies-dades.js el fabrica
+      // parse_guies.py des dels markdown de docs/guies/. aplica-canvis.py
+      // ja escriu al lloc correcte tot sol; això és només perquè es vegi.
+      font: font || null,
     };
   }
 
@@ -329,6 +340,12 @@
     return grup;
   }
 
+  // El text de les guies no viu a js/data/guies-dades.js: aquell fitxer és
+  // una còpia compilada. L'original és el markdown del lot corresponent.
+  function fontGuia(g) {
+    return g && g.lot ? "docs/guies/GUIES-LOT-" + g.lot + ".md" : "docs/guies/";
+  }
+
   function buildPreguntesItems(PREGUNTES, GUIES, ORDRE, SOLUCIONS) {
     const llista = Array.isArray(PREGUNTES) ? PREGUNTES : [];
     const byId = {};
@@ -369,7 +386,7 @@
           groups.push({
             heading: "Moviment",
             fields: [
-              camp("GUIES." + id + ".movimentTitol.ca", "Nom del moviment (com es mostra a la guia)", movTitol, false),
+              camp("GUIES." + id + ".movimentTitol.ca", "Nom del moviment (com es mostra a la guia)", movTitol, false, null, fontGuia(g)),
             ],
           });
         }
@@ -382,8 +399,8 @@
           const fields = [];
           const titolCa = p.titol ? ca(p.titol, base + ".titol") : null;
           const textCa = p.text ? ca(p.text, base + ".text") : null;
-          if (titolCa !== null) fields.push(camp(base + ".titol.ca", "Títol", titolCa, false));
-          if (textCa !== null) fields.push(camp(base + ".text.ca", "Text", textCa, true));
+          if (titolCa !== null) fields.push(camp(base + ".titol.ca", "Títol", titolCa, false, null, fontGuia(g)));
+          if (textCa !== null) fields.push(camp(base + ".text.ca", "Text", textCa, true, null, fontGuia(g)));
           if (fields.length === 0) return; // pista buida (només imatge) -- res a repassar
           groups.push({
             heading: "Pista " + (i + 1) + (titolCa ? " · " + titolCa : ""),
@@ -396,7 +413,7 @@
         if (compr !== null) {
           groups.push({
             heading: "Comprovació",
-            fields: [camp("GUIES." + id + ".comprovacio.ca", "Comprovació", compr, true)],
+            fields: [camp("GUIES." + id + ".comprovacio.ca", "Comprovació", compr, true, null, fontGuia(g))],
           });
         }
 
@@ -404,7 +421,7 @@
         if (desp !== null) {
           groups.push({
             heading: "I després",
-            fields: [camp("GUIES." + id + ".iDespres.ca", "I després", desp, true)],
+            fields: [camp("GUIES." + id + ".iDespres.ca", "I després", desp, true, null, fontGuia(g))],
           });
         }
       }
@@ -1250,6 +1267,15 @@
       hint.className = "field__hint";
       hint.textContent = "cont\u00e9 " + f.hints.join(", ") + " \u2014 no ho esborris";
       labelRow.appendChild(hint);
+    }
+
+    if (f.font) {
+      var fnt = document.createElement("span");
+      fnt.className = "field__font";
+      fnt.textContent = "font: " + f.font;
+      fnt.title = "Aquest text no viu al fitxer que llegeix l'eina, sin\u00f3 aqu\u00ed. "
+        + "aplica-canvis.py hi escriu tot sol i torna a compilar la c\u00f2pia.";
+      labelRow.appendChild(fnt);
     }
 
     var tag = document.createElement("span");

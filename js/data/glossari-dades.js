@@ -646,7 +646,7 @@ window.GLOSSARI = {
       en: ["polyhedron"]
     },
     definicio: {
-      ca: "Un cos geomètric la superfície del qual està formada per un nombre finit de polígons plans (les cares). Les cares es tallen en arestes, i les arestes es tallen en vèrtexs. Prismes, piràmides i tetràedres en són exemples.",
+      ca: "Un cos geomètric la superfície del qual està formada per un nombre finit de polígons plans (les cares). Les cares es tallen en arestes, i les arestes es tallen en vèrtexs. Prismes, piràmides i tetraedres en són exemples.",
       en: null
     },
     figura: "gloss-poliedre.png",
@@ -684,7 +684,7 @@ window.GLOSSARI = {
   "tetraedre": {
     id: "tetraedre",
     termes: {
-      ca: ["tetràedre"],
+      ca: ["tetraedre"],
       en: ["tetrahedron"]
     },
     definicio: {

@@ -588,6 +588,82 @@ if _ITIN:
         avis("guies visibles que declaren DEPÈN d'una pregunta amagada: %s"
              % "; ".join(_amagades))
 
+# --- la còpia compilada de les guies coincideix amb el seu original? -------
+# js/data/guies-dades.js NO és font: el fabrica parse_guies.py a partir dels
+# nou markdown de docs/guies/. Si algú edita el .js directament, el canvi hi
+# és fins que el proper parse_guies.py el reescrigui, i llavors desapareix
+# sense que ningú se n'assabenti. Això va passar de debò l'agost del 2026.
+# Aquí es refà la compilació en una carpeta temporal (mai es toca l'arbre de
+# treball) i es compara amb el fitxer que hi ha al repositori.
+def _guies_al_dia():
+    import shutil, subprocess, tempfile
+    if not os.path.exists("parse_guies.py") or not os.path.exists("js/data/guies-dades.js"):
+        return None, "falta parse_guies.py o js/data/guies-dades.js"
+    with tempfile.TemporaryDirectory() as tmp:
+        os.makedirs(os.path.join(tmp, "docs", "guies"))
+        os.makedirs(os.path.join(tmp, "js", "data"))
+        shutil.copy("parse_guies.py", tmp)
+        for n in os.listdir("docs/guies"):
+            if n.endswith(".md"):
+                shutil.copy(os.path.join("docs/guies", n), os.path.join(tmp, "docs", "guies", n))
+        if os.path.exists("docs/manifest-figures.tsv"):
+            shutil.copy("docs/manifest-figures.tsv", os.path.join(tmp, "docs"))
+        r = subprocess.run([sys.executable, "parse_guies.py"], cwd=tmp,
+                           capture_output=True, text=True)
+        if r.returncode != 0:
+            return None, "parse_guies.py falla sobre els .md actuals:\n" + (r.stdout or "")
+        refet = os.path.join(tmp, "js", "data", "guies-dades.js")
+        if not os.path.exists(refet):
+            return None, "parse_guies.py no ha generat cap sortida"
+        a = open(refet, encoding="utf-8").read()
+        b = open("js/data/guies-dades.js", encoding="utf-8").read()
+        return a == b, None
+
+_igual, _motiu = _guies_al_dia()
+if _motiu:
+    avis("no he pogut comprovar si les guies compilades estan al dia: " + _motiu)
+elif _igual:
+    ok("js/data/guies-dades.js coincideix amb els markdown de docs/guies/")
+else:
+    err("js/data/guies-dades.js NO coincideix amb docs/guies/*.md. Algú ha editat "
+        "la còpia compilada en lloc de l'original, i el canvi es perdrà al proper "
+        "parse_guies.py. Mira't el diff i porta l'edició al markdown.")
+
+# --- l'enunciat duplicat dins de solucions/qNN.html ------------------------
+# Cada fitxer de solució repeteix l'enunciat de la pregunta en un
+# <p class="question-entry__prompt">. És una CÒPIA de PREGUNTES.*.enunciat.ca,
+# i fins ago. 2026 res no comprovava que diguessin el mateix: la comprovació de
+# referències de sobre se salta solucions/ a posta. aplica-canvis.py ara les
+# mou alhora, però la deriva anterior s'ha de poder veure.
+_PROMPT = re.compile(r'<p class="question-entry__prompt">(.*?)</p>', re.S)
+def _text_pla(x):
+    import html as _h
+    return re.sub(r"\s+", " ", _h.unescape(re.sub(r"<[^>]+>", "", x))).strip()
+
+_desacords, _sense_prompt = [], []
+if os.path.isdir("solucions"):
+    _enun = {q["id"]: (q.get("enunciat") or {}).get("ca") for q in P}
+    for _n in sorted(os.listdir("solucions")):
+        if not _n.endswith(".html"):
+            continue
+        _qid = _n[:-5]
+        if _qid not in _enun:
+            continue
+        _m = _PROMPT.search(open(os.path.join("solucions", _n), encoding="utf-8").read())
+        if not _m:
+            _sense_prompt.append(_qid); continue
+        if _text_pla(_m.group(1)) != _enun[_qid]:
+            _desacords.append(_qid)
+if _sense_prompt:
+    avis("solucions sense l'enunciat a la capçalera: %s" % " ".join(_sense_prompt))
+if _desacords:
+    avis("l'enunciat de solucions/qNN.html no coincideix amb preguntes-dades.js a: %s. "
+         "Cal decidir quina versió val i igualar-les (compte: canviar només la "
+         "capçalera pot deixar el cos de la solució parlant d'una altra cosa)."
+         % " ".join(_desacords))
+else:
+    ok("l'enunciat duplicat a solucions/ coincideix amb preguntes-dades.js")
+
 # ------------------------------------------------------------------ informe
 print("\n%d comprovacions passades" % len(oks))
 if avisos:

@@ -9,7 +9,7 @@ o indirecta). Reordenat també respecte de la proposta inicial en dos punts
 concrets, per raons de dependència real trobades en escriure el contingut
 (v. `NOTA-LOT-8.md` §2): q79 abans de q88 (la deducció de l'angle doble fa
 servir el teorema del cosinus), i q81 abans de q82 (omplir l'espai amb
-tetràedres i octàedres fa servir els angles diedres exactes).
+tetraedres i octàedres fa servir els angles diedres exactes).
 
 **Avís obligatori a les guies 3D** (q81, q82): un angle recte no es veu
 recte en una projecció en perspectiva.
@@ -409,7 +409,7 @@ acceptes definir cos(C) := −cos(180°−C) per als obtusos —el germà amb el
 signe canviat del que fa q87 amb el sinus— les dues línies es fonen en una
 de sola, c² = a² + b² − 2ab·cos C, per a qualsevol triangle. Comprova el
 cas agut amb a=b=√3/2 i C=arccos(1/3)≈70,53°: dona c²=1 exacte, que és
-justament el càlcul del diedre del tetràedre de q81.
+justament el càlcul del diedre del tetraedre de q81.
 
 ---
 
@@ -544,7 +544,7 @@ que hi surt.
 ---
 
 ## 13. q81 — *What is the angle between the faces of a regular tetrahedron? How about for the other regular polyhedra?*
-> Quin és l'angle entre les cares d'un tetràedre regular? I per als altres poliedres regulars?
+> Quin és l'angle entre les cares d'un tetraedre regular? I per als altres poliedres regulars?
 
 **Moviment: redueix el desconegut al conegut.** DEPÈN de q57 (ja fet,
 volums dels sòlids platònics) i de la trigonometria d'aquest lot.
@@ -577,7 +577,7 @@ el tercer costat és el segment que uneix els dos vèrtexs oposats. Amb el
 teorema del cosinus (q79) n'aïlles l'angle del punt mitjà, que és el diedre.
 
 Compte amb el tercer costat, que NO és el mateix als dos sòlids: al
-tetràedre els dos vèrtexs oposats són veïns i el segment fa 1 (una aresta);
+tetraedre els dos vèrtexs oposats són veïns i el segment fa 1 (una aresta);
 a l'octàedre són diametralment oposats i fa √2. D'aquí surt tota la
 diferència entre els dos resultats.
 
@@ -597,14 +597,14 @@ es fa de cap: dues cares que comparteixen una aresta hi són perpendiculars,
 o sigui **90°**. Els altres dos surten arccos(−1/√5) ≈ 116,57° per al
 dodecàedre i arccos(−√5/3) ≈ 138,19° per a l'icosàedre.
 
-**I després.** Aquesta suma de 180° entre l'angle diedre del tetràedre i
+**I després.** Aquesta suma de 180° entre l'angle diedre del tetraedre i
 el de l'octàedre no és casualitat — és exactament el que fa possible
 omplir l'espai alternant-ne, que és el que es pregunta a continuació.
 
 ---
 
 ## 14. q82 — *Show that you can fill space completely using regular octahedrons and tetrahedrons. Can you find any other ways to tile three-dimensional space with symmetrical polyhedra?*
-> Demostra que es pot omplir l'espai completament amb octàedres i tetràedres regulars. Trobes altres maneres de folrar l'espai tridimensional amb poliedres simètrics?
+> Demostra que es pot omplir l'espai completament amb octàedres i tetraedres regulars. Trobes altres maneres de folrar l'espai tridimensional amb poliedres simètrics?
 
 **Moviment: recompte o inducció.** DEPÈN de q81 (aquest mateix lot) i de
 q03 (ja fet, el mateix recompte en 2D).
@@ -619,15 +619,15 @@ test que vas aplicar als mosaics plans de q03, ara en 3D i sobre arestes
 en lloc de vèrtexs.
 
 **Pista 1 — quants sòlids de cada mena, a cada aresta.**
-A cada aresta d'aquest folrat, hi conflueixen alguns tetràedres i alguns
+A cada aresta d'aquest folrat, hi conflueixen alguns tetraedres i alguns
 octàedres. Amb l'angle diedre de cada un (q81), quina combinació suma
 360°?
 
 **Pista 2 — la construcció.** → `fig-097.png`
 
 **Pista 3 — tanca-ho.**
-Dos angles diedres de tetràedre (2×70,53°) més dos d'octàedre
-(2×109,47°) sumen 360° exactes —perquè cada parella (un tetràedre, un
+Dos angles diedres de tetraedre (2×70,53°) més dos d'octàedre
+(2×109,47°) sumen 360° exactes —perquè cada parella (un tetraedre, un
 octàedre) ja en suma 180° (q81). Comprova que aquesta combinació
 concreta (2+2) és la que realment es fa servir en aquest folrat.
 
@@ -640,10 +640,10 @@ al voltant de cada aresta sense necessitar cap company.
 
 De fet, si passes pel mateix filtre els cinc angles diedres de q81, veuràs
 que el cub és **l'únic** poliedre regular que ho aconsegueix tot sol:
-360/70,53 = 5,10 (tetràedre), 360/90 = 4 (cub), 360/109,47 = 3,29
+360/70,53 = 5,10 (tetraedre), 360/90 = 4 (cub), 360/109,47 = 3,29
 (octàedre), 360/116,57 = 3,09 (dodecàedre), 360/138,19 = 2,60 (icosàedre).
-Només el cub dona un enter. Per això el tetràedre necessita l'octàedre: sol
-no hi arriba, i la parella tetràedre+octàedre és la manera de tapar el forat
+Només el cub dona un enter. Per això el tetraedre necessita l'octàedre: sol
+no hi arriba, i la parella tetraedre+octàedre és la manera de tapar el forat
 que li queda.
 
 I aquí hi ha la diferència de debò amb el pla: a q03 hi havia TRES polígons

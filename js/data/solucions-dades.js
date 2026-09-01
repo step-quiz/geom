@@ -1151,7 +1151,7 @@ window.SOLUCIONS = {
       }
     ],
     "resum": "L'estirament de factor 1/a en horitzontal i 1/b en vertical converteix qualsevol hipèrbola x²/a²−y²/b²=1 en la hipèrbola rectangular X²−Y²=1, d'asímptotes perpendiculars. A diferència de l'homotècia de la Qüestió 77 (el mateix factor a totes direccions), aquí calen dos factors diferents perquè és precisament aquesta diferència la que canvia l'angle entre les asímptotes.",
-    "titol": "Tota hipèrbola és una hipèrbola rectangular dilatada"
+    "titol": "Tota hipèrbola és una hipèrbola rectangular estirada"
   },
   "q113": {
     "passos": [
@@ -1381,7 +1381,7 @@ window.SOLUCIONS = {
       {
         "figures": [],
         "textos": [
-          "p=1 (y=x²/4) dilatada per factor 2 uniforme des del vèrtex. Seguint un punt: (x, x²/4) va a parar a (2x, x²/2). Amb X=2x la coordenada nova, x=X/2 i l'alçada nova és (X/2)²/2 = X²/8. La paràbola dilatada és, doncs, y=x²/8, és a dir p=2 —exactament k·p amb k=2. El focus, a alçada p, es mou de (0,1) a (0,2): s'allunya el mateix factor 2 que tota la resta.",
+          "p=1 (y=x²/4) escalada per factor 2 uniforme des del vèrtex. Seguint un punt: (x, x²/4) va a parar a (2x, x²/2). Amb X=2x la coordenada nova, x=X/2 i l'alçada nova és (X/2)²/2 = X²/8. La paràbola escalada és, doncs, y=x²/8, és a dir p=2 —exactament k·p amb k=2. El focus, a alçada p, es mou de (0,1) a (0,2): s'allunya el mateix factor 2 que tota la resta.",
           "Que calgui només un factor d'escala —en lloc de dos, com a la hipèrbola— és el primer indici que totes les paràboles són \"la mateixa figura, vista de més a prop o de més lluny\": la mateixa idea que torna a aparèixer quan la paràbola surt com a envolupant d'un feix de rectes."
         ],
         "titol": "Comprovació"
@@ -3380,7 +3380,7 @@ window.SOLUCIONS = {
       {
         "figures": [],
         "textos": [
-          "Un tetràedre regular té una simetria total entre els seus quatre vèrtexs —cap n'és especial. Si el \"centre\" existeix, aquesta simetria ja diu una cosa forta sobre on ha de ser."
+          "Un tetraedre regular té una simetria total entre els seus quatre vèrtexs —cap n'és especial. Si el \"centre\" existeix, aquesta simetria ja diu una cosa forta sobre on ha de ser."
         ],
         "titol": "Endevina per simetria"
       },
@@ -3401,20 +3401,20 @@ window.SOLUCIONS = {
         "textos": [
           "El punt G=(A+B+C+D)/4 és, alhora, el punt que hi ha a 3/4 del camí de cada vèrtex cap al centre de gravetat de la cara oposada. L'àlgebra que ho demostra són dues línies. El centre de gravetat de la cara oposada a A és (B+C+D)/3, i el punt situat a 3/4 del camí d'A cap allà és:",
           "A + (3/4)·[(B+C+D)/3 − A] = A + (B+C+D)/4 − (3/4)A = (A+B+C+D)/4 = G",
-          "I com que l'expressió (A+B+C+D)/4 no distingeix cap dels quatre vèrtexs, el mateix càlcul amb B, C o D al lloc d'A dona igualment G: els quatre segments hi passen tots. Aquí no cal ni tan sols que el tetràedre sigui regular —el càlcul val per a qualsevol tetràedre—; la regularitat és el que fa, a més, que G sigui equidistant dels quatre vèrtexs i mereixi el nom de \"centre\"."
+          "I com que l'expressió (A+B+C+D)/4 no distingeix cap dels quatre vèrtexs, el mateix càlcul amb B, C o D al lloc d'A dona igualment G: els quatre segments hi passen tots. Aquí no cal ni tan sols que el tetraedre sigui regular —el càlcul val per a qualsevol tetraedre—; la regularitat és el que fa, a més, que G sigui equidistant dels quatre vèrtexs i mereixi el nom de \"centre\"."
         ],
         "titol": "Tancar-ho"
       },
       {
         "figures": [],
         "textos": [
-          "Amb A=(1,1,1), B=(1,−1,−1), C=(−1,1,−1), D=(−1,−1,1) —un tetràedre regular clàssic inscrit en un cub—: G=(0,0,0). El centre de la cara BCD és ((1−1−1)/3,(−1+1−1)/3,(−1−1+1)/3)=(−1/3,−1/3,−1/3). El punt a 3/4 del camí d'A cap a aquest centre: A+(3/4)((−1/3,−1/3,−1/3)−A) = (1,1,1)+(3/4)(−4/3,−4/3,−4/3) = (1,1,1)+(−1,−1,−1) = (0,0,0) = G ✓."
+          "Amb A=(1,1,1), B=(1,−1,−1), C=(−1,1,−1), D=(−1,−1,1) —un tetraedre regular clàssic inscrit en un cub—: G=(0,0,0). El centre de la cara BCD és ((1−1−1)/3,(−1+1−1)/3,(−1−1+1)/3)=(−1/3,−1/3,−1/3). El punt a 3/4 del camí d'A cap a aquest centre: A+(3/4)((−1/3,−1/3,−1/3)−A) = (1,1,1)+(3/4)(−4/3,−4/3,−4/3) = (1,1,1)+(−1,−1,−1) = (0,0,0) = G ✓."
         ],
         "titol": "Comprovació"
       }
     ],
-    "resum": "El centre d'un tetràedre regular és el punt G=(A+B+C+D)/4, la mitjana dels quatre vèrtexs. Es troba a 3/4 del camí de cada vèrtex cap al centre de gravetat de la cara oposada —l'anàleg en 3D de la relació 2:1 del baricentre d'un triangle en 2D.",
-    "titol": "El centre d'un tetràedre: l'anàleg 3D del baricentre"
+    "resum": "El centre d'un tetraedre regular és el punt G=(A+B+C+D)/4, la mitjana dels quatre vèrtexs. Es troba a 3/4 del camí de cada vèrtex cap al centre de gravetat de la cara oposada —l'anàleg en 3D de la relació 2:1 del baricentre d'un triangle en 2D.",
+    "titol": "El centre d'un tetraedre: l'anàleg 3D del baricentre"
   },
   "q50": {
     "passos": [
@@ -3726,14 +3726,14 @@ window.SOLUCIONS = {
       {
         "figures": [],
         "textos": [
-          "Amb el cub de costat 1 i vèrtexs a {0,1}³, es trien (0,0,0), (1,1,0), (1,0,1), (0,1,1). Cal comprovar que cada parella d'aquests quatre punts és a distància √2 —una diagonal de cara—: si ho és per a totes sis parelles, ja hi ha un tetràedre regular."
+          "Amb el cub de costat 1 i vèrtexs a {0,1}³, es trien (0,0,0), (1,1,0), (1,0,1), (0,1,1). Cal comprovar que cada parella d'aquests quatre punts és a distància √2 —una diagonal de cara—: si ho és per a totes sis parelles, ja hi ha un tetraedre regular."
         ],
         "titol": "Una tria concreta"
       },
       {
         "figures": [
           {
-            "peu": "El tetràedre en vermell: quatre vèrtexs alterns del cub, units per sis diagonals de cara.",
+            "peu": "El tetraedre en vermell: quatre vèrtexs alterns del cub, units per sis diagonals de cara.",
             "src": "assets/img/pistes/fig-029.png"
           }
         ],
@@ -3744,21 +3744,21 @@ window.SOLUCIONS = {
         "figures": [],
         "textos": [
           "Hi ha dos camins, i val la pena saber que n'hi ha dos.",
-          "El curt fa servir una eina de nivell més avançat: el volum d'un tetràedre és (1/6)|det[B−A, C−A, D−A]|, un determinant 3×3. Amb les coordenades de dalt, aquest càlcul dona directament el resultat.",
-          "El llarg no necessita res de nou, i de fet ensenya més. Es mira què queda del cub quan se n'ha tret el tetràedre: quatre trossos, un a cada cantonada no usada. Semblaria que cadascun és una piràmide amb una cara sencera del cub per base (àrea 1) i una aresta per alçada (1) —volum (1/3)(1)(1) = 1/3, que ja és massa per a quatre trossos junts. Mirant-ho més bé: la base de cada tros no és una cara sencera, és mig cara —un triangle rectangle d'àrea 1/2— i l'alçada continua sent 1. Volum de cada tros: (1/3)(1/2)(1) = 1/6. Quatre trossos fan 4/6 = 2/3. El tetràedre és, doncs, 1 − 2/3 del cub —el mateix resultat que el camí curt."
+          "El curt fa servir una eina de nivell més avançat: el volum d'un tetraedre és (1/6)|det[B−A, C−A, D−A]|, un determinant 3×3. Amb les coordenades de dalt, aquest càlcul dona directament el resultat.",
+          "El llarg no necessita res de nou, i de fet ensenya més. Es mira què queda del cub quan se n'ha tret el tetraedre: quatre trossos, un a cada cantonada no usada. Semblaria que cadascun és una piràmide amb una cara sencera del cub per base (àrea 1) i una aresta per alçada (1) —volum (1/3)(1)(1) = 1/3, que ja és massa per a quatre trossos junts. Mirant-ho més bé: la base de cada tros no és una cara sencera, és mig cara —un triangle rectangle d'àrea 1/2— i l'alçada continua sent 1. Volum de cada tros: (1/3)(1/2)(1) = 1/6. Quatre trossos fan 4/6 = 2/3. El tetraedre és, doncs, 1 − 2/3 del cub —el mateix resultat que el camí curt."
         ],
         "titol": "Tancar-ho — dos camins"
       },
       {
         "figures": [],
         "textos": [
-          "Amb A=(0,0,0), B=(1,1,0), C=(1,0,1), D=(0,1,1): det[(1,1,0),(1,0,1),(0,1,1)] = 1(0−1)−1(1−0)+0(1−0) = −1−1+0 = −2. Volum = 2/6 = 1/3. El tetràedre ocupa exactament un terç del cub."
+          "Amb A=(0,0,0), B=(1,1,0), C=(1,0,1), D=(0,1,1): det[(1,1,0),(1,0,1),(0,1,1)] = 1(0−1)−1(1−0)+0(1−0) = −1−1+0 = −2. Volum = 2/6 = 1/3. El tetraedre ocupa exactament un terç del cub."
         ],
         "titol": "Comprovació"
       }
     ],
-    "resum": "El tetràedre regular format per quatre diagonals de cara d'un cub ocupa exactament 1/3 del seu volum. El cub sencer es reparteix entre aquest tetràedre i quatre petites piràmides de cantonada, cadascuna de volum 1/6.",
-    "titol": "El tetràedre de les diagonals: un terç del cub"
+    "resum": "El tetraedre regular format per quatre diagonals de cara d'un cub ocupa exactament 1/3 del seu volum. El cub sencer es reparteix entre aquest tetraedre i quatre petites piràmides de cantonada, cadascuna de volum 1/6.",
+    "titol": "El tetraedre de les diagonals: un terç del cub"
   },
   "q57": {
     "passos": [
@@ -3772,19 +3772,19 @@ window.SOLUCIONS = {
       {
         "figures": [],
         "textos": [
-          "S'uneix el centre del sòlid amb cadascun dels seus vèrtexs: això és el que el parteix en piràmides, una per cada cara. (Convé no confondre-ho amb el segment que va del centre al centre d'una cara: aquell no talla res, però farà falta de seguida, perquè és l'alçada de cada piràmide.) Quantes peces en surten, per a un tetràedre? I per a un octàedre?"
+          "S'uneix el centre del sòlid amb cadascun dels seus vèrtexs: això és el que el parteix en piràmides, una per cada cara. (Convé no confondre-ho amb el segment que va del centre al centre d'una cara: aquell no talla res, però farà falta de seguida, perquè és l'alçada de cada piràmide.) Quantes peces en surten, per a un tetraedre? I per a un octàedre?"
         ],
         "titol": "Parteix-lo en peces que ja se sap mesurar"
       },
       {
         "figures": [
           {
-            "peu": "Segments (vermell) del centre a cada vèrtex: el tetràedre queda partit en 4 piràmides, l'octàedre en 8 —una per cada cara, en tots dos casos.",
+            "peu": "Segments (vermell) del centre a cada vèrtex: el tetraedre queda partit en 4 piràmides, l'octàedre en 8 —una per cada cara, en tots dos casos.",
             "src": "assets/img/pistes/fig-076.png"
           }
         ],
         "textos": [
-          "El tetràedre i l'octàedre, cadascun partit en piràmides des del seu centre —el mateix nombre de piràmides que de cares."
+          "El tetraedre i l'octàedre, cadascun partit en piràmides des del seu centre —el mateix nombre de piràmides que de cares."
         ],
         "titol": "La construcció"
       },
@@ -4890,7 +4890,7 @@ window.SOLUCIONS = {
         "figures": [],
         "textos": [
           "El triangle amb què es treballa té per vèrtexs el punt mitjà de l'aresta compartida i els dos vèrtexs oposats, un de cada cara —no «els dos peus i el centre»: el peu és un de sol, i és el punt mitjà. Els dos costats que en surten són les dues alçades de cara (√3/2 per a aresta 1) i el tercer és el segment que uneix els dos vèrtexs oposats. Amb el teorema del cosinus (Qüestió 79) s'aïlla l'angle del punt mitjà, que és el diedre.",
-          "El tercer costat no és el mateix als dos sòlids, i d'aquí surt tota la diferència: al tetràedre els dos vèrtexs oposats són veïns i el segment val 1 (una aresta), de manera que 1 = 3/4+3/4−2(3/4)cosθ dona cos θ = 1/3; a l'octàedre són diametralment oposats i val √2, de manera que 2 = 3/4+3/4−2(3/4)cosθ dona cos θ = −1/3.",
+          "El tercer costat no és el mateix als dos sòlids, i d'aquí surt tota la diferència: al tetraedre els dos vèrtexs oposats són veïns i el segment val 1 (una aresta), de manera que 1 = 3/4+3/4−2(3/4)cosθ dona cos θ = 1/3; a l'octàedre són diametralment oposats i val √2, de manera que 2 = 3/4+3/4−2(3/4)cosθ dona cos θ = −1/3.",
           "I aquí cal una advertència sobre la segona meitat de la pregunta, la dels altres tres poliedres. La recepta concreta —anar del punt mitjà de l'aresta al vèrtex oposat de la cara— només dona una perpendicular a l'aresta quan la cara és un triangle equilàter. En una cara quadrada, el segment del punt mitjà d'un costat al vèrtex oposat va de biaix i no serveix: el que hi val és anar al punt mitjà del costat oposat. La idea de fons —dos segments, un a cada cara, tots dos perpendiculars a l'aresta compartida— sí que és general; la recepta, no."
         ],
         "titol": "Tancar-ho"
@@ -4899,13 +4899,13 @@ window.SOLUCIONS = {
         "figures": [],
         "textos": [
           "arccos(1/3) ≈ 70,53° i arccos(−1/3) ≈ 109,47°: 70,53° + 109,47° = 180,00° exactament (perquè arccos(−x) = 180° − arccos(x) per a qualsevol x).",
-          "Aquesta suma de 180° no és casualitat —és exactament el que fa possible omplir l'espai alternant tetràedres i octàedres regulars sense deixar cap buit, encaixant sempre perfectament al voltant de cada aresta compartida."
+          "Aquesta suma de 180° no és casualitat —és exactament el que fa possible omplir l'espai alternant tetraedres i octàedres regulars sense deixar cap buit, encaixant sempre perfectament al voltant de cada aresta compartida."
         ],
         "titol": "Comprovació"
       }
     ],
-    "resum": "L'angle diedre del tetràedre regular és arccos(1/3) ≈ 70,53°; el de l'octàedre regular és arccos(−1/3) ≈ 109,47°. Aquests dos angles sumen exactament 180°. Els cinc, per completar la pregunta: tetràedre 70,53°, cub 90° (immediat: dues cares que comparteixen una aresta hi són perpendiculars), octàedre 109,47°, dodecàedre arccos(−1/√5) ≈ 116,57° i icosàedre arccos(−√5/3) ≈ 138,19°.",
-    "titol": "L'angle diedre: tetràedre i octàedre sumen 180°"
+    "resum": "L'angle diedre del tetraedre regular és arccos(1/3) ≈ 70,53°; el de l'octàedre regular és arccos(−1/3) ≈ 109,47°. Aquests dos angles sumen exactament 180°. Els cinc, per completar la pregunta: tetraedre 70,53°, cub 90° (immediat: dues cares que comparteixen una aresta hi són perpendiculars), octàedre 109,47°, dodecàedre arccos(−1/√5) ≈ 116,57° i icosàedre arccos(−√5/3) ≈ 138,19°.",
+    "titol": "L'angle diedre: tetraedre i octàedre sumen 180°"
   },
   "q82": {
     "passos": [
@@ -4919,14 +4919,14 @@ window.SOLUCIONS = {
       {
         "figures": [],
         "textos": [
-          "A cada aresta d'aquest folrat, hi conflueixen alguns tetràedres i alguns octàedres. Amb l'angle diedre de cadascun (ja trobat), quina combinació suma 360°?"
+          "A cada aresta d'aquest folrat, hi conflueixen alguns tetraedres i alguns octàedres. Amb l'angle diedre de cadascun (ja trobat), quina combinació suma 360°?"
         ],
         "titol": "Quants sòlids de cada mena, a cada aresta"
       },
       {
         "figures": [
           {
-            "peu": "L'aresta compartida, marcada en vermell, tant al tetràedre com a l'octàedre.",
+            "peu": "L'aresta compartida, marcada en vermell, tant al tetraedre com a l'octàedre.",
             "src": "assets/img/pistes/fig-097.png"
           }
         ],
@@ -4936,7 +4936,7 @@ window.SOLUCIONS = {
       {
         "figures": [],
         "textos": [
-          "Dos angles diedres de tetràedre (2×70,53°) més dos d'octàedre (2×109,47°) sumen 360° exactes —perquè cada parella (un tetràedre, un octàedre) ja en suma 180°. Aquesta combinació concreta (2+2) és la que realment es fa servir en aquest folrat de l'espai."
+          "Dos angles diedres de tetraedre (2×70,53°) més dos d'octàedre (2×109,47°) sumen 360° exactes —perquè cada parella (un tetraedre, un octàedre) ja en suma 180°. Aquesta combinació concreta (2+2) és la que realment es fa servir en aquest folrat de l'espai."
         ],
         "titol": "Tancar-ho"
       },
@@ -4945,14 +4945,14 @@ window.SOLUCIONS = {
         "textos": [
           "2×70,53°+2×109,47° = 141,06°+218,94° = 360° exacte.",
           "L'enunciat també pregunta si hi ha altres maneres de folrar l'espai, i n'hi ha una de molt més senzilla que aquesta: el cub. El seu angle diedre val 90°, i 360/90 = 4 exactes, de manera que quatre cubs es tanquen al voltant de cada aresta sense necessitar cap company.",
-          "Passant els cinc angles diedres de la Qüestió 81 pel mateix filtre es veu que el cub és, a més, l'únic poliedre regular que ho aconsegueix tot sol: 360/70,53 = 5,10 (tetràedre), 360/90 = 4 (cub), 360/109,47 = 3,29 (octàedre), 360/116,57 = 3,09 (dodecàedre), 360/138,19 = 2,60 (icosàedre). Només el cub dona un enter — i aquesta és exactament la raó per la qual el tetràedre necessita un company: sol no hi arriba, i l'octàedre és el que li tapa el forat que li queda.",
+          "Passant els cinc angles diedres de la Qüestió 81 pel mateix filtre es veu que el cub és, a més, l'únic poliedre regular que ho aconsegueix tot sol: 360/70,53 = 5,10 (tetraedre), 360/90 = 4 (cub), 360/109,47 = 3,29 (octàedre), 360/116,57 = 3,09 (dodecàedre), 360/138,19 = 2,60 (icosàedre). Només el cub dona un enter — i aquesta és exactament la raó per la qual el tetraedre necessita un company: sol no hi arriba, i l'octàedre és el que li tapa el forat que li queda.",
           "La comparació justa amb el pla és, doncs, aquesta: a la Qüestió 3 hi havia tres polígons regulars capaços de folrar tots sols (triangle, quadrat, hexàgon); a l'espai n'hi ha un."
         ],
         "titol": "Comprovació"
       }
     ],
-    "resum": "Al voltant de cada aresta, dos tetràedres i dos octàedres regulars omplen exactament els 360°: aquesta combinació folra l'espai tridimensional sense deixar cap buit ni superposició. I sobre la segona meitat de la pregunta: sí que n'hi ha una altra, i més simple —el cub, amb quatre al voltant de cada aresta (4×90° = 360°), que és l'únic poliedre regular que folra l'espai tot sol.",
-    "titol": "Folrar l'espai: dos tetràedres per cada octàedre"
+    "resum": "Al voltant de cada aresta, dos tetraedres i dos octàedres regulars omplen exactament els 360°: aquesta combinació folra l'espai tridimensional sense deixar cap buit ni superposició. I sobre la segona meitat de la pregunta: sí que n'hi ha una altra, i més simple —el cub, amb quatre al voltant de cada aresta (4×90° = 360°), que és l'únic poliedre regular que folra l'espai tot sol.",
+    "titol": "Folrar l'espai: dos tetraedres per cada octàedre"
   },
   "q84": {
     "passos": [

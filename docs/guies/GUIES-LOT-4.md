@@ -69,14 +69,14 @@ figura.
 ## 1. q01 — *Where is the "center" of an equilateral triangle?*
 > On és el "centre" d'un triangle equilàter?
 
-**Moviment: troba un punt per simetria (moviment nou d'aquest lot).**
+**Moviment: Troba un punt destacat d'aquest triangle, pensant en la simetria.**
 
 **Pista 0 — què vol dir "el" centre.**
 Un triangle qualsevol té diversos punts que es podrien dir "centre": on es
-tallen les altures, on es tallen les bisectrius, on es tallen les medianes...
-En general són **tres punts diferents**. La pregunta interessant no és calcular-
-ne un, és preguntar-se per què, en el cas equilàter, tothom en diu *el* centre
-com si n'hi hagués només un.
+tallen les altures, on es tallen les bisectrius, on es tallen les
+medianes... En general són **punts diferents**. La pregunta interessant no
+és calcular-ne un, és preguntar-se per què, en el cas equilàter, tothom en
+diu "*el* centre", com si n'hi hagués només un.
 
 **Pista 1 — comença per una sola mediana.**
 Tria un vèrtex i uneix-lo amb el punt mitjà del costat oposat. Aquesta línia,

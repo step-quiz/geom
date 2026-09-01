@@ -56,7 +56,7 @@ asímptotes canvia.
 
 **Pista 2 — la construcció.** → `fig-116.png`
 Una hipèrbola amb asímptotes inclinades (traç negre), i al costat, en
-sanguina, la mateixa hipèrbola després de dilatar cada eix pel factor
+sanguina, la mateixa hipèrbola després d'estirar cada eix pel factor
 que cal — les asímptotes ara perpendiculars.
 
 **Pista 3 — tanca-ho.**
@@ -88,7 +88,7 @@ referència). DEPÈN de q112.
 **Pista 0 — què has de produir.**
 Dues coses: (1) la posició dels focus de x²−y²=1 (la hipèrbola recta
 més senzilla, amb a=b=1), i (2) la fórmula general dels focus després
-de dilatar-la per (a, b) — que és la mateixa hipèrbola de q112.
+d'estirar-la per (a, b) — que és la mateixa hipèrbola de q112.
 
 **Pista 1 — Pitàgores, no resta.**
 A l'el·lipse, c²=a²−b² (el focus és "més a prop" que el semieix gran).
@@ -110,7 +110,7 @@ demostra.
 Amb a=b=1: c=√(1+1)=√2, la diagonal del quadrat de costat 1.
 
 Ara la segona meitat, i **aquí hi ha la trampa gran de la pregunta**.
-En dilatar per (a,b) la corba es transforma bé: els vèrtexs (±1,0)
+En estirar per (a,b) la corba es transforma bé: els vèrtexs (±1,0)
 passen a (±a,0), que són els vèrtexs nous. Amb els focus, en canvi, la
 l'estirament **no serveix**: el punt on va a parar el focus antic no és el
 focus nou. Mira-ho amb números abans de creure-t'ho: amb a=4 i b=3, el
@@ -300,10 +300,10 @@ vèrtex, y=x²/(4p) es converteix en y=x²/(4·k·p): totes les paràboles
 són homotècies les unes de les altres, a diferència de les
 hipèrboles, que en necessiten dues de diferents.
 
-**Comprovació.** p=1 (y=x²/4) dilatada per factor 2 uniforme des del
+**Comprovació.** p=1 (y=x²/4) escalada per factor 2 uniforme des del
 vèrtex. Fes-ho seguint un punt: (x, x²/4) va a parar a (2x, x²/2). Si
 n'anomenes X=2x la coordenada nova, aleshores x=X/2 i l'alçada nova és
-(X/2)²/2 = X²/8. La paràbola dilatada és, doncs, y = x²/8, és a dir
+(X/2)²/2 = X²/8. La paràbola escalada és, doncs, y = x²/8, és a dir
 p=2 — exactament el k·p de la Pista 3, amb k=2. El focus, que és a
 alçada p, es mou de (0,1) a (0,2): s'allunya el mateix factor 2 que tota
 la resta, com ha de fer qualsevol punt en una homotècia. Si t'ha sortit

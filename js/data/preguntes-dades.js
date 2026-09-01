@@ -142,7 +142,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Where is the center of an equilateral triangle?",
-      "ca": "On és el centre d'un triangle equilàter?"
+      "ca": "Com podem trobar el centre d'un triangle equilàter?"
     },
     "pista": {
       "en": null,
@@ -1544,7 +1544,7 @@ window.PREGUNTES = [
       "ca": null
     },
     "_notaExtraccio": null,
-    "_notaClassificacio": "argument de dilatació des del cercle"
+    "_notaClassificacio": "argument d'estirament des del cercle"
   },
   {
     "id": "q47",
@@ -1630,7 +1630,7 @@ window.PREGUNTES = [
       "en": null,
       "ca": null
     },
-    "_notaExtraccio": "tetràedre, centre marcat",
+    "_notaExtraccio": "tetraedre, centre marcat",
     "_notaClassificacio": "anàleg 3D del centre del triangle"
   },
   {
@@ -2793,7 +2793,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "How exactly does the dilation factor depend on the angle between the planes?",
-      "ca": "Com depèn exactament el factor de dilatació de l'angle entre els plans?"
+      "ca": "Com depèn exactament el factor d'escala de l'angle entre els plans?"
     },
     "pista": {
       "en": null,
@@ -2822,7 +2822,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Do projections in any direction always produce dilations?",
-      "ca": "Les projeccions en qualsevol direcció sempre produeixen dilatacions?"
+      "ca": "Les projeccions en qualsevol direcció sempre produeixen homotècies?"
     },
     "pista": {
       "en": null,
@@ -3382,7 +3382,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "Why is every hyperbola a dilation of a right hyperbola?",
-      "ca": "Per què tota hipèrbola és una dilatació d'una hipèrbola rectangular?"
+      "ca": "Per què tota hipèrbola és un estirament d'una hipèrbola rectangular?"
     },
     "pista": {
       "en": null,
@@ -3522,7 +3522,7 @@ window.PREGUNTES = [
     },
     "enunciat": {
       "en": "What about dilations of a parabola?",
-      "ca": "Què passa amb les dilatacions d'una paràbola?"
+      "ca": "Què passa amb les homotècies d'una paràbola?"
     },
     "pista": {
       "en": null,

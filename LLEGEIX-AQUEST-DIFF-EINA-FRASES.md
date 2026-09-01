@@ -1,139 +1,138 @@
-# Diff — eina-frases.html: 6 errors, fora l'anglès, i el cicle tancat (ago. 2026)
-
-Només fitxers nous o modificats, amb la jerarquia intacta.
+# Diff — Fase A, els teus 3 canvis, i les dues decisions de vocabulari
 
     unzip -o geom-eina-frases-diff.zip -d ruta/al/geom-main/
-    python3 genera-solucions-dades.py     # si no fies del .js que ve al zip
     python3 verifica_projecte.py
 
-Verificat: original + aquest diff dona **53 comprovacions passades, tot
-correcte** (les mateixes 53 i els mateixos 2 avisos que abans), i l'eina
-passa 36 proves automàtiques en un Chrome de veritat sobre `file://`.
-
-El nom del fitxer no és `LLEGEIX-AQUEST-DIFF.md` a posta: aquell ja existeix
-i explica l'auditoria de documentació anterior. Aquest no el trepitja.
-
-## Nou (4)
-
-    aplica-canvis.py                 aplica el JSON exportat per l'eina als
-                                     fitxers de dades, sense reescriure'ls
-    genera-solucions-dades.py        aplana solucions/qNN.html a un .js
-    js/data/solucions-dades.js       generat pel de sobre (117 solucions,
-                                     602 passos, 398 KB)
-    LLEGEIX-AQUEST-DIFF-EINA-FRASES.md   aquesta nota
-
-## Modificats (1)
-
-    eina-frases.html                 tot el que hi ha a sota
+Ja hi ha tot aplicat i tots els fitxers derivats regenerats. **No has
+d'executar res més.** Verificat sobre una còpia neta: **55 comprovacions
+passades, tot correcte**, i els dos avisos que queden són els mateixos de
+sempre (ordre dels itineraris i DEPÈN de preguntes amagades). L'eina passa 36
+proves automàtiques en un Chrome de veritat.
 
 ---
 
-## Els sis errors
+## 1. «tetraedre», sense accent
 
-**1. La cerca no arribava a la major part del text.** El `placeholder` promet
-"Cerca dins de totes les frases", però d'una pregunta només s'hi indexava
-l'enunciat: les 4 pistes, la comprovació i l'"i després" quedaven fora. En 133
-de les 199 fitxes el text indexat cobria menys de la meitat del que es veu.
-Ara s'indexa tot el que hi ha a la fitxa (solució inclosa) i amb el valor
-**actual**, no l'original: si has reescrit una frase, la trobes pel text nou.
-La cobertura passa de 66 a 199 de 199 fitxes.
+71 substitucions als fitxers de contingut: les dues guies que l'usaven
+(`GUIES-LOT-3.md` 12, `GUIES-LOT-8.md` 12), `glossari-dades.js` (2),
+`preguntes-dades.js` (1) i cinc solucions (q49 9, q56 12, q57 4, q81 8,
+q82 11). Ara el projecte en té **93 sense accent i cap amb accent**.
 
-**2. Importar una còpia de "Desa tot" donava conflictes falsos.** Un camp que
-no havies tocat viatja al JSON amb `original === actual`. Si mentrestant
-aquell text havia canviat al projecte, entrava al primer filtre i queia al
-segon com a conflicte, tot i que no l'havies editat mai. Amb un tram de
-correccions aplicat pel mig, una còpia de seguretat generava desenes de
-conflictes inventats. El camp `canviat` ja era al payload i no es feia servir;
-ara sí. A sobre, si ja tens feina al navegador, la importació pregunta si vols
-**substituir** o **fusionar** — abans només fusionava, i una edició desfeta en
-un ordinador seguia viva a l'altre.
+He deixat fora **els documents de treball i els registres de canvis**
+(`docs/*.md`, `NOTA-*.md`, `CANVIS-TRAM-*.md`). Aquells són el registre del
+que es va fer i del que es va escriure aleshores; reescriure'ls seria
+falsejar-lo. Si vols que també els unifiqui, s'hi va en un moment.
 
-**3. `itemHasEdits()` mirava si la clau existia, no si el valor havia
-canviat.** La resta del codi compara valors. Les dues coses divergeixen just
-després d'aplicar els canvis al projecte: el codi ja porta el teu text,
-l'export de canvis (correctament) ja no l'inclou, però la fitxa es quedava
-marcada "editada" per sempre i el comptador la seguia sumant. Ara compara
-valors, i en carregar es poden les edicions desades que el projecte ja porta i
-les que ja no corresponen a cap camp.
+## 2. «homotècia», amb un matís que has de saber
 
-**4. El text llarg quedava tallat i no es podia desplaçar.** `max-height:520px`
-amb `overflow-y:hidden`: `GUIES.q121.pistes[3].text.ca` fa 2.027 caràcters i
-se n'anava molt per sobre, i en finestra estreta hi queien uns 38 camps. Ara
-`overflow-y:auto` i `max-height:60vh`.
+Buscant-ho vaig trobar que **el projecte ja tenia la decisió presa i escrita**,
+a `GUIES-LOT-8.md` i a `solucions/q77.html`:
 
-**5. La barra lateral no seguia la fitxa seleccionada.** "Següent pendent"
-saltava de la fitxa 5 a la 120 i la llista es quedava dalt de tot. Ara hi ha
-`scrollIntoView`, i les files es poden recórrer amb ↑/↓ i obrir amb Retorn.
+> «En català aquella transformació es diu **homotècia**; "dilatació" és un fals
+> amic —vol dir el que fan els metalls amb la calor.»
 
-**6. Una excepció dins de `buildAllItems()` deixava la pàgina en blanc i
-muda.** `init()` no la capturava i `showDataError()` només cobria el cas dels
-globals absents. Ara l'extractor va tot amb guardes, els problemes s'acumulen
-i surten en un avís a dalt sense deixar de funcionar, i si tot i així peta,
-la pantalla d'error mostra el detall tècnic. Provat: esborrant les `pistes` i
-la `comprovacio` d'una guia, l'eina segueix construint les 199 fitxes i ho
-reporta.
+O sigui que «dilatació» era un calc de l'anglès *dilation* que s'havia colat
+als enunciats. La teva decisió coincideix amb la regla que ja hi era.
 
-També: `NaN%` al progrés si mai no hi hagués cap fitxa, `aria-expanded` a
-l'ajuda, i avís en tancar si hi ha edicions posteriors a l'última exportació
-(sota `file://` amb el Firefox l'autodesat no funciona i el JSON és l'única
-còpia real).
+**Però no totes les quatre volien la mateixa paraula.** Cadascuna ha pres la
+que ja feia servir la seva pròpia solució:
 
-## Fora l'anglès
+| pregunta | deia | ara diu | per què |
+|---|---|---|---|
+| q91 | factor de dilatació | **factor d'escala** | és el títol de la seva solució |
+| q92 | dilatacions | **homotècies** | la solució defineix homotècia allà mateix |
+| q112 | dilatació | **estirament** | vegeu sota |
+| q117 | dilatacions | **homotècies** | la guia diu «per factor 2 **uniforme**» |
 
-L'eina ja no mostra ni deixa editar cap text en anglès: ni `UI_LANGS.en.*`, ni
-l'enunciat original del llibre, ni les formes angleses del glossari. Els
-textos segueixen als fitxers de dades i no els toca ningú des d'aquí.
+**q112 no podia ser «homotècia».** Una homotècia multiplica totes les
+longituds pel mateix factor, o sigui que porta una hipèrbola rectangular a una
+altra de rectangular. Dir «tota hipèrbola és una homotècia d'una hipèrbola
+rectangular» seria fals. Cal escalar cada eix pel seu factor: un **estirament**,
+que és el que ja deia la seva solució i el que fa la guia del lot 10 («estirar
+cada eix pel factor que cal»).
 
-Els camps editables passen de 1.796 a 1.704, i **els 92 que desapareixen són
-exactament tots els `UI_LANGS.en.*`**: cap altre `path` canvia. Els JSON que
-ja tinguis exportats i el `localStorage` segueixen sent compatibles — els
-camps anglesos sortiran com a "ja no existeixen en aquesta versió".
+De passada, `solucions/q112.html` es contradeia amb ella mateixa: el títol i
+l'`<h1>` deien «hipèrbola rectangular **dilatada**» mentre el text parlava
+d'estirament. Corregit.
 
-## La solució al costat de la guia
+També he netejat el mateix fals amic a `GUIES-LOT-10.md` (5: tres eren
+estiraments per eix, dos eren escalats uniformes), `solucions/q117.html` (2),
+`solucions/q100.html` (1, a la meta description) i la nota interna
+`_notaClassificacio` de q46 — l'àrea de l'el·lipse surt d'**estirar** un
+cercle, no d'escalar-lo uniformement.
 
-Al final de cada pregunta hi ha ara la solució publicada, plegada, no
-editable, i indexada per la cerca. El motiu és del propi projecte:
-`docs/revisio-matematica/extreu-per-revisar.py` ja avisava que repassar la
-guia i la solució per separat és com se't cola que es contradiguin, i és el
-que va passar a q05/q07, q33, q37, q57, q60, q69 i q83.
+He deixat tres «dilata» a posta: el nom del fitxer de figura
+`049_dilatacio_volum_cub.png` (canviar-lo trencaria el manifest i la imatge),
+i les dues explicacions del fals amic, que necessiten la paraula per
+explicar-la.
 
-El text ve de `js/data/solucions-dades.js`, generat des de `solucions/*.html`.
-És un `.js` amb una global i no un `.json` amb `fetch()` pel mateix motiu que
-la resta de `js/data/`: el lloc s'ha de poder obrir amb doble clic sobre
-`file://`, on `fetch()` queda bloquejat per CORS.
+## 3. Els teus 3 canvis de q01
 
-**Cal regenerar-lo cada cop que es toqui res de `solucions/`.** Si no, l'eina
-ensenyarà la versió vella i et pot fer buscar una contradicció que ja no hi
-és. No fa cap mal a `solucions/`: és una còpia de només lectura.
+| camp | on ha anat |
+|---|---|
+| `PREGUNTES.q01.enunciat.ca` | `js/data/preguntes-dades.js` |
+| `GUIES.q01.movimentTitol.ca` | `docs/guies/GUIES-LOT-4.md` → recompilat |
+| `GUIES.q01.pistes[0].text.ca` | `docs/guies/GUIES-LOT-4.md` → recompilat |
 
-Les 13 preguntes sense fitxer de solució (q18a, q18b, q19, q20, q21, q24, q34,
-q35, q67, q83, q88, q102 i q106) ho diuen a la fitxa i a la llista de
-metadades.
+Vas treure «tres» de dins d'una negreta, i **l'èmfasi de "tres punts
+diferents" ara cobreix "punts diferents"**. Si el volies en un altre lloc,
+digue-m'ho.
 
-## El camí de tornada
+## 4. L'enunciat duplicat a solucions/, tancat
 
-`aplica-canvis.py` agafa el JSON que exporta l'eina i l'escriu als fitxers de
-dades. Fins ara aquest pas era manual, que és on s'hi colen els errors.
+Cada `solucions/qNN.html` repeteix l'enunciat de la pregunta. N'hi havia 8 de
+desacordats. Ara **no en queda cap**, i no es pot tornar a desacordar:
 
-    python3 aplica-canvis.py CANVIS.json            # simulacre, no toca res
-    python3 aplica-canvis.py CANVIS.json --aplica
-    python3 verifica_projecte.py
+- `aplica-canvis.py` mou les dues còpies alhora quan canvia un enunciat;
+- `verifica_projecte.py` compara les 117 a cada execució.
 
-**No reescriu els fitxers.** `glossari-dades.js`, `demos-dades.js` i
-`ui-strings.js` no són JSON vàlid (claus sense cometes, comes finals), i el
-format escrit a mà i les capçaleres de comentari són part del valor del
-repositori. L'script els recorre amb un lector de tokens que entén cadenes i
-comentaris, calcula el camí exacte de cada literal
-(`GUIES.q01.pistes[0].text.ca`, i tradueix `PREGUNTES.q01` a la posició real
-de l'array) i canvia **només els caràcters d'aquell literal**. La resta del
-fitxer queda byte a byte igual.
+A part de q01 i dels quatre del vocabulari, n'hi havia dos més:
 
-Abans d'escriure comprova que el text que hi ha ara al fitxer és idèntic al
-camp `original` del JSON. Si no ho és, no aplica: ho llista perquè ho miris.
-Per defecte, si hi ha cap problema no toca res; amb `--parcial` aplica la
-resta.
+- **q09** — un error matemàtic real. La capçalera deia «si tallem un triangle
+  rectangle en dos de més petits», sense dir que el tall és **l'altura sobre
+  la hipotenusa**. Sense això l'afirmació és falsa. El cos ja parlava de la
+  hipotenusa cinc vegades.
+- **q03** — una redacció antiga que no sortia enlloc més del fitxer.
 
-Provat amb 11 canvis repartits pels 7 fitxers de dades, amb cometes dobles,
-guillemets, salts de línia, barres invertides, tabuladors i accents: 11 de 11
-valors escrits exactament, els fitxers només canvien a les línies previstes, i
-`verifica_projecte.py` segueix donant 53 comprovacions passades.
+## 5. Fase A
+
+`js/data/guies-dades.js` no és font: el fabrica `parse_guies.py` des dels nou
+markdown de `docs/guies/`. 1.356 dels 1.704 camps de l'eina (el 80%) eren
+d'aquesta mena i l'script hi escrivia a sobre, o sigui que es perdien.
+
+- **A1** — els camps de guia porten l'etiqueta del fitxer d'origen.
+- **A2** — `aplica-canvis.py` escriu al markdown original conservant negreta i
+  cursiva, recompila, comprova que el resultat és exactament el que volies, i
+  si no, ho desfà tot. Localitzador validat: 1.356 de 1.356 exactes. Prova
+  massiva de 757 camps: 754 aplicats i verificats.
+- **A3** — `verifica_projecte.py` refà la compilació en una carpeta temporal i
+  avisa si la còpia i l'original divergeixen.
+
+---
+
+## Fitxers
+
+**Nous (3)**
+
+    aplica-canvis.py                 aplica el JSON de l'eina al projecte
+    genera-solucions-dades.py        aplana solucions/*.html a un .js
+    js/data/solucions-dades.js       generat pel de sobre
+
+**Modificats a mà (10)**
+
+    eina-frases.html                 6 bugs, fora l'anglès, solucions, A1
+    verifica_projecte.py             2 comprovacions noves
+    js/data/preguntes-dades.js       q01, vocabulari, tetraedre
+    js/data/glossari-dades.js        tetraedre
+    docs/guies/GUIES-LOT-3.md        tetraedre
+    docs/guies/GUIES-LOT-4.md        els teus 2 canvis de q01
+    docs/guies/GUIES-LOT-8.md        tetraedre
+    docs/guies/GUIES-LOT-10.md       vocabulari
+    solucions/*.html                 9 fitxers: q01 q03 q09 q49 q56 q57
+                                     q81 q82 q100 q112 q117
+
+**Regenerats (3)**
+
+    js/data/guies-dades.js           parse_guies.py
+    js/data/solucions-dades.js       genera-solucions-dades.py
+    analitzador-geom.html            build_analitzador_geom.py
