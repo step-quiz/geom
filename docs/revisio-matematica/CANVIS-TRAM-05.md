@@ -80,14 +80,14 @@ perquè la simplificació del (b−a) el repara — val la pena dir-ho, i ho he 
 La solució diu que G=(A+B+C+D)/4 és el punt a 3/4 del camí de cada vèrtex cap
 al centre de la cara oposada *"—es pot comprovar algebraicament per a un vèrtex
 qualsevol i generalitzar per simetria als altres tres"*, i després només fa la
-comprovació **numèrica per a un vèrtex d'un tetràedre concret**. Per al fitxer
+comprovació **numèrica per a un vèrtex d'un tetraedre concret**. Per al fitxer
 del professorat és prim, sobretot perquè la demostració general són dues
 línies:
 
 > A + (3/4)·[(B+C+D)/3 − A] = A + (B+C+D)/4 − (3/4)A = (A+B+C+D)/4 = G
 
 Escrita. I hi he afegit una observació que em sembla que val la pena: aquest
-càlcul **no fa servir la regularitat** —val per a qualsevol tetràedre. El que
+càlcul **no fa servir la regularitat** —val per a qualsevol tetraedre. El que
 la regularitat aporta és que G quedi equidistant dels quatre vèrtexs, que és el
 que li fa merèixer el nom de «centre». Tal com estava, semblava que la
 concurrència depengués de la simetria.

@@ -57,7 +57,7 @@ a la Part 2:
 
 **a) Solapament per confiar en coordenades declarades, no en l'extensió
 real de tinta** (fig-136, fig-153). Vaig col·locar diversos sòlids
-independents (tetràedre/cub/octàedre) per la seva coordenada d'origen,
+independents (tetraedre/cub/octàedre) per la seva coordenada d'origen,
 no pel seu extent visual real un cop dibuixats. Correcció per a la Part
 2: quan hi hagi diverses formes independents en un mateix canvas, calcular
 o comprovar l'espai que ocupa cadascuna de debò abans de triar la

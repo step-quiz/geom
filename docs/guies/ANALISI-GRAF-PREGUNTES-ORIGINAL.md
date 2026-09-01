@@ -49,7 +49,7 @@ Si ignores la direcció de les fletxes per un moment i mires només "qui està c
 ### La illa gran — 83 preguntes
 q01–q98 i q112–q127 (amb forats), amb un **nucli molt cohesionat de 51 preguntes** connectat per **25 punts de tall** (nodes que, si els traguessis, partirien la illa en trossos separats — el terme tècnic és *articulation point*). Vist així no és un bloc homogeni sinó un **nucli** amb una vintena de "penjolls" petits (parelles o trios) enganxats per un sol pont cadascun: p. ex. q120–q121 només es connecta a la resta a través de q120, o q59↔q61 forma la seva pròpia parella dins un altre component.
 
-Per contingut, aquesta illa cobreix polígons regulars, simetria, poliedres i el cub-tetràedre de la teva captura (q47, q52, q56), passant per volums (q65–q69, que és de fet un component a part) i tessel·lacions.
+Per contingut, aquesta illa cobreix polígons regulars, simetria, poliedres i el cub-tetraedre de la teva captura (q47, q52, q56), passant per volums (q65–q69, que és de fet un component a part) i tessel·lacions.
 
 ### Sis illes petites
 - **q91–q109** (16 preguntes): un segon bloc dens, separat del primer — sembla la zona de geometria esfèrica/projectiva cap al final del llibre.

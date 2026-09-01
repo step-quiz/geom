@@ -148,7 +148,7 @@ faré quan hi arribi.
   cantonada fan 1/6 cadascun (base mitja cara = ½, alçada 1) i 4(1/6)+1/3 = 1 ✓.
   El «camí llarg» és correcte i està ben explicat, inclosa l'autocorrecció del
   1/3 inicial.
-- **q57** — tetràedre d'aresta 1: apotema 1/(2√6) ≈ 0,2041, superfície √3 ≈
+- **q57** — tetraedre d'aresta 1: apotema 1/(2√6) ≈ 0,2041, superfície √3 ≈
   1,7321, volum (1/3)(1,7321)(0,2041) = 0,11785 = 1/(6√2) ✓.
 
 ---

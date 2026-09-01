@@ -41,7 +41,7 @@ q109 remet a q94 explícitament com el seu cas límit, mai a l'inrevés.
 Cap d'aquests es va donar per fet a ull — tots comprovats amb un càlcul
 concret abans d'entrar a la guia corresponent:
 
-- **q91**: factor de dilatació = cos(angle entre plans). Amb 60° i un
+- **q91**: factor d'escala = cos(angle entre plans). Amb 60° i un
   segment de 8 unitats: projecció de 4 unitats exactes.
 - **q93**: longitud de tangent des d'un punt extern a una esfera,
   Pitàgores sobre el triangle O-T-P. Amb distància 10 i radi 6:
@@ -102,7 +102,7 @@ concret abans d'entrar a la guia corresponent:
 
 ## 4. Bugs reals trobats i corregits durant el dibuix (mai publicats)
 
-- **fig-099 (dilatació entre plans)**: la primera versió dibuixava la
+- **fig-099 (escala entre plans)**: la primera versió dibuixava la
   projecció (sanguina) exactament superposada a la línia de tall negra
   —invisible per construcció geomètrica, no per error de color. Corregit
   desplaçant el peu de la perpendicular a una alçada pròpia, de manera

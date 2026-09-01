@@ -78,8 +78,8 @@ seria falsejar la crònica real.
 ## 3. Verificació feta abans de donar la fusió per bona
 
 - **Contingut de les figures renumerades**: revisades visualment dues
-  mostres (`fig-116`, la primera del lot 10 renumerada — hipèrbola i la
-  seva dilatació; `fig-129`, una de les figures amb cúspides que l'agent
+  mostres (`fig-116`, la primera del lot 10 renumerada — hipèrbola i el
+  seu estirament; `fig-129`, una de les figures amb cúspides que l'agent
   documenta haver-hi trobat un bug real — hipocicloide/epicicloide) contra
   la descripció del manifest. Coincideixen.
 - **Cap referència vella (099–114) sobreviu** enlloc dels tres fitxers de

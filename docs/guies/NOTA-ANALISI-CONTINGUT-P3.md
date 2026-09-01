@@ -32,7 +32,7 @@ automàtic sol):
 `docs/guies/figures-08.html` i `figures-08-clean.html`, canvas `i14`:
 substituïda la línia `lblC(ctx,'2×70,53° + 2×109,47° = 360°',...)` per
 `lblC(ctx,'aresta compartida',...)` — assenyala què està destacat en
-sanguina (l'aresta que comparteixen el tetràedre i l'octàedre) sense cap
+sanguina (l'aresta que comparteixen el tetraedre i l'octàedre) sense cap
 número ni la suma que és la resposta. Publicat de nou amb el pipeline
 real; **verificat que les altres 14 figures del mateix fitxer no han
 canviat** (comparació píxel a píxel contra les ja publicades).

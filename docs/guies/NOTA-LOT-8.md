@@ -27,7 +27,7 @@ matemàtica:
   sin(2θ), que surt sol per un argument d'àrees) fa servir el teorema del
   cosinus sobre el mateix triangle isòsceles — sense q79 no hi ha manera
   neta de tancar-la amb les eines d'aquest lot.
-- **q82 necessita q81.** Comprovar que el tetràedre i l'octàedre omplen
+- **q82 necessita q81.** Comprovar que el tetraedre i l'octàedre omplen
   l'espai junts exigeix els valors exactes dels seus angles diedres
   (que sumen 180°) — sense q81 no hi ha res a comprovar.
 
@@ -43,7 +43,7 @@ en lots anteriors.
   entre triangles de costats enters, no inventats a ull.
 - cos36° = φ/2, i cos72° = 2cos²36°−1, coincidint amb els valors
   numèrics estàndard.
-- Angle diedre del tetràedre = arccos(1/3) ≈ 70,53°; de l'octàedre =
+- Angle diedre del tetraedre = arccos(1/3) ≈ 70,53°; de l'octàedre =
   arccos(−1/3) ≈ 109,47°; la seva suma és exactament 180°.
 - Fórmula de Brahmagupta amb costats 2, 3, 4, 5: àrea = √120 ≈ 10,95.
 - Centroide d'àrea i de perímetre d'un semicercle (Pappus a l'inrevés,
@@ -96,7 +96,7 @@ simples retalls de marge:
   (triangle amb paral·lela) per il·lustrar-la, ja que l'enunciat només
   demana identificar-la i reaplicar-la, no un context concret del
   llibre. Si el llibre en dona un de específic, caldria ajustar-ho.
-- **fig-097** (tetràedre + octàedre): es dibuixen separats, cadascun amb
+- **fig-097** (tetraedre + octàedre): es dibuixen separats, cadascun amb
   una aresta marcada en sanguina, en lloc de mostrar-los físicament units
   per aquella aresta en una sola figura 3D — decisió deliberada per
   mantenir-los llegibles per separat; una versió amb els dos sòlids

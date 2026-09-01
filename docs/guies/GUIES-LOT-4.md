@@ -822,7 +822,7 @@ El volum d'un cub de costat s és s³. Si ara totes les arestes es
 multipliquen per k, el nou costat és k·s. Quin volum té el nou cub, escrit
 en funció de k i de l'antic volum s³?
 
-**Pista 2 — la construcció.** → `049_dilatacio_volum_cub.png`
+**Pista 2 — la construcció.** → `049_homotecia_volum_cub.png`
 Els dos cubs es dibuixen amb el mateix angle de projecció (per poder
 comparar-los d'un cop d'ull), amb el segon clarament més gran que el
 primer.

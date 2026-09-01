@@ -205,7 +205,7 @@
     <div class="help">
       <button class="help__toggle" id="helpToggle" aria-expanded="false" aria-controls="helpBody">Com funciona aquesta eina?</button>
       <div class="help__body" id="helpBody">
-        <p>Navega per les pestanyes (Preguntes, Glossari, Demos, Itineraris, Interfície) o cerca directament a la caixa de dalt. Cada pregunta mostra de cop el seu enunciat i tota la guia (les 4 pistes, la comprovació i l'"i després"), amb la imatge corresponent al costat de cada pista, i al final la <strong>solució publicada</strong> plegada com a referència: obre-la per comprovar que la guia i la solució no es contradiuen, que és per on s'han escapat els errors de q05/q07, q33, q37, q57, q60, q69 i q83.</p>
+        <p>Navega per les pestanyes (Preguntes, Glossari, Demos, Itineraris, Interfície) o cerca directament a la caixa de dalt. Cada pregunta mostra de cop el seu enunciat i tota la guia (les 4 pistes, la comprovació i l'"i després"), amb la imatge corresponent al costat de cada pista, i al final la <strong>solució publicada</strong>, plegada i també editable: obre-la per comprovar que la guia i la solució no es contradiuen, que és per on s'han escapat els errors de q05/q07, q33, q37, q57, q60, q69 i q83.</p>
         <p>Només s'hi mostra el text en <strong>català</strong>, que és l'únic que es repassa aquí. L'anglès del llibre i els textos <code>UI_LANGS.en</code> no hi surten.</p>
         <p>La cerca mira dins de tot el text visible d'una fitxa —enunciat, pistes, comprovació, i-després i solució— i té en compte les teves edicions, no el text original.</p>
         <p>Els camps de la guia porten l'etiqueta <code>font:</code> amb el fitxer on viu de veritat aquell text. No has de fer res: <code>aplica-canvis.py</code> hi escriu tot sol i torna a compilar la còpia. Només ho has de saber si algun dia edites una guia a mà.</p>\n        <p>Amb el teclat: <kbd>↑</kbd>/<kbd>↓</kbd> a la llista per canviar de fitxa, i <kbd>Retorn</kbd> per obrir-la.</p>
@@ -326,17 +326,43 @@
       heading: "Solució publicada",
       collapsible: true,
       fields: [],
+      blocs: [],
       solucio: s || null,
       searchExtra: "",
     };
     if (!s) return grup; // 13 preguntes no en tenen; es diu i prou
-    const parts = [s.titol, s.resum];
-    (s.passos || []).forEach((p) => {
-      parts.push(p.titol);
-      (p.textos || []).forEach((t) => parts.push(t));
-      (p.figures || []).forEach((f) => parts.push(f.peu));
+
+    // El text ve de js/data/solucions-dades.js, que és una CÒPIA de
+    // solucions/qNN.html. aplica-canvis.py escriu a l'HTML original i refà
+    // la còpia, igual que fa amb les guies i els seus markdown.
+    const font = "solucions/" + id + ".html";
+    const arrel = "SOLUCIONS." + id;
+    function nou_camp(path, label, valor, multi) {
+      const f = camp(path, label, valor, multi, null, font);
+      grup.fields.push(f);
+      grup.blocs.push({ tipus: "camp", field: f });
+      return f;
+    }
+
+    if (typeof s.titol === "string" && s.titol) {
+      nou_camp(arrel + ".titol", "Títol de la solució", s.titol, false);
+    }
+    (s.passos || []).forEach((p, i) => {
+      const base = arrel + ".passos[" + i + "]";
+      if (p.titol) nou_camp(base + ".titol", "Pas " + (i + 1) + " · títol", p.titol, false);
+      (p.textos || []).forEach((t, j) => {
+        nou_camp(base + ".textos[" + j + "]", "Pas " + (i + 1) + " · paràgraf " + (j + 1), t, true);
+      });
+      (p.figures || []).forEach((fg, k) => {
+        if (fg.src) grup.blocs.push({ tipus: "imatge", src: fg.src });
+        if (fg.peu) {
+          nou_camp(base + ".figures[" + k + "].peu",
+            "Pas " + (i + 1) + " · peu de figura", fg.peu, true);
+        }
+      });
     });
-    grup.searchExtra = parts.filter(Boolean).join(" \n ");
+    if (s.resum) nou_camp(arrel + ".resum", "En resum", s.resum, true);
+
     return grup;
   }
 
@@ -1133,7 +1159,7 @@
         sum.appendChild(document.createTextNode(group.heading));
         var nota = document.createElement("span");
         nota.className = "sol-ref__note";
-        nota.textContent = "referència · no editable";
+        nota.textContent = "editable · compara-la amb la guia";
         sum.appendChild(nota);
         det.appendChild(sum);
         cos = document.createElement("div");
@@ -1175,11 +1201,30 @@
         });
       }
 
-      if (group.solucio !== undefined) renderSolucio(cos, group.solucio);
-
-      (group.fields || []).forEach(function (f) {
-        cos.appendChild(renderField(f));
-      });
+      if (group.blocs) {
+        // Grup amb ordre propi (la solució): els camps van intercalats amb
+        // les figures, i per això no es poden pintar tots seguits.
+        if (!group.solucio) renderSolucioBuida(cos);
+        group.blocs.forEach(function (b) {
+          if (b.tipus === "imatge") {
+            var wrapImg = document.createElement("div");
+            wrapImg.className = "group__figures";
+            var img = document.createElement("img");
+            img.src = b.src;
+            img.loading = "lazy";
+            img.alt = "";
+            img.addEventListener("error", function () { wrapImg.style.display = "none"; });
+            wrapImg.appendChild(img);
+            cos.appendChild(wrapImg);
+          } else {
+            cos.appendChild(renderField(b.field));
+          }
+        });
+      } else {
+        (group.fields || []).forEach(function (f) {
+          cos.appendChild(renderField(f));
+        });
+      }
 
       main.appendChild(sec);
     });
@@ -1190,64 +1235,13 @@
     });
   }
 
-  // Text pla de solucions/qNN.html. Tot amb textContent: el text ve d'un
-  // fitxer generat, però ni tan sols així s'hi injecta HTML.
-  function renderSolucio(cos, s) {
-    if (!s) {
-      var buit = document.createElement("p");
-      buit.className = "sol-ref__missing";
-      buit.textContent = "Aquesta pregunta encara no té fitxer a solucions/. " +
-        "Res a comparar amb la guia.";
-      cos.appendChild(buit);
-      return;
-    }
-    (s.passos || []).forEach(function (p) {
-      if (p.titol) {
-        var h3 = document.createElement("p");
-        h3.className = "sol-ref__step-title";
-        h3.textContent = p.titol;
-        cos.appendChild(h3);
-      }
-      (p.textos || []).forEach(function (t) {
-        var par = document.createElement("p");
-        par.className = "sol-ref__text";
-        par.textContent = t;
-        cos.appendChild(par);
-      });
-      (p.figures || []).forEach(function (fig) {
-        if (fig.src) {
-          var wrapImg = document.createElement("div");
-          wrapImg.className = "group__figures";
-          var img = document.createElement("img");
-          img.src = fig.src;
-          img.loading = "lazy";
-          img.alt = "";
-          img.addEventListener("error", function () { wrapImg.style.display = "none"; });
-          wrapImg.appendChild(img);
-          cos.appendChild(wrapImg);
-        }
-        if (fig.peu) {
-          var peu = document.createElement("p");
-          peu.className = "sol-ref__caption";
-          peu.textContent = fig.peu;
-          cos.appendChild(peu);
-        }
-      });
-    });
-    if (s.resum) {
-      var box = document.createElement("div");
-      box.className = "sol-ref__resum";
-      var lbl = document.createElement("span");
-      lbl.className = "sol-ref__resum-label";
-      lbl.textContent = "En resum";
-      box.appendChild(lbl);
-      var txt = document.createElement("p");
-      txt.className = "sol-ref__text";
-      txt.style.margin = "0";
-      txt.textContent = s.resum;
-      box.appendChild(txt);
-      cos.appendChild(box);
-    }
+  // Les 13 preguntes sense fitxer a solucions/ no tenen res per comparar.
+  function renderSolucioBuida(cos) {
+    var buit = document.createElement("p");
+    buit.className = "sol-ref__missing";
+    buit.textContent = "Aquesta pregunta encara no té fitxer a solucions/. "
+      + "Res a comparar amb la guia.";
+    cos.appendChild(buit);
   }
 
   function renderField(f) {

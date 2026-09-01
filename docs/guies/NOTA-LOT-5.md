@@ -43,7 +43,7 @@ del lot 4 s'han entès, abans d'aplicar-hi cap criteri a preguntes noves.
   nivell de píxel (comparteixen l'eix *conceptual*, no la projecció de
   pantalla), i el paràgraf s'ha reescrit — v. `GUIES-LOT-3.md`. **No** s'ha
   tocat fig-029/q56: la projecció cavallera hi continua sent correcta (el
-  seu contingut és un tetràedre inscrit, no una secció perpendicular a la
+  seu contingut és un tetraedre inscrit, no una secció perpendicular a la
   diagonal, i no pateix el mateix problema).
 - **fig-045 (q89).** Un triangle realment escalè amb dues bisectrius
   *exactament* iguals és geomètricament impossible — és tot el contingut del

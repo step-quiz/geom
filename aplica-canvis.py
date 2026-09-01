@@ -463,7 +463,7 @@ def sincronitza_enunciat(qid, vell, nou):
     return (rel, m.start(2), m.end(2), escapa_html(nou)), None
 
 
-
+def valors_del_js():
     """Llegeix js/data/guies-dades.js amb node i retorna {cami: text}."""
     codi = """
 const fs=require('fs'),vm=require('vm');const s={console};s.window=s;vm.createContext(s);
@@ -481,6 +481,187 @@ process.stdout.write(JSON.stringify(o));"""
     if r.returncode != 0:
         return None
     return json.loads(r.stdout)
+
+
+# ================================================== solucions/qNN.html
+
+# Mateixa disciplina que amb les guies: js/data/solucions-dades.js és una
+# CÒPIA que fa genera-solucions-dades.py. L'original és l'HTML, i és allà on
+# s'escriu; la còpia es refà tot seguit i es comprova camp per camp.
+SOL_PAS = re.compile(r'<div class="solucio__pas">(.*?)(?=<div class="solucio__pas">'
+                     r'|<div class="solucio__resultat">|</div>\s*</section>|$)', re.S)
+SOL_PAS_TITOL = re.compile(r'<p class="solucio__pas-titol">(.*?)</p>', re.S)
+SOL_TEXT = re.compile(r'<p class="solucio__text">(.*?)</p>', re.S)
+SOL_FIGCAP = re.compile(r"<figcaption[^>]*>(.*?)</figcaption>", re.S)
+SOL_FIGURA = re.compile(r"<figure\b.*?</figure>", re.S)
+SOL_IMG = re.compile(r'<img[^>]*\bsrc="([^"]+)"')
+SOL_RESUM = re.compile(r'<p class="solucio__resultat-text">(.*?)</p>', re.S)
+SOL_H1 = re.compile(r'<h1 class="sol-header__title">(.*?)</h1>', re.S)
+SOL_TITLE = re.compile(r"<title>(.*?)</title>", re.S)
+SOL_SECCIO = re.compile(r'<section class="solucio">(.*?)</section>', re.S)
+# marques en línia que hi ha de debò: <strong> 423, <em> 221, <sub> 15, <a> 1
+SOL_MARCA = re.compile(r"<(em|strong|code|sub|sup|a)\b([^>]*)>(.*?)</\1>", re.S)
+
+
+def carrega_neteja_solucions():
+    """Manlleva `neteja` de genera-solucions-dades.py, per no duplicar-la."""
+    ruta = os.path.join(BASE, "genera-solucions-dades.py")
+    if not os.path.exists(ruta):
+        return None
+    ns = {"__file__": ruta, "__name__": "gen_solucions_parcial"}
+    exec(compile(open(ruta, encoding="utf-8").read(), ruta, "exec"), ns)
+    return ns["neteja"]
+
+
+def indexa_solucions(neteja_sol):
+    """{cami: (fitxer, ini, fi)} sobre el text cru de cada solucions/qNN.html."""
+    spans = {}
+    dir_sol = os.path.join(BASE, "solucions")
+    if not os.path.isdir(dir_sol):
+        return spans
+    for nom in sorted(os.listdir(dir_sol)):
+        if not nom.endswith(".html"):
+            continue
+        qid = nom[:-5]
+        rel = "solucions/" + nom
+        src = open(os.path.join(BASE, rel), encoding="utf-8").read()
+
+        m = SOL_H1.search(src)
+        if m:
+            spans["SOLUCIONS.%s.titol" % qid] = (rel, m.start(1), m.end(1))
+
+        sec = SOL_SECCIO.search(src)
+        if sec:
+            base = sec.start(1)
+            idx = 0
+            for pas in SOL_PAS.finditer(sec.group(1)):
+                bloc, b0 = pas.group(1), base + pas.start(1)
+                textos = [(b0 + t.start(1), b0 + t.end(1))
+                          for t in SOL_TEXT.finditer(bloc) if neteja_sol(t.group(1))]
+                figs = []
+                for f in SOL_FIGURA.finditer(bloc):
+                    cap = SOL_FIGCAP.search(f.group(0))
+                    if SOL_IMG.search(f.group(0)) or (cap and neteja_sol(cap.group(1))):
+                        figs.append((b0 + f.start() + cap.start(1),
+                                     b0 + f.start() + cap.end(1)) if cap else None)
+                if not (textos or figs):
+                    continue        # mateix filtre que el generador
+                mt = SOL_PAS_TITOL.search(bloc)
+                if mt and neteja_sol(mt.group(1)):
+                    spans["SOLUCIONS.%s.passos[%d].titol" % (qid, idx)] = (
+                        rel, b0 + mt.start(1), b0 + mt.end(1))
+                for j, (a, b) in enumerate(textos):
+                    spans["SOLUCIONS.%s.passos[%d].textos[%d]" % (qid, idx, j)] = (rel, a, b)
+                for k, fg in enumerate(figs):
+                    if fg:
+                        spans["SOLUCIONS.%s.passos[%d].figures[%d].peu" % (qid, idx, k)] = (
+                            rel, fg[0], fg[1])
+                idx += 1
+
+        mr = SOL_RESUM.search(src)
+        if mr and neteja_sol(mr.group(1)):
+            spans["SOLUCIONS.%s.resum" % qid] = (rel, mr.start(1), mr.end(1))
+    return spans
+
+
+def escapa_text_html(s):
+    return s.replace("&", "&amp;").replace("<", "&lt;").replace(">", "&gt;")
+
+
+def nou_html(cru, vell_pla, nou_pla, neteja_sol):
+    """
+    Fragment HTML de recanvi, conservant <em>/<strong>/<sub>/<a> allà on el
+    text de sota hi sobreviu. Mateixa idea que amb el markdown de les guies:
+    sentinelles i mapa de posicions, no cerca de frases.
+    """
+    marques = []
+
+    def a_sentinella(m):
+        marques.append((m.group(1), m.group(2)))
+        return OBRE + m.group(3) + TANCA
+
+    amb = SOL_MARCA.sub(a_sentinella, cru)
+    if not marques:
+        return escapa_text_html(nou_pla), None
+
+    pla = neteja_sol(amb)
+    rangs, net_l, k = [], [], 0
+    for c in pla:
+        if c == OBRE:
+            rangs.append([len(net_l), None, k]); k += 1
+        elif c == TANCA:
+            for r in reversed(rangs):
+                if r[1] is None:
+                    r[1] = len(net_l); break
+        else:
+            net_l.append(c)
+    if "".join(net_l) != vell_pla:
+        return None, "no puc reconstruir aquest camp conservant-ne les marques"
+
+    mapa = mapa_de_posicions(vell_pla, nou_pla)
+    nous, perduts = [], []
+    for a, b, ki in [tuple(r) for r in rangs if r[1] is not None]:
+        millor, cursor = None, a
+        while cursor < min(b, len(mapa)):
+            if mapa[cursor] is None:
+                cursor += 1; continue
+            fi = cursor
+            while (fi + 1 < min(b, len(mapa)) and mapa[fi + 1] is not None
+                   and mapa[fi + 1] == mapa[fi] + 1):
+                fi += 1
+            if millor is None or fi - cursor > millor[1] - millor[0]:
+                millor = (cursor, fi)
+            cursor = fi + 1
+        if millor is None:
+            perduts.append(vell_pla[a:b]); continue
+        llarg = millor[1] - millor[0] + 1
+        if llarg < b - a and llarg < max(3, 0.5 * (b - a)):
+            perduts.append(vell_pla[a:b]); continue
+        nous.append((mapa[millor[0]], mapa[millor[1]] + 1, ki))
+    if perduts:
+        return None, ("has reescrit un tros que anava en negreta o cursiva (%s); "
+                      "cal decidir a mà on van les marques, a solucions/" %
+                      ", ".join('"%s"' % p[:40] for p in perduts[:2]))
+
+    trossos, cursor = [], 0
+    for a, b, ki in sorted(nous, key=lambda r: r[0]):
+        tag, attrs = marques[ki]
+        trossos.append(escapa_text_html(nou_pla[cursor:a]))
+        trossos.append("<%s%s>%s</%s>" % (tag, attrs, escapa_text_html(nou_pla[a:b]), tag))
+        cursor = b
+    trossos.append(escapa_text_html(nou_pla[cursor:]))
+    return "".join(trossos), None
+
+
+def tall_titol_pagina(rel, titol_vell, titol_nou):
+    """El títol de la solució també surt al <title> de la pàgina."""
+    src = open(os.path.join(BASE, rel), encoding="utf-8").read()
+    m = SOL_TITLE.search(src)
+    if not m or titol_vell not in m.group(1):
+        return None
+    return (m.start(1), m.end(1),
+            escapa_text_html(m.group(1).replace(titol_vell, titol_nou)),
+            rel + " (<title> de la pàgina)")
+
+
+def valors_solucions():
+    """Llegeix js/data/solucions-dades.js amb node i retorna {cami: text}."""
+    codi = """
+const fs=require('fs'),vm=require('vm');const s={console};s.window=s;vm.createContext(s);
+vm.runInContext(fs.readFileSync(process.argv[1],'utf8'),s);const o={};
+Object.keys(s.SOLUCIONS||{}).forEach(id=>{const S=s.SOLUCIONS[id];
+  if(S.titol)o['SOLUCIONS.'+id+'.titol']=S.titol;
+  (S.passos||[]).forEach((p,i)=>{
+    if(p.titol)o['SOLUCIONS.'+id+'.passos['+i+'].titol']=p.titol;
+    (p.textos||[]).forEach((t,j)=>o['SOLUCIONS.'+id+'.passos['+i+'].textos['+j+']']=t);
+    (p.figures||[]).forEach((f,k)=>{if(f.peu)o['SOLUCIONS.'+id+'.passos['+i+'].figures['+k+'].peu']=f.peu;});});
+  if(S.resum)o['SOLUCIONS.'+id+'.resum']=S.resum;});
+process.stdout.write(JSON.stringify(o));"""
+    ruta = os.path.join(BASE, "js/data/solucions-dades.js")
+    if not os.path.exists(ruta):
+        return {}
+    r = subprocess.run(["node", "-e", codi, ruta], capture_output=True, text=True)
+    return json.loads(r.stdout) if r.returncode == 0 else None
 
 
 # ================================================================== feina
@@ -511,7 +692,8 @@ def main():
         return
 
     guies = [c for c in canvis if c["path"].startswith("GUIES.")]
-    altres = [c for c in canvis if not c["path"].startswith("GUIES.")]
+    sols = [c for c in canvis if c["path"].startswith("SOLUCIONS.")]
+    altres = [c for c in canvis if not c["path"].startswith(("GUIES.", "SOLUCIONS."))]
     problemes, notes = [], []
     edicions = {}      # ruta absoluta -> (text_original, [(ini, fi, nou, cami)], rel)
 
@@ -607,6 +789,41 @@ def main():
             ruta = os.path.join(BASE, rel)
             edicions[ruta] = (open(ruta, encoding="utf-8").read(), talls, rel)
 
+    # ---------- solucions, escrivint a l'HTML original ----------
+    sols_previst = {}
+    if sols:
+        neteja_sol = carrega_neteja_solucions()
+        if neteja_sol is None:
+            for c in sols:
+                problemes.append((c["path"], "no trobo genera-solucions-dades.py"))
+        else:
+            spans_sol = indexa_solucions(neteja_sol)
+            for c in sols:
+                sp = spans_sol.get(c["path"])
+                if sp is None:
+                    problemes.append((c["path"], "no trobo aquest camí dins de solucions/")); continue
+                rel, ini, fi = sp
+                ruta = os.path.join(BASE, rel)
+                src_sol = edicions[ruta][0] if ruta in edicions else open(ruta, encoding="utf-8").read()
+                actual = neteja_sol(src_sol[ini:fi])
+                if actual != c["original"]:
+                    problemes.append((c["path"], "el text del projecte ha canviat des de l'exportació")); continue
+                frag, avis = nou_html(src_sol[ini:fi], c["original"], c["actual"], neteja_sol)
+                if avis:
+                    problemes.append((c["path"], avis)); continue
+                if neteja_sol(frag) != c["actual"]:
+                    problemes.append((c["path"], "el generador normalitzaria aquest text i no "
+                                      "quedaria com l'has escrit")); continue
+                talls_sol = edicions[ruta][1] if ruta in edicions else []
+                talls_sol.append((ini, fi, frag, c["path"]))
+                # el títol de la solució també surt al <title> de la pàgina
+                if c["path"].endswith(".titol") and ".passos[" not in c["path"]:
+                    extra = tall_titol_pagina(rel, c["original"], c["actual"])
+                    if extra:
+                        talls_sol.append(extra)
+                edicions[ruta] = (src_sol, talls_sol, rel)
+                sols_previst[c["path"]] = c["actual"]
+
     aplicats = sum(len(t[1]) for t in edicions.values())
     print("  aplicables: %d | amb problema: %d" % (aplicats, len(problemes)))
     for ruta, (_, talls, rel) in sorted(edicions.items()):
@@ -618,6 +835,8 @@ def main():
             print("      ·", path)
     if guies_previst:
         print("  js/data/guies-dades.js es refarà sol amb parse_guies.py")
+    if sols_previst:
+        print("  js/data/solucions-dades.js es refarà sol amb genera-solucions-dades.py")
     if notes:
         print("\n  Mira-ho, però no atura res (%d):" % len(notes))
         for path, nota in notes:
@@ -639,12 +858,17 @@ def main():
     copia = {ruta: dades[0] for ruta, dades in edicions.items()}
     ruta_js = os.path.join(BASE, "js/data/guies-dades.js")
     js_previ = open(ruta_js, encoding="utf-8").read() if guies_previst else None
+    ruta_js_sol = os.path.join(BASE, "js/data/solucions-dades.js")
+    js_sol_previ = (open(ruta_js_sol, encoding="utf-8").read()
+                    if sols_previst and os.path.exists(ruta_js_sol) else None)
 
     def desfes(motiu):
         for ruta, text in copia.items():
             open(ruta, "w", encoding="utf-8").write(text)
         if js_previ is not None:
             open(ruta_js, "w", encoding="utf-8").write(js_previ)
+        if js_sol_previ is not None:
+            open(ruta_js_sol, "w", encoding="utf-8").write(js_sol_previ)
         print("\n%s\nS'ha desfet tot: el projecte ha quedat com estava." % motiu)
 
     for ruta, (src, talls, rel) in sorted(edicions.items()):
@@ -670,6 +894,24 @@ def main():
             sys.exit(1)
         print("Comprovat: els %d camp(s) de guia han sortit exactament com els volies."
               % len(guies_previst))
+
+    if sols_previst:
+        print("\nRefent js/data/solucions-dades.js…")
+        r = subprocess.run([sys.executable, os.path.join(BASE, "genera-solucions-dades.py")],
+                           capture_output=True, text=True, cwd=BASE)
+        if r.returncode != 0:
+            desfes("genera-solucions-dades.py ha fallat:\n" + (r.stdout or "") + (r.stderr or ""))
+            sys.exit(1)
+        vals = valors_solucions()
+        if vals is None:
+            desfes("no he pogut rellegir js/data/solucions-dades.js després de refer-lo.")
+            sys.exit(1)
+        dolents = [p for p, v in sols_previst.items() if vals.get(p) != v]
+        if dolents:
+            desfes("el text refet no coincideix amb el que volies a: " + ", ".join(dolents[:5]))
+            sys.exit(1)
+        print("Comprovat: els %d camp(s) de solució han sortit exactament com els volies."
+              % len(sols_previst))
 
     print("\nFet: %d camp(s) aplicats. Ara toca:\n    python3 verifica_projecte.py" % aplicats)
 

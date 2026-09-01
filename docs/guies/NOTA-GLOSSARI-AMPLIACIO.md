@@ -17,7 +17,7 @@ a ull.
   sector circular, mediatriu, lloc geomètric, congruència i els seus
   criteris (CCC/CAC/ACA), raó de semblança, projecció ortogonal, teorema
   de Tales, teorema de Pitàgores, polígon regular/irregular, apotema,
-  diagonal, poliedre, prisma, piràmide, tetràedre, cilindre, con, esfera,
+  diagonal, poliedre, prisma, piràmide, tetraedre, cilindre, con, esfera,
   principi de Cavalieri, teorema de Pappus, cònica, el·lipse, hipèrbola,
   paràbola, focus.
 - **Figures**: només 1 dels 35 termes nous en reutilitza una d'existent

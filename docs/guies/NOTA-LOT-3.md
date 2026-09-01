@@ -57,7 +57,7 @@ en si mateixa ho delatés a simple vista.
 - **Tetràedre de q49:** la primera disposició de vèrtexs (massa simètrica)
   feia que dues de les quatre medianes es superposessin visualment. Calen
   vèrtexs clarament asimètrics perquè les quatre es distingeixin — val la
-  pena tenir-ho present per a qualsevol altra figura amb un tetràedre.
+  pena tenir-ho present per a qualsevol altra figura amb un tetraedre.
 - Número de producció a totes dotze figures, mateixes regles que als lots
   anteriors.
 

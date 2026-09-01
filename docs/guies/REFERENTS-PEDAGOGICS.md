@@ -103,7 +103,7 @@ d'etiquetatge quan aquell lliurament es faci de debò):
   esquerda real cap al seu tipus de rigor, i ho és a escala d'una sola
   figura, no d'un sistema.
 - **Coxeter** — matèria i registre visual presents (poliedres, reflexió,
-  dilatació); l'aparell de grups de reflexió pròpiament dit, absent —
+  homotècia); l'aparell de grups de reflexió pròpiament dit, absent —
   esperable donat el nivell del llibre font (secundària inicial).
 
 ---

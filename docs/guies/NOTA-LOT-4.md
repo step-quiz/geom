@@ -6,7 +6,7 @@ Figures 034–053 (20 figures, una per guia), mida "creuer" tal com marca
 §5.4. Preguntes: q01, q02, q70, q29, q06, q11, q12, q73, q38, q76, q80, q89,
 q37, q39, q05, q18b, q60, q08a, q08b, q71. Dos moviments nous:
 `centre-per-simetria` i, formalment, `invariant sota escala` (una variant
-de l'`invariant` ja introduït a q54/q55, aplicada aquí a dilatacions en
+de l'`invariant` ja introduït a q54/q55, aplicada aquí a estiraments en
 comptes de talls de Cavalieri). La resta reaplica moviments dels lots 1–3.
 
 Aquesta vegada no hi havia cap `REVISIONS.md` als paquets que se'm van
@@ -114,7 +114,7 @@ la primera intuïció numèrica, comprovar-la).
 ## 6. Coses de les quals no estic segur
 
 - **q08a i q08b no tenen escaneig d'origen.** Les figures 051 i 052 són
-  disseny propi (un cub amb un eix de simetria marcat; un tetràedre i un
+  disseny propi (un cub amb un eix de simetria marcat; un tetraedre i un
   octaedre en projecció cavallera). Si el llibre les acompanya d'un dibuix
   concret diferent, digueu-m'ho i les substitueixo.
 - **q89 (bisectrius iguals → isòsceles).** És l'únic resultat d'aquest lot

@@ -261,7 +261,7 @@ curtes.
 - **B18 (llei del cosinus), reescrita i ara la més seriosa del fitxer**: el cas
   agut no es demostra enlloc i el fan servir q86, q88, i les solucions de
   **q81 i q90**. A q86 i q88 ho he tret; **q81 i q90 encara hi són** (el
-  diedre del tetràedre és arccos(1/3) ≈ 70,5°, agut). q90 a més usa
+  diedre del tetraedre és arccos(1/3) ≈ 70,5°, agut). q90 a més usa
   cos(180°−B), i el cosinus d'un angle obtús no està definit enlloc.
 - **B20 (sin²+cos²=1)**: ja no és caixa negra —q84 la demostra— però q84 és
   amagada.
@@ -285,7 +285,7 @@ protocol.
 Ve del filtre de §0. q79 demostrava **només** c² = a²+b²+2ab·cos C′, amb C
 obtús. El cas agut, c² = a²+b²−2ab·cos C, no es demostrava enlloc del
 quadern, i el necessiten quatre llocs: q86 (30°), q88 (2θ=74°), la solució de
-**q81** (el diedre del tetràedre és arccos(1/3) ≈ 70,53°) i la de **q90**.
+**q81** (el diedre del tetraedre és arccos(1/3) ≈ 70,53°) i la de **q90**.
 
 A q86 i q88 en vaig eliminar la necessitat, que era la millor decisió per a
 aquelles dues. Però q81 i q90 el necessiten de debò: hi ha un angle agut i cal
@@ -301,7 +301,7 @@ al que la pregunta ja fa, amb un signe canviat, i el pas b²cos²C + b²sin²C =
 fon les dues fórmules en una de sola.
 
 Comprovat amb el cas de q81: a = b = √3/2 i C = arccos(1/3) donen c² = 1
-**exacte**, que és l'aresta oposada del tetràedre.
+**exacte**, que és l'aresta oposada del tetraedre.
 
 **Conseqüències:** les citacions de q81 i q90 passen a ser legítimes sense
 tocar-les (q79 és a la posició #107; q81 a la #119 i q90 a la #109, o sigui

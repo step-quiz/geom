@@ -139,7 +139,7 @@ ho feien:
   discriminant zero dona (m−2p)²=0. Àlgebra de segon d'ESO.
 - **`q56`** — el producte mixt es presentava com d'ús corrent. S'hi afegeix
   un segon camí que no necessita res: les quatre cantonades que sobren
-  són piràmides de volum 1/6 cadascuna, 4/6 en total, i el tetràedre és
+  són piràmides de volum 1/6 cadascuna, 4/6 en total, i el tetraedre és
   1 − 2/3 = 1/3 del cub.
 - **`q62`** — "integra (suma) aquestes àrees" sense marcar la frontera.
   Ara redueix el casquet a cilindre menys tronc de con (q48) i declara

@@ -25,9 +25,9 @@ num	id	nivell	moviment	lot	rev	descripcio
 024	q44	3	dues-maneres	3	1	tres cercles tangents a una recta, r combina R1 i R2
 025	q46	2	estirament	3	1	cercle estirat en el·lipse, a i b
 026	q47	2	un-altre-pla	3	0	octàedre dels centres de cara del cub
-027	q49	2	simetria-i-demostra	3	0	tetràedre, les quatre medianes es troben al centre
+027	q49	2	simetria-i-demostra	3	0	tetraedre, les quatre medianes es troben al centre
 028	q52	2	un-altre-pla	3	1	tall hexagonal del cub, perpendicular a la diagonal
-029	q56	2	un-altre-pla	3	0	tetràedre inscrit per les diagonals de cara
+029	q56	2	un-altre-pla	3	0	tetraedre inscrit per les diagonals de cara
 030	q51	2	desenrotlla	3	0	con desenrotllat en sector circular
 031	q53	3	contraexemple	3	0	cilindre recte vs oblic, mateix tall diferent superfície
 032	q54	2	invariant	3	0	rectangle i paral·lelogram, mateix tall a cada alçada
@@ -47,7 +47,7 @@ num	id	nivell	moviment	lot	rev	descripcio
 046	q37	2	dues-maneres	4	1	rectangle mateixa àrea i perímetre que triangle equilàter
 047	q39	2	redueix-al-conegut	4	0	àrea pentàgon regular, 5 triangles des del centre
 048	q05	2	redueix-al-conegut	4	1	angle de puntes d'estrelles {5/2} i {8/3}
-049	q18b	2	invariant	4	0	dilatació de sòlid, volum escala amb k³
+049	q18b	2	invariant	4	0	homotècia de sòlid, volum escala amb k³
 050	q60	2	invariant	4	2	con inscrit en semiesfera, Cavalieri
 051	q08a	2	construeix-per-definir	4	0	simetries del cub, eix vèrtex-a-vèrtex
 052	q08b	3	contraexemple	4	1	els cinc poliedres regulars, angle al vèrtex <360°

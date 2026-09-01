@@ -61,13 +61,13 @@ natural i tanca la pregunta:
 
 | | angle diedre | 360/θ |
 |---|---:|---:|
-| tetràedre | 70,53° | 5,10 |
+| tetraedre | 70,53° | 5,10 |
 | **cub** | **90°** | **4** ✓ |
 | octàedre | 109,47° | 3,29 |
 | dodecàedre | 116,57° | 3,09 |
 | icosàedre | 138,19° | 2,60 |
 
-Només el cub dona un enter — i això explica de passada *per què* el tetràedre
+Només el cub dona un enter — i això explica de passada *per què* el tetraedre
 necessita company. La comparació justa amb el pla, doncs, no és «tres contra
 cap», és **tres contra un**.
 
@@ -97,12 +97,12 @@ arccos(−1/√5) ≈ 116,57°, icosàedre arccos(−√5/3) ≈ 138,19°.
 No hi ha dos peus ni cap centre. El triangle és **el punt mitjà de l'aresta
 compartida i els dos vèrtexs oposats**, un de cada cara. I el detall que
 realment decideix el resultat no s'esmentava enlloc: el tercer costat d'aquest
-triangle **no és el mateix als dos sòlids** —al tetràedre els dos vèrtexs
+triangle **no és el mateix als dos sòlids** —al tetraedre els dos vèrtexs
 oposats són veïns i el segment val 1 (una aresta); a l'octàedre són
 diametralment oposats i val √2. D'aquí surt tota la diferència entre 1/3 i
 −1/3. Comprovat:
 
-- tetràedre: 1 = ¾+¾−2(¾)cos θ → cos θ = 1/3 ✓
+- tetraedre: 1 = ¾+¾−2(¾)cos θ → cos θ = 1/3 ✓
 - octàedre: 2 = ¾+¾−2(¾)cos θ → cos θ = −1/3 ✓
 
 ### q79 — el cas C=90° és una frontera de la figura
@@ -161,7 +161,7 @@ tram n'ha aportat set entrades noves, dues a la secció A i sis a la B:
 - **q81**, els dos valors que sí que hi eren: arccos(1/3) ≈ 70,53° i
   arccos(−1/3) ≈ 109,47°, suma 180° ✓ (per arccos(−x) = 180°−arccos(x)).
 - **q82** — 2×70,53° + 2×109,47° = 360° exactes ✓, i la configuració 2+2 al
-  voltant de cada aresta és la correcta del niu tetràedre-octàedre.
+  voltant de cada aresta és la correcta del niu tetraedre-octàedre.
 - **q83** — sin 60° = √3/2, cos 60° = 1/2 ✓; Pitàgores 1²+(√3)² = 4 = 2² ✓. La
   remissió a q01 per justificar la perpendicularitat és encertada i és el tipus
   de rigor que voldria veure més sovint.
