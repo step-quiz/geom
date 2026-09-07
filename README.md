@@ -460,3 +460,12 @@ de les guies i el glossari), els sis itineraris temàtics
 professorat (`COORDINACIO-AGENTS-SOLUCIONS.md`), la prova escrita
 (`LLEGEIX-ME.md`) i l'auditoria de documentació d'ago. 2026
 (`docs/guies/NOTA-AUDITORIA-DOCUMENTACIO.md`).
+
+<!-- atribucio-centre:inici -->
+
+---
+
+Material desenvolupat per **David Arso Civil** per al Departament de Matemàtiques de l'INS Miquel Tarradell.
+Contingut sota CC BY-NC-SA 4.0, codi sota llicència MIT. Vegeu [`LLICENCIA.md`](LLICENCIA.md).
+
+<!-- atribucio-centre:final -->
