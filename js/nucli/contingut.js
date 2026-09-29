@@ -114,6 +114,24 @@
     return window.tf("meta.question_label", { n: n });
   }
 
+  /**
+   * Nom llegible d'un `moviment` de les guies ("redueix-al-conegut" ->
+   * "redueix el desconegut al conegut"), a partir de la secció `moves`
+   * de ui-strings.js (clau = el slug amb els guions canviats per _).
+   * El slug és un identificador intern de dades i no ha d'arribar mai a
+   * la pantalla tal qual: fins set. 2026 el suggeriment de repàs de
+   * l'itinerari deia literalment "entrena la mateixa idea —
+   * redueix-al-conegut". Si un moviment nou no té nom encara, es degrada
+   * al slug amb espais en lloc de guions (verifica_projecte.py avisa
+   * abans que passi).
+   */
+  function nomMoviment(slug) {
+    if (!slug) return "";
+    const clau = "moves." + String(slug).replace(/-/g, "_");
+    const nom = window.t(clau);
+    return nom === clau ? String(slug).replace(/-/g, " ") : nom;
+  }
+
   window.geoContingut = {
     resolCamp: resolCamp,
     teContingut: teContingut,
@@ -122,5 +140,6 @@
     esCropFitxer: esCropFitxer,
     esInvertidaFitxer: esInvertidaFitxer,
     etiquetaQuestio: etiquetaQuestio,
+    nomMoviment: nomMoviment,
   };
 })();

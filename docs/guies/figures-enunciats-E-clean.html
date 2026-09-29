@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html><head><meta charset="utf-8"><style>
+ body{margin:0;background:#fff}canvas{display:block;margin:0 0 24px 0}
+</style></head><body>
+<script src="../hand-draw.js"></script>
+<script src="../comu.js"></script>
+<script>
+function stampNum(ctx,h,num){ /* no-op */ }
+
+/* Lot E d'imatges d'enunciat (set. 2026): q84, q87 i q88, les tres
+   preguntes de trigonometria que es van publicar a l'ago. 2026 sense
+   imatge. Mateixa convencio que els lots A-D: TINTA SOLA (cap sanguina: un
+   enunciat no porta "el que hi afegeixes tu") i cap figura que doni la
+   resposta. v. docs/guies/NOTA-COHERENCIA-SET-2026.md. */
+
+/* ============================================================
+   ENUN-q84 (fig-217) -- "Quina és la relació entre el sinus i el cosinus
+   d'un angle?" Un triangle rectangle amb l'angle agut theta marcat i els
+   noms dels tres costats respecte d'aquest angle. Res mes: la relacio
+   (sin^2+cos^2=1) no s'hi insinua. */
+(function(){
+  const ctx=mk('e1',640,380),hd=makeHandDraw(ctx,14001);ctx.translate(60,40);
+  const A={x:0,y:260},B={x:400,y:260},C={x:400,y:20};   // angle recte a B, theta a A
+  const AB=hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.8,color:INK});
+  const BC=hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.8,color:INK});
+  hd.handSegment(C.x,C.y,A.x,A.y,{lineWidth:2.8,color:INK});
+  rightAngle(hd,B.x,B.y,A.x,A.y,C.x,C.y,20,INK);
+  angleMark(hd,A.x,A.y,B.x,B.y,C.x,C.y,52,1,INK);
+  lbl(ctx,'θ',A.x+62,A.y-14,INK,24);
+  lblC(ctx,'catet contigu',200,A.y+34,INK,19);
+  lbl(ctx,'catet oposat',B.x+14,(B.y+C.y)/2+6,INK,19);
+  lbl(ctx,'hipotenusa',150,105,INK,19);
+  stampNum(ctx,360,'217');
+})();
+
+/* ============================================================
+   ENUN-q87 (fig-218) -- "Com hauriem de definir el sinus d'un angle
+   obtus?" Un triangle obtusangle amb l'angle obtus marcat a C. Cap
+   alcada ni cap suplementari dibuixat: aixo es la construccio de la guia
+   (fig-091), no l'enunciat. */
+(function(){
+  const ctx=mk('e2',600,250),hd=makeHandDraw(ctx,14002);ctx.translate(50,-50);
+  const A={x:0,y:220},B={x:500,y:220},C={x:170,y:120};  // angle a C ~ 133 graus (verificat: acos(-0,678))
+  hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.8,color:INK});
+  hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.8,color:INK});
+  hd.handSegment(C.x,C.y,A.x,A.y,{lineWidth:2.8,color:INK});
+  angleMark(hd,C.x,C.y,B.x,B.y,A.x,A.y,34,1,INK);
+  lbl(ctx,'A',A.x-24,A.y+10,INK,22);lbl(ctx,'B',B.x+10,B.y+10,INK,22);lbl(ctx,'C',C.x-8,C.y-18,INK,22);
+  lblC(ctx,'C > 90°',C.x+4,C.y+70,INK,19);
+  stampNum(ctx,240,'218');
+})();
+
+/* ============================================================
+   ENUN-q88 (fig-219) -- "Com es relacionen el sinus i el cosinus d'un
+   angle amb els d'un angle del doble de mida?" Dos angles, theta i 2*theta
+   (theta = 28 graus), cadascun amb el seu vertex, l'un al costat de
+   l'altre. Cap triangle: el triangle isosceles es la construccio de la
+   guia (fig-093). */
+(function(){
+  const ctx=mk('e3',640,300),hd=makeHandDraw(ctx,14003);
+  const th=28*Math.PI/180, L=210;
+  [[60,240,th,'θ'],[360,240,2*th,'2θ']].forEach(([x,y,ang,nom])=>{
+    const P={x:x+L,y:y}, Q={x:x+L*Math.cos(ang),y:y-L*Math.sin(ang)};
+    hd.handSegment(x,y,P.x,P.y,{lineWidth:2.8,color:INK});
+    hd.handSegment(x,y,Q.x,Q.y,{lineWidth:2.8,color:INK});
+    angleMark(hd,x,y,P.x,P.y,Q.x,Q.y,70,1,INK);
+    const mig=ang/2;
+    lbl(ctx,nom,x+92*Math.cos(mig),y-92*Math.sin(mig)+8,INK,24);
+  });
+  stampNum(ctx,280,'219');
+})();
+</script>
+</body></html>

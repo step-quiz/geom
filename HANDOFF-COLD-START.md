@@ -24,7 +24,9 @@ architecture reference.
 python3 verifica_projecte.py
 ```
 
-It must print `Tot correcte.` (36 checks). If it doesn't, **stop and
+It must print `Tot correcte.` (the number of checks grows with every
+delivery — 36 when this line was first written, over 60 now; what matters
+is zero errors). If it doesn't, **stop and
 report** — you've been handed a repository in an unexpected state, and
 guessing why will waste more time than asking.
 
@@ -131,19 +133,20 @@ inspection, not memory, at the moment of writing:
 | What | Value |
 |---|---|
 | Questions | 130 (fixed corpus, not growing) |
-| Questions with an enunciat image | 122 / 130 (67 scanned + 55 hand-drawn) |
+| Questions with an enunciat image | 125 / 130 (67 scanned + 58 hand-drawn); the 5 without one are all hidden |
 | Questions with a full guide | 130 / 130 |
 | Guides with a second image at Pista 2 | 32 / 130 |
 | Guide figures, by where they live | 129 at Pista 3 (nivell 2) + 32 at Pista 2 (nivell 1) + 1 at Pista 4 (`q15`, the only guide with no nivell-2 figure) = 162 |
-| Glossary terms | 53, **all 53 with a figure** (32 image files; some terms share one) |
-| Teacher-facing solutions | 115 / 115 visible questions (`solucions/`) |
-| Thematic itineraries | 6 fixed editorial paths over the 115 visible questions |
+| Glossary terms | 56, **all 56 with a figure** (34 image files; some terms share one). 53 until Sep 2026, when `teorema-del-sinus`, `homotecia` and `estirament` were added |
+| Teacher-facing solutions | 118 / 118 visible questions (`solucions/`; `verifica_projecte.py` now fails if a visible question has none) |
+| Thematic itineraries | 6 fixed editorial paths over the 118 visible questions |
 | Glossary terms detected inline | inside enunciat text AND inside Pista 1-4 text (never comprovació, never i-després) |
 | Thematic categories | 6 defined, 5 shown in the filter menu (aritmetica_algebra excluded, see §3) |
-| Hidden questions (excluded from list view, "Anterior/Següent", and itinerary suggestions — not deleted) | 15: `q18a q18b q19 q20 q21 q24 q34 q35 q67 q83 q84 q87 q88 q102 q106` |
+| Hidden questions (excluded from list view, "Anterior/Següent", and itinerary suggestions — not deleted) | 12: `q18a q18b q19 q20 q21 q24 q34 q35 q67 q83 q102 q106` (7 of them 2D, 5 3D). `q84`, `q87` and `q88` used to be hidden and were **published** in Aug 2026, when the maths review closed — never re-hide them (see README, "Exercicis amagats de la llista") |
+| Visible questions | 118 (81 2D + 37 3D) |
 | 2D / 3D split | 88 / 42 |
 | Intro demos | 3, each now a 6-step reveal-one-at-a-time flow (not the old "always visible" design) |
-| Written-exam generator | `analitzador-geom.html`, built from `js/data/preguntes-dades.js` + `EXERCICIS_AMAGATS`, with the 116 visible-question images embedded as base64 (see `LLEGEIX-ME.md`) |
+| Written-exam generator | `analitzador-geom.html`, built from `js/data/preguntes-dades.js` + `EXERCICIS_AMAGATS`, with the 119 visible-question images embedded as base64 (see `LLEGEIX-ME.md`) |
 
 `docs/guies/NOTA-*.md` has one delivery note per round, in the repo, each
 documenting exactly what changed, why, and how it was verified. **Read the
@@ -172,6 +175,10 @@ NOTA-TOGGLE-DEFECTES                                    (border fix, new default
 NOTA-ENUNCIATS-D                                        (8 new enunciat images, 3 more hidden instead)
 NOTA-GLOSSARI-27-FIGURES                                (the last 27 terms: glossary now 53/53)
 NOTA-AUDITORIA-DOCUMENTACIO                             (doc/comment audit, Aug 2026 — this list included)
+NOTA-CORRECCIONS-SET-2026                               (dark mode, q88 solution, fig-107/121/059, stale numbers)
+NOTA-FLUX-ZIP-SET-2026                                  (upload Action: _ESBORRA.txt, regenera, verify, smoke test)
+NOTA-COHERENCIA-SET-2026                                (order/deps fixed, 9 difficulties raised, glossary 56, q84/q87/q88 images, q62 2πRh)
+NOTA-AULA-I-QUALITAT-SET-2026                           (search, projector mode, print sheet, local fonts, lossless PNGs, export.js/amagats.py)
 ```
 
 Two documents outside `docs/guies/` belong to the same paper trail:
@@ -199,16 +206,11 @@ gaps:
    100 %, and those are the ones the delivery notes rely on. Treat
    `guies-dades.js` as the source of truth for which hint a figure belongs to;
    fix the column if you ever touch the manifest for another reason.
-2. **8 questions have no enunciat image** — down from 16 after
-   `docs/guies/NOTA-ENUNCIATS-D.md` (8 of the original 16 got a real
-   image; the other 3 that had no natural neutral figure — q67, q102,
-   q106 — were added to `EXERCICIS_AMAGATS` instead of forcing one).
-   The remaining 8 (`q21 q35 q67 q84 q87 q88 q102 q106`) are now
-   EXACTLY the imageless subset of `EXERCICIS_AMAGATS` — every question
-   actually reachable through the list, "Anterior/Següent", or the
-   itinerary has an image. If a hidden question is ever un-hidden,
-   check this table first: it may need an image before it can ship
-   visible.
+2. **5 questions have no enunciat image** — `q21 q35 q67 q102 q106`,
+   all of them hidden. `q84`, `q87` and `q88` (visible since Aug 2026)
+   got theirs in Sep 2026 (`fig-217`–`fig-219`, lot E). Every visible
+   question has an image again. If a hidden question is ever un-hidden,
+   check this first: it may need an image before it can ship visible.
 3. **`sol.html`'s live-discovery section needs a server.** It probes for
    `solucions/<id>.html` with `fetch()`, which `file://` blocks — the very
    constraint the whole project is built around. Opened by double-click it
@@ -228,7 +230,7 @@ gaps:
 6. Nothing else is queued. If the owner asks for something new, it's a
    genuinely new request, not a continuation of a documented backlog.
 
-**Glossary figures are DONE** (53/53, see `NOTA-GLOSSARI-27-FIGURES.md`). This
+**Glossary figures are DONE** (56/56 since Sep 2026; 53/53 then, see `NOTA-GLOSSARI-27-FIGURES.md`). This
 list said otherwise until the Aug 2026 documentation audit; if you are reading a
 cached copy that still claims 27 are pending, it is out of date.
 
@@ -314,13 +316,15 @@ mutual-exclusion invariant: never both off), the category filter (separate
 state, different invariant: empty selection means "all"), the
 hidden-exercises exclusion list (`EXERCICIS_AMAGATS`, exposed as
 `window.geoLlista.esAmagada` so `detall.js` and `itinerari.js` don't
-duplicate it), and the **"Copia el meu codi"** block that produces the
-`GEO1-…` string the written-exam generator reads. Read its own header
+duplicate it; Python reads it only through `amagats.py`), and the text
+search box. The **"Copia el meu codi"** block that produces the `GEO1-…`
+string the written-exam generator reads moved to `js/ui/export.js` in Sep
+2026. Read its own header
 comment block before editing — it explains why each piece of state is
 deliberately kept separate from the others.
 
 **Teacher-facing surfaces** are separate from the SPA and must stay that way:
-`sol.html` + `solucions/` (115 worked solutions, rules in
+`sol.html` + `solucions/` (118 worked solutions, rules in
 `COORDINACIO-AGENTS-SOLUCIONS.md`) and `analitzador-geom.html` (written-exam
 generator, source `analitzador-geom-plantilla.html`, built by
 `build_analitzador_geom.py`, documented in `LLEGEIX-ME.md`). Nothing under
@@ -343,17 +347,20 @@ which situation each one applies to.
 
 ## 6. Before you ship anything
 
-1. `python3 verifica_projecte.py` → must say `Tot correcte.`
-2. A Playwright regression across all 130 guides (reveal all 4 hints,
-   confirm images load, confirm footer visible) is the standard bar —
-   every past delivery has run this before shipping. Write it fresh;
-   there's no saved script to reuse verbatim (viewport sizes, wait times,
-   and exact selectors have all shifted slightly release to release).
-3. Build the delivery as a diff ZIP against whatever repo state you
-   started from, verify it by applying it to a fresh copy and diffing
-   against your working directory (must be empty diff, modulo any files
-   your delivery note says to delete manually).
+1. `python3 regenera.py` (all generated files, including the CSS `?v=`),
+   then `python3 verifica_projecte.py` → must say `Tot correcte.`
+2. `node tests/smoke.js` → must say `✓ Tot correcte.` This is the saved
+   Playwright regression (all 130 guides in light and dark mode, solutions,
+   `sol.html`, `eina-frases.html`, the exam generator). Until Sep 2026 it had
+   to be rewritten from scratch every delivery; extend it instead.
+3. Delivery is a ZIP uploaded to `_uploads/`, or a Pull Request. The upload
+   Action (`.github/workflows/unzip-upload.yml`) extracts it, applies its
+   `_ESBORRA.txt` (list of files to delete — a ZIP **can** delete files now),
+   regenerates, verifies and commits to `main`, or leaves `main` untouched
+   and saves the result to an `upload-revisar/N` branch if anything fails.
+   PRs are checked by `.github/workflows/verifica.yml`. See README, "Com
+   arriben els canvis al repositori".
 4. Write a `docs/guies/NOTA-<name-of-the-change>.md` delivery note in the
-   same style as the existing ones — what changed, why, what you found
-   and fixed during your own review (not just "I did the task"), how you
+   same style as the existing ones — what changed, why, what you found and
+   fixed during your own review (not just "I did the task"), how you
    verified it.

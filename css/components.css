@@ -183,9 +183,12 @@
   width: 26px;
   height: 26px;
   display: block;
-  /* les icones son PNG negre-sobre-transparent (mix-blend-mode ja les fa
-     transparents al fons de paper, com la resta de figures del projecte) */
-  mix-blend-mode: multiply;
+  /* les icones son PNG negre sobre fons BLANC (no transparent):
+     mix-blend-mode: multiply fa desapareixer el blanc contra el paper,
+     com la resta de figures del projecte. En mode fosc els dos valors
+     canvien (invert + screen), v. tokens.css. */
+  filter: var(--icon-filter);
+  mix-blend-mode: var(--icon-blend);
 }
 
 .cat-filtre__toggle[aria-pressed="true"] {
@@ -194,9 +197,11 @@
 }
 .cat-filtre__toggle[aria-pressed="true"] .cat-filtre__icon {
   /* icona negra -> blanca sobre el fons fosc del boto actiu; les icones
-     son monocromatiques (tinta sola), invert(1) les converteix net */
-  filter: invert(1);
-  mix-blend-mode: normal;
+     son monocromatiques (tinta sola), invert(1) les converteix net. En
+     mode fosc el boto actiu es clar (--ink s'hi inverteix) i la icona
+     torna a ser negra: v. --icon-filter-active a tokens.css. */
+  filter: var(--icon-filter-active);
+  mix-blend-mode: var(--icon-blend-active);
 }
 
 .cat-filtre__toggle:hover { border-color: var(--pencil); }
@@ -516,7 +521,16 @@
   margin: 0 0 var(--space-3);
 }
 
-.guia__figure { margin: var(--space-4) 0 0; }
+.guia__figure {
+  margin: var(--space-4) 0 0;
+  /* Full clar sota la figura en mode fosc; neutre en mode clar (v. el
+     bloc "Full sota les figures" de tokens.css). */
+  background-color: var(--figure-sheet);
+  padding: var(--figure-sheet-pad);
+  width: var(--figure-sheet-width);
+  max-width: 100%;
+  border-radius: var(--radius-md);
+}
 
 /* multiply: mateix motiu que a les figures del llibre — el blanc del PNG
    desapareix i el traç es fon amb el crema del paper (v. base.css). */
@@ -668,6 +682,30 @@
 }
 .glossari-cerca:focus-visible { outline: none; box-shadow: var(--focus-ring); }
 
+/* ---------- Cerca a la llista de preguntes (set. 2026) ----------
+   Mateix aspecte que el camp de cerca del glossari (v. just a dalt): un sol
+   llenguatge visual per a "escriu per trobar". */
+.cerca-llista {
+  display: block;
+  width: 100%;
+  max-width: 26rem;
+  font-family: var(--font-serif);
+  font-size: var(--fs-body);
+  color: var(--ink);
+  background: var(--paper-raised);
+  border: var(--stroke-hairline) solid var(--rule-strong);
+  border-radius: var(--radius-md);
+  padding: var(--space-2) var(--space-3);
+  margin: var(--space-4) 0 var(--space-2);
+}
+.cerca-llista:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.cerca-llista__avis {
+  font-family: var(--font-mono);
+  font-size: var(--fs-metadata);
+  color: var(--ink-soft);
+  margin: 0 0 var(--space-2);
+}
+
 .glossari-categoria {
   font-family: var(--font-mono);
   font-size: var(--fs-metadata);
@@ -714,6 +752,13 @@
 }
 .glossari-entry__figure {
   margin: var(--space-3) 0;
+  /* Full clar sota la figura en mode fosc; neutre en mode clar (v. el
+     bloc "Full sota les figures" de tokens.css). */
+  background-color: var(--figure-sheet);
+  padding: var(--figure-sheet-pad);
+  width: var(--figure-sheet-width);
+  max-width: 100%;
+  border-radius: var(--radius-md);
 }
 .glossari-entry__figure img {
   max-width: 100%;
@@ -1011,6 +1056,13 @@
 
 .demo__figure {
   margin: var(--space-4) 0;
+  /* Full clar sota la figura en mode fosc; neutre en mode clar (v. el
+     bloc "Full sota les figures" de tokens.css). */
+  background-color: var(--figure-sheet);
+  padding: var(--figure-sheet-pad);
+  width: var(--figure-sheet-width);
+  max-width: 100%;
+  border-radius: var(--radius-md);
 }
 .demo__figure img {
   max-width: 100%;
@@ -1235,3 +1287,100 @@
    afegeix "suggerit bessones" com a className) -- cap regla pròpia
    necessària, aquest selector només queda de constància documental que
    la classe existeix i és intencional, no un oblit. */
+
+/* ==========================================================================
+   Eines de la pregunta: mode projector i fitxa impresa (set. 2026)
+   v. js/ui/detall.js (pintaEines, commutaProjector, pintaFitxaImpresa)
+   ========================================================================== */
+
+.detall-eines {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-2);
+  margin: var(--space-2) 0 var(--space-3);
+}
+.detall-eines__boto {
+  font-family: var(--font-mono);
+  font-size: var(--fs-metadata);
+  letter-spacing: var(--tracking-mono);
+  color: var(--ink-soft);
+  background: transparent;
+  border: var(--stroke-hairline) solid var(--rule-strong);
+  border-radius: var(--radius-md);
+  padding: 0.2rem 0.6rem;
+  cursor: pointer;
+}
+.detall-eines__boto:hover { border-color: var(--pencil); color: var(--ink); }
+.detall-eines__boto:focus-visible { outline: none; box-shadow: var(--focus-ring); }
+.detall-eines__ajuda { display: none; }
+
+/* La fitxa impresa només existeix per al paper (v. @media print). */
+.fitxa-impresa { display: none; }
+
+/* ---- Mode projector: classe a <html>, sobreviu a la navegació ---------- */
+html.mode-projector {
+  font-size: 140%;
+  --figure-slot-h-max: clamp(320px, 62vh, 900px);
+}
+html.mode-projector .site-header,
+html.mode-projector .detail-nav,
+html.mode-projector .done-toggle,
+html.mode-projector .valoracio,
+html.mode-projector .suggerit,
+html.mode-projector .itinerari-actiu,
+html.mode-projector .detall-eines__boto:not(.detall-eines__projector) {
+  display: none;
+}
+html.mode-projector .page { max-width: 70rem; }
+html.mode-projector .question-entry__figure { max-width: 44rem; }
+html.mode-projector .detall-eines__ajuda {
+  display: block;
+  flex-basis: 100%;
+  margin: 0;
+  font-family: var(--font-mono);
+  font-size: var(--fs-metadata);
+  color: var(--ink-faint);
+}
+
+/* ---- Paper -------------------------------------------------------------- */
+@media print {
+  body { background: #fff; }
+  .site-header,
+  .detail-nav,
+  .detall-eines,
+  .guia,
+  .done-toggle,
+  .valoracio,
+  .suggerit,
+  .itinerari-actiu,
+  .glossari-popover,
+  .hint-button,
+  .hint-text,
+  .untranslated-notice {
+    display: none !important;
+  }
+  .page { max-width: none; padding: 0; }
+  /* els termes de glossari, com a text normal (sense subratllat de botó) */
+  .glossari-term {
+    all: unset;
+  }
+  .question-entry__figure {
+    height: auto !important;
+    max-width: 12cm;
+    break-inside: avoid;
+  }
+  .question-entry__figure img { max-height: 9cm; }
+  .fitxa-impresa { display: block; margin-top: 0.6cm; }
+  .fitxa-impresa__pista,
+  .fitxa-impresa__peu { break-inside: avoid; margin-top: 0.4cm; }
+  .fitxa-impresa .guia__figure img { max-height: 7cm; width: auto; max-width: 100%; }
+  .fitxa-impresa__font {
+    margin-top: 0.8cm;
+    padding-top: 0.2cm;
+    border-top: 1px solid #999;
+    font-family: var(--font-mono);
+    font-size: 8pt;
+    color: #555;
+  }
+}

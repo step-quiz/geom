@@ -1,7 +1,9 @@
 /* render.js — captura CADA <canvas> de la pàgina en un PNG separat.
  * Ús:  node render.js figures-01.html  ./sortida
  * No cal mantenir cap llista d'ids: els descobreix sol.        */
-const { chromium } = require('/home/claude/.npm-global/lib/node_modules/playwright');
+// Playwright es busca a diverses rutes (v. playwright-cami.js): fins al set.
+// 2026 aquí hi havia la ruta fixa d'un entorn antic i no funcionava enlloc més.
+const { chromium } = require('./playwright-cami.js');
 const path = require('path'), fs = require('fs');
 (async () => {
   const [,, page, outDir='.'] = process.argv;

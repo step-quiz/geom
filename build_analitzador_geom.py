@@ -16,7 +16,7 @@ Les imatges hi van INCRUSTADES, no enllaçades. Sense això, "fitxer únic"
 era mentida: n'hi havia prou amb desar l'analitzador a l'escriptori
 perquè totes les figures donessin 404, i una pregunta de geometria
 sintètica sense la seva figura no es pot ni llegir. El fitxer passa
-d'uns 120 kB a uns 5 MB, cosa irrellevant per a un fitxer local que no
+d'uns 120 kB a uns 4 MB, cosa irrellevant per a un fitxer local que no
 viatja per cap xarxa, i a canvi el professorat el pot desar on vulgui.
 
 Només s'incrusten les imatges de les preguntes que poden sortir en una
@@ -37,19 +37,15 @@ AQUI = os.path.dirname(os.path.abspath(__file__))
 
 
 def extreu_amagats(codi_llista_js):
-    """EXERCICIS_AMAGATS és un array JS multilínia dins de llista.js, no
-    JSON solt (v. capçalera de la constant): calen cometes dobles al
-    voltant de cada id per poder-lo parsejar amb json.loads un cop
-    aïllat el tros entre claudàtors."""
-    m = re.search(r"const\s+EXERCICIS_AMAGATS\s*=\s*\[(.*?)\]", codi_llista_js, re.S)
-    if not m:
-        sys.exit("✗ no s'ha trobat EXERCICIS_AMAGATS a js/ui/llista.js "
-                  "— ha canviat de nom o de forma; actualitza aquest script.")
-    ids = re.findall(r'"([^"]+)"', m.group(1))
-    if not ids:
-        sys.exit("✗ EXERCICIS_AMAGATS s'ha trobat però és buit — comprova "
-                  "manualment js/ui/llista.js abans de continuar.")
-    return ids
+    """EXERCICIS_AMAGATS de js/ui/llista.js. Des del set. 2026 la lectura
+    és a amagats.py, compartida amb verifica_projecte.py: abans cada script
+    tenia la seva expressió regular i podien discrepar en silenci."""
+    sys.path.insert(0, AQUI)
+    import amagats
+    try:
+        return amagats.llegeix(codi_llista_js)
+    except amagats.ErrorAmagats as e:
+        sys.exit("✗ %s — comprova js/ui/llista.js abans de continuar." % e)
 
 
 def fitxers_imatge(codi_preguntes_js, amagats):

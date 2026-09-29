@@ -29,9 +29,10 @@
     figura        — nom de fitxer a assets/img/glossari/. L'esquema
                     admet null (§5 del document de disseny deia "amb
                     figures quan sigui convenient", no a totes les
-                    entrades), però avui els 53 termes en tenen: v.
-                    docs/guies/NOTA-GLOSSARI-27-FIGURES.md. Són 32
-                    fitxers, no 53 — termes emparentats en comparteixen
+                    entrades), però avui els 56 termes en tenen: v.
+                    docs/guies/NOTA-GLOSSARI-27-FIGURES.md i, per als
+                    tres últims, NOTA-COHERENCIA-SET-2026.md. Són 34
+                    fitxers, no 56 — termes emparentats en comparteixen
                     un (p. ex. altura/mediana/bisectriu, tots tres a
                     gloss-cevianes.png).
     relacionats   — array d'ids d'altres entrades. El que fa que sigui un
@@ -61,7 +62,7 @@
   concreta que el document esmenta. v. js/nucli/glossari.js,
   resolCampGlossari() — mateixa forma exacta que resolCampGuia().
 
-  GENERAT/EDITAT a mà (53 termes, 26 amb figura pròpia — v.
+  GENERAT/EDITAT a mà (56 termes, tots amb figura — v.
   docs/guies/NOTA-GLOSSARI-MILLORES.md i NOTA-GLOSSARI-AMPLIACIO.md; la
   xifra de "18 termes, primera passada" que hi havia aquí era de la
   primera tanda i feia anys que no era certa). No hi ha encara cap script generador equivalent a
@@ -536,7 +537,7 @@ window.GLOSSARI = {
       en: null
     },
     figura: "gloss-rao-semblanca.png",
-    relacionats: ["triangles-semblants", "criteris-semblanca-triangles"],
+    relacionats: ["triangles-semblants", "criteris-semblanca-triangles", "homotecia"],
     categoria: "triangles"
   },
   "projeccio-ortogonal": {
@@ -574,11 +575,53 @@ window.GLOSSARI = {
       en: ["Pythagorean theorem"]
     },
     definicio: {
-      ca: "En tot triangle rectangle, el quadrat de la hipotenusa és igual a la suma dels quadrats dels dos catets. Dit en àrees: l'àrea del quadrat construït sobre la hipotenusa és igual a la suma de les àrees dels quadrats construïts sobre els catets.",
+      ca: "En tot triangle rectangle, el quadrat de la hipotenusa és igual a la suma dels quadrats dels dos catets. Dit en àrees: l'àrea del quadrat construït sobre la hipotenusa és igual a la suma de les àrees dels quadrats construïts sobre els catets. Per a un triangle qualsevol el generalitza la llei del cosinus, c² = a² + b² − 2ab·cos C, que torna a ser Pitàgores quan C = 90° (perquè cos 90° = 0).",
       en: null
     },
     figura: "gloss-pitagores.png",
-    relacionats: ["triangle-rectangle", "projeccio-ortogonal"],
+    relacionats: ["triangle-rectangle", "projeccio-ortogonal", "teorema-del-sinus"],
+    categoria: "conceptes-generals"
+  },
+  "teorema-del-sinus": {
+    id: "teorema-del-sinus",
+    termes: {
+      ca: ["teorema del sinus", "llei dels sinus"],
+      en: ["law of sines", "sine rule"]
+    },
+    definicio: {
+      ca: "En tot triangle, cada costat dividit pel sinus de l'angle oposat dona el mateix nombre: a/sin A = b/sin B = c/sin C. Es veu mirant una mateixa alçada de dues maneres: l'alçada des de C val b·sin A i també a·sin B, i igualar-les dona a/sin A = b/sin B. Si un angle és obtús, el seu sinus es defineix com el del suplementari, sin C = sin(180° − C), i el teorema continua valent.",
+      en: null
+    },
+    figura: "gloss-teorema-sinus.png",
+    relacionats: ["altura", "angles-suplementaris", "triangle-obtusangle", "teorema-de-pitagores"],
+    categoria: "triangles"
+  },
+  "homotecia": {
+    id: "homotecia",
+    termes: {
+      ca: ["homotècia", "homotècies"],
+      en: ["dilation", "homothety"]
+    },
+    definicio: {
+      ca: "La transformació que amplia o redueix una figura des d'un punt fix, el centre: cada punt s'allunya (o s'acosta) del centre en la mateixa proporció k, sobre la mateixa recta que l'uneix amb el centre. Conserva la forma: els angles no canvien i totes les longituds es multipliquen per k, de manera que la figura nova és semblant a l'original amb raó k. En anglès se'n diu dilation, que no vol dir «dilatació».",
+      en: null
+    },
+    figura: "gloss-homotecia-estirament.png",
+    relacionats: ["rao-de-semblanca", "triangles-semblants", "estirament"],
+    categoria: "conceptes-generals"
+  },
+  "estirament": {
+    id: "estirament",
+    termes: {
+      ca: ["estirament", "estiraments"],
+      en: ["stretch"]
+    },
+    definicio: {
+      ca: "La transformació que multiplica les distàncies per un factor en una direcció i per un altre (o per 1) en la direcció perpendicular — per exemple, estirar una figura només en horitzontal. A diferència d'una homotècia, no conserva la forma: els angles canvien, i una circumferència es torna una el·lipse. El que sí que conserva: les rectes continuen sent rectes, les paral·leles continuen sent paral·leles, les proporcions sobre una mateixa recta no canvien, i totes les àrees es multipliquen pel mateix nombre (el producte dels dos factors).",
+      en: null
+    },
+    figura: "gloss-homotecia-estirament.png",
+    relacionats: ["homotecia", "ellipse", "rao-de-semblanca"],
     categoria: "conceptes-generals"
   },
 
@@ -589,7 +632,7 @@ window.GLOSSARI = {
       en: ["regular polygon"]
     },
     definicio: {
-      ca: "Un polígon amb tots els costats iguals i tots els angles iguals. Té un centre únic, equidistant de tots els vèrtexs (el radi) i de tots els costats (l'apotema).",
+      ca: "Un polígon amb tots els costats iguals i tots els angles iguals. Té un centre únic, equidistant de tots els vèrtexs (el radi) i de tots els costats (l'apotema). Els angles interiors de qualsevol polígon de n costats sumen (n−2)·180° (si és convex, les diagonals que surten d'un vèrtex el parteixen en n−2 triangles); en un de regular, doncs, cada angle fa (n−2)·180°/n: 60° el triangle, 90° el quadrat, 108° el pentàgon, 120° l'hexàgon.",
       en: null
     },
     figura: "gloss-poligons-regular-irregular.png",
@@ -617,7 +660,7 @@ window.GLOSSARI = {
       en: ["apothem"]
     },
     definicio: {
-      ca: "El segment de la perpendicular traçada des del centre d'un polígon regular a un dels seus costats — i, per extensió, la longitud d'aquest segment. Coincideix amb el radi de la circumferència inscrita al polígon.",
+      ca: "El segment de la perpendicular traçada des del centre d'un polígon regular a un dels seus costats — i, per extensió, la longitud d'aquest segment. Coincideix amb el radi de la circumferència inscrita al polígon. En un poliedre regular, per extensió, s'anomena així la distància del centre a una cara, que és el radi de l'esfera inscrita. Compte: als llibres de text també se'n diu apotema d'una piràmide a l'altura d'una cara lateral, que és una altra cosa.",
       en: null
     },
     figura: "gloss-apotema-diagonal.png",
@@ -642,11 +685,11 @@ window.GLOSSARI = {
   "poliedre": {
     id: "poliedre",
     termes: {
-      ca: ["poliedre"],
-      en: ["polyhedron"]
+      ca: ["poliedre", "angle diedre"],
+      en: ["polyhedron", "dihedral angle"]
     },
     definicio: {
-      ca: "Un cos geomètric la superfície del qual està formada per un nombre finit de polígons plans (les cares). Les cares es tallen en arestes, i les arestes es tallen en vèrtexs. Prismes, piràmides i tetraedres en són exemples.",
+      ca: "Un cos geomètric la superfície del qual està formada per un nombre finit de polígons plans (les cares). Les cares es tallen en arestes, i les arestes es tallen en vèrtexs. Prismes, piràmides i tetraedres en són exemples. L'angle entre dues cares que comparteixen una aresta és l'angle diedre, i es mesura en un pla perpendicular a aquella aresta.",
       en: null
     },
     figura: "gloss-poliedre.png",
@@ -688,7 +731,7 @@ window.GLOSSARI = {
       en: ["tetrahedron"]
     },
     definicio: {
-      ca: "Una piràmide de base triangular — el poliedre més senzill possible, amb quatre cares triangulars, quatre vèrtexs i sis arestes.",
+      ca: "Una piràmide de base triangular — el poliedre més senzill possible, amb quatre cares triangulars, quatre vèrtexs i sis arestes. Si és regular, els seus angles diedres fan arccos(1/3) ≈ 70,5°.",
       en: null
     },
     figura: "gloss-tetraedre.png",
@@ -702,7 +745,7 @@ window.GLOSSARI = {
       en: ["cylinder"]
     },
     definicio: {
-      ca: "Un cos de revolució generat en fer girar un rectangle al voltant d'un dels seus costats. Té dues bases circulars iguals i paral·leles, unides per una superfície lateral corba.",
+      ca: "Un cos de revolució generat en fer girar un rectangle al voltant d'un dels seus costats. Té dues bases circulars iguals i paral·leles, unides per una superfície lateral corba. Volum: V = πr²h (àrea de la base per l'alçada). Àrea lateral: 2πrh — desenrotllada, és un rectangle de costats 2πr i h.",
       en: null
     },
     figura: "gloss-cilindre.png",
@@ -716,7 +759,7 @@ window.GLOSSARI = {
       en: ["cone"]
     },
     definicio: {
-      ca: "Un cos de revolució generat en fer girar un triangle rectangle al voltant d'un dels seus catets. Té una base circular i es tanca en un únic vèrtex, el punt més amunt.",
+      ca: "Un cos de revolució generat en fer girar un triangle rectangle al voltant d'un dels seus catets. Té una base circular i es tanca en un únic vèrtex, el punt més amunt. Volum: V = (1/3)πr²h, un terç del cilindre de la mateixa base i alçada. Àrea lateral: πrg, on g és la generatriu (la distància del vèrtex a la vora de la base).",
       en: null
     },
     figura: "gloss-con.png",
@@ -730,7 +773,7 @@ window.GLOSSARI = {
       en: ["sphere"]
     },
     definicio: {
-      ca: "El conjunt de tots els punts de l'espai que es troben a la mateixa distància (el radi) d'un punt fix (el centre). És l'anàleg tridimensional de la circumferència.",
+      ca: "El conjunt de tots els punts de l'espai que es troben a la mateixa distància (el radi) d'un punt fix (el centre). És l'anàleg tridimensional de la circumferència. Volum: V = (4/3)πr³. Superfície: S = 4πr², quatre vegades l'àrea d'un cercle màxim.",
       en: null
     },
     figura: "gloss-esfera.png",

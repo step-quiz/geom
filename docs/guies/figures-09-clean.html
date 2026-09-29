@@ -225,8 +225,11 @@ function handCurve(hd,pts,opts){
 })();
 
 /* ============================================================
-   fig-107 -- q103: costat que passa pel punt de projeccio, fent que
-   la seva imatge fugi a l'infinit.
+   fig-107 -- q103: costat que passa pel punt de projeccio. Els seus dos
+   extrems comparteixen raig i van a parar al MATEIX punt: el triangle
+   s'aplana (col·lapse). No s'escapa res a l'infinit -- aquesta figura ho
+   deia fins al set. 2026, i era fals: la fugida es un cas diferent (raig
+   paral·lel a la recta d'arribada), v. la Pista 4 de q103.
    Moviment: distingeix-casos. */
 (function(){
   const ctx=mk('h9',680,500),hd=makeHandDraw(ctx,9009);ctx.translate(40,20);
@@ -258,8 +261,8 @@ function handCurve(hd,pts,opts){
   hd.handSegment(O.x,O.y,Bp.x,Bp.y,{lineWidth:1.4,dashed:true,dashPattern:[6,5],color:SANG});
   hd.handDot(Ap.x,Ap.y,4,SANG);hd.handDot(Bp.x,Bp.y,4,SANG);
   lbl(ctx,"A′",Ap.x-24,Ap.y+8,SANG,17);lbl(ctx,"B′",Bp.x-38,Bp.y+18,SANG,17);
-  lbl(ctx,"C′ → s'escapa cap a l'infinit",Bp.x+30,groundY-14,SANG,17);
-  lblC(ctx,"BC prolongat passa per O: C no té imatge ordinària",340,groundY+56,INK,16);
+  lbl(ctx,"C′ = B′: la mateixa imatge",Bp.x+30,groundY-14,SANG,17);
+  lblC(ctx,"BC passa per O: B i C van al mateix punt, i el triangle s'aplana",340,groundY+56,INK,16);
   stampNum(ctx,440,'107');
 })();
 

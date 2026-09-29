@@ -263,9 +263,12 @@ function paramPoints(fx, fy, t0, t1, nPts, closed=false) {
   stampNum(ctx,520,'120');
 })();
 
-/* fig-121 -- q117: dues paraboles amb el mateix vertex/directriu, focus a
-   alcades diferents (com al llibre), i en sanguina la dilatacio marcada.
-   Moviment: dilatacio. */
+/* fig-121 -- q117: dues paraboles amb el mateix vertex, focus a alcades
+   diferents (com al llibre), i en sanguina com s'allunya el focus. La recta
+   horitzontal es la TANGENT COMUNA al vertex, no cap directriu: fins al
+   set. 2026 el peu deia "mateixa directriu", que es impossible (la
+   directriu es a distancia p del vertex, i cada parabola te la seva p).
+   Moviment: homotecia. */
 (function(){
   const ctx=mk('i6',900,420),hd=makeHandDraw(ctx,7006);
   ctx.translate(450,340);
@@ -289,7 +292,7 @@ function paramPoints(fx, fy, t0, t1, nPts, closed=false) {
   hd.handSegment(0,-p1,0,-p2,{lineWidth:1.8,dashed:true,color:SANG});
   lbl(ctx,'focus 1',14,-p1-6,SANG,17);
   lbl(ctx,'focus 2',14,-p2-6,SANG,17);
-  lblC(ctx,'mateixa directriu, dilatació uniforme',0,40,INK,17);
+  lblC(ctx,'tangent comuna al vèrtex · homotècia centrada al vèrtex',0,40,INK,17);
   stampNum(ctx,420,'121');
 })();
 

@@ -317,6 +317,11 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
+  /* Full clar sota la figura en mode fosc; neutre en mode clar (v. el
+     bloc "Full sota les figures" de tokens.css). */
+  background-color: var(--figure-sheet);
+  padding: var(--figure-sheet-pad);
+  border-radius: var(--radius-sm);
 }
 
 .question-entry__figure img {
@@ -389,7 +394,7 @@ p {
   de la imatge — llegeix més net que un fons ajustat a mida variable.
 */
 .question-entry__figure--scan .question-entry__figure-frame {
-  background-color: var(--paper-raised);
+  background-color: var(--figure-sheet-scan);
   border-radius: var(--radius-sm);
 }
 

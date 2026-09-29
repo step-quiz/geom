@@ -17,8 +17,8 @@ integration as a bug to fix.
 
 - **Agent-sol-2D** — writes solutions for every question with
   `dimensio: "2D"` in `js/data/preguntes-dades.js`, except the hidden ones
-  (see below). 88 questions are 2D, 10 of them are hidden, so the scope is
-  **78 questions**.
+  (see below). 88 questions are 2D, 7 of them are hidden, so the scope is
+  **81 questions**.
 - **Agent-sol-3D** — writes solutions for every question with
   `dimensio: "3D"`, except the hidden ones. 42 questions are 3D, 5 of them
   are hidden (`q18a`, `q18b`, `q67`, `q102`, `q106`), so the scope is
@@ -27,8 +27,9 @@ integration as a bug to fix.
   q58, q59, q60, q61, q62, q63, q65, q66, q68, q81, q82, q91, q92, q93,
   q100, q101, q103, q104, q105, q107, q108, q109, q123, q126`.
 
-Together: 130 questions in the book, minus 15 hidden, is 115 solutions
-to write. Each agent only ever adds files to its own block in `sol.html`
+Together: 130 questions in the book, minus 12 hidden, is 118 solutions
+to write — and all 118 exist as of Sep 2026 (`verifica_projecte.py` fails
+if a visible question has no solution file). Each agent only ever adds files to its own block in `sol.html`
 (see below) and never edits, renames, or reorders the other agent's
 lines or files.
 
@@ -40,22 +41,30 @@ from a guess about the topic. If you are Agent-sol-2D and a question
 turns out to be `dimensio: "3D"` (or vice versa), it is not yours — skip
 it.
 
-## The 15 hidden questions — never write a solution for these
+## The 12 hidden questions — never write a solution for these
 
-`js/ui/llista.js` defines `EXERCICIS_AMAGATS`, a hard-coded list of 15
+`js/ui/llista.js` defines `EXERCICIS_AMAGATS`, a hard-coded list of 12
 question ids the project owner has explicitly asked to keep out of the
 public list and out of every themed itinerari:
 
 ```
-q19, q20, q34, q35, q84, q88, q18a, q18b, q21, q24, q83, q87, q67, q102, q106
+q19, q20, q34, q35, q18a, q18b, q21, q24, q83, q67, q102, q106
 ```
 
-**Ten of these are `dimensio: "2D"` and five are `dimensio: "3D"`**
-(`q18a`, `q18b`, `q67`, `q102`, `q106`). Until the Aug 2026 documentation
-audit this file claimed all fifteen were 2D — they are not, and the claim
-contradicted this file's own arithmetic (all-2D would have left
-Agent-sol-2D with 73 questions, not the 78 stated above). **Both agents**
-must check the list, not just Agent-sol-2D.
+**Seven of these are `dimensio: "2D"` and five are `dimensio: "3D"`**
+(`q18a`, `q18b`, `q67`, `q102`, `q106`). **Both agents** must check the
+list, not just Agent-sol-2D.
+
+**`q84`, `q87` and `q88` are NOT hidden any more.** They were on this list
+until Aug 2026, when the owner published them on closing the maths review
+(they establish sin²+cos²=1, the sine of an obtuse angle and the
+double-angle formulas, which the rest of the notebook uses). They are
+visible 2D questions and need a solution like any other: `q84` and `q87`
+got theirs at the time; `q88` was missed until Sep 2026 — plausibly
+because this very section still told agents never to write it. If you
+are reading an older copy of this file that still lists fifteen ids,
+it is out of date: `EXERCICIS_AMAGATS` in `js/ui/llista.js` is the only
+source of truth.
 
 Cross-reference the id against this list (or against
 `window.geoLlista.esAmagada(id)` if running inside the app's own JS
@@ -72,7 +81,7 @@ solution.
 ## Shared stylesheet — `solucions/sol.css`
 
 `solucions/sol.css` is **shared by both agents**, not owned by either
-one. Its own header says so explicitly ("Estil de les 115 pàgines de
+one. Its own header says so explicitly ("Estil de les pàgines de
 solució") — it was designed from the start to style every solution
 page, 2D and 3D alike. Every `.html` file in `solucions/`, from both
 agents, loads it with the same `<link rel="stylesheet" href="sol.css?v=1">`.
@@ -158,7 +167,7 @@ one you are looking at.
 
 1. **The hand-written lists** at the top, split into "2D — Agent-sol-2D" and
    "3D — Agent-sol-3D". These stopped being maintained early on: they hold
-   13 entries against 115 solution files on disk. The "(78 preguntes en
+   13 entries against 118 solution files on disk. The "(81 preguntes en
    total)" / "(37 preguntes en total)" counts in those headers are the
    agents' full *scope*, not a running tally of what's written. Don't read
    them as progress.

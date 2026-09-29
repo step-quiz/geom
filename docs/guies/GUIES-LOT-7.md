@@ -148,24 +148,32 @@ la mateixa forma però amb π: (πh/3)(a²+ab+b²). Substitueix a=R−h i b=R,
 resta-ho de πR²h i simplifica —veuràs que els R² es cancel·len sols i et
 queda una expressió ben curta en h i R.
 
-Un avís d'honestedat, i en van dos. El primer: que "sumar" àrees de
-seccions infinitament primes doni exactament un volum és el pas que el
-càlcul integral formalitza, i és fora d'aquest quadern —el mateix tipus de
-frontera que ja et vas trobar a q64 amb la longitud de l'astroide. El
-segon, i val la pena que el sàpigues: **tot això et dona el VOLUM, no la
-superfície**. La fórmula de l'àrea corba del casquet, 2πRh, és certa i és
-un teorema d'Arquimedes —diu que projectant el casquet horitzontalment
-sobre el cilindre que envolta l'esfera, l'àrea es conserva exactament, cosa
-gens evident—, però aquí te la donem, no la demostrem. El que sí que és teu del tot és l'argument de Cavalieri: dues
-figures amb la mateixa secció a cada alçada tenen el mateix volum.
+Per a la SUPERFÍCIE, Cavalieri no t'hi ajuda —dona volums, no àrees—, però
+el volum que acabes de trobar sí. Talla la superfície corba del casquet en
+trossets molt petits i uneix cadascun amb el centre de l'esfera: són
+piràmides primíssimes, totes d'alçada R, i juntes omplen el "sector
+esfèric" (el casquet més el con que va del centre de l'esfera al cercle de
+tall). El volum d'una piràmide és un terç de la base per l'alçada; sumant-les
+totes, el sector val (1/3)·R·S, on S és la superfície que busques. Ara calcula
+el volum del sector d'una altra manera —casquet més con, dues coses que ja
+saps mesurar: el radi del cercle de tall surt de Pitàgores— i aïlla S.
+
+Un avís d'honestedat: que "sumar" seccions infinitament primes doni
+exactament un volum (Cavalieri), o que infinites piràmides primíssimes
+omplin exactament el sector, és el pas que el càlcul integral formalitza, i
+és fora d'aquest quadern —el mateix tipus de frontera que ja et vas trobar a
+q64 amb la longitud de l'astroide. Tota la resta és teva.
 
 **Comprovació.** R=2, h=1: V=(πh²/3)(3R−h)=(π/3)(6−1)=5π/3≈5,24.
 Comprova que quan h=R=2 recuperes el volum de la semiesfera de q60
-(2/3)πR³=16π/3≈16,76. Superfície corba (sense la base): 2πRh=4π≈12,57.
+(2/3)πR³=16π/3≈16,76. Superfície corba (sense la base): t'ha de sortir
+S = 2πRh; amb R=2, h=1, el sector fa 8π/3 i S = 3·(8π/3)/2 = 4π≈12,57.
+Fixa't que 2πRh és exactament l'àrea lateral d'un cilindre de radi R i
+alçada h: és el teorema d'Arquimedes del casquet.
 
 **I després.** Quan h=2R (el casquet és l'esfera sencera), la fórmula del
-volum es converteix en (4/3)πR³ — la fórmula habitual de l'esfera, com a
-cas particular d'aquesta de més amunt.
+volum es converteix en (4/3)πR³ i la superfície en 4πR² — les fórmules
+habituals de l'esfera, com a casos particulars d'aquestes de més amunt.
 
 ---
 
@@ -250,7 +258,7 @@ discs (q50, a continuació).
 ## 6. q50 — *Can you figure out the pattern to these approximations?*
 > Trobes el patró d'aquestes aproximacions?
 
-**Moviment: cas límit.** DEPÈN de q18a (ja fet, volum per capes).
+**Moviment: cas límit.**
 
 **Avís 3D.** Un angle recte no es veu recte en una projecció en
 perspectiva.
@@ -262,8 +270,8 @@ el reconeixement de cap a on tendeix.
 **Pista 1 — comença amb pocs discs.**
 Amb un sol disc (un cilindre curt dins del con), el volum aproximat es
 queda curt de veritat. Amb dos discs més prims, ja s'hi assembla més.
-Cada disc és un cilindre — el mateix objecte de volum conegut que ja vas
-fer servir a q18a, ara apilat en comptes de format per una sola capa.
+Cada disc és un cilindre, i el volum d'un cilindre ja el coneixes: l'àrea
+de la base (πr²) per l'alçada, que aquí és el gruix del disc.
 
 **Pista 2 — la construcció.** → `fig-075.png`
 
@@ -443,7 +451,8 @@ va demanar que li gravessin a la tomba.
 ## 10. q64 — *What is the perimeter of a region formed by a moving stick?*
 > Quin perímetre té una regió formada per un bastó en moviment?
 
-**Moviment: cas límit.** DEPÈN de q50 (aquest mateix lot).
+**Moviment: cas límit.** *(El mateix moviment que q50, però no en depèn:
+cap pas d'aquesta guia fa servir res de q50.)*
 
 **Nota sobre aquesta guia.** No tinc l'escaneig ni el text original
 d'aquesta pregunta — l'enunciat en anglès és tot el que hi ha. M'he guiat
@@ -652,7 +661,7 @@ igual.
 ## 14. q68 — *If we rotate a right triangle it forms a cone. Assuming Pappus is right, where must the centroid of the triangle be?*
 > Si girem un triangle rectangle es forma un con. Suposant que Pappus té raó, on ha d'estar el centroide del triangle?
 
-**Moviment: dues maneres.** DEPÈN de q65, q66, q67 (aquest mateix lot).
+**Moviment: dues maneres.** DEPÈN de q65, q66 (aquest mateix lot).
 
 **Avís 3D.** Un angle recte no es veu recte en una projecció en
 perspectiva.

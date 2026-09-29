@@ -3,6 +3,13 @@
 **Estat:** **TANCAT** · cobreix **q01–q127**, és a dir **les 130 preguntes senceres**
 (trams 1–20 de la revisió matemàtica; q127 és l'última del quadern).
 **Última actualització:** 2026-08-27, en tancar el tram 20 (q124–q127) i, amb ell,
+
+**Set. 2026 — incorporades al glossari:** totes les del bloc A (A1–A7; A8 ja
+ho era) i, del bloc B, **B24** (`teorema-del-sinus`) i **B36**
+(`homotecia` i `estirament`, dues entrades amb una figura compartida), que
+resolen també **B14** i **B27**. El glossari passa de 53 a 56 termes, tots
+amb figura. I el teorema d'Arquimedes del casquet (taula C) ja no és
+"donat": q62 el demostra (v. `docs/guies/NOTA-COHERENCIA-SET-2026.md`).
 la revisió matemàtica completa. Ja no s'amplia: l'inventari cobreix tot el quadern.
 
 ---
@@ -36,7 +43,7 @@ no surten en aquest document.
 Aquests són els més barats d'arreglar i, probablement, els més rendibles: no
 cal crear cap entrada, només ampliar-ne una que ja existeix.
 
-### A1. `esfera` — falten el volum i la superfície
+### A1. `esfera` — falten el volum i la superfície — ✅ FETA (set. 2026)
 
 L'entrada defineix l'esfera com a lloc geomètric ("el conjunt de tots els punts
 de l'espai a la mateixa distància d'un punt fix"), cosa correcta i útil. Però
@@ -50,7 +57,7 @@ les guies fan servir constantment dues fórmules que no hi són:
 A **q58** i a **q69** això no és decoratiu: el volum de l'esfera és
 literalment el número amb què es tanca el problema.
 
-### A2. `con` — falten el volum i l'àrea lateral
+### A2. `con` — falten el volum i l'àrea lateral — ✅ FETA (set. 2026)
 
 | Fórmula | On s'usa |
 |---|---|
@@ -63,11 +70,11 @@ coneixes» — o sigui, feia servir el resultat que la pila de discos serveix pe
 establir. Corregit al tram 5, però il·lustra bé el risc de tenir el
 coneixement previ sense inventariar.
 
-### A3. `cilindre` — falta l'àrea lateral
+### A3. `cilindre` — falta l'àrea lateral — ✅ FETA (set. 2026)
 
 2πrh, usada a q45 (que la dedueix) i pressuposada a q53 i q63.
 
-### A4. `poligon-regular` — falta la suma d'angles
+### A4. `poligon-regular` — falta la suma d'angles — ✅ FETA (set. 2026)
 
 L'entrada descriu el centre, el radi i l'apotema, però **no diu enlloc que la
 suma dels angles interiors sigui (n−2)·180°**, ni que l'angle interior d'un
@@ -77,7 +84,7 @@ al glossari.
 És, probablement, la fórmula més reutilitzada del quadern: **q04, q06, q29,
 q70**, i indirectament q03 i q08b (que necessiten els 60°, 90°, 108°, 120°).
 
-### A5. `apotema` — només cobreix el cas pla
+### A5. `apotema` — només cobreix el cas pla — ✅ FETA (set. 2026)
 
 L'entrada parla de l'apotema d'un **polígon regular**. Però **q57** fa servir
 "apotema" per a un **poliedre** (la distància del centre a una cara, és a dir
@@ -87,13 +94,13 @@ no ho recull — i hi ha una tercera accepció a l'aguait, la de l'apotema d'una
 piràmide (altura d'una cara lateral), que és la que l'alumnat troba als llibres
 de text i que aquí NO es fa servir mai.
 
-### A6. `poliedre` / `tetraedre` — falta l'angle diedre
+### A6. `poliedre` / `tetraedre` — falta l'angle diedre — ✅ FETA (set. 2026)
 
 Cap de les dues entrades esmenta l'angle entre dues cares. **q81** hi està
 dedicada sencera i **q82** hi construeix el folrat de l'espai. Comprovat: la
 paraula «diedre» no surt ni un cop al glossari.
 
-### A7. `teorema-de-pitagores` — no diu que tingui generalització
+### A7. `teorema-de-pitagores` — no diu que tingui generalització — ✅ FETA (set. 2026)
 
 L'entrada és correcta per al cas recte. Però **q79** en construeix la
 generalització a angles obtusos (c² = a²+b²+2ab·cos C'), que és la llei del
@@ -147,7 +154,7 @@ servir jo per prioritzar.
 | B11 | **Polígon estelat {n/k} i pentagrama** | q05, q07, q32 | La notació {n/k} s'introdueix a q05 i es fa servir a q07 i q32 sense estar definida enlloc estable. |
 | B12 | **Desigualtat triangular** | q74 | És la pregunta mateixa, però el nom del resultat no hi surt. |
 | B13 | **Fórmula de Heron** | q75 | Donada sense demostrar ni definir; és tota la palanca de la pregunta. |
-| B14 | **Homotècia** | q77 | El llibre en diu *dilation* i la traducció «dilatació» és un fals amic (v. tram 10). Una entrada amb els tres noms —semblança / homotècia / *dilation*— resoldria la confusió d'arrel. |
+| B14 | ✅ FETA (set. 2026) · **Homotècia** | q77 | El llibre en diu *dilation* i la traducció «dilatació» és un fals amic (v. tram 10). Una entrada amb els tres noms —semblança / homotècia / *dilation*— resoldria la confusió d'arrel. |
 | B15 | **Casquet esfèric** | q62 | Amb V = (πh²/3)(3R−h) i S = 2πRh. |
 | B16 | **Mosaic, teselació regular i semiregular** | q03 | Els 3 regulars, els 8 semiregulars, les 17 rosetes. |
 | B17 | **Nombre irracional** | q18a, q21 | q21 demostra que √3 ho és; el concepte s'assumeix. |
@@ -156,7 +163,7 @@ servir jo per prioritzar.
 | B20 | **Identitat sin²+cos²=1** | q79, **q84**, **q88** | Ja no és del tot una caixa negra: **q84 és la pregunta que la demostra**. Però q84 és a `EXERCICIS_AMAGATS`, o sigui que passa el mateix que a B21 — el quadern la demostra en un lloc on l'alumne no pot entrar. Al tram 12 q88 hi va passar a recolzar-s'hi expressament. |
 | B21 | **Sinus i cosinus d'un angle obtús** | q79, q80, q87, q90 | Definits via el suplementari, sin(180°−C). **q87, que és la pregunta que ho treballa, és a `EXERCICIS_AMAGATS`** — o sigui que avui aquesta definició no és accessible enlloc per a l'alumne. Precisió del tram 12: del **cosinus** d'un angle obtús no en parla ni tan sols q87. La definició que faria falta és cos(C) := −cos(180°−C) (el signe canviat respecte del sinus), i és la que convertiria la fórmula de q79 en la llei del cosinus única. La solució de q90 ja la fa servir sense dir-ho. |
 | B22 | **Valors exactes de 30°, 60°, 45°** | q83 (i q30, q39) | La taula d'angles notables. q83 dedueix 30° i 60°; 45° s'usa sense deduir-se. |
-| B36 | **Homotècia i estirament: què conserva cadascun** | q32, q46, q77, q85, q91, q92, q100, q112, q114, q117 | *Afegit al tram 18; ampliat i resolt terminològicament al tram 19.* El quadern feia servir «dilatació» —fals amic de l'anglès *dilation*— per a **dues transformacions diferents**, i cap de les dues es deia com toca en català. Ara: **homotècia** per a l'escalat uniforme des d'un punt (q32, q77, q85, q117) i **estirament** per al de factors diferents segons la direcció (q46, q91, q92, q100, q112, q114). No és només vocabulari: una homotècia conserva angles i raons de distàncies i per tant porta focus a focus, i un estirament no —era exactament l'error de q114. L'entrada de glossari, si es fa, ha de ser doble i ha de dir què sobreviu a cadascuna. Cap dels dos termes és avui al glossari. |
+| B36 | ✅ FETA (set. 2026) · **Homotècia i estirament: què conserva cadascun** | q32, q46, q77, q85, q91, q92, q100, q112, q114, q117 | *Afegit al tram 18; ampliat i resolt terminològicament al tram 19.* El quadern feia servir «dilatació» —fals amic de l'anglès *dilation*— per a **dues transformacions diferents**, i cap de les dues es deia com toca en català. Ara: **homotècia** per a l'escalat uniforme des d'un punt (q32, q77, q85, q117) i **estirament** per al de factors diferents segons la direcció (q46, q91, q92, q100, q112, q114). No és només vocabulari: una homotècia conserva angles i raons de distàncies i per tant porta focus a focus, i un estirament no —era exactament l'error de q114. L'entrada de glossari, si es fa, ha de ser doble i ha de dir què sobreviu a cadascuna. Cap dels dos termes és avui al glossari. |
 | B38 | **Rodolament sense lliscar** | q124, q125, q127 | *Afegit al tram 20.* El fet que fa funcionar tot el bloc de cicloides: quan un cercle rodola sense lliscar, els dos arcs en contacte mesuren el mateix. No es defineix enlloc i no és al glossari. Si es fa entrada, ha de portar l'avís de la **paradoxa de les dues monedes**: el nombre de voltes que el cercle petit fa *sobre el seu propi centre* no és R/r sinó R/r∓1, i comptar-lo en lloc de l'arc dona el nombre de cúspides equivocat. Era exactament l'argument que fallava a q124. |
 | B39 | **Meridià i paral·lel d'un tor** | q126 | *Afegit al tram 20.* q126 els fa servir a la comprovació **i els tenia intercanviats** (corregit al tram 20). El meridià és el cercle petit al voltant del tub; el paral·lel, el gran al voltant del forat. Cap dels dos és al glossari, i la confusió és previsible perquè a l'esfera els noms suggereixen el contrari del que sembla. |
 | B37 | **Suma dels n primers quadrats** | q121 | *Afegit al tram 19.* q121 hi descansa sencera —1²+2²+…+n² = n(n+1)(2n+1)/6— i la fa servir sense demostrar-la ni citar-ne cap font. És coneixement previ d'aula i no és al glossari. Barata i molt reutilitzable: és el que converteix l'exhauriment d'Arquimedes en una fórmula exacta per a cada n en lloc d'un pas a l'infinit. |
@@ -169,10 +176,10 @@ servir jo per prioritzar.
 | B30 | **La perpendicular és la distància més curta d'un punt a una recta** | q95, q96 | *Afegit al tram 14.* No la demostra cap pregunta i no és al glossari. És el pas que fa que el peu de la perpendicular de q95 caigui **dins** del cercle —justament el punt on la solució s'equivocava abans del tram 14. |
 | B25 | **A costat més gran, angle oposat més gran** | q89 | *Afegit al tram 13.* És l'única peça de la demostració de Steiner–Lehmus que el quadern no estableix. No la demostra cap pregunta i no és al glossari; és coneixement previ d'aula (i es dedueix en dues línies del teorema del sinus, B24, que tampoc no hi és). Barata i molt reutilitzable. |
 | B26 | **Fórmula de Heron** | q90 | *Afegit al tram 13.* q90 es presenta com «la generalització de Heron», o sigui que la pressuposa; cap pregunta no l'estableix i no és al glossari. Ara bé, en completar l'àlgebra de q90 al tram 13, **el quadern la demostra sense voler**: fent d→0 a la fórmula de Brahmagupta en surt Heron exacta. Val la pena que l'entrada de glossari, si es fa, hi remeti. |
-| B27 | **Dilatació anisòtropa (factors diferents segons la direcció)** | q91, q92, q112, q114 | *Afegit al tram 13.* Concepte central de quatre preguntes i sense entrada al glossari, tot i que `rao-de-semblanca` i `triangles-semblants` sí que hi són —i totes dues descriuen el cas isòtrop, que és justament el que aquestes quatre preguntes contrasten. Aquesta absència va contribuir a l'error de q91/q92 corregit al tram 13. |
+| B27 | ✅ FETA (set. 2026) · **Dilatació anisòtropa (factors diferents segons la direcció)** | q91, q92, q112, q114 | *Afegit al tram 13.* Concepte central de quatre preguntes i sense entrada al glossari, tot i que `rao-de-semblanca` i `triangles-semblants` sí que hi són —i totes dues descriuen el cas isòtrop, que és justament el que aquestes quatre preguntes contrasten. Aquesta absència va contribuir a l'error de q91/q92 corregit al tram 13. |
 | B28 | **Projecció paral·lela vs. projecció central** | q91, q92, q104 | *Afegit al tram 13.* El glossari té `projection`, però la distinció entre les dues és el contingut sencer de q92. Emparentada amb B27: són les dues maneres diferents que té una projecció de no ser una homotècia. |
 | B23 | **Folrat de l'espai (nius d'abella)** | q82 | Anàleg 3D de B16. Inclou el fet que el cub és l'únic poliedre regular que hi arriba tot sol. |
-| B24 | **Teorema del sinus** | q86, q87 | **Afegit al tram 12.** q87 pregunta literalment si la definició de sinus d'un angle obtús es pot triar «de manera que el teorema del sinus encara es compleixi», i q86 el cita al tancament. Però **el teorema no s'enuncia ni es demostra enlloc del quadern**, i tampoc és al glossari: les dues úniques preguntes que en parlen el pressuposen. Al tram 12 vaig posar-ne la demostració dins de q87 (les dues lectures de la mateixa alçada), que és el mínim per fer la pregunta responible; però q87 és amagada. Sense entrada de glossari o sense desamagar q87, el terme queda inaccessible. |
+| B24 | ✅ FETA (set. 2026) · **Teorema del sinus** | q86, q87 | **Afegit al tram 12.** q87 pregunta literalment si la definició de sinus d'un angle obtús es pot triar «de manera que el teorema del sinus encara es compleixi», i q86 el cita al tancament. Però **el teorema no s'enuncia ni es demostra enlloc del quadern**, i tampoc és al glossari: les dues úniques preguntes que en parlen el pressuposen. Al tram 12 vaig posar-ne la demostració dins de q87 (les dues lectures de la mateixa alçada), que és el mínim per fer la pregunta responible; però q87 és amagada. Sense entrada de glossari o sense desamagar q87, el terme queda inaccessible. |
 
 ---
 
@@ -188,7 +195,7 @@ pregunta, o les guies ja avisen expressament que queden fora d'abast.
 | Sòlid de Steinmetz | q58 | Nom propi d'una sola figura. |
 | Suma de quadrats Σk² = n(n+1)(2n+1)/6 | q50 (i q121) | És àlgebra, no geometria, però s'usa com a caixa negra. Mereix almenys una nota. |
 | Davallada infinita | q21 | Tècnica de demostració, no objecte geomètric. |
-| Teorema d'Arquimedes del casquet (2πRh) | q62 | Marcat com a donat-i-no-demostrat al tram 7. |
+| Teorema d'Arquimedes del casquet (2πRh) | q62 | Marcat com a donat-i-no-demostrat al tram 7. ✅ **Demostrat des del set. 2026** a q62 (sector esfèric calculat de dues maneres). |
 | Determinant per al volum d'un tetraedre | q56 | Fora d'abast d'ESO; la guia ofereix la via elemental en paral·lel. |
 | Funcions trigonomètriques inverses (arccos) | q81 | S'usa per expressar els angles diedres; no és objecte geomètric. |
 | Fórmules de l'angle doble | q88 | *Afegit al tram 12.* Era de dues preguntes (q88 i q85); en corregir q85 (que hi arribava per un camí que tornava al punt de partida) ha quedat de q88 sola, i q88 és amagada. Amb l'abast actual del quadern no fa entrada. |

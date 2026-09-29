@@ -57,7 +57,7 @@ num	id	nivell	moviment	lot	rev	descripcio
 056	q19	1	identitat-com-a-figura	6	0	senar x senar = senar, graella 5x3
 057	q20	1	identitat-com-a-figura	6	0	parell x parell divisible per 4, blocs 2x2
 058	q27_implicit	2	dues-maneres	6	1	tres cercles tangents (triangle/quadrat/cercle)
-059	q40_implicit	2	dues-maneres	6	1	quadrat inscrit i cadena de cercles+quadrat en cercle
+059	q40_implicit	2	dues-maneres	6	2	quadrat petit damunt d'un quadrat inscrit (t=S/5) i cadena de cercles+quadrat en cercle
 060	q31	2	simetria-i-demostra	6	1	pentagon amb 3 diagonals, triangles A/B/C semblants
 061	q32	3	homotecia	6	1	pentagrama, mida del pentagon petit
 062	q33	2	identitat-com-a-figura	6	1	dos pentagons compartint aresta, d^2=d+1
@@ -105,7 +105,7 @@ num	id	nivell	moviment	lot	rev	descripcio
 104	q100	2	distingeix-casos	9	1	punt de projeccio fora o entre dos plans paral·lels
 105	q101	2	invariant	9	1	tres punts lliures, quart punt determinat per la rao doble
 106	q102	2	invariant	9	1	quadrilater projectat des d'un punt cap a un altre pla
-107	q103	2	distingeix-casos	9	1	costat pel punt de projeccio, vertex fuig a l'infinit
+107	q103	2	distingeix-casos	9	2	costat pel punt de projeccio: B i C tenen la mateixa imatge, el triangle s'aplana
 108	q104	2	construeix-per-definir	9	0	tres rectes paral·leles projectades, concurrents al punt de fuga
 109	q105	2	redueix-al-conegut	9	1	rectes convergint a un punt marcat infinit
 110	q106	2	invariant	9	0	rao doble com invariant projectiu, definicio
@@ -119,7 +119,7 @@ num	id	nivell	moviment	lot	rev	descripcio
 118	q113	2	redueix-al-conegut	10	1	triangle rectangle dels focus de l'el·lipse
 119	q115	2	dues-maneres	10	0	constant focal igual al diametre, el·lipse i hiperbola
 120	q116	3	redueix-al-conegut	10	1	bisectriu interior dels radis focals a la hiperbola
-121	q117	1	homotecia	10	2	dues paraboles amb la mateixa directriu
+121	q117	1	homotecia	10	3	dues paraboles amb el mateix vertex i la tangent comuna, homotecia des del vertex
 122	q118	3	construeix-per-definir	10	1	mediatriu de FD, tangent a la parabola sense infinit
 123	q119	3	cas-limit	10	0	envolupant de rectes que formen una parabola
 124	q120	2	redueix-al-conegut	10	1	tangent que talla l'eix al punt mitjà, sector parabolic

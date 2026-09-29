@@ -49,7 +49,7 @@ ESSENCIALS = [
     "parse_guies.py",
     "js/data/preguntes-dades.js", "js/data/guies-dades.js",
     "js/nucli/contingut.js", "js/nucli/progres.js", "js/nucli/router.js",
-    "js/nucli/guies.js", "js/ui/llista.js", "js/ui/detall.js", "js/ui/main.js",
+    "js/nucli/guies.js", "js/ui/export.js", "js/ui/llista.js", "js/ui/detall.js", "js/ui/main.js",
     "js/i18n/ui-strings.js", "js/i18n/i18n-core.js",
     "css/tokens.css", "css/base.css", "css/components.css",
     "docs/HAND_DRAWN_GEOMETRY_TECHNIQUE.md", "docs/manifest-figures.tsv",
@@ -89,7 +89,10 @@ if P is not None:
         difs[p.get("dificultat")] = difs.get(p.get("dificultat"), 0) + 1
     if dims == {"2D": 88, "3D": 42}: ok("dimensio 88/42")
     else: err("distribució de dimensio inesperada: %s" % dims)
-    if difs == {1: 28, 2: 70, 3: 32}: ok("dificultat 28/70/32")
+    # 28/70/32 fins al set. 2026; 9 preguntes van pujar de dificultat perquè
+    # no fossin més fàcils que una de la qual depenen (v. §17 i
+    # docs/guies/NOTA-COHERENCIA-SET-2026.md).
+    if difs == {1: 24, 2: 67, 3: 39}: ok("dificultat 24/67/39")
     else: err("distribució de dificultat inesperada: %s" % difs)
 
     # -------------------------------------------------- 3b. imatges d'enunciat
@@ -169,7 +172,8 @@ if os.path.exists("index.html"):
     ordre = ["js/data/preguntes-dades.js", "js/data/guies-dades.js",
              "js/i18n/ui-strings.js", "js/i18n/i18n-core.js",
              "js/nucli/contingut.js", "js/nucli/guies.js",
-             "js/nucli/router.js", "js/ui/detall.js", "js/ui/main.js"]
+             "js/nucli/router.js", "js/ui/export.js", "js/ui/llista.js",
+             "js/ui/detall.js", "js/ui/main.js"]
     # Es busca la posició DE L'ETIQUETA <script>, no la primera aparició del
     # nom: index.html porta una capçalera de comentaris que enumera els
     # fitxers, i buscar-hi el nom pelat donava un fals positiu d'ordre.
@@ -267,8 +271,9 @@ morts, revisats = [], set()
 # l'auditoria de documentació d'ago. 2026 aquí hi havia
 # `or arrel.startswith("./docs")`, és a dir, la comprovació es saltava
 # justament el directori on viuen gairebé totes les notes -- i on hi havia
-# set referències mortes sense declarar. `solucions/` sí que se salta: són
-# 115 fitxers de contingut que no citen documents de disseny.
+# set referències mortes sense declarar. `solucions/` sí que se salta: és
+# un fitxer de contingut per pregunta visible, i no citen documents de
+# disseny.
 for arrel, dirs, fitxers in os.walk("."):
     if ".git" in arrel or arrel.startswith("./solucions"): continue
     for n in fitxers:
@@ -405,8 +410,11 @@ if GR is not None and P is not None:
 # figures que necessiten tractament especial el rebin. No comprova
 # l'analitzador GENERAT (analitzador-geom.html): comprova les FONTS, perquè
 # un analitzador vell i correcte no ha de fer passar un canvi trencat.
-if os.path.exists("js/ui/llista.js") and os.path.exists("analitzador-geom-plantilla.html"):
-    llista = open("js/ui/llista.js", encoding="utf-8").read()
+# Des del set. 2026 el codi de l'alumne es genera a js/ui/export.js (abans
+# era dins de llista.js); el nom de la variable es manté per no remoure la
+# resta de la secció.
+if os.path.exists("js/ui/export.js") and os.path.exists("analitzador-geom-plantilla.html"):
+    llista = open("js/ui/export.js", encoding="utf-8").read()
     plant = open("analitzador-geom-plantilla.html", encoding="utf-8").read()
 
     # El prefix del format ha de ser el mateix als dos costats. Si algú el
@@ -414,7 +422,7 @@ if os.path.exists("js/ui/llista.js") and os.path.exists("analitzador-geom-planti
     # símptoma (una prova buida) no assenyala la causa.
     m = re.search(r'return "(GEO\d+)-" \+ ids\.join', llista)
     if not m:
-        err("llista.js: no s'ha trobat formataCodi() amb el prefix GEO<n>-")
+        err("export.js: no s'ha trobat formataCodi() amb el prefix GEO<n>-")
     elif ("GEO" not in plant) or ("/^GEO\\d+-?/i" not in plant):
         err("la plantilla de l'analitzador no reconeix el prefix %s del codi" % m.group(1))
     else:
@@ -426,7 +434,7 @@ if os.path.exists("js/ui/llista.js") and os.path.exists("analitzador-geom-planti
     if "geo-export-codi" in llista and "geo-export-btn" in llista:
         ok("el codi es pot copiar i, si falla, seleccionar a mà")
     else:
-        err("llista.js: falta el camp de reserva del codi (geo-export-codi)")
+        err("export.js: falta el camp de reserva del codi (geo-export-codi)")
 
     # esInvertida i esCrop NO són decoració: q42 és traç clar sobre fons fosc
     # (94 % de píxels foscos) i sense invertir-la s'imprimeix com un rectangle
@@ -581,12 +589,19 @@ if _ITIN:
             % "; ".join(_falten))
     else:
         ok("tot DEPÈN que creua itinerari consta a `requereix`")
+    # Fins al set. 2026 aquests dos eren AVISOS (hi havia 6 inversions i 3
+    # dependències d'amagades pendents de decidir). Resolts tots, passen a
+    # ERRORS: un cas nou és una regressió, no un pendent conegut.
     if _invertits:
-        avis("dins d'un mateix itinerari, l'`ordre` no respecta el DEPÈN: %s"
-             % "; ".join(_invertits))
+        err("dins d'un mateix itinerari, l'`ordre` no respecta el DEPÈN: %s"
+            % "; ".join(_invertits))
+    else:
+        ok("dins de cada itinerari, l'`ordre` respecta tots els DEPÈN")
     if _amagades:
-        avis("guies visibles que declaren DEPÈN d'una pregunta amagada: %s"
-             % "; ".join(_amagades))
+        err("guies visibles que declaren DEPÈN d'una pregunta amagada: %s"
+            % "; ".join(_amagades))
+    else:
+        ok("cap guia visible no depèn d'una pregunta amagada")
 
 # --- la còpia compilada de les guies coincideix amb el seu original? -------
 # js/data/guies-dades.js NO és font: el fabrica parse_guies.py a partir dels
@@ -663,6 +678,211 @@ if _desacords:
          % " ".join(_desacords))
 else:
     ok("l'enunciat duplicat a solucions/ coincideix amb preguntes-dades.js")
+
+# ------------------------- 15. solucions, noms de moviment i xifres vives
+# Origen: la revisió de set. 2026 va trobar tres coses que cap comprovació
+# no veia:
+#   · q88, visible des de l'ago. 2026, no tenia solució a solucions/ (i
+#     COORDINACIO-AGENTS-SOLUCIONS.md encara manava no escriure-la, perquè
+#     la llistava entre les amagades);
+#   · README, HANDOFF i COORDINACIO deien "15 amagades" i "115 visibles"
+#     quan n'hi havia 12 i 118 -- la §14 només mirava el glossari i les
+#     figures de Pista 2;
+#   · el suggeriment de repàs de l'itinerari ensenyava a l'alumne el slug
+#     intern del moviment ("redueix-al-conegut") en lloc d'un nom llegible.
+def _amagades_de_llista():
+    # Lectura única, compartida amb build_analitzador_geom.py (amagats.py).
+    import amagats
+    try:
+        return amagats.llegeix()
+    except amagats.ErrorAmagats:
+        return None
+
+_AM = _amagades_de_llista()
+if _AM is None:
+    err("no trobo EXERCICIS_AMAGATS a js/ui/llista.js")
+elif P:
+    _vis = [q["id"] for q in P if q["id"] not in _AM]
+    _sol = set(n[:-5] for n in os.listdir("solucions") if n.endswith(".html")) \
+        if os.path.isdir("solucions") else set()
+
+    # a) cobertura de solucions
+    _sense_sol = [i for i in _vis if i not in _sol]
+    if _sense_sol:
+        err("preguntes VISIBLES sense solució a solucions/: %s"
+            % " ".join(_sense_sol))
+    else:
+        ok("tota pregunta visible (%d) té la seva solució a solucions/" % len(_vis))
+    _sol_amag = [i for i in _AM if i in _sol]
+    if _sol_amag:
+        avis("hi ha solució per a preguntes amagades, i "
+             "COORDINACIO-AGENTS-SOLUCIONS.md diu que no n'han de tenir: %s"
+             % " ".join(_sol_amag))
+
+    # b) xifres vives als documents que descriuen l'estat ACTUAL. Les notes
+    #    de lliurament (docs/guies/NOTA-*.md) no hi són: registren el que
+    #    era cert el dia que es van escriure, i no s'han de reescriure.
+    _n_am, _n_vis = len(_AM), len(_vis)
+    _n_sol = len([i for i in _vis if i in _sol])
+    _vis_sense_img = [q["id"] for q in P if q["id"] in _vis and not q.get("imatge")]
+    # Des del set. 2026 (lot E: q84, q87, q88) cap pregunta visible no es
+    # queda sense imatge d'enunciat; una que es desamagui n'ha de tenir.
+    if _vis_sense_img:
+        err("preguntes VISIBLES sense imatge d'enunciat: %s" % " ".join(_vis_sense_img))
+    else:
+        ok("tota pregunta visible té imatge d'enunciat")
+    _PATRONS = [
+        (r"\b(\d+) preguntes\s+(?:estan\s+)?amagades", _n_am, "preguntes amagades"),
+        (r"\bLes (\d+) preguntes d'\s*`EXERCICIS_AMAGATS`", _n_am, "preguntes amagades"),
+        (r"\b(\d+) hidden questions", _n_am, "preguntes amagades"),
+        (r"\blist of (\d+)\s+question ids", _n_am, "preguntes amagades"),
+        (r"\bminus (\d+) hidden", _n_am, "preguntes amagades"),
+        (r"\| (\d+): `q18a", _n_am, "preguntes amagades"),
+        (r"\b(\d+) preguntes visibles", _n_vis, "preguntes visibles"),
+        (r"\bles (\d+) visibles", _n_vis, "preguntes visibles"),
+        (r"\b(\d+) visible questions", _n_vis, "preguntes visibles"),
+        (r"\| Visible questions \| (\d+)", _n_vis, "preguntes visibles"),
+        (r"\b(\d+) solucions (?:treballades|per al)", _n_sol, "solucions"),
+        (r"\b(\d+) worked solutions", _n_sol, "solucions"),
+        (r"\b(\d+) solution files on disk", _n_sol, "solucions"),
+        (r"\bis (\d+) solutions", _n_sol, "solucions"),
+        (r"\b(\d+) dels 53 termes", _amb_fig, "termes del glossari amb figura"),
+    ]
+    _malament = []
+    for _doc in ("README.md", "HANDOFF-COLD-START.md",
+                 "COORDINACIO-AGENTS-SOLUCIONS.md", "LLEGEIX-ME.md"):
+        if not os.path.exists(_doc):
+            continue
+        _txt = open(_doc, encoding="utf-8").read()
+        for _patro, _real, _que in _PATRONS:
+            for _m in re.finditer(_patro, _txt):
+                if int(_m.group(1)) != _real:
+                    _lin = _txt.count("\n", 0, _m.start()) + 1
+                    _malament.append("%s:%d diu %s %s, i n'hi ha %d"
+                                     % (_doc, _lin, _m.group(1), _que, _real))
+        # "N / N visible questions": les dues xifres
+        for _m in re.finditer(r"\b(\d+) / (\d+) visible questions", _txt):
+            if (int(_m.group(1)), int(_m.group(2))) != (_n_sol, _n_vis):
+                _lin = _txt.count("\n", 0, _m.start()) + 1
+                _malament.append("%s:%d diu %s / %s, i són %d / %d"
+                                 % (_doc, _lin, _m.group(1), _m.group(2), _n_sol, _n_vis))
+        if _vis_sense_img:
+            for _patro in (r"cap pregunta visible[^.\n]*es queda[^.\n]*sense",
+                           r"cap pregunta VISIBLE[^.\n]*es queda[^.\n]*sense",
+                           r"every question actually reachable[^.]*has an image"):
+                for _m in re.finditer(_patro, _txt):
+                    _lin = _txt.count("\n", 0, _m.start()) + 1
+                    _malament.append("%s:%d diu que cap pregunta visible no queda sense "
+                                     "imatge, i n'hi ha %d (%s)"
+                                     % (_doc, _lin, len(_vis_sense_img), " ".join(_vis_sense_img)))
+    if _malament:
+        for _x in _malament:
+            err("xifra desfasada: " + _x)
+    else:
+        ok("les xifres d'amagades, visibles i solucions als documents quadren "
+           "(%d / %d / %d)" % (_n_am, _n_vis, _n_sol))
+
+# c) cada moviment de les guies té nom llegible als dos idiomes
+_G15 = llegeix_global("js/data/guies-dades.js", "GUIES") or {}
+_slugs = sorted(set(g.get("moviment") for g in _G15.values() if g.get("moviment")))
+if os.path.exists("js/i18n/ui-strings.js") and _slugs:
+    _ui = open("js/i18n/ui-strings.js", encoding="utf-8").read()
+    _blocs = re.findall(r"^\s*moves:\s*\{(.*?)^\s*\},", _ui, re.S | re.M)
+    if len(_blocs) != 2:
+        err("ui-strings.js ha de tenir una secció `moves` a cada idioma "
+            "(n'hi ha %d)" % len(_blocs))
+    else:
+        _falten_noms = []
+        for _slug in _slugs:
+            _clau = _slug.replace("-", "_")
+            for _idioma, _bloc in zip(("en", "ca"), _blocs):
+                if not re.search(r"^\s*%s\s*:" % re.escape(_clau), _bloc, re.M):
+                    _falten_noms.append("%s (%s)" % (_slug, _idioma))
+        if _falten_noms:
+            err("moviments sense nom llegible a ui-strings.js `moves` (l'alumne "
+                "hi veuria el slug cru): %s" % ", ".join(_falten_noms))
+        else:
+            ok("els %d moviments de les guies tenen nom llegible als dos idiomes"
+               % len(_slugs))
+
+# ------------------------------------------ 16. ?v= dels fulls d'estil
+# Des del set. 2026 el ?v= no s'escriu a mà: és una empremta del contingut
+# dels CSS que posa actualitza_versio_css.py (LESSONS.md §3 explica per què
+# el número manual fallava). Si algú toca un CSS i no regenera, el
+# navegador de l'alumne pot seguir mostrant l'estil vell.
+if os.path.exists("actualitza_versio_css.py"):
+    import importlib.util as _ilu
+    _spec = _ilu.spec_from_file_location("_avc", "actualitza_versio_css.py")
+    _avc = _ilu.module_from_spec(_spec); _spec.loader.exec_module(_avc)
+    _desf = _avc.comprova()
+    if _desf:
+        err("?v= dels fulls d'estil desfasat a %d fitxers (p. ex. %s): executa "
+            "python3 regenera.py" % (len(_desf), _desf[0]))
+    else:
+        ok("el ?v= dels fulls d'estil correspon al contingut dels CSS")
+else:
+    err("falta actualitza_versio_css.py")
+
+# ------------------ 17. ordre de presentació general i dificultat vs DEPÈN
+# Fins al set. 2026 hi havia 17 casos en què una guia sortia a la llista
+# ABANS d'una pregunta de la qual declara dependre (HANDOFF-FULL §1.3), i 9
+# preguntes classificades com a més fàcils que una de la qual depenen. Es van
+# resoldre (v. docs/guies/NOTA-COHERENCIA-SET-2026.md): ara són errors.
+_O17 = []
+if os.path.exists("js/data/ordre-preguntes.js"):
+    _s17 = open("js/data/ordre-preguntes.js", encoding="utf-8").read()
+    _O17 = re.findall(r'^\s*"(q[0-9a-z_]+)",?', _s17[_s17.find("window.ORDRE_PREGUNTES"):], re.M)
+_AM17 = _amagades_de_llista() or []
+if _O17 and P:
+    _vis17 = [q for q in _O17 if q not in _AM17]
+    _pos17 = {q: i for i, q in enumerate(_vis17)}
+    _dif17 = {q["id"]: q.get("dificultat") for q in P}
+    _dep17 = _deps_declarades_a_les_guies()
+    _inv17, _dif_mal = [], []
+    for _q, _ds in sorted(_dep17.items()):
+        if _q not in _pos17: continue
+        for _r in _ds:
+            if _r not in _pos17: continue
+            if _pos17[_r] > _pos17[_q]:
+                _inv17.append("%s (#%d) abans de %s (#%d)" % (_q, _pos17[_q] + 1, _r, _pos17[_r] + 1))
+            if (_dif17.get(_r) or 0) > (_dif17.get(_q) or 0):
+                _dif_mal.append("%s (dificultat %s) depèn de %s (dificultat %s)"
+                                % (_q, _dif17.get(_q), _r, _dif17.get(_r)))
+    if _inv17:
+        err("ordre de presentació: guies que surten abans d'una pregunta de la qual "
+            "declaren dependre: %s" % "; ".join(_inv17))
+    else:
+        ok("l'ordre de presentació respecta tots els DEPÈN entre preguntes visibles")
+    if _dif_mal:
+        err("preguntes més fàcils que una de la qual depenen: %s" % "; ".join(_dif_mal))
+    else:
+        ok("cap pregunta no és més fàcil que una de la qual depèn")
+
+# ------------------------------------------------------ 18. fonts locals
+# Des del set. 2026 les fonts es serveixen des del repositori (css/fonts.css,
+# assets/fonts/): el lloc es veu bé sense xarxa i no envia l'adreça IP de
+# l'alumnat a Google. Cap pàgina no ha de tornar a carregar-les de fora.
+_externes = []
+for _arrel, _dirs, _fs in os.walk("."):
+    if ".git" in _arrel or "node_modules" in _arrel: continue
+    for _n in _fs:
+        if _n.endswith(".html"):
+            _c = os.path.join(_arrel, _n)
+            if "fonts.googleapis" in open(_c, encoding="utf-8").read():
+                _externes.append(_c)
+if _externes:
+    err("pàgines que encara carreguen Google Fonts: %s" % ", ".join(sorted(_externes)))
+else:
+    ok("cap pàgina no carrega fonts de fora del repositori")
+if os.path.exists("css/fonts.css"):
+    _ff = re.findall(r"url\(\.\./(assets/fonts/[^)]+)\)", open("css/fonts.css", encoding="utf-8").read())
+    _falten_f = [f for f in _ff if not os.path.exists(f)]
+    if not _ff or _falten_f:
+        err("css/fonts.css apunta a fitxers que no hi són: %s" % _falten_f)
+    else:
+        ok("els %d fitxers de css/fonts.css hi són" % len(set(_ff)))
+else:
+    err("falta css/fonts.css")
 
 # ------------------------------------------------------------------ informe
 print("\n%d comprovacions passades" % len(oks))

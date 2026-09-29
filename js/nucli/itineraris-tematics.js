@@ -39,7 +39,7 @@
 
   MAPA id -> {itinerari, entrada} (perItineraris/perPregunta més avall)
   Es construeix una sola vegada, de manera peresosa (la primera crida que
-  el necessiti), i es memoritza — amb com a màxim 115 preguntes no calen
+  el necessiti), i es memoritza — amb com a màxim 118 preguntes no calen
   reconstruccions incrementals, i totes les crides d'aquest fitxer són
   de lectura pura (les dades no canvien en temps d'execució).
 
@@ -90,7 +90,7 @@
    * Retorna { itinerari, entrada } per a un id de pregunta, o null si
    * aquesta pregunta no forma part de cap itinerari (per exemple, és
    * un EXERCICI_AMAGAT — v. capçalera de itineraris-tematics-dades.js:
-   * només cobreix les 115 visibles).
+   * només cobreix les 118 visibles).
    */
   function trobaPerId(id) {
     if (!mapaPerId) construeixMapa();

@@ -152,22 +152,44 @@
     // i onload la substitueix per l'alçada real d'aquesta figura
     // concreta, amb el mateix sostre de sempre (480px / 52vh) perquè
     // una figura molt alta tampoc envaeixi tota la pantalla.
-    img.addEventListener("load", () => {
-      if (!img.naturalWidth || !img.naturalHeight) return; // salvaguarda: mai dividir per 0
-      const amplada = frame.clientWidth || figure.clientWidth;
-      if (!amplada) return;
-      const alcadaReal = amplada * (img.naturalHeight / img.naturalWidth);
-      figure.style.setProperty(
-        "--figure-slot-h",
-        "clamp(120px, " + Math.round(alcadaReal) + "px, var(--figure-slot-h-max))"
-      );
-    });
+    //
+    // L'alçada depèn de l'amplada, i l'amplada canvia en entrar o sortir del
+    // mode projector o en girar/redimensionar la finestra: per això el
+    // càlcul viu a part (ajustaAlcada) i recalculaFigures() el torna a fer
+    // per a totes les figures de la pàgina sense haver de repintar-la.
+    img.addEventListener("load", () => ajustaAlcada(figure));
 
     frame.appendChild(img);
     figure.appendChild(frame);
 
     return figure;
   }
+
+  /** Fixa --figure-slot-h d'una figura segons el ratio real de la imatge i
+   *  l'amplada que ocupa ARA. No fa res si la imatge encara no ha carregat. */
+  function ajustaAlcada(figure) {
+    const frame = figure.querySelector(".question-entry__figure-frame");
+    const img = figure.querySelector("img");
+    if (!img || !img.naturalWidth || !img.naturalHeight) return; // salvaguarda: mai dividir per 0
+    const amplada = (frame && frame.clientWidth) || figure.clientWidth;
+    if (!amplada) return;
+    const alcadaReal = amplada * (img.naturalHeight / img.naturalWidth);
+    figure.style.setProperty(
+      "--figure-slot-h",
+      "clamp(120px, " + Math.round(alcadaReal) + "px, var(--figure-slot-h-max))"
+    );
+  }
+
+  function recalculaFigures() {
+    document.querySelectorAll(".question-entry__figure").forEach(ajustaAlcada);
+  }
+
+  // Girar el mòbil o canviar la mida de la finestra també canvia l'amplada.
+  let esperaResize = 0;
+  window.addEventListener("resize", () => {
+    cancelAnimationFrame(esperaResize);
+    esperaResize = requestAnimationFrame(recalculaFigures);
+  });
 
   /**
    * Pinta el bloc d'imatge(s) de la pregunta: cap, una, o dues (cas
@@ -409,11 +431,10 @@
     });
 
     label.appendChild(checkbox);
-    // Text fix breu — no hi ha clau dedicada a ui-strings.js encara
-    // (fora d'abast d'aquest pas concret); "explorat" es manté neutre en
-    // els dos idiomes per no introduir contingut d'interfície nou sense
-    // que main.js/una revisió d'i18n ho reculli formalment.
-    label.appendChild(document.createTextNode(" explorat"));
+    // Clau detail.done_label de ui-strings.js (fins set. 2026 aquí hi
+    // havia " explorat" escrit a mà, l'únic text d'interfície del lloc
+    // que no passava per l'i18n).
+    label.appendChild(document.createTextNode(" " + window.t("detail.done_label")));
 
     contenidor.appendChild(label);
   }
@@ -509,7 +530,9 @@
 
       let raoText;
       if (s.reason === "review_moviment") {
-        raoText = window.tf("itinerary.reason_review_moviment", { move: s.moviment });
+        raoText = window.tf("itinerary.reason_review_moviment", {
+          move: window.geoContingut.nomMoviment(s.moviment),
+        });
       } else {
         raoText = window.t("itinerary." + "reason_" + s.reason);
       }
@@ -782,6 +805,220 @@
     return p;
   }
 
+  /**
+   * BARRA D'EINES DEL PROFESSORAT (set. 2026): "Mode projector" i
+   * "Imprimeix la fitxa". Tots dos pensats per a l'aula, i tots dos sense
+   * tocar res del que l'alumne veu per defecte.
+   */
+  function pintaEines(contenidor) {
+    const eines = document.createElement("div");
+    eines.className = "detall-eines";
+
+    const proj = document.createElement("button");
+    proj.type = "button";
+    proj.className = "detall-eines__boto detall-eines__projector";
+    proj.setAttribute("aria-pressed", String(enModeProjector()));
+    proj.textContent = window.t(enModeProjector() ? "detail.projector_off" : "detail.projector_on");
+    proj.addEventListener("click", () => commutaProjector(!enModeProjector()));
+    eines.appendChild(proj);
+
+    const imp = document.createElement("button");
+    imp.type = "button";
+    imp.className = "detall-eines__boto";
+    imp.textContent = window.t("detail.print");
+    imp.title = window.t("detail.print_note");
+    imp.addEventListener("click", imprimeix);
+    eines.appendChild(imp);
+
+    const ajuda = document.createElement("p");
+    ajuda.className = "detall-eines__ajuda";
+    ajuda.textContent = window.t("detail.projector_help");
+    eines.appendChild(ajuda);
+
+    contenidor.appendChild(eines);
+  }
+
+  /**
+   * MODE PROJECTOR (set. 2026). Per projectar una pregunta a la pissarra:
+   * pantalla completa (si el navegador ho permet), lletra i figura grans, i
+   * tot el que no és la pregunta i la seva guia, amagat (capçalera,
+   * navegació, valoració, suggeriments). Es controla amb el teclat o amb un
+   * passador de diapositives (que envia PageDown/PageUp):
+   *   → · espai · PageDown   revela la pista següent; quan ja són totes
+   *                          obertes, passa a la pregunta següent
+   *   ← · PageUp             pregunta anterior
+   *   Esc                    surt del mode
+   * L'estat és una classe a <html>, no a #app: així sobreviu a la
+   * navegació entre preguntes (main.js només repinta #app). No es desa a
+   * localStorage: és per a una sessió de classe, no una preferència.
+   */
+  function enModeProjector() {
+    return document.documentElement.classList.contains("mode-projector");
+  }
+
+  function commutaProjector(actiu) {
+    document.documentElement.classList.toggle("mode-projector", actiu);
+    document.querySelectorAll(".detall-eines__projector").forEach((b) => {
+      b.setAttribute("aria-pressed", String(actiu));
+      b.textContent = window.t(actiu ? "detail.projector_off" : "detail.projector_on");
+    });
+    const el = document.documentElement;
+    try {
+      if (actiu && el.requestFullscreen && !document.fullscreenElement) {
+        el.requestFullscreen().catch(() => {});
+      } else if (!actiu && document.fullscreenElement && document.exitFullscreen) {
+        document.exitFullscreen().catch(() => {});
+      }
+    } catch (e) { /* sense pantalla completa: el mode funciona igual */ }
+    // La figura recalcula la seva alçada amb l'amplada nova (v. ajustaAlcada)
+    // quan el navegador ja ha aplicat els estils del mode. NO es torna a
+    // pintar la pregunta: així les pistes ja obertes continuen obertes i no
+    // es registra una visita nova a l'itinerari.
+    requestAnimationFrame(recalculaFigures);
+  }
+
+  // Sortir de la pantalla completa amb Esc (que el navegador gestiona ell
+  // mateix, sense passar-nos la tecla) també surt del mode projector.
+  document.addEventListener("fullscreenchange", () => {
+    if (!document.fullscreenElement && enModeProjector()) commutaProjector(false);
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (!enModeProjector() || e.altKey || e.ctrlKey || e.metaKey) return;
+    const actual = window.geoRouter && window.geoRouter.current();
+    if (!actual || actual.kind !== "detall") return;
+    const etiqueta = (e.target && e.target.tagName) || "";
+    if (/^(INPUT|TEXTAREA|SELECT)$/.test(etiqueta)) return;
+    // L'espai sobre un botó o un enllaç ja té el seu efecte natiu (activar-lo):
+    // no n'hi afegim un altre, o una sola pulsació revelaria dues pistes.
+    if ((e.key === " " || e.key === "Spacebar") && /^(BUTTON|A)$/.test(etiqueta)) return;
+    const endavant = ["ArrowRight", "PageDown", " ", "Spacebar"].includes(e.key);
+    const enrere = ["ArrowLeft", "PageUp"].includes(e.key);
+    if (e.key === "Escape") { commutaProjector(false); return; }
+    if (!endavant && !enrere) return;
+    e.preventDefault();
+    const { anterior, seguent } = veins(actual.id);
+    if (endavant) {
+      const boto = document.querySelector(".guia__reveal:not([hidden])");
+      if (boto) {
+        boto.click();
+        const darrera = document.querySelector(".guia__step:last-child, .guia__footer:not([hidden])");
+        if (darrera) darrera.scrollIntoView({ block: "nearest", behavior: "smooth" });
+        return;
+      }
+      if (seguent) location.hash = seguent.id;
+    } else if (anterior) {
+      location.hash = anterior.id;
+    }
+  });
+
+  /**
+   * FITXA IMPRESA (set. 2026). En imprimir (botó "Imprimeix la fitxa" o
+   * Ctrl+P), el que surt al paper és l'enunciat, la figura i la guia
+   * SENCERA —les quatre pistes, amb les seves figures, la comprovació i
+   * l'"i després"—, sigui quina sigui la pista a què s'ha arribat en
+   * pantalla. Per això és una còpia a part, que només es veu en imprimir
+   * (css: .fitxa-impresa), i no l'escala interactiva: així imprimir no
+   * obre cap pista a la pantalla de ningú, i la fitxa surt sempre igual.
+   */
+  function preparaFitxa() {
+    const imgs = Array.from(document.querySelectorAll(".fitxa-impresa img"));
+    imgs.forEach((img) => {
+      if (img.dataset.src) { img.src = img.dataset.src; delete img.dataset.src; }
+    });
+    const carregues = imgs.map((img) => img.complete ? null : new Promise((fet) => {
+      img.addEventListener("load", fet, { once: true });
+      img.addEventListener("error", fet, { once: true });
+    }));
+    // Sostre de 8 s: si una figura no arriba, s'imprimeix igualment.
+    return Promise.race([
+      Promise.all(carregues),
+      new Promise((fet) => setTimeout(fet, 8000)),
+    ]);
+  }
+
+  /** Imprimeix la fitxa amb totes les figures ja carregades. */
+  function imprimeix() {
+    preparaFitxa().then(() => window.print());
+  }
+
+  // Ctrl+P / Cmd+P a una pregunta passa pel mateix camí que el botó, perquè
+  // les figures de les pistes surtin segur al paper.
+  document.addEventListener("keydown", (e) => {
+    if (!(e.ctrlKey || e.metaKey) || e.altKey || e.shiftKey) return;
+    if ((e.key || "").toLowerCase() !== "p") return;
+    if (!document.querySelector(".fitxa-impresa")) return;
+    e.preventDefault();
+    imprimeix();
+  });
+  // Imprimir des del menú del navegador no passa per aquí abans: es demanen
+  // les figures igualment, però potser no arriben a temps per al paper.
+  window.addEventListener("beforeprint", preparaFitxa);
+
+  function pintaFitxaImpresa(pregunta, lang, contenidor) {
+    if (!window.geoGuies || !window.geoGuies.teGuia(pregunta)) return;
+    const guia = window.geoGuies.guiaDe(pregunta);
+    const r = (camp) => window.geoGuies.resolCampGuia(camp, lang);
+
+    const fitxa = document.createElement("section");
+    fitxa.className = "fitxa-impresa";
+    fitxa.setAttribute("aria-hidden", "true");
+
+    const titol = document.createElement("h2");
+    titol.className = "guia__title";
+    titol.textContent = window.t("guide.title");
+    fitxa.appendChild(titol);
+
+    guia.pistes.forEach((pista) => {
+      const bloc = document.createElement("div");
+      bloc.className = "fitxa-impresa__pista";
+      const etiqueta = document.createElement("p");
+      etiqueta.className = "guia__step-label";
+      const nom = window.t("guide.level_" + pista.nivell);
+      const sub = (pista.titol ? r(pista.titol) : "") ||
+                  window.t("guide.level_" + pista.nivell + "_fallback");
+      etiqueta.textContent = sub ? nom + " — " + sub : nom;
+      bloc.appendChild(etiqueta);
+      const text = r(pista.text);
+      if (text) afegeixParagrafs(bloc, text);
+      if (pista.figura) {
+        const fig = document.createElement("figure");
+        fig.className = "guia__figure";
+        const img = document.createElement("img");
+        // data-src, no src: la fitxa no es veu mai en pantalla, i amb src
+        // cada pregunta baixaria les figures de les quatre pistes encara
+        // que ningú no imprimeixi res (un mòbil amb poques dades ho nota).
+        // preparaFitxa() les carrega just abans d'imprimir.
+        img.dataset.src = window.geoGuies.rutaFigura(pista.figura);
+        img.alt = "";
+        fig.appendChild(img);
+        bloc.appendChild(fig);
+      }
+      fitxa.appendChild(bloc);
+    });
+
+    [["guide.check", guia.comprovacio], ["guide.after", guia.iDespres]].forEach(([clau, camp]) => {
+      const text = r(camp);
+      if (!text) return;
+      const bloc = document.createElement("div");
+      bloc.className = "fitxa-impresa__peu";
+      const h = document.createElement("h3");
+      h.className = "guia__subtitle";
+      h.textContent = window.t(clau);
+      bloc.appendChild(h);
+      afegeixParagrafs(bloc, text);
+      fitxa.appendChild(bloc);
+    });
+
+    const peu = document.createElement("p");
+    peu.className = "fitxa-impresa__font";
+    peu.textContent = window.t("nav.title") + " · " +
+      window.geoContingut.etiquetaQuestio(pregunta.id);
+    fitxa.appendChild(peu);
+
+    contenidor.appendChild(fitxa);
+  }
+
   function render(view, root) {
     if (!contenidorEl || !contenidorEl.isConnected) {
       munta(root);
@@ -813,6 +1050,7 @@
     meta.appendChild(eyebrow);
 
     contenidorEl.appendChild(meta);
+    pintaEines(contenidorEl);
 
     pintaEnunciatAmbGlossari(
       window.geoContingut.resolCamp(pregunta.enunciat, lang),
@@ -830,6 +1068,7 @@
     pintaImatges(pregunta, contenidorEl);
     pintaPista(pregunta, lang, contenidorEl);
     pintaGuia(pregunta, lang, contenidorEl);
+    pintaFitxaImpresa(pregunta, lang, contenidorEl);
     pintaMarcadorFet(pregunta, contenidorEl);
 
     const suggeritSlot = document.createElement("div");

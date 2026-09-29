@@ -1143,7 +1143,7 @@ window.PREGUNTES = [
     "curs": null,
     "interaccio": null,
     "dimensio": "2D",
-    "dificultat": 2,
+    "dificultat": 3,
     "imatge": {
       "fitxer": "q33_page52_two_pentagons.png",
       "esCrop": false,
@@ -1163,7 +1163,7 @@ window.PREGUNTES = [
       "ca": null
     },
     "_notaExtraccio": "Two overlapping pentagons with dashed diagonals, directly above the question (which explicitly says 'this configuration'), same page.",
-    "_notaClassificacio": "segona demostració guiada per la figura donada"
+    "_notaClassificacio": "segona demostració guiada per la figura donada · dificultat pujada de 2 a 3 (set. 2026): depèn de q32, que és de dificultat 3"
   },
   {
     "id": "q34",
@@ -2089,7 +2089,7 @@ window.PREGUNTES = [
     "curs": null,
     "interaccio": null,
     "dimensio": "3D",
-    "dificultat": 2,
+    "dificultat": 3,
     "imatge": {
       "fitxer": "q66_page101_pappus_cylinder.png",
       "esCrop": false,
@@ -2109,7 +2109,7 @@ window.PREGUNTES = [
       "ca": null
     },
     "_notaExtraccio": "cilindre amb fletxa de rotació",
-    "_notaClassificacio": "aplicació/verificació directa de Pappus"
+    "_notaClassificacio": "aplicació/verificació directa de Pappus · dificultat pujada de 2 a 3 (set. 2026): depèn de q65, que és de dificultat 3"
   },
   {
     "id": "q67",
@@ -2142,7 +2142,7 @@ window.PREGUNTES = [
     "curs": null,
     "interaccio": null,
     "dimensio": "3D",
-    "dificultat": 2,
+    "dificultat": 3,
     "imatge": {
       "fitxer": "q68_page103_cone_centroid.png",
       "esCrop": false,
@@ -2162,7 +2162,7 @@ window.PREGUNTES = [
       "ca": null
     },
     "_notaExtraccio": "con amb centroide marcat",
-    "_notaClassificacio": "aplicació d'un sol pas de Pappus"
+    "_notaClassificacio": "aplicació d'un sol pas de Pappus · dificultat pujada de 2 a 3 (set. 2026): depèn de q65, q66, que és de dificultat 3"
   },
   {
     "id": "q69",
@@ -2398,7 +2398,7 @@ window.PREGUNTES = [
     "curs": null,
     "interaccio": null,
     "dimensio": "2D",
-    "dificultat": 2,
+    "dificultat": 3,
     "imatge": { "fitxer": "fig-213.png", "esCrop": false, "esInvertida": false, "paginaFont": 116 },
     "enunciat": {
       "en": "There is actually another technique for measuring lengths, which we used for the diagonal of a regular pentagon. What is it?",
@@ -2413,7 +2413,7 @@ window.PREGUNTES = [
       "ca": null
     },
     "_notaExtraccio": "imatge propera no essencial (triangles amb angle C, il·lustren l'argument previ de la llei del cosinus)",
-    "_notaClassificacio": "reaplicar una tècnica ja vista en un context nou"
+    "_notaClassificacio": "reaplicar una tècnica ja vista en un context nou · dificultat pujada de 2 a 3 (set. 2026): depèn de q32, q33, que és de dificultat 3"
   },
   {
     "id": "q78",
@@ -2597,7 +2597,7 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 1,
-    "imatge": null,
+    "imatge": { "fitxer": "fig-217.png", "esCrop": false, "esInvertida": false, "paginaFont": 125 },
     "enunciat": {
       "en": "What is the relationship between the sine and cosine of an angle?",
       "ca": "Quina és la relació entre el sinus i el cosinus d'un angle?"
@@ -2679,7 +2679,7 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": { "fitxer": "fig-218.png", "esCrop": false, "esInvertida": false, "paginaFont": 131 },
     "enunciat": {
       "en": "How should we define the sine of an obtuse angle? Can we do it so the law of sines still holds?",
       "ca": "Com hauríem de definir el sinus d'un angle obtús? Ho podem fer de manera que el teorema del sinus encara es compleixi?"
@@ -2703,7 +2703,7 @@ window.PREGUNTES = [
     "interaccio": null,
     "dimensio": "2D",
     "dificultat": 2,
-    "imatge": null,
+    "imatge": { "fitxer": "fig-219.png", "esCrop": false, "esInvertida": false, "paginaFont": 132 },
     "enunciat": {
       "en": "How are the sine and cosine of an angle related to the sine and cosine of an angle twice as large?",
       "ca": "Com es relacionen el sinus i el cosinus d'un angle amb el sinus i el cosinus d'un angle del doble de mida?"
@@ -3175,7 +3175,7 @@ window.PREGUNTES = [
     "curs": null,
     "interaccio": null,
     "dimensio": "3D",
-    "dificultat": 1,
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q105_page167_projective_lines_infinity.png",
       "esCrop": true,
@@ -3195,7 +3195,7 @@ window.PREGUNTES = [
       "ca": null
     },
     "_notaExtraccio": "plans amb línies convergint a un punt marcat ∞",
-    "_notaClassificacio": "conseqüència gairebé immediata d'afegir punts a l'infinit"
+    "_notaClassificacio": "conseqüència gairebé immediata d'afegir punts a l'infinit · dificultat pujada de 1 a 2 (set. 2026): depèn de q104, que és de dificultat 2"
   },
   {
     "id": "q106",
@@ -3257,7 +3257,7 @@ window.PREGUNTES = [
     "curs": null,
     "interaccio": null,
     "dimensio": "3D",
-    "dificultat": 1,
+    "dificultat": 3,
     "imatge": {
       "fitxer": "fig-174.png",
       "esCrop": false,
@@ -3277,7 +3277,7 @@ window.PREGUNTES = [
       "ca": null
     },
     "_notaExtraccio": null,
-    "_notaClassificacio": "exploració observacional directa"
+    "_notaClassificacio": "exploració observacional directa · dificultat pujada de 1 a 3 (set. 2026): depèn de q107, que és de dificultat 3"
   },
   {
     "id": "q109",
@@ -3513,7 +3513,7 @@ window.PREGUNTES = [
     "curs": null,
     "interaccio": null,
     "dimensio": "2D",
-    "dificultat": 1,
+    "dificultat": 2,
     "imatge": {
       "fitxer": "q117_page182_parabola_dilations.png",
       "esCrop": false,
@@ -3533,7 +3533,7 @@ window.PREGUNTES = [
       "ca": null
     },
     "_notaExtraccio": "dues paràboles de diferent obertura amb focus marcat",
-    "_notaClassificacio": "totes les paràboles són semblants, directe"
+    "_notaClassificacio": "totes les paràboles són semblants, directe · dificultat pujada de 1 a 2 (set. 2026): depèn de q112, que és de dificultat 2"
   },
   {
     "id": "q118",
@@ -3745,7 +3745,7 @@ window.PREGUNTES = [
     "curs": null,
     "interaccio": null,
     "dimensio": "2D",
-    "dificultat": 1,
+    "dificultat": 3,
     "imatge": {
       "fitxer": "q125_page192_spirograph.png",
       "esCrop": false,
@@ -3765,7 +3765,7 @@ window.PREGUNTES = [
       "ca": null
     },
     "_notaExtraccio": "figura d'espirògraf",
-    "_notaClassificacio": "cas degenerat directe (es converteix en circumferència)"
+    "_notaClassificacio": "cas degenerat directe (es converteix en circumferència) · dificultat pujada de 1 a 3 (set. 2026): depèn de q124, que és de dificultat 3"
   },
   {
     "id": "q126",
@@ -3774,7 +3774,7 @@ window.PREGUNTES = [
     "curs": null,
     "interaccio": null,
     "dimensio": "3D",
-    "dificultat": 2,
+    "dificultat": 3,
     "imatge": {
       "fitxer": "fig-177.png",
       "esCrop": false,
@@ -3794,7 +3794,7 @@ window.PREGUNTES = [
       "ca": null
     },
     "_notaExtraccio": null,
-    "_notaClassificacio": "generalització conceptual oberta"
+    "_notaClassificacio": "generalització conceptual oberta · dificultat pujada de 2 a 3 (set. 2026): depèn de q123, que és de dificultat 3"
   },
   {
     "id": "q127",

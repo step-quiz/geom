@@ -54,8 +54,9 @@ reapareix a q90, quan un quadrilàter cíclic es "aixafa" en un triangle.
 ## 2. q69 — *Can you find the centroid of a semicircle? How about its centroid of perimeter?*
 > Trobes el centroide d'un semicercle? I el centroide del seu perímetre?
 
-**Moviment: dues maneres.** DEPÈN de q65/q67 (ja fets, definicions de
-centroide per a Pappus).
+**Moviment: dues maneres.** *(Fa servir el teorema de Pappus, que q65
+justifica; aquí n'hi ha prou amb l'enunciat, que la Pista 3 recorda —igual
+que q68 el pren com a donat: "suposant que Pappus té raó".)*
 
 **Pista 0 — què has de produir.**
 DUES distàncies diferents (no una): la del centroide de la regió
@@ -63,7 +64,7 @@ semicircular (l'àrea) i la del centroide del seu arc (el perímetre, sense
 comptar el diàmetre) — cadascuna respecte del centre del cercle, sobre el
 diàmetre.
 
-**Pista 1 — gira-ho, com a q68.** → `fig-198.png`
+**Pista 1 — gira-ho.** → `fig-198.png`
 Si gires el semicercle (la regió) al voltant del seu diàmetre, quin sòlid
 en surt? I si gires només l'arc (sense la regió)?
 
@@ -71,8 +72,22 @@ en surt? I si gires només l'arc (sense la regió)?
 
 **Pista 3 — tanca-ho.**
 Girar la REGIÓ dona una esfera sencera (volum conegut). Girar l'ARC dona
-la SUPERFÍCIE d'aquesta mateixa esfera (àrea coneguda). Aplica Pappus a
-l'inrevés, com a q68: iguala el volum (o la superfície) coneguts amb
+la SUPERFÍCIE d'aquesta mateixa esfera (àrea coneguda).
+
+Pappus diu que el VOLUM que escombra una regió en girar al voltant d'un eix
+que no la travessa val (àrea de la regió) × 2π × (distància del seu
+centroide a l'eix), on el centroide és la posició mitjana de tots els
+trossets d'àrea de la regió.
+
+Per a l'arc et cal una segona versió, i es construeix exactament igual
+canviant una sola peça: el centroide d'una corba és la
+posició mitjana dels seus trossets de LONGITUD (no d'àrea), i la
+SUPERFÍCIE que la corba escombra en girar val (longitud) × 2π × (distància
+d'aquest centroide a l'eix). On hi havia àrea ara hi ha longitud, i on hi
+havia volum ara hi ha superfície.
+
+Aplica Pappus a
+l'inrevés: iguala el volum (o la superfície) coneguts amb
 (àrea, o longitud) × 2π × distància, i aïlla la distància — dues vegades,
 un cop per a cada centroide.
 
@@ -91,8 +106,9 @@ són correctes per a la seva pregunta.)*
 **I després.** Que aquestes dues distàncies surtin diferents és el motiu
 pel qual "el centroide" no és una sola idea sinó dues —la d'una regió i la
 del seu contorn—, cadascuna amb la seva versió de Pappus: una per a volums
-i una per a superfícies. q65 i q67 les construeixen amb calma; aquí en
-tens, amb xifres, la raó per la qual calen totes dues.
+i una per a superfícies. q65 construeix amb calma la primera, i la segona
+surt igual canviant àrea per longitud; aquí en tens, amb xifres, la raó
+per la qual calen totes dues.
 
 ---
 

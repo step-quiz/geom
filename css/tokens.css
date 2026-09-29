@@ -120,6 +120,36 @@
 
   /* ---- Focus visible: sempre present, mai suprimit ---- */
   --focus-ring: 0 0 0 3px rgba(139, 94, 60, 0.35);
+
+  /*
+    ---- Full sota les figures (neutre en mode clar) ----
+    Totes les figures del lloc són PNG amb fons blanc pur i es fonen amb el
+    paper amb mix-blend-mode: multiply (v. base.css). Sobre el paper CLAR
+    això fa desaparèixer el blanc i deixa el traç. Sobre el paper FOSC, en
+    canvi, el mateix multiply enfosqueix el traç fins a fer-lo invisible:
+    la tinta negra queda negra sobre gris-marró, i la sanguina —el que
+    l'alumne hi afegeix, tot el sentit pedagògic de les figures— gairebé
+    desapareix (comprovat en un Chromium en mode fosc, set. 2026).
+
+    Per això, en mode fosc, cada figura porta a sota un "full" de paper
+    clar: el multiply es fa contra aquest full i no contra el fons fosc, i
+    la tinta i la sanguina es veuen exactament com en mode clar. En mode
+    clar els valors d'aquí són neutres (transparent, 0, auto): les regles
+    que els fan servir no hi canvien res, ni un píxel.
+
+    Les icones del filtre de categories són també negre-sobre-blanc: en
+    mode fosc s'inverteixen (traç clar) i es fonen amb `screen`, que fa
+    desaparèixer el fons (ara negre) contra el paper fosc.
+  */
+  --figure-sheet:       transparent;
+  --figure-sheet-pad:   0px;
+  --figure-sheet-width: auto;
+  --figure-sheet-scan:  var(--paper-raised);
+  --figure-caption-ink: var(--ink-faint);
+  --icon-filter:        none;
+  --icon-blend:         multiply;
+  --icon-filter-active: invert(1);
+  --icon-blend-active:  normal;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -140,6 +170,17 @@
     --rule:         #38352F;
     --rule-strong:  #4A4640;
     --focus-ring: 0 0 0 3px rgba(210, 163, 119, 0.4);
+
+    /* v. el bloc "Full sota les figures" de :root */
+    --figure-sheet:       #EEE8DB;
+    --figure-sheet-pad:   var(--space-3);
+    --figure-sheet-width: fit-content;
+    --figure-sheet-scan:  #EEE8DB;
+    --figure-caption-ink: #6B6357;
+    --icon-filter:        invert(1);
+    --icon-blend:         screen;
+    --icon-filter-active: none;
+    --icon-blend-active:  multiply;
   }
 }
 
@@ -159,6 +200,16 @@
   --rule:         #38352F;
   --rule-strong:  #4A4640;
   --focus-ring: 0 0 0 3px rgba(210, 163, 119, 0.4);
+
+  --figure-sheet:       #EEE8DB;
+  --figure-sheet-pad:   var(--space-3);
+  --figure-sheet-width: fit-content;
+  --figure-sheet-scan:  #EEE8DB;
+  --figure-caption-ink: #6B6357;
+  --icon-filter:        invert(1);
+  --icon-blend:         screen;
+  --icon-filter-active: none;
+  --icon-blend-active:  multiply;
 }
 
 :root[data-theme="light"] {
@@ -172,4 +223,40 @@
   --rule:       #DEDACE;
   --rule-strong: #C7C1B2;
   --focus-ring: 0 0 0 3px rgba(139, 94, 60, 0.35);
+
+  --figure-sheet:       transparent;
+  --figure-sheet-pad:   0px;
+  --figure-sheet-width: auto;
+  --figure-sheet-scan:  var(--paper-raised);
+  --figure-caption-ink: var(--ink-faint);
+  --icon-filter:        none;
+  --icon-blend:         multiply;
+  --icon-filter-active: invert(1);
+  --icon-blend-active:  normal;
+}
+
+/*
+  Paper (set. 2026). Sigui quin sigui el tema de la pantalla, la fitxa
+  impresa surt en tinta negra sobre blanc: en mode fosc, sense aquest bloc,
+  el text sortiria gris clar sobre el blanc del full. Va després dels blocs
+  de mode fosc perquè els guanyi en l'ordre de la cascada.
+*/
+@media print {
+  :root,
+  :root[data-theme="dark"],
+  :root[data-theme="light"] {
+    --paper:        #FFFFFF;
+    --paper-raised: #FFFFFF;
+    --ink:          #000000;
+    --ink-soft:     #333333;
+    --ink-faint:    #555555;
+    --pencil:       #8B5E3C;
+    --rule:         #CCCCCC;
+    --rule-strong:  #999999;
+    --figure-sheet:       transparent;
+    --figure-sheet-pad:   0px;
+    --figure-sheet-width: auto;
+    --figure-sheet-scan:  #FFFFFF;
+    --figure-caption-ink: #555555;
+  }
 }

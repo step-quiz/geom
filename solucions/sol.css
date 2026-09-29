@@ -1,9 +1,9 @@
 /*
   FITXER:  sol/sol.css
-  ROL:     Estil de les 115 pàgines de solució (sol-NN.html), generades a
-           part del contingut principal del projecte (que no es toca:
-           index.html, js/data/*.js i els tres css/ originals resten
-           intactos). Es carrega DESPRÉS de tokens.css + base.css +
+  ROL:     Estil de les pàgines de solució (solucions/<id>.html, una per
+           pregunta visible), generades a part del contingut principal
+           del projecte (que no es toca: index.html, js/data/*.js i els
+           tres css/ originals resten intactes). Es carrega DESPRÉS de tokens.css + base.css +
            components.css i només afegeix el que allà no existia: la
            secció "Solució" pròpiament dita. Reutilitza tokens, .eyebrow,
            .meta, .question-entry__prompt i .question-entry__figure tal
@@ -153,6 +153,12 @@
 .solucio__figura {
   margin-top: var(--space-4);
   max-width: 26rem;
+  /* Full clar sota la figura en mode fosc; neutre en mode clar (v. el
+     bloc "Full sota les figures" de ../css/tokens.css). */
+  background-color: var(--figure-sheet);
+  padding: var(--figure-sheet-pad);
+  width: var(--figure-sheet-width);
+  border-radius: var(--radius-md);
 }
 
 .solucio__figura img {
@@ -165,7 +171,9 @@
 .solucio__figura-nota {
   font-family: var(--font-mono);
   font-size: var(--fs-metadata);
-  color: var(--ink-faint);
+  /* En mode fosc el peu queda sobre el full clar: necessita un gris fosc,
+     no el --ink-faint clar del mode fosc (v. tokens.css). */
+  color: var(--figure-caption-ink);
   margin-top: var(--space-2);
 }
 

@@ -26,28 +26,27 @@
 <!--
   Source Serif 4 (cos) + JetBrains Mono (metadades), triades al pas 1
   precisament per no calcar Libre Baskerville de sol/tasca.html — v.
-  css/tokens.css per al raonament complet. Si aquest <link> no carrega
-  (per exemple sense xarxa, com en un entorn de desenvolupament aïllat),
-  el mateix tokens.css ja declara una pila de fallback amb serif del
-  sistema, així que la pàgina es manté llegible igualment.
+  css/tokens.css per al raonament complet. Des del set. 2026 es serveixen
+  des del mateix repositori (css/fonts.css + assets/fonts/), no des de
+  Google Fonts: funcionen sense xarxa i no envien l'adreça IP de l'alumne
+  a cap servidor extern (v. la capçalera de css/fonts.css).
 -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:ital,wght@0,400;0,600;0,700;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/fonts.css?v=fbec7bb6">
 
 <!--
-  ?v=N a cada full d'estil: alguns servidors/CDN (GitHub Pages inclòs)
+  ?v=... a cada full d'estil: alguns servidors/CDN (GitHub Pages inclòs)
   cachegen per URL EXACTA — si el nom del fitxer no canvia, el
   navegador pot no tornar a demanar-lo mai encara que el contingut
-  hagi canviat al repositori. Incrementa TOTS TRES números cada cop
-  que es publiqui un canvi de CSS, encara que només s'hagi tocat un
-  dels tres fitxers — és més senzill mantenir els tres sincronitzats
-  que recordar quin tocava cada vegada. Sota file:// (obrint el
-  fitxer amb doble clic) açò no fa cap falta, però no fa cap mal.
+  hagi canviat al repositori. NO L'EDITIS A MÀ (des del set. 2026): el
+  valor és una empremta del contingut dels tres CSS, i el posa
+  actualitza_versio_css.py (via regenera.py, que la GitHub Action
+  d'uploads executa sola). Si el CSS no canvia, el ?v= tampoc; si
+  canvia, el ?v= canvia sol. verifica_projecte.py avisa si queda
+  desfasat. Sota file:// açò no fa cap falta, però no fa cap mal.
 -->
-<link rel="stylesheet" href="css/tokens.css?v=6">
-<link rel="stylesheet" href="css/base.css?v=6">
-<link rel="stylesheet" href="css/components.css?v=6">
+<link rel="stylesheet" href="css/tokens.css?v=15e3144d">
+<link rel="stylesheet" href="css/base.css?v=15e3144d">
+<link rel="stylesheet" href="css/components.css?v=15e3144d">
 </head>
 <body>
 
@@ -97,6 +96,7 @@
 <script src="js/nucli/itineraris-tematics.js"></script>
 <script src="js/nucli/router.js"></script>
 <script src="js/ui/glossari.js"></script>
+<script src="js/ui/export.js"></script>
 <script src="js/ui/llista.js"></script>
 <script src="js/ui/detall.js"></script>
 <script src="js/ui/demo.js"></script>

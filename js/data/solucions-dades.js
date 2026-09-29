@@ -692,7 +692,7 @@ window.SOLUCIONS = {
       {
         "figures": [
           {
-            "peu": "BC prolongat passa exactament per O: B es projecta normalment a B', però C no té imatge ordinària —s'escapa cap a l'infinit.",
+            "peu": "BC prolongat passa exactament per O: B i C comparteixen el mateix raig i tenen la mateixa imatge, B′ = C′. El triangle s'aplana; no s'escapa res.",
             "src": "assets/img/pistes/fig-107.png"
           }
         ],
@@ -2932,16 +2932,19 @@ window.SOLUCIONS = {
       {
         "figures": [],
         "textos": [
-          "Cap dels dos panells porta enunciat escrit: cal llegir la pregunta directament del dibuix. Totes dues figures amaguen la mateixa pregunta de fons que q27: mesurar el radi petit en funció del gran. El primer panell mostra un quadrat inscrit en una circumferència (els 4 vèrtexs sobre el cercle); el segon, un quadrat i dos cercles petits en fila, tots tres dins d'una circumferència gran més gran que els engloba."
+          "Cap dels dos panells porta enunciat escrit: cal llegir la pregunta directament del dibuix. Totes dues figures amaguen la mateixa mena de pregunta de fons que q27: mesurar la peça petita en funció de la gran. El primer panell mostra un quadrat inscrit en una circumferència i, recolzat sobre el seu costat de dalt, un quadrat petit amb les dues cantonades de dalt sobre l'arc; el segon, un quadrat i dos cercles petits en fila, tots tres dins d'una circumferència gran que els engloba."
         ],
         "titol": "Què demanen aquests dos dibuixos"
       },
       {
         "figures": [],
         "textos": [
-          "La clau és que la diagonal del quadrat és el diàmetre del cercle: els quatre vèrtexs toquen la circumferència, i la diagonal —que passa pel centre— hi arriba de banda a banda. Si el costat del quadrat és s i el radi del cercle és R, la diagonal fa s√2 (Pitàgores sobre mig quadrat: dos costats s formant un angle recte) i, alhora, val 2R. D'aquí surt directament la relació entre els dos: 2R = s√2, és a dir, R = s√2⁄2."
+          "Primer, el quadrat gran. Els seus quatre vèrtexs toquen la circumferència, o sigui que la seva diagonal és el diàmetre. Si el costat és S, la diagonal fa S√2 (Pitàgores sobre mig quadrat) i alhora val 2R: R² = S²/2.",
+          "Ara el petit, de costat t. Amb el centre de la circumferència a l'origen, el costat de dalt del quadrat gran és a y = S/2, i el quadrat petit hi seu a sobre, centrat. Les seves cantonades de dalt són, doncs, (±t/2, S/2 + t), i el dibuix diu que són sobre la circumferència:",
+          "(t/2)² + (S/2 + t)² = R² = S²/2 → t²/4 + S²/4 + St + t² = S²/2 → 5t² + 4St − S² = 0.",
+          "L'equació es factoritza: (5t − S)(t + S) = 0. L'arrel t = −S no té sentit per a una longitud, i queda t = S/5: el quadrat petit té exactament un cinquè del costat del gran, i per tant 1/25 de la seva àrea."
         ],
-        "titol": "Panell 1 — el quadrat inscrit"
+        "titol": "Panell 1 — el quadrat petit damunt del quadrat inscrit"
       },
       {
         "figures": [
@@ -2967,19 +2970,19 @@ window.SOLUCIONS = {
           }
         ],
         "textos": [
-          "Els dos panells —i tota aquesta família de puzles de cercles tangents que inclou també q22 i q27— es resolen sempre amb el mateix moviment: connectar centres, trobar-hi un triangle rectangle amagat (o, com al panell 1, una diagonal que fa de diàmetre) i aplicar el teorema de Pitàgores o una simple suma de longituds sobre una línia recta."
+          "Els dos panells —i tota aquesta família de puzles de cercles tangents que inclou també q22 i q27— es resolen sempre amb el mateix moviment: connectar centres, trobar-hi un triangle rectangle amagat (al panell 1, el que formen el centre, una cantonada de dalt del quadrat petit i el seu peu sobre l'eix vertical) i aplicar el teorema de Pitàgores o una simple suma de longituds sobre una línia recta."
         ],
         "titol": "El mateix moviment en totes dues"
       },
       {
         "figures": [],
         "textos": [
-          "Amb un quadrat de costat s=4 al primer panell: la diagonal val 4√2, per tant R=2√2≈2,83 —una xifra que es pot verificar mesurant directament sobre el dibuix. Al segon panell, amb r=12 surt R=37: el quadrat va de x=11 a x=35 (prenent el centre a l'origen), i la seva cantonada (35, 12) és a distància √(1225+144)=√1369=37 del centre ✓, exactament el radi."
+          "Al primer panell, amb S=5 surt t=1: R² = 25/2 = 12,5, i la cantonada de dalt del quadrat petit, (0,5; 3,5), és a distància² 0,25 + 12,25 = 12,5 = R² del centre ✓. Al segon panell, amb r=12 surt R=37: el quadrat va de x=11 a x=35 (prenent el centre a l'origen), i la seva cantonada (35, 12) és a distància √(1225+144)=√1369=37 del centre ✓, exactament el radi."
         ],
         "titol": "Comprovació"
       }
     ],
-    "resum": "Panell 1: R = s√2⁄2 (la diagonal del quadrat inscrit és el diàmetre). Panell 2: 37r = 12R, és a dir R ≈ 3,083·r —de la condició que les cantonades de la dreta del quadrat caiguin sobre la circumferència gran, cosa que amaga el triple pitagòric (12, 35, 37). Totes dues surten de mirar amb cura on toca cada peça i escriure-ho, el mateix moviment que a q22 i q27.",
+    "resum": "Panell 1: t = S/5 —el quadrat petit té un cinquè del costat del gran i 1/25 de la seva àrea—, de la condició que les seves cantonades de dalt caiguin sobre la circumferència i de R² = S²/2 per al quadrat inscrit. Panell 2: 37r = 12R, és a dir R ≈ 3,083·r —de la condició que les cantonades de la dreta del quadrat caiguin sobre la circumferència gran, cosa que amaga el triple pitagòric (12, 35, 37). Totes dues surten de mirar amb cura on toca cada peça i escriure-ho, el mateix moviment que a q22 i q27.",
     "titol": "Dues configuracions, el mateix moviment: connectar centres"
   },
   "q41": {
@@ -4024,13 +4027,23 @@ window.SOLUCIONS = {
       {
         "figures": [],
         "textos": [
-          "R=2, h=1: V=(πh²/3)(3R−h)=(π/3)(6−1)=5π/3≈5,24. Quan h=R=2 es recupera el volum de la semiesfera, (2/3)πR³=16π/3≈16,76. Superfície corba (sense la base): 2πRh=4π≈12,57.",
-          "Dos avisos d'honestedat. El primer: que \"sumar\" àrees de seccions infinitament primes doni exactament un volum és el pas que el càlcul integral formalitza, i és fora de l'abast d'aquest recull —el mateix tipus de frontera que ja apareix en trobar el perímetre d'una regió formada per un bastó en moviment. El segon, que convé no passar per alt: tot l'argument de Cavalieri dona el volum, i no diu res de la superfície. La fórmula 2πRh és certa i és un teorema d'Arquimedes —projectant el casquet horitzontalment sobre el cilindre que envolta l'esfera, l'àrea es conserva exactament, cosa gens evident—, però aquí es dona sense demostrar. El que sí que queda completament establert és l'argument de Cavalieri: dues figures amb la mateixa secció a cada alçada tenen el mateix volum."
+          "Cavalieri dona volums, no àrees; però el volum que s'acaba de trobar porta a l'àrea. Es talla la superfície corba del casquet en trossets molt petits i s'uneix cadascun amb el centre de l'esfera: són piràmides primíssimes, totes d'alçada R, que juntes omplen el sector esfèric —el casquet més el con que va del centre de l'esfera al cercle de tall. Com que el volum d'una piràmide és un terç de la base per l'alçada, el sector val (1/3)·R·S, on S és la superfície corba del casquet.",
+          "Ara el mateix sector, calculat com a casquet més con. El cercle de tall és a distància R−h del centre, i el seu radi ρ surt de Pitàgores: ρ² = R² − (R−h)² = h(2R−h). El con té, doncs, volum (π/3)·h(2R−h)·(R−h), i el sector:",
+          "(πh/3)[h(3R−h) + (2R−h)(R−h)] = (πh/3)[3Rh − h² + 2R² − 3Rh + h²] = (2/3)πR²h",
+          "Igualant les dues expressions, (1/3)·R·S = (2/3)πR²h, i per tant S = 2πRh. (Si h > R, el con queda dins del casquet i s'ha de restar en lloc de sumar; la mateixa fórmula ja ho fa sola, perquè aleshores R−h és negatiu.) És exactament l'àrea lateral d'un cilindre de radi R i alçada h: el teorema d'Arquimedes del casquet, que diu que projectant-lo horitzontalment sobre el cilindre que envolta l'esfera l'àrea no canvia."
+        ],
+        "titol": "La superfície, a partir del volum"
+      },
+      {
+        "figures": [],
+        "textos": [
+          "R=2, h=1: V=(πh²/3)(3R−h)=(π/3)(6−1)=5π/3≈5,24. Quan h=R=2 es recupera el volum de la semiesfera, (2/3)πR³=16π/3≈16,76. Superfície corba (sense la base): el sector fa (2/3)π·4·1 = 8π/3, i S = 3·(8π/3)/2 = 4π ≈ 12,57 = 2πRh ✓. I amb h = 2R (l'esfera sencera) surten (4/3)πR³ i 4πR², com ha de ser.",
+          "Un avís d'honestedat: que \"sumar\" seccions infinitament primes doni exactament un volum (Cavalieri), o que infinites piràmides primíssimes omplin exactament el sector, és el pas que el càlcul integral formalitza, i és fora de l'abast d'aquest recull —el mateix tipus de frontera que ja apareix en trobar el perímetre d'una regió formada per un bastó en moviment. La resta de l'argument queda completament establert."
         ],
         "titol": "Comprovació"
       }
     ],
-    "resum": "El volum d'un casquet esfèric d'alçada h en una esfera de radi R és (πh²/3)(3R−h), que surt de restar un tronc de con a un cilindre de radi R i alçada h. L'àrea de la superfície corba (sense la base plana) és 2πRh —un teorema d'Arquimedes que aquí es dona, no es demostra.",
+    "resum": "El volum d'un casquet esfèric d'alçada h en una esfera de radi R és (πh²/3)(3R−h), que surt de restar un tronc de con a un cilindre de radi R i alçada h. L'àrea de la superfície corba (sense la base plana) és 2πRh —el teorema d'Arquimedes del casquet—, que surt de calcular de dues maneres el volum del sector esfèric: com a suma de piràmides primíssimes d'alçada R, (1/3)·R·S, i com a casquet més con, (2/3)πR²h.",
     "titol": "El casquet esfèric: la semiesfera generalitzada"
   },
   "q63": {
@@ -5163,6 +5176,59 @@ window.SOLUCIONS = {
     ],
     "resum": "Es defineix sin(C) := sin(180°−C) per als angles obtusos, fent servir l'angle agut suplementari, que sí que és angle d'un triangle rectangle de veritat. I sí, el teorema del sinus continua valent —de fet, aquesta és l'única definició amb la qual continua valent: l'alçada des d'A val alhora b·sin(180°−C) i c·sin(B), i igualar-les no deixa cap altra sortida.",
     "titol": "El sinus d'un angle obtús: una definició forçada"
+  },
+  "q88": {
+    "passos": [
+      {
+        "figures": [],
+        "textos": [
+          "Dues fórmules: sin(2θ) i cos(2θ) escrits només amb sin θ i cos θ. Com que el sinus i el cosinus de la Qüestió 78 són raons d'un triangle rectangle, de moment només tenen sentit per a angles aguts; perquè 2θ també ho sigui, es treballa amb θ < 45°. Al final es veurà per què aquesta condició no és un tecnicisme i què passa quan es deixa enrere."
+        ],
+        "titol": "Què hem de produir"
+      },
+      {
+        "figures": [
+          {
+            "peu": "Els dos costats de longitud 1, l'angle 2θ partit en dos angles θ, i l'alçada des del vèrtex.",
+            "src": "assets/img/pistes/fig-093.png"
+          }
+        ],
+        "textos": [
+          "Es construeix un triangle isòsceles amb els dos costats iguals de longitud 1 i l'angle 2θ entre ells, al vèrtex de dalt. Es deixa caure l'alçada des d'aquest vèrtex fins a la base. Els dos triangles que en surten són rectangles, tenen la mateixa hipotenusa (1) i comparteixen l'alçada; per Pitàgores, el tercer costat també els coincideix, o sigui que són congruents. Per tant l'alçada parteix l'angle 2θ en dos angles de θ i la base en dues meitats iguals. En cadascun dels dos triangles rectangles, amb hipotenusa 1 i angle θ a dalt: la meitat de la base és el catet oposat a θ, i val sin θ; l'alçada és el catet contigu, i val cos θ."
+        ],
+        "titol": "Un triangle que conté els dos angles alhora"
+      },
+      {
+        "figures": [],
+        "textos": [
+          "(a) Amb la fórmula de la Qüestió 80, meitat del producte de dos costats pel sinus de l'angle que formen: àrea = ½·1·1·sin(2θ) = ½·sin(2θ). (b) Amb la base i l'alçada del pas anterior: la base sencera fa 2·sin θ i l'alçada cos θ, i l'àrea = ½·2·sin θ·cos θ = sin θ·cos θ. Les dues comptes fan servir alçades diferents: la fórmula de (a) prové de l'alçada traçada des d'un vèrtex de la base fins al costat oposat, que val sin(2θ); la de (b) és l'alçada des del vèrtex de dalt. Si fossin la mateixa alçada, igualar les dues àrees no diria res de nou. Com que no ho són, igualar-les dona sin(2θ) = 2·sin θ·cos θ."
+        ],
+        "titol": "L'àrea, de dues maneres"
+      },
+      {
+        "figures": [],
+        "textos": [
+          "La temptació és anar al teorema del cosinus, però encara no el tens en la forma que caldria: la Qüestió 79 només en demostra el cas de l'angle obtús, i aquí 2θ és agut. N'hi ha prou amb la Qüestió 84, sin² + cos² = 1, aplicada a l'angle 2θ: cos²(2θ) = 1 − sin²(2θ). Escrivint s = sin θ, i fent servir un altre cop la Qüestió 84 per canviar cos²θ per 1 − s²: sin²(2θ) = 4s²·cos²θ = 4s²(1 − s²) = 4s² − 4s⁴. Llavors cos²(2θ) = 1 − 4s² + 4s⁴, que és un quadrat perfecte: (1 − 2s²)². Queda triar l'arrel, i és aquí on es fa servir θ < 45°: cos(2θ) és positiu perquè 2θ és agut, i 1 − 2s² també ho és perquè s < sin 45°, és a dir s² < ½. Dues quantitats positives amb el mateix quadrat són iguals: cos(2θ) = 1 − 2·sin²θ."
+        ],
+        "titol": "El cosinus, sense cap teorema nou"
+      },
+      {
+        "figures": [],
+        "textos": [
+          "Amb θ = 30°, tot exacte: sin 30° = ½ i cos 30° = √3/2. Llavors 2·½·√3/2 = √3/2, que és sin 60° ✓; i 1 − 2·(½)² = ½, que és cos 60° ✓. Amb un angle sense valors coneguts, θ = 37°: sin 37° ≈ 0,602 i cos 37° ≈ 0,799, i 2·0,602·0,799 ≈ 0,961, mentre que sin 74° ≈ 0,961 ✓; 1 − 2·0,602² ≈ 1 − 0,724 = 0,276, i cos 74° ≈ 0,276 ✓."
+        ],
+        "titol": "Comprovació"
+      },
+      {
+        "figures": [],
+        "textos": [
+          "La condició θ < 45° no era un tecnicisme: és la que ha permès triar l'arrel positiva. Si 2θ passa de 90°, les dues fórmules continuen valent, però abans cal decidir què vol dir el cosinus d'un angle obtús —la mateixa feina que la Qüestió 87 fa amb el sinus—, i la resposta és la seva germana amb el signe canviat: cos(C) := −cos(180° − C). Amb θ = 60°: 1 − 2·sin²60° = 1 − 2·¾ = −½, i cos 120° = −cos 60° = −½ ✓. I el sinus, amb la definició de la Qüestió 87: sin 120° = sin 60° ≈ 0,866, i 2·sin 60°·cos 60° ≈ 2·0,866·0,5 = 0,866 ✓."
+        ],
+        "titol": "I després"
+      }
+    ],
+    "resum": "sin(2θ) = 2·sin θ·cos θ, perquè és la mateixa àrea d'un triangle isòsceles de costats 1 i angle 2θ calculada de dues maneres. I cos(2θ) = 1 − 2·sin²θ, que surt de sin² + cos² = 1 aplicat dues vegades i d'un quadrat perfecte; canviant sin²θ per 1 − cos²θ s'escriu també cos²θ − sin²θ o 2·cos²θ − 1, que són la mateixa fórmula.",
+    "titol": "El sinus i el cosinus de l'angle doble"
   },
   "q89": {
     "passos": [

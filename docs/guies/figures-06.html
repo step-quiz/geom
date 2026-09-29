@@ -272,29 +272,66 @@ function dotGridTight(hd,ctxLocal,x0,y0,cols,rows,step,r,col){
 })();
 
 /* ============================================================
-   fig-059 -- q40_implicit: (a) quadrat inscrit en un cercle,
-   (b) dos cercles i un quadrat en fila dins un cercle gran.
+   fig-059 -- q40_implicit: (a) quadrat inscrit en un cercle amb un
+   quadrat petit al damunt, (b) dos cercles i un quadrat en fila dins un
+   cercle gran.
    Moviment: dues-maneres (reaplica q22/q27_implicit).
-   Simplificacio: el panell (a) es dibuixa com el quadrat inscrit
-   ESTANDARD (4 vertexs sobre el cercle) -- l'escaneig original sembla
-   tenir un petit detall addicional a dalt que no he pogut resoldre amb
-   confianca (v. NOTA-LOT-6.md). */
+   Panell (a) REDIBUIXAT el set. 2026. Fins aleshores es dibuixava com el
+   quadrat inscrit estandard, girat 45 graus, perque el "detall addicional"
+   de l'escaneig no s'havia sabut interpretar. NOTA-LOT-6.md §9.1 el va
+   resoldre: es un quadrat DRET inscrit i, recolzat sobre el seu costat de
+   dalt, un quadrat petit amb les dues cantonades superiors sobre l'arc
+   (t = S/5). Ara el dibuix diu el mateix que l'escaneig. */
 (function(){
   const ctx=mk('d6',760,360),hd=makeHandDraw(ctx,406);
 
   (function(){
+    // Generador PROPI per a aquest panell (llavor 4061), no `hd`: el panell
+    // (b) fa servir `hd` i ha de sortir pixel-identic al publicat (v. el
+    // "consum" de 698 crides just despres d'aquest bloc).
+    const hdA=makeHandDraw(ctx,4061);
     ctx.save();ctx.translate(110,50);
-    const s=190,Rc=s*Math.SQRT2/2,cx=s/2,cy=s/2;
-    hd.handEllipse(cx,cy,Rc,Rc,{lineWidth:2.6,irregularity:0.03,color:INK});
-    const rot=Math.PI/4;
-    const V=regularPoly(4,cx,cy,Rc,rot+Math.PI/4);
-    for(let i=0;i<4;i++) hd.handSegment(V[i].x,V[i].y,V[(i+1)%4].x,V[(i+1)%4].y,{lineWidth:2.6,color:INK});
-    hd.handSegment(V[0].x,V[0].y,V[2].x,V[2].y,{dashed:true,lineWidth:1.8,dashPattern:[6,5],color:SANG});
-    tick(hd,V[0].x,V[0].y,V[1].x,V[1].y);tick(hd,V[1].x,V[1].y,V[2].x,V[2].y);
-    lbl(ctx,'s',(V[0].x+V[1].x)/2-24,(V[0].y+V[1].y)/2+18,INK,20);
-    lbl(ctx,'2R',cx+10,cy-6,SANG,20);
+    const S=190,Rc=S*Math.SQRT2/2,cx=S/2,cy=S/2,t=S/5;
+    // Angles (y cap avall) dels sis punts on una peca toca el cercle: les
+    // quatre cantonades del quadrat gran i les dues de dalt del petit. Es
+    // fixen com a pinAngles perque la ma "encerta" els contactes i falla
+    // la curvatura entre ells (v. hand-draw.js).
+    const aTL=-3*Math.PI/4, aTR=-Math.PI/4, aBR=Math.PI/4, aBL=3*Math.PI/4;
+    const aSL=Math.atan2(-(S/2+t),-t/2), aSR=Math.atan2(-(S/2+t),t/2);
+    const C=hdA.handEllipse(cx,cy,Rc,Rc,{lineWidth:2.6,irregularity:0.012,color:INK,
+      pinAngles:[aTL,aTR,aBR,aBL,aSL,aSR],pinSigma:0.25});
+    // Incidencia: tots els vertexs que son sobre el cercle es llegeixen del
+    // traç REAL (pointAtAngle), mai de la formula ideal (LESSONS.md §9).
+    const TL=C.pointAtAngle(aTL),TR=C.pointAtAngle(aTR),BR=C.pointAtAngle(aBR),BL=C.pointAtAngle(aBL);
+    const dalt=hdA.handSegment(TL.x,TL.y,TR.x,TR.y,{lineWidth:2.6,color:INK});
+    hdA.handSegment(TR.x,TR.y,BR.x,BR.y,{lineWidth:2.6,color:INK});
+    hdA.handSegment(BR.x,BR.y,BL.x,BL.y,{lineWidth:2.6,color:INK});
+    hdA.handSegment(BL.x,BL.y,TL.x,TL.y,{lineWidth:2.6,color:INK});
+    // Quadrat petit: la base es el mateix costat de dalt del gran (llegida
+    // del seu traç real amb pointAtT); les cantonades de dalt, de l'arc.
+    const baseL=dalt.pointAtT((cx-t/2-TL.x)/(TR.x-TL.x));
+    const baseR=dalt.pointAtT((cx+t/2-TL.x)/(TR.x-TL.x));
+    const SL=C.pointAtAngle(aSL),SR=C.pointAtAngle(aSR);
+    hdA.handSegment(baseL.x,baseL.y,SL.x,SL.y,{lineWidth:2.4,color:INK});
+    hdA.handSegment(SL.x,SL.y,SR.x,SR.y,{lineWidth:2.4,color:INK});
+    hdA.handSegment(SR.x,SR.y,baseR.x,baseR.y,{lineWidth:2.4,color:INK});
+    // sanguina: el radi que porta a l'equacio -- del centre a una cantonada
+    // de dalt del quadrat petit
+    hdA.handSegment(cx,cy,SR.x,SR.y,{dashed:true,lineWidth:1.8,dashPattern:[6,5],color:SANG});
+    hdA.handDot(cx,cy,4,SANG);
+    lbl(ctx,'R',(cx+SR.x)/2+10,(cy+SR.y)/2+22,SANG,20);
+    lblC(ctx,'S',cx,(BL.y+BR.y)/2+22,INK,20);
+    lbl(ctx,'t',baseL.x-18,(baseL.y+SL.y)/2+7,INK,18);
     ctx.restore();
   })();
+
+  // El panell (b) no ha canviat, i el seu traç ha de ser identic al que es
+  // va publicar i revisar (els gaps de tangencia es van ajustar a peticio
+  // de l'owner). Com que `hd` es un unic flux pseudoaleatori, es consumeixen
+  // aqui exactament les 698 crides a rand() que feia l'antic panell (a)
+  // (comptades, no estimades): el panell (b) arrenca del mateix punt del
+  // flux que abans.
+  for(let i=0;i<698;i++) hd.rand();
 
   (function(){
     ctx.save();ctx.translate(380,40);

@@ -63,7 +63,7 @@
 
 window.ORDRE_PREGUNTES = [
 
-  // ---- dificultat 1 -- 2D (23 preguntes) ----
+  // ---- dificultat 1 -- 2D (21 preguntes) ----
   "q01",
   "q02",
   "q70",
@@ -84,18 +84,14 @@ window.ORDRE_PREGUNTES = [
   "q95",
   "q94",
   "q98",
-  "q117",
   "q122",
-  "q125",
 
-  // ---- dificultat 1 -- 3D (5 preguntes) ----
+  // ---- dificultat 1 -- 3D (3 preguntes) ----
   "q18a",
   "q25",
   "q63",
-  "q105",
-  "q108",
 
-  // ---- dificultat 2 -- 2D (47 preguntes) ----
+  // ---- dificultat 2 -- 2D (46 preguntes) ----
   "q05",
   "q06",
   "q07",
@@ -114,7 +110,6 @@ window.ORDRE_PREGUNTES = [
   "q29",
   "q30",
   "q31",
-  "q33",
   "q38",
   "q39",
   "q35",
@@ -129,7 +124,6 @@ window.ORDRE_PREGUNTES = [
   "q72",
   "q75",
   "q76",
-  "q77",
   "q80",
   "q86",
   "q87",
@@ -139,12 +133,13 @@ window.ORDRE_PREGUNTES = [
   "q110",
   "q111",
   "q112",
+  "q117",
   "q113",
   "q114",
   "q115",
   "q120",
 
-  // ---- dificultat 2 -- 3D (23 preguntes) ----
+  // ---- dificultat 2 -- 3D (21 preguntes) ----
   "q08a",
   "q18b",
   "q45",
@@ -158,8 +153,6 @@ window.ORDRE_PREGUNTES = [
   "q60",
   "q61",
   "q67",
-  "q66",
-  "q68",
   "q91",
   "q92",
   "q93",
@@ -167,9 +160,9 @@ window.ORDRE_PREGUNTES = [
   "q102",
   "q103",
   "q104",
-  "q126",
+  "q105",
 
-  // ---- dificultat 3 -- 2D (18 preguntes) ----
+  // ---- dificultat 3 -- 2D (21 preguntes) ----
   "q03",
   "q17",
   "q43",
@@ -177,6 +170,8 @@ window.ORDRE_PREGUNTES = [
   "q54",
   "q55",
   "q32",
+  "q33",
+  "q77",
   "q85",
   "q79",
   "q89",
@@ -187,9 +182,10 @@ window.ORDRE_PREGUNTES = [
   "q119",
   "q121",
   "q124",
+  "q125",
   "q127",
 
-  // ---- dificultat 3 -- 3D (14 preguntes) ----
+  // ---- dificultat 3 -- 3D (18 preguntes) ----
   "q08b",
   "q57",
   "q81",
@@ -199,9 +195,13 @@ window.ORDRE_PREGUNTES = [
   "q58",
   "q62",
   "q65",
+  "q66",
+  "q68",
   "q101",
   "q106",
   "q107",
+  "q108",
   "q109",
   "q123",
+  "q126",
 ];

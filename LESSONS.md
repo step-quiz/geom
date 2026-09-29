@@ -106,6 +106,13 @@ change" after a CSS-only fix, check both of those before touching the
 CSS logic again — the fix is very often already correct and sitting on
 disk, unreachable.
 
+**Tancat de soca-rel (set. 2026).** El `?v=` ja no és un número escrit a mà:
+és una empremta (hash) del contingut dels CSS, i el posa
+`actualitza_versio_css.py` (dins de `regenera.py`, que la GitHub Action
+d'uploads executa sola). `verifica_projecte.py` falla si queda desfasat. Les
+dues condicions de dalt —marcatge vàlid i valor que canvia a cada lliurament
+de CSS— ara les garanteix una eina, no la memòria de qui lliura.
+
 ## 4 — Un ZIP diff mai pot esborrar un fitxer
 
 Every delivery this project ships is a ZIP of new/changed files, applied
@@ -117,6 +124,13 @@ files to delete manually — and you must remember this when verifying
 your own work end-to-end (a full "apply every ZIP in sequence" test will
 NOT match your working copy unless you also manually delete the files
 your own notes told the owner to delete).
+
+**Resolt (set. 2026).** Un ZIP ara SÍ que pot esborrar fitxers: si porta a
+l'arrel un `_ESBORRA.txt` (un camí per línia, `#` per a comentaris), la GitHub
+Action d'uploads (`processa_uploads.py`) esborra els camins que hi surtin
+després de descomprimir. Posa-hi sempre els fitxers que el lliurament fa
+obsolets, en lloc de demanar-ho en prosa a la nota de lliurament. Límit: res
+de dins de `.github/`, que una Action no pot modificar.
 
 ## 5 — Reaprofita el mateix mecanisme d'interacció en lloc d'inventar-ne un de nou
 
@@ -153,6 +167,16 @@ deliberate given the `file://`-only constraint (no dev server to point a
 real test runner at easily) — don't try to introduce a different testing
 approach without discussing it with the owner first, it would be a real
 architecture change.
+
+**Actualització (set. 2026), a petició de l'owner.** Ja hi ha un test desat i
+reaprofitable: `tests/smoke.js` (les 130 preguntes en mode clar i fosc, les
+solucions, `sol.html`, `eina-frases.html` i l'analitzador). S'executa amb
+`node tests/smoke.js`, i també sol a GitHub: a cada ZIP pujat (mode clar) i a
+cada Pull Request (clar i fosc). Continua sense haver-hi `npm install` ni
+servidor: el test obre els fitxers amb `file://`, com l'alumne. Playwright es
+troba amb `docs/playwright-cami.js`; la ruta fixa `/home/claude/...` d'aquí
+dalt ja no fa falta enlloc. Si un lliurament necessita provar una cosa nova,
+amplia `tests/smoke.js` en lloc d'escriure un script d'un sol ús.
 
 ## 8 — Una tria de disseny deliberada, mai confirmada, és un bug esperant a ser reportat
 

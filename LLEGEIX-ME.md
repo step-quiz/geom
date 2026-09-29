@@ -32,7 +32,7 @@ xarxa: coherent amb la resta del projecte.
 
 | Fitxer | Què és |
 |---|---|
-| `js/ui/llista.js` | `formataCodi()` genera la cadena; `copiaCodi()` la copia i la deixa visible; `descarregaFitxer()` és la sortida secundària en `.txt` |
+| `js/ui/export.js` | (fins al set. 2026, dins de `llista.js`) `formataCodi()` genera la cadena; `copiaCodi()` la copia i la deixa visible; `descarregaFitxer()` és la sortida secundària en `.txt` |
 | `js/i18n/ui-strings.js` | els textos del botó, en anglès i català |
 | `css/components.css` | `.export-explorades__*` |
 | `analitzador-geom-plantilla.html` | la font del generador — **és aquí que s'edita** |
@@ -76,8 +76,9 @@ set retalls de pàgina (`q31`, `q76`, `q78`, `q79`, `q105`, `q107`, `q114`) són
 del PDF, amb traç fi: encongits deixen de llegir-se. Tots dos casos es tracten
 igual que al lloc.
 
-**Les imatges van incrustades en base64.** Les 116 de les preguntes visibles.
-El fitxer passa d'uns 120 kB a uns 5 MB, i a canvi es pot desar a l'escriptori
+**Les imatges van incrustades en base64.** Els 119 fitxers d'imatge de les
+preguntes visibles (118 preguntes amb imatge; `q40_implicit` en porta dues).
+El fitxer passa d'uns 120 kB a uns 4 MB (5 MB fins que les imatges es van optimitzar sense pèrdua, set. 2026), i a canvi es pot desar a l'escriptori
 sense la carpeta del projecte al costat. Sense això, "fitxer únic" era mentida:
 n'hi havia prou amb moure'l perquè totes les figures donessin 404, i una
 pregunta de geometria sintètica sense la seva figura no es pot ni llegir.

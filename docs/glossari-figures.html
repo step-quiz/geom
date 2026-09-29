@@ -1060,5 +1060,81 @@ const ACCENT='#8B5E3C';
   lblC(ctx,'dist(P,focus) = dist(P,directriu), per a tot P de la corba',0,50,ACCENT,15);
   stampNum(ctx,400,'g-032');
 })();
+
+/* ============================================================
+   gloss-teorema-sinus.png (set. 2026) -- teorema del sinus: un triangle
+   ABC i l'alçada des de C, que es pot llegir de dues maneres (b·sin A i
+   a·sin B). Verificat: amb A=(0,300), B=(480,300), C=(170,40), l'alçada
+   val 260 i b·sin A = a·sin B = 260. */
+(function(){
+  const ctx=mk('g34',640,440),hd=makeHandDraw(ctx,9219);ctx.translate(70,40);
+  const A={x:0,y:300},B={x:480,y:300},C={x:170,y:40};
+  const AB=hd.handSegment(A.x,A.y,B.x,B.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(B.x,B.y,C.x,C.y,{lineWidth:2.6,color:INK});
+  hd.handSegment(C.x,C.y,A.x,A.y,{lineWidth:2.6,color:INK});
+  // peu de l'alçada llegit del traç REAL de la base (LESSONS.md §9)
+  const H=AB.pointAtT((C.x-A.x)/(B.x-A.x));
+  hd.handSegment(C.x,C.y,H.x,H.y,{lineWidth:1.8,dashed:true,dashPattern:[6,5],color:INK});
+  rightAngle(hd,H.x,H.y,C.x,C.y,B.x,B.y,14,INK);
+  angleMark(hd,A.x,A.y,B.x,B.y,C.x,C.y,34,1,INK);
+  angleMark(hd,B.x,B.y,C.x,C.y,A.x,A.y,34,2,INK);
+  lbl(ctx,'A',A.x-26,A.y+10,INK,20);lbl(ctx,'B',B.x+10,B.y+10,INK,20);lbl(ctx,'C',C.x-8,C.y-12,INK,20);
+  lbl(ctx,'b',(A.x+C.x)/2-26,(A.y+C.y)/2,INK,20);
+  lbl(ctx,'a',(B.x+C.x)/2+14,(B.y+C.y)/2-4,INK,20);
+  lbl(ctx,'h',H.x+8,(C.y+H.y)/2+20,INK,20);
+  lblC(ctx,'h = b·sin A = a·sin B   →   a / sin A = b / sin B',240,345,ACCENT,17);
+  lblC(ctx,'teorema del sinus: a / sin A = b / sin B = c / sin C',240,375,ACCENT,15);
+  stampNum(ctx,420,'g-033');
+})();
+
+/* ============================================================
+   gloss-homotecia-estirament.png (set. 2026) -- dues transformacions que
+   el quadern distingeix (v. CONEIXEMENT-PREVI-CANDIDATS-GLOSSARI.md B36).
+   Esquerra: homotècia de centre O i raó 2 (cada vèrtex gran és el doble
+   de lluny d'O que el petit, sobre el mateix raig: mateixa forma).
+   Dreta: estirament horitzontal ×2 (circumferència de radi 55 -> el·lipse
+   de semieixos 110 i 55: la forma canvia). */
+(function(){
+  const ctx=mk('g35',940,420),hd=makeHandDraw(ctx,9220);
+  // --- homotècia
+  (function(){
+    ctx.save();ctx.translate(40,60);
+    const O={x:20,y:250};
+    const petit=[{x:130,y:190},{x:200,y:215},{x:150,y:120}];
+    const k=2;
+    const gran=petit.map(P=>({x:O.x+k*(P.x-O.x),y:O.y+k*(P.y-O.y)}));
+    const vPetit=[];
+    gran.forEach((G)=>{
+      const raig=hd.handSegment(O.x,O.y,G.x,G.y,{lineWidth:1.3,dashed:true,dashPattern:[5,6],color:INK});
+      vPetit.push(raig.pointAtT(1/k));       // el vèrtex petit, SOBRE el raig real
+    });
+    for(let i=0;i<3;i++){
+      hd.handSegment(vPetit[i].x,vPetit[i].y,vPetit[(i+1)%3].x,vPetit[(i+1)%3].y,{lineWidth:2.4,color:INK});
+      hd.handSegment(gran[i].x,gran[i].y,gran[(i+1)%3].x,gran[(i+1)%3].y,{lineWidth:2.4,color:INK});
+    }
+    hd.handDot(O.x,O.y,4.5,INK);lbl(ctx,'O',O.x-22,O.y+8,INK,20);
+    lblC(ctx,'homotècia de centre O i raó 2:',200,300,ACCENT,16);
+    lblC(ctx,'mateixa forma, longituds ×2',200,322,ACCENT,16);
+    ctx.restore();
+  })();
+  // --- estirament
+  (function(){
+    ctx.save();ctx.translate(690,190);
+    const r=55;
+    hd.handEllipse(0,0,r,r,{lineWidth:1.6,irregularity:0.01,passes:1,color:INK});
+    hd.handEllipse(0,0,2*r,r,{lineWidth:2.6,irregularity:0.012,color:INK});
+    // fletxes horitzontals: de la circumferència a l'el·lipse, a cada banda
+    [[r+6,2*r-8],[-(r+6),-(2*r-8)]].forEach(([x0,x1])=>{
+      hd.handSegment(x0,0,x1,0,{lineWidth:1.8,passes:1,overshoot:1,color:INK});
+      const s=Math.sign(x1-x0);
+      hd.handSegment(x1,0,x1-s*10,-6,{lineWidth:1.8,passes:1,overshoot:1,color:INK});
+      hd.handSegment(x1,0,x1-s*10,6,{lineWidth:1.8,passes:1,overshoot:1,color:INK});
+    });
+    lblC(ctx,'estirament ×2 en horitzontal:',0,170,ACCENT,16);
+    lblC(ctx,'la circumferència es torna el·lipse',0,192,ACCENT,16);
+    ctx.restore();
+  })();
+  stampNum(ctx,400,'g-034');
+})();
 </script>
 </body></html>

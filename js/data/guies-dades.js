@@ -237,7 +237,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Aquest mateix recompte, aplicat als poliedres en lloc dels mosaics del pla (angle menor que 360°, no igual, perquè la figura s'aixequi cap a la tercera dimensió en lloc de quedar plana), és exactament el que ja vas fer a q08b — i allà hi trobaràs la mateixa distinció, dita amb altres paraules: descartar tots els casos impossibles no és el mateix que construir els possibles. Aquí la separació és encara més gran que allà: al cas dels poliedres, cadascuna de les cinc rosetes que sobreviuen al comptatge dona efectivament un sòlid; al cas dels mosaics, unes quantes de les rosetes que sobreviuen no arriben a donar cap mosaic.",
+      "ca": "Aquest mateix recompte, aplicat als poliedres en lloc dels mosaics del pla (angle menor que 360°, no igual, perquè la figura s'aixequi cap a la tercera dimensió en lloc de quedar plana), és exactament el que fa q08b — i allà hi trobaràs la mateixa distinció, dita amb altres paraules: descartar tots els casos impossibles no és el mateix que construir els possibles. Aquí la separació és encara més gran que allà: al cas dels poliedres, cadascuna de les cinc rosetes que sobreviuen al comptatge dona efectivament un sòlid; al cas dels mosaics, unes quantes de les rosetes que sobreviuen no arriben a donar cap mosaic.",
       "en": null
     }
   },
@@ -4603,7 +4603,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Dues imatges més sense enunciat. Totes dues amaguen la mateixa pregunta que q27_implicit: mesura el radi petit en funció del gran. (Nota d'aquesta figura: el primer panell es dibuixa com el quadrat inscrit estàndard —els 4 vèrtexs sobre el cercle— perquè l'escaneig original sembla tenir un detall addicional a dalt.)",
+          "ca": "Dues imatges més sense enunciat. Totes dues amaguen la mateixa mena de pregunta que q27_implicit: mesura la peça petita en funció de la gran. Al primer panell, un quadrat inscrit en una circumferència i, recolzat sobre el seu costat de dalt, un quadrat petit amb les dues cantonades de dalt sobre l'arc: quina mida té el petit al costat del gran? Al segon, el radi dels cercles petits en funció del radi del gran.",
           "en": null
         },
         "figura": null
@@ -4636,14 +4636,14 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Al primer panell: la diagonal del quadrat és el diàmetre del cercle, 2R. Si el costat del quadrat és s, quina relació de Pitàgores lliga s amb R?\n\nAl segon panell: posa el centre del cercle gran a l'origen. El cercle esquerre és tangent per dins a (−R, 0), o sigui que el seu centre és a −R+r; el segon centre, a −R+3r; el quadrat va de −R+4r a −R+6r, amb els costats de dalt i de baix a ±r. Escriu que una cantonada de la dreta, (−R+6r, r), és sobre la circumferència i simplifica: la R² se t'anirà dels dos costats i et quedarà una relació ben neta entre R i r.",
+          "ca": "Al primer panell: el quadrat gran és inscrit, o sigui que la seva diagonal és el diàmetre, i si el costat és S, R² = S²/2. Posa el centre a l'origen: el costat de dalt del quadrat gran és a y = S/2. El quadrat petit, de costat t, hi seu a sobre i centrat, de manera que les seves cantonades de dalt són (±t/2, S/2 + t). Escriu que una d'aquestes cantonades és sobre la circumferència i fes servir R² = S²/2: et quedarà una equació de segon grau en t que es factoritza, amb una sola arrel positiva.\n\nAl segon panell: posa el centre del cercle gran a l'origen. El cercle esquerre és tangent per dins a (−R, 0), o sigui que el seu centre és a −R+r; el segon centre, a −R+3r; el quadrat va de −R+4r a −R+6r, amb els costats de dalt i de baix a ±r. Escriu que una cantonada de la dreta, (−R+6r, r), és sobre la circumferència i simplifica: la R² se t'anirà dels dos costats i et quedarà una relació ben neta entre R i r.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "Primer panell, quadrat de costat s=4: diagonal=4√2, per tant R=2√2≈2,83. Segon panell: t'ha de sortir 37r = 12R. Comprova que la cantonada hi cau de debò —amb R=37 i r=12, el quadrat arriba fins a x=35, i 12²+35² = 144+1225 = 1369 = 37². És el triple pitagòric (12, 35, 37) el que fa que aquesta figura tanqui amb números exactes.",
+      "ca": "Primer panell: t'ha de sortir t = S/5. Amb S=5 (i per tant R² = 12,5), el quadrat petit té costat 1 i la seva cantonada de dalt és a (0,5; 3,5): 0,25 + 12,25 = 12,5 = R², sobre la circumferència. El quadrat petit fa, doncs, 1/25 de l'àrea del gran. Segon panell: t'ha de sortir 37r = 12R. Comprova que la cantonada hi cau de debò —amb R=37 i r=12, el quadrat arriba fins a x=35, i 12²+35² = 144+1225 = 1369 = 37². És el triple pitagòric (12, 35, 37) el que fa que aquesta figura tanqui amb números exactes.",
       "en": null
     },
     "iDespres": {
@@ -5239,7 +5239,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Amb un sol disc (un cilindre curt dins del con), el volum aproximat es queda curt de veritat. Amb dos discs més prims, ja s'hi assembla més. Cada disc és un cilindre — el mateix objecte de volum conegut que ja vas fer servir a q18a, ara apilat en comptes de format per una sola capa.",
+          "ca": "Amb un sol disc (un cilindre curt dins del con), el volum aproximat es queda curt de veritat. Amb dos discs més prims, ja s'hi assembla més. Cada disc és un cilindre, i el volum d'un cilindre ja el coneixes: l'àrea de la base (πr²) per l'alçada, que aquí és el gruix del disc.",
           "en": null
         },
         "figura": null
@@ -6004,18 +6004,18 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "A cada alçada dins del casquet, la secció del casquet (un cercle) i la secció del cilindre-menys-con auxiliar tenen la mateixa àrea — exactament el mateix argument de q60, aplicat entre 0 i h en lloc d'entre 0 i R. Per Cavalieri, doncs, el casquet té el mateix volum que aquell tros de cilindre-menys-con, que sí que saps calcular: un cilindre de radi R i alçada h, menys el tronc de con que hi queda a dins.\n\nEl tronc té alçada h i radis R−h (a baix) i R (a dalt). El volum d'un tronc ja el vas fer a q48, allà amb base quadrada; amb base circular la fórmula té la mateixa forma però amb π: (πh/3)(a²+ab+b²). Substitueix a=R−h i b=R, resta-ho de πR²h i simplifica —veuràs que els R² es cancel·len sols i et queda una expressió ben curta en h i R.\n\nUn avís d'honestedat, i en van dos. El primer: que \"sumar\" àrees de seccions infinitament primes doni exactament un volum és el pas que el càlcul integral formalitza, i és fora d'aquest quadern —el mateix tipus de frontera que ja et vas trobar a q64 amb la longitud de l'astroide. El segon, i val la pena que el sàpigues: tot això et dona el VOLUM, no la superfície. La fórmula de l'àrea corba del casquet, 2πRh, és certa i és un teorema d'Arquimedes —diu que projectant el casquet horitzontalment sobre el cilindre que envolta l'esfera, l'àrea es conserva exactament, cosa gens evident—, però aquí te la donem, no la demostrem. El que sí que és teu del tot és l'argument de Cavalieri: dues figures amb la mateixa secció a cada alçada tenen el mateix volum.",
+          "ca": "A cada alçada dins del casquet, la secció del casquet (un cercle) i la secció del cilindre-menys-con auxiliar tenen la mateixa àrea — exactament el mateix argument de q60, aplicat entre 0 i h en lloc d'entre 0 i R. Per Cavalieri, doncs, el casquet té el mateix volum que aquell tros de cilindre-menys-con, que sí que saps calcular: un cilindre de radi R i alçada h, menys el tronc de con que hi queda a dins.\n\nEl tronc té alçada h i radis R−h (a baix) i R (a dalt). El volum d'un tronc ja el vas fer a q48, allà amb base quadrada; amb base circular la fórmula té la mateixa forma però amb π: (πh/3)(a²+ab+b²). Substitueix a=R−h i b=R, resta-ho de πR²h i simplifica —veuràs que els R² es cancel·len sols i et queda una expressió ben curta en h i R.\n\nPer a la SUPERFÍCIE, Cavalieri no t'hi ajuda —dona volums, no àrees—, però el volum que acabes de trobar sí. Talla la superfície corba del casquet en trossets molt petits i uneix cadascun amb el centre de l'esfera: són piràmides primíssimes, totes d'alçada R, i juntes omplen el \"sector esfèric\" (el casquet més el con que va del centre de l'esfera al cercle de tall). El volum d'una piràmide és un terç de la base per l'alçada; sumant-les totes, el sector val (1/3)·R·S, on S és la superfície que busques. Ara calcula el volum del sector d'una altra manera —casquet més con, dues coses que ja saps mesurar: el radi del cercle de tall surt de Pitàgores— i aïlla S.\n\nUn avís d'honestedat: que \"sumar\" seccions infinitament primes doni exactament un volum (Cavalieri), o que infinites piràmides primíssimes omplin exactament el sector, és el pas que el càlcul integral formalitza, i és fora d'aquest quadern —el mateix tipus de frontera que ja et vas trobar a q64 amb la longitud de l'astroide. Tota la resta és teva.",
           "en": null
         },
         "figura": null
       }
     ],
     "comprovacio": {
-      "ca": "R=2, h=1: V=(πh²/3)(3R−h)=(π/3)(6−1)=5π/3≈5,24. Comprova que quan h=R=2 recuperes el volum de la semiesfera de q60 (2/3)πR³=16π/3≈16,76. Superfície corba (sense la base): 2πRh=4π≈12,57.",
+      "ca": "R=2, h=1: V=(πh²/3)(3R−h)=(π/3)(6−1)=5π/3≈5,24. Comprova que quan h=R=2 recuperes el volum de la semiesfera de q60 (2/3)πR³=16π/3≈16,76. Superfície corba (sense la base): t'ha de sortir S = 2πRh; amb R=2, h=1, el sector fa 8π/3 i S = 3·(8π/3)/2 = 4π≈12,57. Fixa't que 2πRh és exactament l'àrea lateral d'un cilindre de radi R i alçada h: és el teorema d'Arquimedes del casquet.",
       "en": null
     },
     "iDespres": {
-      "ca": "Quan h=2R (el casquet és l'esfera sencera), la fórmula del volum es converteix en (4/3)πR³ — la fórmula habitual de l'esfera, com a cas particular d'aquesta de més amunt.",
+      "ca": "Quan h=2R (el casquet és l'esfera sencera), la fórmula del volum es converteix en (4/3)πR³ i la superfície en 4πR² — les fórmules habituals de l'esfera, com a casos particulars d'aquestes de més amunt.",
       "en": null
     }
   },
@@ -6423,7 +6423,7 @@ window.GUIES = {
       {
         "nivell": 1,
         "titol": {
-          "ca": "gira-ho, com a q68",
+          "ca": "gira-ho",
           "en": null
         },
         "text": {
@@ -6448,7 +6448,7 @@ window.GUIES = {
           "en": null
         },
         "text": {
-          "ca": "Girar la REGIÓ dona una esfera sencera (volum conegut). Girar l'ARC dona la SUPERFÍCIE d'aquesta mateixa esfera (àrea coneguda). Aplica Pappus a l'inrevés, com a q68: iguala el volum (o la superfície) coneguts amb (àrea, o longitud) × 2π × distància, i aïlla la distància — dues vegades, un cop per a cada centroide.",
+          "ca": "Girar la REGIÓ dona una esfera sencera (volum conegut). Girar l'ARC dona la SUPERFÍCIE d'aquesta mateixa esfera (àrea coneguda).\n\nPappus diu que el VOLUM que escombra una regió en girar al voltant d'un eix que no la travessa val (àrea de la regió) × 2π × (distància del seu centroide a l'eix), on el centroide és la posició mitjana de tots els trossets d'àrea de la regió.\n\nPer a l'arc et cal una segona versió, i es construeix exactament igual canviant una sola peça: el centroide d'una corba és la posició mitjana dels seus trossets de LONGITUD (no d'àrea), i la SUPERFÍCIE que la corba escombra en girar val (longitud) × 2π × (distància d'aquest centroide a l'eix). On hi havia àrea ara hi ha longitud, i on hi havia volum ara hi ha superfície.\n\nAplica Pappus a l'inrevés: iguala el volum (o la superfície) coneguts amb (àrea, o longitud) × 2π × distància, i aïlla la distància — dues vegades, un cop per a cada centroide.",
           "en": null
         },
         "figura": null
@@ -6459,7 +6459,7 @@ window.GUIES = {
       "en": null
     },
     "iDespres": {
-      "ca": "Que aquestes dues distàncies surtin diferents és el motiu pel qual \"el centroide\" no és una sola idea sinó dues —la d'una regió i la del seu contorn—, cadascuna amb la seva versió de Pappus: una per a volums i una per a superfícies. q65 i q67 les construeixen amb calma; aquí en tens, amb xifres, la raó per la qual calen totes dues.",
+      "ca": "Que aquestes dues distàncies surtin diferents és el motiu pel qual \"el centroide\" no és una sola idea sinó dues —la d'una regió i la del seu contorn—, cadascuna amb la seva versió de Pappus: una per a volums i una per a superfícies. q65 construeix amb calma la primera, i la segona surt igual canviant àrea per longitud; aquí en tens, amb xifres, la raó per la qual calen totes dues.",
       "en": null
     }
   },
