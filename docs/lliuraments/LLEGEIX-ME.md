@@ -19,9 +19,12 @@ idèntiques (comprovat byte a byte) dels de `docs/revisio-matematica/`, on hi
 ha la sèrie sencera (01–12): s'han esborrat de l'arrel, no s'ha perdut res.
 
 Des del set. 2026 els lliuraments ja no necessiten una nota d'instal·lació
-a l'arrel: `processa_uploads.py` descomprimeix, esborra el que demani
-`_ESBORRA.txt`, regenera i verifica. **Però el workflow d'uploads que hi ha ara al
-repositori és el bàsic i no el crida** (v. `README.md`, "Com arriben els canvis al
-repositori"): per això aquestes còpies de l'arrel havien tornat a aparèixer, i el
-17/10/2026 es van tornar a esborrar. La nota tècnica de cada lliurament continua anant a
+a l'arrel: la GitHub Action d'uploads descomprimeix, esborra el que demani
+`_ESBORRA.txt`, regenera i verifica sola (v. `README.md`, "Com arriben els
+canvis al repositori"). La nota tècnica de cada lliurament continua anant a
 `docs/guies/NOTA-*.md`.
+
+(Durant un temps el workflow del repositori va tornar a ser el bàsic, que no
+aplica `_ESBORRA.txt`, i per això aquestes còpies havien tornat a aparèixer a
+l'arrel. El 17/10/2026 es van tornar a esborrar i es va reinstal·lar el
+workflow complet, juntament amb `verifica.yml`.)

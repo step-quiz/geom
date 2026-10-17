@@ -126,11 +126,9 @@ NOT match your working copy unless you also manually delete the files
 your own notes told the owner to delete).
 
 **Resolt (set. 2026).** Un ZIP ara SÍ que pot esborrar fitxers: si porta a
-l'arrel un `_ESBORRA.txt` (un camí per línia, `#` per a comentaris),
-`processa_uploads.py` esborra els camins que hi surtin després de descomprimir.
-**Però (17/10/2026) el workflow d'uploads que hi ha ara al repositori és el bàsic i
-no crida `processa_uploads.py`:** cal executar-lo a mà, o aplicar `_ESBORRA.txt` a mà.
-(Per això havien tornat a aparèixer a l'arrel unes notes ja arxivades.) Posa-hi sempre els fitxers que el lliurament fa
+l'arrel un `_ESBORRA.txt` (un camí per línia, `#` per a comentaris), la GitHub
+Action d'uploads (`processa_uploads.py`) esborra els camins que hi surtin
+després de descomprimir. Posa-hi sempre els fitxers que el lliurament fa
 obsolets, en lloc de demanar-ho en prosa a la nota de lliurament. Límit: res
 de dins de `.github/`, que una Action no pot modificar.
 

@@ -1,0 +1,52 @@
+# Verifica cada Pull Request abans de fusionar-la:
+#   1. els fitxers generats són al dia (regenera.py no hi canvia res);
+#   2. verifica_projecte.py diu "Tot correcte.";
+#   3. tests/smoke.js passa en mode clar i fosc.
+# No desa res: només diu si la PR es pot fusionar.
+name: Verifica
+
+on:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+defaults:
+  run:
+    shell: bash
+
+jobs:
+  verifica:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: 1. Fitxers generats al dia
+        run: |
+          python3 regenera.py
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "::error::Hi ha fitxers generats desfasats. Executa «python3 regenera.py» i afegeix-los a la PR:"
+            git status --short
+            exit 1
+          fi
+
+      - name: 2. verifica_projecte.py
+        run: python3 verifica_projecte.py
+
+      - name: Instal·la Playwright i Chromium
+        run: |
+          npm install --no-save --no-audit --no-fund playwright
+          npx playwright install --with-deps chromium
+
+      - name: 3. tests/smoke.js (mode clar i fosc)
+        run: node tests/smoke.js

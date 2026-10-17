@@ -353,15 +353,13 @@ which situation each one applies to.
    Playwright regression (all 130 guides in light and dark mode, solutions,
    `sol.html`, `eina-frases.html`, the exam generator). Until Sep 2026 it had
    to be rewritten from scratch every delivery; extend it instead.
-3. Delivery is a ZIP uploaded to `_uploads/`, or a Pull Request. **As of
-   2026-10-17 the upload Action in the repo is the basic one**: it only
-   extracts the ZIP and commits to `main` — it does **not** apply
-   `_ESBORRA.txt`, regenerate or verify. The full flow (extract, apply
-   `_ESBORRA.txt`, regenerate, verify, commit or park on `upload-revisar/N`)
-   exists as `processa_uploads.py` but no workflow calls it, and
-   `.github/workflows/verifica.yml` (PR checks) is not in the repo either. So
-   run steps 1–2 yourself before delivering, and make sure a ZIP does not
-   rely on `_ESBORRA.txt`. See README, "Com arriben els canvis al repositori".
+3. Delivery is a ZIP uploaded to `_uploads/`, or a Pull Request. The upload
+   Action (`.github/workflows/unzip-upload.yml`) extracts it, applies its
+   `_ESBORRA.txt` (list of files to delete — a ZIP **can** delete files now),
+   regenerates, verifies and commits to `main`, or leaves `main` untouched
+   and saves the result to an `upload-revisar/N` branch if anything fails.
+   PRs are checked by `.github/workflows/verifica.yml`. See README, "Com
+   arriben els canvis al repositori".
 4. Write a `docs/guies/NOTA-<name-of-the-change>.md` delivery note in the
    same style as the existing ones — what changed, why, what you found and
    fixed during your own review (not just "I did the task"), how you

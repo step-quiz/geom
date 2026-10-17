@@ -1,32 +1,177 @@
-name: Extract and commit zip uploads
+# Processa els ZIP pujats a _uploads/ i manté al dia els fitxers generats.
+#
+# A cada ZIP pujat (i a cada canvi directe a main d'una font d'un fitxer
+# generat: CSS, guies, solucions, preguntes, imatges...):
+#   1. processa_uploads.py  — descomprimeix cada ZIP i aplica el seu _ESBORRA.txt
+#   2. regenera.py          — refà els fitxers generats (guies, solucions,
+#                             analitzador i el ?v= dels CSS)
+#   3. verifica_projecte.py — ha de dir "Tot correcte."
+#   4. tests/smoke.js       — el lloc sencer en un Chromium real (mode clar)
+# Si tot és correcte: commit a main.
+# Si alguna cosa falla: main NO es toca (només se'n treu el ZIP, perquè no es
+# torni a processar) i el resultat es desa a la branca upload-revisar/N.
+# Si falla sense cap ZIP (canvi directe a main), es desen igualment els
+# fitxers regenerats i l'execució surt en vermell.
+#
+# El resum de l'execució (pestanya Actions) diu què s'ha descomprimit, què
+# s'ha esborrat i la sortida de cada comprovació.
+#
+# Els commits d'aquest workflow NO porten «[skip ci]» ni similars: Cloudflare
+# Pages no els publicaria. Un commit fet amb GITHUB_TOKEN no torna a llançar
+# cap workflow, així que no hi ha bucle.
+name: Processa els uploads i regenera
 
 on:
   push:
+    branches: [main]
     paths:
       - '_uploads/**.zip'
+      - '_uploads/**.ZIP'
+      - '**.css'
+      - 'index.html'
+      - 'docs/guies/GUIES-LOT-*.md'
+      - 'solucions/**'
+      - 'js/data/preguntes-dades.js'
+      - 'js/ui/llista.js'
+      - 'analitzador-geom-plantilla.html'
+      - 'assets/img/**'
+      - 'parse_guies.py'
+      - 'genera-solucions-dades.py'
+      - 'build_analitzador_geom.py'
+      - 'actualitza_versio_css.py'
+      - 'regenera.py'
+  workflow_dispatch:
 
 permissions:
   contents: write
 
+# Dos ZIP seguits: el segon espera que acabi el primer.
+concurrency:
+  group: uploads-main
+  cancel-in-progress: false
+
+defaults:
+  run:
+    shell: bash
+
 jobs:
-  unzip:
+  processa:
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Unzip uploaded files
+      # El que hi hagi hagut de nou mentre aquesta execució esperava el torn.
+      - name: Posa main al dia
+        run: git pull --ff-only origin main
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: 1. Descomprimeix els ZIP i aplica _ESBORRA.txt
+        id: zips
+        continue-on-error: true
+        run: python3 processa_uploads.py --informe "$RUNNER_TEMP/1-zips.txt"
+
+      - name: 2. Regenera els fitxers generats
+        id: regenera
+        continue-on-error: true
+        run: python3 regenera.py 2>&1 | tee "$RUNNER_TEMP/2-regenera.txt"
+
+      - name: 3. verifica_projecte.py
+        id: verifica
+        continue-on-error: true
+        run: python3 verifica_projecte.py 2>&1 | tee "$RUNNER_TEMP/3-verifica.txt"
+
+      - name: Instal·la Playwright i Chromium
+        id: playwright
+        continue-on-error: true
         run: |
-          shopt -s nullglob
-          for z in _uploads/*.zip; do
-            echo "Processing $z"
-            unzip -o "$z" -d .
-            rm "$z"
-          done
+          npm install --no-save --no-audit --no-fund playwright
+          npx playwright install --with-deps chromium
 
-      - name: Commit and push changes
+      - name: 4. tests/smoke.js (mode clar)
+        id: smoke
+        continue-on-error: true
+        run: node tests/smoke.js --nomes-clar 2>&1 | tee "$RUNNER_TEMP/4-smoke.txt"
+
+      - name: Desa el resultat (main o upload-revisar/N)
+        env:
+          ZIPS: ${{ steps.zips.outputs.zips }}
+          DOLENTS: ${{ steps.zips.outputs.zips_dolents }}
+          OUTCOMES: >-
+            ${{ steps.zips.outcome }} ${{ steps.regenera.outcome }}
+            ${{ steps.verifica.outcome }} ${{ steps.playwright.outcome }}
+            ${{ steps.smoke.outcome }}
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add -A
-          git diff --cached --quiet || git commit -m "Auto-extract uploaded zip"
-          git push
+
+          resum() { echo "$1" >> "$GITHUB_STEP_SUMMARY"; }
+          resum "## Uploads i fitxers generats"
+          resum ""
+          resum "ZIP processats: ${ZIPS:-cap}"
+          [ -n "$DOLENTS" ] && resum "ZIP no vàlids (trets de _uploads/): $DOLENTS"
+          for f in "$RUNNER_TEMP"/[1-4]-*.txt; do
+            [ -f "$f" ] || continue
+            resum ""
+            resum "### $(basename "$f" .txt)"
+            resum '```'
+            tail -n 80 "$f" >> "$GITHUB_STEP_SUMMARY"
+            resum '```'
+          done
+
+          ok=true
+          for o in $OUTCOMES; do [ "$o" = success ] || ok=false; done
+          [ -n "$DOLENTS" ] && ok=false
+
+          desa_a_main() {
+            git pull --rebase origin main
+            git push origin HEAD:main
+          }
+
+          if $ok; then
+            git add -A
+            if git diff --cached --quiet; then
+              resum ""; resum "✅ Tot correcte. No hi havia res a desar."
+              exit 0
+            fi
+            if [ -n "$ZIPS" ]; then msg="Aplica els uploads: $ZIPS"
+            else msg="Regenera els fitxers generats"; fi
+            git commit -q -m "$msg"
+            desa_a_main
+            resum ""; resum "✅ Tot correcte. Desat a main."
+            exit 0
+          fi
+
+          if [ -n "$ZIPS" ]; then
+            branca="upload-revisar/${GITHUB_RUN_NUMBER}"
+            git checkout -q -b "$branca"
+            git add -A
+            git commit -q -m "Resultat de $ZIPS (no ha passat les comprovacions)"
+            git push origin "$branca"
+            git checkout -q main
+            git ls-files -z _uploads | { grep -z -i '^_uploads/[^/]*\.zip$' || true; } \
+              | xargs -0 -r git rm -q --
+            git commit -q -m "Treu de _uploads els ZIP desats a $branca"
+            desa_a_main
+            resum ""
+            resum "❌ Alguna comprovació ha fallat. main no s'ha tocat (només se n'han tret els ZIP)."
+            resum "El resultat és a la branca \`$branca\`: revisa'l i, si cal, fusiona'l amb un PR."
+          else
+            git add -A
+            if ! git diff --cached --quiet; then
+              git commit -q -m "Regenera els fitxers generats (amb comprovacions fallides)"
+              desa_a_main
+            fi
+            resum ""
+            resum "❌ Alguna comprovació ha fallat. S'han desat els fitxers regenerats; cal arreglar l'error."
+          fi
+          exit 1
