@@ -382,13 +382,14 @@ regenera.py                   — refà TOTS els fitxers generats (les quatre l�
   genera-solucions-dades.py   — solucions/*.html → js/data/solucions-dades.js
   build_analitzador_geom.py   — → analitzador-geom.html
   actualitza_versio_css.py    — el ?v= dels CSS, calculat del seu contingut
-processa_uploads.py           — descomprimeix _uploads/*.zip i aplica _ESBORRA.txt
+processa_uploads.py           — descomprimeix _uploads/*.zip i aplica _ESBORRA.txt (ara no el
+                                crida cap workflow: s'executa a mà)
 optimitza_png.py              — comprimeix els PNG sense pèrdua (només si el resultat és píxel-idèntic)
 tests/smoke.js                — el lloc sencer en un navegador real (Playwright)
 next_figure_number.py         — quin és el proper número de figura lliure
 .github/workflows/
-  unzip-upload.yml            — processa cada ZIP pujat: descomprimeix, regenera, verifica
-  verifica.yml                — verifica cada Pull Request
+  unzip-upload.yml            — descomprimeix cada ZIP pujat i en fa commit (versió bàsica:
+                                no regenera ni verifica; vegeu més avall). verifica.yml no hi és
 ```
 
 Els documents de disseny que les capçaleres del codi citen amb número de
@@ -405,33 +406,39 @@ patrons dels projectes germans es reutilitzen i quins es descarten, i per què),
 ## Com arriben els canvis al repositori
 
 El camí habitual és pujar un **ZIP a `_uploads/`** (des de la web de GitHub:
-*Add file → Upload files*). Una GitHub Action (`.github/workflows/unzip-upload.yml`)
-fa tota la resta sola, en uns tres minuts:
+*Add file → Upload files*).
 
-1. **descomprimeix** el ZIP sobre l'arrel del repositori, sobreescrivint;
-2. **esborra** els fitxers que demani `_ESBORRA.txt`, si el ZIP en porta un a
-   l'arrel (un camí per línia; `#` per a comentaris). Abans, un ZIP no podia
-   esborrar res (LESSONS.md §4);
-3. **regenera** els fitxers generats (`regenera.py`), inclòs el `?v=` dels CSS;
-4. **verifica** amb `verifica_projecte.py` i amb `tests/smoke.js` (el lloc
+> **Atenció: el workflow que hi ha ara al repositori és el bàsic.**
+> `.github/workflows/unzip-upload.yml` només **descomprimeix** cada ZIP sobre l'arrel,
+> l'esborra i en fa un commit a `main` («Auto-extract uploaded zip»). **No** aplica
+> `_ESBORRA.txt`, **no** regenera els fitxers generats i **no** verifica res: si el ZIP
+> porta un error, arriba a `main` igualment.
+
+El flux complet que es va dissenyar —i que ja fa l'script `processa_uploads.py`— és:
+
+1. **descomprimir** el ZIP sobre l'arrel del repositori, sobreescrivint;
+2. **esborrar** els fitxers que demani `_ESBORRA.txt`, si el ZIP en porta un a
+   l'arrel (un camí per línia; `#` per a comentaris);
+3. **regenerar** els fitxers generats (`regenera.py`), inclòs el `?v=` dels CSS;
+4. **verificar** amb `verifica_projecte.py` i amb `tests/smoke.js` (el lloc
    sencer en un Chromium real);
-5. si tot és correcte, fa **commit a `main`**. Si alguna cosa falla, **`main`
-   no es toca** (només se'n treu el ZIP): el resultat es desa a una branca
-   `upload-revisar/N`, i l'execució surt en vermell.
+5. només si tot és correcte, fer **commit a `main`**; si no, desar el resultat a una
+   branca `upload-revisar/N`.
 
-On mirar-ho: pestanya **Actions** del repositori → l'execució més recent. El
-resum explica què s'ha descomprimit, què s'ha esborrat i el resultat de cada
-comprovació. Si s'ha comprimit la carpeta sencera (`geom-main/...`) en lloc del
-seu contingut, l'Action ho detecta i ho corregeix sola, i ho diu. El que **no**
-pot fer és tocar `.github/` (GitHub no deixa que una Action canviï els seus
-propis workflows): si un ZIP en porta, s'ignora i el resum ho diu.
+Mentre el workflow no es canviï (cal fer-ho des de la web de GitHub: un ZIP no pot portar
+fitxers de `.github/`), aquests passos s'han de fer a mà, per exemple al Codespace:
 
-La mateixa Action s'executa també quan es canvia directament a `main` alguna
-font d'un fitxer generat (per exemple, un CSS editat des de la web): així els
-fitxers generats no queden mai desfasats.
+```
+python3 processa_uploads.py
+python3 regenera.py
+python3 verifica_projecte.py
+node tests/smoke.js
+```
 
-Els **Pull Requests** passen per `.github/workflows/verifica.yml`: fitxers
-generats al dia, `verifica_projecte.py` i `tests/smoke.js` en mode clar i fosc.
+Per als **Pull Requests** hi havia d'haver `.github/workflows/verifica.yml` (fitxers
+generats al dia, `verifica_projecte.py` i `tests/smoke.js` en mode clar i fosc), però
+**aquest workflow tampoc no és al repositori**: una PR no es comprova sola, i abans de
+fusionar-la cal passar les mateixes ordres a mà.
 
 ## Regenerar les dades
 
