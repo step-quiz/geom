@@ -98,7 +98,10 @@ def processa_zip(cami_zip, informe):
     informe.append("**%s**" % nom)
     escrits, ignorats = 0, []
     with zipfile.ZipFile(cami_zip) as z:
-        entrades = [i for i in z.infolist() if not i.filename.startswith("__MACOSX/")]
+        # Brossa del Mac: carpeta __MACOSX/ i fitxers .DS_Store.
+        entrades = [i for i in z.infolist()
+                    if not i.filename.startswith("__MACOSX/")
+                    and os.path.basename(i.filename) != ".DS_Store"]
         pref = prefix_comu([i.filename for i in entrades])
         if pref:
             informe.append("  - ⚠️ tot el ZIP era dins de la carpeta `%s`: s'ha tret "
