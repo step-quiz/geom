@@ -16,8 +16,8 @@
 # El resum de l'execució (pestanya Actions) diu què s'ha descomprimit, què
 # s'ha esborrat i la sortida de cada comprovació.
 #
-# Els commits d'aquest workflow NO porten «[skip ci]» ni similars: Cloudflare
-# Pages no els publicaria. Un commit fet amb GITHUB_TOKEN no torna a llançar
+# El missatge dels commits d'aquest workflow no porta cap etiqueta per saltar
+# la CI: Cloudflare Pages no els publicaria. Un commit fet amb GITHUB_TOKEN no torna a llançar
 # cap workflow, així que no hi ha bucle.
 name: Processa els uploads i regenera
 
