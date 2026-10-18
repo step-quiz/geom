@@ -241,8 +241,9 @@ CAPCALERA = """/*
 
   PER QUÈ UN FITXER A PART I NO UN CAMP DINS DE preguntes-dades.js
   Les guies s'escriuen en lots successius i es revisen a fora (fitxers
-  GUIES-LOT-N.md), mentre que preguntes-dades.js es REGENERA sencer des del
-  JSON d'extracció del llibre. Tenir-les separades vol dir que regenerar les
+  GUIES-LOT-N.md), mentre que preguntes-dades.js es generava sencer des del
+  JSON d'extracció del llibre (des del 18/10/2026 ja no: és la font i s'edita
+  a mà). Tenir-les separades vol dir que regenerar les
   preguntes no pot destruir les guies, i que afegir un lot de guies no obliga
   a tornar a generar les 130 preguntes. La unió es fa en temps d'execució per
   id (v. js/nucli/guies.js).

@@ -324,7 +324,7 @@ css/
                                 cerca, mode projector i full d'impressió)
 js/
   data/
-    preguntes-dades.js        — les 130 preguntes, en/ca (generat, no editar a mà — v. més avall)
+    preguntes-dades.js        — les 130 preguntes, en/ca (la font: s'edita a mà o amb aplica-canvis.py — v. més avall)
     ordre-preguntes.js        — ordre de PRESENTACIÓ, separat de l'ordre del llibre — s'edita a mà
     guies-dades.js             — les 130 guies — (generat per parse_guies.py, no editar a mà)
     categories-tematiques-dades.js — classificació temàtica de les 130 preguntes en 6 categories (s'edita a mà)
@@ -443,8 +443,10 @@ partir del JSON d'extracció original. **Avís operatiu: aquell script no és en
 aquest repositori** — l'owner el va arxivar a fora un cop feta la
 transformació, que no es torna a fer (v. `HANDOFF-COLD-START.md` §4 i
 `docs/DOCUMENTS-DE-DISSENY.md`). Conseqüència pràctica: **aquest fitxer no es
-pot regenerar avui**; és, de facto, la font de veritat, i s'edita a mà amb
-compte.
+pot regenerar**, i no es regenerarà: ni l'script ni el JSON d'extracció no es
+recuperaran (decisió del 18/10/2026). És la font de veritat, i s'edita a mà amb
+compte (o amb `aplica-canvis.py`); després, `python3 regenera.py` i
+`python3 verifica_projecte.py`.
 
 Això no és tan greu com sona, perquè bona part del seu contingut ja s'editava
 a mà de tota manera: `enunciat.ca`, `pista.*`, `notaEditorial.*` i el camp

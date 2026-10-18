@@ -84,7 +84,12 @@ necessiti, es reintroduirà quan calgui de veritat.
 
 ## 2. `js/data/preguntes-dades.js` (i `build_preguntes_dades.py`)
 
-**No s'edita mai a mà.** Es genera amb un script Python perquè la transformació sigui
+> **Des del 18/10/2026, aquest fitxer és la font de veritat i s'edita a mà** (o amb
+> `aplica-canvis.py`): `build_preguntes_dades.py` i el JSON d'extracció no són al
+> repositori i no es recuperaran. El que segueix explica com es va generar i per què les
+> dades tenen la forma que tenen.
+
+**Abans no s'editava mai a mà.** Es generava amb un script Python perquè la transformació sigui
 auditable i repetible — rellevant especialment perquè el projecte va rebre les dades en
 dos lots successius (41 preguntes p. 1-55, després 130 amb el llibre complet), i
 probablement en rebrà més.

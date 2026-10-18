@@ -12,13 +12,13 @@
                 aquest array pugui créixer entre generacions sense tocar-los.
   DEPENDÈNCIES: Cap (dades pures, sense lògica).
 
-  GENERAT PER:  build_preguntes_dades.py — NO editar aquest fitxer a mà.
-                Per canviar contingut font, edita questions_full_book.json
-                i torna a executar l'script. Traduccions (enunciat.ca,
-                pista.*, notaEditorial.*) SÍ que s'editen a mà directament
-                aquí un cop generat, ja que no venen del JSON font — si
-                regeneres aquest fitxer, revisa que no perds traduccions
-                ja escrites (v. nota "REGENERACIÓ" més avall).
+  FONT:         Aquest fitxer és la font de veritat de les preguntes. El va
+                generar build_preguntes_dades.py a partir de
+                questions_full_book.json, però ni l'script ni el JSON no són
+                al repositori i no es recuperaran (decisió del 18/10/2026):
+                s'edita a mà, o amb aplica-canvis.py, i després
+                python3 regenera.py i python3 verifica_projecte.py. La nota
+                "REGENERACIÓ" de més avall és de quan es generava.
 
   ESQUEMA (v. §4 de PROPOSTA-ARQUITECTURA.md):
     id             — estable, mai es reutilitza ni es renumera
