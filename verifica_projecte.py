@@ -165,6 +165,13 @@ if os.path.exists("docs/manifest-figures.tsv") and G is not None:
     man = {"fig-%s.png" % n for n in nums}
     if refs - man: err("figures usades que no consten al manifest: %s" % sorted(refs - man))
     if man - refs: avis("figures al manifest que cap guia usa: %s" % sorted(man - refs))
+    # Afegit el 18/10/2026: la columna nivell anava desfasada en 69 files.
+    # Ara ha de dir la pista (0-3) on surt cada figura a guies-dades.js.
+    on = {p["figura"]: (q, p["nivell"]) for q, g in G.items() for p in g["pistes"] if p.get("figura")}
+    desfasades = [f[0] for f in files if len(f) > 2 and "fig-%s.png" % f[0] in on
+                  and (f[1], f[2]) != (on["fig-%s.png" % f[0]][0], str(on["fig-%s.png" % f[0]][1]))]
+    if desfasades: err("manifest: l'id o el nivell no és on surt la figura a guies-dades.js: %s" % desfasades[:10])
+    else: ok("manifest: l'id i el nivell de cada figura coincideixen amb guies-dades.js")
 
 # --------------------------------------------------------------- 7. cablejat
 if os.path.exists("index.html"):

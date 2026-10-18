@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Solucions</title>
 <script src="js/data/preguntes-dades.js"></script>
+<script src="js/data/solucions-dades.js"></script>
 <style>
   body { font-family: system-ui, sans-serif; max-width: 32rem; margin: 2rem auto; padding: 0 1rem; line-height: 1.5; }
   li { margin-bottom: 0.6rem; }
@@ -81,11 +82,12 @@
 <div class="descoberta">
   <h2>Totes les solucions trobades a <code>solucions/</code></h2>
   <p class="nota">
-    Aquesta secció no és una llista fixa: en carregar la pàgina, comprova
-    quins fitxers de <code>solucions/&lt;id&gt;.html</code> existeixen
-    realment ara mateix, per a cada <code>id</code> de
-    <code>js/data/preguntes-dades.js</code>. Els que ja apareixen a dalt
-    (afegits a mà pels agents) no es repeteixen aquí baix.
+    Aquesta secció no és una llista fixa: es fa amb
+    <code>js/data/solucions-dades.js</code>, que conté totes les solucions de
+    <code>solucions/</code> i que <code>regenera.py</code> manté al dia (no fa
+    servir <code>fetch()</code>, així que funciona també obrint la pàgina amb
+    doble clic). Els que ja apareixen a dalt (afegits a mà pels agents) no es
+    repeteixen aquí baix.
   </p>
   <p id="descoberta-estat" class="descoberta__estat">Comprovant solucions…</p>
   <div id="descoberta-2d"></div>
@@ -96,6 +98,9 @@
 (function () {
   "use strict";
 
+  // Les solucions surten de js/data/solucions-dades.js (window.SOLUCIONS,
+  // que fa genera-solucions-dades.py des de solucions/*.html): sense fetch(),
+  // perquè la pàgina funcioni també obrint-la per doble clic (file://).
   var estatEl = document.getElementById("descoberta-estat");
   var contenidor2D = document.getElementById("descoberta-2d");
   var contenidor3D = document.getElementById("descoberta-3d");
@@ -107,124 +112,61 @@
     idsJaLlistats[id] = true;
   });
 
-  if (typeof window.PREGUNTES === "undefined") {
+  if (typeof window.PREGUNTES === "undefined" || typeof window.SOLUCIONS === "undefined") {
     estatEl.textContent =
-      "No s'ha pogut carregar js/data/preguntes-dades.js, així que aquesta secció no es pot completar.";
+      "No s'han pogut carregar js/data/preguntes-dades.js i js/data/solucions-dades.js, així que aquesta secció no es pot completar.";
     estatEl.className = "descoberta__estat descoberta__estat--error";
     return;
   }
 
-  var preguntes2D = window.PREGUNTES.filter(function (p) { return p.dimensio === "2D"; });
-  var preguntes3D = window.PREGUNTES.filter(function (p) { return p.dimensio === "3D"; });
   var pendentsClassificar = window.PREGUNTES.filter(function (p) {
     return p.dimensio !== "2D" && p.dimensio !== "3D";
   });
 
-  function comprovaExistencia(pregunta) {
-    var url = "solucions/" + pregunta.id + ".html";
-    return fetch(url, { method: "GET" })
-      .then(function (resp) {
-        if (!resp.ok) return null;
-        return resp.text().then(function (html) {
-          return { pregunta: pregunta, url: url, titol: extreuTitol(html, pregunta) };
-        });
-      })
-      .catch(function () {
-        // Fetch bloquejat (p. ex. obrint el fitxer amb file:// per doble
-        // clic, sense servidor local): es tracta igual que "no trobat",
-        // l'avís general de sota ja explica la causa real.
-        return null;
-      });
+  function trobades(dimensio) {
+    return window.PREGUNTES
+      .filter(function (p) { return p.dimensio === dimensio && window.SOLUCIONS[p.id] && !idsJaLlistats[p.id]; })
+      .sort(function (a, b) { return a.id.localeCompare(b.id); });
   }
 
-  function extreuTitol(html, pregunta) {
-    var match = html.match(/<title>([^<]*)<\/title>/i);
-    if (match && match[1]) {
-      // El <title> real és "Descripció — Solució — Geometria": ens
-      // quedem només amb el primer tros, que és la part llegible.
-      return match[1].split("—")[0].trim();
-    }
-    return null;
-  }
-
-  function renderaSeccio(contenidor, resultats, pendentsSenseSol) {
-    if (resultats.length === 0 && pendentsSenseSol.length === 0) return;
-
+  function renderaSeccio(contenidor, dimensio, preguntes) {
+    if (!preguntes.length) return;
+    var h3 = document.createElement("h3");
+    h3.textContent = dimensio + " — no llistades a mà (" + preguntes.length + ")";
+    contenidor.appendChild(h3);
     var ul = document.createElement("ul");
-    resultats
-      .sort(function (a, b) { return a.pregunta.id.localeCompare(b.pregunta.id); })
-      .forEach(function (r) {
-        var li = document.createElement("li");
-        var a = document.createElement("a");
-        a.href = r.url;
-        a.textContent = r.pregunta.id;
-        li.appendChild(a);
-        li.appendChild(document.createTextNode(" — "));
-        if (r.titol) {
-          li.appendChild(document.createTextNode(r.titol));
-        } else {
-          var span = document.createElement("span");
-          span.className = "descoberta__titol-fallback";
-          span.textContent = "(sense títol llegible al fitxer)";
-          li.appendChild(span);
-        }
-        ul.appendChild(li);
-      });
+    preguntes.forEach(function (p) {
+      var li = document.createElement("li");
+      var a = document.createElement("a");
+      a.href = "solucions/" + p.id + ".html";
+      a.textContent = p.id;
+      li.appendChild(a);
+      li.appendChild(document.createTextNode(" — "));
+      var titol = window.SOLUCIONS[p.id].titol;
+      if (titol && titol !== p.id) {
+        li.appendChild(document.createTextNode(titol));
+      } else {
+        var span = document.createElement("span");
+        span.className = "descoberta__titol-fallback";
+        span.textContent = "(sense títol llegible al fitxer)";
+        li.appendChild(span);
+      }
+      ul.appendChild(li);
+    });
     contenidor.appendChild(ul);
   }
 
-  Promise.all([
-    Promise.all(
-      preguntes2D
-        .filter(function (p) { return !idsJaLlistats[p.id]; })
-        .map(comprovaExistencia)
-    ),
-    Promise.all(
-      preguntes3D
-        .filter(function (p) { return !idsJaLlistats[p.id]; })
-        .map(comprovaExistencia)
-    )
-  ])
-    .then(function (resultats) {
-      var trobades2D = resultats[0].filter(Boolean);
-      var trobades3D = resultats[1].filter(Boolean);
-      var totalTrobades = trobades2D.length + trobades3D.length + Object.keys(idsJaLlistats).length;
+  var trobades2D = trobades("2D");
+  var trobades3D = trobades("3D");
+  renderaSeccio(contenidor2D, "2D", trobades2D);
+  renderaSeccio(contenidor3D, "3D", trobades3D);
 
-      if (trobades2D.length > 0) {
-        var h3a = document.createElement("h3");
-        h3a.textContent = "2D — no llistades a mà (" + trobades2D.length + ")";
-        contenidor2D.appendChild(h3a);
-      }
-      renderaSeccio(contenidor2D, trobades2D, []);
-
-      if (trobades3D.length > 0) {
-        var h3b = document.createElement("h3");
-        h3b.textContent = "3D — no llistades a mà (" + trobades3D.length + ")";
-        contenidor3D.appendChild(h3b);
-      }
-      renderaSeccio(contenidor3D, trobades3D, []);
-
-      var pecesInfo = [
-        totalTrobades + " de " + window.PREGUNTES.length + " preguntes tenen solució ara mateix"
-      ];
-      if (pendentsClassificar.length > 0) {
-        pecesInfo.push(
-          pendentsClassificar.length +
-            " pregunta(es) sense dimensio 2D/3D assignada, no comprovades aquí"
-        );
-      }
-      estatEl.textContent = pecesInfo.join(" · ");
-
-      if (trobades2D.length === 0 && trobades3D.length === 0) {
-        estatEl.textContent +=
-          ". Si esperaves veure fitxers nous aquí i no hi apareixen, comprova que serveixes la pàgina des d'un servidor (no obrint-la per doble clic), ja que fetch() no funciona amb file://.";
-      }
-    })
-    .catch(function (err) {
-      estatEl.textContent =
-        "Hi ha hagut un error comprovant les solucions (" + err.message + "). Si obres aquesta pàgina per doble clic (file://) en lloc de servir-la, és l'origen més probable: fetch() hi queda bloquejat.";
-      estatEl.className = "descoberta__estat descoberta__estat--error";
-    });
+  var ambSolucio = window.PREGUNTES.filter(function (p) { return window.SOLUCIONS[p.id]; }).length;
+  var pecesInfo = [ambSolucio + " de " + window.PREGUNTES.length + " preguntes tenen solució ara mateix"];
+  if (pendentsClassificar.length > 0) {
+    pecesInfo.push(pendentsClassificar.length + " pregunta(es) sense dimensio 2D/3D assignada, no llistades aquí");
+  }
+  estatEl.textContent = pecesInfo.join(" · ");
 })();
 </script>
 

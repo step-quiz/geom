@@ -500,13 +500,13 @@ sol (v. LESSONS.md §3 per saber per què el número manual fallava).
 `docs/manifest-figures.tsv` és el registre de les 162 figures de guia. **Un
 número de figura és permanent**: si una figura es redibuixa, conserva el número.
 
-Les columnes `id`, `moviment` i `lot` coincideixen al 100 % amb
-`js/data/guies-dades.js` (comprovat fila a fila), i són les que fan servir les
-notes de lliurament. **La columna `nivell` és informativa i no és la font de
-veritat**: durant les rondes de revisió, unes quantes figures van canviar de
-pista dins de la guia sense que el manifest s'actualitzés, i avui 69 de les 162
-files hi diuen un nivell que no és on viu la figura. Si necessites saber a quina
-pista surt una figura, mira `guies-dades.js`, no el manifest.
+Les columnes `id`, `moviment`, `lot` i `nivell` coincideixen al 100 % amb
+`js/data/guies-dades.js`, i són les que fan servir les notes de lliurament.
+`nivell` és la pista (0–3) on surt la figura. Anava desfasada en 69 files
+(figures que havien canviat de pista a les rondes de revisió) i es va posar al
+dia el 18/10/2026; ara `verifica_projecte.py` comprova que l'`id` i el `nivell`
+de cada fila són on surt la figura a `guies-dades.js`. Si una figura canvia de
+pista, cal canviar-ho també al manifest.
 
 Les figures publicades a `assets/img/pistes/` són les de treball amb dues
 modificacions automàtiques: se'ls ha esborrat el número de producció i se'ls ha
@@ -534,13 +534,6 @@ Pendents coneguts, cap dels quals bloqueja l'ús actual del lloc:
   comportament honest fins que hi hagi contingut).
 - Les pistes curtes (`pista.ca`/`pista.en`) segueixen `null` a totes 130. No
   són el mateix que les guies i no les substitueixen.
-- La columna `nivell` de `docs/manifest-figures.tsv` va desfasada respecte de
-  `guies-dades.js` en 69 de 162 files (les columnes `id`, `moviment` i `lot`
-  hi coincideixen al 100 %).
-- `sol.html` descobreix les solucions amb `fetch()`, que sota `file://` està
-  bloquejat: obert per doble clic, la secció de descoberta surt buida i només
-  es veu la llista escrita a mà. Per veure-la sencera cal servir el projecte
-  (`python3 -m http.server`). La resta del lloc no en depèn.
 
 Historial complet de lliuraments (ordre cronològic, cada un amb la seva pròpia
 nota tècnica a `docs/guies/NOTA-*.md`): les 130 guies del llibre (lots 1-10,
